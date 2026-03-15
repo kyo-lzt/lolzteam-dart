@@ -42,5 +42,6 @@ export 'src/generated/market/market_client.dart'
         PaymentsApi,
         AutoPaymentsApi,
         ProxyApi,
-        ImapApi;
+        ImapApi,
+        BatchApi;
 export 'src/generated/market/types.dart';
