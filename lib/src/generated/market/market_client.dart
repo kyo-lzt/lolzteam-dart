@@ -19,8 +19,7 @@ class AutoPaymentsApi {
     return AutoPaymentsListResponse.fromJson(raw);
   }
 
-  Future<AutoPaymentsCreateResponse> create(
-      AutoPaymentsCreateBody? body) async {
+  Future<AutoPaymentsCreateResponse> create(AutoPaymentsCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/auto-payment',
@@ -30,8 +29,7 @@ class AutoPaymentsApi {
     return AutoPaymentsCreateResponse.fromJson(raw);
   }
 
-  Future<AutoPaymentsDeleteResponse> delete(
-      AutoPaymentsDeleteBody? body) async {
+  Future<AutoPaymentsDeleteResponse> delete(AutoPaymentsDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/auto-payment',
@@ -41,6 +39,7 @@ class AutoPaymentsApi {
     return AutoPaymentsDeleteResponse.fromJson(raw);
   }
 }
+
 
 class MarketBatchApi {
   final LolzteamHttpClient _http;
@@ -57,6 +56,7 @@ class MarketBatchApi {
     return BatchBatchResponse.fromJson(raw);
   }
 }
+
 
 class CartApi {
   final LolzteamHttpClient _http;
@@ -93,6 +93,7 @@ class CartApi {
   }
 }
 
+
 class CategoryApi {
   final LolzteamHttpClient _http;
 
@@ -118,8 +119,7 @@ class CategoryApi {
     return CategorySteamResponse.fromJson(raw);
   }
 
-  Future<CategoryFortniteResponse> fortnite(
-      CategoryFortniteParams? params) async {
+  Future<CategoryFortniteResponse> fortnite(CategoryFortniteParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/fortnite',
@@ -149,8 +149,7 @@ class CategoryApi {
     return CategoryRiotResponse.fromJson(raw);
   }
 
-  Future<CategoryTelegramResponse> telegram(
-      CategoryTelegramParams? params) async {
+  Future<CategoryTelegramResponse> telegram(CategoryTelegramParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/telegram',
@@ -160,8 +159,7 @@ class CategoryApi {
     return CategoryTelegramResponse.fromJson(raw);
   }
 
-  Future<CategorySupercellResponse> supercell(
-      CategorySupercellParams? params) async {
+  Future<CategorySupercellResponse> supercell(CategorySupercellParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/supercell',
@@ -191,8 +189,7 @@ class CategoryApi {
     return CategoryWotResponse.fromJson(raw);
   }
 
-  Future<CategoryWotBlitzResponse> wotBlitz(
-      CategoryWotBlitzParams? params) async {
+  Future<CategoryWotBlitzResponse> wotBlitz(CategoryWotBlitzParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/wot-blitz',
@@ -212,8 +209,7 @@ class CategoryApi {
     return CategoryGiftsResponse.fromJson(raw);
   }
 
-  Future<CategoryEpicGamesResponse> epicGames(
-      CategoryEpicGamesParams? params) async {
+  Future<CategoryEpicGamesResponse> epicGames(CategoryEpicGamesParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/epicgames',
@@ -223,8 +219,7 @@ class CategoryApi {
     return CategoryEpicGamesResponse.fromJson(raw);
   }
 
-  Future<CategoryEscapeFromTarkovResponse> escapeFromTarkov(
-      CategoryEscapeFromTarkovParams? params) async {
+  Future<CategoryEscapeFromTarkovResponse> escapeFromTarkov(CategoryEscapeFromTarkovParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/escape-from-tarkov',
@@ -234,8 +229,7 @@ class CategoryApi {
     return CategoryEscapeFromTarkovResponse.fromJson(raw);
   }
 
-  Future<CategorySocialClubResponse> socialClub(
-      CategorySocialClubParams? params) async {
+  Future<CategorySocialClubResponse> socialClub(CategorySocialClubParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/socialclub',
@@ -275,8 +269,7 @@ class CategoryApi {
     return CategoryTikTokResponse.fromJson(raw);
   }
 
-  Future<CategoryInstagramResponse> instagram(
-      CategoryInstagramParams? params) async {
+  Future<CategoryInstagramResponse> instagram(CategoryInstagramParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/instagram',
@@ -286,8 +279,7 @@ class CategoryApi {
     return CategoryInstagramResponse.fromJson(raw);
   }
 
-  Future<CategoryBattleNetResponse> battleNet(
-      CategoryBattleNetParams? params) async {
+  Future<CategoryBattleNetResponse> battleNet(CategoryBattleNetParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/battlenet',
@@ -337,8 +329,7 @@ class CategoryApi {
     return CategoryWarfaceResponse.fromJson(raw);
   }
 
-  Future<CategoryMinecraftResponse> minecraft(
-      CategoryMinecraftParams? params) async {
+  Future<CategoryMinecraftResponse> minecraft(CategoryMinecraftParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/minecraft',
@@ -384,6 +375,7 @@ class CategoryApi {
   }
 }
 
+
 class CustomDiscountsApi {
   final LolzteamHttpClient _http;
 
@@ -397,8 +389,7 @@ class CustomDiscountsApi {
     return CustomDiscountsGetResponse.fromJson(raw);
   }
 
-  Future<CustomDiscountsCreateResponse> create(
-      CustomDiscountsCreateBody? body) async {
+  Future<CustomDiscountsCreateResponse> create(CustomDiscountsCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/custom-discounts',
@@ -408,8 +399,7 @@ class CustomDiscountsApi {
     return CustomDiscountsCreateResponse.fromJson(raw);
   }
 
-  Future<CustomDiscountsEditResponse> edit(
-      CustomDiscountsEditBody? body) async {
+  Future<CustomDiscountsEditResponse> edit(CustomDiscountsEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/custom-discounts',
@@ -419,8 +409,7 @@ class CustomDiscountsApi {
     return CustomDiscountsEditResponse.fromJson(raw);
   }
 
-  Future<CustomDiscountsDeleteResponse> delete(
-      CustomDiscountsDeleteBody? body) async {
+  Future<CustomDiscountsDeleteResponse> delete(CustomDiscountsDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/custom-discounts',
@@ -430,6 +419,7 @@ class CustomDiscountsApi {
     return CustomDiscountsDeleteResponse.fromJson(raw);
   }
 }
+
 
 class ImapApi {
   final LolzteamHttpClient _http;
@@ -456,6 +446,7 @@ class ImapApi {
     return ImapDeleteResponse.fromJson(raw);
   }
 }
+
 
 class ListApi {
   final LolzteamHttpClient _http;
@@ -516,6 +507,7 @@ class ListApi {
   }
 }
 
+
 class ManagingApi {
   final LolzteamHttpClient _http;
 
@@ -530,8 +522,7 @@ class ManagingApi {
     return ManagingGetResponse.fromJson(raw);
   }
 
-  Future<ManagingDeleteResponse> delete(
-      int itemId, ManagingDeleteBody? body) async {
+  Future<ManagingDeleteResponse> delete(int itemId, ManagingDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId',
@@ -541,8 +532,7 @@ class ManagingApi {
     return ManagingDeleteResponse.fromJson(raw);
   }
 
-  Future<ManagingCreateClaimResponse> createClaim(
-      ManagingCreateClaimBody? body) async {
+  Future<ManagingCreateClaimResponse> createClaim(ManagingCreateClaimBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/claims',
@@ -562,8 +552,7 @@ class ManagingApi {
     return ManagingBulkGetResponse.fromJson(raw);
   }
 
-  Future<ManagingSteamInventoryValueResponse> steamInventoryValue(
-      int itemId, ManagingSteamInventoryValueParams? params) async {
+  Future<ManagingSteamInventoryValueResponse> steamInventoryValue(int itemId, ManagingSteamInventoryValueParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/inventory-value',
@@ -572,8 +561,7 @@ class ManagingApi {
     return ManagingSteamInventoryValueResponse.fromJson(raw);
   }
 
-  Future<ManagingSteamValueResponse> steamValue(
-      ManagingSteamValueParams? params) async {
+  Future<ManagingSteamValueResponse> steamValue(ManagingSteamValueParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/steam-value',
@@ -582,8 +570,7 @@ class ManagingApi {
     return ManagingSteamValueResponse.fromJson(raw);
   }
 
-  Future<String> steamPreview(
-      int itemId, ManagingSteamPreviewParams? params) async {
+  Future<String> steamPreview(int itemId, ManagingSteamPreviewParams? params) async {
     return _http.requestText(RequestOptions(
       method: 'GET',
       path: '/$itemId/steam-preview',
@@ -627,8 +614,7 @@ class ManagingApi {
     return ManagingNoteResponse.fromJson(raw);
   }
 
-  Future<ManagingSteamUpdateValueResponse> steamUpdateValue(
-      int itemId, ManagingSteamUpdateValueBody? body) async {
+  Future<ManagingSteamUpdateValueResponse> steamUpdateValue(int itemId, ManagingSteamUpdateValueBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/update-inventory',
@@ -646,8 +632,7 @@ class ManagingApi {
     return ManagingBumpResponse.fromJson(raw);
   }
 
-  Future<ManagingAutoBumpResponse> autoBump(
-      int itemId, ManagingAutoBumpBody? body) async {
+  Future<ManagingAutoBumpResponse> autoBump(int itemId, ManagingAutoBumpBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/auto-bump',
@@ -681,8 +666,7 @@ class ManagingApi {
     return ManagingCloseResponse.fromJson(raw);
   }
 
-  Future<ManagingImageResponse> image(
-      int itemId, ManagingImageParams? params) async {
+  Future<ManagingImageResponse> image(int itemId, ManagingImageParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/image',
@@ -699,8 +683,7 @@ class ManagingApi {
     return ManagingEmailCodeResponse.fromJson(raw);
   }
 
-  Future<ManagingGetLetters2Response> getLetters2(
-      ManagingGetLetters2Params? params) async {
+  Future<ManagingGetLetters2Response> getLetters2(ManagingGetLetters2Params? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/letters2',
@@ -725,8 +708,7 @@ class ManagingApi {
     return ManagingSteamAddMafileResponse.fromJson(raw);
   }
 
-  Future<ManagingSteamRemoveMafileResponse> steamRemoveMafile(
-      int itemId) async {
+  Future<ManagingSteamRemoveMafileResponse> steamRemoveMafile(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/mafile',
@@ -742,8 +724,7 @@ class ManagingApi {
     return ManagingSteamMafileCodeResponse.fromJson(raw);
   }
 
-  Future<ManagingSteamSDAResponse> steamSDA(
-      int itemId, ManagingSteamSDABody? body) async {
+  Future<ManagingSteamSDAResponse> steamSDA(int itemId, ManagingSteamSDABody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/confirm-sda',
@@ -761,8 +742,7 @@ class ManagingApi {
     return ManagingTelegramCodeResponse.fromJson(raw);
   }
 
-  Future<ManagingTelegramResetAuthResponse> telegramResetAuth(
-      int itemId) async {
+  Future<ManagingTelegramResetAuthResponse> telegramResetAuth(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/telegram-reset-authorizations',
@@ -778,8 +758,7 @@ class ManagingApi {
     return ManagingRefuseGuaranteeResponse.fromJson(raw);
   }
 
-  Future<ManagingDeclineVideoRecordingResponse> declineVideoRecording(
-      int itemId, ManagingDeclineVideoRecordingBody? body) async {
+  Future<ManagingDeclineVideoRecordingResponse> declineVideoRecording(int itemId, ManagingDeclineVideoRecordingBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/decline-video-recording',
@@ -797,8 +776,7 @@ class ManagingApi {
     return ManagingCheckGuaranteeResponse.fromJson(raw);
   }
 
-  Future<ManagingChangePasswordResponse> changePassword(
-      int itemId, ManagingChangePasswordBody? body) async {
+  Future<ManagingChangePasswordResponse> changePassword(int itemId, ManagingChangePasswordBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/change-password',
@@ -808,8 +786,7 @@ class ManagingApi {
     return ManagingChangePasswordResponse.fromJson(raw);
   }
 
-  Future<ManagingTempEmailPasswordResponse> tempEmailPassword(
-      int itemId) async {
+  Future<ManagingTempEmailPasswordResponse> tempEmailPassword(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/temp-email-password',
@@ -827,8 +804,7 @@ class ManagingApi {
     return ManagingTagResponse.fromJson(raw);
   }
 
-  Future<ManagingUntagResponse> untag(
-      int itemId, ManagingUntagBody? body) async {
+  Future<ManagingUntagResponse> untag(int itemId, ManagingUntagBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/tag',
@@ -838,8 +814,7 @@ class ManagingApi {
     return ManagingUntagResponse.fromJson(raw);
   }
 
-  Future<ManagingPublicTagResponse> publicTag(
-      int itemId, ManagingPublicTagBody? body) async {
+  Future<ManagingPublicTagResponse> publicTag(int itemId, ManagingPublicTagBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/public-tag',
@@ -849,8 +824,7 @@ class ManagingApi {
     return ManagingPublicTagResponse.fromJson(raw);
   }
 
-  Future<ManagingPublicUntagResponse> publicUntag(
-      int itemId, ManagingPublicUntagBody? body) async {
+  Future<ManagingPublicUntagResponse> publicUntag(int itemId, ManagingPublicUntagBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/public-tag',
@@ -892,8 +866,7 @@ class ManagingApi {
     return ManagingUnstickResponse.fromJson(raw);
   }
 
-  Future<ManagingTransferResponse> transfer(
-      int itemId, ManagingTransferBody? body) async {
+  Future<ManagingTransferResponse> transfer(int itemId, ManagingTransferBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/change-owner',
@@ -904,13 +877,13 @@ class ManagingApi {
   }
 }
 
+
 class PaymentsApi {
   final LolzteamHttpClient _http;
 
   PaymentsApi(this._http);
 
-  Future<PaymentsInvoiceGetResponse> invoiceGet(
-      PaymentsInvoiceGetParams? params) async {
+  Future<PaymentsInvoiceGetResponse> invoiceGet(PaymentsInvoiceGetParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/invoice',
@@ -919,8 +892,7 @@ class PaymentsApi {
     return PaymentsInvoiceGetResponse.fromJson(raw);
   }
 
-  Future<PaymentsInvoiceCreateResponse> invoiceCreate(
-      PaymentsInvoiceCreateBody? body) async {
+  Future<PaymentsInvoiceCreateResponse> invoiceCreate(PaymentsInvoiceCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/invoice',
@@ -930,8 +902,7 @@ class PaymentsApi {
     return PaymentsInvoiceCreateResponse.fromJson(raw);
   }
 
-  Future<PaymentsInvoiceListResponse> invoiceList(
-      PaymentsInvoiceListParams? params) async {
+  Future<PaymentsInvoiceListResponse> invoiceList(PaymentsInvoiceListParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/invoice/list',
@@ -956,8 +927,7 @@ class PaymentsApi {
     return PaymentsBalanceListResponse.fromJson(raw);
   }
 
-  Future<PaymentsBalanceExchangeResponse> balanceExchange(
-      PaymentsBalanceExchangeBody? body) async {
+  Future<PaymentsBalanceExchangeResponse> balanceExchange(PaymentsBalanceExchangeBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/balance/exchange',
@@ -1024,6 +994,7 @@ class PaymentsApi {
   }
 }
 
+
 class ProfileApi {
   final LolzteamHttpClient _http;
 
@@ -1057,6 +1028,7 @@ class ProfileApi {
     return ProfileEditResponse.fromJson(raw);
   }
 }
+
 
 class ProxyApi {
   final LolzteamHttpClient _http;
@@ -1092,13 +1064,13 @@ class ProxyApi {
   }
 }
 
+
 class PublishingApi {
   final LolzteamHttpClient _http;
 
   PublishingApi(this._http);
 
-  Future<PublishingFastSellResponse> fastSell(
-      PublishingFastSellBody? body) async {
+  Future<PublishingFastSellResponse> fastSell(PublishingFastSellBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/item/fast-sell',
@@ -1118,8 +1090,7 @@ class PublishingApi {
     return PublishingAddResponse.fromJson(raw);
   }
 
-  Future<PublishingCheckResponse> check(
-      int itemId, PublishingCheckBody? body) async {
+  Future<PublishingCheckResponse> check(int itemId, PublishingCheckBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/goods/check',
@@ -1129,8 +1100,7 @@ class PublishingApi {
     return PublishingCheckResponse.fromJson(raw);
   }
 
-  Future<PublishingExternalResponse> external(
-      int itemId, PublishingExternalBody? body) async {
+  Future<PublishingExternalResponse> external(int itemId, PublishingExternalBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/external-account',
@@ -1141,13 +1111,13 @@ class PublishingApi {
   }
 }
 
+
 class PurchasingApi {
   final LolzteamHttpClient _http;
 
   PurchasingApi(this._http);
 
-  Future<PurchasingFastBuyResponse> fastBuy(
-      int itemId, PurchasingFastBuyBody? body) async {
+  Future<PurchasingFastBuyResponse> fastBuy(int itemId, PurchasingFastBuyBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/fast-buy',
@@ -1165,8 +1135,7 @@ class PurchasingApi {
     return PurchasingCheckResponse.fromJson(raw);
   }
 
-  Future<PurchasingConfirmResponse> confirm(
-      int itemId, PurchasingConfirmBody? body) async {
+  Future<PurchasingConfirmResponse> confirm(int itemId, PurchasingConfirmBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/confirm-buy',
@@ -1176,8 +1145,7 @@ class PurchasingApi {
     return PurchasingConfirmResponse.fromJson(raw);
   }
 
-  Future<PurchasingDiscountRequestResponse> discountRequest(
-      int itemId, PurchasingDiscountRequestBody? body) async {
+  Future<PurchasingDiscountRequestResponse> discountRequest(int itemId, PurchasingDiscountRequestBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/discount',
@@ -1196,6 +1164,7 @@ class PurchasingApi {
   }
 }
 
+
 class MarketClient {
   final AutoPaymentsApi autoPayments;
   final MarketBatchApi batch;
@@ -1213,28 +1182,13 @@ class MarketClient {
 
   final LolzteamHttpClient _http;
 
-  MarketClient._({
-    required LolzteamHttpClient http,
-    required this.autoPayments,
-    required this.batch,
-    required this.cart,
-    required this.category,
-    required this.customDiscounts,
-    required this.imap,
-    required this.list,
-    required this.managing,
-    required this.payments,
-    required this.profile,
-    required this.proxy,
-    required this.publishing,
-    required this.purchasing,
-  }) : _http = http;
+  MarketClient._({required LolzteamHttpClient http, required this.autoPayments, required this.batch, required this.cart, required this.category, required this.customDiscounts, required this.imap, required this.list, required this.managing, required this.payments, required this.profile, required this.proxy, required this.publishing, required this.purchasing, }) : _http = http;
 
   factory MarketClient(ClientConfig config) {
     final http = LolzteamHttpClient(config.copyWith(
       baseUrl: config.baseUrl ?? 'https://prod-api.lzt.market',
-      rateLimit:
-          config.rateLimit ?? const RateLimitConfig(requestsPerMinute: 120),
+      rateLimit: config.rateLimit ??
+          const RateLimitConfig(requestsPerMinute: 120),
       searchRateLimit: config.searchRateLimit ??
           const RateLimitConfig(requestsPerMinute: 20),
     ));
@@ -1273,3 +1227,4 @@ class MarketClient {
     _http.close();
   }
 }
+
