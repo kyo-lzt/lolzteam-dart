@@ -58,15 +58,21 @@ Object? derefDeep(Object? value, Map<String, dynamic> spec,
 // ─── OpenAPI Schema → Intermediate Type ──────────────────────────────────────
 
 /// Convert an OpenAPI schema to an intermediate type string.
-String schemaToTypeString(Object? schema, Map<String, dynamic> spec) {
+/// When [preserveRefs] is true, `$ref` to component schemas are returned
+/// as-is (the schema name) instead of being resolved.
+String schemaToTypeString(Object? schema, Map<String, dynamic> spec,
+    {bool preserveRefs = false}) {
   if (schema == null) return 'unknown';
   if (schema is Map<String, dynamic> && schema.isEmpty) return 'unknown';
 
   if (schema is Map<String, dynamic>) {
     final ref = schema[r'$ref'];
     if (ref is String) {
+      if (preserveRefs && ref.startsWith('#/components/schemas/')) {
+        return ref.substring('#/components/schemas/'.length);
+      }
       final resolved = derefShallow(schema, spec);
-      return schemaToTypeString(resolved, spec);
+      return schemaToTypeString(resolved, spec, preserveRefs: preserveRefs);
     }
   }
 
@@ -89,17 +95,23 @@ String schemaToTypeString(Object? schema, Map<String, dynamic> spec) {
   // oneOf / anyOf
   final oneOf = schema['oneOf'];
   if (oneOf is List && oneOf.isNotEmpty) {
-    return oneOf.map((e) => schemaToTypeString(e, spec)).join(' | ');
+    return oneOf
+        .map((e) => schemaToTypeString(e, spec, preserveRefs: preserveRefs))
+        .join(' | ');
   }
   final anyOf = schema['anyOf'];
   if (anyOf is List && anyOf.isNotEmpty) {
-    return anyOf.map((e) => schemaToTypeString(e, spec)).join(' | ');
+    return anyOf
+        .map((e) => schemaToTypeString(e, spec, preserveRefs: preserveRefs))
+        .join(' | ');
   }
 
   // allOf
   final allOf = schema['allOf'];
   if (allOf is List && allOf.isNotEmpty) {
-    return allOf.map((e) => schemaToTypeString(e, spec)).join(' & ');
+    return allOf
+        .map((e) => schemaToTypeString(e, spec, preserveRefs: preserveRefs))
+        .join(' & ');
   }
 
   // Multi-type array
@@ -116,7 +128,8 @@ String schemaToTypeString(Object? schema, Map<String, dynamic> spec) {
   final type = typeEl is String ? typeEl : null;
 
   if (type == 'array') {
-    final itemType = schemaToTypeString(schema['items'], spec);
+    final itemType =
+        schemaToTypeString(schema['items'], spec, preserveRefs: preserveRefs);
     return 'Array<$itemType>';
   }
 
@@ -125,7 +138,8 @@ String schemaToTypeString(Object? schema, Map<String, dynamic> spec) {
     if (props == null || (props is Map && props.isEmpty)) {
       final addlProps = schema['additionalProperties'];
       if (addlProps != null && addlProps is! bool) {
-        final valType = schemaToTypeString(addlProps, spec);
+        final valType =
+            schemaToTypeString(addlProps, spec, preserveRefs: preserveRefs);
         return 'Record<string, $valType>';
       }
       return 'Record<string, unknown>';
@@ -150,13 +164,17 @@ String _primitiveType(String t) {
 }
 
 /// Map intermediate type string to Dart type.
-String toDartType(String tsType) {
+/// [knownSchemas] are component schema names that should pass through as-is.
+String toDartType(String tsType, {Set<String> knownSchemas = const {}}) {
+  if (knownSchemas.contains(tsType)) {
+    return componentSchemaToDartName(tsType);
+  }
   // Union types
   if (tsType.contains(' | ') || tsType.contains(' & ')) {
     final parts = tsType.split(' | ').map((s) => s.trim()).toList();
     final nonNull = parts.where((p) => p != 'null').toList();
     if (nonNull.length == 1 && parts.contains('null')) {
-      return '${toDartType(nonNull[0])}?';
+      return '${toDartType(nonNull[0], knownSchemas: knownSchemas)}?';
     }
     // All string literals → String
     if (nonNull.isNotEmpty &&
@@ -169,7 +187,7 @@ String toDartType(String tsType) {
   // Array<T>
   final arrayMatch = RegExp(r'^Array<(.+)>$').firstMatch(tsType);
   if (arrayMatch != null) {
-    return 'List<${toDartType(arrayMatch.group(1)!)}>';
+    return 'List<${toDartType(arrayMatch.group(1)!, knownSchemas: knownSchemas)}>';
   }
 
   // Inline objects
@@ -353,6 +371,165 @@ String extractResponseType(
   return schemaToTypeString(schema, spec);
 }
 
+// ─── Component Schema Utilities ─────────────────────────────────────────────
+
+/// Convert a raw component schema name (e.g. `Resp_SystemInfo`) to PascalCase.
+String componentSchemaToDartName(String rawName) {
+  return rawName
+      .split('_')
+      .map((part) =>
+          part.isEmpty ? '' : part[0].toUpperCase() + part.substring(1))
+      .join('');
+}
+
+/// Extract component schemas from the raw (pre-deref) spec.
+Map<String, ComponentSchema> extractComponentSchemas(
+    Map<String, dynamic> rawSpec) {
+  final schemas = <String, ComponentSchema>{};
+  final components = rawSpec['components'];
+  if (components is! Map<String, dynamic>) return schemas;
+  final rawSchemas = components['schemas'];
+  if (rawSchemas is! Map<String, dynamic>) return schemas;
+
+  for (final entry in rawSchemas.entries) {
+    final name = entry.key;
+    final schema = entry.value;
+    if (schema is! Map<String, dynamic>) continue;
+    final rawProps = schema['properties'];
+    if (rawProps is! Map<String, dynamic>) continue;
+
+    final properties = <String, SchemaProperty>{};
+    for (final propEntry in rawProps.entries) {
+      final propSchema = propEntry.value;
+      if (propSchema is! Map<String, dynamic>) continue;
+      properties[propEntry.key] =
+          _schemaToProperty(propEntry.key, propSchema, rawSpec);
+    }
+
+    schemas[name] = ComponentSchema(
+      rawName: name,
+      dartName: componentSchemaToDartName(name),
+      properties: properties,
+    );
+  }
+
+  return schemas;
+}
+
+/// Build a [SchemaProperty] from a raw OpenAPI property schema.
+SchemaProperty _schemaToProperty(
+    String name, Map<String, dynamic> propSchema, Map<String, dynamic> spec) {
+  // Direct $ref to component schema
+  final ref = propSchema[r'$ref'];
+  if (ref is String && ref.startsWith('#/components/schemas/')) {
+    final schemaName = ref.substring('#/components/schemas/'.length);
+    final dartName = componentSchemaToDartName(schemaName);
+    return SchemaProperty(
+      name: name,
+      dartType: dartName,
+      isComponentRef: true,
+      componentRefName: schemaName,
+    );
+  }
+
+  final type = propSchema['type'];
+
+  // Array
+  if (type == 'array') {
+    final items = propSchema['items'];
+    if (items is Map<String, dynamic>) {
+      final itemRef = items[r'$ref'];
+      if (itemRef is String && itemRef.startsWith('#/components/schemas/')) {
+        final schemaName = itemRef.substring('#/components/schemas/'.length);
+        final dartName = componentSchemaToDartName(schemaName);
+        return SchemaProperty(
+          name: name,
+          dartType: 'List<$dartName>',
+          isArrayOfComponentRef: true,
+          arrayItemComponentName: schemaName,
+        );
+      }
+    }
+    // Non-ref array items
+    final resolved = derefDeep(propSchema, spec) as Map<String, dynamic>;
+    final itemType = schemaToTypeString(resolved['items'], spec);
+    return SchemaProperty(
+      name: name,
+      dartType: 'List<${toDartType(itemType)}>',
+    );
+  }
+
+  // Inline object with properties
+  if ((type == 'object' || propSchema.containsKey('properties')) &&
+      propSchema['properties'] is Map<String, dynamic>) {
+    final inlineProps = <String, SchemaProperty>{};
+    final rawInline = propSchema['properties'] as Map<String, dynamic>;
+    for (final e in rawInline.entries) {
+      if (e.value is Map<String, dynamic>) {
+        inlineProps[e.key] =
+            _schemaToProperty(e.key, e.value as Map<String, dynamic>, spec);
+      }
+    }
+    return SchemaProperty(
+      name: name,
+      dartType: 'Object',
+      isInlineObject: true,
+      inlineProperties: inlineProps,
+    );
+  }
+
+  // Resolve and convert via standard path
+  final resolved = derefDeep(propSchema, spec);
+  final typeStr = schemaToTypeString(resolved, spec);
+  return SchemaProperty(
+    name: name,
+    dartType: toDartType(typeStr),
+  );
+}
+
+/// Extract the response schema for an operation from the raw spec.
+ResponseSchema extractResponseSchema(
+    Map<String, dynamic> operation, Map<String, dynamic> rawSpec) {
+  final responses = operation['responses'];
+  if (responses is! Map<String, dynamic>) return ResponseSchema.empty;
+
+  final rawSuccess = responses['200'] ?? responses['201'];
+  if (rawSuccess == null) return ResponseSchema.empty;
+  final success = derefShallow(rawSuccess, rawSpec);
+  if (success is! Map<String, dynamic>) return ResponseSchema.empty;
+
+  final content = success['content'];
+  if (content is! Map<String, dynamic>) return ResponseSchema.empty;
+  final jsonContent = content['application/json'];
+  if (jsonContent is! Map<String, dynamic>) return ResponseSchema.empty;
+  var schema = jsonContent['schema'];
+  if (schema is! Map<String, dynamic>) return ResponseSchema.empty;
+
+  // Resolve top-level $ref to component schema
+  final ref = schema[r'$ref'];
+  if (ref is String && ref.startsWith('#/components/schemas/')) {
+    final resolved = resolveRef(ref, rawSpec);
+    if (resolved is Map<String, dynamic>) {
+      schema = resolved;
+    }
+  }
+
+  final rawProps = schema['properties'];
+  if (rawProps is! Map<String, dynamic> || rawProps.isEmpty) {
+    return ResponseSchema.empty;
+  }
+
+  final properties = <String, SchemaProperty>{};
+  for (final entry in rawProps.entries) {
+    final propSchema = entry.value;
+    if (propSchema is! Map<String, dynamic>) continue;
+    properties[entry.key] =
+        _schemaToProperty(entry.key, propSchema, rawSpec);
+  }
+
+  return ResponseSchema(properties: properties);
+}
+
 // ─── Method Definition ───────────────────────────────────────────────────────
 
 MethodDefinition extractMethodDefinition({
@@ -361,11 +538,16 @@ MethodDefinition extractMethodDefinition({
   required String httpMethod,
   required String path,
   required Map<String, dynamic> operation,
+  required Map<String, dynamic> rawSpec,
 }) {
   final spec = <String, dynamic>{};
   final params = extractParameters(operation, spec);
   final body = extractBody(operation, spec);
   final responseType = extractResponseType(operation, spec);
+  final responseSchema = extractResponseSchema(
+    _findRawOperation(rawSpec, operationId) ?? operation,
+    rawSpec,
+  );
 
   final isGet = httpMethod.toUpperCase() == 'GET';
 
@@ -406,5 +588,23 @@ MethodDefinition extractMethodDefinition({
     bodyIsArray: isGet ? false : body.bodyIsArray,
     bodyArrayItemType: isGet ? null : body.bodyArrayItemType,
     bodyEncoding: isGet ? 'form' : body.bodyEncoding,
+    responseSchema: responseSchema,
   );
+}
+
+/// Look up the raw (pre-deref) operation by operationId.
+Map<String, dynamic>? _findRawOperation(
+    Map<String, dynamic> rawSpec, String operationId) {
+  final paths = rawSpec['paths'];
+  if (paths is! Map<String, dynamic>) return null;
+  for (final pathObj in paths.values) {
+    if (pathObj is! Map<String, dynamic>) continue;
+    for (final method in const ['get', 'post', 'put', 'delete', 'patch']) {
+      final op = pathObj[method];
+      if (op is Map<String, dynamic> && op['operationId'] == operationId) {
+        return op;
+      }
+    }
+  }
+  return null;
 }

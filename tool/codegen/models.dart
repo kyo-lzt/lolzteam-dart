@@ -81,6 +81,7 @@ class MethodDefinition {
   final bool bodyIsArray;
   final String? bodyArrayItemType;
   final String bodyEncoding;
+  final ResponseSchema responseSchema;
 
   const MethodDefinition({
     required this.operationId,
@@ -95,6 +96,7 @@ class MethodDefinition {
     this.bodyIsArray = false,
     this.bodyArrayItemType,
     this.bodyEncoding = 'form',
+    this.responseSchema = const ResponseSchema(properties: {}),
   });
 }
 
@@ -108,12 +110,59 @@ class ParsedGroup {
   });
 }
 
+/// A single property in a response or component schema.
+class SchemaProperty {
+  final String name;
+  final String dartType;
+  final bool isComponentRef;
+  final String? componentRefName;
+  final bool isArrayOfComponentRef;
+  final String? arrayItemComponentName;
+  final bool isInlineObject;
+  final Map<String, SchemaProperty>? inlineProperties;
+
+  const SchemaProperty({
+    required this.name,
+    required this.dartType,
+    this.isComponentRef = false,
+    this.componentRefName,
+    this.isArrayOfComponentRef = false,
+    this.arrayItemComponentName,
+    this.isInlineObject = false,
+    this.inlineProperties,
+  });
+}
+
+/// Parsed response schema for an operation.
+class ResponseSchema {
+  final Map<String, SchemaProperty> properties;
+
+  const ResponseSchema({required this.properties});
+
+  static const empty = ResponseSchema(properties: {});
+}
+
+/// A parsed component schema (e.g. Resp_SystemInfo).
+class ComponentSchema {
+  final String rawName;
+  final String dartName;
+  final Map<String, SchemaProperty> properties;
+
+  const ComponentSchema({
+    required this.rawName,
+    required this.dartName,
+    required this.properties,
+  });
+}
+
 class ParseResult {
   final List<ParsedGroup> groups;
   final String baseUrl;
+  final Map<String, ComponentSchema> componentSchemas;
 
   const ParseResult({
     required this.groups,
     required this.baseUrl,
+    this.componentSchemas = const {},
   });
 }

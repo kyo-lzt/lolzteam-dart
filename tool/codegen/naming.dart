@@ -51,9 +51,9 @@ String groupToClassNamePrefixed(String tag, String prefix, Set<String> conflicts
 String buildTypeName(String group, String method) =>
     _capitalizeFirst(group) + _capitalizeFirst(method);
 
-/// Convert snake_case to camelCase.
+/// Convert snake_case or kebab-case to camelCase.
 String snakeToCamel(String name) {
-  return name.replaceAllMapped(RegExp(r'_([a-z])'), (m) => m[1]!.toUpperCase());
+  return name.replaceAllMapped(RegExp(r'[-_]([a-z])'), (m) => m[1]!.toUpperCase());
 }
 
 String _lowercaseFirst(String s) {
@@ -131,6 +131,8 @@ String safeDartName(String name) {
   if (leadingUnderscores > 0) {
     sanitized = sanitized.substring(leadingUnderscores);
   }
+  // Replace non-identifier chars (colons, dots, etc.) with underscores
+  sanitized = sanitized.replaceAll(RegExp(r'[^a-zA-Z0-9_\-]'), '_');
   var camel = snakeToCamel(sanitized);
   // Ensure first char is lowercase
   camel = _lowercaseFirst(camel);

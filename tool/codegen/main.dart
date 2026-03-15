@@ -30,8 +30,12 @@ void main() {
     ),
   ];
 
-  final barrelEntries =
-      <({String clientName, String subPackage, List<ParsedGroup> groups})>[];
+  final barrelEntries = <({
+    String clientName,
+    String subPackage,
+    List<ParsedGroup> groups,
+    Map<String, ComponentSchema> componentSchemas,
+  })>[];
 
   // First pass: parse all specs to detect conflicting group names.
   final parsed = <(ApiConfig, ParseResult)>[];
@@ -61,6 +65,7 @@ void main() {
       clientName: config.clientName,
       subPackage: config.subPackage,
       groups: result.groups,
+      componentSchemas: result.componentSchemas,
     ));
 
     final outDir = Directory(config.outputDir);
@@ -77,7 +82,11 @@ void main() {
     }
 
     // Write types.dart
-    final typesContent = emitDartTypesFile(result.groups, config.subPackage);
+    final typesContent = emitDartTypesFile(
+      result.groups,
+      config.subPackage,
+      componentSchemas: result.componentSchemas,
+    );
     File('${config.outputDir}/types.dart').writeAsStringSync(typesContent);
     stdout.writeln('  types.dart');
 

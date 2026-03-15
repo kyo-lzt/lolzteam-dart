@@ -1,5 +1,1279 @@
 // Auto-generated. DO NOT EDIT.
 
+// ─── Component Schemas ────────────────────────────────────────
+
+class DiscountModel {
+  final int? categoryId;
+  final int? discountId;
+  final int? discountPercent;
+  final int? discountUserId;
+  final int? maxPrice;
+  final int? minPrice;
+  final int? userId;
+
+  const DiscountModel({
+    this.categoryId,
+    this.discountId,
+    this.discountPercent,
+    this.discountUserId,
+    this.maxPrice,
+    this.minPrice,
+    this.userId,
+  });
+
+  factory DiscountModel.fromJson(Map<String, dynamic> json) => DiscountModel(
+    categoryId: json['category_id'] as int?,
+    discountId: json['discount_id'] as int?,
+    discountPercent: json['discount_percent'] as int?,
+    discountUserId: json['discount_user_id'] as int?,
+    maxPrice: json['max_price'] as int?,
+    minPrice: json['min_price'] as int?,
+    userId: json['user_id'] as int?,
+  );
+}
+
+class UserModel {
+  final int? activeItemsCount;
+  final bool? activityVisible;
+  final int? age;
+  final String? balance;
+  final List<Map<String, dynamic>>? balances;
+  final int? bumpItemPeriod;
+  final bool? canEdit;
+  final bool? canFollow;
+  final bool? canIgnore;
+  final bool? canPostProfile;
+  final bool? canViewProfile;
+  final bool? canViewProfilePosts;
+  final bool? canWarn;
+  final int? contestCount;
+  final String? convWelcomeMessage;
+  final int? convertedBalance;
+  final int? convertedDeposit;
+  final int? convertedHold;
+  final String? currency;
+  final String? currencyPhrase;
+  final String? customAccountDownloadFormat;
+  final Object? customFields;
+  final String? customTitle;
+  final int? deposit;
+  final Object? dob;
+  final Object? feedbackData;
+  final String? hold;
+  final String? homepage;
+  final Object? imapData;
+  final bool? isAdmin;
+  final bool? isBanned;
+  final bool? isFollowed;
+  final bool? isIgnored;
+  final bool? isModerator;
+  final bool? isStaff;
+  final bool? isSuperAdmin;
+  final int? joinedDate;
+  final int? lastActivity;
+  final int? like2Count;
+  final int? likeCount;
+  final String? location;
+  final String? marketCustomTitle;
+  final int? maxDiscountPercent;
+  final int? messageCount;
+  final int? paidMailLeft;
+  final List<Map<String, dynamic>>? publicTags;
+  final int? registerDate;
+  final Object? rendered;
+  final int? restoreCount;
+  final Object? restoreData;
+  final String? shortLink;
+  final int? soldItemsCount;
+  final List<Map<String, dynamic>>? tags;
+  final Object? telegramClient;
+  final int? trophyPoints;
+  final bool? userAllowAskDiscount;
+  final int? userId;
+  final String? userTitle;
+  final String? username;
+  final String? viewUrl;
+  final bool? visible;
+  final int? warningPoints;
+
+  const UserModel({
+    this.activeItemsCount,
+    this.activityVisible,
+    this.age,
+    this.balance,
+    this.balances,
+    this.bumpItemPeriod,
+    this.canEdit,
+    this.canFollow,
+    this.canIgnore,
+    this.canPostProfile,
+    this.canViewProfile,
+    this.canViewProfilePosts,
+    this.canWarn,
+    this.contestCount,
+    this.convWelcomeMessage,
+    this.convertedBalance,
+    this.convertedDeposit,
+    this.convertedHold,
+    this.currency,
+    this.currencyPhrase,
+    this.customAccountDownloadFormat,
+    this.customFields,
+    this.customTitle,
+    this.deposit,
+    this.dob,
+    this.feedbackData,
+    this.hold,
+    this.homepage,
+    this.imapData,
+    this.isAdmin,
+    this.isBanned,
+    this.isFollowed,
+    this.isIgnored,
+    this.isModerator,
+    this.isStaff,
+    this.isSuperAdmin,
+    this.joinedDate,
+    this.lastActivity,
+    this.like2Count,
+    this.likeCount,
+    this.location,
+    this.marketCustomTitle,
+    this.maxDiscountPercent,
+    this.messageCount,
+    this.paidMailLeft,
+    this.publicTags,
+    this.registerDate,
+    this.rendered,
+    this.restoreCount,
+    this.restoreData,
+    this.shortLink,
+    this.soldItemsCount,
+    this.tags,
+    this.telegramClient,
+    this.trophyPoints,
+    this.userAllowAskDiscount,
+    this.userId,
+    this.userTitle,
+    this.username,
+    this.viewUrl,
+    this.visible,
+    this.warningPoints,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+    activeItemsCount: json['active_items_count'] as int?,
+    activityVisible: json['activity_visible'] as bool?,
+    age: json['age'] as int?,
+    balance: json['balance'] as String?,
+    balances: (json['balances'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    bumpItemPeriod: json['bump_item_period'] as int?,
+    canEdit: json['can_edit'] as bool?,
+    canFollow: json['can_follow'] as bool?,
+    canIgnore: json['can_ignore'] as bool?,
+    canPostProfile: json['can_post_profile'] as bool?,
+    canViewProfile: json['can_view_profile'] as bool?,
+    canViewProfilePosts: json['can_view_profile_posts'] as bool?,
+    canWarn: json['can_warn'] as bool?,
+    contestCount: json['contest_count'] as int?,
+    convWelcomeMessage: json['conv_welcome_message'] as String?,
+    convertedBalance: json['convertedBalance'] as int?,
+    convertedDeposit: json['convertedDeposit'] as int?,
+    convertedHold: json['convertedHold'] as int?,
+    currency: json['currency'] as String?,
+    currencyPhrase: json['currencyPhrase'] as String?,
+    customAccountDownloadFormat: json['custom_account_download_format'] as String?,
+    customFields: json['custom_fields'] as Object?,
+    customTitle: json['custom_title'] as String?,
+    deposit: json['deposit'] as int?,
+    dob: json['dob'] as Object?,
+    feedbackData: json['feedback_data'] as Object?,
+    hold: json['hold'] as String?,
+    homepage: json['homepage'] as String?,
+    imapData: json['imap_data'] as Object?,
+    isAdmin: json['is_admin'] as bool?,
+    isBanned: json['is_banned'] as bool?,
+    isFollowed: json['is_followed'] as bool?,
+    isIgnored: json['is_ignored'] as bool?,
+    isModerator: json['is_moderator'] as bool?,
+    isStaff: json['is_staff'] as bool?,
+    isSuperAdmin: json['is_super_admin'] as bool?,
+    joinedDate: json['joined_date'] as int?,
+    lastActivity: json['last_activity'] as int?,
+    like2Count: json['like2_count'] as int?,
+    likeCount: json['like_count'] as int?,
+    location: json['location'] as String?,
+    marketCustomTitle: json['market_custom_title'] as String?,
+    maxDiscountPercent: json['max_discount_percent'] as int?,
+    messageCount: json['message_count'] as int?,
+    paidMailLeft: json['paid_mail_left'] as int?,
+    publicTags: (json['public_tags'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    registerDate: json['register_date'] as int?,
+    rendered: json['rendered'] as Object?,
+    restoreCount: json['restore_count'] as int?,
+    restoreData: json['restore_data'] as Object?,
+    shortLink: json['short_link'] as String?,
+    soldItemsCount: json['sold_items_count'] as int?,
+    tags: (json['tags'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    telegramClient: json['telegram_client'] as Object?,
+    trophyPoints: json['trophy_points'] as int?,
+    userAllowAskDiscount: json['user_allow_ask_discount'] as bool?,
+    userId: json['user_id'] as int?,
+    userTitle: json['user_title'] as String?,
+    username: json['username'] as String?,
+    viewUrl: json['view_url'] as String?,
+    visible: json['visible'] as bool?,
+    warningPoints: json['warning_points'] as int?,
+  );
+}
+
+class BalanceModel {
+  final String? balance;
+  final int? balanceId;
+  final Object? customTitle;
+  final String? fullTitle;
+  final int? merchantId;
+  final String? title;
+  final String? type;
+  final int? userId;
+
+  const BalanceModel({
+    this.balance,
+    this.balanceId,
+    this.customTitle,
+    this.fullTitle,
+    this.merchantId,
+    this.title,
+    this.type,
+    this.userId,
+  });
+
+  factory BalanceModel.fromJson(Map<String, dynamic> json) => BalanceModel(
+    balance: json['balance'] as String?,
+    balanceId: json['balance_id'] as int?,
+    customTitle: json['custom_title'] as Object?,
+    fullTitle: json['fullTitle'] as String?,
+    merchantId: json['merchant_id'] as int?,
+    title: json['title'] as String?,
+    type: json['type'] as String?,
+    userId: json['user_id'] as int?,
+  );
+}
+
+class ExtraModel {
+  final String? proxy;
+  final bool? closeItem;
+  final String? region;
+  final String? service;
+  final String? system;
+  final String? confirmationCode;
+  final String? cookies;
+  final bool? loginWithoutCookies;
+  final bool? cookieLogin;
+  final String? mfaFile;
+  final int? dota2Mmr;
+  final bool? eaGames;
+  final bool? uplayGames;
+  final bool? theQuarry;
+  final bool? warframe;
+  final bool? ark;
+  final bool? arkAscended;
+  final int? genshinCurrency;
+  final int? honkaiCurrency;
+  final int? zenlessCurrency;
+  final String? password;
+  final String? telegramClient;
+  final String? telegramJson;
+  final bool? checkChannels;
+  final bool? checkSpam;
+  final bool? checkHypixelBan;
+
+  const ExtraModel({
+    this.proxy,
+    this.closeItem,
+    this.region,
+    this.service,
+    this.system,
+    this.confirmationCode,
+    this.cookies,
+    this.loginWithoutCookies,
+    this.cookieLogin,
+    this.mfaFile,
+    this.dota2Mmr,
+    this.eaGames,
+    this.uplayGames,
+    this.theQuarry,
+    this.warframe,
+    this.ark,
+    this.arkAscended,
+    this.genshinCurrency,
+    this.honkaiCurrency,
+    this.zenlessCurrency,
+    this.password,
+    this.telegramClient,
+    this.telegramJson,
+    this.checkChannels,
+    this.checkSpam,
+    this.checkHypixelBan,
+  });
+
+  factory ExtraModel.fromJson(Map<String, dynamic> json) => ExtraModel(
+    proxy: json['proxy'] as String?,
+    closeItem: json['close_item'] as bool?,
+    region: json['region'] as String?,
+    service: json['service'] as String?,
+    system: json['system'] as String?,
+    confirmationCode: json['confirmationCode'] as String?,
+    cookies: json['cookies'] as String?,
+    loginWithoutCookies: json['login_without_cookies'] as bool?,
+    cookieLogin: json['cookie_login'] as bool?,
+    mfaFile: json['mfa_file'] as String?,
+    dota2Mmr: json['dota2_mmr'] as int?,
+    eaGames: json['ea_games'] as bool?,
+    uplayGames: json['uplay_games'] as bool?,
+    theQuarry: json['the_quarry'] as bool?,
+    warframe: json['warframe'] as bool?,
+    ark: json['ark'] as bool?,
+    arkAscended: json['ark_ascended'] as bool?,
+    genshinCurrency: json['genshin_currency'] as int?,
+    honkaiCurrency: json['honkai_currency'] as int?,
+    zenlessCurrency: json['zenless_currency'] as int?,
+    password: json['password'] as String?,
+    telegramClient: json['telegramClient'] as String?,
+    telegramJson: json['telegramJson'] as String?,
+    checkChannels: json['checkChannels'] as bool?,
+    checkSpam: json['checkSpam'] as bool?,
+    checkHypixelBan: json['checkHypixelBan'] as bool?,
+  );
+}
+
+class ConfirmationCodeModel {
+  final ItemModel? item;
+  final Object? codeData;
+
+  const ConfirmationCodeModel({
+    this.item,
+    this.codeData,
+  });
+
+  factory ConfirmationCodeModel.fromJson(Map<String, dynamic> json) => ConfirmationCodeModel(
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    codeData: json['codeData'] as Object?,
+  );
+}
+
+class ItemListModel {
+  final List<ItemFromListModel>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final String? searchUrl;
+  final List<ItemFromListModel>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const ItemListModel({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory ItemListModel.fromJson(Map<String, dynamic> json) => ItemListModel(
+    items: (json['items'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ItemFromListModel {
+  final int? itemId;
+  final String? itemState;
+  final int? categoryId;
+  final int? publishedDate;
+  final String? title;
+  final String? description;
+  final int? price;
+  final int? updateStatDate;
+  final int? refreshedDate;
+  final int? viewCount;
+  final int? isSticky;
+  final String? itemOrigin;
+  final int? extendedGuarantee;
+  final int? nsb;
+  final int? allowAskDiscount;
+  final String? titleEn;
+  final String? descriptionEn;
+  final String? itemDomain;
+  final String? resaleItemOrigin;
+  final int? isIgnored;
+  final bool? guarantee;
+  final bool? canViewLoginData;
+  final bool? canUpdateItemStats;
+  final bool? canViewEmailLoginData;
+  final bool? showGetEmailCodeButton;
+  final bool? canOpenItem;
+  final bool? canCloseItem;
+  final bool? canEditItem;
+  final bool? canDeleteItem;
+  final bool? canStickItem;
+  final bool? canUnstickItem;
+  final Object? bumpSettings;
+  final bool? canBumpItem;
+  final bool? canBuyItem;
+  final int? rubPrice;
+  final String? priceCurrency;
+  final bool? canValidateAccount;
+  final bool? canResellItemAfterPurchase;
+  final bool? canViewAccountLink;
+  final String? itemOriginPhrase;
+  final List<String>? tags;
+  final String? noteText;
+  final String? descriptionHtml;
+  final String? descriptionHtmlEn;
+  final Object? seller;
+
+  const ItemFromListModel({
+    this.itemId,
+    this.itemState,
+    this.categoryId,
+    this.publishedDate,
+    this.title,
+    this.description,
+    this.price,
+    this.updateStatDate,
+    this.refreshedDate,
+    this.viewCount,
+    this.isSticky,
+    this.itemOrigin,
+    this.extendedGuarantee,
+    this.nsb,
+    this.allowAskDiscount,
+    this.titleEn,
+    this.descriptionEn,
+    this.itemDomain,
+    this.resaleItemOrigin,
+    this.isIgnored,
+    this.guarantee,
+    this.canViewLoginData,
+    this.canUpdateItemStats,
+    this.canViewEmailLoginData,
+    this.showGetEmailCodeButton,
+    this.canOpenItem,
+    this.canCloseItem,
+    this.canEditItem,
+    this.canDeleteItem,
+    this.canStickItem,
+    this.canUnstickItem,
+    this.bumpSettings,
+    this.canBumpItem,
+    this.canBuyItem,
+    this.rubPrice,
+    this.priceCurrency,
+    this.canValidateAccount,
+    this.canResellItemAfterPurchase,
+    this.canViewAccountLink,
+    this.itemOriginPhrase,
+    this.tags,
+    this.noteText,
+    this.descriptionHtml,
+    this.descriptionHtmlEn,
+    this.seller,
+  });
+
+  factory ItemFromListModel.fromJson(Map<String, dynamic> json) => ItemFromListModel(
+    itemId: json['item_id'] as int?,
+    itemState: json['item_state'] as String?,
+    categoryId: json['category_id'] as int?,
+    publishedDate: json['published_date'] as int?,
+    title: json['title'] as String?,
+    description: json['description'] as String?,
+    price: json['price'] as int?,
+    updateStatDate: json['update_stat_date'] as int?,
+    refreshedDate: json['refreshed_date'] as int?,
+    viewCount: json['view_count'] as int?,
+    isSticky: json['is_sticky'] as int?,
+    itemOrigin: json['item_origin'] as String?,
+    extendedGuarantee: json['extended_guarantee'] as int?,
+    nsb: json['nsb'] as int?,
+    allowAskDiscount: json['allow_ask_discount'] as int?,
+    titleEn: json['title_en'] as String?,
+    descriptionEn: json['description_en'] as String?,
+    itemDomain: json['item_domain'] as String?,
+    resaleItemOrigin: json['resale_item_origin'] as String?,
+    isIgnored: json['isIgnored'] as int?,
+    guarantee: json['guarantee'] as bool?,
+    canViewLoginData: json['canViewLoginData'] as bool?,
+    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
+    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
+    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
+    canOpenItem: json['canOpenItem'] as bool?,
+    canCloseItem: json['canCloseItem'] as bool?,
+    canEditItem: json['canEditItem'] as bool?,
+    canDeleteItem: json['canDeleteItem'] as bool?,
+    canStickItem: json['canStickItem'] as bool?,
+    canUnstickItem: json['canUnstickItem'] as bool?,
+    bumpSettings: json['bumpSettings'] as Object?,
+    canBumpItem: json['canBumpItem'] as bool?,
+    canBuyItem: json['canBuyItem'] as bool?,
+    rubPrice: json['rub_price'] as int?,
+    priceCurrency: json['price_currency'] as String?,
+    canValidateAccount: json['canValidateAccount'] as bool?,
+    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
+    canViewAccountLink: json['canViewAccountLink'] as bool?,
+    itemOriginPhrase: json['itemOriginPhrase'] as String?,
+    tags: (json['tags'] as List<dynamic>?)?.cast<String>(),
+    noteText: json['note_text'] as String?,
+    descriptionHtml: json['description_html'] as String?,
+    descriptionHtmlEn: json['description_html_en'] as String?,
+    seller: json['seller'] as Object?,
+  );
+}
+
+class ItemModel {
+  final int? itemId;
+  final String? itemState;
+  final int? categoryId;
+  final int? publishedDate;
+  final String? title;
+  final String? description;
+  final int? price;
+  final int? updateStatDate;
+  final int? refreshedDate;
+  final int? editDate;
+  final int? pendingDeletionDate;
+  final String? login;
+  final String? tempEmail;
+  final int? viewCount;
+  final int? isSticky;
+  final String? information;
+  final String? itemOrigin;
+  final int? extendedGuarantee;
+  final int? nsb;
+  final int? allowAskDiscount;
+  final String? titleEn;
+  final String? descriptionEn;
+  final String? informationEn;
+  final String? emailType;
+  final String? emailProvider;
+  final String? itemDomain;
+  final String? resaleItemOrigin;
+  final String? noteText;
+  final Object? contentType;
+  final Object? contentId;
+  final int? deleteDate;
+  final int? deleteUserId;
+  final String? deleteUsername;
+  final String? deleteReason;
+  final int? userAllowAskDiscount;
+  final int? maxDiscountPercent;
+  final String? marketCustomTitle;
+  final String? feedbackData;
+  final int? buyerDisplayIconGroupId;
+  final String? buyerUniqBanner;
+  final int? buyerAvatarDate;
+  final int? buyerUserGroupId;
+  final Object? isFave;
+  final Object? inCart;
+  final Object? cartPrice;
+  final bool? canResellItem;
+  final double? priceWithSellerFee;
+  final Object? guarantee;
+  final bool? canViewLoginData;
+  final bool? canUpdateItemStats;
+  final bool? canReportItem;
+  final bool? canViewItemViews;
+  final Object? loginData;
+  final bool? canViewEmailLoginData;
+  final Object? copyFormatData;
+  final bool? showGetEmailCodeButton;
+  final Object? getEmailCodeDisplayLogin;
+  final Object? buyer;
+  final bool? isPersonalAccount;
+  final int? rubPrice;
+  final String? priceCurrency;
+  final String? priceWithSellerFeeLabel;
+  final bool? canValidateAccount;
+  final bool? canResellItemAfterPurchase;
+  final bool? isSmallExf;
+  final int? accountLastActivity;
+  final bool? canViewAccountLink;
+  final List<Map<String, dynamic>>? accountLinks;
+  final String? accountLink;
+  final List<String>? imagePreviewLinks;
+  final bool? canChangePassword;
+  final bool? canChangeEmailPassword;
+  final bool? uniqueKeyExists;
+  final String? itemOriginPhrase;
+  final bool? visitorIsAuthor;
+  final bool? canAskDiscount;
+  final Object? tags;
+  final Object? customFields;
+  final List<Object>? externalAuth;
+  final bool? isTrusted;
+  final bool? isBirthdayToday;
+  final bool? isIgnored;
+  final int? deposit;
+  final List<Map<String, dynamic>>? extraPrices;
+  final bool? canViewAccountLoginAndTempEmail;
+  final Object? bumpSettings;
+  final bool? canCheckGuarantee;
+  final bool? canShareItem;
+  final bool? canCheckAiPrice;
+  final int? aiPrice;
+  final int? aiPriceCheckDate;
+  final bool? needToRequireVideoToViewLoginData;
+  final bool? canCheckAutoBuyPrice;
+  final int? autoBuyPrice;
+  final int? autoBuyPriceCheckDate;
+  final String? descriptionHtml;
+  final String? descriptionEnHtml;
+  final String? descriptionPlain;
+  final String? descriptionEnPlain;
+  final Object? seller;
+
+  const ItemModel({
+    this.itemId,
+    this.itemState,
+    this.categoryId,
+    this.publishedDate,
+    this.title,
+    this.description,
+    this.price,
+    this.updateStatDate,
+    this.refreshedDate,
+    this.editDate,
+    this.pendingDeletionDate,
+    this.login,
+    this.tempEmail,
+    this.viewCount,
+    this.isSticky,
+    this.information,
+    this.itemOrigin,
+    this.extendedGuarantee,
+    this.nsb,
+    this.allowAskDiscount,
+    this.titleEn,
+    this.descriptionEn,
+    this.informationEn,
+    this.emailType,
+    this.emailProvider,
+    this.itemDomain,
+    this.resaleItemOrigin,
+    this.noteText,
+    this.contentType,
+    this.contentId,
+    this.deleteDate,
+    this.deleteUserId,
+    this.deleteUsername,
+    this.deleteReason,
+    this.userAllowAskDiscount,
+    this.maxDiscountPercent,
+    this.marketCustomTitle,
+    this.feedbackData,
+    this.buyerDisplayIconGroupId,
+    this.buyerUniqBanner,
+    this.buyerAvatarDate,
+    this.buyerUserGroupId,
+    this.isFave,
+    this.inCart,
+    this.cartPrice,
+    this.canResellItem,
+    this.priceWithSellerFee,
+    this.guarantee,
+    this.canViewLoginData,
+    this.canUpdateItemStats,
+    this.canReportItem,
+    this.canViewItemViews,
+    this.loginData,
+    this.canViewEmailLoginData,
+    this.copyFormatData,
+    this.showGetEmailCodeButton,
+    this.getEmailCodeDisplayLogin,
+    this.buyer,
+    this.isPersonalAccount,
+    this.rubPrice,
+    this.priceCurrency,
+    this.priceWithSellerFeeLabel,
+    this.canValidateAccount,
+    this.canResellItemAfterPurchase,
+    this.isSmallExf,
+    this.accountLastActivity,
+    this.canViewAccountLink,
+    this.accountLinks,
+    this.accountLink,
+    this.imagePreviewLinks,
+    this.canChangePassword,
+    this.canChangeEmailPassword,
+    this.uniqueKeyExists,
+    this.itemOriginPhrase,
+    this.visitorIsAuthor,
+    this.canAskDiscount,
+    this.tags,
+    this.customFields,
+    this.externalAuth,
+    this.isTrusted,
+    this.isBirthdayToday,
+    this.isIgnored,
+    this.deposit,
+    this.extraPrices,
+    this.canViewAccountLoginAndTempEmail,
+    this.bumpSettings,
+    this.canCheckGuarantee,
+    this.canShareItem,
+    this.canCheckAiPrice,
+    this.aiPrice,
+    this.aiPriceCheckDate,
+    this.needToRequireVideoToViewLoginData,
+    this.canCheckAutoBuyPrice,
+    this.autoBuyPrice,
+    this.autoBuyPriceCheckDate,
+    this.descriptionHtml,
+    this.descriptionEnHtml,
+    this.descriptionPlain,
+    this.descriptionEnPlain,
+    this.seller,
+  });
+
+  factory ItemModel.fromJson(Map<String, dynamic> json) => ItemModel(
+    itemId: json['item_id'] as int?,
+    itemState: json['item_state'] as String?,
+    categoryId: json['category_id'] as int?,
+    publishedDate: json['published_date'] as int?,
+    title: json['title'] as String?,
+    description: json['description'] as String?,
+    price: json['price'] as int?,
+    updateStatDate: json['update_stat_date'] as int?,
+    refreshedDate: json['refreshed_date'] as int?,
+    editDate: json['edit_date'] as int?,
+    pendingDeletionDate: json['pending_deletion_date'] as int?,
+    login: json['login'] as String?,
+    tempEmail: json['temp_email'] as String?,
+    viewCount: json['view_count'] as int?,
+    isSticky: json['is_sticky'] as int?,
+    information: json['information'] as String?,
+    itemOrigin: json['item_origin'] as String?,
+    extendedGuarantee: json['extended_guarantee'] as int?,
+    nsb: json['nsb'] as int?,
+    allowAskDiscount: json['allow_ask_discount'] as int?,
+    titleEn: json['title_en'] as String?,
+    descriptionEn: json['description_en'] as String?,
+    informationEn: json['information_en'] as String?,
+    emailType: json['email_type'] as String?,
+    emailProvider: json['email_provider'] as String?,
+    itemDomain: json['item_domain'] as String?,
+    resaleItemOrigin: json['resale_item_origin'] as String?,
+    noteText: json['note_text'] as String?,
+    contentType: json['content_type'] as Object?,
+    contentId: json['content_id'] as Object?,
+    deleteDate: json['delete_date'] as int?,
+    deleteUserId: json['delete_user_id'] as int?,
+    deleteUsername: json['delete_username'] as String?,
+    deleteReason: json['delete_reason'] as String?,
+    userAllowAskDiscount: json['user_allow_ask_discount'] as int?,
+    maxDiscountPercent: json['max_discount_percent'] as int?,
+    marketCustomTitle: json['market_custom_title'] as String?,
+    feedbackData: json['feedback_data'] as String?,
+    buyerDisplayIconGroupId: json['buyer_display_icon_group_id'] as int?,
+    buyerUniqBanner: json['buyer_uniq_banner'] as String?,
+    buyerAvatarDate: json['buyer_avatar_date'] as int?,
+    buyerUserGroupId: json['buyer_user_group_id'] as int?,
+    isFave: json['is_fave'] as Object?,
+    inCart: json['in_cart'] as Object?,
+    cartPrice: json['cart_price'] as Object?,
+    canResellItem: json['canResellItem'] as bool?,
+    priceWithSellerFee: json['priceWithSellerFee'] as double?,
+    guarantee: json['guarantee'] as Object?,
+    canViewLoginData: json['canViewLoginData'] as bool?,
+    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
+    canReportItem: json['canReportItem'] as bool?,
+    canViewItemViews: json['canViewItemViews'] as bool?,
+    loginData: json['loginData'] as Object?,
+    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
+    copyFormatData: json['copyFormatData'] as Object?,
+    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
+    getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as Object?,
+    buyer: json['buyer'] as Object?,
+    isPersonalAccount: json['isPersonalAccount'] as bool?,
+    rubPrice: json['rub_price'] as int?,
+    priceCurrency: json['price_currency'] as String?,
+    priceWithSellerFeeLabel: json['priceWithSellerFeeLabel'] as String?,
+    canValidateAccount: json['canValidateAccount'] as bool?,
+    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
+    isSmallExf: json['isSmallExf'] as bool?,
+    accountLastActivity: json['account_last_activity'] as int?,
+    canViewAccountLink: json['canViewAccountLink'] as bool?,
+    accountLinks: (json['accountLinks'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    accountLink: json['accountLink'] as String?,
+    imagePreviewLinks: (json['imagePreviewLinks'] as List<dynamic>?)?.cast<String>(),
+    canChangePassword: json['canChangePassword'] as bool?,
+    canChangeEmailPassword: json['canChangeEmailPassword'] as bool?,
+    uniqueKeyExists: json['uniqueKeyExists'] as bool?,
+    itemOriginPhrase: json['itemOriginPhrase'] as String?,
+    visitorIsAuthor: json['visitorIsAuthor'] as bool?,
+    canAskDiscount: json['canAskDiscount'] as bool?,
+    tags: json['tags'] as Object?,
+    customFields: json['customFields'] as Object?,
+    externalAuth: (json['externalAuth'] as List<dynamic>?)?.cast<Object>(),
+    isTrusted: json['isTrusted'] as bool?,
+    isBirthdayToday: json['isBirthdayToday'] as bool?,
+    isIgnored: json['isIgnored'] as bool?,
+    deposit: json['deposit'] as int?,
+    extraPrices: (json['extraPrices'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    canViewAccountLoginAndTempEmail: json['canViewAccountLoginAndTempEmail'] as bool?,
+    bumpSettings: json['bumpSettings'] as Object?,
+    canCheckGuarantee: json['canCheckGuarantee'] as bool?,
+    canShareItem: json['canShareItem'] as bool?,
+    canCheckAiPrice: json['canCheckAiPrice'] as bool?,
+    aiPrice: json['aiPrice'] as int?,
+    aiPriceCheckDate: json['aiPriceCheckDate'] as int?,
+    needToRequireVideoToViewLoginData: json['needToRequireVideoToViewLoginData'] as bool?,
+    canCheckAutoBuyPrice: json['canCheckAutoBuyPrice'] as bool?,
+    autoBuyPrice: json['autoBuyPrice'] as int?,
+    autoBuyPriceCheckDate: json['autoBuyPriceCheckDate'] as int?,
+    descriptionHtml: json['descriptionHtml'] as String?,
+    descriptionEnHtml: json['descriptionEnHtml'] as String?,
+    descriptionPlain: json['descriptionPlain'] as String?,
+    descriptionEnPlain: json['descriptionEnPlain'] as String?,
+    seller: json['seller'] as Object?,
+  );
+}
+
+class InvoiceModel {
+  final String? additionalData;
+  final int? amount;
+  final String? comment;
+  final int? expiresAt;
+  final int? invoiceDate;
+  final int? invoiceId;
+  final bool? isTest;
+  final int? merchantId;
+  final int? paidDate;
+  final int? payerUserId;
+  final String? paymentId;
+  final int? resendAttempts;
+  final String? status;
+  final String? url;
+  final String? urlCallback;
+  final String? urlSuccess;
+  final int? userId;
+
+  const InvoiceModel({
+    this.additionalData,
+    this.amount,
+    this.comment,
+    this.expiresAt,
+    this.invoiceDate,
+    this.invoiceId,
+    this.isTest,
+    this.merchantId,
+    this.paidDate,
+    this.payerUserId,
+    this.paymentId,
+    this.resendAttempts,
+    this.status,
+    this.url,
+    this.urlCallback,
+    this.urlSuccess,
+    this.userId,
+  });
+
+  factory InvoiceModel.fromJson(Map<String, dynamic> json) => InvoiceModel(
+    additionalData: json['additional_data'] as String?,
+    amount: json['amount'] as int?,
+    comment: json['comment'] as String?,
+    expiresAt: json['expires_at'] as int?,
+    invoiceDate: json['invoice_date'] as int?,
+    invoiceId: json['invoice_id'] as int?,
+    isTest: json['is_test'] as bool?,
+    merchantId: json['merchant_id'] as int?,
+    paidDate: json['paid_date'] as int?,
+    payerUserId: json['payer_user_id'] as int?,
+    paymentId: json['payment_id'] as String?,
+    resendAttempts: json['resend_attempts'] as int?,
+    status: json['status'] as String?,
+    url: json['url'] as String?,
+    urlCallback: json['url_callback'] as String?,
+    urlSuccess: json['url_success'] as String?,
+    userId: json['user_id'] as int?,
+  );
+}
+
+class RespSystemInfo {
+  final int? visitorId;
+  final int? time;
+  final int? logId;
+
+  const RespSystemInfo({
+    this.visitorId,
+    this.time,
+    this.logId,
+  });
+
+  factory RespSystemInfo.fromJson(Map<String, dynamic> json) => RespSystemInfo(
+    visitorId: json['visitor_id'] as int?,
+    time: json['time'] as int?,
+    logId: json['log_id'] as int?,
+  );
+}
+
+// ─── AutoPaymentsApi Types ────────────────────────────────────────
+
+class AutoPaymentsListResponsePayments {
+  final Object? n1234567890;
+
+  const AutoPaymentsListResponsePayments({
+    this.n1234567890,
+  });
+
+  factory AutoPaymentsListResponsePayments.fromJson(Map<String, dynamic> json) => AutoPaymentsListResponsePayments(
+    n1234567890: json['1234567890'] as Object?,
+  );
+}
+
+class AutoPaymentsListResponse {
+  final AutoPaymentsListResponsePayments? payments;
+  final RespSystemInfo? systemInfo;
+
+  const AutoPaymentsListResponse({
+    this.payments,
+    this.systemInfo,
+  });
+
+  factory AutoPaymentsListResponse.fromJson(Map<String, dynamic> json) => AutoPaymentsListResponse(
+    payments: json['payments'] != null
+            ? AutoPaymentsListResponsePayments.fromJson(json['payments'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class AutoPaymentsCreateBody {
+  final String? secretAnswer;
+  final String usernameReceiver;
+  final Object day;
+  final double amount;
+  final String? currency;
+  final String? description;
+
+  const AutoPaymentsCreateBody({
+    this.secretAnswer,
+    required this.usernameReceiver,
+    required this.day,
+    required this.amount,
+    this.currency,
+    this.description,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'secret_answer': secretAnswer,
+      'username_receiver': usernameReceiver,
+      'day': day,
+      'amount': amount,
+      'currency': currency,
+      'description': description,
+    };
+  }
+}
+
+class AutoPaymentsCreateResponse {
+  final String? status;
+  final String? message;
+  final int? autoPaymentId;
+  final RespSystemInfo? systemInfo;
+
+  const AutoPaymentsCreateResponse({
+    this.status,
+    this.message,
+    this.autoPaymentId,
+    this.systemInfo,
+  });
+
+  factory AutoPaymentsCreateResponse.fromJson(Map<String, dynamic> json) => AutoPaymentsCreateResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    autoPaymentId: json['auto_payment_id'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class AutoPaymentsDeleteBody {
+  final int autoPaymentId;
+
+  const AutoPaymentsDeleteBody({
+    required this.autoPaymentId,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'auto_payment_id': autoPaymentId,
+    };
+  }
+}
+
+class AutoPaymentsDeleteResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const AutoPaymentsDeleteResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory AutoPaymentsDeleteResponse.fromJson(Map<String, dynamic> json) => AutoPaymentsDeleteResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+// ─── BatchApi Types ────────────────────────────────────────
+
+typedef BatchBatchBody = List<Map<String, dynamic>>;
+
+class BatchBatchResponseJobs {
+  final Object? jobId;
+
+  const BatchBatchResponseJobs({
+    this.jobId,
+  });
+
+  factory BatchBatchResponseJobs.fromJson(Map<String, dynamic> json) => BatchBatchResponseJobs(
+    jobId: json['job_id'] as Object?,
+  );
+}
+
+class BatchBatchResponse {
+  final BatchBatchResponseJobs? jobs;
+  final RespSystemInfo? systemInfo;
+
+  const BatchBatchResponse({
+    this.jobs,
+    this.systemInfo,
+  });
+
+  factory BatchBatchResponse.fromJson(Map<String, dynamic> json) => BatchBatchResponse(
+    jobs: json['jobs'] != null
+            ? BatchBatchResponseJobs.fromJson(json['jobs'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+// ─── CartApi Types ────────────────────────────────────────
+
+class CartGetParams {
+  final Object? categoryId;
+  final int? page;
+  final int? pmin;
+  final int? pmax;
+  final String? title;
+  final String? orderBy;
+  final List<int>? tagId;
+  final List<int>? notTagId;
+  final List<int>? publicTagId;
+  final List<int>? notPublicTagId;
+  final Object? origin;
+  final Object? notOrigin;
+  final int? userId;
+  final bool? nsb;
+  final bool? sb;
+  final bool? nsbByMe;
+  final bool? sbByMe;
+  final String? currency;
+  final bool? emailLoginData;
+  final Object? emailProvider;
+  final String? notEmailProvider;
+  final bool? parseSameItemIds;
+
+  const CartGetParams({
+    this.categoryId,
+    this.page,
+    this.pmin,
+    this.pmax,
+    this.title,
+    this.orderBy,
+    this.tagId,
+    this.notTagId,
+    this.publicTagId,
+    this.notPublicTagId,
+    this.origin,
+    this.notOrigin,
+    this.userId,
+    this.nsb,
+    this.sb,
+    this.nsbByMe,
+    this.sbByMe,
+    this.currency,
+    this.emailLoginData,
+    this.emailProvider,
+    this.notEmailProvider,
+    this.parseSameItemIds,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'category_id': categoryId,
+      'page': page,
+      'pmin': pmin,
+      'pmax': pmax,
+      'title': title,
+      'order_by': orderBy,
+      'tag_id[]': tagId,
+      'not_tag_id[]': notTagId,
+      'public_tag_id[]': publicTagId,
+      'not_public_tag_id[]': notPublicTagId,
+      'origin[]': origin,
+      'not_origin[]': notOrigin,
+      'user_id': userId,
+      'nsb': nsb,
+      'sb': sb,
+      'nsb_by_me': nsbByMe,
+      'sb_by_me': sbByMe,
+      'currency': currency,
+      'email_login_data': emailLoginData,
+      'email_provider[]': emailProvider,
+      'not_email_provider[]': notEmailProvider,
+      'parse_same_item_ids': parseSameItemIds,
+    };
+  }
+}
+
+class CartGetResponse {
+  final List<ItemFromListModel>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final String? searchUrl;
+  final List<ItemFromListModel>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CartGetResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CartGetResponse.fromJson(Map<String, dynamic> json) => CartGetResponse(
+    items: (json['items'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class CartAddBody {
+  final int itemId;
+
+  const CartAddBody({
+    required this.itemId,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'item_id': itemId,
+    };
+  }
+}
+
+class CartAddResponse {
+  final bool? success;
+  final RespSystemInfo? systemInfo;
+
+  const CartAddResponse({
+    this.success,
+    this.systemInfo,
+  });
+
+  factory CartAddResponse.fromJson(Map<String, dynamic> json) => CartAddResponse(
+    success: json['success'] as bool?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class CartDeleteBody {
+  final int? itemId;
+
+  const CartDeleteBody({
+    this.itemId,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'item_id': itemId,
+    };
+  }
+}
+
+class CartDeleteResponse {
+  final bool? success;
+  final RespSystemInfo? systemInfo;
+
+  const CartDeleteResponse({
+    this.success,
+    this.systemInfo,
+  });
+
+  factory CartDeleteResponse.fromJson(Map<String, dynamic> json) => CartDeleteResponse(
+    success: json['success'] as bool?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
 // ─── CategoryApi Types ────────────────────────────────────────
 
 class CategoryAllParams {
@@ -76,7 +1350,47 @@ class CategoryAllParams {
   }
 }
 
-typedef CategoryAllResponse = Map<String, dynamic>;
+class CategoryAllResponse {
+  final List<ItemFromListModel>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final String? searchUrl;
+  final List<ItemFromListModel>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryAllResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryAllResponse.fromJson(Map<String, dynamic> json) => CategoryAllResponse(
+    items: (json['items'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategorySteamParams {
   final int? page;
@@ -446,7 +1760,55 @@ class CategorySteamParams {
   }
 }
 
-typedef CategorySteamResponse = Map<String, dynamic>;
+class CategorySteamResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategorySteamResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategorySteamResponse.fromJson(Map<String, dynamic> json) => CategorySteamResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryFortniteParams {
   final int? page;
@@ -684,7 +2046,55 @@ class CategoryFortniteParams {
   }
 }
 
-typedef CategoryFortniteResponse = Map<String, dynamic>;
+class CategoryFortniteResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryFortniteResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryFortniteResponse.fromJson(Map<String, dynamic> json) => CategoryFortniteResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryMihoyoParams {
   final int? page;
@@ -943,7 +2353,55 @@ class CategoryMihoyoParams {
   }
 }
 
-typedef CategoryMihoyoResponse = Map<String, dynamic>;
+class CategoryMihoyoResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryMihoyoResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryMihoyoResponse.fromJson(Map<String, dynamic> json) => CategoryMihoyoResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryRiotParams {
   final int? page;
@@ -1190,7 +2648,55 @@ class CategoryRiotParams {
   }
 }
 
-typedef CategoryRiotResponse = Map<String, dynamic>;
+class CategoryRiotResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryRiotResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryRiotResponse.fromJson(Map<String, dynamic> json) => CategoryRiotResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryTelegramParams {
   final int? page;
@@ -1404,7 +2910,55 @@ class CategoryTelegramParams {
   }
 }
 
-typedef CategoryTelegramResponse = Map<String, dynamic>;
+class CategoryTelegramResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryTelegramResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryTelegramResponse.fromJson(Map<String, dynamic> json) => CategoryTelegramResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategorySupercellParams {
   final int? page;
@@ -1633,7 +3187,55 @@ class CategorySupercellParams {
   }
 }
 
-typedef CategorySupercellResponse = Map<String, dynamic>;
+class CategorySupercellResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategorySupercellResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategorySupercellResponse.fromJson(Map<String, dynamic> json) => CategorySupercellResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryEaParams {
   final int? page;
@@ -1772,7 +3374,55 @@ class CategoryEaParams {
   }
 }
 
-typedef CategoryEaResponse = Map<String, dynamic>;
+class CategoryEaResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryEaResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryEaResponse.fromJson(Map<String, dynamic> json) => CategoryEaResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryWotParams {
   final int? page;
@@ -1953,7 +3603,55 @@ class CategoryWotParams {
   }
 }
 
-typedef CategoryWotResponse = Map<String, dynamic>;
+class CategoryWotResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryWotResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryWotResponse.fromJson(Map<String, dynamic> json) => CategoryWotResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryWotBlitzParams {
   final int? page;
@@ -2134,7 +3832,55 @@ class CategoryWotBlitzParams {
   }
 }
 
-typedef CategoryWotBlitzResponse = Map<String, dynamic>;
+class CategoryWotBlitzResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryWotBlitzResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryWotBlitzResponse.fromJson(Map<String, dynamic> json) => CategoryWotBlitzResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryGiftsParams {
   final int? page;
@@ -2219,7 +3965,55 @@ class CategoryGiftsParams {
   }
 }
 
-typedef CategoryGiftsResponse = Map<String, dynamic>;
+class CategoryGiftsResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryGiftsResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryGiftsResponse.fromJson(Map<String, dynamic> json) => CategoryGiftsResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryEpicGamesParams {
   final int? page;
@@ -2346,7 +4140,55 @@ class CategoryEpicGamesParams {
   }
 }
 
-typedef CategoryEpicGamesResponse = Map<String, dynamic>;
+class CategoryEpicGamesResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryEpicGamesResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryEpicGamesResponse.fromJson(Map<String, dynamic> json) => CategoryEpicGamesResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryEscapeFromTarkovParams {
   final int? page;
@@ -2452,7 +4294,55 @@ class CategoryEscapeFromTarkovParams {
   }
 }
 
-typedef CategoryEscapeFromTarkovResponse = Map<String, dynamic>;
+class CategoryEscapeFromTarkovResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryEscapeFromTarkovResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryEscapeFromTarkovResponse.fromJson(Map<String, dynamic> json) => CategoryEscapeFromTarkovResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategorySocialClubParams {
   final int? page;
@@ -2552,7 +4442,55 @@ class CategorySocialClubParams {
   }
 }
 
-typedef CategorySocialClubResponse = Map<String, dynamic>;
+class CategorySocialClubResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategorySocialClubResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategorySocialClubResponse.fromJson(Map<String, dynamic> json) => CategorySocialClubResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryUplayParams {
   final int? page;
@@ -2718,7 +4656,55 @@ class CategoryUplayParams {
   }
 }
 
-typedef CategoryUplayResponse = Map<String, dynamic>;
+class CategoryUplayResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryUplayResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryUplayResponse.fromJson(Map<String, dynamic> json) => CategoryUplayResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryDiscordParams {
   final int? page;
@@ -2914,7 +4900,55 @@ class CategoryDiscordParams {
   }
 }
 
-typedef CategoryDiscordResponse = Map<String, dynamic>;
+class CategoryDiscordResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryDiscordResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryDiscordResponse.fromJson(Map<String, dynamic> json) => CategoryDiscordResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryTikTokParams {
   final int? page;
@@ -3038,7 +5072,55 @@ class CategoryTikTokParams {
   }
 }
 
-typedef CategoryTikTokResponse = Map<String, dynamic>;
+class CategoryTikTokResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryTikTokResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryTikTokResponse.fromJson(Map<String, dynamic> json) => CategoryTikTokResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryInstagramParams {
   final int? page;
@@ -3153,7 +5235,55 @@ class CategoryInstagramParams {
   }
 }
 
-typedef CategoryInstagramResponse = Map<String, dynamic>;
+class CategoryInstagramResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryInstagramResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryInstagramResponse.fromJson(Map<String, dynamic> json) => CategoryInstagramResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryBattleNetParams {
   final int? page;
@@ -3274,7 +5404,55 @@ class CategoryBattleNetParams {
   }
 }
 
-typedef CategoryBattleNetResponse = Map<String, dynamic>;
+class CategoryBattleNetResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryBattleNetResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryBattleNetResponse.fromJson(Map<String, dynamic> json) => CategoryBattleNetResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryChatGPTParams {
   final int? page;
@@ -3389,7 +5567,55 @@ class CategoryChatGPTParams {
   }
 }
 
-typedef CategoryChatGPTResponse = Map<String, dynamic>;
+class CategoryChatGPTResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryChatGPTResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryChatGPTResponse.fromJson(Map<String, dynamic> json) => CategoryChatGPTResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryVpnParams {
   final int? page;
@@ -3477,7 +5703,55 @@ class CategoryVpnParams {
   }
 }
 
-typedef CategoryVpnResponse = Map<String, dynamic>;
+class CategoryVpnResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryVpnResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryVpnResponse.fromJson(Map<String, dynamic> json) => CategoryVpnResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryRobloxParams {
   final int? page;
@@ -3664,7 +5938,55 @@ class CategoryRobloxParams {
   }
 }
 
-typedef CategoryRobloxResponse = Map<String, dynamic>;
+class CategoryRobloxResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryRobloxResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryRobloxResponse.fromJson(Map<String, dynamic> json) => CategoryRobloxResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryWarfaceParams {
   final int? page;
@@ -3770,7 +6092,55 @@ class CategoryWarfaceParams {
   }
 }
 
-typedef CategoryWarfaceResponse = Map<String, dynamic>;
+class CategoryWarfaceResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryWarfaceResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryWarfaceResponse.fromJson(Map<String, dynamic> json) => CategoryWarfaceResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryMinecraftParams {
   final int? page;
@@ -3951,7 +6321,55 @@ class CategoryMinecraftParams {
   }
 }
 
-typedef CategoryMinecraftResponse = Map<String, dynamic>;
+class CategoryMinecraftResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryMinecraftResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryMinecraftResponse.fromJson(Map<String, dynamic> json) => CategoryMinecraftResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryHytaleParams {
   final int? page;
@@ -4036,7 +6454,55 @@ class CategoryHytaleParams {
   }
 }
 
-typedef CategoryHytaleResponse = Map<String, dynamic>;
+class CategoryHytaleResponse {
+  final List<Map<String, dynamic>>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final bool? wasCached;
+  final int? cacheTTL;
+  final int? lastModified;
+  final int? serverTime;
+  final String? searchUrl;
+  final List<Object>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryHytaleResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.wasCached,
+    this.cacheTTL,
+    this.lastModified,
+    this.serverTime,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory CategoryHytaleResponse.fromJson(Map<String, dynamic> json) => CategoryHytaleResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    wasCached: json['wasCached'] as bool?,
+    cacheTTL: json['cacheTTL'] as int?,
+    lastModified: json['lastModified'] as int?,
+    serverTime: json['serverTime'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class CategoryListParams {
   final bool? topQueries;
@@ -4052,11 +6518,448 @@ class CategoryListParams {
   }
 }
 
-typedef CategoryListResponse = Map<String, dynamic>;
+class CategoryListResponseCategory {
+  final int? categoryId;
+  final String? categoryTitle;
+  final String? categoryDescription;
+  final Object? links;
 
-typedef CategoryParamsResponse = Map<String, dynamic>;
+  const CategoryListResponseCategory({
+    this.categoryId,
+    this.categoryTitle,
+    this.categoryDescription,
+    this.links,
+  });
 
-typedef CategoryGamesResponse = Map<String, dynamic>;
+  factory CategoryListResponseCategory.fromJson(Map<String, dynamic> json) => CategoryListResponseCategory(
+    categoryId: json['category_id'] as int?,
+    categoryTitle: json['category_title'] as String?,
+    categoryDescription: json['category_description'] as String?,
+    links: json['links'] as Object?,
+  );
+}
+
+class CategoryListResponse {
+  final CategoryListResponseCategory? category;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryListResponse({
+    this.category,
+    this.systemInfo,
+  });
+
+  factory CategoryListResponse.fromJson(Map<String, dynamic> json) => CategoryListResponse(
+    category: json['category'] != null
+            ? CategoryListResponseCategory.fromJson(json['category'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class CategoryParamsResponseCategory {
+  final int? categoryId;
+  final int? subCategoryId;
+  final int? categoryOrder;
+  final String? categoryTitle;
+  final String? categoryName;
+  final String? categoryUrl;
+  final String? categoryDescriptionHtml;
+  final String? categoryLoginUrl;
+  final int? addItemAvailable;
+  final int? massUploadItemAvailable;
+  final int? hasGuarantee;
+  final int? hasAccountLink;
+  final int? requireTempEmail;
+  final String? recoveryLink;
+  final int? checkButtonEnabled;
+  final int? checkerEnabled;
+  final int? supportPersonalProxy;
+  final int? supportEmailLoginData;
+  final int? requireEmailLoginData;
+  final int? displayInList;
+  final String? categoryDescriptionHtmlEn;
+  final String? categoryH1HtmlEn;
+  final int? accountPriceMin;
+  final int? requireVideoRecording;
+  final String? topQueries;
+  final int? requireEldForNativeAccs;
+  final int? canBeResold;
+  final int? supportTempEmail;
+  final String? cookies;
+  final String? loginType;
+  final int? guestHidden;
+  final int? availableTempEmail;
+  final int? resaleDurationLimitDays;
+  final int? buyWithoutValidation;
+  final int? maxInvalidUploadTries;
+
+  const CategoryParamsResponseCategory({
+    this.categoryId,
+    this.subCategoryId,
+    this.categoryOrder,
+    this.categoryTitle,
+    this.categoryName,
+    this.categoryUrl,
+    this.categoryDescriptionHtml,
+    this.categoryLoginUrl,
+    this.addItemAvailable,
+    this.massUploadItemAvailable,
+    this.hasGuarantee,
+    this.hasAccountLink,
+    this.requireTempEmail,
+    this.recoveryLink,
+    this.checkButtonEnabled,
+    this.checkerEnabled,
+    this.supportPersonalProxy,
+    this.supportEmailLoginData,
+    this.requireEmailLoginData,
+    this.displayInList,
+    this.categoryDescriptionHtmlEn,
+    this.categoryH1HtmlEn,
+    this.accountPriceMin,
+    this.requireVideoRecording,
+    this.topQueries,
+    this.requireEldForNativeAccs,
+    this.canBeResold,
+    this.supportTempEmail,
+    this.cookies,
+    this.loginType,
+    this.guestHidden,
+    this.availableTempEmail,
+    this.resaleDurationLimitDays,
+    this.buyWithoutValidation,
+    this.maxInvalidUploadTries,
+  });
+
+  factory CategoryParamsResponseCategory.fromJson(Map<String, dynamic> json) => CategoryParamsResponseCategory(
+    categoryId: json['category_id'] as int?,
+    subCategoryId: json['sub_category_id'] as int?,
+    categoryOrder: json['category_order'] as int?,
+    categoryTitle: json['category_title'] as String?,
+    categoryName: json['category_name'] as String?,
+    categoryUrl: json['category_url'] as String?,
+    categoryDescriptionHtml: json['category_description_html'] as String?,
+    categoryLoginUrl: json['category_login_url'] as String?,
+    addItemAvailable: json['add_item_available'] as int?,
+    massUploadItemAvailable: json['mass_upload_item_available'] as int?,
+    hasGuarantee: json['has_guarantee'] as int?,
+    hasAccountLink: json['has_account_link'] as int?,
+    requireTempEmail: json['require_temp_email'] as int?,
+    recoveryLink: json['recovery_link'] as String?,
+    checkButtonEnabled: json['check_button_enabled'] as int?,
+    checkerEnabled: json['checker_enabled'] as int?,
+    supportPersonalProxy: json['support_personal_proxy'] as int?,
+    supportEmailLoginData: json['support_email_login_data'] as int?,
+    requireEmailLoginData: json['require_email_login_data'] as int?,
+    displayInList: json['display_in_list'] as int?,
+    categoryDescriptionHtmlEn: json['category_description_html_en'] as String?,
+    categoryH1HtmlEn: json['category_h1_html_en'] as String?,
+    accountPriceMin: json['account_price_min'] as int?,
+    requireVideoRecording: json['require_video_recording'] as int?,
+    topQueries: json['top_queries'] as String?,
+    requireEldForNativeAccs: json['require_eld_for_native_accs'] as int?,
+    canBeResold: json['can_be_resold'] as int?,
+    supportTempEmail: json['support_temp_email'] as int?,
+    cookies: json['cookies'] as String?,
+    loginType: json['login_type'] as String?,
+    guestHidden: json['guest_hidden'] as int?,
+    availableTempEmail: json['available_temp_email'] as int?,
+    resaleDurationLimitDays: json['resale_duration_limit_days'] as int?,
+    buyWithoutValidation: json['buy_without_validation'] as int?,
+    maxInvalidUploadTries: json['max_invalid_upload_tries'] as int?,
+  );
+}
+
+class CategoryParamsResponseBaseParams {
+  final Object? n0;
+
+  const CategoryParamsResponseBaseParams({
+    this.n0,
+  });
+
+  factory CategoryParamsResponseBaseParams.fromJson(Map<String, dynamic> json) => CategoryParamsResponseBaseParams(
+    n0: json['0'] as Object?,
+  );
+}
+
+class CategoryParamsResponse {
+  final CategoryParamsResponseCategory? category;
+  final List<Map<String, dynamic>>? params;
+  final CategoryParamsResponseBaseParams? baseParams;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryParamsResponse({
+    this.category,
+    this.params,
+    this.baseParams,
+    this.systemInfo,
+  });
+
+  factory CategoryParamsResponse.fromJson(Map<String, dynamic> json) => CategoryParamsResponse(
+    category: json['category'] != null
+            ? CategoryParamsResponseCategory.fromJson(json['category'] as Map<String, dynamic>)
+            : null,
+    params: (json['params'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    baseParams: json['base_params'] != null
+            ? CategoryParamsResponseBaseParams.fromJson(json['base_params'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class CategoryGamesResponse {
+  final List<Map<String, dynamic>>? games;
+  final RespSystemInfo? systemInfo;
+
+  const CategoryGamesResponse({
+    this.games,
+    this.systemInfo,
+  });
+
+  factory CategoryGamesResponse.fromJson(Map<String, dynamic> json) => CategoryGamesResponse(
+    games: (json['games'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+// ─── CustomDiscountsApi Types ────────────────────────────────────────
+
+class CustomDiscountsGetResponse {
+  final List<DiscountModel>? discounts;
+  final int? total;
+  final RespSystemInfo? systemInfo;
+
+  const CustomDiscountsGetResponse({
+    this.discounts,
+    this.total,
+    this.systemInfo,
+  });
+
+  factory CustomDiscountsGetResponse.fromJson(Map<String, dynamic> json) => CustomDiscountsGetResponse(
+    discounts: (json['discounts'] as List<dynamic>?)
+            ?.map((e) => DiscountModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    total: json['total'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class CustomDiscountsCreateBody {
+  final int userId;
+  final Object categoryId;
+  final double discountPercent;
+  final double minPrice;
+  final double? maxPrice;
+  final String? currency;
+
+  const CustomDiscountsCreateBody({
+    required this.userId,
+    required this.categoryId,
+    required this.discountPercent,
+    required this.minPrice,
+    this.maxPrice,
+    this.currency,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'user_id': userId,
+      'category_id': categoryId,
+      'discount_percent': discountPercent,
+      'min_price': minPrice,
+      'max_price': maxPrice,
+      'currency': currency,
+    };
+  }
+}
+
+class CustomDiscountsCreateResponse {
+  final DiscountModel? discount;
+  final int? total;
+  final RespSystemInfo? systemInfo;
+
+  const CustomDiscountsCreateResponse({
+    this.discount,
+    this.total,
+    this.systemInfo,
+  });
+
+  factory CustomDiscountsCreateResponse.fromJson(Map<String, dynamic> json) => CustomDiscountsCreateResponse(
+    discount: json['discount'] != null
+            ? DiscountModel.fromJson(json['discount'] as Map<String, dynamic>)
+            : null,
+    total: json['total'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class CustomDiscountsEditBody {
+  final int discountId;
+  final double? discountPercent;
+  final double? minPrice;
+  final double? maxPrice;
+
+  const CustomDiscountsEditBody({
+    required this.discountId,
+    this.discountPercent,
+    this.minPrice,
+    this.maxPrice,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'discount_id': discountId,
+      'discount_percent': discountPercent,
+      'min_price': minPrice,
+      'max_price': maxPrice,
+    };
+  }
+}
+
+class CustomDiscountsEditResponse {
+  final List<DiscountModel>? discounts;
+  final int? total;
+  final RespSystemInfo? systemInfo;
+
+  const CustomDiscountsEditResponse({
+    this.discounts,
+    this.total,
+    this.systemInfo,
+  });
+
+  factory CustomDiscountsEditResponse.fromJson(Map<String, dynamic> json) => CustomDiscountsEditResponse(
+    discounts: (json['discounts'] as List<dynamic>?)
+            ?.map((e) => DiscountModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    total: json['total'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class CustomDiscountsDeleteBody {
+  final int discountId;
+
+  const CustomDiscountsDeleteBody({
+    required this.discountId,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'discount_id': discountId,
+    };
+  }
+}
+
+class CustomDiscountsDeleteResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const CustomDiscountsDeleteResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory CustomDiscountsDeleteResponse.fromJson(Map<String, dynamic> json) => CustomDiscountsDeleteResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+// ─── ImapApi Types ────────────────────────────────────────
+
+class ImapCreateBody {
+  final String domain;
+  final String imapServer;
+  final int port;
+  final bool secure;
+
+  const ImapCreateBody({
+    required this.domain,
+    required this.imapServer,
+    required this.port,
+    required this.secure,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'domain': domain,
+      'imap_server': imapServer,
+      'port': port,
+      'secure': secure,
+    };
+  }
+}
+
+class ImapCreateResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ImapCreateResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ImapCreateResponse.fromJson(Map<String, dynamic> json) => ImapCreateResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ImapDeleteBody {
+  final String domain;
+
+  const ImapDeleteBody({
+    required this.domain,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'domain': domain,
+    };
+  }
+}
+
+class ImapDeleteResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ImapDeleteResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ImapDeleteResponse.fromJson(Map<String, dynamic> json) => ImapDeleteResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 // ─── ListApi Types ────────────────────────────────────────
 
@@ -4149,7 +7052,47 @@ class ListUserParams {
   }
 }
 
-typedef ListUserResponse = Map<String, dynamic>;
+class ListUserResponse {
+  final List<ItemFromListModel>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final String? searchUrl;
+  final List<ItemFromListModel>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const ListUserResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory ListUserResponse.fromJson(Map<String, dynamic> json) => ListUserResponse(
+    items: (json['items'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ListOrdersParams {
   final int? userId;
@@ -4207,7 +7150,47 @@ class ListOrdersParams {
   }
 }
 
-typedef ListOrdersResponse = Map<String, dynamic>;
+class ListOrdersResponse {
+  final List<ItemFromListModel>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final String? searchUrl;
+  final List<ItemFromListModel>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const ListOrdersResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory ListOrdersResponse.fromJson(Map<String, dynamic> json) => ListOrdersResponse(
+    items: (json['items'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ListStatesParams {
   final Object? userId;
@@ -4223,7 +7206,72 @@ class ListStatesParams {
   }
 }
 
-typedef ListStatesResponse = Map<String, dynamic>;
+class ListStatesResponseUserItemStates {
+  final Object? stickied;
+  final Object? discountRequest;
+  final Object? inBuyersFavorites;
+  final Object? active;
+  final Object? paid;
+  final Object? closed;
+  final Object? deleted;
+  final Object? awaiting;
+  final Object? preActive;
+  final Object? preUpload;
+  final Object? pendingDeletion;
+  final Object? closedInactive;
+  final Object? autoBump;
+
+  const ListStatesResponseUserItemStates({
+    this.stickied,
+    this.discountRequest,
+    this.inBuyersFavorites,
+    this.active,
+    this.paid,
+    this.closed,
+    this.deleted,
+    this.awaiting,
+    this.preActive,
+    this.preUpload,
+    this.pendingDeletion,
+    this.closedInactive,
+    this.autoBump,
+  });
+
+  factory ListStatesResponseUserItemStates.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStates(
+    stickied: json['stickied'] as Object?,
+    discountRequest: json['discount_request'] as Object?,
+    inBuyersFavorites: json['in_buyers_favorites'] as Object?,
+    active: json['active'] as Object?,
+    paid: json['paid'] as Object?,
+    closed: json['closed'] as Object?,
+    deleted: json['deleted'] as Object?,
+    awaiting: json['awaiting'] as Object?,
+    preActive: json['pre_active'] as Object?,
+    preUpload: json['pre_upload'] as Object?,
+    pendingDeletion: json['pending_deletion'] as Object?,
+    closedInactive: json['closed_inactive'] as Object?,
+    autoBump: json['auto_bump'] as Object?,
+  );
+}
+
+class ListStatesResponse {
+  final ListStatesResponseUserItemStates? userItemStates;
+  final RespSystemInfo? systemInfo;
+
+  const ListStatesResponse({
+    this.userItemStates,
+    this.systemInfo,
+  });
+
+  factory ListStatesResponse.fromJson(Map<String, dynamic> json) => ListStatesResponse(
+    userItemStates: json['userItemStates'] != null
+            ? ListStatesResponseUserItemStates.fromJson(json['userItemStates'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ListDownloadParams {
   final String? format;
@@ -4363,7 +7411,47 @@ class ListFavoritesParams {
   }
 }
 
-typedef ListFavoritesResponse = Map<String, dynamic>;
+class ListFavoritesResponse {
+  final List<ItemFromListModel>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final String? searchUrl;
+  final List<ItemFromListModel>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const ListFavoritesResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory ListFavoritesResponse.fromJson(Map<String, dynamic> json) => ListFavoritesResponse(
+    items: (json['items'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ListViewedParams {
   final int? page;
@@ -4412,7 +7500,47 @@ class ListViewedParams {
   }
 }
 
-typedef ListViewedResponse = Map<String, dynamic>;
+class ListViewedResponse {
+  final List<ItemFromListModel>? items;
+  final int? totalItems;
+  final Object? totalItemsPrice;
+  final bool? hasNextPage;
+  final int? perPage;
+  final int? page;
+  final String? searchUrl;
+  final List<ItemFromListModel>? stickyItems;
+  final RespSystemInfo? systemInfo;
+
+  const ListViewedResponse({
+    this.items,
+    this.totalItems,
+    this.totalItemsPrice,
+    this.hasNextPage,
+    this.perPage,
+    this.page,
+    this.searchUrl,
+    this.stickyItems,
+    this.systemInfo,
+  });
+
+  factory ListViewedResponse.fromJson(Map<String, dynamic> json) => ListViewedResponse(
+    items: (json['items'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    totalItems: json['totalItems'] as int?,
+    totalItemsPrice: json['totalItemsPrice'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    perPage: json['perPage'] as int?,
+    page: json['page'] as int?,
+    searchUrl: json['searchUrl'] as String?,
+    stickyItems: (json['stickyItems'] as List<dynamic>?)
+            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 // ─── ManagingApi Types ────────────────────────────────────────
 
@@ -4430,7 +7558,81 @@ class ManagingGetParams {
   }
 }
 
-typedef ManagingGetResponse = Map<String, dynamic>;
+class ManagingGetResponse {
+  final ItemModel? item;
+  final bool? canStickItem;
+  final bool? canUnstickItem;
+  final bool? canBuyItem;
+  final String? cannotBuyItemError;
+  final bool? canCloseItem;
+  final bool? canOpenItem;
+  final bool? canReportItem;
+  final bool? canEditItem;
+  final bool? canDeleteItem;
+  final bool? canCancelConfirmedBuy;
+  final bool? canViewItemHistory;
+  final bool? faveCount;
+  final bool? isVisibleItem;
+  final bool? canViewLoginData;
+  final bool? showToFavouritesButton;
+  final String? itemLink;
+  final bool? canChangeOwner;
+  final List<int>? sameItemsIds;
+  final int? sameItemsCount;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingGetResponse({
+    this.item,
+    this.canStickItem,
+    this.canUnstickItem,
+    this.canBuyItem,
+    this.cannotBuyItemError,
+    this.canCloseItem,
+    this.canOpenItem,
+    this.canReportItem,
+    this.canEditItem,
+    this.canDeleteItem,
+    this.canCancelConfirmedBuy,
+    this.canViewItemHistory,
+    this.faveCount,
+    this.isVisibleItem,
+    this.canViewLoginData,
+    this.showToFavouritesButton,
+    this.itemLink,
+    this.canChangeOwner,
+    this.sameItemsIds,
+    this.sameItemsCount,
+    this.systemInfo,
+  });
+
+  factory ManagingGetResponse.fromJson(Map<String, dynamic> json) => ManagingGetResponse(
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    canStickItem: json['canStickItem'] as bool?,
+    canUnstickItem: json['canUnstickItem'] as bool?,
+    canBuyItem: json['canBuyItem'] as bool?,
+    cannotBuyItemError: json['cannotBuyItemError'] as String?,
+    canCloseItem: json['canCloseItem'] as bool?,
+    canOpenItem: json['canOpenItem'] as bool?,
+    canReportItem: json['canReportItem'] as bool?,
+    canEditItem: json['canEditItem'] as bool?,
+    canDeleteItem: json['canDeleteItem'] as bool?,
+    canCancelConfirmedBuy: json['canCancelConfirmedBuy'] as bool?,
+    canViewItemHistory: json['canViewItemHistory'] as bool?,
+    faveCount: json['faveCount'] as bool?,
+    isVisibleItem: json['isVisibleItem'] as bool?,
+    canViewLoginData: json['canViewLoginData'] as bool?,
+    showToFavouritesButton: json['showToFavouritesButton'] as bool?,
+    itemLink: json['itemLink'] as String?,
+    canChangeOwner: json['canChangeOwner'] as bool?,
+    sameItemsIds: (json['sameItemsIds'] as List<dynamic>?)?.cast<int>(),
+    sameItemsCount: json['sameItemsCount'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingDeleteBody {
   final String reason;
@@ -4446,7 +7648,25 @@ class ManagingDeleteBody {
   }
 }
 
-typedef ManagingDeleteResponse = Map<String, dynamic>;
+class ManagingDeleteResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingDeleteResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingDeleteResponse.fromJson(Map<String, dynamic> json) => ManagingDeleteResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingCreateClaimBody {
   final int itemId;
@@ -4465,7 +7685,108 @@ class ManagingCreateClaimBody {
   }
 }
 
-typedef ManagingCreateClaimResponse = Map<String, dynamic>;
+class ManagingCreateClaimResponseThread {
+  final int? threadId;
+  final int? forumId;
+  final String? threadTitle;
+  final int? threadViewCount;
+  final int? creatorUserId;
+  final String? creatorUsername;
+  final int? threadCreateDate;
+  final int? threadUpdateDate;
+  final bool? userIsIgnored;
+  final int? threadPostCount;
+  final bool? threadIsPublished;
+  final bool? threadIsDeleted;
+  final bool? threadIsSticky;
+  final bool? threadIsFollowed;
+  final Object? firstPost;
+  final List<Object>? threadPrefixes;
+  final List<Object>? threadTags;
+  final Object? links;
+  final Object? permissions;
+  final Object? forum;
+
+  const ManagingCreateClaimResponseThread({
+    this.threadId,
+    this.forumId,
+    this.threadTitle,
+    this.threadViewCount,
+    this.creatorUserId,
+    this.creatorUsername,
+    this.threadCreateDate,
+    this.threadUpdateDate,
+    this.userIsIgnored,
+    this.threadPostCount,
+    this.threadIsPublished,
+    this.threadIsDeleted,
+    this.threadIsSticky,
+    this.threadIsFollowed,
+    this.firstPost,
+    this.threadPrefixes,
+    this.threadTags,
+    this.links,
+    this.permissions,
+    this.forum,
+  });
+
+  factory ManagingCreateClaimResponseThread.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThread(
+    threadId: json['thread_id'] as int?,
+    forumId: json['forum_id'] as int?,
+    threadTitle: json['thread_title'] as String?,
+    threadViewCount: json['thread_view_count'] as int?,
+    creatorUserId: json['creator_user_id'] as int?,
+    creatorUsername: json['creator_username'] as String?,
+    threadCreateDate: json['thread_create_date'] as int?,
+    threadUpdateDate: json['thread_update_date'] as int?,
+    userIsIgnored: json['user_is_ignored'] as bool?,
+    threadPostCount: json['thread_post_count'] as int?,
+    threadIsPublished: json['thread_is_published'] as bool?,
+    threadIsDeleted: json['thread_is_deleted'] as bool?,
+    threadIsSticky: json['thread_is_sticky'] as bool?,
+    threadIsFollowed: json['thread_is_followed'] as bool?,
+    firstPost: json['first_post'] as Object?,
+    threadPrefixes: (json['thread_prefixes'] as List<dynamic>?)?.cast<Object>(),
+    threadTags: (json['thread_tags'] as List<dynamic>?)?.cast<Object>(),
+    links: json['links'] as Object?,
+    permissions: json['permissions'] as Object?,
+    forum: json['forum'] as Object?,
+  );
+}
+
+class ManagingCreateClaimResponseSystemInfo {
+  final int? visitorId;
+  final int? time;
+
+  const ManagingCreateClaimResponseSystemInfo({
+    this.visitorId,
+    this.time,
+  });
+
+  factory ManagingCreateClaimResponseSystemInfo.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseSystemInfo(
+    visitorId: json['visitor_id'] as int?,
+    time: json['time'] as int?,
+  );
+}
+
+class ManagingCreateClaimResponse {
+  final ManagingCreateClaimResponseThread? thread;
+  final ManagingCreateClaimResponseSystemInfo? systemInfo;
+
+  const ManagingCreateClaimResponse({
+    this.thread,
+    this.systemInfo,
+  });
+
+  factory ManagingCreateClaimResponse.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponse(
+    thread: json['thread'] != null
+            ? ManagingCreateClaimResponseThread.fromJson(json['thread'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? ManagingCreateClaimResponseSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingBulkGetBody {
   final List<int>? itemId;
@@ -4484,7 +7805,25 @@ class ManagingBulkGetBody {
   }
 }
 
-typedef ManagingBulkGetResponse = Map<String, dynamic>;
+class ManagingBulkGetResponse {
+  final List<Map<String, dynamic>>? items;
+  final List<int>? leftItemId;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingBulkGetResponse({
+    this.items,
+    this.leftItemId,
+    this.systemInfo,
+  });
+
+  factory ManagingBulkGetResponse.fromJson(Map<String, dynamic> json) => ManagingBulkGetResponse(
+    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    leftItemId: (json['left_item_id'] as List<dynamic>?)?.cast<int>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingSteamInventoryValueParams {
   final Object? appId;
@@ -4506,7 +7845,72 @@ class ManagingSteamInventoryValueParams {
   }
 }
 
-typedef ManagingSteamInventoryValueResponse = Map<String, dynamic>;
+class ManagingSteamInventoryValueResponseData {
+  final Object? items;
+  final String? steamId;
+  final int? appId;
+  final String? appTitle;
+  final double? totalValue;
+  final int? itemCount;
+  final int? marketableItemCount;
+  final String? currency;
+  final String? currencyIcon;
+  final String? language;
+  final int? time;
+
+  const ManagingSteamInventoryValueResponseData({
+    this.items,
+    this.steamId,
+    this.appId,
+    this.appTitle,
+    this.totalValue,
+    this.itemCount,
+    this.marketableItemCount,
+    this.currency,
+    this.currencyIcon,
+    this.language,
+    this.time,
+  });
+
+  factory ManagingSteamInventoryValueResponseData.fromJson(Map<String, dynamic> json) => ManagingSteamInventoryValueResponseData(
+    items: json['items'] as Object?,
+    steamId: json['steam_id'] as String?,
+    appId: json['appId'] as int?,
+    appTitle: json['appTitle'] as String?,
+    totalValue: json['totalValue'] as double?,
+    itemCount: json['itemCount'] as int?,
+    marketableItemCount: json['marketableItemCount'] as int?,
+    currency: json['currency'] as String?,
+    currencyIcon: json['currencyIcon'] as String?,
+    language: json['language'] as String?,
+    time: json['time'] as int?,
+  );
+}
+
+class ManagingSteamInventoryValueResponse {
+  final String? query;
+  final ManagingSteamInventoryValueResponseData? data;
+  final int? appId;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingSteamInventoryValueResponse({
+    this.query,
+    this.data,
+    this.appId,
+    this.systemInfo,
+  });
+
+  factory ManagingSteamInventoryValueResponse.fromJson(Map<String, dynamic> json) => ManagingSteamInventoryValueResponse(
+    query: json['query'] as String?,
+    data: json['data'] != null
+            ? ManagingSteamInventoryValueResponseData.fromJson(json['data'] as Map<String, dynamic>)
+            : null,
+    appId: json['appId'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingSteamValueParams {
   final String link;
@@ -4531,7 +7935,72 @@ class ManagingSteamValueParams {
   }
 }
 
-typedef ManagingSteamValueResponse = Map<String, dynamic>;
+class ManagingSteamValueResponseData {
+  final Object? items;
+  final String? steamId;
+  final int? appId;
+  final String? appTitle;
+  final double? totalValue;
+  final int? itemCount;
+  final int? marketableItemCount;
+  final String? currency;
+  final String? currencyIcon;
+  final String? language;
+  final int? time;
+
+  const ManagingSteamValueResponseData({
+    this.items,
+    this.steamId,
+    this.appId,
+    this.appTitle,
+    this.totalValue,
+    this.itemCount,
+    this.marketableItemCount,
+    this.currency,
+    this.currencyIcon,
+    this.language,
+    this.time,
+  });
+
+  factory ManagingSteamValueResponseData.fromJson(Map<String, dynamic> json) => ManagingSteamValueResponseData(
+    items: json['items'] as Object?,
+    steamId: json['steam_id'] as String?,
+    appId: json['appId'] as int?,
+    appTitle: json['appTitle'] as String?,
+    totalValue: json['totalValue'] as double?,
+    itemCount: json['itemCount'] as int?,
+    marketableItemCount: json['marketableItemCount'] as int?,
+    currency: json['currency'] as String?,
+    currencyIcon: json['currencyIcon'] as String?,
+    language: json['language'] as String?,
+    time: json['time'] as int?,
+  );
+}
+
+class ManagingSteamValueResponse {
+  final String? query;
+  final ManagingSteamValueResponseData? data;
+  final int? appId;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingSteamValueResponse({
+    this.query,
+    this.data,
+    this.appId,
+    this.systemInfo,
+  });
+
+  factory ManagingSteamValueResponse.fromJson(Map<String, dynamic> json) => ManagingSteamValueResponse(
+    query: json['query'] as String?,
+    data: json['data'] != null
+            ? ManagingSteamValueResponseData.fromJson(json['data'] as Map<String, dynamic>)
+            : null,
+    appId: json['appId'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingSteamPreviewParams {
   final String? type;
@@ -4593,11 +8062,59 @@ class ManagingEditBody {
   }
 }
 
-typedef ManagingEditResponse = Map<String, dynamic>;
+class ManagingEditResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-typedef ManagingAIPriceResponse = Map<String, dynamic>;
+  const ManagingEditResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
 
-typedef ManagingAutoBuyPriceResponse = Map<String, dynamic>;
+  factory ManagingEditResponse.fromJson(Map<String, dynamic> json) => ManagingEditResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingAIPriceResponse {
+  final int? price;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingAIPriceResponse({
+    this.price,
+    this.systemInfo,
+  });
+
+  factory ManagingAIPriceResponse.fromJson(Map<String, dynamic> json) => ManagingAIPriceResponse(
+    price: json['price'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingAutoBuyPriceResponse {
+  final int? price;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingAutoBuyPriceResponse({
+    this.price,
+    this.systemInfo,
+  });
+
+  factory ManagingAutoBuyPriceResponse.fromJson(Map<String, dynamic> json) => ManagingAutoBuyPriceResponse(
+    price: json['price'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingNoteBody {
   final String? text;
@@ -4613,7 +8130,25 @@ class ManagingNoteBody {
   }
 }
 
-typedef ManagingNoteResponse = Map<String, dynamic>;
+class ManagingNoteResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingNoteResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingNoteResponse.fromJson(Map<String, dynamic> json) => ManagingNoteResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingSteamUpdateValueBody {
   final bool? all;
@@ -4635,9 +8170,47 @@ class ManagingSteamUpdateValueBody {
   }
 }
 
-typedef ManagingSteamUpdateValueResponse = Map<String, dynamic>;
+class ManagingSteamUpdateValueResponse {
+  final String? status;
+  final ItemModel? item;
+  final RespSystemInfo? systemInfo;
 
-typedef ManagingBumpResponse = Map<String, dynamic>;
+  const ManagingSteamUpdateValueResponse({
+    this.status,
+    this.item,
+    this.systemInfo,
+  });
+
+  factory ManagingSteamUpdateValueResponse.fromJson(Map<String, dynamic> json) => ManagingSteamUpdateValueResponse(
+    status: json['status'] as String?,
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingBumpResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingBumpResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingBumpResponse.fromJson(Map<String, dynamic> json) => ManagingBumpResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingAutoBumpBody {
   final int hour;
@@ -4653,13 +8226,85 @@ class ManagingAutoBumpBody {
   }
 }
 
-typedef ManagingAutoBumpResponse = Map<String, dynamic>;
+class ManagingAutoBumpResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-typedef ManagingAutoBumpDisableResponse = Map<String, dynamic>;
+  const ManagingAutoBumpResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
 
-typedef ManagingOpenResponse = Map<String, dynamic>;
+  factory ManagingAutoBumpResponse.fromJson(Map<String, dynamic> json) => ManagingAutoBumpResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
-typedef ManagingCloseResponse = Map<String, dynamic>;
+class ManagingAutoBumpDisableResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingAutoBumpDisableResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingAutoBumpDisableResponse.fromJson(Map<String, dynamic> json) => ManagingAutoBumpDisableResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingOpenResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingOpenResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingOpenResponse.fromJson(Map<String, dynamic> json) => ManagingOpenResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingCloseResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingCloseResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingCloseResponse.fromJson(Map<String, dynamic> json) => ManagingCloseResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingImageParams {
   final String type;
@@ -4675,9 +8320,59 @@ class ManagingImageParams {
   }
 }
 
-typedef ManagingImageResponse = Map<String, dynamic>;
+class ManagingImageResponse {
+  final String? base64;
+  final RespSystemInfo? systemInfo;
 
-typedef ManagingEmailCodeResponse = Map<String, dynamic>;
+  const ManagingImageResponse({
+    this.base64,
+    this.systemInfo,
+  });
+
+  factory ManagingImageResponse.fromJson(Map<String, dynamic> json) => ManagingImageResponse(
+    base64: json['base64'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingEmailCodeResponseCodeData {
+  final String? code;
+  final int? date;
+  final String? textPlain;
+
+  const ManagingEmailCodeResponseCodeData({
+    this.code,
+    this.date,
+    this.textPlain,
+  });
+
+  factory ManagingEmailCodeResponseCodeData.fromJson(Map<String, dynamic> json) => ManagingEmailCodeResponseCodeData(
+    code: json['code'] as String?,
+    date: json['date'] as int?,
+    textPlain: json['textPlain'] as String?,
+  );
+}
+
+class ManagingEmailCodeResponse {
+  final ItemModel? item;
+  final ManagingEmailCodeResponseCodeData? codeData;
+
+  const ManagingEmailCodeResponse({
+    this.item,
+    this.codeData,
+  });
+
+  factory ManagingEmailCodeResponse.fromJson(Map<String, dynamic> json) => ManagingEmailCodeResponse(
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    codeData: json['codeData'] != null
+            ? ManagingEmailCodeResponseCodeData.fromJson(json['codeData'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingGetLetters2Params {
   final String? emailPassword;
@@ -4702,15 +8397,173 @@ class ManagingGetLetters2Params {
   }
 }
 
-typedef ManagingGetLetters2Response = Map<String, dynamic>;
+class ManagingGetLetters2Response {
+  final String? email;
+  final List<Map<String, dynamic>>? letters;
+  final RespSystemInfo? systemInfo;
 
-typedef ManagingSteamGetMafileResponse = Map<String, dynamic>;
+  const ManagingGetLetters2Response({
+    this.email,
+    this.letters,
+    this.systemInfo,
+  });
 
-typedef ManagingSteamAddMafileResponse = Map<String, dynamic>;
+  factory ManagingGetLetters2Response.fromJson(Map<String, dynamic> json) => ManagingGetLetters2Response(
+    email: json['email'] as String?,
+    letters: (json['letters'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
-typedef ManagingSteamRemoveMafileResponse = Map<String, dynamic>;
+class ManagingSteamGetMafileResponseMaFile {
+  final String? sharedSecret;
+  final int? serialNumber;
+  final String? revocationCode;
+  final String? uri;
+  final String? accountName;
+  final String? tokenGid;
+  final String? identitySecret;
+  final String? secret_1;
+  final String? deviceId;
+  final bool? fullyEnrolled;
+  final Object? session;
 
-typedef ManagingSteamMafileCodeResponse = Map<String, dynamic>;
+  const ManagingSteamGetMafileResponseMaFile({
+    this.sharedSecret,
+    this.serialNumber,
+    this.revocationCode,
+    this.uri,
+    this.accountName,
+    this.tokenGid,
+    this.identitySecret,
+    this.secret_1,
+    this.deviceId,
+    this.fullyEnrolled,
+    this.session,
+  });
+
+  factory ManagingSteamGetMafileResponseMaFile.fromJson(Map<String, dynamic> json) => ManagingSteamGetMafileResponseMaFile(
+    sharedSecret: json['shared_secret'] as String?,
+    serialNumber: json['serial_number'] as int?,
+    revocationCode: json['revocation_code'] as String?,
+    uri: json['uri'] as String?,
+    accountName: json['account_name'] as String?,
+    tokenGid: json['token_gid'] as String?,
+    identitySecret: json['identity_secret'] as String?,
+    secret_1: json['secret_1'] as String?,
+    deviceId: json['device_id'] as String?,
+    fullyEnrolled: json['fully_enrolled'] as bool?,
+    session: json['Session'] as Object?,
+  );
+}
+
+class ManagingSteamGetMafileResponse {
+  final ManagingSteamGetMafileResponseMaFile? maFile;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingSteamGetMafileResponse({
+    this.maFile,
+    this.systemInfo,
+  });
+
+  factory ManagingSteamGetMafileResponse.fromJson(Map<String, dynamic> json) => ManagingSteamGetMafileResponse(
+    maFile: json['maFile'] != null
+            ? ManagingSteamGetMafileResponseMaFile.fromJson(json['maFile'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingSteamAddMafileResponse {
+  final String? status;
+  final String? message;
+  final ItemModel? item;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingSteamAddMafileResponse({
+    this.status,
+    this.message,
+    this.item,
+    this.systemInfo,
+  });
+
+  factory ManagingSteamAddMafileResponse.fromJson(Map<String, dynamic> json) => ManagingSteamAddMafileResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingSteamRemoveMafileResponse {
+  final String? status;
+  final String? message;
+  final ItemModel? item;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingSteamRemoveMafileResponse({
+    this.status,
+    this.message,
+    this.item,
+    this.systemInfo,
+  });
+
+  factory ManagingSteamRemoveMafileResponse.fromJson(Map<String, dynamic> json) => ManagingSteamRemoveMafileResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingSteamMafileCodeResponseCodeData {
+  final String? code;
+  final int? date;
+  final String? textPlain;
+
+  const ManagingSteamMafileCodeResponseCodeData({
+    this.code,
+    this.date,
+    this.textPlain,
+  });
+
+  factory ManagingSteamMafileCodeResponseCodeData.fromJson(Map<String, dynamic> json) => ManagingSteamMafileCodeResponseCodeData(
+    code: json['code'] as String?,
+    date: json['date'] as int?,
+    textPlain: json['textPlain'] as String?,
+  );
+}
+
+class ManagingSteamMafileCodeResponse {
+  final ItemModel? item;
+  final ManagingSteamMafileCodeResponseCodeData? codeData;
+
+  const ManagingSteamMafileCodeResponse({
+    this.item,
+    this.codeData,
+  });
+
+  factory ManagingSteamMafileCodeResponse.fromJson(Map<String, dynamic> json) => ManagingSteamMafileCodeResponse(
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    codeData: json['codeData'] != null
+            ? ManagingSteamMafileCodeResponseCodeData.fromJson(json['codeData'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingSteamSDABody {
   final int? id;
@@ -4729,13 +8582,99 @@ class ManagingSteamSDABody {
   }
 }
 
-typedef ManagingSteamSDAResponse = Map<String, dynamic>;
+class ManagingSteamSDAResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-typedef ManagingTelegramCodeResponse = Map<String, dynamic>;
+  const ManagingSteamSDAResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
 
-typedef ManagingTelegramResetAuthResponse = Map<String, dynamic>;
+  factory ManagingSteamSDAResponse.fromJson(Map<String, dynamic> json) => ManagingSteamSDAResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
-typedef ManagingRefuseGuaranteeResponse = Map<String, dynamic>;
+class ManagingTelegramCodeResponseCodes {
+  final String? code;
+  final int? date;
+
+  const ManagingTelegramCodeResponseCodes({
+    this.code,
+    this.date,
+  });
+
+  factory ManagingTelegramCodeResponseCodes.fromJson(Map<String, dynamic> json) => ManagingTelegramCodeResponseCodes(
+    code: json['code'] as String?,
+    date: json['date'] as int?,
+  );
+}
+
+class ManagingTelegramCodeResponse {
+  final ItemModel? item;
+  final ManagingTelegramCodeResponseCodes? codes;
+
+  const ManagingTelegramCodeResponse({
+    this.item,
+    this.codes,
+  });
+
+  factory ManagingTelegramCodeResponse.fromJson(Map<String, dynamic> json) => ManagingTelegramCodeResponse(
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    codes: json['codes'] != null
+            ? ManagingTelegramCodeResponseCodes.fromJson(json['codes'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingTelegramResetAuthResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingTelegramResetAuthResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingTelegramResetAuthResponse.fromJson(Map<String, dynamic> json) => ManagingTelegramResetAuthResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingRefuseGuaranteeResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingRefuseGuaranteeResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingRefuseGuaranteeResponse.fromJson(Map<String, dynamic> json) => ManagingRefuseGuaranteeResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingDeclineVideoRecordingBody {
   final bool iVoluntarilyAndWithFullAwarenessOfMyActionsWaiveAnyClaimsRegardingThisItem;
@@ -4751,9 +8690,42 @@ class ManagingDeclineVideoRecordingBody {
   }
 }
 
-typedef ManagingDeclineVideoRecordingResponse = Map<String, dynamic>;
+class ManagingDeclineVideoRecordingResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-typedef ManagingCheckGuaranteeResponse = Map<String, dynamic>;
+  const ManagingDeclineVideoRecordingResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingDeclineVideoRecordingResponse.fromJson(Map<String, dynamic> json) => ManagingDeclineVideoRecordingResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingCheckGuaranteeResponse {
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingCheckGuaranteeResponse({
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingCheckGuaranteeResponse.fromJson(Map<String, dynamic> json) => ManagingCheckGuaranteeResponse(
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingChangePasswordBody {
   final String? cancel;
@@ -4769,9 +8741,49 @@ class ManagingChangePasswordBody {
   }
 }
 
-typedef ManagingChangePasswordResponse = Map<String, dynamic>;
+class ManagingChangePasswordResponse {
+  final String? status;
+  final String? message;
+  final String? newPassword;
 
-typedef ManagingTempEmailPasswordResponse = Map<String, dynamic>;
+  const ManagingChangePasswordResponse({
+    this.status,
+    this.message,
+    this.newPassword,
+  });
+
+  factory ManagingChangePasswordResponse.fromJson(Map<String, dynamic> json) => ManagingChangePasswordResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    newPassword: json['new_password'] as String?,
+  );
+}
+
+class ManagingTempEmailPasswordResponseItem {
+  final String? account;
+
+  const ManagingTempEmailPasswordResponseItem({
+    this.account,
+  });
+
+  factory ManagingTempEmailPasswordResponseItem.fromJson(Map<String, dynamic> json) => ManagingTempEmailPasswordResponseItem(
+    account: json['account'] as String?,
+  );
+}
+
+class ManagingTempEmailPasswordResponse {
+  final ManagingTempEmailPasswordResponseItem? item;
+
+  const ManagingTempEmailPasswordResponse({
+    this.item,
+  });
+
+  factory ManagingTempEmailPasswordResponse.fromJson(Map<String, dynamic> json) => ManagingTempEmailPasswordResponse(
+    item: json['item'] != null
+            ? ManagingTempEmailPasswordResponseItem.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingTagBody {
   final int tagId;
@@ -4787,7 +8799,57 @@ class ManagingTagBody {
   }
 }
 
-typedef ManagingTagResponse = Map<String, dynamic>;
+class ManagingTagResponseTag {
+  final int? tagId;
+  final String? title;
+  final bool? isDefault;
+  final bool? forOwnedAccountsOnly;
+  final String? bc;
+
+  const ManagingTagResponseTag({
+    this.tagId,
+    this.title,
+    this.isDefault,
+    this.forOwnedAccountsOnly,
+    this.bc,
+  });
+
+  factory ManagingTagResponseTag.fromJson(Map<String, dynamic> json) => ManagingTagResponseTag(
+    tagId: json['tag_id'] as int?,
+    title: json['title'] as String?,
+    isDefault: json['isDefault'] as bool?,
+    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
+    bc: json['bc'] as String?,
+  );
+}
+
+class ManagingTagResponse {
+  final int? itemId;
+  final ManagingTagResponseTag? tag;
+  final int? addedTagId;
+  final List<int>? deleteTags;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingTagResponse({
+    this.itemId,
+    this.tag,
+    this.addedTagId,
+    this.deleteTags,
+    this.systemInfo,
+  });
+
+  factory ManagingTagResponse.fromJson(Map<String, dynamic> json) => ManagingTagResponse(
+    itemId: json['itemId'] as int?,
+    tag: json['tag'] != null
+            ? ManagingTagResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
+            : null,
+    addedTagId: json['addedTagId'] as int?,
+    deleteTags: (json['deleteTags'] as List<dynamic>?)?.cast<int>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingUntagBody {
   final int tagId;
@@ -4803,7 +8865,57 @@ class ManagingUntagBody {
   }
 }
 
-typedef ManagingUntagResponse = Map<String, dynamic>;
+class ManagingUntagResponseTag {
+  final int? tagId;
+  final String? title;
+  final bool? isDefault;
+  final bool? forOwnedAccountsOnly;
+  final String? bc;
+
+  const ManagingUntagResponseTag({
+    this.tagId,
+    this.title,
+    this.isDefault,
+    this.forOwnedAccountsOnly,
+    this.bc,
+  });
+
+  factory ManagingUntagResponseTag.fromJson(Map<String, dynamic> json) => ManagingUntagResponseTag(
+    tagId: json['tag_id'] as int?,
+    title: json['title'] as String?,
+    isDefault: json['isDefault'] as bool?,
+    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
+    bc: json['bc'] as String?,
+  );
+}
+
+class ManagingUntagResponse {
+  final int? itemId;
+  final ManagingUntagResponseTag? tag;
+  final int? addedTagId;
+  final List<int>? deleteTags;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingUntagResponse({
+    this.itemId,
+    this.tag,
+    this.addedTagId,
+    this.deleteTags,
+    this.systemInfo,
+  });
+
+  factory ManagingUntagResponse.fromJson(Map<String, dynamic> json) => ManagingUntagResponse(
+    itemId: json['itemId'] as int?,
+    tag: json['tag'] != null
+            ? ManagingUntagResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
+            : null,
+    addedTagId: json['addedTagId'] as int?,
+    deleteTags: (json['deleteTags'] as List<dynamic>?)?.cast<int>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingPublicTagBody {
   final int tagId;
@@ -4819,7 +8931,57 @@ class ManagingPublicTagBody {
   }
 }
 
-typedef ManagingPublicTagResponse = Map<String, dynamic>;
+class ManagingPublicTagResponseTag {
+  final int? tagId;
+  final String? title;
+  final bool? isDefault;
+  final bool? forOwnedAccountsOnly;
+  final String? bc;
+
+  const ManagingPublicTagResponseTag({
+    this.tagId,
+    this.title,
+    this.isDefault,
+    this.forOwnedAccountsOnly,
+    this.bc,
+  });
+
+  factory ManagingPublicTagResponseTag.fromJson(Map<String, dynamic> json) => ManagingPublicTagResponseTag(
+    tagId: json['tag_id'] as int?,
+    title: json['title'] as String?,
+    isDefault: json['isDefault'] as bool?,
+    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
+    bc: json['bc'] as String?,
+  );
+}
+
+class ManagingPublicTagResponse {
+  final int? itemId;
+  final ManagingPublicTagResponseTag? tag;
+  final int? addedTagId;
+  final List<int>? deleteTags;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingPublicTagResponse({
+    this.itemId,
+    this.tag,
+    this.addedTagId,
+    this.deleteTags,
+    this.systemInfo,
+  });
+
+  factory ManagingPublicTagResponse.fromJson(Map<String, dynamic> json) => ManagingPublicTagResponse(
+    itemId: json['itemId'] as int?,
+    tag: json['tag'] != null
+            ? ManagingPublicTagResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
+            : null,
+    addedTagId: json['addedTagId'] as int?,
+    deleteTags: (json['deleteTags'] as List<dynamic>?)?.cast<int>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingPublicUntagBody {
   final int tagId;
@@ -4835,15 +8997,137 @@ class ManagingPublicUntagBody {
   }
 }
 
-typedef ManagingPublicUntagResponse = Map<String, dynamic>;
+class ManagingPublicUntagResponseTag {
+  final int? tagId;
+  final String? title;
+  final bool? isDefault;
+  final bool? forOwnedAccountsOnly;
+  final String? bc;
 
-typedef ManagingFavoriteResponse = Map<String, dynamic>;
+  const ManagingPublicUntagResponseTag({
+    this.tagId,
+    this.title,
+    this.isDefault,
+    this.forOwnedAccountsOnly,
+    this.bc,
+  });
 
-typedef ManagingUnfavoriteResponse = Map<String, dynamic>;
+  factory ManagingPublicUntagResponseTag.fromJson(Map<String, dynamic> json) => ManagingPublicUntagResponseTag(
+    tagId: json['tag_id'] as int?,
+    title: json['title'] as String?,
+    isDefault: json['isDefault'] as bool?,
+    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
+    bc: json['bc'] as String?,
+  );
+}
 
-typedef ManagingStickResponse = Map<String, dynamic>;
+class ManagingPublicUntagResponse {
+  final int? itemId;
+  final ManagingPublicUntagResponseTag? tag;
+  final int? addedTagId;
+  final List<int>? deleteTags;
+  final RespSystemInfo? systemInfo;
 
-typedef ManagingUnstickResponse = Map<String, dynamic>;
+  const ManagingPublicUntagResponse({
+    this.itemId,
+    this.tag,
+    this.addedTagId,
+    this.deleteTags,
+    this.systemInfo,
+  });
+
+  factory ManagingPublicUntagResponse.fromJson(Map<String, dynamic> json) => ManagingPublicUntagResponse(
+    itemId: json['itemId'] as int?,
+    tag: json['tag'] != null
+            ? ManagingPublicUntagResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
+            : null,
+    addedTagId: json['addedTagId'] as int?,
+    deleteTags: (json['deleteTags'] as List<dynamic>?)?.cast<int>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingFavoriteResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingFavoriteResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingFavoriteResponse.fromJson(Map<String, dynamic> json) => ManagingFavoriteResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingUnfavoriteResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingUnfavoriteResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingUnfavoriteResponse.fromJson(Map<String, dynamic> json) => ManagingUnfavoriteResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingStickResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingStickResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingStickResponse.fromJson(Map<String, dynamic> json) => ManagingStickResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ManagingUnstickResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingUnstickResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingUnstickResponse.fromJson(Map<String, dynamic> json) => ManagingUnstickResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ManagingTransferBody {
   final String username;
@@ -4862,7 +9146,947 @@ class ManagingTransferBody {
   }
 }
 
-typedef ManagingTransferResponse = Map<String, dynamic>;
+class ManagingTransferResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const ManagingTransferResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory ManagingTransferResponse.fromJson(Map<String, dynamic> json) => ManagingTransferResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+// ─── PaymentsApi Types ────────────────────────────────────────
+
+class PaymentsInvoiceGetParams {
+  final int? invoiceId;
+  final String? paymentId;
+
+  const PaymentsInvoiceGetParams({
+    this.invoiceId,
+    this.paymentId,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'invoice_id': invoiceId,
+      'payment_id': paymentId,
+    };
+  }
+}
+
+class PaymentsInvoiceGetResponse {
+  final InvoiceModel? invoice;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsInvoiceGetResponse({
+    this.invoice,
+    this.systemInfo,
+  });
+
+  factory PaymentsInvoiceGetResponse.fromJson(Map<String, dynamic> json) => PaymentsInvoiceGetResponse(
+    invoice: json['invoice'] != null
+            ? InvoiceModel.fromJson(json['invoice'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsInvoiceCreateBody {
+  final String currency;
+  final double amount;
+  final String paymentId;
+  final String comment;
+  final String urlSuccess;
+  final String? urlCallback;
+  final int merchantId;
+  final int? requiredTelegramId;
+  final String? requiredTelegramUsername;
+  final double? lifetime;
+  final String? additionalData;
+  final bool? isTest;
+
+  const PaymentsInvoiceCreateBody({
+    required this.currency,
+    required this.amount,
+    required this.paymentId,
+    required this.comment,
+    required this.urlSuccess,
+    this.urlCallback,
+    required this.merchantId,
+    this.requiredTelegramId,
+    this.requiredTelegramUsername,
+    this.lifetime,
+    this.additionalData,
+    this.isTest,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'currency': currency,
+      'amount': amount,
+      'payment_id': paymentId,
+      'comment': comment,
+      'url_success': urlSuccess,
+      'url_callback': urlCallback,
+      'merchant_id': merchantId,
+      'required_telegram_id': requiredTelegramId,
+      'required_telegram_username': requiredTelegramUsername,
+      'lifetime': lifetime,
+      'additional_data': additionalData,
+      'is_test': isTest,
+    };
+  }
+}
+
+class PaymentsInvoiceCreateResponse {
+  final InvoiceModel? invoice;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsInvoiceCreateResponse({
+    this.invoice,
+    this.systemInfo,
+  });
+
+  factory PaymentsInvoiceCreateResponse.fromJson(Map<String, dynamic> json) => PaymentsInvoiceCreateResponse(
+    invoice: json['invoice'] != null
+            ? InvoiceModel.fromJson(json['invoice'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsInvoiceListParams {
+  final int? page;
+  final String? currency;
+  final String? status;
+  final double? amount;
+  final int? merchantId;
+
+  const PaymentsInvoiceListParams({
+    this.page,
+    this.currency,
+    this.status,
+    this.amount,
+    this.merchantId,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'page': page,
+      'currency': currency,
+      'status': status,
+      'amount': amount,
+      'merchant_id': merchantId,
+    };
+  }
+}
+
+class PaymentsInvoiceListResponse {
+  final List<InvoiceModel>? invoices;
+  final int? count;
+  final int? page;
+  final int? perPage;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsInvoiceListResponse({
+    this.invoices,
+    this.count,
+    this.page,
+    this.perPage,
+    this.systemInfo,
+  });
+
+  factory PaymentsInvoiceListResponse.fromJson(Map<String, dynamic> json) => PaymentsInvoiceListResponse(
+    invoices: (json['invoices'] as List<dynamic>?)
+            ?.map((e) => InvoiceModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
+    count: json['count'] as int?,
+    page: json['page'] as int?,
+    perPage: json['perPage'] as int?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsCurrencyResponseCurrencyList {
+  final Object? bTC;
+  final Object? eTH;
+  final Object? bNB;
+  final Object? bCH;
+  final Object? xMR;
+  final Object? sOL;
+  final Object? lTC;
+  final Object? dASH;
+  final Object? tON;
+  final Object? uSDT;
+  final Object? mATIC;
+  final Object? tRX;
+  final Object? dOGE;
+  final Object? kWD;
+  final Object? gBP;
+  final Object? cHF;
+  final Object? eUR;
+  final Object? uSD;
+  final Object? sGD;
+  final Object? cAD;
+  final Object? aUD;
+  final Object? nZD;
+  final Object? bGN;
+  final Object? gEL;
+  final Object? iLS;
+  final Object? qAR;
+  final Object? pEN;
+  final Object? aED;
+  final Object? sAR;
+  final Object? pLN;
+  final Object? mYR;
+  final Object? rON;
+  final Object? bRL;
+  final Object? dKK;
+  final Object? cNY;
+  final Object? hKD;
+  final Object? sEK;
+  final Object? nOK;
+  final Object? zAR;
+  final Object? mXN;
+  final Object? cZK;
+  final Object? tWD;
+  final Object? tHB;
+  final Object? tRY;
+  final Object? uAH;
+  final Object? uYU;
+  final Object? pHP;
+  final Object? iNR;
+  final Object? rUB;
+  final Object? rSD;
+  final Object? jPY;
+  final Object? hUF;
+  final Object? kZT;
+  final Object? cRC;
+  final Object? cLP;
+  final Object? aRS;
+  final Object? kRW;
+  final Object? cOP;
+  final Object? iDR;
+  final Object? vND;
+
+  const PaymentsCurrencyResponseCurrencyList({
+    this.bTC,
+    this.eTH,
+    this.bNB,
+    this.bCH,
+    this.xMR,
+    this.sOL,
+    this.lTC,
+    this.dASH,
+    this.tON,
+    this.uSDT,
+    this.mATIC,
+    this.tRX,
+    this.dOGE,
+    this.kWD,
+    this.gBP,
+    this.cHF,
+    this.eUR,
+    this.uSD,
+    this.sGD,
+    this.cAD,
+    this.aUD,
+    this.nZD,
+    this.bGN,
+    this.gEL,
+    this.iLS,
+    this.qAR,
+    this.pEN,
+    this.aED,
+    this.sAR,
+    this.pLN,
+    this.mYR,
+    this.rON,
+    this.bRL,
+    this.dKK,
+    this.cNY,
+    this.hKD,
+    this.sEK,
+    this.nOK,
+    this.zAR,
+    this.mXN,
+    this.cZK,
+    this.tWD,
+    this.tHB,
+    this.tRY,
+    this.uAH,
+    this.uYU,
+    this.pHP,
+    this.iNR,
+    this.rUB,
+    this.rSD,
+    this.jPY,
+    this.hUF,
+    this.kZT,
+    this.cRC,
+    this.cLP,
+    this.aRS,
+    this.kRW,
+    this.cOP,
+    this.iDR,
+    this.vND,
+  });
+
+  factory PaymentsCurrencyResponseCurrencyList.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyList(
+    bTC: json['BTC'] as Object?,
+    eTH: json['ETH'] as Object?,
+    bNB: json['BNB'] as Object?,
+    bCH: json['BCH'] as Object?,
+    xMR: json['XMR'] as Object?,
+    sOL: json['SOL'] as Object?,
+    lTC: json['LTC'] as Object?,
+    dASH: json['DASH'] as Object?,
+    tON: json['TON'] as Object?,
+    uSDT: json['USDT'] as Object?,
+    mATIC: json['MATIC'] as Object?,
+    tRX: json['TRX'] as Object?,
+    dOGE: json['DOGE'] as Object?,
+    kWD: json['KWD'] as Object?,
+    gBP: json['GBP'] as Object?,
+    cHF: json['CHF'] as Object?,
+    eUR: json['EUR'] as Object?,
+    uSD: json['USD'] as Object?,
+    sGD: json['SGD'] as Object?,
+    cAD: json['CAD'] as Object?,
+    aUD: json['AUD'] as Object?,
+    nZD: json['NZD'] as Object?,
+    bGN: json['BGN'] as Object?,
+    gEL: json['GEL'] as Object?,
+    iLS: json['ILS'] as Object?,
+    qAR: json['QAR'] as Object?,
+    pEN: json['PEN'] as Object?,
+    aED: json['AED'] as Object?,
+    sAR: json['SAR'] as Object?,
+    pLN: json['PLN'] as Object?,
+    mYR: json['MYR'] as Object?,
+    rON: json['RON'] as Object?,
+    bRL: json['BRL'] as Object?,
+    dKK: json['DKK'] as Object?,
+    cNY: json['CNY'] as Object?,
+    hKD: json['HKD'] as Object?,
+    sEK: json['SEK'] as Object?,
+    nOK: json['NOK'] as Object?,
+    zAR: json['ZAR'] as Object?,
+    mXN: json['MXN'] as Object?,
+    cZK: json['CZK'] as Object?,
+    tWD: json['TWD'] as Object?,
+    tHB: json['THB'] as Object?,
+    tRY: json['TRY'] as Object?,
+    uAH: json['UAH'] as Object?,
+    uYU: json['UYU'] as Object?,
+    pHP: json['PHP'] as Object?,
+    iNR: json['INR'] as Object?,
+    rUB: json['RUB'] as Object?,
+    rSD: json['RSD'] as Object?,
+    jPY: json['JPY'] as Object?,
+    hUF: json['HUF'] as Object?,
+    kZT: json['KZT'] as Object?,
+    cRC: json['CRC'] as Object?,
+    cLP: json['CLP'] as Object?,
+    aRS: json['ARS'] as Object?,
+    kRW: json['KRW'] as Object?,
+    cOP: json['COP'] as Object?,
+    iDR: json['IDR'] as Object?,
+    vND: json['VND'] as Object?,
+  );
+}
+
+class PaymentsCurrencyResponse {
+  final PaymentsCurrencyResponseCurrencyList? currencyList;
+  final int? lastUpdate;
+  final String? visitorCurrency;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsCurrencyResponse({
+    this.currencyList,
+    this.lastUpdate,
+    this.visitorCurrency,
+    this.systemInfo,
+  });
+
+  factory PaymentsCurrencyResponse.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponse(
+    currencyList: json['currencyList'] != null
+            ? PaymentsCurrencyResponseCurrencyList.fromJson(json['currencyList'] as Map<String, dynamic>)
+            : null,
+    lastUpdate: json['lastUpdate'] as int?,
+    visitorCurrency: json['visitorCurrency'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsBalanceListResponseFrom {
+  final Object? balance;
+  final BalanceModel? n12345;
+
+  const PaymentsBalanceListResponseFrom({
+    this.balance,
+    this.n12345,
+  });
+
+  factory PaymentsBalanceListResponseFrom.fromJson(Map<String, dynamic> json) => PaymentsBalanceListResponseFrom(
+    balance: json['balance'] as Object?,
+    n12345: json['12345'] != null
+            ? BalanceModel.fromJson(json['12345'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsBalanceListResponseTo {
+  final UserModel? balance;
+
+  const PaymentsBalanceListResponseTo({
+    this.balance,
+  });
+
+  factory PaymentsBalanceListResponseTo.fromJson(Map<String, dynamic> json) => PaymentsBalanceListResponseTo(
+    balance: json['balance'] != null
+            ? UserModel.fromJson(json['balance'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsBalanceListResponse {
+  final PaymentsBalanceListResponseFrom? from;
+  final PaymentsBalanceListResponseTo? to;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsBalanceListResponse({
+    this.from,
+    this.to,
+    this.systemInfo,
+  });
+
+  factory PaymentsBalanceListResponse.fromJson(Map<String, dynamic> json) => PaymentsBalanceListResponse(
+    from: json['from'] != null
+            ? PaymentsBalanceListResponseFrom.fromJson(json['from'] as Map<String, dynamic>)
+            : null,
+    to: json['to'] != null
+            ? PaymentsBalanceListResponseTo.fromJson(json['to'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsBalanceExchangeBody {
+  final String fromBalance;
+  final String toBalance;
+  final int amount;
+
+  const PaymentsBalanceExchangeBody({
+    required this.fromBalance,
+    required this.toBalance,
+    required this.amount,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'from_balance': fromBalance,
+      'to_balance': toBalance,
+      'amount': amount,
+    };
+  }
+}
+
+class PaymentsBalanceExchangeResponseFrom {
+  final Object? balance;
+  final BalanceModel? n12345;
+
+  const PaymentsBalanceExchangeResponseFrom({
+    this.balance,
+    this.n12345,
+  });
+
+  factory PaymentsBalanceExchangeResponseFrom.fromJson(Map<String, dynamic> json) => PaymentsBalanceExchangeResponseFrom(
+    balance: json['balance'] as Object?,
+    n12345: json['12345'] != null
+            ? BalanceModel.fromJson(json['12345'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsBalanceExchangeResponseTo {
+  final UserModel? balance;
+
+  const PaymentsBalanceExchangeResponseTo({
+    this.balance,
+  });
+
+  factory PaymentsBalanceExchangeResponseTo.fromJson(Map<String, dynamic> json) => PaymentsBalanceExchangeResponseTo(
+    balance: json['balance'] != null
+            ? UserModel.fromJson(json['balance'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsBalanceExchangeResponse {
+  final PaymentsBalanceExchangeResponseFrom? from;
+  final PaymentsBalanceExchangeResponseTo? to;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsBalanceExchangeResponse({
+    this.from,
+    this.to,
+    this.systemInfo,
+  });
+
+  factory PaymentsBalanceExchangeResponse.fromJson(Map<String, dynamic> json) => PaymentsBalanceExchangeResponse(
+    from: json['from'] != null
+            ? PaymentsBalanceExchangeResponseFrom.fromJson(json['from'] as Map<String, dynamic>)
+            : null,
+    to: json['to'] != null
+            ? PaymentsBalanceExchangeResponseTo.fromJson(json['to'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsTransferBody {
+  final int? userId;
+  final String? username;
+  final int amount;
+  final String currency;
+  final String? comment;
+  final bool? telegramDeal;
+  final String? telegramUsername;
+  final bool? transferHold;
+  final int? holdLengthValue;
+  final String? holdLengthOption;
+
+  const PaymentsTransferBody({
+    this.userId,
+    this.username,
+    required this.amount,
+    required this.currency,
+    this.comment,
+    this.telegramDeal,
+    this.telegramUsername,
+    this.transferHold,
+    this.holdLengthValue,
+    this.holdLengthOption,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'user_id': userId,
+      'username': username,
+      'amount': amount,
+      'currency': currency,
+      'comment': comment,
+      'telegram_deal': telegramDeal,
+      'telegram_username': telegramUsername,
+      'transfer_hold': transferHold,
+      'hold_length_value': holdLengthValue,
+      'hold_length_option': holdLengthOption,
+    };
+  }
+}
+
+class PaymentsTransferResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsTransferResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory PaymentsTransferResponse.fromJson(Map<String, dynamic> json) => PaymentsTransferResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsFeeParams {
+  final double? amount;
+
+  const PaymentsFeeParams({
+    this.amount,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'amount': amount,
+    };
+  }
+}
+
+class PaymentsFeeResponseCalculator {
+  final int? inputAmount;
+  final int? commissionAmount;
+  final int? totalOutputAmount;
+
+  const PaymentsFeeResponseCalculator({
+    this.inputAmount,
+    this.commissionAmount,
+    this.totalOutputAmount,
+  });
+
+  factory PaymentsFeeResponseCalculator.fromJson(Map<String, dynamic> json) => PaymentsFeeResponseCalculator(
+    inputAmount: json['inputAmount'] as int?,
+    commissionAmount: json['commissionAmount'] as int?,
+    totalOutputAmount: json['totalOutputAmount'] as int?,
+  );
+}
+
+class PaymentsFeeResponse {
+  final int? commissionPercentage;
+  final int? spentCurrentMonth;
+  final PaymentsFeeResponseCalculator? calculator;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsFeeResponse({
+    this.commissionPercentage,
+    this.spentCurrentMonth,
+    this.calculator,
+    this.systemInfo,
+  });
+
+  factory PaymentsFeeResponse.fromJson(Map<String, dynamic> json) => PaymentsFeeResponse(
+    commissionPercentage: json['commission_percentage'] as int?,
+    spentCurrentMonth: json['spentCurrentMonth'] as int?,
+    calculator: json['calculator'] != null
+            ? PaymentsFeeResponseCalculator.fromJson(json['calculator'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsCancelBody {
+  final int paymentId;
+
+  const PaymentsCancelBody({
+    required this.paymentId,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'payment_id': paymentId,
+    };
+  }
+}
+
+class PaymentsCancelResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsCancelResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory PaymentsCancelResponse.fromJson(Map<String, dynamic> json) => PaymentsCancelResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsHistoryParams {
+  final String? type;
+  final int? pmin;
+  final int? pmax;
+  final String? currency;
+  final int? page;
+  final int? operationIdLt;
+  final String? receiver;
+  final String? sender;
+  final bool? isApi;
+  final String? startDate;
+  final String? endDate;
+  final String? wallet;
+  final String? comment;
+  final bool? isHold;
+  final bool? showPaymentStats;
+
+  const PaymentsHistoryParams({
+    this.type,
+    this.pmin,
+    this.pmax,
+    this.currency,
+    this.page,
+    this.operationIdLt,
+    this.receiver,
+    this.sender,
+    this.isApi,
+    this.startDate,
+    this.endDate,
+    this.wallet,
+    this.comment,
+    this.isHold,
+    this.showPaymentStats,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'type': type,
+      'pmin': pmin,
+      'pmax': pmax,
+      'currency': currency,
+      'page': page,
+      'operation_id_lt': operationIdLt,
+      'receiver': receiver,
+      'sender': sender,
+      'is_api': isApi,
+      'startDate': startDate,
+      'endDate': endDate,
+      'wallet': wallet,
+      'comment': comment,
+      'is_hold': isHold,
+      'show_payment_stats': showPaymentStats,
+    };
+  }
+}
+
+class PaymentsHistoryResponsePayments {
+  final Object? n1234567890;
+
+  const PaymentsHistoryResponsePayments({
+    this.n1234567890,
+  });
+
+  factory PaymentsHistoryResponsePayments.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePayments(
+    n1234567890: json['1234567890'] as Object?,
+  );
+}
+
+class PaymentsHistoryResponsePageNavParams {
+  final String? type;
+  final String? startDate;
+  final String? endDate;
+
+  const PaymentsHistoryResponsePageNavParams({
+    this.type,
+    this.startDate,
+    this.endDate,
+  });
+
+  factory PaymentsHistoryResponsePageNavParams.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePageNavParams(
+    type: json['type'] as String?,
+    startDate: json['startDate'] as String?,
+    endDate: json['endDate'] as String?,
+  );
+}
+
+class PaymentsHistoryResponseInput {
+  final int? userId;
+  final String? type;
+  final String? startDate;
+  final String? endDate;
+  final int? page;
+  final String? periodLabel;
+  final String? receiver;
+  final String? sender;
+  final String? comment;
+  final String? pmin;
+  final String? pmax;
+  final int? categoryId;
+  final String? wallet;
+  final bool? isHold;
+  final String? currency;
+  final int? operationIdLt;
+
+  const PaymentsHistoryResponseInput({
+    this.userId,
+    this.type,
+    this.startDate,
+    this.endDate,
+    this.page,
+    this.periodLabel,
+    this.receiver,
+    this.sender,
+    this.comment,
+    this.pmin,
+    this.pmax,
+    this.categoryId,
+    this.wallet,
+    this.isHold,
+    this.currency,
+    this.operationIdLt,
+  });
+
+  factory PaymentsHistoryResponseInput.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponseInput(
+    userId: json['user_id'] as int?,
+    type: json['type'] as String?,
+    startDate: json['startDate'] as String?,
+    endDate: json['endDate'] as String?,
+    page: json['page'] as int?,
+    periodLabel: json['period_label'] as String?,
+    receiver: json['receiver'] as String?,
+    sender: json['sender'] as String?,
+    comment: json['comment'] as String?,
+    pmin: json['pmin'] as String?,
+    pmax: json['pmax'] as String?,
+    categoryId: json['category_id'] as int?,
+    wallet: json['wallet'] as String?,
+    isHold: json['is_hold'] as bool?,
+    currency: json['currency'] as String?,
+    operationIdLt: json['operation_id_lt'] as int?,
+  );
+}
+
+class PaymentsHistoryResponse {
+  final PaymentsHistoryResponsePayments? payments;
+  final String? perPage;
+  final int? page;
+  final String? pageNavLink;
+  final PaymentsHistoryResponsePageNavParams? pageNavParams;
+  final String? periodLabel;
+  final String? periodLabelPhrase;
+  final bool? filterDatesDefault;
+  final PaymentsHistoryResponseInput? input;
+  final Object? paymentStats;
+  final bool? hasNextPage;
+  final int? lastOperationId;
+  final String? nextPageHref;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsHistoryResponse({
+    this.payments,
+    this.perPage,
+    this.page,
+    this.pageNavLink,
+    this.pageNavParams,
+    this.periodLabel,
+    this.periodLabelPhrase,
+    this.filterDatesDefault,
+    this.input,
+    this.paymentStats,
+    this.hasNextPage,
+    this.lastOperationId,
+    this.nextPageHref,
+    this.systemInfo,
+  });
+
+  factory PaymentsHistoryResponse.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponse(
+    payments: json['payments'] != null
+            ? PaymentsHistoryResponsePayments.fromJson(json['payments'] as Map<String, dynamic>)
+            : null,
+    perPage: json['perPage'] as String?,
+    page: json['page'] as int?,
+    pageNavLink: json['pageNavLink'] as String?,
+    pageNavParams: json['pageNavParams'] != null
+            ? PaymentsHistoryResponsePageNavParams.fromJson(json['pageNavParams'] as Map<String, dynamic>)
+            : null,
+    periodLabel: json['periodLabel'] as String?,
+    periodLabelPhrase: json['periodLabelPhrase'] as String?,
+    filterDatesDefault: json['filterDatesDefault'] as bool?,
+    input: json['input'] != null
+            ? PaymentsHistoryResponseInput.fromJson(json['input'] as Map<String, dynamic>)
+            : null,
+    paymentStats: json['paymentStats'] as Object?,
+    hasNextPage: json['hasNextPage'] as bool?,
+    lastOperationId: json['lastOperationId'] as int?,
+    nextPageHref: json['nextPageHref'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsPayoutServicesResponse {
+  final List<Map<String, dynamic>>? systems;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsPayoutServicesResponse({
+    this.systems,
+    this.systemInfo,
+  });
+
+  factory PaymentsPayoutServicesResponse.fromJson(Map<String, dynamic> json) => PaymentsPayoutServicesResponse(
+    systems: (json['systems'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PaymentsPayoutBody {
+  final String paymentSystem;
+  final String wallet;
+  final double amount;
+  final String currency;
+  final bool? includeFee;
+  final Map<String, dynamic>? extra;
+
+  const PaymentsPayoutBody({
+    required this.paymentSystem,
+    required this.wallet,
+    required this.amount,
+    required this.currency,
+    this.includeFee,
+    this.extra,
+  });
+
+  Map<String, Object?> toMap() {
+    return {
+      'payment_system': paymentSystem,
+      'wallet': wallet,
+      'amount': amount,
+      'currency': currency,
+      'include_fee': includeFee,
+      'extra': extra,
+    };
+  }
+}
+
+class PaymentsPayoutResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
+
+  const PaymentsPayoutResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory PaymentsPayoutResponse.fromJson(Map<String, dynamic> json) => PaymentsPayoutResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 // ─── ProfileApi Types ────────────────────────────────────────
 
@@ -4883,7 +10107,42 @@ class ProfileClaimsParams {
   }
 }
 
-typedef ProfileClaimsResponse = Map<String, dynamic>;
+class ProfileClaimsResponseStats {
+  final Object? market;
+  final Object? noMarket;
+
+  const ProfileClaimsResponseStats({
+    this.market,
+    this.noMarket,
+  });
+
+  factory ProfileClaimsResponseStats.fromJson(Map<String, dynamic> json) => ProfileClaimsResponseStats(
+    market: json['market'] as Object?,
+    noMarket: json['noMarket'] as Object?,
+  );
+}
+
+class ProfileClaimsResponse {
+  final List<Map<String, dynamic>>? claims;
+  final ProfileClaimsResponseStats? stats;
+  final RespSystemInfo? systemInfo;
+
+  const ProfileClaimsResponse({
+    this.claims,
+    this.stats,
+    this.systemInfo,
+  });
+
+  factory ProfileClaimsResponse.fromJson(Map<String, dynamic> json) => ProfileClaimsResponse(
+    claims: (json['claims'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    stats: json['stats'] != null
+            ? ProfileClaimsResponseStats.fromJson(json['stats'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ProfileGetParams {
   final Object? fieldsInclude;
@@ -4899,7 +10158,24 @@ class ProfileGetParams {
   }
 }
 
-typedef ProfileGetResponse = Map<String, dynamic>;
+class ProfileGetResponse {
+  final UserModel? user;
+  final RespSystemInfo? systemInfo;
+
+  const ProfileGetResponse({
+    this.user,
+    this.systemInfo,
+  });
+
+  factory ProfileGetResponse.fromJson(Map<String, dynamic> json) => ProfileGetResponse(
+    user: json['user'] != null
+            ? UserModel.fromJson(json['user'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class ProfileEditBody {
   final Map<String, dynamic>? user;
@@ -4948,259 +10224,127 @@ class ProfileEditBody {
   }
 }
 
-typedef ProfileEditResponse = Map<String, dynamic>;
-
-// ─── CartApi Types ────────────────────────────────────────
-
-class CartGetParams {
-  final Object? categoryId;
-  final int? page;
-  final int? pmin;
-  final int? pmax;
-  final String? title;
-  final String? orderBy;
-  final List<int>? tagId;
-  final List<int>? notTagId;
-  final List<int>? publicTagId;
-  final List<int>? notPublicTagId;
-  final Object? origin;
-  final Object? notOrigin;
-  final int? userId;
-  final bool? nsb;
-  final bool? sb;
-  final bool? nsbByMe;
-  final bool? sbByMe;
-  final String? currency;
-  final bool? emailLoginData;
-  final Object? emailProvider;
-  final String? notEmailProvider;
-  final bool? parseSameItemIds;
-
-  const CartGetParams({
-    this.categoryId,
-    this.page,
-    this.pmin,
-    this.pmax,
-    this.title,
-    this.orderBy,
-    this.tagId,
-    this.notTagId,
-    this.publicTagId,
-    this.notPublicTagId,
-    this.origin,
-    this.notOrigin,
-    this.userId,
-    this.nsb,
-    this.sb,
-    this.nsbByMe,
-    this.sbByMe,
-    this.currency,
-    this.emailLoginData,
-    this.emailProvider,
-    this.notEmailProvider,
-    this.parseSameItemIds,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'category_id': categoryId,
-      'page': page,
-      'pmin': pmin,
-      'pmax': pmax,
-      'title': title,
-      'order_by': orderBy,
-      'tag_id[]': tagId,
-      'not_tag_id[]': notTagId,
-      'public_tag_id[]': publicTagId,
-      'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
-      'not_origin[]': notOrigin,
-      'user_id': userId,
-      'nsb': nsb,
-      'sb': sb,
-      'nsb_by_me': nsbByMe,
-      'sb_by_me': sbByMe,
-      'currency': currency,
-      'email_login_data': emailLoginData,
-      'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
-      'parse_same_item_ids': parseSameItemIds,
-    };
-  }
-}
-
-typedef CartGetResponse = Map<String, dynamic>;
-
-class CartAddBody {
-  final int itemId;
-
-  const CartAddBody({
-    required this.itemId,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'item_id': itemId,
-    };
-  }
-}
-
-typedef CartAddResponse = Map<String, dynamic>;
-
-class CartDeleteBody {
-  final int? itemId;
-
-  const CartDeleteBody({
-    this.itemId,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'item_id': itemId,
-    };
-  }
-}
-
-typedef CartDeleteResponse = Map<String, dynamic>;
-
-// ─── PurchasingApi Types ────────────────────────────────────────
-
-class PurchasingFastBuyBody {
-  final double? price;
-  final int? balanceId;
-
-  const PurchasingFastBuyBody({
-    this.price,
-    this.balanceId,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'price': price,
-      'balance_id': balanceId,
-    };
-  }
-}
-
-typedef PurchasingFastBuyResponse = Map<String, dynamic>;
-
-typedef PurchasingCheckResponse = Map<String, dynamic>;
-
-class PurchasingConfirmBody {
-  final int? price;
-  final int? balanceId;
-
-  const PurchasingConfirmBody({
-    this.price,
-    this.balanceId,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'price': price,
-      'balance_id': balanceId,
-    };
-  }
-}
-
-typedef PurchasingConfirmResponse = Map<String, dynamic>;
-
-class PurchasingDiscountRequestBody {
-  final double discountPrice;
+class ProfileEditResponse {
+  final String? status;
   final String? message;
+  final RespSystemInfo? systemInfo;
 
-  const PurchasingDiscountRequestBody({
-    required this.discountPrice,
+  const ProfileEditResponse({
+    this.status,
     this.message,
+    this.systemInfo,
+  });
+
+  factory ProfileEditResponse.fromJson(Map<String, dynamic> json) => ProfileEditResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+// ─── ProxyApi Types ────────────────────────────────────────
+
+class ProxyGetResponse {
+  final List<Map<String, dynamic>>? proxies;
+  final RespSystemInfo? systemInfo;
+
+  const ProxyGetResponse({
+    this.proxies,
+    this.systemInfo,
+  });
+
+  factory ProxyGetResponse.fromJson(Map<String, dynamic> json) => ProxyGetResponse(
+    proxies: (json['proxies'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class ProxyAddBody {
+  final String? proxyIp;
+  final int? proxyPort;
+  final String? proxyUser;
+  final String? proxyPass;
+  final String? proxyRow;
+
+  const ProxyAddBody({
+    this.proxyIp,
+    this.proxyPort,
+    this.proxyUser,
+    this.proxyPass,
+    this.proxyRow,
   });
 
   Map<String, Object?> toMap() {
     return {
-      'discount_price': discountPrice,
-      'message': message,
+      'proxy_ip': proxyIp,
+      'proxy_port': proxyPort,
+      'proxy_user': proxyUser,
+      'proxy_pass': proxyPass,
+      'proxy_row': proxyRow,
     };
   }
 }
 
-typedef PurchasingDiscountRequestResponse = Map<String, dynamic>;
+class ProxyAddResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-typedef PurchasingDiscountCancelResponse = Map<String, dynamic>;
+  const ProxyAddResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
+  });
 
-// ─── CustomDiscountsApi Types ────────────────────────────────────────
+  factory ProxyAddResponse.fromJson(Map<String, dynamic> json) => ProxyAddResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
-typedef CustomDiscountsGetResponse = Map<String, dynamic>;
+class ProxyDeleteBody {
+  final int? proxyId;
+  final bool? deleteAll;
 
-class CustomDiscountsCreateBody {
-  final int userId;
-  final Object categoryId;
-  final double discountPercent;
-  final double minPrice;
-  final double? maxPrice;
-  final String? currency;
-
-  const CustomDiscountsCreateBody({
-    required this.userId,
-    required this.categoryId,
-    required this.discountPercent,
-    required this.minPrice,
-    this.maxPrice,
-    this.currency,
+  const ProxyDeleteBody({
+    this.proxyId,
+    this.deleteAll,
   });
 
   Map<String, Object?> toMap() {
     return {
-      'user_id': userId,
-      'category_id': categoryId,
-      'discount_percent': discountPercent,
-      'min_price': minPrice,
-      'max_price': maxPrice,
-      'currency': currency,
+      'proxy_id': proxyId,
+      'delete_all': deleteAll,
     };
   }
 }
 
-typedef CustomDiscountsCreateResponse = Map<String, dynamic>;
+class ProxyDeleteResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-class CustomDiscountsEditBody {
-  final int discountId;
-  final double? discountPercent;
-  final double? minPrice;
-  final double? maxPrice;
-
-  const CustomDiscountsEditBody({
-    required this.discountId,
-    this.discountPercent,
-    this.minPrice,
-    this.maxPrice,
+  const ProxyDeleteResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
   });
 
-  Map<String, Object?> toMap() {
-    return {
-      'discount_id': discountId,
-      'discount_percent': discountPercent,
-      'min_price': minPrice,
-      'max_price': maxPrice,
-    };
-  }
+  factory ProxyDeleteResponse.fromJson(Map<String, dynamic> json) => ProxyDeleteResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
 }
-
-typedef CustomDiscountsEditResponse = Map<String, dynamic>;
-
-class CustomDiscountsDeleteBody {
-  final int discountId;
-
-  const CustomDiscountsDeleteBody({
-    required this.discountId,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'discount_id': discountId,
-    };
-  }
-}
-
-typedef CustomDiscountsDeleteResponse = Map<String, dynamic>;
 
 // ─── PublishingApi Types ────────────────────────────────────────
 
@@ -5272,7 +10416,27 @@ class PublishingFastSellBody {
   }
 }
 
-typedef PublishingFastSellResponse = Map<String, dynamic>;
+class PublishingFastSellResponse {
+  final ItemModel? item;
+  final String? itemLink;
+  final RespSystemInfo? systemInfo;
+
+  const PublishingFastSellResponse({
+    this.item,
+    this.itemLink,
+    this.systemInfo,
+  });
+
+  factory PublishingFastSellResponse.fromJson(Map<String, dynamic> json) => PublishingFastSellResponse(
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    itemLink: json['itemLink'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class PublishingAddBody {
   final String? title;
@@ -5336,7 +10500,27 @@ class PublishingAddBody {
   }
 }
 
-typedef PublishingAddResponse = Map<String, dynamic>;
+class PublishingAddResponse {
+  final String? status;
+  final ItemModel? item;
+  final RespSystemInfo? systemInfo;
+
+  const PublishingAddResponse({
+    this.status,
+    this.item,
+    this.systemInfo,
+  });
+
+  factory PublishingAddResponse.fromJson(Map<String, dynamic> json) => PublishingAddResponse(
+    status: json['status'] as String?,
+    item: json['item'] != null
+            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class PublishingCheckBody {
   final int? resellItemId;
@@ -5376,7 +10560,267 @@ class PublishingCheckBody {
   }
 }
 
-typedef PublishingCheckResponse = Map<String, dynamic>;
+class PublishingCheckResponseItem {
+  final int? itemId;
+  final String? itemState;
+  final int? categoryId;
+  final int? publishedDate;
+  final String? title;
+  final String? description;
+  final int? price;
+  final int? updateStatDate;
+  final int? refreshedDate;
+  final int? editDate;
+  final String? login;
+  final String? tempEmail;
+  final int? viewCount;
+  final int? isSticky;
+  final String? information;
+  final String? itemOrigin;
+  final int? extendedGuarantee;
+  final int? nsb;
+  final int? allowAskDiscount;
+  final String? titleEn;
+  final String? descriptionEn;
+  final String? informationEn;
+  final String? emailType;
+  final String? emailProvider;
+  final String? itemDomain;
+  final String? resaleItemOrigin;
+  final int? userAllowAskDiscount;
+  final int? maxDiscountPercent;
+  final String? marketCustomTitle;
+  final String? feedbackData;
+  final int? buyerAvatarDate;
+  final int? buyerUserGroupId;
+  final int? priceWithSellerFee;
+  final Object? guarantee;
+  final bool? canViewLoginData;
+  final bool? canUpdateItemStats;
+  final bool? canReportItem;
+  final Object? loginData;
+  final bool? canViewEmailLoginData;
+  final Object? emailLoginData;
+  final bool? showGetEmailCodeButton;
+  final String? getEmailCodeDisplayLogin;
+  final Object? buyer;
+  final bool? isPersonalAccount;
+  final int? soldItemsCategoryCount;
+  final int? restoreItemsCategoryCount;
+  final int? rubPrice;
+  final String? priceCurrency;
+  final bool? canValidateAccount;
+  final bool? canResellItemAfterPurchase;
+  final int? accountLastActivity;
+  final bool? displayConvertedBalance;
+  final bool? canViewAccountLink;
+  final List<Map<String, dynamic>>? accountLinks;
+  final String? accountLink;
+  final String? emailLoginUrl;
+  final bool? canChangePassword;
+  final String? itemOriginPhrase;
+  final bool? visitorIsAuthor;
+  final bool? canAskDiscount;
+  final Object? tags;
+  final List<Object>? customFields;
+  final List<Object>? externalAuth;
+  final bool? isTrusted;
+  final bool? isBirthdayToday;
+  final bool? isIgnored;
+  final int? deposit;
+  final List<Map<String, dynamic>>? extraPrices;
+  final bool? canViewAccountLoginAndTempEmail;
+  final Object? bumpSettings;
+  final bool? canCheckGuarantee;
+  final bool? needToRequireVideoToViewLoginData;
+  final String? descriptionHtml;
+  final String? descriptionEnHtml;
+  final String? descriptionPlain;
+  final String? descriptionEnPlain;
+  final Object? seller;
+
+  const PublishingCheckResponseItem({
+    this.itemId,
+    this.itemState,
+    this.categoryId,
+    this.publishedDate,
+    this.title,
+    this.description,
+    this.price,
+    this.updateStatDate,
+    this.refreshedDate,
+    this.editDate,
+    this.login,
+    this.tempEmail,
+    this.viewCount,
+    this.isSticky,
+    this.information,
+    this.itemOrigin,
+    this.extendedGuarantee,
+    this.nsb,
+    this.allowAskDiscount,
+    this.titleEn,
+    this.descriptionEn,
+    this.informationEn,
+    this.emailType,
+    this.emailProvider,
+    this.itemDomain,
+    this.resaleItemOrigin,
+    this.userAllowAskDiscount,
+    this.maxDiscountPercent,
+    this.marketCustomTitle,
+    this.feedbackData,
+    this.buyerAvatarDate,
+    this.buyerUserGroupId,
+    this.priceWithSellerFee,
+    this.guarantee,
+    this.canViewLoginData,
+    this.canUpdateItemStats,
+    this.canReportItem,
+    this.loginData,
+    this.canViewEmailLoginData,
+    this.emailLoginData,
+    this.showGetEmailCodeButton,
+    this.getEmailCodeDisplayLogin,
+    this.buyer,
+    this.isPersonalAccount,
+    this.soldItemsCategoryCount,
+    this.restoreItemsCategoryCount,
+    this.rubPrice,
+    this.priceCurrency,
+    this.canValidateAccount,
+    this.canResellItemAfterPurchase,
+    this.accountLastActivity,
+    this.displayConvertedBalance,
+    this.canViewAccountLink,
+    this.accountLinks,
+    this.accountLink,
+    this.emailLoginUrl,
+    this.canChangePassword,
+    this.itemOriginPhrase,
+    this.visitorIsAuthor,
+    this.canAskDiscount,
+    this.tags,
+    this.customFields,
+    this.externalAuth,
+    this.isTrusted,
+    this.isBirthdayToday,
+    this.isIgnored,
+    this.deposit,
+    this.extraPrices,
+    this.canViewAccountLoginAndTempEmail,
+    this.bumpSettings,
+    this.canCheckGuarantee,
+    this.needToRequireVideoToViewLoginData,
+    this.descriptionHtml,
+    this.descriptionEnHtml,
+    this.descriptionPlain,
+    this.descriptionEnPlain,
+    this.seller,
+  });
+
+  factory PublishingCheckResponseItem.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItem(
+    itemId: json['item_id'] as int?,
+    itemState: json['item_state'] as String?,
+    categoryId: json['category_id'] as int?,
+    publishedDate: json['published_date'] as int?,
+    title: json['title'] as String?,
+    description: json['description'] as String?,
+    price: json['price'] as int?,
+    updateStatDate: json['update_stat_date'] as int?,
+    refreshedDate: json['refreshed_date'] as int?,
+    editDate: json['edit_date'] as int?,
+    login: json['login'] as String?,
+    tempEmail: json['temp_email'] as String?,
+    viewCount: json['view_count'] as int?,
+    isSticky: json['is_sticky'] as int?,
+    information: json['information'] as String?,
+    itemOrigin: json['item_origin'] as String?,
+    extendedGuarantee: json['extended_guarantee'] as int?,
+    nsb: json['nsb'] as int?,
+    allowAskDiscount: json['allow_ask_discount'] as int?,
+    titleEn: json['title_en'] as String?,
+    descriptionEn: json['description_en'] as String?,
+    informationEn: json['information_en'] as String?,
+    emailType: json['email_type'] as String?,
+    emailProvider: json['email_provider'] as String?,
+    itemDomain: json['item_domain'] as String?,
+    resaleItemOrigin: json['resale_item_origin'] as String?,
+    userAllowAskDiscount: json['user_allow_ask_discount'] as int?,
+    maxDiscountPercent: json['max_discount_percent'] as int?,
+    marketCustomTitle: json['market_custom_title'] as String?,
+    feedbackData: json['feedback_data'] as String?,
+    buyerAvatarDate: json['buyer_avatar_date'] as int?,
+    buyerUserGroupId: json['buyer_user_group_id'] as int?,
+    priceWithSellerFee: json['priceWithSellerFee'] as int?,
+    guarantee: json['guarantee'] as Object?,
+    canViewLoginData: json['canViewLoginData'] as bool?,
+    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
+    canReportItem: json['canReportItem'] as bool?,
+    loginData: json['loginData'] as Object?,
+    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
+    emailLoginData: json['emailLoginData'] as Object?,
+    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
+    getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as String?,
+    buyer: json['buyer'] as Object?,
+    isPersonalAccount: json['isPersonalAccount'] as bool?,
+    soldItemsCategoryCount: json['sold_items_category_count'] as int?,
+    restoreItemsCategoryCount: json['restore_items_category_count'] as int?,
+    rubPrice: json['rub_price'] as int?,
+    priceCurrency: json['price_currency'] as String?,
+    canValidateAccount: json['canValidateAccount'] as bool?,
+    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
+    accountLastActivity: json['account_last_activity'] as int?,
+    displayConvertedBalance: json['displayConvertedBalance'] as bool?,
+    canViewAccountLink: json['canViewAccountLink'] as bool?,
+    accountLinks: (json['accountLinks'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    accountLink: json['accountLink'] as String?,
+    emailLoginUrl: json['emailLoginUrl'] as String?,
+    canChangePassword: json['canChangePassword'] as bool?,
+    itemOriginPhrase: json['itemOriginPhrase'] as String?,
+    visitorIsAuthor: json['visitorIsAuthor'] as bool?,
+    canAskDiscount: json['canAskDiscount'] as bool?,
+    tags: json['tags'] as Object?,
+    customFields: (json['customFields'] as List<dynamic>?)?.cast<Object>(),
+    externalAuth: (json['externalAuth'] as List<dynamic>?)?.cast<Object>(),
+    isTrusted: json['isTrusted'] as bool?,
+    isBirthdayToday: json['isBirthdayToday'] as bool?,
+    isIgnored: json['isIgnored'] as bool?,
+    deposit: json['deposit'] as int?,
+    extraPrices: (json['extraPrices'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    canViewAccountLoginAndTempEmail: json['canViewAccountLoginAndTempEmail'] as bool?,
+    bumpSettings: json['bumpSettings'] as Object?,
+    canCheckGuarantee: json['canCheckGuarantee'] as bool?,
+    needToRequireVideoToViewLoginData: json['needToRequireVideoToViewLoginData'] as bool?,
+    descriptionHtml: json['descriptionHtml'] as String?,
+    descriptionEnHtml: json['descriptionEnHtml'] as String?,
+    descriptionPlain: json['descriptionPlain'] as String?,
+    descriptionEnPlain: json['descriptionEnPlain'] as String?,
+    seller: json['seller'] as Object?,
+  );
+}
+
+class PublishingCheckResponse {
+  final String? status;
+  final PublishingCheckResponseItem? item;
+  final RespSystemInfo? systemInfo;
+
+  const PublishingCheckResponse({
+    this.status,
+    this.item,
+    this.systemInfo,
+  });
+
+  factory PublishingCheckResponse.fromJson(Map<String, dynamic> json) => PublishingCheckResponse(
+    status: json['status'] as String?,
+    item: json['item'] != null
+            ? PublishingCheckResponseItem.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
 
 class PublishingExternalBody {
   final String type;
@@ -5401,446 +10845,704 @@ class PublishingExternalBody {
   }
 }
 
-typedef PublishingExternalResponse = Map<String, dynamic>;
-
-// ─── PaymentsApi Types ────────────────────────────────────────
-
-class PaymentsInvoiceGetParams {
-  final int? invoiceId;
-  final String? paymentId;
-
-  const PaymentsInvoiceGetParams({
-    this.invoiceId,
-    this.paymentId,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'invoice_id': invoiceId,
-      'payment_id': paymentId,
-    };
-  }
-}
-
-typedef PaymentsInvoiceGetResponse = Map<String, dynamic>;
-
-class PaymentsInvoiceCreateBody {
-  final String currency;
-  final double amount;
-  final String paymentId;
-  final String comment;
-  final String urlSuccess;
-  final String? urlCallback;
-  final int merchantId;
-  final int? requiredTelegramId;
-  final String? requiredTelegramUsername;
-  final double? lifetime;
-  final String? additionalData;
-  final bool? isTest;
-
-  const PaymentsInvoiceCreateBody({
-    required this.currency,
-    required this.amount,
-    required this.paymentId,
-    required this.comment,
-    required this.urlSuccess,
-    this.urlCallback,
-    required this.merchantId,
-    this.requiredTelegramId,
-    this.requiredTelegramUsername,
-    this.lifetime,
-    this.additionalData,
-    this.isTest,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'currency': currency,
-      'amount': amount,
-      'payment_id': paymentId,
-      'comment': comment,
-      'url_success': urlSuccess,
-      'url_callback': urlCallback,
-      'merchant_id': merchantId,
-      'required_telegram_id': requiredTelegramId,
-      'required_telegram_username': requiredTelegramUsername,
-      'lifetime': lifetime,
-      'additional_data': additionalData,
-      'is_test': isTest,
-    };
-  }
-}
-
-typedef PaymentsInvoiceCreateResponse = Map<String, dynamic>;
-
-class PaymentsInvoiceListParams {
-  final int? page;
-  final String? currency;
+class PublishingExternalResponse {
   final String? status;
-  final double? amount;
-  final int? merchantId;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-  const PaymentsInvoiceListParams({
-    this.page,
-    this.currency,
+  const PublishingExternalResponse({
     this.status,
-    this.amount,
-    this.merchantId,
+    this.message,
+    this.systemInfo,
+  });
+
+  factory PublishingExternalResponse.fromJson(Map<String, dynamic> json) => PublishingExternalResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+// ─── PurchasingApi Types ────────────────────────────────────────
+
+class PurchasingFastBuyBody {
+  final double? price;
+  final int? balanceId;
+
+  const PurchasingFastBuyBody({
+    this.price,
+    this.balanceId,
   });
 
   Map<String, Object?> toMap() {
     return {
-      'page': page,
-      'currency': currency,
-      'status': status,
-      'amount': amount,
-      'merchant_id': merchantId,
+      'price': price,
+      'balance_id': balanceId,
     };
   }
 }
 
-typedef PaymentsInvoiceListResponse = Map<String, dynamic>;
-
-typedef PaymentsCurrencyResponse = Map<String, dynamic>;
-
-typedef PaymentsBalanceListResponse = Map<String, dynamic>;
-
-class PaymentsBalanceExchangeBody {
-  final String fromBalance;
-  final String toBalance;
-  final int amount;
-
-  const PaymentsBalanceExchangeBody({
-    required this.fromBalance,
-    required this.toBalance,
-    required this.amount,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'from_balance': fromBalance,
-      'to_balance': toBalance,
-      'amount': amount,
-    };
-  }
-}
-
-typedef PaymentsBalanceExchangeResponse = Map<String, dynamic>;
-
-class PaymentsTransferBody {
-  final int? userId;
-  final String? username;
-  final int amount;
-  final String currency;
-  final String? comment;
-  final bool? telegramDeal;
-  final String? telegramUsername;
-  final bool? transferHold;
-  final int? holdLengthValue;
-  final String? holdLengthOption;
-
-  const PaymentsTransferBody({
-    this.userId,
-    this.username,
-    required this.amount,
-    required this.currency,
-    this.comment,
-    this.telegramDeal,
-    this.telegramUsername,
-    this.transferHold,
-    this.holdLengthValue,
-    this.holdLengthOption,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'user_id': userId,
-      'username': username,
-      'amount': amount,
-      'currency': currency,
-      'comment': comment,
-      'telegram_deal': telegramDeal,
-      'telegram_username': telegramUsername,
-      'transfer_hold': transferHold,
-      'hold_length_value': holdLengthValue,
-      'hold_length_option': holdLengthOption,
-    };
-  }
-}
-
-typedef PaymentsTransferResponse = Map<String, dynamic>;
-
-class PaymentsFeeParams {
-  final double? amount;
-
-  const PaymentsFeeParams({
-    this.amount,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'amount': amount,
-    };
-  }
-}
-
-typedef PaymentsFeeResponse = Map<String, dynamic>;
-
-class PaymentsCancelBody {
-  final int paymentId;
-
-  const PaymentsCancelBody({
-    required this.paymentId,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'payment_id': paymentId,
-    };
-  }
-}
-
-typedef PaymentsCancelResponse = Map<String, dynamic>;
-
-class PaymentsHistoryParams {
-  final String? type;
-  final int? pmin;
-  final int? pmax;
-  final String? currency;
-  final int? page;
-  final int? operationIdLt;
-  final String? receiver;
-  final String? sender;
-  final bool? isApi;
-  final String? startDate;
-  final String? endDate;
-  final String? wallet;
-  final String? comment;
-  final bool? isHold;
-  final bool? showPaymentStats;
-
-  const PaymentsHistoryParams({
-    this.type,
-    this.pmin,
-    this.pmax,
-    this.currency,
-    this.page,
-    this.operationIdLt,
-    this.receiver,
-    this.sender,
-    this.isApi,
-    this.startDate,
-    this.endDate,
-    this.wallet,
-    this.comment,
-    this.isHold,
-    this.showPaymentStats,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'type': type,
-      'pmin': pmin,
-      'pmax': pmax,
-      'currency': currency,
-      'page': page,
-      'operation_id_lt': operationIdLt,
-      'receiver': receiver,
-      'sender': sender,
-      'is_api': isApi,
-      'startDate': startDate,
-      'endDate': endDate,
-      'wallet': wallet,
-      'comment': comment,
-      'is_hold': isHold,
-      'show_payment_stats': showPaymentStats,
-    };
-  }
-}
-
-typedef PaymentsHistoryResponse = Map<String, dynamic>;
-
-typedef PaymentsPayoutServicesResponse = Map<String, dynamic>;
-
-class PaymentsPayoutBody {
-  final String paymentSystem;
-  final String wallet;
-  final double amount;
-  final String currency;
-  final bool? includeFee;
-  final Map<String, dynamic>? extra;
-
-  const PaymentsPayoutBody({
-    required this.paymentSystem,
-    required this.wallet,
-    required this.amount,
-    required this.currency,
-    this.includeFee,
-    this.extra,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'payment_system': paymentSystem,
-      'wallet': wallet,
-      'amount': amount,
-      'currency': currency,
-      'include_fee': includeFee,
-      'extra': extra,
-    };
-  }
-}
-
-typedef PaymentsPayoutResponse = Map<String, dynamic>;
-
-// ─── AutoPaymentsApi Types ────────────────────────────────────────
-
-typedef AutoPaymentsListResponse = Map<String, dynamic>;
-
-class AutoPaymentsCreateBody {
-  final String? secretAnswer;
-  final String usernameReceiver;
-  final Object day;
-  final double amount;
-  final String? currency;
+class PurchasingFastBuyResponseItem {
+  final int? itemId;
+  final String? itemState;
+  final int? categoryId;
+  final int? publishedDate;
+  final String? title;
   final String? description;
+  final int? price;
+  final int? updateStatDate;
+  final int? refreshedDate;
+  final int? editDate;
+  final String? login;
+  final String? tempEmail;
+  final int? viewCount;
+  final int? isSticky;
+  final String? information;
+  final String? itemOrigin;
+  final int? extendedGuarantee;
+  final int? nsb;
+  final int? allowAskDiscount;
+  final String? titleEn;
+  final String? descriptionEn;
+  final String? informationEn;
+  final String? emailType;
+  final String? emailProvider;
+  final String? itemDomain;
+  final String? resaleItemOrigin;
+  final int? userAllowAskDiscount;
+  final int? maxDiscountPercent;
+  final String? marketCustomTitle;
+  final String? feedbackData;
+  final int? buyerAvatarDate;
+  final int? buyerUserGroupId;
+  final int? priceWithSellerFee;
+  final Object? guarantee;
+  final bool? canViewLoginData;
+  final bool? canUpdateItemStats;
+  final bool? canReportItem;
+  final Object? loginData;
+  final bool? canViewEmailLoginData;
+  final Object? emailLoginData;
+  final bool? showGetEmailCodeButton;
+  final String? getEmailCodeDisplayLogin;
+  final Object? buyer;
+  final bool? isPersonalAccount;
+  final int? soldItemsCategoryCount;
+  final int? restoreItemsCategoryCount;
+  final int? rubPrice;
+  final String? priceCurrency;
+  final bool? canValidateAccount;
+  final bool? canResellItemAfterPurchase;
+  final int? accountLastActivity;
+  final bool? displayConvertedBalance;
+  final bool? canViewAccountLink;
+  final List<Map<String, dynamic>>? accountLinks;
+  final String? accountLink;
+  final String? emailLoginUrl;
+  final bool? canChangePassword;
+  final String? itemOriginPhrase;
+  final bool? visitorIsAuthor;
+  final bool? canAskDiscount;
+  final Object? tags;
+  final List<Object>? customFields;
+  final List<Object>? externalAuth;
+  final bool? isTrusted;
+  final bool? isBirthdayToday;
+  final bool? isIgnored;
+  final int? deposit;
+  final List<Map<String, dynamic>>? extraPrices;
+  final bool? canViewAccountLoginAndTempEmail;
+  final Object? bumpSettings;
+  final bool? canCheckGuarantee;
+  final bool? needToRequireVideoToViewLoginData;
+  final String? descriptionHtml;
+  final String? descriptionEnHtml;
+  final String? descriptionPlain;
+  final String? descriptionEnPlain;
+  final Object? seller;
 
-  const AutoPaymentsCreateBody({
-    this.secretAnswer,
-    required this.usernameReceiver,
-    required this.day,
-    required this.amount,
-    this.currency,
+  const PurchasingFastBuyResponseItem({
+    this.itemId,
+    this.itemState,
+    this.categoryId,
+    this.publishedDate,
+    this.title,
     this.description,
+    this.price,
+    this.updateStatDate,
+    this.refreshedDate,
+    this.editDate,
+    this.login,
+    this.tempEmail,
+    this.viewCount,
+    this.isSticky,
+    this.information,
+    this.itemOrigin,
+    this.extendedGuarantee,
+    this.nsb,
+    this.allowAskDiscount,
+    this.titleEn,
+    this.descriptionEn,
+    this.informationEn,
+    this.emailType,
+    this.emailProvider,
+    this.itemDomain,
+    this.resaleItemOrigin,
+    this.userAllowAskDiscount,
+    this.maxDiscountPercent,
+    this.marketCustomTitle,
+    this.feedbackData,
+    this.buyerAvatarDate,
+    this.buyerUserGroupId,
+    this.priceWithSellerFee,
+    this.guarantee,
+    this.canViewLoginData,
+    this.canUpdateItemStats,
+    this.canReportItem,
+    this.loginData,
+    this.canViewEmailLoginData,
+    this.emailLoginData,
+    this.showGetEmailCodeButton,
+    this.getEmailCodeDisplayLogin,
+    this.buyer,
+    this.isPersonalAccount,
+    this.soldItemsCategoryCount,
+    this.restoreItemsCategoryCount,
+    this.rubPrice,
+    this.priceCurrency,
+    this.canValidateAccount,
+    this.canResellItemAfterPurchase,
+    this.accountLastActivity,
+    this.displayConvertedBalance,
+    this.canViewAccountLink,
+    this.accountLinks,
+    this.accountLink,
+    this.emailLoginUrl,
+    this.canChangePassword,
+    this.itemOriginPhrase,
+    this.visitorIsAuthor,
+    this.canAskDiscount,
+    this.tags,
+    this.customFields,
+    this.externalAuth,
+    this.isTrusted,
+    this.isBirthdayToday,
+    this.isIgnored,
+    this.deposit,
+    this.extraPrices,
+    this.canViewAccountLoginAndTempEmail,
+    this.bumpSettings,
+    this.canCheckGuarantee,
+    this.needToRequireVideoToViewLoginData,
+    this.descriptionHtml,
+    this.descriptionEnHtml,
+    this.descriptionPlain,
+    this.descriptionEnPlain,
+    this.seller,
+  });
+
+  factory PurchasingFastBuyResponseItem.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItem(
+    itemId: json['item_id'] as int?,
+    itemState: json['item_state'] as String?,
+    categoryId: json['category_id'] as int?,
+    publishedDate: json['published_date'] as int?,
+    title: json['title'] as String?,
+    description: json['description'] as String?,
+    price: json['price'] as int?,
+    updateStatDate: json['update_stat_date'] as int?,
+    refreshedDate: json['refreshed_date'] as int?,
+    editDate: json['edit_date'] as int?,
+    login: json['login'] as String?,
+    tempEmail: json['temp_email'] as String?,
+    viewCount: json['view_count'] as int?,
+    isSticky: json['is_sticky'] as int?,
+    information: json['information'] as String?,
+    itemOrigin: json['item_origin'] as String?,
+    extendedGuarantee: json['extended_guarantee'] as int?,
+    nsb: json['nsb'] as int?,
+    allowAskDiscount: json['allow_ask_discount'] as int?,
+    titleEn: json['title_en'] as String?,
+    descriptionEn: json['description_en'] as String?,
+    informationEn: json['information_en'] as String?,
+    emailType: json['email_type'] as String?,
+    emailProvider: json['email_provider'] as String?,
+    itemDomain: json['item_domain'] as String?,
+    resaleItemOrigin: json['resale_item_origin'] as String?,
+    userAllowAskDiscount: json['user_allow_ask_discount'] as int?,
+    maxDiscountPercent: json['max_discount_percent'] as int?,
+    marketCustomTitle: json['market_custom_title'] as String?,
+    feedbackData: json['feedback_data'] as String?,
+    buyerAvatarDate: json['buyer_avatar_date'] as int?,
+    buyerUserGroupId: json['buyer_user_group_id'] as int?,
+    priceWithSellerFee: json['priceWithSellerFee'] as int?,
+    guarantee: json['guarantee'] as Object?,
+    canViewLoginData: json['canViewLoginData'] as bool?,
+    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
+    canReportItem: json['canReportItem'] as bool?,
+    loginData: json['loginData'] as Object?,
+    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
+    emailLoginData: json['emailLoginData'] as Object?,
+    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
+    getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as String?,
+    buyer: json['buyer'] as Object?,
+    isPersonalAccount: json['isPersonalAccount'] as bool?,
+    soldItemsCategoryCount: json['sold_items_category_count'] as int?,
+    restoreItemsCategoryCount: json['restore_items_category_count'] as int?,
+    rubPrice: json['rub_price'] as int?,
+    priceCurrency: json['price_currency'] as String?,
+    canValidateAccount: json['canValidateAccount'] as bool?,
+    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
+    accountLastActivity: json['account_last_activity'] as int?,
+    displayConvertedBalance: json['displayConvertedBalance'] as bool?,
+    canViewAccountLink: json['canViewAccountLink'] as bool?,
+    accountLinks: (json['accountLinks'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    accountLink: json['accountLink'] as String?,
+    emailLoginUrl: json['emailLoginUrl'] as String?,
+    canChangePassword: json['canChangePassword'] as bool?,
+    itemOriginPhrase: json['itemOriginPhrase'] as String?,
+    visitorIsAuthor: json['visitorIsAuthor'] as bool?,
+    canAskDiscount: json['canAskDiscount'] as bool?,
+    tags: json['tags'] as Object?,
+    customFields: (json['customFields'] as List<dynamic>?)?.cast<Object>(),
+    externalAuth: (json['externalAuth'] as List<dynamic>?)?.cast<Object>(),
+    isTrusted: json['isTrusted'] as bool?,
+    isBirthdayToday: json['isBirthdayToday'] as bool?,
+    isIgnored: json['isIgnored'] as bool?,
+    deposit: json['deposit'] as int?,
+    extraPrices: (json['extraPrices'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    canViewAccountLoginAndTempEmail: json['canViewAccountLoginAndTempEmail'] as bool?,
+    bumpSettings: json['bumpSettings'] as Object?,
+    canCheckGuarantee: json['canCheckGuarantee'] as bool?,
+    needToRequireVideoToViewLoginData: json['needToRequireVideoToViewLoginData'] as bool?,
+    descriptionHtml: json['descriptionHtml'] as String?,
+    descriptionEnHtml: json['descriptionEnHtml'] as String?,
+    descriptionPlain: json['descriptionPlain'] as String?,
+    descriptionEnPlain: json['descriptionEnPlain'] as String?,
+    seller: json['seller'] as Object?,
+  );
+}
+
+class PurchasingFastBuyResponse {
+  final String? status;
+  final PurchasingFastBuyResponseItem? item;
+  final RespSystemInfo? systemInfo;
+
+  const PurchasingFastBuyResponse({
+    this.status,
+    this.item,
+    this.systemInfo,
+  });
+
+  factory PurchasingFastBuyResponse.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponse(
+    status: json['status'] as String?,
+    item: json['item'] != null
+            ? PurchasingFastBuyResponseItem.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PurchasingCheckResponseItem {
+  final int? itemId;
+  final String? itemState;
+  final int? categoryId;
+  final int? publishedDate;
+  final String? title;
+  final String? description;
+  final int? price;
+  final int? updateStatDate;
+  final int? refreshedDate;
+  final int? editDate;
+  final int? viewCount;
+  final int? isSticky;
+  final String? itemOrigin;
+  final int? extendedGuarantee;
+  final int? nsb;
+  final int? allowAskDiscount;
+  final String? titleEn;
+  final String? descriptionEn;
+  final String? emailType;
+  final String? emailProvider;
+  final String? itemDomain;
+  final String? resaleItemOrigin;
+  final int? userAllowAskDiscount;
+  final int? maxDiscountPercent;
+  final String? marketCustomTitle;
+  final String? feedbackData;
+  final String? categoryTitle;
+  final String? categoryUrl;
+  final int? requireTempEmail;
+  final int? availableTempEmail;
+  final int? checkButtonEnabled;
+  final int? checkerEnabled;
+  final int? buyWithoutValidation;
+  final int? hasGuarantee;
+  final int? requireVideoRecording;
+  final int? canBeResold;
+  final String? loginType;
+  final int? requireEmailLoginData;
+  final int? categoryPrefixId;
+  final Object? askUserId;
+  final Object? askItemId;
+  final Object? askDate;
+  final Object? discountPrice;
+  final Object? discountAccepted;
+  final Object? userAlerted;
+  final Object? message;
+  final int? minPrice;
+  final int? priceWithSellerFee;
+  final Object? guarantee;
+  final bool? canViewLoginData;
+  final bool? canUpdateItemStats;
+  final bool? canReportItem;
+  final bool? canViewEmailLoginData;
+  final bool? showGetEmailCodeButton;
+  final bool? isPersonalAccount;
+  final int? rubPrice;
+  final String? priceCurrency;
+  final bool? canValidateAccount;
+  final bool? canResellItemAfterPurchase;
+  final bool? isSmallExf;
+  final int? accountLastActivity;
+  final bool? canViewAccountLink;
+  final List<Map<String, dynamic>>? accountLinks;
+  final String? accountLink;
+  final String? emailLoginUrl;
+  final bool? canChangePassword;
+  final String? itemOriginPhrase;
+  final bool? visitorIsAuthor;
+  final bool? canAskDiscount;
+  final List<Object>? tags;
+  final List<Object>? customFields;
+  final List<Object>? externalAuth;
+  final bool? isTrusted;
+  final bool? isBirthdayToday;
+  final bool? isIgnored;
+  final int? deposit;
+  final List<Map<String, dynamic>>? extraPrices;
+  final bool? canViewAccountLoginAndTempEmail;
+  final Object? bumpSettings;
+  final bool? canCheckGuarantee;
+  final bool? needToRequireVideoToViewLoginData;
+  final String? descriptionHtml;
+  final String? descriptionEnHtml;
+  final String? descriptionPlain;
+  final String? descriptionEnPlain;
+  final Object? seller;
+
+  const PurchasingCheckResponseItem({
+    this.itemId,
+    this.itemState,
+    this.categoryId,
+    this.publishedDate,
+    this.title,
+    this.description,
+    this.price,
+    this.updateStatDate,
+    this.refreshedDate,
+    this.editDate,
+    this.viewCount,
+    this.isSticky,
+    this.itemOrigin,
+    this.extendedGuarantee,
+    this.nsb,
+    this.allowAskDiscount,
+    this.titleEn,
+    this.descriptionEn,
+    this.emailType,
+    this.emailProvider,
+    this.itemDomain,
+    this.resaleItemOrigin,
+    this.userAllowAskDiscount,
+    this.maxDiscountPercent,
+    this.marketCustomTitle,
+    this.feedbackData,
+    this.categoryTitle,
+    this.categoryUrl,
+    this.requireTempEmail,
+    this.availableTempEmail,
+    this.checkButtonEnabled,
+    this.checkerEnabled,
+    this.buyWithoutValidation,
+    this.hasGuarantee,
+    this.requireVideoRecording,
+    this.canBeResold,
+    this.loginType,
+    this.requireEmailLoginData,
+    this.categoryPrefixId,
+    this.askUserId,
+    this.askItemId,
+    this.askDate,
+    this.discountPrice,
+    this.discountAccepted,
+    this.userAlerted,
+    this.message,
+    this.minPrice,
+    this.priceWithSellerFee,
+    this.guarantee,
+    this.canViewLoginData,
+    this.canUpdateItemStats,
+    this.canReportItem,
+    this.canViewEmailLoginData,
+    this.showGetEmailCodeButton,
+    this.isPersonalAccount,
+    this.rubPrice,
+    this.priceCurrency,
+    this.canValidateAccount,
+    this.canResellItemAfterPurchase,
+    this.isSmallExf,
+    this.accountLastActivity,
+    this.canViewAccountLink,
+    this.accountLinks,
+    this.accountLink,
+    this.emailLoginUrl,
+    this.canChangePassword,
+    this.itemOriginPhrase,
+    this.visitorIsAuthor,
+    this.canAskDiscount,
+    this.tags,
+    this.customFields,
+    this.externalAuth,
+    this.isTrusted,
+    this.isBirthdayToday,
+    this.isIgnored,
+    this.deposit,
+    this.extraPrices,
+    this.canViewAccountLoginAndTempEmail,
+    this.bumpSettings,
+    this.canCheckGuarantee,
+    this.needToRequireVideoToViewLoginData,
+    this.descriptionHtml,
+    this.descriptionEnHtml,
+    this.descriptionPlain,
+    this.descriptionEnPlain,
+    this.seller,
+  });
+
+  factory PurchasingCheckResponseItem.fromJson(Map<String, dynamic> json) => PurchasingCheckResponseItem(
+    itemId: json['item_id'] as int?,
+    itemState: json['item_state'] as String?,
+    categoryId: json['category_id'] as int?,
+    publishedDate: json['published_date'] as int?,
+    title: json['title'] as String?,
+    description: json['description'] as String?,
+    price: json['price'] as int?,
+    updateStatDate: json['update_stat_date'] as int?,
+    refreshedDate: json['refreshed_date'] as int?,
+    editDate: json['edit_date'] as int?,
+    viewCount: json['view_count'] as int?,
+    isSticky: json['is_sticky'] as int?,
+    itemOrigin: json['item_origin'] as String?,
+    extendedGuarantee: json['extended_guarantee'] as int?,
+    nsb: json['nsb'] as int?,
+    allowAskDiscount: json['allow_ask_discount'] as int?,
+    titleEn: json['title_en'] as String?,
+    descriptionEn: json['description_en'] as String?,
+    emailType: json['email_type'] as String?,
+    emailProvider: json['email_provider'] as String?,
+    itemDomain: json['item_domain'] as String?,
+    resaleItemOrigin: json['resale_item_origin'] as String?,
+    userAllowAskDiscount: json['user_allow_ask_discount'] as int?,
+    maxDiscountPercent: json['max_discount_percent'] as int?,
+    marketCustomTitle: json['market_custom_title'] as String?,
+    feedbackData: json['feedback_data'] as String?,
+    categoryTitle: json['category_title'] as String?,
+    categoryUrl: json['category_url'] as String?,
+    requireTempEmail: json['require_temp_email'] as int?,
+    availableTempEmail: json['available_temp_email'] as int?,
+    checkButtonEnabled: json['check_button_enabled'] as int?,
+    checkerEnabled: json['checker_enabled'] as int?,
+    buyWithoutValidation: json['buy_without_validation'] as int?,
+    hasGuarantee: json['has_guarantee'] as int?,
+    requireVideoRecording: json['require_video_recording'] as int?,
+    canBeResold: json['can_be_resold'] as int?,
+    loginType: json['login_type'] as String?,
+    requireEmailLoginData: json['require_email_login_data'] as int?,
+    categoryPrefixId: json['category_prefix_id'] as int?,
+    askUserId: json['ask_user_id'] as Object?,
+    askItemId: json['ask_item_id'] as Object?,
+    askDate: json['ask_date'] as Object?,
+    discountPrice: json['discount_price'] as Object?,
+    discountAccepted: json['discount_accepted'] as Object?,
+    userAlerted: json['user_alerted'] as Object?,
+    message: json['message'] as Object?,
+    minPrice: json['min_price'] as int?,
+    priceWithSellerFee: json['priceWithSellerFee'] as int?,
+    guarantee: json['guarantee'] as Object?,
+    canViewLoginData: json['canViewLoginData'] as bool?,
+    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
+    canReportItem: json['canReportItem'] as bool?,
+    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
+    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
+    isPersonalAccount: json['isPersonalAccount'] as bool?,
+    rubPrice: json['rub_price'] as int?,
+    priceCurrency: json['price_currency'] as String?,
+    canValidateAccount: json['canValidateAccount'] as bool?,
+    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
+    isSmallExf: json['isSmallExf'] as bool?,
+    accountLastActivity: json['account_last_activity'] as int?,
+    canViewAccountLink: json['canViewAccountLink'] as bool?,
+    accountLinks: (json['accountLinks'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    accountLink: json['accountLink'] as String?,
+    emailLoginUrl: json['emailLoginUrl'] as String?,
+    canChangePassword: json['canChangePassword'] as bool?,
+    itemOriginPhrase: json['itemOriginPhrase'] as String?,
+    visitorIsAuthor: json['visitorIsAuthor'] as bool?,
+    canAskDiscount: json['canAskDiscount'] as bool?,
+    tags: (json['tags'] as List<dynamic>?)?.cast<Object>(),
+    customFields: (json['customFields'] as List<dynamic>?)?.cast<Object>(),
+    externalAuth: (json['externalAuth'] as List<dynamic>?)?.cast<Object>(),
+    isTrusted: json['isTrusted'] as bool?,
+    isBirthdayToday: json['isBirthdayToday'] as bool?,
+    isIgnored: json['isIgnored'] as bool?,
+    deposit: json['deposit'] as int?,
+    extraPrices: (json['extraPrices'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+    canViewAccountLoginAndTempEmail: json['canViewAccountLoginAndTempEmail'] as bool?,
+    bumpSettings: json['bumpSettings'] as Object?,
+    canCheckGuarantee: json['canCheckGuarantee'] as bool?,
+    needToRequireVideoToViewLoginData: json['needToRequireVideoToViewLoginData'] as bool?,
+    descriptionHtml: json['descriptionHtml'] as String?,
+    descriptionEnHtml: json['descriptionEnHtml'] as String?,
+    descriptionPlain: json['descriptionPlain'] as String?,
+    descriptionEnPlain: json['descriptionEnPlain'] as String?,
+    seller: json['seller'] as Object?,
+  );
+}
+
+class PurchasingCheckResponse {
+  final String? status;
+  final PurchasingCheckResponseItem? item;
+  final bool? requireVideoRecording;
+  final RespSystemInfo? systemInfo;
+
+  const PurchasingCheckResponse({
+    this.status,
+    this.item,
+    this.requireVideoRecording,
+    this.systemInfo,
+  });
+
+  factory PurchasingCheckResponse.fromJson(Map<String, dynamic> json) => PurchasingCheckResponse(
+    status: json['status'] as String?,
+    item: json['item'] != null
+            ? PurchasingCheckResponseItem.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    requireVideoRecording: json['requireVideoRecording'] as bool?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PurchasingConfirmBody {
+  final int? price;
+  final int? balanceId;
+
+  const PurchasingConfirmBody({
+    this.price,
+    this.balanceId,
   });
 
   Map<String, Object?> toMap() {
     return {
-      'secret_answer': secretAnswer,
-      'username_receiver': usernameReceiver,
-      'day': day,
-      'amount': amount,
-      'currency': currency,
-      'description': description,
+      'price': price,
+      'balance_id': balanceId,
     };
   }
 }
 
-typedef AutoPaymentsCreateResponse = Map<String, dynamic>;
+class PurchasingConfirmResponseItem {
+  final Object? loginData;
 
-class AutoPaymentsDeleteBody {
-  final int autoPaymentId;
+  const PurchasingConfirmResponseItem({
+    this.loginData,
+  });
 
-  const AutoPaymentsDeleteBody({
-    required this.autoPaymentId,
+  factory PurchasingConfirmResponseItem.fromJson(Map<String, dynamic> json) => PurchasingConfirmResponseItem(
+    loginData: json['loginData'] as Object?,
+  );
+}
+
+class PurchasingConfirmResponse {
+  final String? status;
+  final PurchasingConfirmResponseItem? item;
+  final RespSystemInfo? systemInfo;
+
+  const PurchasingConfirmResponse({
+    this.status,
+    this.item,
+    this.systemInfo,
+  });
+
+  factory PurchasingConfirmResponse.fromJson(Map<String, dynamic> json) => PurchasingConfirmResponse(
+    status: json['status'] as String?,
+    item: json['item'] != null
+            ? PurchasingConfirmResponseItem.fromJson(json['item'] as Map<String, dynamic>)
+            : null,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
+}
+
+class PurchasingDiscountRequestBody {
+  final double discountPrice;
+  final String? message;
+
+  const PurchasingDiscountRequestBody({
+    required this.discountPrice,
+    this.message,
   });
 
   Map<String, Object?> toMap() {
     return {
-      'auto_payment_id': autoPaymentId,
+      'discount_price': discountPrice,
+      'message': message,
     };
   }
 }
 
-typedef AutoPaymentsDeleteResponse = Map<String, dynamic>;
+class PurchasingDiscountRequestResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-// ─── ProxyApi Types ────────────────────────────────────────
-
-typedef ProxyGetResponse = Map<String, dynamic>;
-
-class ProxyAddBody {
-  final String? proxyIp;
-  final int? proxyPort;
-  final String? proxyUser;
-  final String? proxyPass;
-  final String? proxyRow;
-
-  const ProxyAddBody({
-    this.proxyIp,
-    this.proxyPort,
-    this.proxyUser,
-    this.proxyPass,
-    this.proxyRow,
+  const PurchasingDiscountRequestResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
   });
 
-  Map<String, Object?> toMap() {
-    return {
-      'proxy_ip': proxyIp,
-      'proxy_port': proxyPort,
-      'proxy_user': proxyUser,
-      'proxy_pass': proxyPass,
-      'proxy_row': proxyRow,
-    };
-  }
+  factory PurchasingDiscountRequestResponse.fromJson(Map<String, dynamic> json) => PurchasingDiscountRequestResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
 }
 
-typedef ProxyAddResponse = Map<String, dynamic>;
+class PurchasingDiscountCancelResponse {
+  final String? status;
+  final String? message;
+  final RespSystemInfo? systemInfo;
 
-class ProxyDeleteBody {
-  final int? proxyId;
-  final bool? deleteAll;
-
-  const ProxyDeleteBody({
-    this.proxyId,
-    this.deleteAll,
+  const PurchasingDiscountCancelResponse({
+    this.status,
+    this.message,
+    this.systemInfo,
   });
 
-  Map<String, Object?> toMap() {
-    return {
-      'proxy_id': proxyId,
-      'delete_all': deleteAll,
-    };
-  }
+  factory PurchasingDiscountCancelResponse.fromJson(Map<String, dynamic> json) => PurchasingDiscountCancelResponse(
+    status: json['status'] as String?,
+    message: json['message'] as String?,
+    systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+            : null,
+  );
 }
-
-typedef ProxyDeleteResponse = Map<String, dynamic>;
-
-// ─── ImapApi Types ────────────────────────────────────────
-
-class ImapCreateBody {
-  final String domain;
-  final String imapServer;
-  final int port;
-  final bool secure;
-
-  const ImapCreateBody({
-    required this.domain,
-    required this.imapServer,
-    required this.port,
-    required this.secure,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'domain': domain,
-      'imap_server': imapServer,
-      'port': port,
-      'secure': secure,
-    };
-  }
-}
-
-typedef ImapCreateResponse = Map<String, dynamic>;
-
-class ImapDeleteBody {
-  final String domain;
-
-  const ImapDeleteBody({
-    required this.domain,
-  });
-
-  Map<String, Object?> toMap() {
-    return {
-      'domain': domain,
-    };
-  }
-}
-
-typedef ImapDeleteResponse = Map<String, dynamic>;
-
-// ─── BatchApi Types ────────────────────────────────────────
-
-typedef BatchBatchBody = List<Map<String, dynamic>>;
-
-typedef BatchBatchResponse = Map<String, dynamic>;
 

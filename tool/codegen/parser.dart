@@ -1,5 +1,7 @@
 // Parse an OpenAPI spec into grouped operation definitions.
 
+import 'dart:collection';
+
 import 'models.dart';
 import 'naming.dart';
 import 'transforms.dart';
@@ -7,6 +9,9 @@ import 'transforms.dart';
 const _httpMethods = ['get', 'post', 'put', 'delete', 'patch'];
 
 ParseResult parseSpec(Map<String, dynamic> rawSpec) {
+  // Extract component schemas before dereferencing
+  final componentSchemas = extractComponentSchemas(rawSpec);
+
   // Resolve all $refs first
   final spec = derefDeep(rawSpec, rawSpec) as Map<String, dynamic>;
 
@@ -15,7 +20,7 @@ ParseResult parseSpec(Map<String, dynamic> rawSpec) {
     return const ParseResult(groups: [], baseUrl: 'https://localhost');
   }
 
-  final groupMap = <String, List<MethodDefinition>>{};
+  final groupMap = SplayTreeMap<String, List<MethodDefinition>>();
 
   for (final pathEntry in paths.entries) {
     final path = pathEntry.key;
@@ -37,6 +42,7 @@ ParseResult parseSpec(Map<String, dynamic> rawSpec) {
         httpMethod: method,
         path: path,
         operation: operation,
+        rawSpec: rawSpec,
       );
 
       groupMap.putIfAbsent(group, () => []).add(methodDef);
@@ -57,5 +63,9 @@ ParseResult parseSpec(Map<String, dynamic> rawSpec) {
     }
   }
 
-  return ParseResult(groups: groups, baseUrl: baseUrl);
+  return ParseResult(
+    groups: groups,
+    baseUrl: baseUrl,
+    componentSchemas: componentSchemas,
+  );
 }
