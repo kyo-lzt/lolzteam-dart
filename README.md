@@ -58,6 +58,7 @@ Market API groups: `category`, `list`, `managing`, `profile`, `cart`, `purchasin
 ```dart
 final config = ClientConfig(
   token: 'your_token',
+  baseUrl: 'https://api.lolz.live',       // optional, override base URL
   proxy: ProxyConfig(url: 'http://user:pass@127.0.0.1:8080'),
   retry: RetryConfig(
     maxRetries: 5,                        // default: 3
@@ -67,6 +68,11 @@ final config = ClientConfig(
   rateLimit: RateLimitConfig(
     requestsPerMinute: 200,               // default: 300 (Forum), 120 (Market)
   ),
+  searchRateLimit: RateLimitConfig(
+    requestsPerMinute: 30,                // default: 20 (Market)
+  ),
+  timeout: Duration(seconds: 60),         // default: 30s
+  onRetry: (info) => print('Retry #${info.attempt} for ${info.path}'),
 );
 ```
 
