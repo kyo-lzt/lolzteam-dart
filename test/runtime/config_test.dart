@@ -13,7 +13,7 @@ void main() {
       final copy = config.copyWith(token: 'xyz');
       expect(copy.token, 'xyz');
       expect(copy.baseUrl, 'https://example.com');
-      expect(copy.retry.maxRetries, 5);
+      expect(copy.retry?.maxRetries, 5);
     });
 
     test('copyWith can set rateLimit', () {
@@ -29,9 +29,9 @@ void main() {
       expect(config.baseUrl, isNull);
       expect(config.proxy, isNull);
       expect(config.rateLimit, isNull);
-      expect(config.retry.maxRetries, 3);
-      expect(config.retry.baseDelay, const Duration(seconds: 1));
-      expect(config.retry.maxDelay, const Duration(seconds: 30));
+      expect(config.retry?.maxRetries, 3);
+      expect(config.retry?.baseDelay, const Duration(seconds: 1));
+      expect(config.retry?.maxDelay, const Duration(seconds: 30));
     });
   });
 }
