@@ -412,3 +412,43 @@ String emitDartClientFile({
 
   return sb.toString();
 }
+
+// ─── Barrel File ──────────────────────────────────────────────────────────────
+
+String emitBarrelFile(
+  List<({String clientName, String subPackage, List<ParsedGroup> groups})> apis,
+) {
+  final sb = StringBuffer();
+
+  sb.writeln('/// Lolzteam Forum & Market API wrapper.');
+  sb.writeln('library;');
+  sb.writeln();
+  sb.writeln("export 'src/runtime/config.dart';");
+  sb.writeln("export 'src/runtime/exceptions.dart';");
+  sb.writeln("export 'src/runtime/http_client.dart';");
+  sb.writeln("export 'src/runtime/request_options.dart';");
+  sb.writeln();
+
+  for (final api in apis) {
+    final clientFileName = api.clientName
+        .replaceAllMapped(
+            RegExp(r'([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}')
+        .toLowerCase();
+    sb.writeln("export 'src/generated/${api.subPackage}/$clientFileName.dart'");
+    sb.writeln('    show');
+
+    final names = <String>[api.clientName];
+    for (final group in api.groups) {
+      names.add(groupToClassName(group.groupName));
+    }
+
+    for (var i = 0; i < names.length; i++) {
+      final comma = i < names.length - 1 ? ',' : ';';
+      sb.writeln('        ${names[i]}$comma');
+    }
+
+    sb.writeln("export 'src/generated/${api.subPackage}/types.dart';");
+  }
+
+  return sb.toString();
+}

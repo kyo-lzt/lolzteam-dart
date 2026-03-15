@@ -73,7 +73,7 @@ class ClientConfig {
     this.retry = const RetryConfig(),
     this.rateLimit,
     this.searchRateLimit,
-    this.timeout,
+    this.timeout = const Duration(seconds: 30),
     this.onRetry,
   });
 

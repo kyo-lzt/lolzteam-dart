@@ -30,12 +30,21 @@ void main() {
     ),
   ];
 
+  final barrelEntries =
+      <({String clientName, String subPackage, List<ParsedGroup> groups})>[];
+
   for (final config in apis) {
     stdout.writeln('Generating ${config.clientName}...');
 
     final rawText = File(config.schemaPath).readAsStringSync();
     final rawSpec = jsonDecode(rawText) as Map<String, dynamic>;
     final result = parseSpec(rawSpec);
+
+    barrelEntries.add((
+      clientName: config.clientName,
+      subPackage: config.subPackage,
+      groups: result.groups,
+    ));
 
     final outDir = Directory(config.outputDir);
     if (!outDir.existsSync()) {
@@ -74,6 +83,11 @@ void main() {
     stdout.writeln(
         '  Done: ${result.groups.length} groups, $totalOps operations\n');
   }
+
+  // Write barrel file
+  final barrelContent = emitBarrelFile(barrelEntries);
+  File('$root/lib/lolzteam.dart').writeAsStringSync(barrelContent);
+  stdout.writeln('Generated lib/lolzteam.dart (barrel file)');
 }
 
 String _toSnakeCase(String name) {
