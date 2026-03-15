@@ -77,12 +77,23 @@ Failed requests are retried automatically for transient errors. The delay uses e
 | Status | Retried | Behavior |
 |--------|---------|----------|
 | 429 | Yes | Uses `Retry-After` header if present |
-| 502, 503 | Yes | Exponential backoff with jitter |
+| 502, 503, 504 | Yes | Exponential backoff with jitter |
+| Network errors | Yes | Timeout and connection errors |
 | 401, 403 | No | Thrown immediately |
 | 404 | No | Thrown immediately |
-| Other | No | Thrown immediately |
 
 Delay formula: `min(baseDelay * 2^attempt + random(0, baseDelay), maxDelay)`
+
+```dart
+// Disable retry
+final client = ForumClient(token: '...', retry: null);
+
+// onRetry callback
+final client = ForumClient(
+  token: '...',
+  retry: RetryConfig(onRetry: (info) => print('Retry #${info.attempt}')),
+);
+```
 
 ## Proxy
 
@@ -140,6 +151,14 @@ The built-in rate limiter uses a token bucket algorithm. Async-safe with interna
 |--------|---------------|
 | Forum  | 300 req/min   |
 | Market | 120 req/min   |
+| Market (search) | 20 req/min |
+
+```dart
+final client = MarketClient(
+  token: '...',
+  searchRateLimit: RateLimitConfig(requestsPerMinute: 30),
+);
+```
 
 ## Code Generation
 

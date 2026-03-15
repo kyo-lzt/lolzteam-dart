@@ -1,5 +1,25 @@
 // Configuration classes for the Lolzteam API client.
 
+import 'exceptions.dart';
+
+class RetryInfo {
+  final int attempt;
+  final Duration delay;
+  final LolzteamException error;
+  final String method;
+  final String path;
+
+  const RetryInfo({
+    required this.attempt,
+    required this.delay,
+    required this.error,
+    required this.method,
+    required this.path,
+  });
+}
+
+typedef OnRetryCallback = void Function(RetryInfo info);
+
 class ProxyConfig {
   final String url;
 
@@ -40,9 +60,11 @@ class ClientConfig {
   final String token;
   final String? baseUrl;
   final ProxyConfig? proxy;
-  final RetryConfig retry;
+  final RetryConfig? retry;
   final RateLimitConfig? rateLimit;
   final RateLimitConfig? searchRateLimit;
+  final Duration? timeout;
+  final OnRetryCallback? onRetry;
 
   const ClientConfig({
     required this.token,
@@ -51,6 +73,8 @@ class ClientConfig {
     this.retry = const RetryConfig(),
     this.rateLimit,
     this.searchRateLimit,
+    this.timeout,
+    this.onRetry,
   });
 
   ClientConfig copyWith({
@@ -60,20 +84,27 @@ class ClientConfig {
     RetryConfig? retry,
     RateLimitConfig? rateLimit,
     RateLimitConfig? searchRateLimit,
+    Duration? timeout,
+    OnRetryCallback? onRetry,
     bool clearBaseUrl = false,
     bool clearProxy = false,
+    bool clearRetry = false,
     bool clearRateLimit = false,
     bool clearSearchRateLimit = false,
+    bool clearTimeout = false,
+    bool clearOnRetry = false,
   }) {
     return ClientConfig(
       token: token ?? this.token,
       baseUrl: clearBaseUrl ? null : (baseUrl ?? this.baseUrl),
       proxy: clearProxy ? null : (proxy ?? this.proxy),
-      retry: retry ?? this.retry,
+      retry: clearRetry ? null : (retry ?? this.retry),
       rateLimit: clearRateLimit ? null : (rateLimit ?? this.rateLimit),
       searchRateLimit: clearSearchRateLimit
           ? null
           : (searchRateLimit ?? this.searchRateLimit),
+      timeout: clearTimeout ? null : (timeout ?? this.timeout),
+      onRetry: clearOnRetry ? null : (onRetry ?? this.onRetry),
     );
   }
 }

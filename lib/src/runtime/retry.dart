@@ -7,8 +7,9 @@ import 'exceptions.dart';
 bool _isRetryable(Object error) {
   if (error is RateLimitException) return true;
   if (error is ServerException) {
-    return error.statusCode == 502 || error.statusCode == 503;
+    return error.statusCode == 502 || error.statusCode == 503 || error.statusCode == 504;
   }
+  if (error is NetworkException && error.isTransient) return true;
   return false;
 }
 
@@ -24,7 +25,13 @@ Duration _computeDelay(int attempt, RetryConfig config, Object error) {
   return Duration(milliseconds: totalMs);
 }
 
-Future<T> withRetry<T>(RetryConfig config, Future<T> Function() action) async {
+Future<T> withRetry<T>(
+  RetryConfig config,
+  Future<T> Function() action, {
+  OnRetryCallback? onRetry,
+  String? method,
+  String? path,
+}) async {
   Object? lastError;
   for (var attempt = 0; attempt <= config.maxRetries; attempt++) {
     try {
@@ -35,6 +42,13 @@ Future<T> withRetry<T>(RetryConfig config, Future<T> Function() action) async {
         rethrow;
       }
       final delay = _computeDelay(attempt, config, e);
+      onRetry?.call(RetryInfo(
+        attempt: attempt + 1,
+        delay: delay,
+        error: e,
+        method: method ?? '',
+        path: path ?? '',
+      ));
       await Future<void>.delayed(delay);
     }
   }

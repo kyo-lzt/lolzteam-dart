@@ -14,7 +14,9 @@ import 'retry.dart';
 class LolzteamHttpClient {
   final String _baseUrl;
   final String _token;
-  final RetryConfig _retryConfig;
+  final RetryConfig? _retryConfig;
+  final Duration? _timeout;
+  final OnRetryCallback? _onRetry;
   final RateLimiter? _rateLimiter;
   final RateLimiter? _searchRateLimiter;
   final http.Client _client;
@@ -25,6 +27,8 @@ class LolzteamHttpClient {
             (throw const ConfigException('baseUrl is required')),
         _token = config.token,
         _retryConfig = config.retry,
+        _timeout = config.timeout,
+        _onRetry = config.onRetry,
         _rateLimiter = config.rateLimit != null
             ? RateLimiter(config.rateLimit!.requestsPerMinute)
             : null,
@@ -60,7 +64,16 @@ class LolzteamHttpClient {
     if (options.isSearch) {
       await _searchRateLimiter?.acquire();
     }
-    return withRetry(_retryConfig, () => _execute(options));
+    if (_retryConfig == null) {
+      return _execute(options);
+    }
+    return withRetry(
+      _retryConfig,
+      () => _execute(options),
+      onRetry: _onRetry,
+      method: options.method,
+      path: options.path,
+    );
   }
 
   Future<Map<String, dynamic>> _execute(RequestOptions options) async {
@@ -93,7 +106,7 @@ class LolzteamHttpClient {
           );
         }
 
-        final streamedResponse = await _client.send(multipartRequest);
+        final streamedResponse = await _sendRequest(multipartRequest);
         bodyText = await streamedResponse.stream.bytesToString();
         response = streamedResponse;
       } else {
@@ -117,7 +130,7 @@ class LolzteamHttpClient {
           }
         }
 
-        final streamedResponse = await _client.send(request);
+        final streamedResponse = await _sendRequest(request);
         bodyText = await streamedResponse.stream.bytesToString();
         response = streamedResponse;
       }
@@ -215,6 +228,11 @@ class LolzteamHttpClient {
         fields[entry.key] = value.toString();
       }
     }
+  }
+
+  Future<http.StreamedResponse> _sendRequest(http.BaseRequest request) {
+    final future = _client.send(request);
+    return _timeout != null ? future.timeout(_timeout!) : future;
   }
 
   void close() {

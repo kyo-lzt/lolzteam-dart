@@ -1,4 +1,6 @@
 // Sealed exception hierarchy for Lolzteam API errors.
+import 'dart:async';
+import 'dart:io';
 
 sealed class LolzteamException implements Exception {
   final String message;
@@ -67,6 +69,8 @@ class NetworkException extends LolzteamException {
 
   const NetworkException(this.cause) : super('Network error');
 
+  bool get isTransient => cause is TimeoutException || cause is SocketException;
+
   @override
   String toString() => 'NetworkException: $cause';
 }
@@ -88,7 +92,7 @@ HttpException createHttpException(
         headers: headers,
       ),
     404 => NotFoundException(responseBody: body, headers: headers),
-    500 || 502 || 503 => ServerException(
+    500 || 502 || 503 || 504 => ServerException(
         statusCode: status,
         responseBody: body,
         headers: headers,
