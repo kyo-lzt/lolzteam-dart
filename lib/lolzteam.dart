@@ -44,4 +44,5 @@ export 'src/generated/market/market_client.dart'
         ProxyApi,
         PublishingApi,
         PurchasingApi;
-export 'src/generated/market/types.dart' hide RespSystemInfo;
+export 'src/generated/market/types.dart'
+    hide ClaimState, Currency, RespSystemInfo;

@@ -1,5 +1,942 @@
 // Auto-generated. DO NOT EDIT.
 
+// ─── Enums ───────────────────────────────────────────────────
+
+enum AgeVerified {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const AgeVerified(this.value);
+  final String value;
+}
+
+enum AppId {
+  v232090(232090),
+  v252490(252490),
+  v304930(304930),
+  v322330(322330),
+  v440(440),
+  v570(570),
+  v578080(578080),
+  v730(730),
+  v753(753);
+
+  const AppId(this.value);
+  final int value;
+}
+
+enum Autorenewal {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Autorenewal(this.value);
+  final String value;
+}
+
+enum Bedrock {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Bedrock(this.value);
+  final String value;
+}
+
+enum Billing {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Billing(this.value);
+  final String value;
+}
+
+enum BirthdayAfterPeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const BirthdayAfterPeriod(this.value);
+  final String value;
+}
+
+enum BirthdayPeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const BirthdayPeriod(this.value);
+  final String value;
+}
+
+enum Bp {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Bp(this.value);
+  final String value;
+}
+
+enum BrawlPass {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const BrawlPass(this.value);
+  final String value;
+}
+
+enum CanChangeDetails {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const CanChangeDetails(this.value);
+  final String value;
+}
+
+enum Cancel {
+  v1(1);
+
+  const Cancel(this.value);
+  final int value;
+}
+
+enum CategoryEg {
+  v0(0),
+  v1(1);
+
+  const CategoryEg(this.value);
+  final int value;
+}
+
+enum CategoryId {
+  v1(1),
+  v10(10),
+  v11(11),
+  v12(12),
+  v13(13),
+  v14(14),
+  v15(15),
+  v16(16),
+  v17(17),
+  v18(18),
+  v19(19),
+  v20(20),
+  v22(22),
+  v24(24),
+  v28(28),
+  v3(3),
+  v30(30),
+  v31(31),
+  v4(4),
+  v5(5),
+  v6(6),
+  v7(7),
+  v8(8),
+  v9(9);
+
+  const CategoryId(this.value);
+  final int value;
+}
+
+enum CategorySubscription {
+  pCGamePass('PC Game Pass'),
+  xboxGamePassUltimate('Xbox Game Pass Ultimate');
+
+  const CategorySubscription(this.value);
+  final String value;
+}
+
+enum ChangeEmail {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const ChangeEmail(this.value);
+  final String value;
+}
+
+enum ChangeNickname {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const ChangeNickname(this.value);
+  final String value;
+}
+
+enum ChangeableFn {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const ChangeableFn(this.value);
+  final String value;
+}
+
+enum ClaimState {
+  active('active'),
+  rejected('rejected'),
+  settled('settled'),
+  solved('solved');
+
+  const ClaimState(this.value);
+  final String value;
+}
+
+enum Clan {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Clan(this.value);
+  final String value;
+}
+
+enum Clans {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Clans(this.value);
+  final String value;
+}
+
+enum ClashPass {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const ClashPass(this.value);
+  final String value;
+}
+
+enum CookieLogin {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const CookieLogin(this.value);
+  final String value;
+}
+
+enum Cookies {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Cookies(this.value);
+  final String value;
+}
+
+enum Cs2MapRank {
+  v1(1),
+  v10(10),
+  v11(11),
+  v12(12),
+  v13(13),
+  v2(2),
+  v3(3),
+  v4(4),
+  v5(5),
+  v6(6),
+  v7(7),
+  v8(8),
+  v9(9);
+
+  const Cs2MapRank(this.value);
+  final int value;
+}
+
+enum Currency {
+  brl('brl'),
+  byn('byn'),
+  cny('cny'),
+  eur('eur'),
+  gbp('gbp'),
+  jpy('jpy'),
+  kzt('kzt'),
+  rub('rub'),
+  try$('try'),
+  uah('uah'),
+  usd('usd');
+
+  const Currency(this.value);
+  final String value;
+}
+
+enum D2LastMatchDatePeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const D2LastMatchDatePeriod(this.value);
+  final String value;
+}
+
+enum Day {
+  v0(0),
+  v1(1),
+  v10(10),
+  v11(11),
+  v12(12),
+  v13(13),
+  v14(14),
+  v15(15),
+  v16(16),
+  v17(17),
+  v18(18),
+  v19(19),
+  v2(2),
+  v20(20),
+  v21(21),
+  v22(22),
+  v23(23),
+  v24(24),
+  v25(25),
+  v26(26),
+  v27(27),
+  v28(28),
+  v3(3),
+  v4(4),
+  v5(5),
+  v6(6),
+  v7(7),
+  v8(8),
+  v9(9);
+
+  const Day(this.value);
+  final int value;
+}
+
+enum Dungeons {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Dungeons(this.value);
+  final String value;
+}
+
+enum Ea {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Ea(this.value);
+  final String value;
+}
+
+enum EditBtag {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const EditBtag(this.value);
+  final String value;
+}
+
+enum Email {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Email(this.value);
+  final String value;
+}
+
+enum EmailType {
+  autoreg('autoreg'),
+  native('native');
+
+  const EmailType(this.value);
+  final String value;
+}
+
+enum ExtendedGuarantee {
+  vMinus1(-1),
+  v0(0),
+  v1(1);
+
+  const ExtendedGuarantee(this.value);
+  final int value;
+}
+
+enum Format {
+  custom('custom'),
+  mfaFileLogin('mfa_file_login'),
+  mfaFileSteamId('mfa_file_steam_id'),
+  short('short');
+
+  const Format(this.value);
+  final String value;
+}
+
+enum GameDonations {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const GameDonations(this.value);
+  final String value;
+}
+
+enum Gifts {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Gifts(this.value);
+  final String value;
+}
+
+enum HasActivatedKeys {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const HasActivatedKeys(this.value);
+  final String value;
+}
+
+enum HasBan {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const HasBan(this.value);
+  final String value;
+}
+
+enum HasFaceit {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const HasFaceit(this.value);
+  final String value;
+}
+
+enum HoldLengthOption {
+  day('day'),
+  hour('hour'),
+  month('month'),
+  week('week'),
+  year('year');
+
+  const HoldLengthOption(this.value);
+  final String value;
+}
+
+enum HypixelBan {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const HypixelBan(this.value);
+  final String value;
+}
+
+enum HypixelBanParsed {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const HypixelBanParsed(this.value);
+  final String value;
+}
+
+enum HypixelSkyblockApiEnabled {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const HypixelSkyblockApiEnabled(this.value);
+  final String value;
+}
+
+enum Java {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Java(this.value);
+  final String value;
+}
+
+enum LastLoginHypixelPeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const LastLoginHypixelPeriod(this.value);
+  final String value;
+}
+
+enum LastTransDatePeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const LastTransDatePeriod(this.value);
+  final String value;
+}
+
+enum LastTransDatePeriodLater {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const LastTransDatePeriodLater(this.value);
+  final String value;
+}
+
+enum Legends {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Legends(this.value);
+  final String value;
+}
+
+enum Limit {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Limit(this.value);
+  final String value;
+}
+
+enum LoginWithoutCookies {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const LoginWithoutCookies(this.value);
+  final String value;
+}
+
+enum Mafile {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Mafile(this.value);
+  final String value;
+}
+
+enum ManagingItemOrigin {
+  autoreg('autoreg'),
+  brute('brute'),
+  dummy('dummy'),
+  personal('personal'),
+  phishing('phishing'),
+  resale('resale'),
+  stealer('stealer');
+
+  const ManagingItemOrigin(this.value);
+  final String value;
+}
+
+enum ManagingType {
+  agents('agents'),
+  buddies('buddies'),
+  dances('dances'),
+  gliders('gliders'),
+  pickaxes('pickaxes'),
+  skins('skins'),
+  weapons('weapons');
+
+  const ManagingType(this.value);
+  final String value;
+}
+
+enum MmBan {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const MmBan(this.value);
+  final String value;
+}
+
+enum N2fa {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const N2fa(this.value);
+  final String value;
+}
+
+enum Nitro {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Nitro(this.value);
+  final String value;
+}
+
+enum NitroPeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const NitroPeriod(this.value);
+  final String value;
+}
+
+enum NoBans {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const NoBans(this.value);
+  final String value;
+}
+
+enum NotEmailProvider {
+  firstmail('firstmail'),
+  mailRu('mail_ru'),
+  notletters('notletters'),
+  other('other'),
+  outlook('outlook'),
+  rambler('rambler');
+
+  const NotEmailProvider(this.value);
+  final String value;
+}
+
+enum OrderBy {
+  ddateToDown('ddate_to_down'),
+  ddateToUp('ddate_to_up'),
+  edateToDown('edate_to_down'),
+  edateToUp('edate_to_up'),
+  pdateToDown('pdate_to_down'),
+  pdateToDownUpload('pdate_to_down_upload'),
+  pdateToUp('pdate_to_up'),
+  pdateToUpUpload('pdate_to_up_upload'),
+  priceToDown('price_to_down'),
+  priceToUp('price_to_up');
+
+  const OrderBy(this.value);
+  final String value;
+}
+
+enum ParentControl {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const ParentControl(this.value);
+  final String value;
+}
+
+enum Password {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Password(this.value);
+  final String value;
+}
+
+enum PaymentsType {
+  balanceExchange('balance_exchange'),
+  claimHold('claim_hold'),
+  contest('contest'),
+  insuranceDeposit('insurance_deposit'),
+  internalPurchase('internal_purchase'),
+  invoice('invoice'),
+  moneyTransfer('money_transfer'),
+  paidItem('paid_item'),
+  paidMail('paid_mail'),
+  receivingMoney('receiving_money'),
+  refilledBalance('refilled_balance'),
+  soldItem('sold_item'),
+  withdrawalBalance('withdrawal_balance');
+
+  const PaymentsType(this.value);
+  final String value;
+}
+
+enum Premium {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Premium(this.value);
+  final String value;
+}
+
+enum PremiumExpirationPeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const PremiumExpirationPeriod(this.value);
+  final String value;
+}
+
+enum ProfileType {
+  market('market'),
+  nomarket('nomarket');
+
+  const ProfileType(this.value);
+  final String value;
+}
+
+enum PsnConnected {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const PsnConnected(this.value);
+  final String value;
+}
+
+enum PsnLinkable {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const PsnLinkable(this.value);
+  final String value;
+}
+
+enum PublishingItemOrigin {
+  autoreg('autoreg'),
+  brute('brute'),
+  dummy('dummy'),
+  personal('personal'),
+  phishing('phishing'),
+  resale('resale'),
+  selfRegistration('self_registration'),
+  stealer('stealer');
+
+  const PublishingItemOrigin(this.value);
+  final String value;
+}
+
+enum PublishingType {
+  socialclub('socialclub');
+
+  const PublishingType(this.value);
+  final String value;
+}
+
+enum Pve {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Pve(this.value);
+  final String value;
+}
+
+enum R6Ban {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const R6Ban(this.value);
+  final String value;
+}
+
+enum RealId {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const RealId(this.value);
+  final String value;
+}
+
+enum RegPeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const RegPeriod(this.value);
+  final String value;
+}
+
+enum Region {
+  af('af'),
+  as$('as'),
+  cis('cis'),
+  eu('eu'),
+  me('me'),
+  oc('oc'),
+  us('us');
+
+  const Region(this.value);
+  final String value;
+}
+
+enum RoyalePass {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const RoyalePass(this.value);
+  final String value;
+}
+
+enum Rt {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Rt(this.value);
+  final String value;
+}
+
+enum Show {
+  active('active'),
+  awaiting('awaiting'),
+  closed('closed'),
+  deleted('deleted'),
+  discountRequest('discount_request'),
+  paid('paid'),
+  preActive('pre_active'),
+  stickied('stickied');
+
+  const Show(this.value);
+  final String value;
+}
+
+enum Side {
+  bear('Bear'),
+  savage('Savage');
+
+  const Side(this.value);
+  final String value;
+}
+
+enum Spam {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Spam(this.value);
+  final String value;
+}
+
+enum Status {
+  notPaid('not_paid'),
+  paid('paid');
+
+  const Status(this.value);
+  final String value;
+}
+
+enum SteamConnected {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const SteamConnected(this.value);
+  final String value;
+}
+
+enum SubscriptionPeriod {
+  day('day'),
+  month('month'),
+  year('year');
+
+  const SubscriptionPeriod(this.value);
+  final String value;
+}
+
+enum Tel {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Tel(this.value);
+  final String value;
+}
+
+enum TempEmail {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const TempEmail(this.value);
+  final String value;
+}
+
+enum TradeBan {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const TradeBan(this.value);
+  final String value;
+}
+
+enum TradeLimit {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const TradeLimit(this.value);
+  final String value;
+}
+
+enum Transactions {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Transactions(this.value);
+  final String value;
+}
+
+enum Verified {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Verified(this.value);
+  final String value;
+}
+
+enum Voice {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const Voice(this.value);
+  final String value;
+}
+
+enum XboxConnected {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const XboxConnected(this.value);
+  final String value;
+}
+
+enum XboxLinkable {
+  no('no'),
+  nomatter('nomatter'),
+  yes('yes');
+
+  const XboxLinkable(this.value);
+  final String value;
+}
+
 // ─── Component Schemas ────────────────────────────────────────
 
 class DiscountModel {
@@ -1888,9 +2825,9 @@ class AutoPaymentsListResponse {
 class AutoPaymentsCreateBody {
   final String? secretAnswer;
   final String usernameReceiver;
-  final int day;
+  final Day day;
   final double amount;
-  final String? currency;
+  final Currency? currency;
   final String? description;
 
   const AutoPaymentsCreateBody({
@@ -1906,9 +2843,9 @@ class AutoPaymentsCreateBody {
     return {
       'secret_answer': secretAnswer,
       'username_receiver': usernameReceiver,
-      'day': day,
+      'day': day.value,
       'amount': amount,
-      'currency': currency,
+      'currency': currency?.value,
       'description': description,
     };
   }
@@ -2036,12 +2973,12 @@ class BatchBatchResponse {
 // ─── CartApi Types ────────────────────────────────────────
 
 class CartGetParams {
-  final int? categoryId;
+  final CategoryId? categoryId;
   final int? page;
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -2053,10 +2990,10 @@ class CartGetParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
 
   const CartGetParams({
@@ -2086,12 +3023,12 @@ class CartGetParams {
 
   Map<String, Object?> toMap() {
     return {
-      'category_id': categoryId,
+      'category_id': categoryId?.value,
       'page': page,
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -2103,10 +3040,10 @@ class CartGetParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
     };
   }
@@ -2229,7 +3166,7 @@ class CategoryAllParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -2241,10 +3178,10 @@ class CategoryAllParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
 
   const CategoryAllParams({
@@ -2277,7 +3214,7 @@ class CategoryAllParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -2289,10 +3226,10 @@ class CategoryAllParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
     };
   }
@@ -2347,7 +3284,7 @@ class CategorySteamParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -2359,27 +3296,29 @@ class CategorySteamParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailType;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final String? itemDomain;
   final List<int>? game;
   final Map<String, int>? hoursPlayed;
   final Map<String, int>? hoursPlayedMax;
-  final int? eg;
+  final CategoryEg? eg;
   final List<int>? vac;
   final bool? vacSkipGameCheck;
-  final String? rt;
-  final String? tradeBan;
-  final String? tradeLimit;
+
+  /// Default: "no"
+  final Rt? rt;
+  final TradeBan? tradeBan;
+  final TradeLimit? tradeLimit;
   final int? daybreak;
-  final String? limit;
-  final String? mafile;
+  final Limit? limit;
+  final Mafile? mafile;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
   final int? lmin;
   final int? lmax;
   final int? rmin;
@@ -2387,7 +3326,7 @@ class CategorySteamParams {
   final int? wingmanRmin;
   final int? wingmanRmax;
   final bool? noVac;
-  final String? mmBan;
+  final MmBan? mmBan;
   final int? balanceMin;
   final int? balanceMax;
   final int? invGame;
@@ -2427,9 +3366,9 @@ class CategorySteamParams {
   final int? relevantGmin;
   final int? relevantGmax;
   final int? lastTransDate;
-  final String? lastTransDatePeriod;
+  final LastTransDatePeriod? lastTransDatePeriod;
   final int? lastTransDateLater;
-  final String? lastTransDatePeriodLater;
+  final LastTransDatePeriodLater? lastTransDatePeriodLater;
   final bool? noTrans;
   final bool? trans;
   final double? giftsPurchaseMin;
@@ -2442,13 +3381,13 @@ class CategorySteamParams {
   final double? gamesPurchaseMax;
   final double? purchaseMin;
   final double? purchaseMax;
-  final String? hasActivatedKeys;
+  final HasActivatedKeys? hasActivatedKeys;
   final int? eloMin;
   final int? eloMax;
-  final int? cs2MapRank;
+  final Cs2MapRank? cs2MapRank;
   final int? cs2MapRmin;
   final int? cs2MapRmax;
-  final String? hasFaceit;
+  final HasFaceit? hasFaceit;
   final int? faceitCsgoLvlMin;
   final int? faceitCsgoLvlMax;
   final int? rustDeathsMin;
@@ -2456,7 +3395,7 @@ class CategorySteamParams {
   final int? rustKillsMin;
   final int? rustKillsMax;
   final int? d2LastMatchDate;
-  final String? d2LastMatchDatePeriod;
+  final D2LastMatchDatePeriod? d2LastMatchDatePeriod;
   final int? cardsMin;
   final int? cardsMax;
   final int? cardsGamesMin;
@@ -2493,7 +3432,7 @@ class CategorySteamParams {
     this.eg,
     this.vac,
     this.vacSkipGameCheck,
-    this.rt,
+    this.rt = Rt.no,
     this.tradeBan,
     this.tradeLimit,
     this.daybreak,
@@ -2591,7 +3530,7 @@ class CategorySteamParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -2603,27 +3542,27 @@ class CategorySteamParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_type[]': emailType,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'item_domain': itemDomain,
       'game[]': game,
       'hours_played': hoursPlayed,
       'hours_played_max': hoursPlayedMax,
-      'eg': eg,
+      'eg': eg?.value,
       'vac[]': vac,
       'vac_skip_game_check': vacSkipGameCheck,
-      'rt': rt,
-      'trade_ban': tradeBan,
-      'trade_limit': tradeLimit,
+      'rt': rt?.value,
+      'trade_ban': tradeBan?.value,
+      'trade_limit': tradeLimit?.value,
       'daybreak': daybreak,
-      'limit': limit,
-      'mafile': mafile,
+      'limit': limit?.value,
+      'mafile': mafile?.value,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
       'lmin': lmin,
       'lmax': lmax,
       'rmin': rmin,
@@ -2631,7 +3570,7 @@ class CategorySteamParams {
       'wingman_rmin': wingmanRmin,
       'wingman_rmax': wingmanRmax,
       'no_vac': noVac,
-      'mm_ban': mmBan,
+      'mm_ban': mmBan?.value,
       'balance_min': balanceMin,
       'balance_max': balanceMax,
       'inv_game': invGame,
@@ -2671,9 +3610,9 @@ class CategorySteamParams {
       'relevant_gmin': relevantGmin,
       'relevant_gmax': relevantGmax,
       'last_trans_date': lastTransDate,
-      'last_trans_date_period': lastTransDatePeriod,
+      'last_trans_date_period': lastTransDatePeriod?.value,
       'last_trans_date_later': lastTransDateLater,
-      'last_trans_date_period_later': lastTransDatePeriodLater,
+      'last_trans_date_period_later': lastTransDatePeriodLater?.value,
       'no_trans': noTrans,
       'trans': trans,
       'gifts_purchase_min': giftsPurchaseMin,
@@ -2686,13 +3625,13 @@ class CategorySteamParams {
       'games_purchase_max': gamesPurchaseMax,
       'purchase_min': purchaseMin,
       'purchase_max': purchaseMax,
-      'has_activated_keys': hasActivatedKeys,
+      'has_activated_keys': hasActivatedKeys?.value,
       'elo_min': eloMin,
       'elo_max': eloMax,
-      'cs2_map_rank': cs2MapRank,
+      'cs2_map_rank': cs2MapRank?.value,
       'cs2_map_rmin': cs2MapRmin,
       'cs2_map_rmax': cs2MapRmax,
-      'has_faceit': hasFaceit,
+      'has_faceit': hasFaceit?.value,
       'faceit_csgo_lvl_min': faceitCsgoLvlMin,
       'faceit_csgo_lvl_max': faceitCsgoLvlMax,
       'rust_deaths_min': rustDeathsMin,
@@ -2700,7 +3639,7 @@ class CategorySteamParams {
       'rust_kills_min': rustKillsMin,
       'rust_kills_max': rustKillsMax,
       'd2_last_match_date': d2LastMatchDate,
-      'd2_last_match_date_period': d2LastMatchDatePeriod,
+      'd2_last_match_date_period': d2LastMatchDatePeriod?.value,
       'cards_min': cardsMin,
       'cards_max': cardsMax,
       'cards_games_min': cardsGamesMin,
@@ -2767,7 +3706,7 @@ class CategoryFortniteParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -2779,15 +3718,15 @@ class CategoryFortniteParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
   final List<String>? emailType;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
-  final String? tempEmail;
+  final TempEmail? tempEmail;
   final String? itemDomain;
-  final int? eg;
+  final CategoryEg? eg;
   final int? smin;
   final int? smax;
   final int? vbmin;
@@ -2796,7 +3735,7 @@ class CategoryFortniteParams {
   final List<String>? pickaxe;
   final List<String>? glider;
   final List<String>? dance;
-  final String? changeEmail;
+  final ChangeEmail? changeEmail;
   final List<String>? platform;
   final int? skinsShopMin;
   final int? skinsShopMax;
@@ -2814,20 +3753,20 @@ class CategoryFortniteParams {
   final int? dancesShopVbmax;
   final int? glidersShopVbmin;
   final int? glidersShopVbmax;
-  final String? bp;
+  final Bp? bp;
   final int? lmin;
   final int? lmax;
   final int? bpLmin;
   final int? bpLmax;
   final int? lastTransDate;
-  final String? lastTransDatePeriod;
+  final LastTransDatePeriod? lastTransDatePeriod;
   final bool? noTrans;
-  final String? xboxLinkable;
-  final String? psnLinkable;
+  final XboxLinkable? xboxLinkable;
+  final PsnLinkable? psnLinkable;
   final int? daybreak;
   final bool? rlPurchases;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
   final int? refundCreditsMin;
   final int? refundCreditsMax;
   final int? pickaxeMin;
@@ -2923,7 +3862,7 @@ class CategoryFortniteParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -2935,15 +3874,15 @@ class CategoryFortniteParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
       'email_type[]': emailType,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
-      'temp_email': tempEmail,
+      'temp_email': tempEmail?.value,
       'item_domain': itemDomain,
-      'eg': eg,
+      'eg': eg?.value,
       'smin': smin,
       'smax': smax,
       'vbmin': vbmin,
@@ -2952,7 +3891,7 @@ class CategoryFortniteParams {
       'pickaxe[]': pickaxe,
       'glider[]': glider,
       'dance[]': dance,
-      'change_email': changeEmail,
+      'change_email': changeEmail?.value,
       'platform[]': platform,
       'skins_shop_min': skinsShopMin,
       'skins_shop_max': skinsShopMax,
@@ -2970,20 +3909,20 @@ class CategoryFortniteParams {
       'dances_shop_vbmax': dancesShopVbmax,
       'gliders_shop_vbmin': glidersShopVbmin,
       'gliders_shop_vbmax': glidersShopVbmax,
-      'bp': bp,
+      'bp': bp?.value,
       'lmin': lmin,
       'lmax': lmax,
       'bp_lmin': bpLmin,
       'bp_lmax': bpLmax,
       'last_trans_date': lastTransDate,
-      'last_trans_date_period': lastTransDatePeriod,
+      'last_trans_date_period': lastTransDatePeriod?.value,
       'no_trans': noTrans,
-      'xbox_linkable': xboxLinkable,
-      'psn_linkable': psnLinkable,
+      'xbox_linkable': xboxLinkable?.value,
+      'psn_linkable': psnLinkable?.value,
       'daybreak': daybreak,
       'rl_purchases': rlPurchases,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
       'refund_credits_min': refundCreditsMin,
       'refund_credits_max': refundCreditsMax,
       'pickaxe_min': pickaxeMin,
@@ -3055,7 +3994,7 @@ class CategoryMihoyoParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -3067,15 +4006,15 @@ class CategoryMihoyoParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final List<String>? emailType;
   final bool? parseSameItemIds;
   final String? itemDomain;
-  final String? email;
-  final String? ea;
+  final Email? email;
+  final Ea? ea;
   final List<String>? region;
   final List<String>? notRegion;
   final List<int>? genshinCharacter;
@@ -3225,7 +4164,7 @@ class CategoryMihoyoParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -3237,15 +4176,15 @@ class CategoryMihoyoParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'email_type[]': emailType,
       'parse_same_item_ids': parseSameItemIds,
       'item_domain': itemDomain,
-      'email': email,
-      'ea': ea,
+      'email': email?.value,
+      'ea': ea?.value,
       'region': region,
       'not_region': notRegion,
       'genshin_character[]': genshinCharacter,
@@ -3364,7 +4303,7 @@ class CategoryRiotParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -3376,10 +4315,10 @@ class CategoryRiotParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
@@ -3429,8 +4368,8 @@ class CategoryRiotParams {
   final int? mythicMax;
   final int? riotMin;
   final int? riotMax;
-  final String? email;
-  final String? tel;
+  final Email? email;
+  final Tel? tel;
   final int? valorantKnifeMin;
   final int? valorantKnifeMax;
   final int? rpMin;
@@ -3526,7 +4465,7 @@ class CategoryRiotParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -3538,10 +4477,10 @@ class CategoryRiotParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
@@ -3591,8 +4530,8 @@ class CategoryRiotParams {
       'mythic_max': mythicMax,
       'riot_min': riotMin,
       'riot_max': riotMax,
-      'email': email,
-      'tel': tel,
+      'email': email?.value,
+      'tel': tel?.value,
       'valorant_knife_min': valorantKnifeMin,
       'valorant_knife_max': valorantKnifeMax,
       'rp_min': rpMin,
@@ -3661,7 +4600,7 @@ class CategoryTelegramParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -3673,16 +4612,16 @@ class CategoryTelegramParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
-  final String? spam;
-  final String? password;
-  final String? premium;
+  final Spam? spam;
+  final Password? password;
+  final Premium? premium;
   final int? premiumExpiration;
-  final String? premiumExpirationPeriod;
+  final PremiumExpirationPeriod? premiumExpirationPeriod;
   final List<String>? country;
   final List<String>? notCountry;
   final int? daybreak;
@@ -3703,9 +4642,9 @@ class CategoryTelegramParams {
   final int? minStars;
   final int? maxStars;
   final int? birthday;
-  final String? birthdayPeriod;
+  final BirthdayPeriod? birthdayPeriod;
   final int? birthdayAfter;
-  final String? birthdayAfterPeriod;
+  final BirthdayAfterPeriod? birthdayAfterPeriod;
   final int? minId;
   final int? maxId;
   final bool? allowGeoSpamblock;
@@ -3719,7 +4658,7 @@ class CategoryTelegramParams {
   final int? maxGiftsConvertStars;
   final List<int>? dcId;
   final List<int>? notDcId;
-  final String? email;
+  final Email? email;
   final int? minBots;
   final int? maxBots;
   final int? minBotActiveUsers;
@@ -3801,7 +4740,7 @@ class CategoryTelegramParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -3813,16 +4752,16 @@ class CategoryTelegramParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
-      'spam': spam,
-      'password': password,
-      'premium': premium,
+      'spam': spam?.value,
+      'password': password?.value,
+      'premium': premium?.value,
       'premium_expiration': premiumExpiration,
-      'premium_expiration_period': premiumExpirationPeriod,
+      'premium_expiration_period': premiumExpirationPeriod?.value,
       'country[]': country,
       'not_country[]': notCountry,
       'daybreak': daybreak,
@@ -3843,9 +4782,9 @@ class CategoryTelegramParams {
       'min_stars': minStars,
       'max_stars': maxStars,
       'birthday': birthday,
-      'birthday_period': birthdayPeriod,
+      'birthday_period': birthdayPeriod?.value,
       'birthday_after': birthdayAfter,
-      'birthday_after_period': birthdayAfterPeriod,
+      'birthday_after_period': birthdayAfterPeriod?.value,
       'min_id': minId,
       'max_id': maxId,
       'allow_geo_spamblock': allowGeoSpamblock,
@@ -3859,7 +4798,7 @@ class CategoryTelegramParams {
       'max_gifts_convert_stars': maxGiftsConvertStars,
       'dc_id[]': dcId,
       'not_dc_id[]': notDcId,
-      'email': email,
+      'email': email?.value,
       'min_bots': minBots,
       'max_bots': maxBots,
       'min_bot_active_users': minBotActiveUsers,
@@ -3925,7 +4864,7 @@ class CategorySupercellParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -3937,23 +4876,23 @@ class CategorySupercellParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final int? daybreak;
   final List<String>? emailType;
   final String? itemDomain;
-  final int? eg;
-  final String? tel;
+  final CategoryEg? eg;
+  final Tel? tel;
   final int? brawlLevelMin;
   final int? brawlLevelMax;
   final int? brawlCupMin;
   final int? brawlCupMax;
   final int? brawlWinsMin;
   final int? brawlWinsMax;
-  final String? brawlPass;
+  final BrawlPass? brawlPass;
   final List<String>? brawler;
   final int? brawlersMin;
   final int? brawlersMax;
@@ -3967,14 +4906,14 @@ class CategorySupercellParams {
   final int? royaleWinsMax;
   final int? kingLevelMin;
   final int? kingLevelMax;
-  final String? royalePass;
+  final RoyalePass? royalePass;
   final int? clashLevelMin;
   final int? clashLevelMax;
   final int? clashCupMin;
   final int? clashCupMax;
   final int? clashWinsMin;
   final int? clashWinsMax;
-  final String? clashPass;
+  final ClashPass? clashPass;
   final int? totalHeroesLevelMin;
   final int? totalHeroesLevelMax;
   final int? totalTroopsLevelMin;
@@ -4075,7 +5014,7 @@ class CategorySupercellParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -4087,23 +5026,23 @@ class CategorySupercellParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'daybreak': daybreak,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'eg': eg,
-      'tel': tel,
+      'eg': eg?.value,
+      'tel': tel?.value,
       'brawl_level_min': brawlLevelMin,
       'brawl_level_max': brawlLevelMax,
       'brawl_cup_min': brawlCupMin,
       'brawl_cup_max': brawlCupMax,
       'brawl_wins_min': brawlWinsMin,
       'brawl_wins_max': brawlWinsMax,
-      'brawl_pass': brawlPass,
+      'brawl_pass': brawlPass?.value,
       'brawler[]': brawler,
       'brawlers_min': brawlersMin,
       'brawlers_max': brawlersMax,
@@ -4117,14 +5056,14 @@ class CategorySupercellParams {
       'royale_wins_max': royaleWinsMax,
       'king_level_min': kingLevelMin,
       'king_level_max': kingLevelMax,
-      'royale_pass': royalePass,
+      'royale_pass': royalePass?.value,
       'clash_level_min': clashLevelMin,
       'clash_level_max': clashLevelMax,
       'clash_cup_min': clashCupMin,
       'clash_cup_max': clashCupMax,
       'clash_wins_min': clashWinsMin,
       'clash_wins_max': clashWinsMax,
-      'clash_pass': clashPass,
+      'clash_pass': clashPass?.value,
       'total_heroes_level_min': totalHeroesLevelMin,
       'total_heroes_level_max': totalHeroesLevelMax,
       'total_troops_level_min': totalTroopsLevelMin,
@@ -4204,7 +5143,7 @@ class CategoryEaParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -4216,10 +5155,10 @@ class CategoryEaParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
@@ -4232,16 +5171,16 @@ class CategoryEaParams {
   final int? alRankMax;
   final int? alLevelMin;
   final int? alLevelMax;
-  final String? hasBan;
-  final String? xboxConnected;
-  final String? steamConnected;
-  final String? psnConnected;
-  final String? subscription;
+  final HasBan? hasBan;
+  final XboxConnected? xboxConnected;
+  final SteamConnected? steamConnected;
+  final PsnConnected? psnConnected;
+  final CategorySubscription? subscription;
   final int? subscriptionLength;
-  final String? subscriptionPeriod;
+  final SubscriptionPeriod? subscriptionPeriod;
   final Map<String, int>? hoursPlayed;
   final Map<String, int>? hoursPlayedMax;
-  final String? transactions;
+  final Transactions? transactions;
 
   const CategoryEaParams({
     this.page,
@@ -4294,7 +5233,7 @@ class CategoryEaParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -4306,10 +5245,10 @@ class CategoryEaParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
@@ -4322,16 +5261,16 @@ class CategoryEaParams {
       'al_rank_max': alRankMax,
       'al_level_min': alLevelMin,
       'al_level_max': alLevelMax,
-      'has_ban': hasBan,
-      'xbox_connected': xboxConnected,
-      'steam_connected': steamConnected,
-      'psn_connected': psnConnected,
-      'subscription': subscription,
+      'has_ban': hasBan?.value,
+      'xbox_connected': xboxConnected?.value,
+      'steam_connected': steamConnected?.value,
+      'psn_connected': psnConnected?.value,
+      'subscription': subscription?.value,
       'subscription_length': subscriptionLength,
-      'subscription_period': subscriptionPeriod,
+      'subscription_period': subscriptionPeriod?.value,
       'hours_played': hoursPlayed,
       'hours_played_max': hoursPlayedMax,
-      'transactions': transactions,
+      'transactions': transactions?.value,
     };
   }
 }
@@ -4393,7 +5332,7 @@ class CategoryWotParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -4405,14 +5344,14 @@ class CategoryWotParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final String? tel;
+  final Tel? tel;
   final int? daybreak;
   final int? battlesMin;
   final int? battlesMax;
@@ -4431,10 +5370,10 @@ class CategoryWotParams {
   final List<int>? tank;
   final List<String>? region;
   final List<String>? notRegion;
-  final String? premium;
+  final Premium? premium;
   final int? premiumExpiration;
-  final String? premiumExpirationPeriod;
-  final String? clan;
+  final PremiumExpirationPeriod? premiumExpirationPeriod;
+  final Clan? clan;
   final List<String>? clanRole;
   final List<String>? notClanRole;
   final int? clanGoldMin;
@@ -4511,7 +5450,7 @@ class CategoryWotParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -4523,14 +5462,14 @@ class CategoryWotParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'tel': tel,
+      'tel': tel?.value,
       'daybreak': daybreak,
       'battles_min': battlesMin,
       'battles_max': battlesMax,
@@ -4549,10 +5488,10 @@ class CategoryWotParams {
       'tank[]': tank,
       'region[]': region,
       'not_region[]': notRegion,
-      'premium': premium,
+      'premium': premium?.value,
       'premium_expiration': premiumExpiration,
-      'premium_expiration_period': premiumExpirationPeriod,
-      'clan': clan,
+      'premium_expiration_period': premiumExpirationPeriod?.value,
+      'clan': clan?.value,
       'clan_role[]': clanRole,
       'not_clan_role[]': notClanRole,
       'clan_gold_min': clanGoldMin,
@@ -4624,7 +5563,7 @@ class CategoryWotBlitzParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -4636,14 +5575,14 @@ class CategoryWotBlitzParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final String? tel;
+  final Tel? tel;
   final int? daybreak;
   final int? battlesMin;
   final int? battlesMax;
@@ -4662,10 +5601,10 @@ class CategoryWotBlitzParams {
   final List<int>? tank;
   final List<String>? region;
   final List<String>? notRegion;
-  final String? premium;
+  final Premium? premium;
   final int? premiumExpiration;
-  final String? premiumExpirationPeriod;
-  final String? clan;
+  final PremiumExpirationPeriod? premiumExpirationPeriod;
+  final Clan? clan;
   final List<String>? clanRole;
   final List<String>? notClanRole;
   final int? clanGoldMin;
@@ -4742,7 +5681,7 @@ class CategoryWotBlitzParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -4754,14 +5693,14 @@ class CategoryWotBlitzParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'tel': tel,
+      'tel': tel?.value,
       'daybreak': daybreak,
       'battles_min': battlesMin,
       'battles_max': battlesMax,
@@ -4780,10 +5719,10 @@ class CategoryWotBlitzParams {
       'tank[]': tank,
       'region[]': region,
       'not_region[]': notRegion,
-      'premium': premium,
+      'premium': premium?.value,
       'premium_expiration': premiumExpiration,
-      'premium_expiration_period': premiumExpirationPeriod,
-      'clan': clan,
+      'premium_expiration_period': premiumExpirationPeriod?.value,
+      'clan': clan?.value,
       'clan_role[]': clanRole,
       'not_clan_role[]': notClanRole,
       'clan_gold_min': clanGoldMin,
@@ -4855,7 +5794,7 @@ class CategoryGiftsParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -4867,14 +5806,14 @@ class CategoryGiftsParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
-  final String? subscription;
+  final CategorySubscription? subscription;
   final int? subscriptionLength;
-  final String? subscriptionPeriod;
+  final SubscriptionPeriod? subscriptionPeriod;
 
   const CategoryGiftsParams({
     this.page,
@@ -4909,7 +5848,7 @@ class CategoryGiftsParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -4921,14 +5860,14 @@ class CategoryGiftsParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
-      'subscription': subscription,
+      'subscription': subscription?.value,
       'subscription_length': subscriptionLength,
-      'subscription_period': subscriptionPeriod,
+      'subscription_period': subscriptionPeriod?.value,
     };
   }
 }
@@ -4990,7 +5929,7 @@ class CategoryEpicGamesParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -5002,16 +5941,16 @@ class CategoryEpicGamesParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final int? eg;
+  final CategoryEg? eg;
   final List<String>? game;
-  final String? changeEmail;
+  final ChangeEmail? changeEmail;
   final bool? rlPurchases;
   final double? balanceMin;
   final double? balanceMax;
@@ -5072,7 +6011,7 @@ class CategoryEpicGamesParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -5084,16 +6023,16 @@ class CategoryEpicGamesParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'eg': eg,
+      'eg': eg?.value,
       'game[]': game,
-      'change_email': changeEmail,
+      'change_email': changeEmail?.value,
       'rl_purchases': rlPurchases,
       'balance_min': balanceMin,
       'balance_max': balanceMax,
@@ -5167,7 +6106,7 @@ class CategoryEscapeFromTarkovParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -5179,21 +6118,21 @@ class CategoryEscapeFromTarkovParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final String? region;
+  final Region? region;
   final List<String>? version;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
   final int? levelMin;
   final int? levelMax;
-  final String? pve;
-  final String? side;
+  final Pve? pve;
+  final Side? side;
 
   const CategoryEscapeFromTarkovParams({
     this.page,
@@ -5235,7 +6174,7 @@ class CategoryEscapeFromTarkovParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -5247,21 +6186,21 @@ class CategoryEscapeFromTarkovParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'region': region,
+      'region': region?.value,
       'version[]': version,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
       'level_min': levelMin,
       'level_max': levelMax,
-      'pve': pve,
-      'side': side,
+      'pve': pve?.value,
+      'side': side?.value,
     };
   }
 }
@@ -5324,7 +6263,7 @@ class CategorySocialClubParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -5336,10 +6275,10 @@ class CategorySocialClubParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final int? daybreak;
   final int? levelMin;
@@ -5388,7 +6327,7 @@ class CategorySocialClubParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -5400,10 +6339,10 @@ class CategorySocialClubParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'daybreak': daybreak,
       'level_min': levelMin,
@@ -5474,7 +6413,7 @@ class CategoryUplayParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -5486,10 +6425,10 @@ class CategoryUplayParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
@@ -5499,28 +6438,28 @@ class CategoryUplayParams {
   final int? daybreak;
   final int? gmin;
   final int? gmax;
-  final String? subscription;
+  final CategorySubscription? subscription;
   final int? subscriptionLength;
-  final String? subscriptionPeriod;
+  final SubscriptionPeriod? subscriptionPeriod;
   final int? r6LevelMin;
   final int? r6LevelMax;
   final int? r6RankMin;
   final int? r6RankMax;
   final int? r6OperatorsMin;
   final int? r6OperatorsMax;
-  final String? r6Ban;
+  final R6Ban? r6Ban;
   final int? r6Smin;
   final int? r6Smax;
   final List<String>? r6Skin;
   final List<String>? r6Operator;
-  final String? xboxConnected;
-  final String? psnConnected;
-  final String? steamConnected;
+  final XboxConnected? xboxConnected;
+  final PsnConnected? psnConnected;
+  final SteamConnected? steamConnected;
   final double? balanceMin;
   final double? balanceMax;
-  final String? transactions;
+  final Transactions? transactions;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
 
   const CategoryUplayParams({
     this.page,
@@ -5582,7 +6521,7 @@ class CategoryUplayParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -5594,10 +6533,10 @@ class CategoryUplayParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
@@ -5607,28 +6546,28 @@ class CategoryUplayParams {
       'daybreak': daybreak,
       'gmin': gmin,
       'gmax': gmax,
-      'subscription': subscription,
+      'subscription': subscription?.value,
       'subscription_length': subscriptionLength,
-      'subscription_period': subscriptionPeriod,
+      'subscription_period': subscriptionPeriod?.value,
       'r6_level_min': r6LevelMin,
       'r6_level_max': r6LevelMax,
       'r6_rank_min': r6RankMin,
       'r6_rank_max': r6RankMax,
       'r6_operators_min': r6OperatorsMin,
       'r6_operators_max': r6OperatorsMax,
-      'r6_ban': r6Ban,
+      'r6_ban': r6Ban?.value,
       'r6_smin': r6Smin,
       'r6_smax': r6Smax,
       'r6_skin[]': r6Skin,
       'r6_operator[]': r6Operator,
-      'xbox_connected': xboxConnected,
-      'psn_connected': psnConnected,
-      'steam_connected': steamConnected,
+      'xbox_connected': xboxConnected?.value,
+      'psn_connected': psnConnected?.value,
+      'steam_connected': steamConnected?.value,
       'balance_min': balanceMin,
       'balance_max': balanceMax,
-      'transactions': transactions,
+      'transactions': transactions?.value,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
     };
   }
 }
@@ -5690,7 +6629,7 @@ class CategoryDiscordParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -5702,23 +6641,23 @@ class CategoryDiscordParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final String? tel;
-  final String? nitro;
+  final Tel? tel;
+  final Nitro? nitro;
   final List<String>? nitroType;
   final int? nitroLength;
-  final String? nitroPeriod;
+  final NitroPeriod? nitroPeriod;
   final int? boostsMin;
   final int? boostsMax;
-  final String? billing;
-  final String? gifts;
-  final String? transactions;
+  final Billing? billing;
+  final Gifts? gifts;
+  final Transactions? transactions;
   final List<String>? badge;
   final List<String>? condition;
   final int? chatMin;
@@ -5728,10 +6667,10 @@ class CategoryDiscordParams {
   final int? minAdmin;
   final int? maxAdmin;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
   final List<String>? language;
   final List<String>? notLanguage;
-  final String? clans;
+  final Clans? clans;
   final int? minAdminClans;
   final int? maxAdminClans;
   final int? minOwnerClans;
@@ -5740,7 +6679,7 @@ class CategoryDiscordParams {
   final List<String>? notCountry;
   final int? minServers;
   final int? maxServers;
-  final String? n2fa;
+  final N2fa? n2fa;
   final int? minFullCredits;
   final int? maxFullCredits;
   final int? minBasicCredits;
@@ -5818,7 +6757,7 @@ class CategoryDiscordParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -5830,23 +6769,23 @@ class CategoryDiscordParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'tel': tel,
-      'nitro': nitro,
+      'tel': tel?.value,
+      'nitro': nitro?.value,
       'nitro_type[]': nitroType,
       'nitro_length': nitroLength,
-      'nitro_period': nitroPeriod,
+      'nitro_period': nitroPeriod?.value,
       'boosts_min': boostsMin,
       'boosts_max': boostsMax,
-      'billing': billing,
-      'gifts': gifts,
-      'transactions': transactions,
+      'billing': billing?.value,
+      'gifts': gifts?.value,
+      'transactions': transactions?.value,
       'badge[]': badge,
       'condition[]': condition,
       'chat_min': chatMin,
@@ -5856,10 +6795,10 @@ class CategoryDiscordParams {
       'min_admin': minAdmin,
       'max_admin': maxAdmin,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
       'language[]': language,
       'not_language[]': notLanguage,
-      'clans': clans,
+      'clans': clans?.value,
       'min_admin_clans': minAdminClans,
       'max_admin_clans': maxAdminClans,
       'min_owner_clans': minOwnerClans,
@@ -5868,7 +6807,7 @@ class CategoryDiscordParams {
       'not_country[]': notCountry,
       'min_servers': minServers,
       'max_servers': maxServers,
-      '2fa': n2fa,
+      '2fa': n2fa?.value,
       'min_full_credits': minFullCredits,
       'max_full_credits': maxFullCredits,
       'min_basic_credits': minBasicCredits,
@@ -5936,7 +6875,7 @@ class CategoryTikTokParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -5948,16 +6887,16 @@ class CategoryTikTokParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final String? tel;
+  final Tel? tel;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
   final int? followersMin;
   final int? followersMax;
   final int? postMin;
@@ -5966,9 +6905,9 @@ class CategoryTikTokParams {
   final int? likeMax;
   final int? coinsMin;
   final int? coinsMax;
-  final String? cookieLogin;
-  final String? verified;
-  final String? email;
+  final CookieLogin? cookieLogin;
+  final Verified? verified;
+  final Email? email;
 
   const CategoryTikTokParams({
     this.page,
@@ -6016,7 +6955,7 @@ class CategoryTikTokParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -6028,16 +6967,16 @@ class CategoryTikTokParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'tel': tel,
+      'tel': tel?.value,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
       'followers_min': followersMin,
       'followers_max': followersMax,
       'post_min': postMin,
@@ -6046,9 +6985,9 @@ class CategoryTikTokParams {
       'like_max': likeMax,
       'coins_min': coinsMin,
       'coins_max': coinsMax,
-      'cookie_login': cookieLogin,
-      'verified': verified,
-      'email': email,
+      'cookie_login': cookieLogin?.value,
+      'verified': verified?.value,
+      'email': email?.value,
     };
   }
 }
@@ -6110,7 +7049,7 @@ class CategoryInstagramParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -6122,24 +7061,24 @@ class CategoryInstagramParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final String? tel;
+  final Tel? tel;
   final List<String>? country;
   final List<String>? notCountry;
-  final String? cookies;
-  final String? loginWithoutCookies;
+  final Cookies? cookies;
+  final LoginWithoutCookies? loginWithoutCookies;
   final int? followersMin;
   final int? followersMax;
   final int? postMin;
   final int? postMax;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
 
   const CategoryInstagramParams({
     this.page,
@@ -6184,7 +7123,7 @@ class CategoryInstagramParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -6196,24 +7135,24 @@ class CategoryInstagramParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'tel': tel,
+      'tel': tel?.value,
       'country[]': country,
       'not_country[]': notCountry,
-      'cookies': cookies,
-      'login_without_cookies': loginWithoutCookies,
+      'cookies': cookies?.value,
+      'login_without_cookies': loginWithoutCookies?.value,
       'followers_min': followersMin,
       'followers_max': followersMax,
       'post_min': postMin,
       'post_max': postMax,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
     };
   }
 }
@@ -6275,7 +7214,7 @@ class CategoryBattleNetParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -6287,24 +7226,24 @@ class CategoryBattleNetParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final int? eg;
+  final CategoryEg? eg;
   final List<int>? game;
   final int? daybreak;
   final List<String>? country;
   final List<String>? notCountry;
-  final String? tel;
-  final String? editBtag;
-  final String? changeableFn;
-  final String? realId;
-  final String? parentControl;
-  final String? noBans;
+  final Tel? tel;
+  final EditBtag? editBtag;
+  final ChangeableFn? changeableFn;
+  final RealId? realId;
+  final ParentControl? parentControl;
+  final NoBans? noBans;
   final int? balanceMin;
   final int? balanceMax;
 
@@ -6353,7 +7292,7 @@ class CategoryBattleNetParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -6365,24 +7304,24 @@ class CategoryBattleNetParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
-      'eg': eg,
+      'eg': eg?.value,
       'game[]': game,
       'daybreak': daybreak,
       'country[]': country,
       'not_country[]': notCountry,
-      'tel': tel,
-      'edit_btag': editBtag,
-      'changeable_fn': changeableFn,
-      'real_id': realId,
-      'parent_control': parentControl,
-      'no_bans': noBans,
+      'tel': tel?.value,
+      'edit_btag': editBtag?.value,
+      'changeable_fn': changeableFn?.value,
+      'real_id': realId?.value,
+      'parent_control': parentControl?.value,
+      'no_bans': noBans?.value,
       'balance_min': balanceMin,
       'balance_max': balanceMax,
     };
@@ -6446,7 +7385,7 @@ class CategoryChatGPTParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -6458,21 +7397,21 @@ class CategoryChatGPTParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
   final List<String>? subscription;
   final int? subscriptionLength;
-  final String? subscriptionPeriod;
-  final String? autorenewal;
-  final String? tel;
-  final String? transactions;
+  final SubscriptionPeriod? subscriptionPeriod;
+  final Autorenewal? autorenewal;
+  final Tel? tel;
+  final Transactions? transactions;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
   final List<String>? openaiTier;
   final int? openaiBalanceMin;
   final int? openaiBalanceMax;
@@ -6520,7 +7459,7 @@ class CategoryChatGPTParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -6532,21 +7471,21 @@ class CategoryChatGPTParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'email_type[]': emailType,
       'item_domain': itemDomain,
       'subscription[]': subscription,
       'subscription_length': subscriptionLength,
-      'subscription_period': subscriptionPeriod,
-      'autorenewal': autorenewal,
-      'tel': tel,
-      'transactions': transactions,
+      'subscription_period': subscriptionPeriod?.value,
+      'autorenewal': autorenewal?.value,
+      'tel': tel?.value,
+      'transactions': transactions?.value,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
       'openai_tier[]': openaiTier,
       'openai_balance_min': openaiBalanceMin,
       'openai_balance_max': openaiBalanceMax,
@@ -6611,7 +7550,7 @@ class CategoryVpnParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -6623,15 +7562,15 @@ class CategoryVpnParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? service;
   final int? subscriptionLength;
-  final String? subscriptionPeriod;
-  final String? autorenewal;
+  final SubscriptionPeriod? subscriptionPeriod;
+  final Autorenewal? autorenewal;
 
   const CategoryVpnParams({
     this.page,
@@ -6667,7 +7606,7 @@ class CategoryVpnParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -6679,15 +7618,15 @@ class CategoryVpnParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'service[]': service,
       'subscription_length': subscriptionLength,
-      'subscription_period': subscriptionPeriod,
-      'autorenewal': autorenewal,
+      'subscription_period': subscriptionPeriod?.value,
+      'autorenewal': autorenewal?.value,
     };
   }
 }
@@ -6749,7 +7688,7 @@ class CategoryRobloxParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -6761,12 +7700,12 @@ class CategoryRobloxParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
-  final String? email;
+  final Email? email;
   final int? robuxMin;
   final int? robuxMax;
   final int? friendsMin;
@@ -6776,22 +7715,22 @@ class CategoryRobloxParams {
   final List<String>? country;
   final List<String>? notCountry;
   final int? reg;
-  final String? regPeriod;
-  final String? subscription;
+  final RegPeriod? regPeriod;
+  final CategorySubscription? subscription;
   final int? subscriptionLength;
-  final String? subscriptionPeriod;
-  final String? autorenewal;
-  final String? xboxConnected;
-  final String? psnConnected;
-  final String? verified;
-  final String? ageVerified;
+  final SubscriptionPeriod? subscriptionPeriod;
+  final Autorenewal? autorenewal;
+  final XboxConnected? xboxConnected;
+  final PsnConnected? psnConnected;
+  final Verified? verified;
+  final AgeVerified? ageVerified;
   final int? incomingRobuxTotalMin;
   final int? incomingRobuxTotalMax;
   final int? limitedPriceMin;
   final int? limitedPriceMax;
   final int? gamepassMin;
   final int? gamepassMax;
-  final String? gameDonations;
+  final GameDonations? gameDonations;
   final int? invMin;
   final int? invMax;
   final int? ugcLimitedPriceMin;
@@ -6800,7 +7739,7 @@ class CategoryRobloxParams {
   final int? creditBalanceMax;
   final int? offsaleMin;
   final int? offsaleMax;
-  final String? voice;
+  final Voice? voice;
   final List<String>? ageGroup;
   final List<String>? notAgeGroup;
 
@@ -6871,7 +7810,7 @@ class CategoryRobloxParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -6883,12 +7822,12 @@ class CategoryRobloxParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
-      'email': email,
+      'email': email?.value,
       'robux_min': robuxMin,
       'robux_max': robuxMax,
       'friends_min': friendsMin,
@@ -6898,22 +7837,22 @@ class CategoryRobloxParams {
       'country': country,
       'not_country': notCountry,
       'reg': reg,
-      'reg_period': regPeriod,
-      'subscription': subscription,
+      'reg_period': regPeriod?.value,
+      'subscription': subscription?.value,
       'subscription_length': subscriptionLength,
-      'subscription_period': subscriptionPeriod,
-      'autorenewal': autorenewal,
-      'xbox_connected': xboxConnected,
-      'psn_connected': psnConnected,
-      'verified': verified,
-      'age_verified': ageVerified,
+      'subscription_period': subscriptionPeriod?.value,
+      'autorenewal': autorenewal?.value,
+      'xbox_connected': xboxConnected?.value,
+      'psn_connected': psnConnected?.value,
+      'verified': verified?.value,
+      'age_verified': ageVerified?.value,
       'incoming_robux_total_min': incomingRobuxTotalMin,
       'incoming_robux_total_max': incomingRobuxTotalMax,
       'limited_price_min': limitedPriceMin,
       'limited_price_max': limitedPriceMax,
       'gamepass_min': gamepassMin,
       'gamepass_max': gamepassMax,
-      'game_donations': gameDonations,
+      'game_donations': gameDonations?.value,
       'inv_min': invMin,
       'inv_max': invMax,
       'ugc_limited_price_min': ugcLimitedPriceMin,
@@ -6922,7 +7861,7 @@ class CategoryRobloxParams {
       'credit_balance_max': creditBalanceMax,
       'offsale_min': offsaleMin,
       'offsale_max': offsaleMax,
-      'voice': voice,
+      'voice': voice?.value,
       'age_group[]': ageGroup,
       'not_age_group[]': notAgeGroup,
     };
@@ -6986,7 +7925,7 @@ class CategoryWarfaceParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -6998,16 +7937,16 @@ class CategoryWarfaceParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final int? rankMin;
   final int? rankMax;
   final int? bonusRankMin;
   final int? bonusRankMax;
-  final String? tel;
+  final Tel? tel;
   final int? daybreak;
   final int? kreditsMin;
   final int? kreditsMax;
@@ -7054,7 +7993,7 @@ class CategoryWarfaceParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -7066,16 +8005,16 @@ class CategoryWarfaceParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'rank_min': rankMin,
       'rank_max': rankMax,
       'bonus_rank_min': bonusRankMin,
       'bonus_rank_max': bonusRankMax,
-      'tel': tel,
+      'tel': tel?.value,
       'daybreak': daybreak,
       'kredits_min': kreditsMin,
       'kredits_max': kreditsMax,
@@ -7142,7 +8081,7 @@ class CategoryMinecraftParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -7154,27 +8093,27 @@ class CategoryMinecraftParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
-  final String? subscription;
+  final CategorySubscription? subscription;
   final int? subscriptionLength;
-  final String? subscriptionPeriod;
-  final String? autorenewal;
-  final String? java;
-  final String? bedrock;
-  final String? dungeons;
-  final String? legends;
-  final String? changeNickname;
+  final SubscriptionPeriod? subscriptionPeriod;
+  final Autorenewal? autorenewal;
+  final Java? java;
+  final Bedrock? bedrock;
+  final Dungeons? dungeons;
+  final Legends? legends;
+  final ChangeNickname? changeNickname;
   final List<String>? capes;
   final int? capesMin;
   final int? capesMax;
   final List<String>? country;
   final List<String>? notCountry;
-  final String? hypixelBan;
-  final String? hypixelSkyblockApiEnabled;
+  final HypixelBan? hypixelBan;
+  final HypixelSkyblockApiEnabled? hypixelSkyblockApiEnabled;
   final List<String>? rankHypixel;
   final int? levelHypixelMin;
   final int? levelHypixelMax;
@@ -7185,13 +8124,13 @@ class CategoryMinecraftParams {
   final int? netWorthHypixelSkyblockMin;
   final int? netWorthHypixelSkyblockMax;
   final int? reg;
-  final String? regPeriod;
+  final RegPeriod? regPeriod;
   final int? lastLoginHypixel;
-  final String? lastLoginHypixelPeriod;
-  final String? canChangeDetails;
+  final LastLoginHypixelPeriod? lastLoginHypixelPeriod;
+  final CanChangeDetails? canChangeDetails;
   final int? nicknameLengthMin;
   final int? nicknameLengthMax;
-  final String? hypixelBanParsed;
+  final HypixelBanParsed? hypixelBanParsed;
   final int? minecoinsMin;
   final int? minecoinsMax;
 
@@ -7260,7 +8199,7 @@ class CategoryMinecraftParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -7272,27 +8211,27 @@ class CategoryMinecraftParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
-      'subscription': subscription,
+      'subscription': subscription?.value,
       'subscription_length': subscriptionLength,
-      'subscription_period': subscriptionPeriod,
-      'autorenewal': autorenewal,
-      'java': java,
-      'bedrock': bedrock,
-      'dungeons': dungeons,
-      'legends': legends,
-      'change_nickname': changeNickname,
+      'subscription_period': subscriptionPeriod?.value,
+      'autorenewal': autorenewal?.value,
+      'java': java?.value,
+      'bedrock': bedrock?.value,
+      'dungeons': dungeons?.value,
+      'legends': legends?.value,
+      'change_nickname': changeNickname?.value,
       'capes[]': capes,
       'capes_min': capesMin,
       'capes_max': capesMax,
       'country[]': country,
       'not_country[]': notCountry,
-      'hypixel_ban': hypixelBan,
-      'hypixel_skyblock_api_enabled': hypixelSkyblockApiEnabled,
+      'hypixel_ban': hypixelBan?.value,
+      'hypixel_skyblock_api_enabled': hypixelSkyblockApiEnabled?.value,
       'rank_hypixel[]': rankHypixel,
       'level_hypixel_min': levelHypixelMin,
       'level_hypixel_max': levelHypixelMax,
@@ -7303,13 +8242,13 @@ class CategoryMinecraftParams {
       'net_worth_hypixel_skyblock_min': netWorthHypixelSkyblockMin,
       'net_worth_hypixel_skyblock_max': netWorthHypixelSkyblockMax,
       'reg': reg,
-      'reg_period': regPeriod,
+      'reg_period': regPeriod?.value,
       'last_login_hypixel': lastLoginHypixel,
-      'last_login_hypixel_period': lastLoginHypixelPeriod,
-      'can_change_details': canChangeDetails,
+      'last_login_hypixel_period': lastLoginHypixelPeriod?.value,
+      'can_change_details': canChangeDetails?.value,
       'nickname_length_min': nicknameLengthMin,
       'nickname_length_max': nicknameLengthMax,
-      'hypixel_ban_parsed': hypixelBanParsed,
+      'hypixel_ban_parsed': hypixelBanParsed?.value,
       'minecoins_min': minecoinsMin,
       'minecoins_max': minecoinsMax,
     };
@@ -7373,7 +8312,7 @@ class CategoryHytaleParams {
   final int? pmin;
   final int? pmax;
   final String? title;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final List<int>? tagId;
   final List<int>? notTagId;
   final List<int>? publicTagId;
@@ -7385,10 +8324,10 @@ class CategoryHytaleParams {
   final bool? sb;
   final bool? nsbByMe;
   final bool? sbByMe;
-  final String? currency;
+  final Currency? currency;
   final bool? emailLoginData;
   final List<String>? emailProvider;
-  final String? notEmailProvider;
+  final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
   final List<String>? edition;
   final int? profilesMin;
@@ -7427,7 +8366,7 @@ class CategoryHytaleParams {
       'pmin': pmin,
       'pmax': pmax,
       'title': title,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'tag_id[]': tagId,
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
@@ -7439,10 +8378,10 @@ class CategoryHytaleParams {
       'sb': sb,
       'nsb_by_me': nsbByMe,
       'sb_by_me': sbByMe,
-      'currency': currency,
+      'currency': currency?.value,
       'email_login_data': emailLoginData,
       'email_provider[]': emailProvider,
-      'not_email_provider[]': notEmailProvider,
+      'not_email_provider[]': notEmailProvider?.value,
       'parse_same_item_ids': parseSameItemIds,
       'edition[]': edition,
       'profiles_min': profilesMin,
@@ -7819,11 +8758,11 @@ class CustomDiscountsGetResponse {
 
 class CustomDiscountsCreateBody {
   final int userId;
-  final int categoryId;
+  final CategoryId categoryId;
   final double discountPercent;
   final double minPrice;
   final double? maxPrice;
-  final String? currency;
+  final Currency? currency;
 
   const CustomDiscountsCreateBody({
     required this.userId,
@@ -7837,11 +8776,11 @@ class CustomDiscountsCreateBody {
   Map<String, Object?> toMap() {
     return {
       'user_id': userId,
-      'category_id': categoryId,
+      'category_id': categoryId.value,
       'discount_percent': discountPercent,
       'min_price': minPrice,
       'max_price': maxPrice,
-      'currency': currency,
+      'currency': currency?.value,
     };
   }
 }
@@ -8040,9 +8979,9 @@ class ImapDeleteResponse {
 
 class ListUserParams {
   final int? userId;
-  final int? categoryId;
+  final CategoryId? categoryId;
   final int? page;
-  final String? show;
+  final Show? show;
   final String? deleteReason;
   final String? title;
   final int? pmin;
@@ -8050,7 +8989,7 @@ class ListUserParams {
   final String? login;
   final List<String>? origin;
   final List<String>? notOrigin;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final bool? sb;
   final bool? sbByMe;
   final bool? nsb;
@@ -8098,9 +9037,9 @@ class ListUserParams {
   Map<String, Object?> toMap() {
     return {
       'user_id': userId,
-      'category_id': categoryId,
+      'category_id': categoryId?.value,
       'page': page,
-      'show': show,
+      'show': show?.value,
       'delete_reason': deleteReason,
       'title': title,
       'pmin': pmin,
@@ -8108,7 +9047,7 @@ class ListUserParams {
       'login': login,
       'origin[]': origin,
       'not_origin[]': notOrigin,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'sb': sb,
       'sb_by_me': sbByMe,
       'nsb': nsb,
@@ -8173,16 +9112,16 @@ class ListUserResponse {
 
 class ListOrdersParams {
   final int? userId;
-  final int? categoryId;
+  final CategoryId? categoryId;
   final int? page;
-  final String? show;
+  final Show? show;
   final String? title;
   final int? pmin;
   final int? pmax;
   final String? login;
   final List<String>? origin;
   final List<String>? notOrigin;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final bool? sb;
   final bool? sbByMe;
   final bool? nsb;
@@ -8209,16 +9148,16 @@ class ListOrdersParams {
   Map<String, Object?> toMap() {
     return {
       'user_id': userId,
-      'category_id': categoryId,
+      'category_id': categoryId?.value,
       'page': page,
-      'show': show,
+      'show': show?.value,
       'title': title,
       'pmin': pmin,
       'pmax': pmax,
       'login': login,
       'origin[]': origin,
       'not_origin[]': notOrigin,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'sb': sb,
       'sb_by_me': sbByMe,
       'nsb': nsb,
@@ -8660,18 +9599,18 @@ class ListStatesResponse {
 }
 
 class ListDownloadParams {
-  final String? format;
+  final Format? format;
   final String? customFormat;
-  final int? categoryId;
+  final CategoryId? categoryId;
   final int? page;
-  final String? show;
+  final Show? show;
   final String? deleteReason;
   final String? title;
   final int? pmin;
   final int? pmax;
   final List<String>? origin;
   final List<String>? notOrigin;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final bool? sb;
   final bool? sbByMe;
   final bool? nsb;
@@ -8718,18 +9657,18 @@ class ListDownloadParams {
 
   Map<String, Object?> toMap() {
     return {
-      'format': format,
+      'format': format?.value,
       'custom_format': customFormat,
-      'category_id': categoryId,
+      'category_id': categoryId?.value,
       'page': page,
-      'show': show,
+      'show': show?.value,
       'delete_reason': deleteReason,
       'title': title,
       'pmin': pmin,
       'pmax': pmax,
       'origin[]': origin,
       'not_origin[]': notOrigin,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'sb': sb,
       'sb_by_me': sbByMe,
       'nsb': nsb,
@@ -8748,17 +9687,15 @@ class ListDownloadParams {
   }
 }
 
-typedef ListDownloadResponse = Map<String, dynamic>;
-
 class ListFavoritesParams {
   final int? page;
-  final String? show;
+  final Show? show;
   final String? title;
   final int? pmin;
   final int? pmax;
   final List<String>? origin;
   final List<String>? notOrigin;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final bool? sb;
   final bool? sbByMe;
   final bool? nsb;
@@ -8782,13 +9719,13 @@ class ListFavoritesParams {
   Map<String, Object?> toMap() {
     return {
       'page': page,
-      'show': show,
+      'show': show?.value,
       'title': title,
       'pmin': pmin,
       'pmax': pmax,
       'origin[]': origin,
       'not_origin[]': notOrigin,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'sb': sb,
       'sb_by_me': sbByMe,
       'nsb': nsb,
@@ -8843,13 +9780,13 @@ class ListFavoritesResponse {
 
 class ListViewedParams {
   final int? page;
-  final String? show;
+  final Show? show;
   final String? title;
   final int? pmin;
   final int? pmax;
   final List<String>? origin;
   final List<String>? notOrigin;
-  final String? orderBy;
+  final OrderBy? orderBy;
   final bool? sb;
   final bool? sbByMe;
   final bool? nsb;
@@ -8873,13 +9810,13 @@ class ListViewedParams {
   Map<String, Object?> toMap() {
     return {
       'page': page,
-      'show': show,
+      'show': show?.value,
       'title': title,
       'pmin': pmin,
       'pmax': pmax,
       'origin[]': origin,
       'not_origin[]': notOrigin,
-      'order_by': orderBy,
+      'order_by': orderBy?.value,
       'sb': sb,
       'sb_by_me': sbByMe,
       'nsb': nsb,
@@ -9572,8 +10509,8 @@ class ManagingBulkGetResponse {
 }
 
 class ManagingSteamInventoryValueParams {
-  final int? appId;
-  final String? currency;
+  final AppId? appId;
+  final Currency? currency;
   final bool? ignoreCache;
 
   const ManagingSteamInventoryValueParams({
@@ -9584,8 +10521,8 @@ class ManagingSteamInventoryValueParams {
 
   Map<String, Object?> toMap() {
     return {
-      'app_id': appId,
-      'currency': currency,
+      'app_id': appId?.value,
+      'currency': currency?.value,
       'ignore_cache': ignoreCache,
     };
   }
@@ -9756,8 +10693,8 @@ class ManagingSteamInventoryValueResponse {
 
 class ManagingSteamValueParams {
   final String link;
-  final int? appId;
-  final String? currency;
+  final AppId? appId;
+  final Currency? currency;
   final bool? ignoreCache;
 
   const ManagingSteamValueParams({
@@ -9770,8 +10707,8 @@ class ManagingSteamValueParams {
   Map<String, Object?> toMap() {
     return {
       'link': link,
-      'app_id': appId,
-      'currency': currency,
+      'app_id': appId?.value,
+      'currency': currency?.value,
       'ignore_cache': ignoreCache,
     };
   }
@@ -9939,7 +10876,7 @@ class ManagingSteamValueResponse {
 }
 
 class ManagingSteamPreviewParams {
-  final String? type;
+  final ManagingType? type;
 
   const ManagingSteamPreviewParams({
     this.type,
@@ -9947,21 +10884,19 @@ class ManagingSteamPreviewParams {
 
   Map<String, Object?> toMap() {
     return {
-      'type': type,
+      'type': type?.value,
     };
   }
 }
-
-typedef ManagingSteamPreviewResponse = Map<String, dynamic>;
 
 class ManagingEditBody {
   final String? title;
   final String? titleEn;
   final int? price;
-  final String? currency;
-  final String? itemOrigin;
+  final Currency? currency;
+  final ManagingItemOrigin? itemOrigin;
   final String? emailLoginData;
-  final String? emailType;
+  final EmailType? emailType;
   final bool? allowAskDiscount;
   final int? proxyId;
   final String? description;
@@ -9986,10 +10921,10 @@ class ManagingEditBody {
       'title': title,
       'title_en': titleEn,
       'price': price,
-      'currency': currency,
-      'item_origin': itemOrigin,
+      'currency': currency?.value,
+      'item_origin': itemOrigin?.value,
       'email_login_data': emailLoginData,
-      'email_type': emailType,
+      'email_type': emailType?.value,
       'allow_ask_discount': allowAskDiscount,
       'proxy_id': proxyId,
       'description': description,
@@ -10096,7 +11031,7 @@ class ManagingNoteResponse {
 
 class ManagingSteamUpdateValueBody {
   final bool? all;
-  final int? appId;
+  final AppId? appId;
   final bool? authorize;
 
   const ManagingSteamUpdateValueBody({
@@ -10108,7 +11043,7 @@ class ManagingSteamUpdateValueBody {
   Map<String, Object?> toMap() {
     return {
       'all': all,
-      'app_id': appId,
+      'app_id': appId?.value,
       'authorize': authorize,
     };
   }
@@ -10264,7 +11199,7 @@ class ManagingCloseResponse {
 }
 
 class ManagingImageParams {
-  final String type;
+  final ManagingType type;
 
   const ManagingImageParams({
     required this.type,
@@ -10272,7 +11207,7 @@ class ManagingImageParams {
 
   Map<String, Object?> toMap() {
     return {
-      'type': type,
+      'type': type.value,
     };
   }
 }
@@ -10755,7 +11690,7 @@ class ManagingCheckGuaranteeResponse {
 }
 
 class ManagingChangePasswordBody {
-  final int? cancel;
+  final Cancel? cancel;
 
   const ManagingChangePasswordBody({
     this.cancel,
@@ -10763,7 +11698,7 @@ class ManagingChangePasswordBody {
 
   Map<String, Object?> toMap() {
     return {
-      '_cancel': cancel,
+      '_cancel': cancel?.value,
     };
   }
 }
@@ -11266,7 +12201,7 @@ class PaymentsInvoiceGetResponse {
 }
 
 class PaymentsInvoiceCreateBody {
-  final String currency;
+  final Currency currency;
   final double amount;
   final String paymentId;
   final String comment;
@@ -11275,6 +12210,8 @@ class PaymentsInvoiceCreateBody {
   final int merchantId;
   final int? requiredTelegramId;
   final String? requiredTelegramUsername;
+
+  /// Default: 3600
   final double? lifetime;
   final String? additionalData;
   final bool? isTest;
@@ -11289,14 +12226,14 @@ class PaymentsInvoiceCreateBody {
     required this.merchantId,
     this.requiredTelegramId,
     this.requiredTelegramUsername,
-    this.lifetime,
+    this.lifetime = 3600.0,
     this.additionalData,
     this.isTest,
   });
 
   Map<String, Object?> toMap() {
     return {
-      'currency': currency,
+      'currency': currency.value,
       'amount': amount,
       'payment_id': paymentId,
       'comment': comment,
@@ -11335,8 +12272,8 @@ class PaymentsInvoiceCreateResponse {
 
 class PaymentsInvoiceListParams {
   final int? page;
-  final String? currency;
-  final String? status;
+  final Currency? currency;
+  final Status? status;
   final double? amount;
   final int? merchantId;
 
@@ -11351,8 +12288,8 @@ class PaymentsInvoiceListParams {
   Map<String, Object?> toMap() {
     return {
       'page': page,
-      'currency': currency,
-      'status': status,
+      'currency': currency?.value,
+      'status': status?.value,
       'amount': amount,
       'merchant_id': merchantId,
     };
@@ -13374,13 +14311,13 @@ class PaymentsTransferBody {
   final int? userId;
   final String? username;
   final int amount;
-  final String currency;
+  final Currency currency;
   final String? comment;
   final bool? telegramDeal;
   final String? telegramUsername;
   final bool? transferHold;
   final int? holdLengthValue;
-  final String? holdLengthOption;
+  final HoldLengthOption? holdLengthOption;
 
   const PaymentsTransferBody({
     this.userId,
@@ -13400,13 +14337,13 @@ class PaymentsTransferBody {
       'user_id': userId,
       'username': username,
       'amount': amount,
-      'currency': currency,
+      'currency': currency.value,
       'comment': comment,
       'telegram_deal': telegramDeal,
       'telegram_username': telegramUsername,
       'transfer_hold': transferHold,
       'hold_length_value': holdLengthValue,
-      'hold_length_option': holdLengthOption,
+      'hold_length_option': holdLengthOption?.value,
     };
   }
 }
@@ -13531,10 +14468,10 @@ class PaymentsCancelResponse {
 }
 
 class PaymentsHistoryParams {
-  final String? type;
+  final PaymentsType? type;
   final int? pmin;
   final int? pmax;
-  final String? currency;
+  final Currency? currency;
   final int? page;
   final int? operationIdLt;
   final String? receiver;
@@ -13567,10 +14504,10 @@ class PaymentsHistoryParams {
 
   Map<String, Object?> toMap() {
     return {
-      'type': type,
+      'type': type?.value,
       'pmin': pmin,
       'pmax': pmax,
-      'currency': currency,
+      'currency': currency?.value,
       'page': page,
       'operation_id_lt': operationIdLt,
       'receiver': receiver,
@@ -14004,7 +14941,7 @@ class PaymentsPayoutBody {
   final String paymentSystem;
   final String wallet;
   final double amount;
-  final String currency;
+  final Currency currency;
   final bool? includeFee;
   final Map<String, dynamic>? extra;
 
@@ -14022,7 +14959,7 @@ class PaymentsPayoutBody {
       'payment_system': paymentSystem,
       'wallet': wallet,
       'amount': amount,
-      'currency': currency,
+      'currency': currency.value,
       'include_fee': includeFee,
       'extra': extra,
     };
@@ -14054,8 +14991,8 @@ class PaymentsPayoutResponse {
 // ─── ProfileApi Types ────────────────────────────────────────
 
 class ProfileClaimsParams {
-  final String? type;
-  final String? claimState;
+  final ProfileType? type;
+  final ClaimState? claimState;
 
   const ProfileClaimsParams({
     this.type,
@@ -14064,8 +15001,8 @@ class ProfileClaimsParams {
 
   Map<String, Object?> toMap() {
     return {
-      'type': type,
-      'claim_state': claimState,
+      'type': type?.value,
+      'claim_state': claimState?.value,
     };
   }
 }
@@ -14383,10 +15320,10 @@ class PublishingFastSellBody {
   final String? title;
   final String? titleEn;
   final double price;
-  final int categoryId;
-  final String currency;
-  final String itemOrigin;
-  final int? extendedGuarantee;
+  final CategoryId categoryId;
+  final Currency currency;
+  final PublishingItemOrigin itemOrigin;
+  final ExtendedGuarantee? extendedGuarantee;
   final bool? allowAskDiscount;
   final int? proxyId;
   final bool? randomProxy;
@@ -14397,7 +15334,7 @@ class PublishingFastSellBody {
   final String? loginPassword;
   final bool? hasEmailLoginData;
   final String? emailLoginData;
-  final String? emailType;
+  final EmailType? emailType;
   final Map<String, dynamic>? extra;
 
   const PublishingFastSellBody({
@@ -14427,10 +15364,10 @@ class PublishingFastSellBody {
       'title': title,
       'title_en': titleEn,
       'price': price,
-      'category_id': categoryId,
-      'currency': currency,
-      'item_origin': itemOrigin,
-      'extended_guarantee': extendedGuarantee,
+      'category_id': categoryId.value,
+      'currency': currency.value,
+      'item_origin': itemOrigin.value,
+      'extended_guarantee': extendedGuarantee?.value,
       'allow_ask_discount': allowAskDiscount,
       'proxy_id': proxyId,
       'random_proxy': randomProxy,
@@ -14441,7 +15378,7 @@ class PublishingFastSellBody {
       'login_password': loginPassword,
       'has_email_login_data': hasEmailLoginData,
       'email_login_data': emailLoginData,
-      'email_type': emailType,
+      'email_type': emailType?.value,
       'extra': extra,
     };
   }
@@ -14475,17 +15412,17 @@ class PublishingAddBody {
   final String? title;
   final String? titleEn;
   final double price;
-  final int categoryId;
-  final String currency;
-  final String itemOrigin;
-  final int? extendedGuarantee;
+  final CategoryId categoryId;
+  final Currency currency;
+  final PublishingItemOrigin itemOrigin;
+  final ExtendedGuarantee? extendedGuarantee;
   final String? description;
   final String? information;
   final bool? forceTempEmail;
   final int? resellItemId;
   final bool? hasEmailLoginData;
   final String? emailLoginData;
-  final String? emailType;
+  final EmailType? emailType;
   final bool? allowAskDiscount;
   final int? proxyId;
   final bool? randomProxy;
@@ -14515,17 +15452,17 @@ class PublishingAddBody {
       'title': title,
       'title_en': titleEn,
       'price': price,
-      'category_id': categoryId,
-      'currency': currency,
-      'item_origin': itemOrigin,
-      'extended_guarantee': extendedGuarantee,
+      'category_id': categoryId.value,
+      'currency': currency.value,
+      'item_origin': itemOrigin.value,
+      'extended_guarantee': extendedGuarantee?.value,
       'description': description,
       'information': information,
       'forceTempEmail': forceTempEmail,
       'resell_item_id': resellItemId,
       'has_email_login_data': hasEmailLoginData,
       'email_login_data': emailLoginData,
-      'email_type': emailType,
+      'email_type': emailType?.value,
       'allow_ask_discount': allowAskDiscount,
       'proxy_id': proxyId,
       'random_proxy': randomProxy,
@@ -14565,7 +15502,7 @@ class PublishingCheckBody {
   final String? loginPassword;
   final bool? hasEmailLoginData;
   final String? emailLoginData;
-  final String? emailType;
+  final EmailType? emailType;
   final Map<String, dynamic>? extra;
 
   const PublishingCheckBody({
@@ -14589,7 +15526,7 @@ class PublishingCheckBody {
       'login_password': loginPassword,
       'has_email_login_data': hasEmailLoginData,
       'email_login_data': emailLoginData,
-      'email_type': emailType,
+      'email_type': emailType?.value,
       'extra': extra,
     };
   }
@@ -15130,7 +16067,7 @@ class PublishingCheckResponse {
 }
 
 class PublishingExternalBody {
-  final String type;
+  final PublishingType type;
   final String? login;
   final String? emailLoginData;
   final String? cookies;
@@ -15144,7 +16081,7 @@ class PublishingExternalBody {
 
   Map<String, Object?> toMap() {
     return {
-      'type': type,
+      'type': type.value,
       'login': login,
       'email_login_data': emailLoginData,
       'cookies': cookies,

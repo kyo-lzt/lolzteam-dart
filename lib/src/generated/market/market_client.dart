@@ -489,9 +489,8 @@ class ListApi {
     return ListStatesResponse.fromJson(raw);
   }
 
-  Future<ListDownloadResponse> download(
-      String type, ListDownloadParams? params) async {
-    return _http.request(RequestOptions(
+  Future<String> download(String type, ListDownloadParams? params) async {
+    return _http.requestText(RequestOptions(
       method: 'GET',
       path: '/user/$type/download',
       query: params?.toMap(),
@@ -583,9 +582,9 @@ class ManagingApi {
     return ManagingSteamValueResponse.fromJson(raw);
   }
 
-  Future<ManagingSteamPreviewResponse> steamPreview(
+  Future<String> steamPreview(
       int itemId, ManagingSteamPreviewParams? params) async {
-    return _http.request(RequestOptions(
+    return _http.requestText(RequestOptions(
       method: 'GET',
       path: '/$itemId/steam-preview',
       query: params?.toMap(),

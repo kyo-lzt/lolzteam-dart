@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'emitter.dart';
 import 'models.dart';
+import 'naming.dart';
 import 'parser.dart';
 
 void main() {
@@ -35,6 +36,7 @@ void main() {
     String subPackage,
     List<ParsedGroup> groups,
     Map<String, ComponentSchema> componentSchemas,
+    Set<String> enumNames,
   })>[];
 
   // First pass: parse all specs to detect conflicting group names.
@@ -60,11 +62,17 @@ void main() {
   for (final (config, result) in parsed) {
     stdout.writeln('Generating ${config.clientName}...');
 
+    // Collect and deduplicate enums, rewrite param/body types
+    final enumResult = collectEnums(result.groups);
+    final groups = enumResult.groups;
+    final enums = enumResult.enums;
+
     barrelEntries.add((
       clientName: config.clientName,
       subPackage: config.subPackage,
-      groups: result.groups,
+      groups: groups,
       componentSchemas: result.componentSchemas,
+      enumNames: enums.keys.toSet(),
     ));
 
     final outDir = Directory(config.outputDir);
@@ -82,16 +90,17 @@ void main() {
 
     // Write types.dart
     final typesContent = emitDartTypesFile(
-      result.groups,
+      groups,
       config.subPackage,
       componentSchemas: result.componentSchemas,
+      enums: enums,
     );
     File('${config.outputDir}/types.dart').writeAsStringSync(typesContent);
     stdout.writeln('  types.dart');
 
     // Write client file
     final clientContent = emitDartClientFile(
-      groups: result.groups,
+      groups: groups,
       clientName: config.clientName,
       defaultBaseUrl: config.defaultBaseUrl,
       defaultRateLimit: config.defaultRateLimit,
@@ -104,8 +113,7 @@ void main() {
         .writeAsStringSync(clientContent);
     stdout.writeln('  $clientFileName.dart');
 
-    final totalOps =
-        result.groups.fold<int>(0, (sum, g) => sum + g.methods.length);
+    final totalOps = groups.fold<int>(0, (sum, g) => sum + g.methods.length);
     stdout.writeln(
         '  Done: ${result.groups.length} groups, $totalOps operations\n');
   }

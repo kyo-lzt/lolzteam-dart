@@ -24,11 +24,15 @@ class ParsedParameter {
   final String name;
   final String type;
   final bool required;
+  final List<Object?>? enumValues;
+  final Object? defaultValue;
 
   const ParsedParameter({
     required this.name,
     required this.type,
     required this.required,
+    this.enumValues,
+    this.defaultValue,
   });
 }
 
@@ -46,11 +50,30 @@ class BodyProperty {
   final String name;
   final String type;
   final bool required;
+  final List<Object?>? enumValues;
+  final Object? defaultValue;
 
   const BodyProperty({
     required this.name,
     required this.type,
     required this.required,
+    this.enumValues,
+    this.defaultValue,
+  });
+}
+
+/// A single variant in a oneOf discriminated union body.
+class OneOfVariant {
+  final String title;
+  final String discriminatorField;
+  final Object discriminatorValue;
+  final List<BodyProperty> properties;
+
+  const OneOfVariant({
+    required this.title,
+    required this.discriminatorField,
+    required this.discriminatorValue,
+    required this.properties,
   });
 }
 
@@ -59,12 +82,14 @@ class BodyExtractionResult {
   final bool bodyIsArray;
   final String? bodyArrayItemType;
   final String bodyEncoding;
+  final List<OneOfVariant> oneOfVariants;
 
   const BodyExtractionResult({
     required this.properties,
     this.bodyIsArray = false,
     this.bodyArrayItemType,
     this.bodyEncoding = 'form',
+    this.oneOfVariants = const [],
   });
 }
 
@@ -82,6 +107,8 @@ class MethodDefinition {
   final String? bodyArrayItemType;
   final String bodyEncoding;
   final ResponseSchema responseSchema;
+  final List<OneOfVariant> bodyOneOfVariants;
+  final bool responseIsHtml;
 
   const MethodDefinition({
     required this.operationId,
@@ -97,6 +124,8 @@ class MethodDefinition {
     this.bodyArrayItemType,
     this.bodyEncoding = 'form',
     this.responseSchema = const ResponseSchema(properties: {}),
+    this.bodyOneOfVariants = const [],
+    this.responseIsHtml = false,
   });
 }
 
@@ -152,6 +181,19 @@ class ComponentSchema {
     required this.rawName,
     required this.dartName,
     required this.properties,
+  });
+}
+
+/// A generated enum type shared across params/body fields.
+class EnumDefinition {
+  final String dartName;
+  final String valueType;
+  final List<Object?> values;
+
+  const EnumDefinition({
+    required this.dartName,
+    required this.valueType,
+    required this.values,
   });
 }
 

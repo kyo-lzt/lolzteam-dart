@@ -4,7 +4,72 @@ import 'models.dart';
 import 'naming.dart';
 import 'transforms.dart';
 
+// ─── Default Value Formatting ─────────────────────────────────────────────────
+
+String _formatDefaultValue(Object? value) {
+  if (value is String) return '"$value"';
+  if (value is bool) return value.toString();
+  return value.toString();
+}
+
+/// Build `= dartLiteral` suffix for a constructor parameter, or empty string.
+String _emitDefaultSuffix(String type, Object? defaultValue, bool required) {
+  if (defaultValue == null || required) return '';
+  final isEnum = _enumNames.contains(type);
+  if (isEnum) {
+    final variant = enumVariantName(defaultValue);
+    return ' = $type.$variant';
+  }
+  final dartType = toDartType(type);
+  return switch (dartType) {
+    'String' => ' = "${_escapeString(defaultValue.toString())}"',
+    'int' => () {
+        final v = defaultValue is int
+            ? defaultValue
+            : int.tryParse(defaultValue.toString());
+        return v != null ? ' = $v' : '';
+      }(),
+    'double' => () {
+        final v = defaultValue is num
+            ? defaultValue.toDouble()
+            : double.tryParse(defaultValue.toString());
+        return v != null ? ' = $v' : '';
+      }(),
+    'bool' => ' = ${defaultValue == true || defaultValue.toString() == 'true'}',
+    _ => '',
+  };
+}
+
+String _escapeString(String s) =>
+    s.replaceAll(r'\', r'\\').replaceAll('"', r'\"').replaceAll(r'$', r'\$');
+
+// ─── Enum Emission ────────────────────────────────────────────────────────────
+
+String _emitEnumDefinition(EnumDefinition def) {
+  final sb = StringBuffer();
+  sb.writeln('enum ${def.dartName} {');
+
+  for (var i = 0; i < def.values.length; i++) {
+    final value = def.values[i];
+    final variantName = enumVariantName(value);
+    final literal = def.valueType == 'int'
+        ? int.parse(value.toString())
+        : "'${value.toString().replaceAll("'", "\\'")}'";
+    final comma = i < def.values.length - 1 ? ',' : ';';
+    sb.writeln('  $variantName($literal)$comma');
+  }
+
+  sb.writeln();
+  sb.writeln('  const ${def.dartName}(this.value);');
+  sb.writeln('  final ${def.valueType} value;');
+  sb.write('}');
+  return sb.toString();
+}
+
 // ─── Types File ───────────────────────────────────────────────────────────────
+
+/// Set of known enum type names for the current generation pass.
+Set<String> _enumNames = {};
 
 String? _emitQueryParamsClass(String group, MethodDefinition method) {
   if (method.params.queryParams.isEmpty) return null;
@@ -15,8 +80,12 @@ String? _emitQueryParamsClass(String group, MethodDefinition method) {
 
   // Fields
   for (final param in method.params.queryParams) {
-    final dartType = toDartType(param.type);
+    final isEnum = _enumNames.contains(param.type);
+    final dartType = isEnum ? param.type : toDartType(param.type);
     final nullable = param.required ? '' : '?';
+    if (param.defaultValue != null) {
+      sb.writeln('  /// Default: ${_formatDefaultValue(param.defaultValue)}');
+    }
     sb.writeln('  final $dartType$nullable ${safeDartName(param.name)};');
   }
 
@@ -26,7 +95,9 @@ String? _emitQueryParamsClass(String group, MethodDefinition method) {
   sb.writeln('  const $typeName({');
   for (final param in method.params.queryParams) {
     final prefix = param.required ? 'required ' : '';
-    sb.writeln('    ${prefix}this.${safeDartName(param.name)},');
+    final defaultSuffix =
+        _emitDefaultSuffix(param.type, param.defaultValue, param.required);
+    sb.writeln('    ${prefix}this.${safeDartName(param.name)}$defaultSuffix,');
   }
   sb.writeln('  });');
 
@@ -38,7 +109,13 @@ String? _emitQueryParamsClass(String group, MethodDefinition method) {
   for (final param in method.params.queryParams) {
     final originalName = param.name;
     final dartName = safeDartName(param.name);
-    sb.writeln("      '$originalName': $dartName,");
+    final isEnum = _enumNames.contains(param.type);
+    if (isEnum) {
+      final valueSuffix = param.required ? '.value' : '?.value';
+      sb.writeln("      '$originalName': $dartName$valueSuffix,");
+    } else {
+      sb.writeln("      '$originalName': $dartName,");
+    }
   }
   sb.writeln('    };');
   sb.writeln('  }');
@@ -58,6 +135,11 @@ String? _emitBodyClass(String group, MethodDefinition method) {
     return 'typedef $typeName = List<$itemType>;';
   }
 
+  // Discriminated oneOf → sealed class hierarchy
+  if (method.bodyOneOfVariants.isNotEmpty) {
+    return _emitSealedBodyClass(typeName, method.bodyOneOfVariants);
+  }
+
   if (method.bodyProperties.isEmpty) return null;
 
   final sb = StringBuffer();
@@ -65,8 +147,14 @@ String? _emitBodyClass(String group, MethodDefinition method) {
 
   // Fields
   for (final prop in method.bodyProperties) {
-    final dartType = prop.type == 'Blob' ? 'List<int>' : toDartType(prop.type);
+    final isEnum = _enumNames.contains(prop.type);
+    final dartType = prop.type == 'Blob'
+        ? 'List<int>'
+        : (isEnum ? prop.type : toDartType(prop.type));
     final nullable = prop.required ? '' : '?';
+    if (prop.defaultValue != null) {
+      sb.writeln('  /// Default: ${_formatDefaultValue(prop.defaultValue)}');
+    }
     sb.writeln('  final $dartType$nullable ${safeDartName(prop.name)};');
   }
 
@@ -76,26 +164,112 @@ String? _emitBodyClass(String group, MethodDefinition method) {
   sb.writeln('  const $typeName({');
   for (final prop in method.bodyProperties) {
     final prefix = prop.required ? 'required ' : '';
-    sb.writeln('    ${prefix}this.${safeDartName(prop.name)},');
+    final defaultSuffix =
+        _emitDefaultSuffix(prop.type, prop.defaultValue, prop.required);
+    sb.writeln('    ${prefix}this.${safeDartName(prop.name)}$defaultSuffix,');
   }
   sb.writeln('  });');
 
   sb.writeln();
 
-  // toMap (excludes Blob fields)
+  // toMap
   sb.writeln('  Map<String, Object?> toMap() {');
   sb.writeln('    return {');
   for (final prop in method.bodyProperties) {
-    if (prop.type == 'Blob') continue;
     final originalName = prop.name;
     final dartName = safeDartName(prop.name);
-    sb.writeln("      '$originalName': $dartName,");
+    final isEnum = _enumNames.contains(prop.type);
+    if (isEnum) {
+      final valueSuffix = prop.required ? '.value' : '?.value';
+      sb.writeln("      '$originalName': $dartName$valueSuffix,");
+    } else {
+      sb.writeln("      '$originalName': $dartName,");
+    }
   }
   sb.writeln('    };');
   sb.writeln('  }');
 
   sb.write('}');
   return sb.toString();
+}
+
+String _emitSealedBodyClass(String baseName, List<OneOfVariant> variants) {
+  final sb = StringBuffer();
+
+  // Sealed base class
+  sb.writeln('sealed class $baseName {');
+  sb.writeln('  const $baseName();');
+  sb.writeln();
+  sb.writeln('  Map<String, Object?> toMap();');
+  sb.writeln('}');
+
+  // Variant subclasses
+  for (final variant in variants) {
+    sb.writeln();
+    final variantClassName = _variantClassName(baseName, variant.title);
+    sb.writeln('class $variantClassName extends $baseName {');
+
+    // Fields (excluding discriminator)
+    for (final prop in variant.properties) {
+      final isEnum = _enumNames.contains(prop.type);
+      final dartType = prop.type == 'Blob'
+          ? 'List<int>'
+          : (isEnum ? prop.type : toDartType(prop.type));
+      final nullable = prop.required ? '' : '?';
+      if (prop.defaultValue != null) {
+        sb.writeln('  /// Default: ${_formatDefaultValue(prop.defaultValue)}');
+      }
+      sb.writeln('  final $dartType$nullable ${safeDartName(prop.name)};');
+    }
+
+    sb.writeln();
+
+    // Constructor
+    sb.writeln('  const $variantClassName({');
+    for (final prop in variant.properties) {
+      final prefix = prop.required ? 'required ' : '';
+      final defaultSuffix =
+          _emitDefaultSuffix(prop.type, prop.defaultValue, prop.required);
+      sb.writeln('    ${prefix}this.${safeDartName(prop.name)}$defaultSuffix,');
+    }
+    sb.writeln('  });');
+
+    sb.writeln();
+
+    // toMap — includes discriminator field
+    sb.writeln('  @override');
+    sb.writeln('  Map<String, Object?> toMap() {');
+    sb.writeln('    return {');
+    final discValue = variant.discriminatorValue;
+    final discLiteral = discValue is String ? "'$discValue'" : '$discValue';
+    sb.writeln("      '${variant.discriminatorField}': $discLiteral,");
+    for (final prop in variant.properties) {
+      final originalName = prop.name;
+      final dartName = safeDartName(prop.name);
+      final isEnum = _enumNames.contains(prop.type);
+      if (isEnum) {
+        final valueSuffix = prop.required ? '.value' : '?.value';
+        sb.writeln("      '$originalName': $dartName$valueSuffix,");
+      } else {
+        sb.writeln("      '$originalName': $dartName,");
+      }
+    }
+    sb.writeln('    };');
+    sb.writeln('  }');
+
+    sb.write('}');
+  }
+
+  return sb.toString();
+}
+
+/// Convert a variant title like "Client Credentials" to a class name suffix.
+String _variantClassName(String baseName, String title) {
+  final parts = title.split(RegExp(r'[\s_-]+'));
+  final pascal = parts
+      .map((p) => p.isEmpty ? '' : p[0].toUpperCase() + p.substring(1))
+      .join('');
+  return '$baseName$pascal';
 }
 
 // ─── Component Schema Classes ─────────────────────────────────────────────────
@@ -348,11 +522,27 @@ String emitDartTypesFile(
   List<ParsedGroup> groups,
   String subPackage, {
   Map<String, ComponentSchema> componentSchemas = const {},
+  Map<String, EnumDefinition> enums = const {},
 }) {
+  _enumNames = enums.keys.toSet();
+
   final sb = StringBuffer();
 
   sb.writeln('// Auto-generated. DO NOT EDIT.');
   sb.writeln();
+
+  // Emit enum definitions
+  if (enums.isNotEmpty) {
+    sb.writeln(
+        '// ─── Enums ───────────────────────────────────────────────────');
+    sb.writeln();
+    final sorted = enums.values.toList()
+      ..sort((a, b) => a.dartName.compareTo(b.dartName));
+    for (final def in sorted) {
+      sb.writeln(_emitEnumDefinition(def));
+      sb.writeln();
+    }
+  }
 
   final inlineClassNames = <String>{};
 
@@ -378,8 +568,11 @@ String emitDartTypesFile(
       final bodyType = _emitBodyClass(group.groupName, method);
       if (bodyType != null) groupTypes.add(bodyType);
 
-      groupTypes
-          .add(_emitResponseClass(group.groupName, method, inlineClassNames));
+      // HTML response endpoints return String, no response type needed
+      if (!method.responseIsHtml) {
+        groupTypes
+            .add(_emitResponseClass(group.groupName, method, inlineClassNames));
+      }
     }
 
     if (groupTypes.isNotEmpty) {
@@ -406,10 +599,45 @@ String _buildPathExpression(String path) {
   return "'$template'";
 }
 
+String _emitHtmlMethod(String group, MethodDefinition method) {
+  final sb = StringBuffer();
+  final args = <String>[];
+
+  for (final param in method.params.pathParams) {
+    final dartType = toDartType(param.type);
+    args.add('$dartType ${snakeToCamel(param.name)}');
+  }
+
+  final queryTypeName = '${buildTypeName(group, method.methodName)}Params';
+  final hasQueryType = method.params.queryParams.isNotEmpty;
+  if (hasQueryType) {
+    args.add('$queryTypeName? params');
+  }
+
+  final argStr = args.join(', ');
+  final pathExpr = _buildPathExpression(method.path);
+
+  sb.writeln('  Future<String> ${method.methodName}($argStr) async {');
+  sb.writeln('    return _http.requestText(RequestOptions(');
+  sb.writeln("      method: '${method.httpMethod}',");
+  sb.writeln('      path: $pathExpr,');
+  if (hasQueryType) {
+    sb.writeln('      query: params?.toMap(),');
+  }
+  sb.writeln('    ));');
+  sb.write('  }');
+  return sb.toString();
+}
+
 String _emitDartMethod(String group, MethodDefinition method) {
   final sb = StringBuffer();
   final responseName = '${buildTypeName(group, method.methodName)}Response';
   final hasTypedResponse = method.responseSchema.properties.isNotEmpty;
+
+  // HTML response endpoints return raw String
+  if (method.responseIsHtml) {
+    return _emitHtmlMethod(group, method);
+  }
 
   // Build argument list
   final args = <String>[];
@@ -466,7 +694,14 @@ String _emitDartMethod(String group, MethodDefinition method) {
       buildLines.add('${indent}final jsonBody = <String, Object?>{');
       for (final prop in serializableProps) {
         final dartName = safeDartName(prop.name);
-        buildLines.add("$indent  '${prop.name}': body.$dartName,");
+        final isEnum = _enumNames.contains(prop.type);
+        if (isEnum) {
+          final valueSuffix = prop.required ? '.value' : '?.value';
+          buildLines
+              .add("$indent  '${prop.name}': body.$dartName$valueSuffix,");
+        } else {
+          buildLines.add("$indent  '${prop.name}': body.$dartName,");
+        }
       }
       buildLines.add('$indent};');
     }
@@ -706,6 +941,7 @@ String emitBarrelFile(
             String subPackage,
             List<ParsedGroup> groups,
             Map<String, ComponentSchema> componentSchemas,
+            Set<String> enumNames,
           })>
       apis,
 ) {
@@ -731,6 +967,18 @@ String emitBarrelFile(
   }
   final conflictingSchemas = {
     for (final e in schemaDartNameCounts.entries)
+      if (e.value > 1) e.key,
+  };
+
+  // Detect enum names that appear in multiple APIs.
+  final enumNameCounts = <String, int>{};
+  for (final api in apis) {
+    for (final name in api.enumNames) {
+      enumNameCounts[name] = (enumNameCounts[name] ?? 0) + 1;
+    }
+  }
+  final conflictingEnums = {
+    for (final e in enumNameCounts.entries)
       if (e.value > 1) e.key,
   };
 
@@ -765,21 +1013,22 @@ String emitBarrelFile(
       sb.writeln('        ${names[i]}$comma');
     }
 
-    // Hide conflicting schema names from all but the first API
-    if (!isFirst && conflictingSchemas.isNotEmpty) {
-      final hiddenNames = api.componentSchemas.values
+    // Hide conflicting schema/enum names from all but the first API
+    final allConflicts = <String>[];
+    if (!isFirst) {
+      allConflicts.addAll(api.componentSchemas.values
           .where((s) => conflictingSchemas.contains(s.dartName))
-          .map((s) => s.dartName)
-          .toList();
-      if (hiddenNames.isNotEmpty) {
-        sb.writeln("export 'src/generated/${api.subPackage}/types.dart'");
-        sb.writeln('    hide');
-        for (var i = 0; i < hiddenNames.length; i++) {
-          final comma = i < hiddenNames.length - 1 ? ',' : ';';
-          sb.writeln('        ${hiddenNames[i]}$comma');
-        }
-      } else {
-        sb.writeln("export 'src/generated/${api.subPackage}/types.dart';");
+          .map((s) => s.dartName));
+      allConflicts
+          .addAll(api.enumNames.where((n) => conflictingEnums.contains(n)));
+    }
+    if (allConflicts.isNotEmpty) {
+      sb.writeln("export 'src/generated/${api.subPackage}/types.dart'");
+      sb.writeln('    hide');
+      allConflicts.sort();
+      for (var i = 0; i < allConflicts.length; i++) {
+        final comma = i < allConflicts.length - 1 ? ',' : ';';
+        sb.writeln('        ${allConflicts[i]}$comma');
       }
     } else {
       sb.writeln("export 'src/generated/${api.subPackage}/types.dart';");

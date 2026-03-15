@@ -256,10 +256,18 @@ OperationParameters extractParameters(
     final type = schemaToTypeString(schema, spec);
     final required = param['required'] == true;
 
+    final rawEnum = schema is Map<String, dynamic> ? schema['enum'] : null;
+    final enumValues = rawEnum is List ? rawEnum : null;
+
+    final defaultValue =
+        schema is Map<String, dynamic> ? schema['default'] : null;
+
     final parsed = ParsedParameter(
       name: name,
       type: type,
       required: inValue == 'path' ? true : required,
+      enumValues: enumValues,
+      defaultValue: defaultValue,
     );
 
     if (inValue == 'path') {
@@ -270,6 +278,97 @@ OperationParameters extractParameters(
   }
 
   return OperationParameters(pathParams: pathParams, queryParams: queryParams);
+}
+
+// ─── Discriminated OneOf Detection ────────────────────────────────────────────
+
+/// Try to detect a discriminated union from oneOf variants.
+/// Returns variant definitions if a common discriminator field with single-value
+/// enums is found across all variants; null otherwise.
+List<OneOfVariant>? _tryExtractDiscriminatedOneOf(
+    List<dynamic> oneOf, Map<String, dynamic> spec) {
+  if (oneOf.length < 2) return null;
+
+  // Find a property that exists in every variant with a single-value enum
+  String? discriminatorField;
+  for (final variant in oneOf) {
+    if (variant is! Map<String, dynamic>) return null;
+    final props = variant['properties'];
+    if (props is! Map<String, dynamic>) return null;
+  }
+
+  // Check each property name to see if it's a discriminator
+  final firstVariant = oneOf[0] as Map<String, dynamic>;
+  final firstProps = firstVariant['properties'] as Map<String, dynamic>;
+
+  for (final propName in firstProps.keys) {
+    final propSchema = firstProps[propName];
+    if (propSchema is! Map<String, dynamic>) continue;
+    final enumVals = propSchema['enum'];
+    if (enumVals is! List || enumVals.length != 1) continue;
+
+    // Check if all other variants also have this prop with a single-value enum
+    var allMatch = true;
+    for (var i = 1; i < oneOf.length; i++) {
+      final v = oneOf[i] as Map<String, dynamic>;
+      final vProps = v['properties'] as Map<String, dynamic>;
+      final vProp = vProps[propName];
+      if (vProp is! Map<String, dynamic>) {
+        allMatch = false;
+        break;
+      }
+      final vEnum = vProp['enum'];
+      if (vEnum is! List || vEnum.length != 1) {
+        allMatch = false;
+        break;
+      }
+    }
+    if (allMatch) {
+      discriminatorField = propName;
+      break;
+    }
+  }
+
+  if (discriminatorField == null) return null;
+
+  // Build variants
+  final variants = <OneOfVariant>[];
+  for (final variant in oneOf) {
+    final v = variant as Map<String, dynamic>;
+    final title = v['title'] as String? ?? 'Unknown';
+    final props = v['properties'] as Map<String, dynamic>;
+    final requiredList = v['required'];
+    final requiredSet =
+        requiredList is List ? requiredList.cast<String>().toSet() : <String>{};
+    final discriminatorValue =
+        (props[discriminatorField]! as Map<String, dynamic>)['enum'] as List;
+
+    final bodyProps = <BodyProperty>[];
+    for (final entry in props.entries) {
+      // Skip the discriminator field — it's implicit in the variant type
+      if (entry.key == discriminatorField) continue;
+      final propObj = entry.value is Map<String, dynamic>
+          ? entry.value as Map<String, dynamic>
+          : null;
+      final rawEnum = propObj?['enum'];
+      bodyProps.add(BodyProperty(
+        name: entry.key,
+        type: schemaToTypeString(entry.value, spec),
+        required: requiredSet.contains(entry.key),
+        enumValues: rawEnum is List ? rawEnum : null,
+        defaultValue: propObj?['default'],
+      ));
+    }
+
+    variants.add(OneOfVariant(
+      title: title,
+      discriminatorField: discriminatorField,
+      discriminatorValue: discriminatorValue[0] as Object,
+      properties: bodyProps,
+    ));
+  }
+
+  return variants;
 }
 
 // ─── Body Extraction ─────────────────────────────────────────────────────────
@@ -322,9 +421,41 @@ BodyExtractionResult extractBody(
 
   final bodyProperties = <BodyProperty>[];
 
-  // oneOf → merge all properties, mark all optional
+  // oneOf → check for discriminated union first, fallback to merge
   final oneOf = schema['oneOf'];
   if (oneOf is List) {
+    final discriminated = _tryExtractDiscriminatedOneOf(oneOf, spec);
+    if (discriminated != null) {
+      // Still emit merged properties for backwards compat with audit
+      final allProps = <String, Object?>{};
+      for (final variant in oneOf) {
+        if (variant is! Map<String, dynamic>) continue;
+        final variantProps = variant['properties'];
+        if (variantProps is! Map<String, dynamic>) continue;
+        for (final entry in variantProps.entries) {
+          allProps[entry.key] = entry.value;
+        }
+      }
+      for (final entry in allProps.entries) {
+        final propObj = entry.value is Map<String, dynamic>
+            ? entry.value as Map<String, dynamic>
+            : null;
+        final rawEnum = propObj?['enum'];
+        bodyProperties.add(BodyProperty(
+          name: entry.key,
+          type: schemaToTypeString(entry.value, spec),
+          required: false,
+          enumValues: rawEnum is List ? rawEnum : null,
+          defaultValue: propObj?['default'],
+        ));
+      }
+      return BodyExtractionResult(
+        properties: bodyProperties,
+        bodyEncoding: bodyEncoding,
+        oneOfVariants: discriminated,
+      );
+    }
+
     final allProps = <String, Object?>{};
     for (final variant in oneOf) {
       if (variant is! Map<String, dynamic>) continue;
@@ -335,10 +466,16 @@ BodyExtractionResult extractBody(
       }
     }
     for (final entry in allProps.entries) {
+      final propObj = entry.value is Map<String, dynamic>
+          ? entry.value as Map<String, dynamic>
+          : null;
+      final rawEnum = propObj?['enum'];
       bodyProperties.add(BodyProperty(
         name: entry.key,
         type: schemaToTypeString(entry.value, spec),
         required: false,
+        enumValues: rawEnum is List ? rawEnum : null,
+        defaultValue: propObj?['default'],
       ));
     }
   } else {
@@ -356,10 +493,13 @@ BodyExtractionResult extractBody(
         final format = propObj?['format'] as String?;
         final type =
             format == 'binary' ? 'Blob' : schemaToTypeString(entry.value, spec);
+        final rawEnum = propObj?['enum'];
         bodyProperties.add(BodyProperty(
           name: entry.key,
           type: type,
           required: requiredSet.contains(entry.key),
+          enumValues: rawEnum is List ? rawEnum : null,
+          defaultValue: propObj?['default'],
         ));
       }
     }
@@ -507,6 +647,18 @@ SchemaProperty _schemaToProperty(
   );
 }
 
+/// Check if the operation's success response uses text/html content type.
+bool isHtmlResponse(Map<String, dynamic> operation) {
+  final responses = operation['responses'];
+  if (responses is! Map<String, dynamic>) return false;
+  final rawSuccess = responses['200'] ?? responses['201'];
+  if (rawSuccess is! Map<String, dynamic>) return false;
+  final content = rawSuccess['content'];
+  if (content is! Map<String, dynamic>) return false;
+  return content.containsKey('text/html') &&
+      !content.containsKey('application/json');
+}
+
 /// Extract the response schema for an operation from the raw spec.
 ResponseSchema extractResponseSchema(
     Map<String, dynamic> operation, Map<String, dynamic> rawSpec) {
@@ -563,10 +715,9 @@ MethodDefinition extractMethodDefinition({
   final params = extractParameters(operation, spec);
   final body = extractBody(operation, spec);
   final responseType = extractResponseType(operation, spec);
-  final responseSchema = extractResponseSchema(
-    _findRawOperation(rawSpec, operationId) ?? operation,
-    rawSpec,
-  );
+  final rawOperation = _findRawOperation(rawSpec, operationId) ?? operation;
+  final responseSchema = extractResponseSchema(rawOperation, rawSpec);
+  final htmlResponse = isHtmlResponse(rawOperation);
 
   final isGet = httpMethod.toUpperCase() == 'GET';
 
@@ -574,8 +725,12 @@ MethodDefinition extractMethodDefinition({
   final effectiveQueryParams = isGet
       ? [
           ...params.queryParams,
-          ...body.properties.map((p) =>
-              ParsedParameter(name: p.name, type: p.type, required: false)),
+          ...body.properties.map((p) => ParsedParameter(
+              name: p.name,
+              type: p.type,
+              required: false,
+              enumValues: p.enumValues,
+              defaultValue: p.defaultValue)),
         ]
       : params.queryParams;
 
@@ -608,6 +763,8 @@ MethodDefinition extractMethodDefinition({
     bodyArrayItemType: isGet ? null : body.bodyArrayItemType,
     bodyEncoding: isGet ? 'form' : body.bodyEncoding,
     responseSchema: responseSchema,
+    bodyOneOfVariants: isGet ? const [] : body.oneOfVariants,
+    responseIsHtml: htmlResponse,
   );
 }
 

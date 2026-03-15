@@ -77,6 +77,26 @@ class LolzteamHttpClient {
     );
   }
 
+  /// Send a request and return the raw response body as a [String].
+  /// Used for endpoints that return non-JSON content (e.g. text/html).
+  Future<String> requestText(RequestOptions options) async {
+    await _rateLimiter?.acquire();
+    if (options.isSearch) {
+      await _searchRateLimiter?.acquire();
+    }
+    final retryConfig = _retryConfig;
+    if (retryConfig == null) {
+      return _executeText(options);
+    }
+    return withRetry(
+      retryConfig,
+      () => _executeText(options),
+      onRetry: _onRetry,
+      method: options.method,
+      path: options.path,
+    );
+  }
+
   Future<Map<String, dynamic>> _execute(RequestOptions options) async {
     var url = '$_baseUrl${options.path}';
     final queryString = _buildQueryString(options.query);
@@ -154,6 +174,37 @@ class LolzteamHttpClient {
       return decoded;
     }
     return <String, dynamic>{'data': decoded};
+  }
+
+  Future<String> _executeText(RequestOptions options) async {
+    var url = '$_baseUrl${options.path}';
+    final queryString = _buildQueryString(options.query);
+    if (queryString.isNotEmpty) {
+      url += '?$queryString';
+    }
+
+    final uri = Uri.parse(url);
+
+    try {
+      final request = http.Request(options.method, uri);
+      request.headers['Authorization'] = 'Bearer $_token';
+
+      final streamedResponse = await _sendRequest(request);
+      final bodyText = await streamedResponse.stream.bytesToString();
+
+      if (streamedResponse.statusCode < 200 ||
+          streamedResponse.statusCode >= 300) {
+        final headers = Map<String, String>.from(streamedResponse.headers);
+        throw createHttpException(
+            streamedResponse.statusCode, bodyText, headers);
+      }
+
+      return bodyText;
+    } on LolzteamException {
+      rethrow;
+    } on Exception catch (e) {
+      throw NetworkException(e);
+    }
   }
 
   String _buildQueryString(Map<String, Object?>? query) {

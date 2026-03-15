@@ -1,5 +1,425 @@
 // Auto-generated. DO NOT EDIT.
 
+// ─── Enums ───────────────────────────────────────────────────
+
+enum AllowInviteGroup {
+  followed('followed'),
+  members('members'),
+  none('none');
+
+  const AllowInviteGroup(this.value);
+  final String value;
+}
+
+enum AllowPostProfile {
+  followed('followed'),
+  members('members'),
+  none('none');
+
+  const AllowPostProfile(this.value);
+  final String value;
+}
+
+enum AllowReceiveNewsFeed {
+  followed('followed'),
+  members('members'),
+  none('none');
+
+  const AllowReceiveNewsFeed(this.value);
+  final String value;
+}
+
+enum AllowSendPersonalConversation {
+  followed('followed'),
+  members('members'),
+  none('none');
+
+  const AllowSendPersonalConversation(this.value);
+  final String value;
+}
+
+enum AllowViewProfile {
+  followed('followed'),
+  members('members'),
+  none('none');
+
+  const AllowViewProfile(this.value);
+  final String value;
+}
+
+enum CategoriesOrder {
+  list('list'),
+  natural('natural');
+
+  const CategoriesOrder(this.value);
+  final String value;
+}
+
+enum ClaimState {
+  active('active'),
+  rejected('rejected'),
+  settled('settled'),
+  solved('solved');
+
+  const ClaimState(this.value);
+  final String value;
+}
+
+enum ContentType {
+  post('post'),
+  postComment('post_comment'),
+  profilePost('profile_post'),
+  profilePostComment('profile_post_comment');
+
+  const ContentType(this.value);
+  final String value;
+}
+
+enum ContestType {
+  byFinishDate('by_finish_date');
+
+  const ContestType(this.value);
+  final String value;
+}
+
+enum ConversationsOrder {
+  natural('natural'),
+  naturalReverse('natural_reverse');
+
+  const ConversationsOrder(this.value);
+  final String value;
+}
+
+enum Currency {
+  byn('byn'),
+  cny('cny'),
+  eur('eur'),
+  gbp('gbp'),
+  kzt('kzt'),
+  rub('rub'),
+  try$('try'),
+  uah('uah'),
+  usd('usd');
+
+  const Currency(this.value);
+  final String value;
+}
+
+enum DeleteType {
+  delete('delete'),
+  deleteIgnore('delete_ignore');
+
+  const DeleteType(this.value);
+  final String value;
+}
+
+enum Direction {
+  asc('asc'),
+  desc('desc');
+
+  const Direction(this.value);
+  final String value;
+}
+
+enum Duration {
+  day('day'),
+  month('month'),
+  week('week');
+
+  const Duration(this.value);
+  final String value;
+}
+
+enum Folder {
+  all('all'),
+  giveaways('giveaways'),
+  groups('groups'),
+  market('market'),
+  marketReplacements('market_replacements'),
+  p2p('p2p'),
+  staff('staff'),
+  unread('unread');
+
+  const Folder(this.value);
+  final String value;
+}
+
+enum FormId {
+  v3(3);
+
+  const FormId(this.value);
+  final int value;
+}
+
+enum Gender {
+  empty(''),
+  female('female'),
+  male('male');
+
+  const Gender(this.value);
+  final String value;
+}
+
+enum GrantType {
+  password('password');
+
+  const GrantType(this.value);
+  final String value;
+}
+
+enum LanguageId {
+  v1(1),
+  v2(2);
+
+  const LanguageId(this.value);
+  final int value;
+}
+
+enum LengthOption {
+  days('days'),
+  hours('hours'),
+  minutes('minutes');
+
+  const LengthOption(this.value);
+  final String value;
+}
+
+enum LikeType {
+  like('like'),
+  like2('like2');
+
+  const LikeType(this.value);
+  final String value;
+}
+
+enum NotificationsType {
+  market('market'),
+  nomarket('nomarket');
+
+  const NotificationsType(this.value);
+  final String value;
+}
+
+enum PayClaim {
+  later('later'),
+  now('now');
+
+  const PayClaim(this.value);
+  final String value;
+}
+
+enum Period {
+  day('day'),
+  month('month'),
+  week('week'),
+  year('year');
+
+  const Period(this.value);
+  final String value;
+}
+
+enum PostsOrder {
+  natural('natural'),
+  naturalReverse('natural_reverse'),
+  postLikes('post_likes'),
+  postLikesReverse('post_likes_reverse');
+
+  const PostsOrder(this.value);
+  final String value;
+}
+
+enum PrizeDataUpgrade {
+  v1(1),
+  v12(12),
+  v14(14),
+  v17(17),
+  v19(19),
+  v20(20),
+  v21(21),
+  v22(22),
+  v6(6);
+
+  const PrizeDataUpgrade(this.value);
+  final int value;
+}
+
+enum PrizeType {
+  money('money'),
+  upgrades('upgrades');
+
+  const PrizeType(this.value);
+  final String value;
+}
+
+enum ReplyGroup {
+  v0(0),
+  v2(2),
+  v21(21),
+  v22(22),
+  v23(23),
+  v351(351),
+  v60(60);
+
+  const ReplyGroup(this.value);
+  final int value;
+}
+
+enum RoomId {
+  v1(1),
+  v13(13),
+  v2(2),
+  v3(3),
+  v4(4);
+
+  const RoomId(this.value);
+  final int value;
+}
+
+enum State {
+  active('active'),
+  closed('closed');
+
+  const State(this.value);
+  final String value;
+}
+
+enum ThreadsOrder {
+  firstPostLikes('first_post_likes'),
+  lastPostDate('last_post_date'),
+  postDate('post_date'),
+  replyCount('reply_count'),
+  replyCountAsc('reply_count_asc'),
+  voteCount('vote_count');
+
+  const ThreadsOrder(this.value);
+  final String value;
+}
+
+enum Timezone {
+  africaAlgiers('Africa/Algiers'),
+  africaCairo('Africa/Cairo'),
+  africaCasablanca('Africa/Casablanca'),
+  africaJohannesburg('Africa/Johannesburg'),
+  africaNairobi('Africa/Nairobi'),
+  africaTunis('Africa/Tunis'),
+  africaWindhoek('Africa/Windhoek'),
+  americaAnchorage('America/Anchorage'),
+  americaArgentinaBuenosAires('America/Argentina/Buenos_Aires'),
+  americaArgentinaMendoza('America/Argentina/Mendoza'),
+  americaArgentinaSanLuis('America/Argentina/San_Luis'),
+  americaAsuncion('America/Asuncion'),
+  americaBelize('America/Belize'),
+  americaBogota('America/Bogota'),
+  americaCaracas('America/Caracas'),
+  americaChicago('America/Chicago'),
+  americaChihuahua('America/Chihuahua'),
+  americaCuiaba('America/Cuiaba'),
+  americaDenver('America/Denver'),
+  americaGodthab('America/Godthab'),
+  americaGooseBay('America/Goose_Bay'),
+  americaHalifax('America/Halifax'),
+  americaHavana('America/Havana'),
+  americaLaPaz('America/La_Paz'),
+  americaLosAngeles('America/Los_Angeles'),
+  americaMexicoCity('America/Mexico_City'),
+  americaMiquelon('America/Miquelon'),
+  americaMontevideo('America/Montevideo'),
+  americaNewYork('America/New_York'),
+  americaNoronha('America/Noronha'),
+  americaPhoenix('America/Phoenix'),
+  americaSantaIsabel('America/Santa_Isabel'),
+  americaSantiago('America/Santiago'),
+  americaSaoPaulo('America/Sao_Paulo'),
+  americaStJohns('America/St_Johns'),
+  americaTijuana('America/Tijuana'),
+  asiaAlmaty('Asia/Almaty'),
+  asiaAmman('Asia/Amman'),
+  asiaAnadyr('Asia/Anadyr'),
+  asiaBaku('Asia/Baku'),
+  asiaBangkok('Asia/Bangkok'),
+  asiaBeirut('Asia/Beirut'),
+  asiaDamascus('Asia/Damascus'),
+  asiaDhaka('Asia/Dhaka'),
+  asiaDubai('Asia/Dubai'),
+  asiaGaza('Asia/Gaza'),
+  asiaHongKong('Asia/Hong_Kong'),
+  asiaIrkutsk('Asia/Irkutsk'),
+  asiaJerusalem('Asia/Jerusalem'),
+  asiaKabul('Asia/Kabul'),
+  asiaKathmandu('Asia/Kathmandu'),
+  asiaKolkata('Asia/Kolkata'),
+  asiaKrasnoyarsk('Asia/Krasnoyarsk'),
+  asiaMagadan('Asia/Magadan'),
+  asiaNovosibirsk('Asia/Novosibirsk'),
+  asiaRangoon('Asia/Rangoon'),
+  asiaSeoul('Asia/Seoul'),
+  asiaSingapore('Asia/Singapore'),
+  asiaTashkent('Asia/Tashkent'),
+  asiaTehran('Asia/Tehran'),
+  asiaTokyo('Asia/Tokyo'),
+  asiaVladivostok('Asia/Vladivostok'),
+  asiaYakutsk('Asia/Yakutsk'),
+  asiaYekaterinburg('Asia/Yekaterinburg'),
+  asiaYerevan('Asia/Yerevan'),
+  atlanticAzores('Atlantic/Azores'),
+  atlanticCapeVerde('Atlantic/Cape_Verde'),
+  atlanticReykjavik('Atlantic/Reykjavik'),
+  atlanticStanley('Atlantic/Stanley'),
+  australiaAdelaide('Australia/Adelaide'),
+  australiaBrisbane('Australia/Brisbane'),
+  australiaDarwin('Australia/Darwin'),
+  australiaPerth('Australia/Perth'),
+  australiaSydney('Australia/Sydney'),
+  europeAmsterdam('Europe/Amsterdam'),
+  europeAthens('Europe/Athens'),
+  europeKaliningrad('Europe/Kaliningrad'),
+  europeLondon('Europe/London'),
+  europeMinsk('Europe/Minsk'),
+  europeMoscow('Europe/Moscow'),
+  indianMauritius('Indian/Mauritius'),
+  pacificApia('Pacific/Apia'),
+  pacificAuckland('Pacific/Auckland'),
+  pacificChatham('Pacific/Chatham'),
+  pacificEaster('Pacific/Easter'),
+  pacificFiji('Pacific/Fiji'),
+  pacificHonolulu('Pacific/Honolulu'),
+  pacificKiritimati('Pacific/Kiritimati'),
+  pacificMarquesas('Pacific/Marquesas'),
+  pacificMidway('Pacific/Midway'),
+  pacificNorfolk('Pacific/Norfolk'),
+  pacificNoumea('Pacific/Noumea'),
+  pacificTongatapu('Pacific/Tongatapu');
+
+  const Timezone(this.value);
+  final String value;
+}
+
+enum TransferType {
+  guarantor('guarantor'),
+  notsafe('notsafe'),
+  safe('safe');
+
+  const TransferType(this.value);
+  final String value;
+}
+
+enum UsersOrder {
+  followDate('follow_date'),
+  followDateReverse('follow_date_reverse'),
+  natural('natural');
+
+  const UsersOrder(this.value);
+  final String value;
+}
+
+enum UsersType {
+  given('given'),
+  gotten('gotten');
+
+  const UsersType(this.value);
+  final String value;
+}
+
 // ─── Component Schemas ────────────────────────────────────────
 
 class RespNotificationModelLinks {
@@ -2213,7 +2633,7 @@ class BatchExecuteResponse {
 class CategoriesListParams {
   final int? parentCategoryId;
   final int? parentForumId;
-  final String? order;
+  final CategoriesOrder? order;
 
   const CategoriesListParams({
     this.parentCategoryId,
@@ -2225,7 +2645,7 @@ class CategoriesListParams {
     return {
       'parent_category_id': parentCategoryId,
       'parent_forum_id': parentForumId,
-      'order': order,
+      'order': order?.value,
     };
   }
 }
@@ -2352,7 +2772,7 @@ class CategoriesGetResponse {
 // ─── ChatboxApi Types ────────────────────────────────────────
 
 class ChatboxIndexParams {
-  final int? roomId;
+  final RoomId? roomId;
 
   const ChatboxIndexParams({
     this.roomId,
@@ -2360,7 +2780,7 @@ class ChatboxIndexParams {
 
   Map<String, Object?> toMap() {
     return {
-      'room_id': roomId,
+      'room_id': roomId?.value,
     };
   }
 }
@@ -2448,7 +2868,7 @@ class ChatboxIndexResponse {
 }
 
 class ChatboxGetMessagesParams {
-  final int roomId;
+  final RoomId roomId;
   final int? beforeMessageId;
 
   const ChatboxGetMessagesParams({
@@ -2458,7 +2878,7 @@ class ChatboxGetMessagesParams {
 
   Map<String, Object?> toMap() {
     return {
-      'room_id': roomId,
+      'room_id': roomId.value,
       'before_message_id': beforeMessageId,
     };
   }
@@ -2487,7 +2907,7 @@ class ChatboxGetMessagesResponse {
 }
 
 class ChatboxPostMessageBody {
-  final int roomId;
+  final RoomId roomId;
   final int? replyMessageId;
   final String message;
 
@@ -2499,7 +2919,7 @@ class ChatboxPostMessageBody {
 
   Map<String, Object?> toMap() {
     return {
-      'room_id': roomId,
+      'room_id': roomId.value,
       'reply_message_id': replyMessageId,
       'message': message,
     };
@@ -2604,7 +3024,7 @@ class ChatboxDeleteMessageResponse {
 }
 
 class ChatboxOnlineParams {
-  final int roomId;
+  final RoomId roomId;
 
   const ChatboxOnlineParams({
     required this.roomId,
@@ -2612,7 +3032,7 @@ class ChatboxOnlineParams {
 
   Map<String, Object?> toMap() {
     return {
-      'room_id': roomId,
+      'room_id': roomId.value,
     };
   }
 }
@@ -2709,7 +3129,7 @@ class ChatboxReportResponse {
 }
 
 class ChatboxGetLeaderboardParams {
-  final String? duration;
+  final Duration? duration;
 
   const ChatboxGetLeaderboardParams({
     this.duration,
@@ -2717,7 +3137,7 @@ class ChatboxGetLeaderboardParams {
 
   Map<String, Object?> toMap() {
     return {
-      'duration': duration,
+      'duration': duration?.value,
     };
   }
 }
@@ -2837,7 +3257,7 @@ class ChatboxDeleteIgnoreResponse {
 // ─── ConversationsApi Types ────────────────────────────────────────
 
 class ConversationsListParams {
-  final String? folder;
+  final Folder? folder;
   final int? page;
   final int? limit;
 
@@ -2849,7 +3269,7 @@ class ConversationsListParams {
 
   Map<String, Object?> toMap() {
     return {
-      'folder': folder,
+      'folder': folder?.value,
       'page': page,
       'limit': limit,
     };
@@ -2913,6 +3333,8 @@ class ConversationsListResponse {
 class ConversationsCreateBody {
   final int? recipientId;
   final List<String>? recipients;
+
+  /// Default: false
   final bool? isGroup;
   final String? title;
   final bool? openInvite;
@@ -2924,7 +3346,7 @@ class ConversationsCreateBody {
   const ConversationsCreateBody({
     this.recipientId,
     this.recipients,
-    this.isGroup,
+    this.isGroup = false,
     this.title,
     this.openInvite,
     this.allowEditMessages,
@@ -3026,7 +3448,7 @@ class ConversationsUpdateResponse {
 
 class ConversationsDeleteBody {
   final int conversationId;
-  final String deleteType;
+  final DeleteType deleteType;
 
   const ConversationsDeleteBody({
     required this.conversationId,
@@ -3036,7 +3458,7 @@ class ConversationsDeleteBody {
   Map<String, Object?> toMap() {
     return {
       'conversation_id': conversationId,
-      'delete_type': deleteType,
+      'delete_type': deleteType.value,
     };
   }
 }
@@ -3160,7 +3582,7 @@ class ConversationsGetResponse {
 class ConversationsMessagesListParams {
   final int? page;
   final int? limit;
-  final String? order;
+  final ConversationsOrder? order;
   final int? before;
   final int? after;
 
@@ -3176,7 +3598,7 @@ class ConversationsMessagesListParams {
     return {
       'page': page,
       'limit': limit,
-      'order': order,
+      'order': order?.value,
       'before': before,
       'after': after,
     };
@@ -3699,18 +4121,39 @@ class FormsListResponse {
       );
 }
 
-class FormsCreateBody {
-  final int? formId;
-  final Map<String, dynamic>? fields;
+sealed class FormsCreateBody {
+  const FormsCreateBody();
 
-  const FormsCreateBody({
-    this.formId,
-    this.fields,
+  Map<String, Object?> toMap();
+}
+
+class FormsCreateBodyP2PTrade extends FormsCreateBody {
+  final Map<String, dynamic> fields;
+
+  const FormsCreateBodyP2PTrade({
+    required this.fields,
   });
 
+  @override
   Map<String, Object?> toMap() {
     return {
-      'form_id': formId,
+      'form_id': 1,
+      'fields': fields,
+    };
+  }
+}
+
+class FormsCreateBodyComplaint extends FormsCreateBody {
+  final Map<String, dynamic> fields;
+
+  const FormsCreateBodyComplaint({
+    required this.fields,
+  });
+
+  @override
+  Map<String, Object?> toMap() {
+    return {
+      'form_id': 3,
       'fields': fields,
     };
   }
@@ -3883,7 +4326,7 @@ class FormsCreateResponse {
 class ForumsListParams {
   final int? parentCategoryId;
   final int? parentForumId;
-  final String? order;
+  final CategoriesOrder? order;
 
   const ForumsListParams({
     this.parentCategoryId,
@@ -3895,7 +4338,7 @@ class ForumsListParams {
     return {
       'parent_category_id': parentCategoryId,
       'parent_forum_id': parentForumId,
-      'order': order,
+      'order': order?.value,
     };
   }
 }
@@ -4499,7 +4942,7 @@ class NavigationListResponse {
 // ─── NotificationsApi Types ────────────────────────────────────────
 
 class NotificationsListParams {
-  final String? type;
+  final NotificationsType? type;
   final int? page;
   final int? limit;
 
@@ -4511,7 +4954,7 @@ class NotificationsListParams {
 
   Map<String, Object?> toMap() {
     return {
-      'type': type,
+      'type': type?.value,
       'page': page,
       'limit': limit,
     };
@@ -4634,40 +5077,108 @@ class NotificationsReadResponse {
 
 // ─── OAuthApi Types ────────────────────────────────────────
 
-class OAuthTokenBody {
-  final String? grantType;
-  final String? clientId;
-  final String? clientSecret;
-  final List<String>? scope;
-  final String? code;
-  final String? redirectUri;
-  final String? refreshToken;
-  final String? username;
-  final String? password;
+sealed class OAuthTokenBody {
+  const OAuthTokenBody();
 
-  const OAuthTokenBody({
-    this.grantType,
-    this.clientId,
-    this.clientSecret,
-    this.scope,
-    this.code,
-    this.redirectUri,
-    this.refreshToken,
-    this.username,
-    this.password,
+  Map<String, Object?> toMap();
+}
+
+class OAuthTokenBodyClientCredentials extends OAuthTokenBody {
+  final String clientId;
+  final String clientSecret;
+  final List<String> scope;
+
+  const OAuthTokenBodyClientCredentials({
+    required this.clientId,
+    required this.clientSecret,
+    required this.scope,
   });
 
+  @override
   Map<String, Object?> toMap() {
     return {
-      'grant_type': grantType,
+      'grant_type': 'client_credentials',
       'client_id': clientId,
       'client_secret': clientSecret,
       'scope': scope,
+    };
+  }
+}
+
+class OAuthTokenBodyAuthorizationCode extends OAuthTokenBody {
+  final String code;
+  final String clientId;
+  final String clientSecret;
+  final String redirectUri;
+  final List<String> scope;
+
+  const OAuthTokenBodyAuthorizationCode({
+    required this.code,
+    required this.clientId,
+    required this.clientSecret,
+    required this.redirectUri,
+    required this.scope,
+  });
+
+  @override
+  Map<String, Object?> toMap() {
+    return {
+      'grant_type': 'authorization_code',
       'code': code,
+      'client_id': clientId,
+      'client_secret': clientSecret,
       'redirect_uri': redirectUri,
+      'scope': scope,
+    };
+  }
+}
+
+class OAuthTokenBodyRefreshToken extends OAuthTokenBody {
+  final String refreshToken;
+  final String clientId;
+  final String clientSecret;
+
+  const OAuthTokenBodyRefreshToken({
+    required this.refreshToken,
+    required this.clientId,
+    required this.clientSecret,
+  });
+
+  @override
+  Map<String, Object?> toMap() {
+    return {
+      'grant_type': 'refresh_token',
       'refresh_token': refreshToken,
+      'client_id': clientId,
+      'client_secret': clientSecret,
+    };
+  }
+}
+
+class OAuthTokenBodyPassword extends OAuthTokenBody {
+  final String username;
+  final String password;
+  final String clientId;
+  final String clientSecret;
+  final List<String> scope;
+
+  const OAuthTokenBodyPassword({
+    required this.username,
+    required this.password,
+    required this.clientId,
+    required this.clientSecret,
+    required this.scope,
+  });
+
+  @override
+  Map<String, Object?> toMap() {
+    return {
+      'grant_type': 'password',
       'username': username,
       'password': password,
+      'client_id': clientId,
+      'client_secret': clientSecret,
+      'scope': scope,
     };
   }
 }
@@ -4701,7 +5212,7 @@ class OAuthTokenResponse {
 
 class PagesListParams {
   final int? parentPageId;
-  final String? order;
+  final CategoriesOrder? order;
 
   const PagesListParams({
     this.parentPageId,
@@ -4711,7 +5222,7 @@ class PagesListParams {
   Map<String, Object?> toMap() {
     return {
       'parent_page_id': parentPageId,
-      'order': order,
+      'order': order?.value,
     };
   }
 }
@@ -4842,7 +5353,7 @@ class PostsListParams {
   final int? pageOfPostId;
   final int? page;
   final int? limit;
-  final String? order;
+  final PostsOrder? order;
 
   const PostsListParams({
     this.threadId,
@@ -4858,7 +5369,7 @@ class PostsListParams {
       'page_of_post_id': pageOfPostId,
       'page': page,
       'limit': limit,
-      'order': order,
+      'order': order?.value,
     };
   }
 }
@@ -7599,8 +8110,8 @@ class TagsFindResponse {
 class ThreadsListParams {
   final int? forumId;
   final String? tab;
-  final String? state;
-  final String? period;
+  final State? state;
+  final Period? period;
   final String? title;
   final bool? titleOnly;
   final int? creatorUserId;
@@ -7610,8 +8121,8 @@ class ThreadsListParams {
   final int? threadTagId;
   final int? page;
   final int? limit;
-  final String? order;
-  final String? direction;
+  final ThreadsOrder? order;
+  final Direction? direction;
   final int? threadCreateDate;
   final int? threadUpdateDate;
   final List<String>? fieldsInclude;
@@ -7641,8 +8152,8 @@ class ThreadsListParams {
     return {
       'forum_id': forumId,
       'tab': tab,
-      'state': state,
-      'period': period,
+      'state': state?.value,
+      'period': period?.value,
       'title': title,
       'title_only': titleOnly,
       'creator_user_id': creatorUserId,
@@ -7652,8 +8163,8 @@ class ThreadsListParams {
       'thread_tag_id': threadTagId,
       'page': page,
       'limit': limit,
-      'order': order,
-      'direction': direction,
+      'order': order?.value,
+      'direction': direction?.value,
       'thread_create_date': threadCreateDate,
       'thread_update_date': threadUpdateDate,
       'fields_include': fieldsInclude,
@@ -7835,7 +8346,9 @@ class ThreadsCreateBody {
   final List<String>? tags;
   final bool? hideContacts;
   final bool? allowAskHiddenContent;
-  final int? replyGroup;
+
+  /// Default: 2
+  final ReplyGroup? replyGroup;
   final bool? commentIgnoreGroup;
   final bool? dontAlertFollowers;
   final String? scheduleDate;
@@ -7853,7 +8366,7 @@ class ThreadsCreateBody {
     this.tags,
     this.hideContacts,
     this.allowAskHiddenContent,
-    this.replyGroup,
+    this.replyGroup = ReplyGroup.v2,
     this.commentIgnoreGroup,
     this.dontAlertFollowers,
     this.scheduleDate,
@@ -7873,7 +8386,7 @@ class ThreadsCreateBody {
       'tags': tags,
       'hide_contacts': hideContacts,
       'allow_ask_hidden_content': allowAskHiddenContent,
-      'reply_group': replyGroup,
+      'reply_group': replyGroup?.value,
       'comment_ignore_group': commentIgnoreGroup,
       'dont_alert_followers': dontAlertFollowers,
       'schedule_date': scheduleDate,
@@ -7910,20 +8423,24 @@ class ThreadsCreateContestBody {
   final String postBody;
   final String? title;
   final String? titleEn;
-  final String contestType;
+
+  /// Default: "by_finish_date"
+  final ContestType contestType;
   final int? lengthValue;
-  final String? lengthOption;
-  final String prizeType;
+  final LengthOption? lengthOption;
+  final PrizeType prizeType;
   final int? countWinners;
   final double? prizeDataMoney;
   final bool? isMoneyPlaces;
   final List<double>? prizeDataPlaces;
-  final int? prizeDataUpgrade;
+  final PrizeDataUpgrade? prizeDataUpgrade;
   final int requireLikeCount;
   final int requireTotalLikeCount;
   final String? secretAnswer;
   final List<String>? tags;
-  final int? replyGroup;
+
+  /// Default: 2
+  final ReplyGroup? replyGroup;
   final bool? commentIgnoreGroup;
   final bool? dontAlertFollowers;
   final bool? hideContacts;
@@ -7951,7 +8468,7 @@ class ThreadsCreateContestBody {
     required this.requireTotalLikeCount,
     this.secretAnswer,
     this.tags,
-    this.replyGroup,
+    this.replyGroup = ReplyGroup.v2,
     this.commentIgnoreGroup,
     this.dontAlertFollowers,
     this.hideContacts,
@@ -7968,20 +8485,20 @@ class ThreadsCreateContestBody {
       'post_body': postBody,
       'title': title,
       'title_en': titleEn,
-      'contest_type': contestType,
+      'contest_type': contestType.value,
       'length_value': lengthValue,
-      'length_option': lengthOption,
-      'prize_type': prizeType,
+      'length_option': lengthOption?.value,
+      'prize_type': prizeType.value,
       'count_winners': countWinners,
       'prize_data_money': prizeDataMoney,
       'is_money_places': isMoneyPlaces,
       'prize_data_places': prizeDataPlaces,
-      'prize_data_upgrade': prizeDataUpgrade,
+      'prize_data_upgrade': prizeDataUpgrade?.value,
       'require_like_count': requireLikeCount,
       'require_total_like_count': requireTotalLikeCount,
       'secret_answer': secretAnswer,
       'tags': tags,
-      'reply_group': replyGroup,
+      'reply_group': replyGroup?.value,
       'comment_ignore_group': commentIgnoreGroup,
       'dont_alert_followers': dontAlertFollowers,
       'hide_contacts': hideContacts,
@@ -8022,15 +8539,17 @@ class ThreadsClaimBody {
   final int? asMarketItemId;
   final String? asData;
   final double asAmount;
-  final String? currency;
-  final String transferType;
-  final String? payClaim;
+  final Currency? currency;
+  final TransferType transferType;
+  final PayClaim? payClaim;
   final String? asFundsReceipt;
   final String? asTgLoginScreenshot;
   final List<String>? tags;
   final bool? hideContacts;
   final bool? allowAskHiddenContent;
-  final int? replyGroup;
+
+  /// Default: 2
+  final ReplyGroup? replyGroup;
   final bool? commentIgnoreGroup;
   final bool? dontAlertFollowers;
   final String? scheduleDate;
@@ -8054,7 +8573,7 @@ class ThreadsClaimBody {
     this.tags,
     this.hideContacts,
     this.allowAskHiddenContent,
-    this.replyGroup,
+    this.replyGroup = ReplyGroup.v2,
     this.commentIgnoreGroup,
     this.dontAlertFollowers,
     this.scheduleDate,
@@ -8072,15 +8591,15 @@ class ThreadsClaimBody {
       'as_market_item_id': asMarketItemId,
       'as_data': asData,
       'as_amount': asAmount,
-      'currency': currency,
-      'transfer_type': transferType,
-      'pay_claim': payClaim,
+      'currency': currency?.value,
+      'transfer_type': transferType.value,
+      'pay_claim': payClaim?.value,
       'as_funds_receipt': asFundsReceipt,
       'as_tg_login_screenshot': asTgLoginScreenshot,
       'tags': tags,
       'hide_contacts': hideContacts,
       'allow_ask_hidden_content': allowAskHiddenContent,
-      'reply_group': replyGroup,
+      'reply_group': replyGroup?.value,
       'comment_ignore_group': commentIgnoreGroup,
       'dont_alert_followers': dontAlertFollowers,
       'schedule_date': scheduleDate,
@@ -8157,7 +8676,7 @@ class ThreadsEditBody {
   final bool? discussionOpen;
   final bool? hideContacts;
   final bool? allowAskHiddenContent;
-  final int? replyGroup;
+  final ReplyGroup? replyGroup;
   final bool? commentIgnoreGroup;
 
   const ThreadsEditBody({
@@ -8181,7 +8700,7 @@ class ThreadsEditBody {
       'discussion_open': discussionOpen,
       'hide_contacts': hideContacts,
       'allow_ask_hidden_content': allowAskHiddenContent,
-      'reply_group': replyGroup,
+      'reply_group': replyGroup?.value,
       'comment_ignore_group': commentIgnoreGroup,
     };
   }
@@ -8951,19 +9470,19 @@ class UsersEditBody {
   final String? secretAnswer;
   final int? secretAnswerType;
   final String? shortLink;
-  final int? languageId;
-  final String? gender;
-  final String? timezone;
+  final LanguageId? languageId;
+  final Gender? gender;
+  final Timezone? timezone;
   final bool? receiveAdminEmail;
   final bool? activityVisible;
   final bool? showDobDate;
   final bool? showDobYear;
   final bool? hideUsernameChangeLogs;
-  final String? allowViewProfile;
-  final String? allowPostProfile;
-  final String? allowSendPersonalConversation;
-  final String? allowInviteGroup;
-  final String? allowReceiveNewsFeed;
+  final AllowViewProfile? allowViewProfile;
+  final AllowPostProfile? allowPostProfile;
+  final AllowSendPersonalConversation? allowSendPersonalConversation;
+  final AllowInviteGroup? allowInviteGroup;
+  final AllowReceiveNewsFeed? allowReceiveNewsFeed;
   final Map<String, bool>? alert;
   final Map<String, dynamic>? fields;
 
@@ -9011,19 +9530,19 @@ class UsersEditBody {
       'secret_answer': secretAnswer,
       'secret_answer_type': secretAnswerType,
       'short_link': shortLink,
-      'language_id': languageId,
-      'gender': gender,
-      'timezone': timezone,
+      'language_id': languageId?.value,
+      'gender': gender?.value,
+      'timezone': timezone?.value,
       'receive_admin_email': receiveAdminEmail,
       'activity_visible': activityVisible,
       'show_dob_date': showDobDate,
       'show_dob_year': showDobYear,
       'hide_username_change_logs': hideUsernameChangeLogs,
-      'allow_view_profile': allowViewProfile,
-      'allow_post_profile': allowPostProfile,
-      'allow_send_personal_conversation': allowSendPersonalConversation,
-      'allow_invite_group': allowInviteGroup,
-      'allow_receive_news_feed': allowReceiveNewsFeed,
+      'allow_view_profile': allowViewProfile?.value,
+      'allow_post_profile': allowPostProfile?.value,
+      'allow_send_personal_conversation': allowSendPersonalConversation?.value,
+      'allow_invite_group': allowInviteGroup?.value,
+      'allow_receive_news_feed': allowReceiveNewsFeed?.value,
       'alert': alert,
       'fields': fields,
     };
@@ -9053,8 +9572,8 @@ class UsersEditResponse {
 }
 
 class UsersClaimsParams {
-  final String? type;
-  final String? claimState;
+  final NotificationsType? type;
+  final ClaimState? claimState;
 
   const UsersClaimsParams({
     this.type,
@@ -9063,8 +9582,8 @@ class UsersClaimsParams {
 
   Map<String, Object?> toMap() {
     return {
-      'type': type,
-      'claim_state': claimState,
+      'type': type?.value,
+      'claim_state': claimState?.value,
     };
   }
 }
@@ -9177,6 +9696,7 @@ class UsersAvatarUploadBody {
 
   Map<String, Object?> toMap() {
     return {
+      'avatar': avatar,
       'x': x,
       'y': y,
       'crop': crop,
@@ -9285,6 +9805,7 @@ class UsersBackgroundUploadBody {
 
   Map<String, Object?> toMap() {
     return {
+      'background': background,
       'x': x,
       'y': y,
       'crop': crop,
@@ -9379,7 +9900,7 @@ class UsersBackgroundCropResponse {
 }
 
 class UsersFollowersParams {
-  final String? order;
+  final UsersOrder? order;
   final int? page;
   final int? limit;
 
@@ -9391,7 +9912,7 @@ class UsersFollowersParams {
 
   Map<String, Object?> toMap() {
     return {
-      'order': order,
+      'order': order?.value,
       'page': page,
       'limit': limit,
     };
@@ -9490,7 +10011,7 @@ class UsersUnfollowResponse {
 }
 
 class UsersFollowingsParams {
-  final String? order;
+  final UsersOrder? order;
   final int? page;
   final int? limit;
 
@@ -9502,7 +10023,7 @@ class UsersFollowingsParams {
 
   Map<String, Object?> toMap() {
     return {
-      'order': order,
+      'order': order?.value,
       'page': page,
       'limit': limit,
     };
@@ -9533,19 +10054,23 @@ class UsersFollowingsResponse {
 
 class UsersLikesParams {
   final int? nodeId;
-  final String? likeType;
-  final String? type;
+  final LikeType? likeType;
+
+  /// Default: "gotten"
+  final UsersType? type;
   final int? page;
-  final String? contentType;
+
+  /// Default: "post"
+  final ContentType? contentType;
   final int? searchUserId;
   final bool? stats;
 
   const UsersLikesParams({
     this.nodeId,
     this.likeType,
-    this.type,
+    this.type = UsersType.gotten,
     this.page,
-    this.contentType,
+    this.contentType = ContentType.post,
     this.searchUserId,
     this.stats,
   });
@@ -9553,10 +10078,10 @@ class UsersLikesParams {
   Map<String, Object?> toMap() {
     return {
       'node_id': nodeId,
-      'like_type': likeType,
-      'type': type,
+      'like_type': likeType?.value,
+      'type': type?.value,
       'page': page,
-      'content_type': contentType,
+      'content_type': contentType?.value,
       'search_user_id': searchUserId,
       'stats': stats,
     };
