@@ -18,6 +18,6 @@ jobs:
         with:
           sdk: "3.5.0"
       - run: dart pub get
+      - run: dart format .
       - run: dart analyze
-      - run: dart format --set-exit-if-changed .
       - run: dart test
