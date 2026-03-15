@@ -39,6 +39,14 @@ String groupToPropertyName(String tag) => _lowercaseFirst(tag);
 /// Convert tag to class name: PascalCase + "Api".
 String groupToClassName(String tag) => '${_capitalizeFirst(tag)}Api';
 
+/// Convert tag to class name with prefix for conflicting groups.
+String groupToClassNamePrefixed(String tag, String prefix, Set<String> conflicts) {
+  if (conflicts.contains(tag)) {
+    return '$prefix${_capitalizeFirst(tag)}Api';
+  }
+  return groupToClassName(tag);
+}
+
 /// Build a type name prefix from group + method.
 String buildTypeName(String group, String method) =>
     _capitalizeFirst(group) + _capitalizeFirst(method);

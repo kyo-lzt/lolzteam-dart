@@ -33,12 +33,29 @@ void main() {
   final barrelEntries =
       <({String clientName, String subPackage, List<ParsedGroup> groups})>[];
 
+  // First pass: parse all specs to detect conflicting group names.
+  final parsed = <(ApiConfig, ParseResult)>[];
   for (final config in apis) {
-    stdout.writeln('Generating ${config.clientName}...');
-
     final rawText = File(config.schemaPath).readAsStringSync();
     final rawSpec = jsonDecode(rawText) as Map<String, dynamic>;
-    final result = parseSpec(rawSpec);
+    parsed.add((config, parseSpec(rawSpec)));
+  }
+
+  final groupCounts = <String, int>{};
+  for (final (_, result) in parsed) {
+    for (final group in result.groups) {
+      groupCounts[group.groupName] =
+          (groupCounts[group.groupName] ?? 0) + 1;
+    }
+  }
+  final conflictingGroups = {
+    for (final e in groupCounts.entries)
+      if (e.value > 1) e.key,
+  };
+
+  // Second pass: generate files.
+  for (final (config, result) in parsed) {
+    stdout.writeln('Generating ${config.clientName}...');
 
     barrelEntries.add((
       clientName: config.clientName,
@@ -72,6 +89,7 @@ void main() {
       defaultRateLimit: config.defaultRateLimit,
       defaultSearchRateLimit: config.defaultSearchRateLimit,
       subPackage: config.subPackage,
+      conflictingGroups: conflictingGroups,
     );
     final clientFileName = _toSnakeCase(config.clientName);
     File('${config.outputDir}/$clientFileName.dart')

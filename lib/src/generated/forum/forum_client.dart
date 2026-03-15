@@ -1229,10 +1229,10 @@ class SearchApi {
 }
 
 
-class BatchApi {
+class ForumBatchApi {
   final LolzteamHttpClient _http;
 
-  BatchApi(this._http);
+  ForumBatchApi(this._http);
 
   Future<BatchExecuteResponse> execute(BatchExecuteBody? body) async {
     return _http.request(RequestOptions(
@@ -1393,7 +1393,7 @@ class ForumClient {
   final NotificationsApi notifications;
   final TagsApi tags;
   final SearchApi search;
-  final BatchApi batch;
+  final ForumBatchApi batch;
   final ChatboxApi chatbox;
   final FormsApi forms;
 
@@ -1422,7 +1422,7 @@ class ForumClient {
     final notifications = NotificationsApi(http);
     final tags = TagsApi(http);
     final search = SearchApi(http);
-    final batch = BatchApi(http);
+    final batch = ForumBatchApi(http);
     final chatbox = ChatboxApi(http);
     final forms = FormsApi(http);
     return ForumClient._(

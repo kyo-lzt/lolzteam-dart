@@ -1039,10 +1039,10 @@ class ImapApi {
 }
 
 
-class BatchApi {
+class MarketBatchApi {
   final LolzteamHttpClient _http;
 
-  BatchApi(this._http);
+  MarketBatchApi(this._http);
 
   Future<BatchBatchResponse> batch(BatchBatchBody body) async {
     return _http.request(RequestOptions(
@@ -1068,7 +1068,7 @@ class MarketClient {
   final AutoPaymentsApi autoPayments;
   final ProxyApi proxy;
   final ImapApi imap;
-  final BatchApi batch;
+  final MarketBatchApi batch;
 
   final LolzteamHttpClient _http;
 
@@ -1094,7 +1094,7 @@ class MarketClient {
     final autoPayments = AutoPaymentsApi(http);
     final proxy = ProxyApi(http);
     final imap = ImapApi(http);
-    final batch = BatchApi(http);
+    final batch = MarketBatchApi(http);
     return MarketClient._(
       http: http,
       category: category,

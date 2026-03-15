@@ -301,8 +301,8 @@ String _emitDartMethod(String group, MethodDefinition method) {
   return sb.toString();
 }
 
-String _emitGroupClass(ParsedGroup group) {
-  final className = groupToClassName(group.groupName);
+String _emitGroupClass(ParsedGroup group, {String? classNameOverride}) {
+  final className = classNameOverride ?? groupToClassName(group.groupName);
   final sb = StringBuffer();
 
   sb.writeln('class $className {');
@@ -327,6 +327,7 @@ String emitDartClientFile({
   required int defaultRateLimit,
   int? defaultSearchRateLimit,
   required String subPackage,
+  Set<String> conflictingGroups = const {},
 }) {
   final sb = StringBuffer();
 
@@ -347,9 +348,13 @@ String emitDartClientFile({
   sb.writeln("import 'types.dart';");
   sb.writeln();
 
+  final prefix = clientName.replaceAll('Client', '');
+
   // Group API classes
   for (final group in groups) {
-    sb.writeln(_emitGroupClass(group));
+    final resolvedName = groupToClassNamePrefixed(
+        group.groupName, prefix, conflictingGroups);
+    sb.writeln(_emitGroupClass(group, classNameOverride: resolvedName));
     sb.writeln();
   }
 
@@ -357,7 +362,8 @@ String emitDartClientFile({
   sb.writeln('class $clientName {');
 
   for (final group in groups) {
-    final className = groupToClassName(group.groupName);
+    final className = groupToClassNamePrefixed(
+        group.groupName, prefix, conflictingGroups);
     final propName = groupToPropertyName(group.groupName);
     sb.writeln('  final $className $propName;');
   }
@@ -389,7 +395,8 @@ String emitDartClientFile({
   sb.writeln('    ));');
 
   for (final group in groups) {
-    final className = groupToClassName(group.groupName);
+    final className = groupToClassNamePrefixed(
+        group.groupName, prefix, conflictingGroups);
     final propName = groupToPropertyName(group.groupName);
     sb.writeln('    final $propName = $className(http);');
   }
@@ -418,6 +425,19 @@ String emitDartClientFile({
 String emitBarrelFile(
   List<({String clientName, String subPackage, List<ParsedGroup> groups})> apis,
 ) {
+  // Detect group names that appear in multiple APIs.
+  final groupCounts = <String, int>{};
+  for (final api in apis) {
+    for (final group in api.groups) {
+      groupCounts[group.groupName] =
+          (groupCounts[group.groupName] ?? 0) + 1;
+    }
+  }
+  final conflicts = {
+    for (final e in groupCounts.entries)
+      if (e.value > 1) e.key,
+  };
+
   final sb = StringBuffer();
 
   sb.writeln('/// Lolzteam Forum & Market API wrapper.');
@@ -430,6 +450,7 @@ String emitBarrelFile(
   sb.writeln();
 
   for (final api in apis) {
+    final prefix = api.clientName.replaceAll('Client', '');
     final clientFileName = api.clientName
         .replaceAllMapped(
             RegExp(r'([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}')
@@ -439,7 +460,7 @@ String emitBarrelFile(
 
     final names = <String>[api.clientName];
     for (final group in api.groups) {
-      names.add(groupToClassName(group.groupName));
+      names.add(groupToClassNamePrefixed(group.groupName, prefix, conflicts));
     }
 
     for (var i = 0; i < names.length; i++) {

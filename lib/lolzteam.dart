@@ -24,7 +24,7 @@ export 'src/generated/forum/forum_client.dart'
         NotificationsApi,
         TagsApi,
         SearchApi,
-        BatchApi,
+        ForumBatchApi,
         ChatboxApi,
         FormsApi;
 export 'src/generated/forum/types.dart';
@@ -43,5 +43,5 @@ export 'src/generated/market/market_client.dart'
         AutoPaymentsApi,
         ProxyApi,
         ImapApi,
-        BatchApi;
+        MarketBatchApi;
 export 'src/generated/market/types.dart';
