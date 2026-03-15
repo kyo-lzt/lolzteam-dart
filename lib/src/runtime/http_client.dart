@@ -64,11 +64,12 @@ class LolzteamHttpClient {
     if (options.isSearch) {
       await _searchRateLimiter?.acquire();
     }
-    if (_retryConfig == null) {
+    final retryConfig = _retryConfig;
+    if (retryConfig == null) {
       return _execute(options);
     }
     return withRetry(
-      _retryConfig,
+      retryConfig,
       () => _execute(options),
       onRetry: _onRetry,
       method: options.method,
