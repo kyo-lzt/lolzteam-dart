@@ -79,6 +79,16 @@ class ConfigException extends LolzteamException {
   const ConfigException(super.message);
 }
 
+class RetryExhaustedException extends LolzteamException {
+  final int attempts;
+  final Object lastError;
+
+  const RetryExhaustedException({
+    required this.attempts,
+    required this.lastError,
+  }) : super('Request failed after $attempts attempts: $lastError');
+}
+
 HttpException createHttpException(
   int status,
   String? body,

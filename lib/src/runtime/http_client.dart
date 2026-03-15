@@ -140,14 +140,16 @@ class LolzteamHttpClient {
     }
 
     if (response.statusCode < 200 || response.statusCode >= 300) {
-      final headers = <String, String>{};
-      if (response is http.StreamedResponse) {
-        response.headers.forEach((k, v) => headers[k] = v);
-      }
+      final headers = Map<String, String>.from(response.headers);
       throw createHttpException(response.statusCode, bodyText, headers);
     }
 
-    final decoded = jsonDecode(bodyText);
+    final Object? decoded;
+    try {
+      decoded = jsonDecode(bodyText);
+    } on FormatException catch (e) {
+      throw NetworkException(e);
+    }
     if (decoded is Map<String, dynamic>) {
       return decoded;
     }

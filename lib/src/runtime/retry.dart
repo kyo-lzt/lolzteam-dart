@@ -38,7 +38,16 @@ Future<T> withRetry<T>(
       return await action();
     } on LolzteamException catch (e) {
       lastError = e;
-      if (!_isRetryable(e) || attempt == config.maxRetries) {
+      if (!_isRetryable(e)) {
+        rethrow;
+      }
+      if (attempt == config.maxRetries) {
+        if (attempt > 0) {
+          throw RetryExhaustedException(
+            attempts: attempt + 1,
+            lastError: e,
+          );
+        }
         rethrow;
       }
       final delay = _computeDelay(attempt, config, e);
