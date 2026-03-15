@@ -226,7 +226,8 @@ void main() {
         throwsA(allOf(
           isA<RetryExhaustedException>(),
           predicate<RetryExhaustedException>((e) => e.attempts == 3),
-          predicate<RetryExhaustedException>((e) => e.lastError is ServerException),
+          predicate<RetryExhaustedException>(
+              (e) => e.lastError is ServerException),
         )),
       );
     } finally {

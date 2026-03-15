@@ -40,7 +40,8 @@ String groupToPropertyName(String tag) => _lowercaseFirst(tag);
 String groupToClassName(String tag) => '${_capitalizeFirst(tag)}Api';
 
 /// Convert tag to class name with prefix for conflicting groups.
-String groupToClassNamePrefixed(String tag, String prefix, Set<String> conflicts) {
+String groupToClassNamePrefixed(
+    String tag, String prefix, Set<String> conflicts) {
   if (conflicts.contains(tag)) {
     return '$prefix${_capitalizeFirst(tag)}Api';
   }
@@ -53,7 +54,8 @@ String buildTypeName(String group, String method) =>
 
 /// Convert snake_case or kebab-case to camelCase.
 String snakeToCamel(String name) {
-  return name.replaceAllMapped(RegExp(r'[-_]([a-z])'), (m) => m[1]!.toUpperCase());
+  return name.replaceAllMapped(
+      RegExp(r'[-_]([a-z])'), (m) => m[1]!.toUpperCase());
 }
 
 String _lowercaseFirst(String s) {

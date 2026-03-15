@@ -23,7 +23,6 @@ class AssetsApi {
   }
 }
 
-
 class ForumBatchApi {
   final LolzteamHttpClient _http;
 
@@ -39,7 +38,6 @@ class ForumBatchApi {
     return BatchExecuteResponse.fromJson(raw);
   }
 }
-
 
 class CategoriesApi {
   final LolzteamHttpClient _http;
@@ -64,7 +62,6 @@ class CategoriesApi {
   }
 }
 
-
 class ChatboxApi {
   final LolzteamHttpClient _http;
 
@@ -79,7 +76,8 @@ class ChatboxApi {
     return ChatboxIndexResponse.fromJson(raw);
   }
 
-  Future<ChatboxGetMessagesResponse> getMessages(ChatboxGetMessagesParams? params) async {
+  Future<ChatboxGetMessagesResponse> getMessages(
+      ChatboxGetMessagesParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/chatbox/messages',
@@ -88,7 +86,8 @@ class ChatboxApi {
     return ChatboxGetMessagesResponse.fromJson(raw);
   }
 
-  Future<ChatboxPostMessageResponse> postMessage(ChatboxPostMessageBody? body) async {
+  Future<ChatboxPostMessageResponse> postMessage(
+      ChatboxPostMessageBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/chatbox/messages',
@@ -98,7 +97,8 @@ class ChatboxApi {
     return ChatboxPostMessageResponse.fromJson(raw);
   }
 
-  Future<ChatboxEditMessageResponse> editMessage(ChatboxEditMessageBody? body) async {
+  Future<ChatboxEditMessageResponse> editMessage(
+      ChatboxEditMessageBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/chatbox/messages',
@@ -108,7 +108,8 @@ class ChatboxApi {
     return ChatboxEditMessageResponse.fromJson(raw);
   }
 
-  Future<ChatboxDeleteMessageResponse> deleteMessage(ChatboxDeleteMessageBody? body) async {
+  Future<ChatboxDeleteMessageResponse> deleteMessage(
+      ChatboxDeleteMessageBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/chatbox/messages',
@@ -127,7 +128,8 @@ class ChatboxApi {
     return ChatboxOnlineResponse.fromJson(raw);
   }
 
-  Future<ChatboxReportReasonsResponse> reportReasons(ChatboxReportReasonsParams? params) async {
+  Future<ChatboxReportReasonsResponse> reportReasons(
+      ChatboxReportReasonsParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/chatbox/messages/report',
@@ -146,7 +148,8 @@ class ChatboxApi {
     return ChatboxReportResponse.fromJson(raw);
   }
 
-  Future<ChatboxGetLeaderboardResponse> getLeaderboard(ChatboxGetLeaderboardParams? params) async {
+  Future<ChatboxGetLeaderboardResponse> getLeaderboard(
+      ChatboxGetLeaderboardParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/chatbox/messages/leaderboard',
@@ -163,7 +166,8 @@ class ChatboxApi {
     return ChatboxGetIgnoreResponse.fromJson(raw);
   }
 
-  Future<ChatboxPostIgnoreResponse> postIgnore(ChatboxPostIgnoreBody? body) async {
+  Future<ChatboxPostIgnoreResponse> postIgnore(
+      ChatboxPostIgnoreBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/chatbox/ignore',
@@ -173,7 +177,8 @@ class ChatboxApi {
     return ChatboxPostIgnoreResponse.fromJson(raw);
   }
 
-  Future<ChatboxDeleteIgnoreResponse> deleteIgnore(ChatboxDeleteIgnoreBody? body) async {
+  Future<ChatboxDeleteIgnoreResponse> deleteIgnore(
+      ChatboxDeleteIgnoreBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/chatbox/ignore',
@@ -184,13 +189,13 @@ class ChatboxApi {
   }
 }
 
-
 class ConversationsApi {
   final LolzteamHttpClient _http;
 
   ConversationsApi(this._http);
 
-  Future<ConversationsListResponse> list(ConversationsListParams? params) async {
+  Future<ConversationsListResponse> list(
+      ConversationsListParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/conversations',
@@ -199,7 +204,8 @@ class ConversationsApi {
     return ConversationsListResponse.fromJson(raw);
   }
 
-  Future<ConversationsCreateResponse> create(ConversationsCreateBody? body) async {
+  Future<ConversationsCreateResponse> create(
+      ConversationsCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations',
@@ -209,7 +215,8 @@ class ConversationsApi {
     return ConversationsCreateResponse.fromJson(raw);
   }
 
-  Future<ConversationsUpdateResponse> update(ConversationsUpdateBody? body) async {
+  Future<ConversationsUpdateResponse> update(
+      ConversationsUpdateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/conversations',
@@ -219,7 +226,8 @@ class ConversationsApi {
     return ConversationsUpdateResponse.fromJson(raw);
   }
 
-  Future<ConversationsDeleteResponse> delete(ConversationsDeleteBody? body) async {
+  Future<ConversationsDeleteResponse> delete(
+      ConversationsDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/conversations',
@@ -257,7 +265,8 @@ class ConversationsApi {
     return ConversationsGetResponse.fromJson(raw);
   }
 
-  Future<ConversationsMessagesListResponse> messagesList(int conversationId, ConversationsMessagesListParams? params) async {
+  Future<ConversationsMessagesListResponse> messagesList(
+      int conversationId, ConversationsMessagesListParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/conversations/$conversationId/messages',
@@ -266,7 +275,8 @@ class ConversationsApi {
     return ConversationsMessagesListResponse.fromJson(raw);
   }
 
-  Future<ConversationsMessagesCreateResponse> messagesCreate(int conversationId, ConversationsMessagesCreateBody? body) async {
+  Future<ConversationsMessagesCreateResponse> messagesCreate(
+      int conversationId, ConversationsMessagesCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/messages',
@@ -276,7 +286,8 @@ class ConversationsApi {
     return ConversationsMessagesCreateResponse.fromJson(raw);
   }
 
-  Future<ConversationsSearchResponse> search(ConversationsSearchBody? body) async {
+  Future<ConversationsSearchResponse> search(
+      ConversationsSearchBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/search',
@@ -294,7 +305,8 @@ class ConversationsApi {
     return ConversationsMessagesGetResponse.fromJson(raw);
   }
 
-  Future<ConversationsMessagesEditResponse> messagesEdit(int conversationId, int messageId, ConversationsMessagesEditBody? body) async {
+  Future<ConversationsMessagesEditResponse> messagesEdit(int conversationId,
+      int messageId, ConversationsMessagesEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/conversations/$conversationId/messages/$messageId',
@@ -304,7 +316,8 @@ class ConversationsApi {
     return ConversationsMessagesEditResponse.fromJson(raw);
   }
 
-  Future<ConversationsMessagesDeleteResponse> messagesDelete(int conversationId, int messageId) async {
+  Future<ConversationsMessagesDeleteResponse> messagesDelete(
+      int conversationId, int messageId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/conversations/$conversationId/messages/$messageId',
@@ -312,7 +325,8 @@ class ConversationsApi {
     return ConversationsMessagesDeleteResponse.fromJson(raw);
   }
 
-  Future<ConversationsInviteResponse> invite(int conversationId, ConversationsInviteBody? body) async {
+  Future<ConversationsInviteResponse> invite(
+      int conversationId, ConversationsInviteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/invite',
@@ -322,7 +336,8 @@ class ConversationsApi {
     return ConversationsInviteResponse.fromJson(raw);
   }
 
-  Future<ConversationsKickResponse> kick(int conversationId, ConversationsKickBody? body) async {
+  Future<ConversationsKickResponse> kick(
+      int conversationId, ConversationsKickBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/kick',
@@ -348,7 +363,8 @@ class ConversationsApi {
     return ConversationsReadAllResponse.fromJson(raw);
   }
 
-  Future<ConversationsMessagesStickResponse> messagesStick(int conversationId, int messageId) async {
+  Future<ConversationsMessagesStickResponse> messagesStick(
+      int conversationId, int messageId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/messages/$messageId/stick',
@@ -356,7 +372,8 @@ class ConversationsApi {
     return ConversationsMessagesStickResponse.fromJson(raw);
   }
 
-  Future<ConversationsMessagesUnstickResponse> messagesUnstick(int conversationId, int messageId) async {
+  Future<ConversationsMessagesUnstickResponse> messagesUnstick(
+      int conversationId, int messageId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/conversations/$conversationId/messages/$messageId/stick',
@@ -380,7 +397,8 @@ class ConversationsApi {
     return ConversationsUnstarResponse.fromJson(raw);
   }
 
-  Future<ConversationsAlertsEnableResponse> alertsEnable(int conversationId) async {
+  Future<ConversationsAlertsEnableResponse> alertsEnable(
+      int conversationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/alerts',
@@ -388,7 +406,8 @@ class ConversationsApi {
     return ConversationsAlertsEnableResponse.fromJson(raw);
   }
 
-  Future<ConversationsAlertsDisableResponse> alertsDisable(int conversationId) async {
+  Future<ConversationsAlertsDisableResponse> alertsDisable(
+      int conversationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/conversations/$conversationId/alerts',
@@ -396,7 +415,6 @@ class ConversationsApi {
     return ConversationsAlertsDisableResponse.fromJson(raw);
   }
 }
-
 
 class FormsApi {
   final LolzteamHttpClient _http;
@@ -422,7 +440,6 @@ class FormsApi {
     return FormsCreateResponse.fromJson(raw);
   }
 }
-
 
 class ForumsApi {
   final LolzteamHttpClient _http;
@@ -462,7 +479,8 @@ class ForumsApi {
     return ForumsFollowersResponse.fromJson(raw);
   }
 
-  Future<ForumsFollowResponse> follow(int forumId, ForumsFollowBody? body) async {
+  Future<ForumsFollowResponse> follow(
+      int forumId, ForumsFollowBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/forums/$forumId/followers',
@@ -497,7 +515,8 @@ class ForumsApi {
     return ForumsGetFeedOptionsResponse.fromJson(raw);
   }
 
-  Future<ForumsEditFeedOptionsResponse> editFeedOptions(ForumsEditFeedOptionsBody? body) async {
+  Future<ForumsEditFeedOptionsResponse> editFeedOptions(
+      ForumsEditFeedOptionsBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/forums/feed/options',
@@ -507,7 +526,6 @@ class ForumsApi {
     return ForumsEditFeedOptionsResponse.fromJson(raw);
   }
 }
-
 
 class LinksApi {
   final LolzteamHttpClient _http;
@@ -531,7 +549,6 @@ class LinksApi {
   }
 }
 
-
 class NavigationApi {
   final LolzteamHttpClient _http;
 
@@ -547,13 +564,13 @@ class NavigationApi {
   }
 }
 
-
 class NotificationsApi {
   final LolzteamHttpClient _http;
 
   NotificationsApi(this._http);
 
-  Future<NotificationsListResponse> list(NotificationsListParams? params) async {
+  Future<NotificationsListResponse> list(
+      NotificationsListParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/notifications',
@@ -581,7 +598,6 @@ class NotificationsApi {
   }
 }
 
-
 class OAuthApi {
   final LolzteamHttpClient _http;
 
@@ -597,7 +613,6 @@ class OAuthApi {
     return OAuthTokenResponse.fromJson(raw);
   }
 }
-
 
 class PagesApi {
   final LolzteamHttpClient _http;
@@ -621,7 +636,6 @@ class PagesApi {
     return PagesGetResponse.fromJson(raw);
   }
 }
-
 
 class PostsApi {
   final LolzteamHttpClient _http;
@@ -718,7 +732,8 @@ class PostsApi {
     return PostsReportResponse.fromJson(raw);
   }
 
-  Future<PostsCommentsGetResponse> commentsGet(PostsCommentsGetParams? params) async {
+  Future<PostsCommentsGetResponse> commentsGet(
+      PostsCommentsGetParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/posts/comments',
@@ -727,7 +742,8 @@ class PostsApi {
     return PostsCommentsGetResponse.fromJson(raw);
   }
 
-  Future<PostsCommentsCreateResponse> commentsCreate(PostsCommentsCreateBody? body) async {
+  Future<PostsCommentsCreateResponse> commentsCreate(
+      PostsCommentsCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/posts/comments',
@@ -737,7 +753,8 @@ class PostsApi {
     return PostsCommentsCreateResponse.fromJson(raw);
   }
 
-  Future<PostsCommentsEditResponse> commentsEdit(PostsCommentsEditBody? body) async {
+  Future<PostsCommentsEditResponse> commentsEdit(
+      PostsCommentsEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/posts/comments',
@@ -747,7 +764,8 @@ class PostsApi {
     return PostsCommentsEditResponse.fromJson(raw);
   }
 
-  Future<PostsCommentsDeleteResponse> commentsDelete(PostsCommentsDeleteBody? body) async {
+  Future<PostsCommentsDeleteResponse> commentsDelete(
+      PostsCommentsDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/posts/comments',
@@ -757,7 +775,8 @@ class PostsApi {
     return PostsCommentsDeleteResponse.fromJson(raw);
   }
 
-  Future<PostsCommentsReportResponse> commentsReport(PostsCommentsReportBody? body) async {
+  Future<PostsCommentsReportResponse> commentsReport(
+      PostsCommentsReportBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/posts/comments/report',
@@ -768,13 +787,13 @@ class PostsApi {
   }
 }
 
-
 class ProfilePostsApi {
   final LolzteamHttpClient _http;
 
   ProfilePostsApi(this._http);
 
-  Future<ProfilePostsListResponse> list(Object userId, ProfilePostsListParams? params) async {
+  Future<ProfilePostsListResponse> list(
+      Object userId, ProfilePostsListParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/users/$userId/profile-posts',
@@ -791,7 +810,8 @@ class ProfilePostsApi {
     return ProfilePostsGetResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsEditResponse> edit(int profilePostId, ProfilePostsEditBody? body) async {
+  Future<ProfilePostsEditResponse> edit(
+      int profilePostId, ProfilePostsEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/profile-posts/$profilePostId',
@@ -801,7 +821,8 @@ class ProfilePostsApi {
     return ProfilePostsEditResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsDeleteResponse> delete(int profilePostId, ProfilePostsDeleteParams? params) async {
+  Future<ProfilePostsDeleteResponse> delete(
+      int profilePostId, ProfilePostsDeleteParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/profile-posts/$profilePostId',
@@ -810,7 +831,8 @@ class ProfilePostsApi {
     return ProfilePostsDeleteResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsReportReasonsResponse> reportReasons(int profilePostId) async {
+  Future<ProfilePostsReportReasonsResponse> reportReasons(
+      int profilePostId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/profile-posts/$profilePostId/report',
@@ -818,7 +840,8 @@ class ProfilePostsApi {
     return ProfilePostsReportReasonsResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsReportResponse> report(int profilePostId, ProfilePostsReportBody? body) async {
+  Future<ProfilePostsReportResponse> report(
+      int profilePostId, ProfilePostsReportBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/profile-posts/$profilePostId/report',
@@ -828,7 +851,8 @@ class ProfilePostsApi {
     return ProfilePostsReportResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsCreateResponse> create(ProfilePostsCreateBody? body) async {
+  Future<ProfilePostsCreateResponse> create(
+      ProfilePostsCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/profile-posts',
@@ -878,7 +902,8 @@ class ProfilePostsApi {
     return ProfilePostsUnlikeResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsCommentsListResponse> commentsList(ProfilePostsCommentsListParams? params) async {
+  Future<ProfilePostsCommentsListResponse> commentsList(
+      ProfilePostsCommentsListParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/profile-posts/comments',
@@ -887,7 +912,8 @@ class ProfilePostsApi {
     return ProfilePostsCommentsListResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsCommentsCreateResponse> commentsCreate(ProfilePostsCommentsCreateBody? body) async {
+  Future<ProfilePostsCommentsCreateResponse> commentsCreate(
+      ProfilePostsCommentsCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/profile-posts/comments',
@@ -897,7 +923,8 @@ class ProfilePostsApi {
     return ProfilePostsCommentsCreateResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsCommentsEditResponse> commentsEdit(ProfilePostsCommentsEditBody? body) async {
+  Future<ProfilePostsCommentsEditResponse> commentsEdit(
+      ProfilePostsCommentsEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/profile-posts/comments',
@@ -907,7 +934,8 @@ class ProfilePostsApi {
     return ProfilePostsCommentsEditResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsCommentsDeleteResponse> commentsDelete(ProfilePostsCommentsDeleteBody? body) async {
+  Future<ProfilePostsCommentsDeleteResponse> commentsDelete(
+      ProfilePostsCommentsDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/profile-posts/comments',
@@ -917,7 +945,8 @@ class ProfilePostsApi {
     return ProfilePostsCommentsDeleteResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsCommentsGetResponse> commentsGet(int profilePostId, int commentId) async {
+  Future<ProfilePostsCommentsGetResponse> commentsGet(
+      int profilePostId, int commentId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/profile-posts/$profilePostId/comments/$commentId',
@@ -925,7 +954,8 @@ class ProfilePostsApi {
     return ProfilePostsCommentsGetResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsCommentsReportResponse> commentsReport(int commentId, ProfilePostsCommentsReportBody? body) async {
+  Future<ProfilePostsCommentsReportResponse> commentsReport(
+      int commentId, ProfilePostsCommentsReportBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/profile-posts/comments/$commentId/report',
@@ -935,7 +965,6 @@ class ProfilePostsApi {
     return ProfilePostsCommentsReportResponse.fromJson(raw);
   }
 }
-
 
 class SearchApi {
   final LolzteamHttpClient _http;
@@ -982,7 +1011,8 @@ class SearchApi {
     return SearchUsersResponse.fromJson(raw);
   }
 
-  Future<SearchProfilePostsResponse> profilePosts(SearchProfilePostsBody? body) async {
+  Future<SearchProfilePostsResponse> profilePosts(
+      SearchProfilePostsBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/search/profile-posts',
@@ -1002,7 +1032,8 @@ class SearchApi {
     return SearchTaggedResponse.fromJson(raw);
   }
 
-  Future<SearchResultsResponse> results(Object searchId, SearchResultsParams? params) async {
+  Future<SearchResultsResponse> results(
+      Object searchId, SearchResultsParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/search/$searchId/results',
@@ -1011,7 +1042,6 @@ class SearchApi {
     return SearchResultsResponse.fromJson(raw);
   }
 }
-
 
 class TagsApi {
   final LolzteamHttpClient _http;
@@ -1054,7 +1084,6 @@ class TagsApi {
   }
 }
 
-
 class ThreadsApi {
   final LolzteamHttpClient _http;
 
@@ -1079,7 +1108,8 @@ class ThreadsApi {
     return ThreadsCreateResponse.fromJson(raw);
   }
 
-  Future<ThreadsCreateContestResponse> createContest(ThreadsCreateContestBody body) async {
+  Future<ThreadsCreateContestResponse> createContest(
+      ThreadsCreateContestBody body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/contests',
@@ -1118,7 +1148,8 @@ class ThreadsApi {
     return ThreadsEditResponse.fromJson(raw);
   }
 
-  Future<ThreadsDeleteResponse> delete(int threadId, ThreadsDeleteBody? body) async {
+  Future<ThreadsDeleteResponse> delete(
+      int threadId, ThreadsDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/threads/$threadId',
@@ -1178,7 +1209,8 @@ class ThreadsApi {
     return ThreadsFollowersResponse.fromJson(raw);
   }
 
-  Future<ThreadsFollowResponse> follow(int threadId, ThreadsFollowBody? body) async {
+  Future<ThreadsFollowResponse> follow(
+      int threadId, ThreadsFollowBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/threads/$threadId/followers',
@@ -1196,7 +1228,8 @@ class ThreadsApi {
     return ThreadsUnfollowResponse.fromJson(raw);
   }
 
-  Future<ThreadsFollowedResponse> followed(ThreadsFollowedParams? params) async {
+  Future<ThreadsFollowedResponse> followed(
+      ThreadsFollowedParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/threads/followed',
@@ -1221,7 +1254,8 @@ class ThreadsApi {
     return ThreadsPollGetResponse.fromJson(raw);
   }
 
-  Future<ThreadsPollVoteResponse> pollVote(int threadId, ThreadsPollVoteBody? body) async {
+  Future<ThreadsPollVoteResponse> pollVote(
+      int threadId, ThreadsPollVoteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/threads/$threadId/poll/votes',
@@ -1257,7 +1291,6 @@ class ThreadsApi {
     return ThreadsFinishResponse.fromJson(raw);
   }
 }
-
 
 class UsersApi {
   final LolzteamHttpClient _http;
@@ -1309,7 +1342,8 @@ class UsersApi {
     return UsersEditResponse.fromJson(raw);
   }
 
-  Future<UsersClaimsResponse> claims(Object userId, UsersClaimsParams? params) async {
+  Future<UsersClaimsResponse> claims(
+      Object userId, UsersClaimsParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/users/$userId/claims',
@@ -1318,7 +1352,8 @@ class UsersApi {
     return UsersClaimsResponse.fromJson(raw);
   }
 
-  Future<UsersAvatarUploadResponse> avatarUpload(Object userId, UsersAvatarUploadBody? body) async {
+  Future<UsersAvatarUploadResponse> avatarUpload(
+      Object userId, UsersAvatarUploadBody? body) async {
     if (body != null) {
       final jsonBody = <String, Object?>{
         'x': body.x,
@@ -1354,7 +1389,8 @@ class UsersApi {
     return UsersAvatarDeleteResponse.fromJson(raw);
   }
 
-  Future<UsersAvatarCropResponse> avatarCrop(Object userId, UsersAvatarCropBody? body) async {
+  Future<UsersAvatarCropResponse> avatarCrop(
+      Object userId, UsersAvatarCropBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/users/$userId/avatar/crop',
@@ -1364,7 +1400,8 @@ class UsersApi {
     return UsersAvatarCropResponse.fromJson(raw);
   }
 
-  Future<UsersBackgroundUploadResponse> backgroundUpload(Object userId, UsersBackgroundUploadBody? body) async {
+  Future<UsersBackgroundUploadResponse> backgroundUpload(
+      Object userId, UsersBackgroundUploadBody? body) async {
     if (body != null) {
       final jsonBody = <String, Object?>{
         'x': body.x,
@@ -1400,7 +1437,8 @@ class UsersApi {
     return UsersBackgroundDeleteResponse.fromJson(raw);
   }
 
-  Future<UsersBackgroundCropResponse> backgroundCrop(Object userId, UsersBackgroundCropBody body) async {
+  Future<UsersBackgroundCropResponse> backgroundCrop(
+      Object userId, UsersBackgroundCropBody body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/users/$userId/background/crop',
@@ -1410,7 +1448,8 @@ class UsersApi {
     return UsersBackgroundCropResponse.fromJson(raw);
   }
 
-  Future<UsersFollowersResponse> followers(Object userId, UsersFollowersParams? params) async {
+  Future<UsersFollowersResponse> followers(
+      Object userId, UsersFollowersParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/users/$userId/followers',
@@ -1435,7 +1474,8 @@ class UsersApi {
     return UsersUnfollowResponse.fromJson(raw);
   }
 
-  Future<UsersFollowingsResponse> followings(Object userId, UsersFollowingsParams? params) async {
+  Future<UsersFollowingsResponse> followings(
+      Object userId, UsersFollowingsParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/users/$userId/followings',
@@ -1444,7 +1484,8 @@ class UsersApi {
     return UsersFollowingsResponse.fromJson(raw);
   }
 
-  Future<UsersLikesResponse> likes(Object userId, UsersLikesParams? params) async {
+  Future<UsersLikesResponse> likes(
+      Object userId, UsersLikesParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/users/$userId/likes',
@@ -1470,7 +1511,8 @@ class UsersApi {
     return UsersIgnoreResponse.fromJson(raw);
   }
 
-  Future<UsersIgnoreEditResponse> ignoreEdit(Object userId, UsersIgnoreEditParams? params) async {
+  Future<UsersIgnoreEditResponse> ignoreEdit(
+      Object userId, UsersIgnoreEditParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/users/$userId/ignore',
@@ -1487,7 +1529,8 @@ class UsersApi {
     return UsersUnignoreResponse.fromJson(raw);
   }
 
-  Future<UsersContentsResponse> contents(Object userId, UsersContentsParams? params) async {
+  Future<UsersContentsResponse> contents(
+      Object userId, UsersContentsParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/users/$userId/timeline',
@@ -1529,7 +1572,6 @@ class UsersApi {
   }
 }
 
-
 class ForumClient {
   final AssetsApi assets;
   final ForumBatchApi batch;
@@ -1552,13 +1594,33 @@ class ForumClient {
 
   final LolzteamHttpClient _http;
 
-  ForumClient._({required LolzteamHttpClient http, required this.assets, required this.batch, required this.categories, required this.chatbox, required this.conversations, required this.forms, required this.forums, required this.links, required this.navigation, required this.notifications, required this.oAuth, required this.pages, required this.posts, required this.profilePosts, required this.search, required this.tags, required this.threads, required this.users, }) : _http = http;
+  ForumClient._({
+    required LolzteamHttpClient http,
+    required this.assets,
+    required this.batch,
+    required this.categories,
+    required this.chatbox,
+    required this.conversations,
+    required this.forms,
+    required this.forums,
+    required this.links,
+    required this.navigation,
+    required this.notifications,
+    required this.oAuth,
+    required this.pages,
+    required this.posts,
+    required this.profilePosts,
+    required this.search,
+    required this.tags,
+    required this.threads,
+    required this.users,
+  }) : _http = http;
 
   factory ForumClient(ClientConfig config) {
     final http = LolzteamHttpClient(config.copyWith(
       baseUrl: config.baseUrl ?? 'https://prod-api.lolz.live',
-      rateLimit: config.rateLimit ??
-          const RateLimitConfig(requestsPerMinute: 300),
+      rateLimit:
+          config.rateLimit ?? const RateLimitConfig(requestsPerMinute: 300),
     ));
     final assets = AssetsApi(http);
     final batch = ForumBatchApi(http);
@@ -1605,4 +1667,3 @@ class ForumClient {
     _http.close();
   }
 }
-

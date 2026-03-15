@@ -48,8 +48,7 @@ void main() {
   final groupCounts = <String, int>{};
   for (final (_, result) in parsed) {
     for (final group in result.groups) {
-      groupCounts[group.groupName] =
-          (groupCounts[group.groupName] ?? 0) + 1;
+      groupCounts[group.groupName] = (groupCounts[group.groupName] ?? 0) + 1;
     }
   }
   final conflictingGroups = {

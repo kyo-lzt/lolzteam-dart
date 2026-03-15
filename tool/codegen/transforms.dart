@@ -78,7 +78,20 @@ String schemaToTypeString(Object? schema, Map<String, dynamic> spec,
 
   if (schema is! Map<String, dynamic>) return 'unknown';
 
-  // enum
+  // Check type BEFORE enum — if type is a known non-string primitive with enum, return the primitive type
+  final typeElEarly = schema['type'];
+  final typeEarly = typeElEarly is String ? typeElEarly : null;
+  if (typeEarly != null &&
+      (typeEarly == 'integer' ||
+          typeEarly == 'number' ||
+          typeEarly == 'boolean')) {
+    final enumCheck = schema['enum'];
+    if (enumCheck is List && enumCheck.isNotEmpty) {
+      return _primitiveType(typeEarly);
+    }
+  }
+
+  // enum (string literals)
   final enumValues = schema['enum'];
   if (enumValues is List && enumValues.isNotEmpty) {
     final literals = <String>[];
@@ -169,6 +182,13 @@ String toDartType(String tsType, {Set<String> knownSchemas = const {}}) {
   if (knownSchemas.contains(tsType)) {
     return componentSchemaToDartName(tsType);
   }
+
+  // Array<T> — check BEFORE union to avoid splitting Array<"a" | "b"> on ' | '
+  final arrayMatch = RegExp(r'^Array<(.+)>$').firstMatch(tsType);
+  if (arrayMatch != null) {
+    return 'List<${toDartType(arrayMatch.group(1)!, knownSchemas: knownSchemas)}>';
+  }
+
   // Union types
   if (tsType.contains(' | ') || tsType.contains(' & ')) {
     final parts = tsType.split(' | ').map((s) => s.trim()).toList();
@@ -184,14 +204,14 @@ String toDartType(String tsType, {Set<String> knownSchemas = const {}}) {
     return 'Object';
   }
 
-  // Array<T>
-  final arrayMatch = RegExp(r'^Array<(.+)>$').firstMatch(tsType);
-  if (arrayMatch != null) {
-    return 'List<${toDartType(arrayMatch.group(1)!, knownSchemas: knownSchemas)}>';
+  // Record<string, T> → Map<String, DartType>
+  final recordMatch = RegExp(r'^Record<string, (.+)>$').firstMatch(tsType);
+  if (recordMatch != null) {
+    return 'Map<String, ${toDartType(recordMatch.group(1)!, knownSchemas: knownSchemas)}>';
   }
 
   // Inline objects
-  if (tsType.startsWith('{') || tsType.contains('Record<')) {
+  if (tsType.startsWith('{')) {
     return 'Map<String, dynamic>';
   }
 
@@ -523,8 +543,7 @@ ResponseSchema extractResponseSchema(
   for (final entry in rawProps.entries) {
     final propSchema = entry.value;
     if (propSchema is! Map<String, dynamic>) continue;
-    properties[entry.key] =
-        _schemaToProperty(entry.key, propSchema, rawSpec);
+    properties[entry.key] = _schemaToProperty(entry.key, propSchema, rawSpec);
   }
 
   return ResponseSchema(properties: properties);

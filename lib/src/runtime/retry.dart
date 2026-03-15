@@ -7,7 +7,9 @@ import 'exceptions.dart';
 bool _isRetryable(Object error) {
   if (error is RateLimitException) return true;
   if (error is ServerException) {
-    return error.statusCode == 502 || error.statusCode == 503 || error.statusCode == 504;
+    return error.statusCode == 502 ||
+        error.statusCode == 503 ||
+        error.statusCode == 504;
   }
   if (error is NetworkException && error.isTransient) return true;
   return false;

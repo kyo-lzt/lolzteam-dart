@@ -100,14 +100,32 @@ String? _emitBodyClass(String group, MethodDefinition method) {
 
 // ─── Component Schema Classes ─────────────────────────────────────────────────
 
-String _emitComponentSchemaClass(ComponentSchema schema) {
+String _emitComponentSchemaClass(
+    ComponentSchema schema, Set<String> inlineClassNames) {
+  final parts = <String>[];
+
+  // Emit inline object classes first
+  for (final prop in schema.properties.values) {
+    if (prop.isInlineObject &&
+        prop.inlineProperties != null &&
+        prop.inlineProperties!.isNotEmpty) {
+      final inlineName = _inlineClassName(schema.dartName, prop.name);
+      if (!inlineClassNames.contains(inlineName)) {
+        inlineClassNames.add(inlineName);
+        parts.add(_emitInlineClass(inlineName, prop.inlineProperties!,
+            inlineClassNames: inlineClassNames));
+      }
+    }
+  }
+
   final sb = StringBuffer();
   sb.writeln('class ${schema.dartName} {');
 
   // Fields
   for (final prop in schema.properties.values) {
     final dartName = safeDartName(prop.name);
-    sb.writeln('  final ${prop.dartType}? $dartName;');
+    final dartType = _resolvePropertyDartType(schema.dartName, prop);
+    sb.writeln('  final $dartType? $dartName;');
   }
 
   sb.writeln();
@@ -126,12 +144,15 @@ String _emitComponentSchemaClass(ComponentSchema schema) {
       '  factory ${schema.dartName}.fromJson(Map<String, dynamic> json) => ${schema.dartName}(');
   for (final prop in schema.properties.values) {
     final dartName = safeDartName(prop.name);
-    sb.writeln('    $dartName: ${_emitFromJsonExpr("json['${prop.name}']", prop)},');
+    sb.writeln(
+        '    $dartName: ${_emitFromJsonExpr("json['${prop.name}']", prop, parentTypeName: schema.dartName)},');
   }
   sb.writeln('  );');
 
   sb.write('}');
-  return sb.toString();
+  parts.add(sb.toString());
+
+  return parts.join('\n\n');
 }
 
 // ─── Response Classes ─────────────────────────────────────────────────────────
@@ -150,11 +171,14 @@ String _emitResponseClass(
 
   // Emit inline object classes first
   for (final prop in schema.properties.values) {
-    if (prop.isInlineObject && prop.inlineProperties != null) {
+    if (prop.isInlineObject &&
+        prop.inlineProperties != null &&
+        prop.inlineProperties!.isNotEmpty) {
       final inlineName = _inlineClassName(typeName, prop.name);
       if (!inlineClassNames.contains(inlineName)) {
         inlineClassNames.add(inlineName);
-        parts.add(_emitInlineClass(inlineName, prop.inlineProperties!));
+        parts.add(_emitInlineClass(inlineName, prop.inlineProperties!,
+            inlineClassNames: inlineClassNames));
       }
     }
   }
@@ -202,27 +226,49 @@ String _emitResponseClass(
 }
 
 String _resolvePropertyDartType(String parentTypeName, SchemaProperty prop) {
-  if (prop.isInlineObject && prop.inlineProperties != null) {
+  if (prop.isInlineObject &&
+      prop.inlineProperties != null &&
+      prop.inlineProperties!.isNotEmpty) {
     return _inlineClassName(parentTypeName, prop.name);
   }
   return prop.dartType;
 }
 
 String _inlineClassName(String parentTypeName, String propName) {
-  final parts = propName.split('_');
-  final pascalProp =
-      parts.map((p) => p.isEmpty ? '' : p[0].toUpperCase() + p.substring(1)).join('');
+  final parts = propName.split(RegExp(r'[_.]'));
+  final pascalProp = parts
+      .map((p) => p.isEmpty ? '' : p[0].toUpperCase() + p.substring(1))
+      .join('');
   return '$parentTypeName$pascalProp';
 }
 
 String _emitInlineClass(
-    String className, Map<String, SchemaProperty> properties) {
+    String className, Map<String, SchemaProperty> properties,
+    {Set<String>? inlineClassNames}) {
+  final seen = inlineClassNames ?? <String>{};
+  final parts = <String>[];
+
+  // Emit nested inline object classes first (recursive)
+  for (final prop in properties.values) {
+    if (prop.isInlineObject &&
+        prop.inlineProperties != null &&
+        prop.inlineProperties!.isNotEmpty) {
+      final inlineName = _inlineClassName(className, prop.name);
+      if (!seen.contains(inlineName)) {
+        seen.add(inlineName);
+        parts.add(_emitInlineClass(inlineName, prop.inlineProperties!,
+            inlineClassNames: seen));
+      }
+    }
+  }
+
   final sb = StringBuffer();
   sb.writeln('class $className {');
 
   for (final prop in properties.values) {
     final dartName = safeDartName(prop.name);
-    sb.writeln('  final ${prop.dartType}? $dartName;');
+    final dartType = _resolvePropertyDartType(className, prop);
+    sb.writeln('  final $dartType? $dartName;');
   }
 
   sb.writeln();
@@ -240,28 +286,28 @@ String _emitInlineClass(
   for (final prop in properties.values) {
     final dartName = safeDartName(prop.name);
     sb.writeln(
-        '    $dartName: ${_emitFromJsonExpr("json['${prop.name}']", prop)},');
+        '    $dartName: ${_emitFromJsonExpr("json['${prop.name}']", prop, parentTypeName: className)},');
   }
   sb.writeln('  );');
 
   sb.write('}');
-  return sb.toString();
+  parts.add(sb.toString());
+
+  return parts.join('\n\n');
 }
 
 /// Generate a fromJson expression for a single property.
 String _emitFromJsonExpr(String accessor, SchemaProperty prop,
     {String? parentTypeName}) {
   if (prop.isComponentRef && prop.componentRefName != null) {
-    final dartName =
-        componentSchemaToDartName(prop.componentRefName!);
+    final dartName = componentSchemaToDartName(prop.componentRefName!);
     return '$accessor != null'
         '\n            ? $dartName.fromJson($accessor as Map<String, dynamic>)'
         '\n            : null';
   }
 
   if (prop.isArrayOfComponentRef && prop.arrayItemComponentName != null) {
-    final dartName =
-        componentSchemaToDartName(prop.arrayItemComponentName!);
+    final dartName = componentSchemaToDartName(prop.arrayItemComponentName!);
     return '($accessor as List<dynamic>?)'
         '\n            ?.map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
         '\n            .toList()';
@@ -269,6 +315,7 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
 
   if (prop.isInlineObject &&
       prop.inlineProperties != null &&
+      prop.inlineProperties!.isNotEmpty &&
       parentTypeName != null) {
     final inlineName = _inlineClassName(parentTypeName, prop.name);
     return '$accessor != null'
@@ -307,19 +354,19 @@ String emitDartTypesFile(
   sb.writeln('// Auto-generated. DO NOT EDIT.');
   sb.writeln();
 
+  final inlineClassNames = <String>{};
+
   // Emit component schema classes first
   if (componentSchemas.isNotEmpty) {
     sb.writeln(
         '// ─── Component Schemas ────────────────────────────────────────');
     sb.writeln();
     final schemaClasses = componentSchemas.values
-        .map(_emitComponentSchemaClass)
+        .map((s) => _emitComponentSchemaClass(s, inlineClassNames))
         .join('\n\n');
     sb.writeln(schemaClasses);
     sb.writeln();
   }
-
-  final inlineClassNames = <String>{};
 
   for (final group in groups) {
     final groupTypes = <String>[];
@@ -400,8 +447,7 @@ String _emitDartMethod(String group, MethodDefinition method) {
 
   // When typed response, use `final raw = await _http.request(...)` then
   // `return ResponseType.fromJson(raw)`. Otherwise `return _http.request(...)`.
-  final returnPrefix =
-      hasTypedResponse ? 'final raw = await ' : 'return ';
+  final returnPrefix = hasTypedResponse ? 'final raw = await ' : 'return ';
 
   sb.writeln('  Future<$responseName> ${method.methodName}($argStr) async {');
 
@@ -515,7 +561,10 @@ String _emitDartMethod(String group, MethodDefinition method) {
       }
     }
 
-    if (group == 'category') {
+    if (group == 'category' &&
+        method.methodName != 'list' &&
+        method.methodName != 'params' &&
+        method.methodName != 'games') {
       sb.writeln('      isSearch: true,');
     }
 
@@ -580,8 +629,8 @@ String emitDartClientFile({
 
   // Group API classes
   for (final group in groups) {
-    final resolvedName = groupToClassNamePrefixed(
-        group.groupName, prefix, conflictingGroups);
+    final resolvedName =
+        groupToClassNamePrefixed(group.groupName, prefix, conflictingGroups);
     sb.writeln(_emitGroupClass(group, classNameOverride: resolvedName));
     sb.writeln();
   }
@@ -590,8 +639,8 @@ String emitDartClientFile({
   sb.writeln('class $clientName {');
 
   for (final group in groups) {
-    final className = groupToClassNamePrefixed(
-        group.groupName, prefix, conflictingGroups);
+    final className =
+        groupToClassNamePrefixed(group.groupName, prefix, conflictingGroups);
     final propName = groupToPropertyName(group.groupName);
     sb.writeln('  final $className $propName;');
   }
@@ -623,8 +672,8 @@ String emitDartClientFile({
   sb.writeln('    ));');
 
   for (final group in groups) {
-    final className = groupToClassNamePrefixed(
-        group.groupName, prefix, conflictingGroups);
+    final className =
+        groupToClassNamePrefixed(group.groupName, prefix, conflictingGroups);
     final propName = groupToPropertyName(group.groupName);
     sb.writeln('    final $propName = $className(http);');
   }
@@ -651,19 +700,20 @@ String emitDartClientFile({
 // ─── Barrel File ──────────────────────────────────────────────────────────────
 
 String emitBarrelFile(
-  List<({
-    String clientName,
-    String subPackage,
-    List<ParsedGroup> groups,
-    Map<String, ComponentSchema> componentSchemas,
-  })> apis,
+  List<
+          ({
+            String clientName,
+            String subPackage,
+            List<ParsedGroup> groups,
+            Map<String, ComponentSchema> componentSchemas,
+          })>
+      apis,
 ) {
   // Detect group names that appear in multiple APIs.
   final groupCounts = <String, int>{};
   for (final api in apis) {
     for (final group in api.groups) {
-      groupCounts[group.groupName] =
-          (groupCounts[group.groupName] ?? 0) + 1;
+      groupCounts[group.groupName] = (groupCounts[group.groupName] ?? 0) + 1;
     }
   }
   final conflicts = {
@@ -722,8 +772,7 @@ String emitBarrelFile(
           .map((s) => s.dartName)
           .toList();
       if (hiddenNames.isNotEmpty) {
-        sb.writeln(
-            "export 'src/generated/${api.subPackage}/types.dart'");
+        sb.writeln("export 'src/generated/${api.subPackage}/types.dart'");
         sb.writeln('    hide');
         for (var i = 0; i < hiddenNames.length; i++) {
           final comma = i < hiddenNames.length - 1 ? ',' : ';';

@@ -2,6 +2,22 @@
 
 // ─── Component Schemas ────────────────────────────────────────
 
+class RespNotificationModelLinks {
+  final String? content;
+  final String? creatorAvatar;
+
+  const RespNotificationModelLinks({
+    this.content,
+    this.creatorAvatar,
+  });
+
+  factory RespNotificationModelLinks.fromJson(Map<String, dynamic> json) =>
+      RespNotificationModelLinks(
+        content: json['content'] as String?,
+        creatorAvatar: json['creator_avatar'] as String?,
+      );
+}
+
 class RespNotificationModel {
   final int? notificationId;
   final int? notificationCreateDate;
@@ -13,7 +29,7 @@ class RespNotificationModel {
   final String? creatorUsername;
   final String? creatorUsernameHtml;
   final String? notificationType;
-  final Object? links;
+  final RespNotificationModelLinks? links;
   final String? notificationHtml;
 
   const RespNotificationModel({
@@ -31,28 +47,61 @@ class RespNotificationModel {
     this.notificationHtml,
   });
 
-  factory RespNotificationModel.fromJson(Map<String, dynamic> json) => RespNotificationModel(
-    notificationId: json['notification_id'] as int?,
-    notificationCreateDate: json['notification_create_date'] as int?,
-    contentType: json['content_type'] as String?,
-    contentId: json['content_id'] as int?,
-    contentAction: json['content_action'] as String?,
-    notificationIsUnread: json['notification_is_unread'] as bool?,
-    creatorUserId: json['creator_user_id'] as int?,
-    creatorUsername: json['creator_username'] as String?,
-    creatorUsernameHtml: json['creator_username_html'] as String?,
-    notificationType: json['notification_type'] as String?,
-    links: json['links'] as Object?,
-    notificationHtml: json['notification_html'] as String?,
-  );
+  factory RespNotificationModel.fromJson(Map<String, dynamic> json) =>
+      RespNotificationModel(
+        notificationId: json['notification_id'] as int?,
+        notificationCreateDate: json['notification_create_date'] as int?,
+        contentType: json['content_type'] as String?,
+        contentId: json['content_id'] as int?,
+        contentAction: json['content_action'] as String?,
+        notificationIsUnread: json['notification_is_unread'] as bool?,
+        creatorUserId: json['creator_user_id'] as int?,
+        creatorUsername: json['creator_username'] as String?,
+        creatorUsernameHtml: json['creator_username_html'] as String?,
+        notificationType: json['notification_type'] as String?,
+        links: json['links'] != null
+            ? RespNotificationModelLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        notificationHtml: json['notification_html'] as String?,
+      );
+}
+
+class RespLinkModelLinks {
+  final String? target;
+  final String? detail;
+
+  const RespLinkModelLinks({
+    this.target,
+    this.detail,
+  });
+
+  factory RespLinkModelLinks.fromJson(Map<String, dynamic> json) =>
+      RespLinkModelLinks(
+        target: json['target'] as String?,
+        detail: json['detail'] as String?,
+      );
+}
+
+class RespLinkModelPermissions {
+  final bool? view;
+
+  const RespLinkModelPermissions({
+    this.view,
+  });
+
+  factory RespLinkModelPermissions.fromJson(Map<String, dynamic> json) =>
+      RespLinkModelPermissions(
+        view: json['view'] as bool?,
+      );
 }
 
 class RespLinkModel {
   final int? linkId;
   final String? linkTitle;
   final String? linkDescription;
-  final Object? links;
-  final Object? permissions;
+  final RespLinkModelLinks? links;
+  final RespLinkModelPermissions? permissions;
 
   const RespLinkModel({
     this.linkId,
@@ -63,12 +112,193 @@ class RespLinkModel {
   });
 
   factory RespLinkModel.fromJson(Map<String, dynamic> json) => RespLinkModel(
-    linkId: json['link_id'] as int?,
-    linkTitle: json['link_title'] as String?,
-    linkDescription: json['link_description'] as String?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+        linkId: json['link_id'] as int?,
+        linkTitle: json['link_title'] as String?,
+        linkDescription: json['link_description'] as String?,
+        links: json['links'] != null
+            ? RespLinkModelLinks.fromJson(json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespLinkModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
+class RespChatboxMessageModelRoom {
+  final bool? canReport;
+  final bool? eng;
+  final bool? market;
+  final int? roomId;
+  final String? title;
+
+  const RespChatboxMessageModelRoom({
+    this.canReport,
+    this.eng,
+    this.market,
+    this.roomId,
+    this.title,
+  });
+
+  factory RespChatboxMessageModelRoom.fromJson(Map<String, dynamic> json) =>
+      RespChatboxMessageModelRoom(
+        canReport: json['can_report'] as bool?,
+        eng: json['eng'] as bool?,
+        market: json['market'] as bool?,
+        roomId: json['room_id'] as int?,
+        title: json['title'] as String?,
+      );
+}
+
+class RespChatboxMessageModelUserRenderedAvatars {
+  final String? l;
+  final String? m;
+  final String? s;
+
+  const RespChatboxMessageModelUserRenderedAvatars({
+    this.l,
+    this.m,
+    this.s,
+  });
+
+  factory RespChatboxMessageModelUserRenderedAvatars.fromJson(
+          Map<String, dynamic> json) =>
+      RespChatboxMessageModelUserRenderedAvatars(
+        l: json['l'] as String?,
+        m: json['m'] as String?,
+        s: json['s'] as String?,
+      );
+}
+
+class RespChatboxMessageModelUserRendered {
+  final String? username;
+  final RespChatboxMessageModelUserRenderedAvatars? avatars;
+  final String? link;
+
+  const RespChatboxMessageModelUserRendered({
+    this.username,
+    this.avatars,
+    this.link,
+  });
+
+  factory RespChatboxMessageModelUserRendered.fromJson(
+          Map<String, dynamic> json) =>
+      RespChatboxMessageModelUserRendered(
+        username: json['username'] as String?,
+        avatars: json['avatars'] != null
+            ? RespChatboxMessageModelUserRenderedAvatars.fromJson(
+                json['avatars'] as Map<String, dynamic>)
+            : null,
+        link: json['link'] as String?,
+      );
+}
+
+class RespChatboxMessageModelUserUniqBanner {
+  final String? bannerCss;
+  final String? bannerText;
+  final String? bannerIcon;
+  final String? usernameIcon;
+
+  const RespChatboxMessageModelUserUniqBanner({
+    this.bannerCss,
+    this.bannerText,
+    this.bannerIcon,
+    this.usernameIcon,
+  });
+
+  factory RespChatboxMessageModelUserUniqBanner.fromJson(
+          Map<String, dynamic> json) =>
+      RespChatboxMessageModelUserUniqBanner(
+        bannerCss: json['banner_css'] as String?,
+        bannerText: json['banner_text'] as String?,
+        bannerIcon: json['banner_icon'] as String?,
+        usernameIcon: json['username_icon'] as String?,
+      );
+}
+
+class RespChatboxMessageModelUser {
+  final int? avatarDate;
+  final int? backgroundDate;
+  final int? contestCount;
+  final String? customTitle;
+  final int? displayBannerId;
+  final int? displayIconGroupId;
+  final int? displayStyleGroupId;
+  final bool? isAdmin;
+  final bool? isBanned;
+  final bool? isModerator;
+  final bool? isStaff;
+  final int? lastActivity;
+  final int? like2Count;
+  final int? likeCount;
+  final int? messageCount;
+  final int? registerDate;
+  final RespChatboxMessageModelUserRendered? rendered;
+  final String? shortLink;
+  final int? trophyPoints;
+  final RespChatboxMessageModelUserUniqBanner? uniqBanner;
+  final String? uniqUsernameCss;
+  final int? userId;
+  final String? username;
+
+  const RespChatboxMessageModelUser({
+    this.avatarDate,
+    this.backgroundDate,
+    this.contestCount,
+    this.customTitle,
+    this.displayBannerId,
+    this.displayIconGroupId,
+    this.displayStyleGroupId,
+    this.isAdmin,
+    this.isBanned,
+    this.isModerator,
+    this.isStaff,
+    this.lastActivity,
+    this.like2Count,
+    this.likeCount,
+    this.messageCount,
+    this.registerDate,
+    this.rendered,
+    this.shortLink,
+    this.trophyPoints,
+    this.uniqBanner,
+    this.uniqUsernameCss,
+    this.userId,
+    this.username,
+  });
+
+  factory RespChatboxMessageModelUser.fromJson(Map<String, dynamic> json) =>
+      RespChatboxMessageModelUser(
+        avatarDate: json['avatar_date'] as int?,
+        backgroundDate: json['background_date'] as int?,
+        contestCount: json['contest_count'] as int?,
+        customTitle: json['custom_title'] as String?,
+        displayBannerId: json['display_banner_id'] as int?,
+        displayIconGroupId: json['display_icon_group_id'] as int?,
+        displayStyleGroupId: json['display_style_group_id'] as int?,
+        isAdmin: json['is_admin'] as bool?,
+        isBanned: json['is_banned'] as bool?,
+        isModerator: json['is_moderator'] as bool?,
+        isStaff: json['is_staff'] as bool?,
+        lastActivity: json['last_activity'] as int?,
+        like2Count: json['like2_count'] as int?,
+        likeCount: json['like_count'] as int?,
+        messageCount: json['message_count'] as int?,
+        registerDate: json['register_date'] as int?,
+        rendered: json['rendered'] != null
+            ? RespChatboxMessageModelUserRendered.fromJson(
+                json['rendered'] as Map<String, dynamic>)
+            : null,
+        shortLink: json['short_link'] as String?,
+        trophyPoints: json['trophy_points'] as int?,
+        uniqBanner: json['uniq_banner'] != null
+            ? RespChatboxMessageModelUserUniqBanner.fromJson(
+                json['uniq_banner'] as Map<String, dynamic>)
+            : null,
+        uniqUsernameCss: json['uniq_username_css'] as String?,
+        userId: json['user_id'] as int?,
+        username: json['username'] as String?,
+      );
 }
 
 class RespChatboxMessageModel {
@@ -79,8 +309,8 @@ class RespChatboxMessageModel {
   final int? messageId;
   final String? messageJson;
   final String? messageRaw;
-  final Object? room;
-  final Object? user;
+  final RespChatboxMessageModelRoom? room;
+  final RespChatboxMessageModelUser? user;
 
   const RespChatboxMessageModel({
     this.canReport,
@@ -94,17 +324,224 @@ class RespChatboxMessageModel {
     this.user,
   });
 
-  factory RespChatboxMessageModel.fromJson(Map<String, dynamic> json) => RespChatboxMessageModel(
-    canReport: json['can_report'] as bool?,
-    date: json['date'] as int?,
-    isDeleted: json['is_deleted'] as bool?,
-    message: json['message'] as String?,
-    messageId: json['message_id'] as int?,
-    messageJson: json['messageJson'] as String?,
-    messageRaw: json['messageRaw'] as String?,
-    room: json['room'] as Object?,
-    user: json['user'] as Object?,
-  );
+  factory RespChatboxMessageModel.fromJson(Map<String, dynamic> json) =>
+      RespChatboxMessageModel(
+        canReport: json['can_report'] as bool?,
+        date: json['date'] as int?,
+        isDeleted: json['is_deleted'] as bool?,
+        message: json['message'] as String?,
+        messageId: json['message_id'] as int?,
+        messageJson: json['messageJson'] as String?,
+        messageRaw: json['messageRaw'] as String?,
+        room: json['room'] != null
+            ? RespChatboxMessageModelRoom.fromJson(
+                json['room'] as Map<String, dynamic>)
+            : null,
+        user: json['user'] != null
+            ? RespChatboxMessageModelUser.fromJson(
+                json['user'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
+class RespUserModelLinks {
+  final String? permalink;
+  final String? detail;
+  final String? avatar;
+  final String? avatarBig;
+  final String? avatarSmall;
+  final String? followers;
+  final String? followings;
+  final String? ignore;
+  final String? backgroundL;
+  final String? backgroundM;
+  final String? status;
+  final String? timeline;
+
+  const RespUserModelLinks({
+    this.permalink,
+    this.detail,
+    this.avatar,
+    this.avatarBig,
+    this.avatarSmall,
+    this.followers,
+    this.followings,
+    this.ignore,
+    this.backgroundL,
+    this.backgroundM,
+    this.status,
+    this.timeline,
+  });
+
+  factory RespUserModelLinks.fromJson(Map<String, dynamic> json) =>
+      RespUserModelLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        avatar: json['avatar'] as String?,
+        avatarBig: json['avatar_big'] as String?,
+        avatarSmall: json['avatar_small'] as String?,
+        followers: json['followers'] as String?,
+        followings: json['followings'] as String?,
+        ignore: json['ignore'] as String?,
+        backgroundL: json['background_l'] as String?,
+        backgroundM: json['background_m'] as String?,
+        status: json['status'] as String?,
+        timeline: json['timeline'] as String?,
+      );
+}
+
+class RespUserModelPermissions {
+  final bool? edit;
+  final bool? follow;
+  final bool? ignore;
+  final bool? profilePost;
+
+  const RespUserModelPermissions({
+    this.edit,
+    this.follow,
+    this.ignore,
+    this.profilePost,
+  });
+
+  factory RespUserModelPermissions.fromJson(Map<String, dynamic> json) =>
+      RespUserModelPermissions(
+        edit: json['edit'] as bool?,
+        follow: json['follow'] as bool?,
+        ignore: json['ignore'] as bool?,
+        profilePost: json['profile_post'] as bool?,
+      );
+}
+
+class RespUserModelSelfPermissions {
+  final bool? createConversation;
+
+  const RespUserModelSelfPermissions({
+    this.createConversation,
+  });
+
+  factory RespUserModelSelfPermissions.fromJson(Map<String, dynamic> json) =>
+      RespUserModelSelfPermissions(
+        createConversation: json['create_conversation'] as bool?,
+      );
+}
+
+class RespUserModelEditPermissions {
+  final bool? password;
+  final bool? userEmail;
+  final bool? username;
+  final bool? userTitle;
+  final bool? shortLink;
+  final bool? hideUsernameLogs;
+  final bool? primaryGroupId;
+  final bool? secondaryGroupIds;
+  final bool? userDobDay;
+  final bool? userDobMonth;
+  final bool? userDobYear;
+  final bool? fields;
+
+  const RespUserModelEditPermissions({
+    this.password,
+    this.userEmail,
+    this.username,
+    this.userTitle,
+    this.shortLink,
+    this.hideUsernameLogs,
+    this.primaryGroupId,
+    this.secondaryGroupIds,
+    this.userDobDay,
+    this.userDobMonth,
+    this.userDobYear,
+    this.fields,
+  });
+
+  factory RespUserModelEditPermissions.fromJson(Map<String, dynamic> json) =>
+      RespUserModelEditPermissions(
+        password: json['password'] as bool?,
+        userEmail: json['user_email'] as bool?,
+        username: json['username'] as bool?,
+        userTitle: json['user_title'] as bool?,
+        shortLink: json['short_link'] as bool?,
+        hideUsernameLogs: json['hide_username_logs'] as bool?,
+        primaryGroupId: json['primary_group_id'] as bool?,
+        secondaryGroupIds: json['secondary_group_ids'] as bool?,
+        userDobDay: json['user_dob_day'] as bool?,
+        userDobMonth: json['user_dob_month'] as bool?,
+        userDobYear: json['user_dob_year'] as bool?,
+        fields: json['fields'] as bool?,
+      );
+}
+
+class RespUserModelBirthdayTimeStamp {
+  final String? date;
+  final int? timezoneType;
+  final String? timezone;
+
+  const RespUserModelBirthdayTimeStamp({
+    this.date,
+    this.timezoneType,
+    this.timezone,
+  });
+
+  factory RespUserModelBirthdayTimeStamp.fromJson(Map<String, dynamic> json) =>
+      RespUserModelBirthdayTimeStamp(
+        date: json['date'] as String?,
+        timezoneType: json['timezone_type'] as int?,
+        timezone: json['timezone'] as String?,
+      );
+}
+
+class RespUserModelBirthday {
+  final int? age;
+  final RespUserModelBirthdayTimeStamp? timeStamp;
+  final String? format;
+
+  const RespUserModelBirthday({
+    this.age,
+    this.timeStamp,
+    this.format,
+  });
+
+  factory RespUserModelBirthday.fromJson(Map<String, dynamic> json) =>
+      RespUserModelBirthday(
+        age: json['age'] as int?,
+        timeStamp: json['timeStamp'] != null
+            ? RespUserModelBirthdayTimeStamp.fromJson(
+                json['timeStamp'] as Map<String, dynamic>)
+            : null,
+        format: json['format'] as String?,
+      );
+}
+
+class RespUserModelUserFollowing {
+  final List<Map<String, dynamic>>? users;
+  final int? count;
+
+  const RespUserModelUserFollowing({
+    this.users,
+    this.count,
+  });
+
+  factory RespUserModelUserFollowing.fromJson(Map<String, dynamic> json) =>
+      RespUserModelUserFollowing(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        count: json['count'] as int?,
+      );
+}
+
+class RespUserModelUserFollowers {
+  final List<Map<String, dynamic>>? users;
+  final int? count;
+
+  const RespUserModelUserFollowers({
+    this.users,
+    this.count,
+  });
+
+  factory RespUserModelUserFollowers.fromJson(Map<String, dynamic> json) =>
+      RespUserModelUserFollowers(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        count: json['count'] as int?,
+      );
 }
 
 class RespUserModel {
@@ -135,8 +572,8 @@ class RespUserModel {
   final bool? userIsVerified;
   final bool? userIsFollowed;
   final int? userLastSeenDate;
-  final Object? links;
-  final Object? permissions;
+  final RespUserModelLinks? links;
+  final RespUserModelPermissions? permissions;
   final bool? userIsIgnored;
   final bool? userIsVisitor;
   final int? userGroupId;
@@ -145,13 +582,13 @@ class RespUserModel {
   final List<Map<String, dynamic>>? fields;
   final int? userTimezoneOffset;
   final List<Map<String, dynamic>>? userExternalAuthentications;
-  final Object? selfPermissions;
-  final Object? editPermissions;
-  final Object? birthday;
+  final RespUserModelSelfPermissions? selfPermissions;
+  final RespUserModelEditPermissions? editPermissions;
+  final RespUserModelBirthday? birthday;
   final String? secretAnswerRendered;
   final String? secretAnswerFirstLetter;
-  final Object? userFollowing;
-  final Object? userFollowers;
+  final RespUserModelUserFollowing? userFollowing;
+  final RespUserModelUserFollowers? userFollowers;
   final String? banner;
 
   const RespUserModel({
@@ -203,52 +640,578 @@ class RespUserModel {
   });
 
   factory RespUserModel.fromJson(Map<String, dynamic> json) => RespUserModel(
-    userId: json['user_id'] as int?,
-    username: json['username'] as String?,
-    usernameHtml: json['username_html'] as String?,
-    userMessageCount: json['user_message_count'] as int?,
-    userRegisterDate: json['user_register_date'] as int?,
-    userLikeCount: json['user_like_count'] as int?,
-    userLike2Count: json['user_like2_count'] as int?,
-    contestCount: json['contest_count'] as int?,
-    trophyCount: json['trophy_count'] as int?,
-    shortLink: json['short_link'] as String?,
-    customTitle: json['custom_title'] as String?,
-    isBanned: json['is_banned'] as int?,
-    displayBannerId: json['display_banner_id'] as int?,
-    displayIconGroupId: json['display_icon_group_id'] as int?,
-    balance: json['balance'] as String?,
-    hold: json['hold'] as String?,
-    currency: json['currency'] as String?,
-    userEmail: json['user_email'] as String?,
-    userUnreadNotificationCount: json['user_unread_notification_count'] as int?,
-    userUnreadConversationCount: json['user_unread_conversation_count'] as int?,
-    convWelcomeMessage: json['conv_welcome_message'] as String?,
-    userTitle: json['user_title'] as String?,
-    userDeposit: json['user_deposit'] as int?,
-    userIsValid: json['user_is_valid'] as bool?,
-    userIsVerified: json['user_is_verified'] as bool?,
-    userIsFollowed: json['user_is_followed'] as bool?,
-    userLastSeenDate: json['user_last_seen_date'] as int?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    userIsVisitor: json['user_is_visitor'] as bool?,
-    userGroupId: json['user_group_id'] as int?,
-    curatorTitles: (json['curator_titles'] as List<dynamic>?)?.cast<String>(),
-    userGroups: (json['user_groups'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    fields: (json['fields'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    userTimezoneOffset: json['user_timezone_offset'] as int?,
-    userExternalAuthentications: (json['user_external_authentications'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    selfPermissions: json['self_permissions'] as Object?,
-    editPermissions: json['edit_permissions'] as Object?,
-    birthday: json['birthday'] as Object?,
-    secretAnswerRendered: json['secret_answer_rendered'] as String?,
-    secretAnswerFirstLetter: json['secret_answer_first_letter'] as String?,
-    userFollowing: json['user_following'] as Object?,
-    userFollowers: json['user_followers'] as Object?,
-    banner: json['banner'] as String?,
-  );
+        userId: json['user_id'] as int?,
+        username: json['username'] as String?,
+        usernameHtml: json['username_html'] as String?,
+        userMessageCount: json['user_message_count'] as int?,
+        userRegisterDate: json['user_register_date'] as int?,
+        userLikeCount: json['user_like_count'] as int?,
+        userLike2Count: json['user_like2_count'] as int?,
+        contestCount: json['contest_count'] as int?,
+        trophyCount: json['trophy_count'] as int?,
+        shortLink: json['short_link'] as String?,
+        customTitle: json['custom_title'] as String?,
+        isBanned: json['is_banned'] as int?,
+        displayBannerId: json['display_banner_id'] as int?,
+        displayIconGroupId: json['display_icon_group_id'] as int?,
+        balance: json['balance'] as String?,
+        hold: json['hold'] as String?,
+        currency: json['currency'] as String?,
+        userEmail: json['user_email'] as String?,
+        userUnreadNotificationCount:
+            json['user_unread_notification_count'] as int?,
+        userUnreadConversationCount:
+            json['user_unread_conversation_count'] as int?,
+        convWelcomeMessage: json['conv_welcome_message'] as String?,
+        userTitle: json['user_title'] as String?,
+        userDeposit: json['user_deposit'] as int?,
+        userIsValid: json['user_is_valid'] as bool?,
+        userIsVerified: json['user_is_verified'] as bool?,
+        userIsFollowed: json['user_is_followed'] as bool?,
+        userLastSeenDate: json['user_last_seen_date'] as int?,
+        links: json['links'] != null
+            ? RespUserModelLinks.fromJson(json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespUserModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        userIsVisitor: json['user_is_visitor'] as bool?,
+        userGroupId: json['user_group_id'] as int?,
+        curatorTitles:
+            (json['curator_titles'] as List<dynamic>?)?.cast<String>(),
+        userGroups: (json['user_groups'] as List<dynamic>?)
+            ?.cast<Map<String, dynamic>>(),
+        fields:
+            (json['fields'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        userTimezoneOffset: json['user_timezone_offset'] as int?,
+        userExternalAuthentications:
+            (json['user_external_authentications'] as List<dynamic>?)
+                ?.cast<Map<String, dynamic>>(),
+        selfPermissions: json['self_permissions'] != null
+            ? RespUserModelSelfPermissions.fromJson(
+                json['self_permissions'] as Map<String, dynamic>)
+            : null,
+        editPermissions: json['edit_permissions'] != null
+            ? RespUserModelEditPermissions.fromJson(
+                json['edit_permissions'] as Map<String, dynamic>)
+            : null,
+        birthday: json['birthday'] != null
+            ? RespUserModelBirthday.fromJson(
+                json['birthday'] as Map<String, dynamic>)
+            : null,
+        secretAnswerRendered: json['secret_answer_rendered'] as String?,
+        secretAnswerFirstLetter: json['secret_answer_first_letter'] as String?,
+        userFollowing: json['user_following'] != null
+            ? RespUserModelUserFollowing.fromJson(
+                json['user_following'] as Map<String, dynamic>)
+            : null,
+        userFollowers: json['user_followers'] != null
+            ? RespUserModelUserFollowers.fromJson(
+                json['user_followers'] as Map<String, dynamic>)
+            : null,
+        banner: json['banner'] as String?,
+      );
+}
+
+class RespThreadModelFirstPostLinks {
+  final String? permalink;
+  final String? detail;
+  final String? thread;
+  final String? poster;
+  final String? likes;
+  final String? report;
+  final String? posterAvatar;
+
+  const RespThreadModelFirstPostLinks({
+    this.permalink,
+    this.detail,
+    this.thread,
+    this.poster,
+    this.likes,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory RespThreadModelFirstPostLinks.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelFirstPostLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        thread: json['thread'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class RespThreadModelFirstPostPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? reply;
+  final bool? like;
+  final bool? report;
+
+  const RespThreadModelFirstPostPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.reply,
+    this.like,
+    this.report,
+  });
+
+  factory RespThreadModelFirstPostPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      RespThreadModelFirstPostPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        reply: json['reply'] as bool?,
+        like: json['like'] as bool?,
+        report: json['report'] as bool?,
+      );
+}
+
+class RespThreadModelFirstPost {
+  final int? postId;
+  final int? threadId;
+  final int? posterUserId;
+  final String? posterUsername;
+  final String? posterUsernameHtml;
+  final int? postCreateDate;
+  final String? postBody;
+  final String? postBodyHtml;
+  final String? postBodyPlainText;
+  final String? signature;
+  final String? signatureHtml;
+  final String? signaturePlainText;
+  final int? postLikeCount;
+  final bool? userIsIgnored;
+  final bool? postIsPublished;
+  final bool? postIsDeleted;
+  final int? postUpdateDate;
+  final bool? postIsFirstPost;
+  final bool? postIsLiked;
+  final RespThreadModelFirstPostLinks? links;
+  final RespThreadModelFirstPostPermissions? permissions;
+  final bool? threadIsDeleted;
+
+  const RespThreadModelFirstPost({
+    this.postId,
+    this.threadId,
+    this.posterUserId,
+    this.posterUsername,
+    this.posterUsernameHtml,
+    this.postCreateDate,
+    this.postBody,
+    this.postBodyHtml,
+    this.postBodyPlainText,
+    this.signature,
+    this.signatureHtml,
+    this.signaturePlainText,
+    this.postLikeCount,
+    this.userIsIgnored,
+    this.postIsPublished,
+    this.postIsDeleted,
+    this.postUpdateDate,
+    this.postIsFirstPost,
+    this.postIsLiked,
+    this.links,
+    this.permissions,
+    this.threadIsDeleted,
+  });
+
+  factory RespThreadModelFirstPost.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelFirstPost(
+        postId: json['post_id'] as int?,
+        threadId: json['thread_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCreateDate: json['post_create_date'] as int?,
+        postBody: json['post_body'] as String?,
+        postBodyHtml: json['post_body_html'] as String?,
+        postBodyPlainText: json['post_body_plain_text'] as String?,
+        signature: json['signature'] as String?,
+        signatureHtml: json['signature_html'] as String?,
+        signaturePlainText: json['signature_plain_text'] as String?,
+        postLikeCount: json['post_like_count'] as int?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postIsPublished: json['post_is_published'] as bool?,
+        postIsDeleted: json['post_is_deleted'] as bool?,
+        postUpdateDate: json['post_update_date'] as int?,
+        postIsFirstPost: json['post_is_first_post'] as bool?,
+        postIsLiked: json['post_is_liked'] as bool?,
+        links: json['links'] != null
+            ? RespThreadModelFirstPostLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespThreadModelFirstPostPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        threadIsDeleted: json['thread_is_deleted'] as bool?,
+      );
+}
+
+class RespThreadModelThreadTags {
+  final String? n97491;
+  final String? n193431;
+  final String? n206;
+
+  const RespThreadModelThreadTags({
+    this.n97491,
+    this.n193431,
+    this.n206,
+  });
+
+  factory RespThreadModelThreadTags.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelThreadTags(
+        n97491: json['97491'] as String?,
+        n193431: json['193431'] as String?,
+        n206: json['206'] as String?,
+      );
+}
+
+class RespThreadModelLinks {
+  final String? permalink;
+  final String? detail;
+  final String? followers;
+  final String? forum;
+  final String? posts;
+  final String? firstPoster;
+  final String? firstPosterAvatar;
+  final String? firstPost;
+  final String? lastPost;
+
+  const RespThreadModelLinks({
+    this.permalink,
+    this.detail,
+    this.followers,
+    this.forum,
+    this.posts,
+    this.firstPoster,
+    this.firstPosterAvatar,
+    this.firstPost,
+    this.lastPost,
+  });
+
+  factory RespThreadModelLinks.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        followers: json['followers'] as String?,
+        forum: json['forum'] as String?,
+        posts: json['posts'] as String?,
+        firstPoster: json['first_poster'] as String?,
+        firstPosterAvatar: json['first_poster_avatar'] as String?,
+        firstPost: json['first_post'] as String?,
+        lastPost: json['last_post'] as String?,
+      );
+}
+
+class RespThreadModelPermissionsBump {
+  final bool? can;
+  final int? availableCount;
+  final Object? error;
+  final Object? nextAvailableTime;
+
+  const RespThreadModelPermissionsBump({
+    this.can,
+    this.availableCount,
+    this.error,
+    this.nextAvailableTime,
+  });
+
+  factory RespThreadModelPermissionsBump.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelPermissionsBump(
+        can: json['can'] as bool?,
+        availableCount: json['available_count'] as int?,
+        error: json['error'] as Object?,
+        nextAvailableTime: json['next_available_time'] as Object?,
+      );
+}
+
+class RespThreadModelPermissions {
+  final bool? view;
+  final bool? delete;
+  final bool? follow;
+  final bool? post;
+  final bool? edit;
+  final bool? editTitle;
+  final bool? editTags;
+  final RespThreadModelPermissionsBump? bump;
+
+  const RespThreadModelPermissions({
+    this.view,
+    this.delete,
+    this.follow,
+    this.post,
+    this.edit,
+    this.editTitle,
+    this.editTags,
+    this.bump,
+  });
+
+  factory RespThreadModelPermissions.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelPermissions(
+        view: json['view'] as bool?,
+        delete: json['delete'] as bool?,
+        follow: json['follow'] as bool?,
+        post: json['post'] as bool?,
+        edit: json['edit'] as bool?,
+        editTitle: json['edit_title'] as bool?,
+        editTags: json['edit_tags'] as bool?,
+        bump: json['bump'] != null
+            ? RespThreadModelPermissionsBump.fromJson(
+                json['bump'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
+class RespThreadModelRestrictions {
+  final int? replyDelay;
+  final int? maxReplyCount;
+
+  const RespThreadModelRestrictions({
+    this.replyDelay,
+    this.maxReplyCount,
+  });
+
+  factory RespThreadModelRestrictions.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelRestrictions(
+        replyDelay: json['reply_delay'] as int?,
+        maxReplyCount: json['max_reply_count'] as int?,
+      );
+}
+
+class RespThreadModelLastPostLinks {
+  final String? permalink;
+  final String? detail;
+  final String? thread;
+  final String? poster;
+  final String? likes;
+  final String? report;
+  final String? posterAvatar;
+
+  const RespThreadModelLastPostLinks({
+    this.permalink,
+    this.detail,
+    this.thread,
+    this.poster,
+    this.likes,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory RespThreadModelLastPostLinks.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelLastPostLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        thread: json['thread'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class RespThreadModelLastPostPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? reply;
+  final bool? like;
+  final bool? report;
+
+  const RespThreadModelLastPostPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.reply,
+    this.like,
+    this.report,
+  });
+
+  factory RespThreadModelLastPostPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      RespThreadModelLastPostPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        reply: json['reply'] as bool?,
+        like: json['like'] as bool?,
+        report: json['report'] as bool?,
+      );
+}
+
+class RespThreadModelLastPost {
+  final int? postId;
+  final int? threadId;
+  final int? posterUserId;
+  final String? posterUsername;
+  final String? posterUsernameHtml;
+  final int? postCreateDate;
+  final String? postBody;
+  final String? postBodyHtml;
+  final String? postBodyPlainText;
+  final String? signature;
+  final String? signatureHtml;
+  final String? signaturePlainText;
+  final int? postLikeCount;
+  final bool? userIsIgnored;
+  final bool? postIsPublished;
+  final bool? postIsDeleted;
+  final int? postUpdateDate;
+  final bool? postIsFirstPost;
+  final bool? postIsLiked;
+  final RespThreadModelLastPostLinks? links;
+  final RespThreadModelLastPostPermissions? permissions;
+  final bool? threadIsDeleted;
+
+  const RespThreadModelLastPost({
+    this.postId,
+    this.threadId,
+    this.posterUserId,
+    this.posterUsername,
+    this.posterUsernameHtml,
+    this.postCreateDate,
+    this.postBody,
+    this.postBodyHtml,
+    this.postBodyPlainText,
+    this.signature,
+    this.signatureHtml,
+    this.signaturePlainText,
+    this.postLikeCount,
+    this.userIsIgnored,
+    this.postIsPublished,
+    this.postIsDeleted,
+    this.postUpdateDate,
+    this.postIsFirstPost,
+    this.postIsLiked,
+    this.links,
+    this.permissions,
+    this.threadIsDeleted,
+  });
+
+  factory RespThreadModelLastPost.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelLastPost(
+        postId: json['post_id'] as int?,
+        threadId: json['thread_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCreateDate: json['post_create_date'] as int?,
+        postBody: json['post_body'] as String?,
+        postBodyHtml: json['post_body_html'] as String?,
+        postBodyPlainText: json['post_body_plain_text'] as String?,
+        signature: json['signature'] as String?,
+        signatureHtml: json['signature_html'] as String?,
+        signaturePlainText: json['signature_plain_text'] as String?,
+        postLikeCount: json['post_like_count'] as int?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postIsPublished: json['post_is_published'] as bool?,
+        postIsDeleted: json['post_is_deleted'] as bool?,
+        postUpdateDate: json['post_update_date'] as int?,
+        postIsFirstPost: json['post_is_first_post'] as bool?,
+        postIsLiked: json['post_is_liked'] as bool?,
+        links: json['links'] != null
+            ? RespThreadModelLastPostLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespThreadModelLastPostPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        threadIsDeleted: json['thread_is_deleted'] as bool?,
+      );
+}
+
+class RespThreadModelContestPermissions {
+  final bool? canFinish;
+  final bool? canParticipate;
+  final String? canParticipateError;
+  final bool? canViewUserList;
+
+  const RespThreadModelContestPermissions({
+    this.canFinish,
+    this.canParticipate,
+    this.canParticipateError,
+    this.canViewUserList,
+  });
+
+  factory RespThreadModelContestPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      RespThreadModelContestPermissions(
+        canFinish: json['can_finish'] as bool?,
+        canParticipate: json['can_participate'] as bool?,
+        canParticipateError: json['can_participate_error'] as String?,
+        canViewUserList: json['can_view_user_list'] as bool?,
+      );
+}
+
+class RespThreadModelContest {
+  final String? type;
+  final int? finishDate;
+  final int? nowCountMembers;
+  final int? neededMembers;
+  final int? isFinished;
+  final int? countWinners;
+  final int? requireLikeCount;
+  final int? requireTotalLikeCount;
+  final String? prizeType;
+  final String? prizeTypePhrase;
+  final int? prizeData;
+  final int? isMoneyPlaces;
+  final double? chanceToWin;
+  final List<int>? winners;
+  final bool? alreadyParticipate;
+  final RespThreadModelContestPermissions? permissions;
+
+  const RespThreadModelContest({
+    this.type,
+    this.finishDate,
+    this.nowCountMembers,
+    this.neededMembers,
+    this.isFinished,
+    this.countWinners,
+    this.requireLikeCount,
+    this.requireTotalLikeCount,
+    this.prizeType,
+    this.prizeTypePhrase,
+    this.prizeData,
+    this.isMoneyPlaces,
+    this.chanceToWin,
+    this.winners,
+    this.alreadyParticipate,
+    this.permissions,
+  });
+
+  factory RespThreadModelContest.fromJson(Map<String, dynamic> json) =>
+      RespThreadModelContest(
+        type: json['type'] as String?,
+        finishDate: json['finish_date'] as int?,
+        nowCountMembers: json['now_count_members'] as int?,
+        neededMembers: json['needed_members'] as int?,
+        isFinished: json['is_finished'] as int?,
+        countWinners: json['count_winners'] as int?,
+        requireLikeCount: json['require_like_count'] as int?,
+        requireTotalLikeCount: json['require_total_like_count'] as int?,
+        prizeType: json['prize_type'] as String?,
+        prizeTypePhrase: json['prize_type_phrase'] as String?,
+        prizeData: json['prize_data'] as int?,
+        isMoneyPlaces: json['is_money_places'] as int?,
+        chanceToWin: json['chance_to_win'] as double?,
+        winners: (json['winners'] as List<dynamic>?)?.cast<int>(),
+        alreadyParticipate: json['already_participate'] as bool?,
+        permissions: json['permissions'] != null
+            ? RespThreadModelContestPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class RespThreadModel {
@@ -269,15 +1232,15 @@ class RespThreadModel {
   final bool? threadIsClosed;
   final bool? threadIsFollowed;
   final bool? threadIsStarred;
-  final Object? firstPost;
+  final RespThreadModelFirstPost? firstPost;
   final List<Object>? threadPrefixes;
-  final Object? threadTags;
-  final Object? links;
-  final Object? permissions;
+  final RespThreadModelThreadTags? threadTags;
+  final RespThreadModelLinks? links;
+  final RespThreadModelPermissions? permissions;
   final String? nodeTitle;
-  final Object? restrictions;
-  final Object? lastPost;
-  final Object? contest;
+  final RespThreadModelRestrictions? restrictions;
+  final RespThreadModelLastPost? lastPost;
+  final RespThreadModelContest? contest;
 
   const RespThreadModel({
     this.threadId,
@@ -308,34 +1271,116 @@ class RespThreadModel {
     this.contest,
   });
 
-  factory RespThreadModel.fromJson(Map<String, dynamic> json) => RespThreadModel(
-    threadId: json['thread_id'] as int?,
-    forumId: json['forum_id'] as int?,
-    threadTitle: json['thread_title'] as String?,
-    threadViewCount: json['thread_view_count'] as int?,
-    creatorUserId: json['creator_user_id'] as int?,
-    creatorUsername: json['creator_username'] as String?,
-    creatorUsernameHtml: json['creator_username_html'] as String?,
-    threadCreateDate: json['thread_create_date'] as int?,
-    threadUpdateDate: json['thread_update_date'] as int?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    threadPostCount: json['thread_post_count'] as int?,
-    threadIsPublished: json['thread_is_published'] as bool?,
-    threadIsDeleted: json['thread_is_deleted'] as bool?,
-    threadIsSticky: json['thread_is_sticky'] as bool?,
-    threadIsClosed: json['thread_is_closed'] as bool?,
-    threadIsFollowed: json['thread_is_followed'] as bool?,
-    threadIsStarred: json['thread_is_starred'] as bool?,
-    firstPost: json['first_post'] as Object?,
-    threadPrefixes: (json['thread_prefixes'] as List<dynamic>?)?.cast<Object>(),
-    threadTags: json['thread_tags'] as Object?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-    nodeTitle: json['node_title'] as String?,
-    restrictions: json['restrictions'] as Object?,
-    lastPost: json['last_post'] as Object?,
-    contest: json['contest'] as Object?,
-  );
+  factory RespThreadModel.fromJson(Map<String, dynamic> json) =>
+      RespThreadModel(
+        threadId: json['thread_id'] as int?,
+        forumId: json['forum_id'] as int?,
+        threadTitle: json['thread_title'] as String?,
+        threadViewCount: json['thread_view_count'] as int?,
+        creatorUserId: json['creator_user_id'] as int?,
+        creatorUsername: json['creator_username'] as String?,
+        creatorUsernameHtml: json['creator_username_html'] as String?,
+        threadCreateDate: json['thread_create_date'] as int?,
+        threadUpdateDate: json['thread_update_date'] as int?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        threadPostCount: json['thread_post_count'] as int?,
+        threadIsPublished: json['thread_is_published'] as bool?,
+        threadIsDeleted: json['thread_is_deleted'] as bool?,
+        threadIsSticky: json['thread_is_sticky'] as bool?,
+        threadIsClosed: json['thread_is_closed'] as bool?,
+        threadIsFollowed: json['thread_is_followed'] as bool?,
+        threadIsStarred: json['thread_is_starred'] as bool?,
+        firstPost: json['first_post'] != null
+            ? RespThreadModelFirstPost.fromJson(
+                json['first_post'] as Map<String, dynamic>)
+            : null,
+        threadPrefixes:
+            (json['thread_prefixes'] as List<dynamic>?)?.cast<Object>(),
+        threadTags: json['thread_tags'] != null
+            ? RespThreadModelThreadTags.fromJson(
+                json['thread_tags'] as Map<String, dynamic>)
+            : null,
+        links: json['links'] != null
+            ? RespThreadModelLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespThreadModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        nodeTitle: json['node_title'] as String?,
+        restrictions: json['restrictions'] != null
+            ? RespThreadModelRestrictions.fromJson(
+                json['restrictions'] as Map<String, dynamic>)
+            : null,
+        lastPost: json['last_post'] != null
+            ? RespThreadModelLastPost.fromJson(
+                json['last_post'] as Map<String, dynamic>)
+            : null,
+        contest: json['contest'] != null
+            ? RespThreadModelContest.fromJson(
+                json['contest'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
+class RespPostModelLinks {
+  final String? permalink;
+  final String? detail;
+  final String? thread;
+  final String? poster;
+  final String? likes;
+  final String? report;
+  final String? posterAvatar;
+
+  const RespPostModelLinks({
+    this.permalink,
+    this.detail,
+    this.thread,
+    this.poster,
+    this.likes,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory RespPostModelLinks.fromJson(Map<String, dynamic> json) =>
+      RespPostModelLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        thread: json['thread'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class RespPostModelPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? reply;
+  final bool? like;
+  final bool? report;
+
+  const RespPostModelPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.reply,
+    this.like,
+    this.report,
+  });
+
+  factory RespPostModelPermissions.fromJson(Map<String, dynamic> json) =>
+      RespPostModelPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        reply: json['reply'] as bool?,
+        like: json['like'] as bool?,
+        report: json['report'] as bool?,
+      );
 }
 
 class RespPostModel {
@@ -357,8 +1402,8 @@ class RespPostModel {
   final bool? postIsDeleted;
   final int? postUpdateDate;
   final bool? postIsFirstPost;
-  final Object? links;
-  final Object? permissions;
+  final RespPostModelLinks? links;
+  final RespPostModelPermissions? permissions;
   final bool? threadIsDeleted;
 
   const RespPostModel({
@@ -386,28 +1431,95 @@ class RespPostModel {
   });
 
   factory RespPostModel.fromJson(Map<String, dynamic> json) => RespPostModel(
-    postId: json['post_id'] as int?,
-    threadId: json['thread_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    posterUsernameHtml: json['poster_username_html'] as String?,
-    postCreateDate: json['post_create_date'] as int?,
-    postBody: json['post_body'] as String?,
-    postBodyHtml: json['post_body_html'] as String?,
-    postBodyPlainText: json['post_body_plain_text'] as String?,
-    signature: json['signature'] as String?,
-    signatureHtml: json['signature_html'] as String?,
-    signaturePlainText: json['signature_plain_text'] as String?,
-    postLikeCount: json['post_like_count'] as int?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postIsPublished: json['post_is_published'] as bool?,
-    postIsDeleted: json['post_is_deleted'] as bool?,
-    postUpdateDate: json['post_update_date'] as int?,
-    postIsFirstPost: json['post_is_first_post'] as bool?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-    threadIsDeleted: json['thread_is_deleted'] as bool?,
-  );
+        postId: json['post_id'] as int?,
+        threadId: json['thread_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCreateDate: json['post_create_date'] as int?,
+        postBody: json['post_body'] as String?,
+        postBodyHtml: json['post_body_html'] as String?,
+        postBodyPlainText: json['post_body_plain_text'] as String?,
+        signature: json['signature'] as String?,
+        signatureHtml: json['signature_html'] as String?,
+        signaturePlainText: json['signature_plain_text'] as String?,
+        postLikeCount: json['post_like_count'] as int?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postIsPublished: json['post_is_published'] as bool?,
+        postIsDeleted: json['post_is_deleted'] as bool?,
+        postUpdateDate: json['post_update_date'] as int?,
+        postIsFirstPost: json['post_is_first_post'] as bool?,
+        links: json['links'] != null
+            ? RespPostModelLinks.fromJson(json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespPostModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        threadIsDeleted: json['thread_is_deleted'] as bool?,
+      );
+}
+
+class RespPostCommentModelLinks {
+  final String? permalink;
+  final String? detail;
+  final String? post;
+  final String? thread;
+  final String? poster;
+  final String? likes;
+  final String? report;
+  final String? posterAvatar;
+
+  const RespPostCommentModelLinks({
+    this.permalink,
+    this.detail,
+    this.post,
+    this.thread,
+    this.poster,
+    this.likes,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory RespPostCommentModelLinks.fromJson(Map<String, dynamic> json) =>
+      RespPostCommentModelLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        post: json['post'] as String?,
+        thread: json['thread'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class RespPostCommentModelPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? reply;
+  final bool? like;
+  final bool? report;
+
+  const RespPostCommentModelPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.reply,
+    this.like,
+    this.report,
+  });
+
+  factory RespPostCommentModelPermissions.fromJson(Map<String, dynamic> json) =>
+      RespPostCommentModelPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        reply: json['reply'] as bool?,
+        like: json['like'] as bool?,
+        report: json['report'] as bool?,
+      );
 }
 
 class RespPostCommentModel {
@@ -426,8 +1538,8 @@ class RespPostCommentModel {
   final bool? postCommentIsPublished;
   final bool? postCommentIsDeleted;
   final int? postCommentUpdateDate;
-  final Object? links;
-  final Object? permissions;
+  final RespPostCommentModelLinks? links;
+  final RespPostCommentModelPermissions? permissions;
 
   const RespPostCommentModel({
     this.postCommentId,
@@ -449,25 +1561,101 @@ class RespPostCommentModel {
     this.permissions,
   });
 
-  factory RespPostCommentModel.fromJson(Map<String, dynamic> json) => RespPostCommentModel(
-    postCommentId: json['post_comment_id'] as int?,
-    postId: json['post_id'] as int?,
-    threadId: json['thread_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    posterUsernameHtml: json['poster_username_html'] as String?,
-    postCommentCreateDate: json['post_comment_create_date'] as int?,
-    postCommentBody: json['post_comment_body'] as String?,
-    postCommentBodyHtml: json['post_comment_body_html'] as String?,
-    postCommentBodyPlainText: json['post_comment_body_plain_text'] as String?,
-    postCommentLikeCount: json['post_comment_like_count'] as int?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postCommentIsPublished: json['post_comment_is_published'] as bool?,
-    postCommentIsDeleted: json['post_comment_is_deleted'] as bool?,
-    postCommentUpdateDate: json['post_comment_update_date'] as int?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory RespPostCommentModel.fromJson(Map<String, dynamic> json) =>
+      RespPostCommentModel(
+        postCommentId: json['post_comment_id'] as int?,
+        postId: json['post_id'] as int?,
+        threadId: json['thread_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCommentCreateDate: json['post_comment_create_date'] as int?,
+        postCommentBody: json['post_comment_body'] as String?,
+        postCommentBodyHtml: json['post_comment_body_html'] as String?,
+        postCommentBodyPlainText:
+            json['post_comment_body_plain_text'] as String?,
+        postCommentLikeCount: json['post_comment_like_count'] as int?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postCommentIsPublished: json['post_comment_is_published'] as bool?,
+        postCommentIsDeleted: json['post_comment_is_deleted'] as bool?,
+        postCommentUpdateDate: json['post_comment_update_date'] as int?,
+        links: json['links'] != null
+            ? RespPostCommentModelLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespPostCommentModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
+class RespProfilePostModelLinks {
+  final String? permalink;
+  final String? detail;
+  final String? timeline;
+  final String? timelineUser;
+  final String? poster;
+  final String? likes;
+  final String? comments;
+  final String? report;
+  final String? posterAvatar;
+
+  const RespProfilePostModelLinks({
+    this.permalink,
+    this.detail,
+    this.timeline,
+    this.timelineUser,
+    this.poster,
+    this.likes,
+    this.comments,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory RespProfilePostModelLinks.fromJson(Map<String, dynamic> json) =>
+      RespProfilePostModelLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        timeline: json['timeline'] as String?,
+        timelineUser: json['timeline_user'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        comments: json['comments'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class RespProfilePostModelPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? like;
+  final bool? comment;
+  final bool? report;
+  final bool? stick;
+
+  const RespProfilePostModelPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.like,
+    this.comment,
+    this.report,
+    this.stick,
+  });
+
+  factory RespProfilePostModelPermissions.fromJson(Map<String, dynamic> json) =>
+      RespProfilePostModelPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        like: json['like'] as bool?,
+        comment: json['comment'] as bool?,
+        report: json['report'] as bool?,
+        stick: json['stick'] as bool?,
+      );
 }
 
 class RespProfilePostModel {
@@ -489,8 +1677,8 @@ class RespProfilePostModel {
   final bool? postIsDeleted;
   final bool? postIsLiked;
   final bool? postIsSticked;
-  final Object? links;
-  final Object? permissions;
+  final RespProfilePostModelLinks? links;
+  final RespProfilePostModelPermissions? permissions;
   final RespUserModel? timelineUser;
 
   const RespProfilePostModel({
@@ -517,31 +1705,85 @@ class RespProfilePostModel {
     this.timelineUser,
   });
 
-  factory RespProfilePostModel.fromJson(Map<String, dynamic> json) => RespProfilePostModel(
-    profilePostId: json['profile_post_id'] as int?,
-    timelineUserId: json['timeline_user_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    posterUsernameHtml: json['poster_username_html'] as String?,
-    postCreateDate: json['post_create_date'] as int?,
-    postBody: json['post_body'] as String?,
-    postBodyHtml: json['post_body_html'] as String?,
-    postBodyPlainText: json['post_body_plain_text'] as String?,
-    postLikeCount: json['post_like_count'] as int?,
-    postCommentCount: json['post_comment_count'] as int?,
-    postCommentsIsDisabled: json['post_comments_is_disabled'] as int?,
-    timelineUsername: json['timeline_username'] as String?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postIsPublished: json['post_is_published'] as bool?,
-    postIsDeleted: json['post_is_deleted'] as bool?,
-    postIsLiked: json['post_is_liked'] as bool?,
-    postIsSticked: json['post_is_sticked'] as bool?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-    timelineUser: json['timeline_user'] != null
-            ? RespUserModel.fromJson(json['timeline_user'] as Map<String, dynamic>)
+  factory RespProfilePostModel.fromJson(Map<String, dynamic> json) =>
+      RespProfilePostModel(
+        profilePostId: json['profile_post_id'] as int?,
+        timelineUserId: json['timeline_user_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCreateDate: json['post_create_date'] as int?,
+        postBody: json['post_body'] as String?,
+        postBodyHtml: json['post_body_html'] as String?,
+        postBodyPlainText: json['post_body_plain_text'] as String?,
+        postLikeCount: json['post_like_count'] as int?,
+        postCommentCount: json['post_comment_count'] as int?,
+        postCommentsIsDisabled: json['post_comments_is_disabled'] as int?,
+        timelineUsername: json['timeline_username'] as String?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postIsPublished: json['post_is_published'] as bool?,
+        postIsDeleted: json['post_is_deleted'] as bool?,
+        postIsLiked: json['post_is_liked'] as bool?,
+        postIsSticked: json['post_is_sticked'] as bool?,
+        links: json['links'] != null
+            ? RespProfilePostModelLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-  );
+        permissions: json['permissions'] != null
+            ? RespProfilePostModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        timelineUser: json['timeline_user'] != null
+            ? RespUserModel.fromJson(
+                json['timeline_user'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
+class RespProfilePostCommentModelLinks {
+  final String? detail;
+  final String? profilePost;
+  final String? timeline;
+  final String? timelineUser;
+  final String? poster;
+  final String? posterAvatar;
+
+  const RespProfilePostCommentModelLinks({
+    this.detail,
+    this.profilePost,
+    this.timeline,
+    this.timelineUser,
+    this.poster,
+    this.posterAvatar,
+  });
+
+  factory RespProfilePostCommentModelLinks.fromJson(
+          Map<String, dynamic> json) =>
+      RespProfilePostCommentModelLinks(
+        detail: json['detail'] as String?,
+        profilePost: json['profile_post'] as String?,
+        timeline: json['timeline'] as String?,
+        timelineUser: json['timeline_user'] as String?,
+        poster: json['poster'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class RespProfilePostCommentModelPermissions {
+  final bool? view;
+  final bool? delete;
+
+  const RespProfilePostCommentModelPermissions({
+    this.view,
+    this.delete,
+  });
+
+  factory RespProfilePostCommentModelPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      RespProfilePostCommentModelPermissions(
+        view: json['view'] as bool?,
+        delete: json['delete'] as bool?,
+      );
 }
 
 class RespProfilePostCommentModel {
@@ -556,8 +1798,8 @@ class RespProfilePostCommentModel {
   final String? commentBodyPlainText;
   final bool? userIsIgnored;
   final int? timelineUserId;
-  final Object? links;
-  final Object? permissions;
+  final RespProfilePostCommentModelLinks? links;
+  final RespProfilePostCommentModelPermissions? permissions;
 
   const RespProfilePostCommentModel({
     this.commentId,
@@ -575,21 +1817,116 @@ class RespProfilePostCommentModel {
     this.permissions,
   });
 
-  factory RespProfilePostCommentModel.fromJson(Map<String, dynamic> json) => RespProfilePostCommentModel(
-    commentId: json['comment_id'] as int?,
-    profilePostId: json['profile_post_id'] as int?,
-    commentUserId: json['comment_user_id'] as int?,
-    commentUsername: json['comment_username'] as String?,
-    commentUsernameHtml: json['comment_username_html'] as String?,
-    commentCreateDate: json['comment_create_date'] as int?,
-    commentBody: json['comment_body'] as String?,
-    commentBodyHtml: json['comment_body_html'] as String?,
-    commentBodyPlainText: json['comment_body_plain_text'] as String?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    timelineUserId: json['timeline_user_id'] as int?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory RespProfilePostCommentModel.fromJson(Map<String, dynamic> json) =>
+      RespProfilePostCommentModel(
+        commentId: json['comment_id'] as int?,
+        profilePostId: json['profile_post_id'] as int?,
+        commentUserId: json['comment_user_id'] as int?,
+        commentUsername: json['comment_username'] as String?,
+        commentUsernameHtml: json['comment_username_html'] as String?,
+        commentCreateDate: json['comment_create_date'] as int?,
+        commentBody: json['comment_body'] as String?,
+        commentBodyHtml: json['comment_body_html'] as String?,
+        commentBodyPlainText: json['comment_body_plain_text'] as String?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        timelineUserId: json['timeline_user_id'] as int?,
+        links: json['links'] != null
+            ? RespProfilePostCommentModelLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespProfilePostCommentModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
+class RespConversationModelPermissions {
+  final bool? view;
+  final bool? reply;
+  final bool? invite;
+  final bool? manageInviteLinks;
+  final bool? kick;
+  final bool? uploadAvatar;
+  final bool? editOwnPost;
+  final bool? stickyMessages;
+
+  const RespConversationModelPermissions({
+    this.view,
+    this.reply,
+    this.invite,
+    this.manageInviteLinks,
+    this.kick,
+    this.uploadAvatar,
+    this.editOwnPost,
+    this.stickyMessages,
+  });
+
+  factory RespConversationModelPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      RespConversationModelPermissions(
+        view: json['view'] as bool?,
+        reply: json['reply'] as bool?,
+        invite: json['invite'] as bool?,
+        manageInviteLinks: json['manage_invite_links'] as bool?,
+        kick: json['kick'] as bool?,
+        uploadAvatar: json['upload_avatar'] as bool?,
+        editOwnPost: json['editOwnPost'] as bool?,
+        stickyMessages: json['stickyMessages'] as bool?,
+      );
+}
+
+class RespConversationModelRecipient {
+  final int? userId;
+  final String? username;
+  final String? usernameHtml;
+  final int? lastActivity;
+  final bool? isOnline;
+  final bool? contactsChanged;
+  final String? avatar;
+
+  const RespConversationModelRecipient({
+    this.userId,
+    this.username,
+    this.usernameHtml,
+    this.lastActivity,
+    this.isOnline,
+    this.contactsChanged,
+    this.avatar,
+  });
+
+  factory RespConversationModelRecipient.fromJson(Map<String, dynamic> json) =>
+      RespConversationModelRecipient(
+        userId: json['user_id'] as int?,
+        username: json['username'] as String?,
+        usernameHtml: json['username_html'] as String?,
+        lastActivity: json['last_activity'] as int?,
+        isOnline: json['is_online'] as bool?,
+        contactsChanged: json['contacts_changed'] as bool?,
+        avatar: json['avatar'] as String?,
+      );
+}
+
+class RespConversationModelLinks {
+  final String? permalink;
+  final String? detail;
+  final String? messages;
+  final String? avatar;
+
+  const RespConversationModelLinks({
+    this.permalink,
+    this.detail,
+    this.messages,
+    this.avatar,
+  });
+
+  factory RespConversationModelLinks.fromJson(Map<String, dynamic> json) =>
+      RespConversationModelLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        messages: json['messages'] as String?,
+        avatar: json['avatar'] as String?,
+      );
 }
 
 class RespConversationModel {
@@ -606,15 +1943,15 @@ class RespConversationModel {
   final int? isGroup;
   final int? isUnread;
   final int? alerts;
-  final Object? permissions;
+  final RespConversationModelPermissions? permissions;
   final int? conversationMessageCount;
   final bool? conversationIsNew;
   final bool? creatorIsIgnored;
   final bool? conversationIsOpen;
   final bool? conversationIsDeleted;
-  final Object? recipient;
+  final RespConversationModelRecipient? recipient;
   final List<Map<String, dynamic>>? recipients;
-  final Object? links;
+  final RespConversationModelLinks? links;
 
   const RespConversationModel({
     this.conversationId,
@@ -641,30 +1978,87 @@ class RespConversationModel {
     this.links,
   });
 
-  factory RespConversationModel.fromJson(Map<String, dynamic> json) => RespConversationModel(
-    conversationId: json['conversation_id'] as int?,
-    conversationTitle: json['conversation_title'] as String?,
-    creatorUserId: json['creator_user_id'] as int?,
-    creatorUsername: json['creator_username'] as String?,
-    creatorUsernameHtml: json['creator_username_html'] as String?,
-    conversationCreateDate: json['conversation_create_date'] as int?,
-    conversationUpdateDate: json['conversation_update_date'] as int?,
-    conversationLastReadDate: json['conversation_last_read_date'] as int?,
-    conversationOnlineCount: json['conversation_online_count'] as int?,
-    isStarred: json['is_starred'] as int?,
-    isGroup: json['is_group'] as int?,
-    isUnread: json['is_unread'] as int?,
-    alerts: json['alerts'] as int?,
-    permissions: json['permissions'] as Object?,
-    conversationMessageCount: json['conversation_message_count'] as int?,
-    conversationIsNew: json['conversation_is_new'] as bool?,
-    creatorIsIgnored: json['creator_is_ignored'] as bool?,
-    conversationIsOpen: json['conversation_is_open'] as bool?,
-    conversationIsDeleted: json['conversation_is_deleted'] as bool?,
-    recipient: json['recipient'] as Object?,
-    recipients: (json['recipients'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    links: json['links'] as Object?,
-  );
+  factory RespConversationModel.fromJson(Map<String, dynamic> json) =>
+      RespConversationModel(
+        conversationId: json['conversation_id'] as int?,
+        conversationTitle: json['conversation_title'] as String?,
+        creatorUserId: json['creator_user_id'] as int?,
+        creatorUsername: json['creator_username'] as String?,
+        creatorUsernameHtml: json['creator_username_html'] as String?,
+        conversationCreateDate: json['conversation_create_date'] as int?,
+        conversationUpdateDate: json['conversation_update_date'] as int?,
+        conversationLastReadDate: json['conversation_last_read_date'] as int?,
+        conversationOnlineCount: json['conversation_online_count'] as int?,
+        isStarred: json['is_starred'] as int?,
+        isGroup: json['is_group'] as int?,
+        isUnread: json['is_unread'] as int?,
+        alerts: json['alerts'] as int?,
+        permissions: json['permissions'] != null
+            ? RespConversationModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        conversationMessageCount: json['conversation_message_count'] as int?,
+        conversationIsNew: json['conversation_is_new'] as bool?,
+        creatorIsIgnored: json['creator_is_ignored'] as bool?,
+        conversationIsOpen: json['conversation_is_open'] as bool?,
+        conversationIsDeleted: json['conversation_is_deleted'] as bool?,
+        recipient: json['recipient'] != null
+            ? RespConversationModelRecipient.fromJson(
+                json['recipient'] as Map<String, dynamic>)
+            : null,
+        recipients: (json['recipients'] as List<dynamic>?)
+            ?.cast<Map<String, dynamic>>(),
+        links: json['links'] != null
+            ? RespConversationModelLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
+class RespConversationMessageModelLinks {
+  final String? detail;
+  final String? conversation;
+  final String? creator;
+  final String? creatorAvatar;
+
+  const RespConversationMessageModelLinks({
+    this.detail,
+    this.conversation,
+    this.creator,
+    this.creatorAvatar,
+  });
+
+  factory RespConversationMessageModelLinks.fromJson(
+          Map<String, dynamic> json) =>
+      RespConversationMessageModelLinks(
+        detail: json['detail'] as String?,
+        conversation: json['conversation'] as String?,
+        creator: json['creator'] as String?,
+        creatorAvatar: json['creator_avatar'] as String?,
+      );
+}
+
+class RespConversationMessageModelPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? stickUnstick;
+
+  const RespConversationMessageModelPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.stickUnstick,
+  });
+
+  factory RespConversationMessageModelPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      RespConversationMessageModelPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        stickUnstick: json['stick-unstick'] as bool?,
+      );
 }
 
 class RespConversationMessageModel {
@@ -682,8 +2076,8 @@ class RespConversationMessageModel {
   final String? messageBodyHtml;
   final String? messageBodyPlainText;
   final bool? userIsIgnored;
-  final Object? links;
-  final Object? permissions;
+  final RespConversationMessageModelLinks? links;
+  final RespConversationMessageModelPermissions? permissions;
 
   const RespConversationMessageModel({
     this.messageId,
@@ -704,24 +2098,31 @@ class RespConversationMessageModel {
     this.permissions,
   });
 
-  factory RespConversationMessageModel.fromJson(Map<String, dynamic> json) => RespConversationMessageModel(
-    messageId: json['message_id'] as int?,
-    conversationId: json['conversation_id'] as int?,
-    creatorUserId: json['creator_user_id'] as int?,
-    creatorUsername: json['creator_username'] as String?,
-    creatorUsernameHtml: json['creator_username_html'] as String?,
-    messageCreateDate: json['message_create_date'] as int?,
-    messageIsUnread: json['message_is_unread'] as int?,
-    messageNeedTranslate: json['message_need_translate'] as bool?,
-    messageIsSystem: json['message_is_system'] as bool?,
-    messageEditDate: json['message_edit_date'] as int?,
-    messageBody: json['message_body'] as String?,
-    messageBodyHtml: json['message_body_html'] as String?,
-    messageBodyPlainText: json['message_body_plain_text'] as String?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory RespConversationMessageModel.fromJson(Map<String, dynamic> json) =>
+      RespConversationMessageModel(
+        messageId: json['message_id'] as int?,
+        conversationId: json['conversation_id'] as int?,
+        creatorUserId: json['creator_user_id'] as int?,
+        creatorUsername: json['creator_username'] as String?,
+        creatorUsernameHtml: json['creator_username_html'] as String?,
+        messageCreateDate: json['message_create_date'] as int?,
+        messageIsUnread: json['message_is_unread'] as int?,
+        messageNeedTranslate: json['message_need_translate'] as bool?,
+        messageIsSystem: json['message_is_system'] as bool?,
+        messageEditDate: json['message_edit_date'] as int?,
+        messageBody: json['message_body'] as String?,
+        messageBodyHtml: json['message_body_html'] as String?,
+        messageBodyPlainText: json['message_body_plain_text'] as String?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        links: json['links'] != null
+            ? RespConversationMessageModelLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? RespConversationMessageModelPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class RespSystemInfo {
@@ -734,9 +2135,9 @@ class RespSystemInfo {
   });
 
   factory RespSystemInfo.fromJson(Map<String, dynamic> json) => RespSystemInfo(
-    visitorId: json['visitor_id'] as int?,
-    time: json['time'] as int?,
-  );
+        visitorId: json['visitor_id'] as int?,
+        time: json['time'] as int?,
+      );
 }
 
 // ─── AssetsApi Types ────────────────────────────────────────
@@ -764,12 +2165,14 @@ class AssetsCssResponse {
     this.systemInfo,
   });
 
-  factory AssetsCssResponse.fromJson(Map<String, dynamic> json) => AssetsCssResponse(
-    contents: json['contents'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory AssetsCssResponse.fromJson(Map<String, dynamic> json) =>
+      AssetsCssResponse(
+        contents: json['contents'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── BatchApi Types ────────────────────────────────────────
@@ -783,9 +2186,10 @@ class BatchExecuteResponseJobs {
     this.jobId,
   });
 
-  factory BatchExecuteResponseJobs.fromJson(Map<String, dynamic> json) => BatchExecuteResponseJobs(
-    jobId: json['job_id'] as Object?,
-  );
+  factory BatchExecuteResponseJobs.fromJson(Map<String, dynamic> json) =>
+      BatchExecuteResponseJobs(
+        jobId: json['job_id'] as Object?,
+      );
 }
 
 class BatchExecuteResponse {
@@ -795,11 +2199,13 @@ class BatchExecuteResponse {
     this.jobs,
   });
 
-  factory BatchExecuteResponse.fromJson(Map<String, dynamic> json) => BatchExecuteResponse(
-    jobs: json['jobs'] != null
-            ? BatchExecuteResponseJobs.fromJson(json['jobs'] as Map<String, dynamic>)
+  factory BatchExecuteResponse.fromJson(Map<String, dynamic> json) =>
+      BatchExecuteResponse(
+        jobs: json['jobs'] != null
+            ? BatchExecuteResponseJobs.fromJson(
+                json['jobs'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── CategoriesApi Types ────────────────────────────────────────
@@ -835,21 +2241,67 @@ class CategoriesListResponse {
     this.systemInfo,
   });
 
-  factory CategoriesListResponse.fromJson(Map<String, dynamic> json) => CategoriesListResponse(
-    categories: (json['categories'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    categoriesTotal: json['categories_total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory CategoriesListResponse.fromJson(Map<String, dynamic> json) =>
+      CategoriesListResponse(
+        categories: (json['categories'] as List<dynamic>?)
+            ?.cast<Map<String, dynamic>>(),
+        categoriesTotal: json['categories_total'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
+}
+
+class CategoriesGetResponseCategoryLinks {
+  final String? permalink;
+  final String? detail;
+  final String? subCategories;
+  final String? subForums;
+
+  const CategoriesGetResponseCategoryLinks({
+    this.permalink,
+    this.detail,
+    this.subCategories,
+    this.subForums,
+  });
+
+  factory CategoriesGetResponseCategoryLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoriesGetResponseCategoryLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        subCategories: json['sub-categories'] as String?,
+        subForums: json['sub-forums'] as String?,
+      );
+}
+
+class CategoriesGetResponseCategoryPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+
+  const CategoriesGetResponseCategoryPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+  });
+
+  factory CategoriesGetResponseCategoryPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      CategoriesGetResponseCategoryPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+      );
 }
 
 class CategoriesGetResponseCategory {
   final int? categoryId;
   final String? categoryTitle;
   final String? categoryDescription;
-  final Object? links;
-  final Object? permissions;
+  final CategoriesGetResponseCategoryLinks? links;
+  final CategoriesGetResponseCategoryPermissions? permissions;
 
   const CategoriesGetResponseCategory({
     this.categoryId,
@@ -859,13 +2311,20 @@ class CategoriesGetResponseCategory {
     this.permissions,
   });
 
-  factory CategoriesGetResponseCategory.fromJson(Map<String, dynamic> json) => CategoriesGetResponseCategory(
-    categoryId: json['category_id'] as int?,
-    categoryTitle: json['category_title'] as String?,
-    categoryDescription: json['category_description'] as String?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory CategoriesGetResponseCategory.fromJson(Map<String, dynamic> json) =>
+      CategoriesGetResponseCategory(
+        categoryId: json['category_id'] as int?,
+        categoryTitle: json['category_title'] as String?,
+        categoryDescription: json['category_description'] as String?,
+        links: json['links'] != null
+            ? CategoriesGetResponseCategoryLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? CategoriesGetResponseCategoryPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class CategoriesGetResponse {
@@ -877,20 +2336,23 @@ class CategoriesGetResponse {
     this.systemInfo,
   });
 
-  factory CategoriesGetResponse.fromJson(Map<String, dynamic> json) => CategoriesGetResponse(
-    category: json['category'] != null
-            ? CategoriesGetResponseCategory.fromJson(json['category'] as Map<String, dynamic>)
+  factory CategoriesGetResponse.fromJson(Map<String, dynamic> json) =>
+      CategoriesGetResponse(
+        category: json['category'] != null
+            ? CategoriesGetResponseCategory.fromJson(
+                json['category'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ChatboxApi Types ────────────────────────────────────────
 
 class ChatboxIndexParams {
-  final Object? roomId;
+  final int? roomId;
 
   const ChatboxIndexParams({
     this.roomId,
@@ -920,14 +2382,15 @@ class ChatboxIndexResponsePermissions {
     this.ban,
   });
 
-  factory ChatboxIndexResponsePermissions.fromJson(Map<String, dynamic> json) => ChatboxIndexResponsePermissions(
-    deleteAnyMessage: json['deleteAnyMessage'] as bool?,
-    editAnyMessage: json['editAnyMessage'] as bool?,
-    viewAnyMessage: json['viewAnyMessage'] as bool?,
-    viewMessages: json['viewMessages'] as bool?,
-    postMessage: json['postMessage'] as bool?,
-    ban: json['ban'] as bool?,
-  );
+  factory ChatboxIndexResponsePermissions.fromJson(Map<String, dynamic> json) =>
+      ChatboxIndexResponsePermissions(
+        deleteAnyMessage: json['deleteAnyMessage'] as bool?,
+        editAnyMessage: json['editAnyMessage'] as bool?,
+        viewAnyMessage: json['viewAnyMessage'] as bool?,
+        viewMessages: json['viewMessages'] as bool?,
+        postMessage: json['postMessage'] as bool?,
+        ban: json['ban'] as bool?,
+      );
 }
 
 class ChatboxIndexResponseRoomsOnline {
@@ -937,9 +2400,10 @@ class ChatboxIndexResponseRoomsOnline {
     this.chat_0,
   });
 
-  factory ChatboxIndexResponseRoomsOnline.fromJson(Map<String, dynamic> json) => ChatboxIndexResponseRoomsOnline(
-    chat_0: json['chat:0'] as int?,
-  );
+  factory ChatboxIndexResponseRoomsOnline.fromJson(Map<String, dynamic> json) =>
+      ChatboxIndexResponseRoomsOnline(
+        chat_0: json['chat:0'] as int?,
+      );
 }
 
 class ChatboxIndexResponse {
@@ -961,25 +2425,30 @@ class ChatboxIndexResponse {
     this.systemInfo,
   });
 
-  factory ChatboxIndexResponse.fromJson(Map<String, dynamic> json) => ChatboxIndexResponse(
-    rooms: (json['rooms'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    ban: json['ban'] as Object?,
-    ignore: (json['ignore'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    permissions: json['permissions'] != null
-            ? ChatboxIndexResponsePermissions.fromJson(json['permissions'] as Map<String, dynamic>)
+  factory ChatboxIndexResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxIndexResponse(
+        rooms: (json['rooms'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        ban: json['ban'] as Object?,
+        ignore:
+            (json['ignore'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        permissions: json['permissions'] != null
+            ? ChatboxIndexResponsePermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
             : null,
-    commands: (json['commands'] as List<dynamic>?)?.cast<String>(),
-    roomsOnline: json['roomsOnline'] != null
-            ? ChatboxIndexResponseRoomsOnline.fromJson(json['roomsOnline'] as Map<String, dynamic>)
+        commands: (json['commands'] as List<dynamic>?)?.cast<String>(),
+        roomsOnline: json['roomsOnline'] != null
+            ? ChatboxIndexResponseRoomsOnline.fromJson(
+                json['roomsOnline'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxGetMessagesParams {
-  final Object roomId;
+  final int roomId;
   final int? beforeMessageId;
 
   const ChatboxGetMessagesParams({
@@ -1004,18 +2473,21 @@ class ChatboxGetMessagesResponse {
     this.systemInfo,
   });
 
-  factory ChatboxGetMessagesResponse.fromJson(Map<String, dynamic> json) => ChatboxGetMessagesResponse(
-    messages: (json['messages'] as List<dynamic>?)
-            ?.map((e) => RespChatboxMessageModel.fromJson(e as Map<String, dynamic>))
+  factory ChatboxGetMessagesResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxGetMessagesResponse(
+        messages: (json['messages'] as List<dynamic>?)
+            ?.map((e) =>
+                RespChatboxMessageModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxPostMessageBody {
-  final Object roomId;
+  final int roomId;
   final int? replyMessageId;
   final String message;
 
@@ -1043,14 +2515,17 @@ class ChatboxPostMessageResponse {
     this.systemInfo,
   });
 
-  factory ChatboxPostMessageResponse.fromJson(Map<String, dynamic> json) => ChatboxPostMessageResponse(
-    message: json['message'] != null
-            ? RespChatboxMessageModel.fromJson(json['message'] as Map<String, dynamic>)
+  factory ChatboxPostMessageResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxPostMessageResponse(
+        message: json['message'] != null
+            ? RespChatboxMessageModel.fromJson(
+                json['message'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxEditMessageBody {
@@ -1079,14 +2554,17 @@ class ChatboxEditMessageResponse {
     this.systemInfo,
   });
 
-  factory ChatboxEditMessageResponse.fromJson(Map<String, dynamic> json) => ChatboxEditMessageResponse(
-    message: json['message'] != null
-            ? RespChatboxMessageModel.fromJson(json['message'] as Map<String, dynamic>)
+  factory ChatboxEditMessageResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxEditMessageResponse(
+        message: json['message'] != null
+            ? RespChatboxMessageModel.fromJson(
+                json['message'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxDeleteMessageBody {
@@ -1114,17 +2592,19 @@ class ChatboxDeleteMessageResponse {
     this.systemInfo,
   });
 
-  factory ChatboxDeleteMessageResponse.fromJson(Map<String, dynamic> json) => ChatboxDeleteMessageResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ChatboxDeleteMessageResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxDeleteMessageResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxOnlineParams {
-  final Object roomId;
+  final int roomId;
 
   const ChatboxOnlineParams({
     required this.roomId,
@@ -1146,12 +2626,14 @@ class ChatboxOnlineResponse {
     this.systemInfo,
   });
 
-  factory ChatboxOnlineResponse.fromJson(Map<String, dynamic> json) => ChatboxOnlineResponse(
-    users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ChatboxOnlineResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxOnlineResponse(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxReportReasonsParams {
@@ -1177,12 +2659,14 @@ class ChatboxReportReasonsResponse {
     this.systemInfo,
   });
 
-  factory ChatboxReportReasonsResponse.fromJson(Map<String, dynamic> json) => ChatboxReportReasonsResponse(
-    reasons: (json['reasons'] as List<dynamic>?)?.cast<String>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ChatboxReportReasonsResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxReportReasonsResponse(
+        reasons: (json['reasons'] as List<dynamic>?)?.cast<String>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxReportBody {
@@ -1213,13 +2697,15 @@ class ChatboxReportResponse {
     this.systemInfo,
   });
 
-  factory ChatboxReportResponse.fromJson(Map<String, dynamic> json) => ChatboxReportResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ChatboxReportResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxReportResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxGetLeaderboardParams {
@@ -1245,12 +2731,15 @@ class ChatboxGetLeaderboardResponse {
     this.systemInfo,
   });
 
-  factory ChatboxGetLeaderboardResponse.fromJson(Map<String, dynamic> json) => ChatboxGetLeaderboardResponse(
-    leaderboard: (json['leaderboard'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ChatboxGetLeaderboardResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxGetLeaderboardResponse(
+        leaderboard: (json['leaderboard'] as List<dynamic>?)
+            ?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxGetIgnoreResponse {
@@ -1262,12 +2751,15 @@ class ChatboxGetIgnoreResponse {
     this.systemInfo,
   });
 
-  factory ChatboxGetIgnoreResponse.fromJson(Map<String, dynamic> json) => ChatboxGetIgnoreResponse(
-    ignored: (json['ignored'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ChatboxGetIgnoreResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxGetIgnoreResponse(
+        ignored:
+            (json['ignored'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxPostIgnoreBody {
@@ -1295,13 +2787,15 @@ class ChatboxPostIgnoreResponse {
     this.systemInfo,
   });
 
-  factory ChatboxPostIgnoreResponse.fromJson(Map<String, dynamic> json) => ChatboxPostIgnoreResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ChatboxPostIgnoreResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxPostIgnoreResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ChatboxDeleteIgnoreBody {
@@ -1329,13 +2823,15 @@ class ChatboxDeleteIgnoreResponse {
     this.systemInfo,
   });
 
-  factory ChatboxDeleteIgnoreResponse.fromJson(Map<String, dynamic> json) => ChatboxDeleteIgnoreResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ChatboxDeleteIgnoreResponse.fromJson(Map<String, dynamic> json) =>
+      ChatboxDeleteIgnoreResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ConversationsApi Types ────────────────────────────────────────
@@ -1371,11 +2867,12 @@ class ConversationsListResponseLinks {
     this.next,
   });
 
-  factory ConversationsListResponseLinks.fromJson(Map<String, dynamic> json) => ConversationsListResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory ConversationsListResponseLinks.fromJson(Map<String, dynamic> json) =>
+      ConversationsListResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class ConversationsListResponse {
@@ -1393,19 +2890,24 @@ class ConversationsListResponse {
     this.systemInfo,
   });
 
-  factory ConversationsListResponse.fromJson(Map<String, dynamic> json) => ConversationsListResponse(
-    conversations: (json['conversations'] as List<dynamic>?)
-            ?.map((e) => RespConversationModel.fromJson(e as Map<String, dynamic>))
+  factory ConversationsListResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsListResponse(
+        conversations: (json['conversations'] as List<dynamic>?)
+            ?.map((e) =>
+                RespConversationModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    canStart: json['can_start'] as bool?,
-    folders: (json['folders'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    links: json['links'] != null
-            ? ConversationsListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        canStart: json['can_start'] as bool?,
+        folders:
+            (json['folders'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        links: json['links'] != null
+            ? ConversationsListResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsCreateBody {
@@ -1455,14 +2957,17 @@ class ConversationsCreateResponse {
     this.systemInfo,
   });
 
-  factory ConversationsCreateResponse.fromJson(Map<String, dynamic> json) => ConversationsCreateResponse(
-    conversation: json['conversation'] != null
-            ? RespConversationModel.fromJson(json['conversation'] as Map<String, dynamic>)
+  factory ConversationsCreateResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsCreateResponse(
+        conversation: json['conversation'] != null
+            ? RespConversationModel.fromJson(
+                json['conversation'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsUpdateBody {
@@ -1506,14 +3011,17 @@ class ConversationsUpdateResponse {
     this.systemInfo,
   });
 
-  factory ConversationsUpdateResponse.fromJson(Map<String, dynamic> json) => ConversationsUpdateResponse(
-    conversation: json['conversation'] != null
-            ? RespConversationModel.fromJson(json['conversation'] as Map<String, dynamic>)
+  factory ConversationsUpdateResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsUpdateResponse(
+        conversation: json['conversation'] != null
+            ? RespConversationModel.fromJson(
+                json['conversation'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsDeleteBody {
@@ -1544,13 +3052,15 @@ class ConversationsDeleteResponse {
     this.systemInfo,
   });
 
-  factory ConversationsDeleteResponse.fromJson(Map<String, dynamic> json) => ConversationsDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsStartBody {
@@ -1576,14 +3086,17 @@ class ConversationsStartResponse {
     this.systemInfo,
   });
 
-  factory ConversationsStartResponse.fromJson(Map<String, dynamic> json) => ConversationsStartResponse(
-    conversation: json['conversation'] != null
-            ? RespConversationModel.fromJson(json['conversation'] as Map<String, dynamic>)
+  factory ConversationsStartResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsStartResponse(
+        conversation: json['conversation'] != null
+            ? RespConversationModel.fromJson(
+                json['conversation'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsSaveBody {
@@ -1611,13 +3124,15 @@ class ConversationsSaveResponse {
     this.systemInfo,
   });
 
-  factory ConversationsSaveResponse.fromJson(Map<String, dynamic> json) => ConversationsSaveResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsSaveResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsSaveResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsGetResponse {
@@ -1629,14 +3144,17 @@ class ConversationsGetResponse {
     this.systemInfo,
   });
 
-  factory ConversationsGetResponse.fromJson(Map<String, dynamic> json) => ConversationsGetResponse(
-    conversation: json['conversation'] != null
-            ? RespConversationModel.fromJson(json['conversation'] as Map<String, dynamic>)
+  factory ConversationsGetResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsGetResponse(
+        conversation: json['conversation'] != null
+            ? RespConversationModel.fromJson(
+                json['conversation'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsMessagesListParams {
@@ -1676,11 +3194,13 @@ class ConversationsMessagesListResponseLinks {
     this.next,
   });
 
-  factory ConversationsMessagesListResponseLinks.fromJson(Map<String, dynamic> json) => ConversationsMessagesListResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory ConversationsMessagesListResponseLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsMessagesListResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class ConversationsMessagesListResponse {
@@ -1696,18 +3216,23 @@ class ConversationsMessagesListResponse {
     this.systemInfo,
   });
 
-  factory ConversationsMessagesListResponse.fromJson(Map<String, dynamic> json) => ConversationsMessagesListResponse(
-    messages: (json['messages'] as List<dynamic>?)
-            ?.map((e) => RespConversationMessageModel.fromJson(e as Map<String, dynamic>))
+  factory ConversationsMessagesListResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsMessagesListResponse(
+        messages: (json['messages'] as List<dynamic>?)
+            ?.map((e) => RespConversationMessageModel.fromJson(
+                e as Map<String, dynamic>))
             .toList(),
-    messagesTotal: json['messages_total'] as int?,
-    links: json['links'] != null
-            ? ConversationsMessagesListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        messagesTotal: json['messages_total'] as int?,
+        links: json['links'] != null
+            ? ConversationsMessagesListResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsMessagesCreateBody {
@@ -1736,14 +3261,18 @@ class ConversationsMessagesCreateResponse {
     this.systemInfo,
   });
 
-  factory ConversationsMessagesCreateResponse.fromJson(Map<String, dynamic> json) => ConversationsMessagesCreateResponse(
-    message: json['message'] != null
-            ? RespConversationMessageModel.fromJson(json['message'] as Map<String, dynamic>)
+  factory ConversationsMessagesCreateResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsMessagesCreateResponse(
+        message: json['message'] != null
+            ? RespConversationMessageModel.fromJson(
+                json['message'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsSearchBody {
@@ -1777,15 +3306,18 @@ class ConversationsSearchResponse {
     this.systemInfo,
   });
 
-  factory ConversationsSearchResponse.fromJson(Map<String, dynamic> json) => ConversationsSearchResponse(
-    conversations: (json['conversations'] as List<dynamic>?)
-            ?.map((e) => RespConversationModel.fromJson(e as Map<String, dynamic>))
+  factory ConversationsSearchResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsSearchResponse(
+        conversations: (json['conversations'] as List<dynamic>?)
+            ?.map((e) =>
+                RespConversationModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    recipients: json['recipients'] as bool?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        recipients: json['recipients'] as bool?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsMessagesGetResponse {
@@ -1797,14 +3329,18 @@ class ConversationsMessagesGetResponse {
     this.systemInfo,
   });
 
-  factory ConversationsMessagesGetResponse.fromJson(Map<String, dynamic> json) => ConversationsMessagesGetResponse(
-    message: json['message'] != null
-            ? RespConversationModel.fromJson(json['message'] as Map<String, dynamic>)
+  factory ConversationsMessagesGetResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsMessagesGetResponse(
+        message: json['message'] != null
+            ? RespConversationModel.fromJson(
+                json['message'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsMessagesEditBody {
@@ -1830,14 +3366,18 @@ class ConversationsMessagesEditResponse {
     this.systemInfo,
   });
 
-  factory ConversationsMessagesEditResponse.fromJson(Map<String, dynamic> json) => ConversationsMessagesEditResponse(
-    message: json['message'] != null
-            ? RespConversationModel.fromJson(json['message'] as Map<String, dynamic>)
+  factory ConversationsMessagesEditResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsMessagesEditResponse(
+        message: json['message'] != null
+            ? RespConversationModel.fromJson(
+                json['message'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsMessagesDeleteResponse {
@@ -1851,13 +3391,16 @@ class ConversationsMessagesDeleteResponse {
     this.systemInfo,
   });
 
-  factory ConversationsMessagesDeleteResponse.fromJson(Map<String, dynamic> json) => ConversationsMessagesDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsMessagesDeleteResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsMessagesDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsInviteBody {
@@ -1885,13 +3428,15 @@ class ConversationsInviteResponse {
     this.systemInfo,
   });
 
-  factory ConversationsInviteResponse.fromJson(Map<String, dynamic> json) => ConversationsInviteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsInviteResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsInviteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsKickBody {
@@ -1919,13 +3464,15 @@ class ConversationsKickResponse {
     this.systemInfo,
   });
 
-  factory ConversationsKickResponse.fromJson(Map<String, dynamic> json) => ConversationsKickResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsKickResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsKickResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsReadResponse {
@@ -1939,13 +3486,15 @@ class ConversationsReadResponse {
     this.systemInfo,
   });
 
-  factory ConversationsReadResponse.fromJson(Map<String, dynamic> json) => ConversationsReadResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsReadResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsReadResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsReadAllResponse {
@@ -1959,13 +3508,15 @@ class ConversationsReadAllResponse {
     this.systemInfo,
   });
 
-  factory ConversationsReadAllResponse.fromJson(Map<String, dynamic> json) => ConversationsReadAllResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsReadAllResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsReadAllResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsMessagesStickResponse {
@@ -1979,13 +3530,16 @@ class ConversationsMessagesStickResponse {
     this.systemInfo,
   });
 
-  factory ConversationsMessagesStickResponse.fromJson(Map<String, dynamic> json) => ConversationsMessagesStickResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsMessagesStickResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsMessagesStickResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsMessagesUnstickResponse {
@@ -1999,13 +3553,16 @@ class ConversationsMessagesUnstickResponse {
     this.systemInfo,
   });
 
-  factory ConversationsMessagesUnstickResponse.fromJson(Map<String, dynamic> json) => ConversationsMessagesUnstickResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsMessagesUnstickResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsMessagesUnstickResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsStarResponse {
@@ -2019,13 +3576,15 @@ class ConversationsStarResponse {
     this.systemInfo,
   });
 
-  factory ConversationsStarResponse.fromJson(Map<String, dynamic> json) => ConversationsStarResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsStarResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsStarResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsUnstarResponse {
@@ -2039,13 +3598,15 @@ class ConversationsUnstarResponse {
     this.systemInfo,
   });
 
-  factory ConversationsUnstarResponse.fromJson(Map<String, dynamic> json) => ConversationsUnstarResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsUnstarResponse.fromJson(Map<String, dynamic> json) =>
+      ConversationsUnstarResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsAlertsEnableResponse {
@@ -2059,13 +3620,16 @@ class ConversationsAlertsEnableResponse {
     this.systemInfo,
   });
 
-  factory ConversationsAlertsEnableResponse.fromJson(Map<String, dynamic> json) => ConversationsAlertsEnableResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsAlertsEnableResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsAlertsEnableResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ConversationsAlertsDisableResponse {
@@ -2079,13 +3643,16 @@ class ConversationsAlertsDisableResponse {
     this.systemInfo,
   });
 
-  factory ConversationsAlertsDisableResponse.fromJson(Map<String, dynamic> json) => ConversationsAlertsDisableResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ConversationsAlertsDisableResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ConversationsAlertsDisableResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── FormsApi Types ────────────────────────────────────────
@@ -2119,19 +3686,21 @@ class FormsListResponse {
     this.systemInfo,
   });
 
-  factory FormsListResponse.fromJson(Map<String, dynamic> json) => FormsListResponse(
-    forms: (json['forms'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    formsPerPage: json['formsPerPage'] as int?,
-    page: json['page'] as int?,
-    totalForms: json['totalForms'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory FormsListResponse.fromJson(Map<String, dynamic> json) =>
+      FormsListResponse(
+        forms: (json['forms'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        formsPerPage: json['formsPerPage'] as int?,
+        page: json['page'] as int?,
+        totalForms: json['totalForms'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class FormsCreateBody {
-  final String? formId;
+  final int? formId;
   final Map<String, dynamic>? fields;
 
   const FormsCreateBody({
@@ -2145,6 +3714,63 @@ class FormsCreateBody {
       'fields': fields,
     };
   }
+}
+
+class FormsCreateResponseContentLinks {
+  final String? permalink;
+  final String? detail;
+  final String? followers;
+  final String? forum;
+  final String? posts;
+  final String? firstPoster;
+  final String? firstPosterAvatar;
+  final String? firstPost;
+
+  const FormsCreateResponseContentLinks({
+    this.permalink,
+    this.detail,
+    this.followers,
+    this.forum,
+    this.posts,
+    this.firstPoster,
+    this.firstPosterAvatar,
+    this.firstPost,
+  });
+
+  factory FormsCreateResponseContentLinks.fromJson(Map<String, dynamic> json) =>
+      FormsCreateResponseContentLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        followers: json['followers'] as String?,
+        forum: json['forum'] as String?,
+        posts: json['posts'] as String?,
+        firstPoster: json['first_poster'] as String?,
+        firstPosterAvatar: json['first_poster_avatar'] as String?,
+        firstPost: json['first_post'] as String?,
+      );
+}
+
+class FormsCreateResponseContentPermissions {
+  final bool? view;
+  final bool? delete;
+  final bool? follow;
+  final bool? post;
+
+  const FormsCreateResponseContentPermissions({
+    this.view,
+    this.delete,
+    this.follow,
+    this.post,
+  });
+
+  factory FormsCreateResponseContentPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      FormsCreateResponseContentPermissions(
+        view: json['view'] as bool?,
+        delete: json['delete'] as bool?,
+        follow: json['follow'] as bool?,
+        post: json['post'] as bool?,
+      );
 }
 
 class FormsCreateResponseContent {
@@ -2166,8 +3792,8 @@ class FormsCreateResponseContent {
   final bool? threadIsFollowed;
   final List<Object>? threadPrefixes;
   final List<Object>? threadTags;
-  final Object? links;
-  final Object? permissions;
+  final FormsCreateResponseContentLinks? links;
+  final FormsCreateResponseContentPermissions? permissions;
   final String? nodeTitle;
 
   const FormsCreateResponseContent({
@@ -2194,29 +3820,37 @@ class FormsCreateResponseContent {
     this.nodeTitle,
   });
 
-  factory FormsCreateResponseContent.fromJson(Map<String, dynamic> json) => FormsCreateResponseContent(
-    threadId: json['thread_id'] as int?,
-    forumId: json['forum_id'] as int?,
-    threadTitle: json['thread_title'] as String?,
-    threadViewCount: json['thread_view_count'] as int?,
-    creatorUserId: json['creator_user_id'] as int?,
-    creatorUsername: json['creator_username'] as String?,
-    creatorUsernameHtml: json['creator_username_html'] as String?,
-    threadCreateDate: json['thread_create_date'] as int?,
-    threadUpdateDate: json['thread_update_date'] as int?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    threadPostCount: json['thread_post_count'] as int?,
-    threadIsPublished: json['thread_is_published'] as bool?,
-    threadIsDeleted: json['thread_is_deleted'] as bool?,
-    threadIsSticky: json['thread_is_sticky'] as bool?,
-    threadIsClosed: json['thread_is_closed'] as bool?,
-    threadIsFollowed: json['thread_is_followed'] as bool?,
-    threadPrefixes: (json['thread_prefixes'] as List<dynamic>?)?.cast<Object>(),
-    threadTags: (json['thread_tags'] as List<dynamic>?)?.cast<Object>(),
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-    nodeTitle: json['node_title'] as String?,
-  );
+  factory FormsCreateResponseContent.fromJson(Map<String, dynamic> json) =>
+      FormsCreateResponseContent(
+        threadId: json['thread_id'] as int?,
+        forumId: json['forum_id'] as int?,
+        threadTitle: json['thread_title'] as String?,
+        threadViewCount: json['thread_view_count'] as int?,
+        creatorUserId: json['creator_user_id'] as int?,
+        creatorUsername: json['creator_username'] as String?,
+        creatorUsernameHtml: json['creator_username_html'] as String?,
+        threadCreateDate: json['thread_create_date'] as int?,
+        threadUpdateDate: json['thread_update_date'] as int?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        threadPostCount: json['thread_post_count'] as int?,
+        threadIsPublished: json['thread_is_published'] as bool?,
+        threadIsDeleted: json['thread_is_deleted'] as bool?,
+        threadIsSticky: json['thread_is_sticky'] as bool?,
+        threadIsClosed: json['thread_is_closed'] as bool?,
+        threadIsFollowed: json['thread_is_followed'] as bool?,
+        threadPrefixes:
+            (json['thread_prefixes'] as List<dynamic>?)?.cast<Object>(),
+        threadTags: (json['thread_tags'] as List<dynamic>?)?.cast<Object>(),
+        links: json['links'] != null
+            ? FormsCreateResponseContentLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? FormsCreateResponseContentPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        nodeTitle: json['node_title'] as String?,
+      );
 }
 
 class FormsCreateResponse {
@@ -2230,15 +3864,18 @@ class FormsCreateResponse {
     this.systemInfo,
   });
 
-  factory FormsCreateResponse.fromJson(Map<String, dynamic> json) => FormsCreateResponse(
-    message: json['message'] as String?,
-    content: json['content'] != null
-            ? FormsCreateResponseContent.fromJson(json['content'] as Map<String, dynamic>)
+  factory FormsCreateResponse.fromJson(Map<String, dynamic> json) =>
+      FormsCreateResponse(
+        message: json['message'] as String?,
+        content: json['content'] != null
+            ? FormsCreateResponseContent.fromJson(
+                json['content'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ForumsApi Types ────────────────────────────────────────
@@ -2276,26 +3913,150 @@ class ForumsListResponse {
     this.systemInfo,
   });
 
-  factory ForumsListResponse.fromJson(Map<String, dynamic> json) => ForumsListResponse(
-    forums: (json['forums'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    forumsTotal: json['forums_total'] as int?,
-    tabs: (json['tabs'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ForumsListResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsListResponse(
+        forums:
+            (json['forums'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        forumsTotal: json['forums_total'] as int?,
+        tabs: (json['tabs'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
+}
+
+class ForumsGroupedResponseData00Links {
+  final String? permalink;
+  final String? detail;
+  final String? subCategories;
+  final String? subForums;
+  final String? threads;
+  final String? followers;
+
+  const ForumsGroupedResponseData00Links({
+    this.permalink,
+    this.detail,
+    this.subCategories,
+    this.subForums,
+    this.threads,
+    this.followers,
+  });
+
+  factory ForumsGroupedResponseData00Links.fromJson(
+          Map<String, dynamic> json) =>
+      ForumsGroupedResponseData00Links(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        subCategories: json['sub-categories'] as String?,
+        subForums: json['sub-forums'] as String?,
+        threads: json['threads'] as String?,
+        followers: json['followers'] as String?,
+      );
+}
+
+class ForumsGroupedResponseData00Permissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? createThread;
+  final bool? tagThread;
+  final bool? follow;
+
+  const ForumsGroupedResponseData00Permissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.createThread,
+    this.tagThread,
+    this.follow,
+  });
+
+  factory ForumsGroupedResponseData00Permissions.fromJson(
+          Map<String, dynamic> json) =>
+      ForumsGroupedResponseData00Permissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        createThread: json['create_thread'] as bool?,
+        tagThread: json['tag_thread'] as bool?,
+        follow: json['follow'] as bool?,
+      );
+}
+
+class ForumsGroupedResponseData00 {
+  final int? forumId;
+  final String? forumTitle;
+  final String? forumDescription;
+  final int? forumThreadCount;
+  final int? forumPostCount;
+  final int? parentNodeId;
+  final ForumsGroupedResponseData00Links? links;
+  final ForumsGroupedResponseData00Permissions? permissions;
+  final bool? forumIsFollowed;
+
+  const ForumsGroupedResponseData00({
+    this.forumId,
+    this.forumTitle,
+    this.forumDescription,
+    this.forumThreadCount,
+    this.forumPostCount,
+    this.parentNodeId,
+    this.links,
+    this.permissions,
+    this.forumIsFollowed,
+  });
+
+  factory ForumsGroupedResponseData00.fromJson(Map<String, dynamic> json) =>
+      ForumsGroupedResponseData00(
+        forumId: json['forum_id'] as int?,
+        forumTitle: json['forum_title'] as String?,
+        forumDescription: json['forum_description'] as String?,
+        forumThreadCount: json['forum_thread_count'] as int?,
+        forumPostCount: json['forum_post_count'] as int?,
+        parentNodeId: json['parent_node_id'] as int?,
+        links: json['links'] != null
+            ? ForumsGroupedResponseData00Links.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? ForumsGroupedResponseData00Permissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        forumIsFollowed: json['forum_is_followed'] as bool?,
+      );
+}
+
+class ForumsGroupedResponseData0 {
+  final ForumsGroupedResponseData00? n0;
+
+  const ForumsGroupedResponseData0({
+    this.n0,
+  });
+
+  factory ForumsGroupedResponseData0.fromJson(Map<String, dynamic> json) =>
+      ForumsGroupedResponseData0(
+        n0: json['0'] != null
+            ? ForumsGroupedResponseData00.fromJson(
+                json['0'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class ForumsGroupedResponseData {
-  final Object? n0;
+  final ForumsGroupedResponseData0? n0;
 
   const ForumsGroupedResponseData({
     this.n0,
   });
 
-  factory ForumsGroupedResponseData.fromJson(Map<String, dynamic> json) => ForumsGroupedResponseData(
-    n0: json['0'] as Object?,
-  );
+  factory ForumsGroupedResponseData.fromJson(Map<String, dynamic> json) =>
+      ForumsGroupedResponseData(
+        n0: json['0'] != null
+            ? ForumsGroupedResponseData0.fromJson(
+                json['0'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class ForumsGroupedResponse {
@@ -2309,15 +4070,78 @@ class ForumsGroupedResponse {
     this.systemInfo,
   });
 
-  factory ForumsGroupedResponse.fromJson(Map<String, dynamic> json) => ForumsGroupedResponse(
-    data: json['data'] != null
-            ? ForumsGroupedResponseData.fromJson(json['data'] as Map<String, dynamic>)
+  factory ForumsGroupedResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsGroupedResponse(
+        data: json['data'] != null
+            ? ForumsGroupedResponseData.fromJson(
+                json['data'] as Map<String, dynamic>)
             : null,
-    tabs: (json['tabs'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        tabs: (json['tabs'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
+}
+
+class ForumsGetResponseForumLinks {
+  final String? permalink;
+  final String? detail;
+  final String? subCategories;
+  final String? subForums;
+  final String? threads;
+  final String? followers;
+
+  const ForumsGetResponseForumLinks({
+    this.permalink,
+    this.detail,
+    this.subCategories,
+    this.subForums,
+    this.threads,
+    this.followers,
+  });
+
+  factory ForumsGetResponseForumLinks.fromJson(Map<String, dynamic> json) =>
+      ForumsGetResponseForumLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        subCategories: json['sub-categories'] as String?,
+        subForums: json['sub-forums'] as String?,
+        threads: json['threads'] as String?,
+        followers: json['followers'] as String?,
+      );
+}
+
+class ForumsGetResponseForumPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? createThread;
+  final bool? uploadAttachment;
+  final bool? tagThread;
+  final bool? follow;
+
+  const ForumsGetResponseForumPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.createThread,
+    this.uploadAttachment,
+    this.tagThread,
+    this.follow,
+  });
+
+  factory ForumsGetResponseForumPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ForumsGetResponseForumPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        createThread: json['create_thread'] as bool?,
+        uploadAttachment: json['upload_attachment'] as bool?,
+        tagThread: json['tag_thread'] as bool?,
+        follow: json['follow'] as bool?,
+      );
 }
 
 class ForumsGetResponseForum {
@@ -2329,8 +4153,8 @@ class ForumsGetResponseForum {
   final List<Map<String, dynamic>>? forumPrefixes;
   final int? threadDefaultPrefixId;
   final bool? threadPrefixIsRequired;
-  final Object? links;
-  final Object? permissions;
+  final ForumsGetResponseForumLinks? links;
+  final ForumsGetResponseForumPermissions? permissions;
   final bool? forumIsFollowed;
 
   const ForumsGetResponseForum({
@@ -2347,19 +4171,27 @@ class ForumsGetResponseForum {
     this.forumIsFollowed,
   });
 
-  factory ForumsGetResponseForum.fromJson(Map<String, dynamic> json) => ForumsGetResponseForum(
-    forumId: json['forum_id'] as int?,
-    forumTitle: json['forum_title'] as String?,
-    forumDescription: json['forum_description'] as String?,
-    forumThreadCount: json['forum_thread_count'] as int?,
-    forumPostCount: json['forum_post_count'] as int?,
-    forumPrefixes: (json['forum_prefixes'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    threadDefaultPrefixId: json['thread_default_prefix_id'] as int?,
-    threadPrefixIsRequired: json['thread_prefix_is_required'] as bool?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-    forumIsFollowed: json['forum_is_followed'] as bool?,
-  );
+  factory ForumsGetResponseForum.fromJson(Map<String, dynamic> json) =>
+      ForumsGetResponseForum(
+        forumId: json['forum_id'] as int?,
+        forumTitle: json['forum_title'] as String?,
+        forumDescription: json['forum_description'] as String?,
+        forumThreadCount: json['forum_thread_count'] as int?,
+        forumPostCount: json['forum_post_count'] as int?,
+        forumPrefixes: (json['forum_prefixes'] as List<dynamic>?)
+            ?.cast<Map<String, dynamic>>(),
+        threadDefaultPrefixId: json['thread_default_prefix_id'] as int?,
+        threadPrefixIsRequired: json['thread_prefix_is_required'] as bool?,
+        links: json['links'] != null
+            ? ForumsGetResponseForumLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? ForumsGetResponseForumPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        forumIsFollowed: json['forum_is_followed'] as bool?,
+      );
 }
 
 class ForumsGetResponse {
@@ -2371,14 +4203,17 @@ class ForumsGetResponse {
     this.systemInfo,
   });
 
-  factory ForumsGetResponse.fromJson(Map<String, dynamic> json) => ForumsGetResponse(
-    forum: json['forum'] != null
-            ? ForumsGetResponseForum.fromJson(json['forum'] as Map<String, dynamic>)
+  factory ForumsGetResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsGetResponse(
+        forum: json['forum'] != null
+            ? ForumsGetResponseForum.fromJson(
+                json['forum'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ForumsFollowersResponse {
@@ -2390,12 +4225,14 @@ class ForumsFollowersResponse {
     this.systemInfo,
   });
 
-  factory ForumsFollowersResponse.fromJson(Map<String, dynamic> json) => ForumsFollowersResponse(
-    users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ForumsFollowersResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsFollowersResponse(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ForumsFollowBody {
@@ -2435,13 +4272,15 @@ class ForumsFollowResponse {
     this.systemInfo,
   });
 
-  factory ForumsFollowResponse.fromJson(Map<String, dynamic> json) => ForumsFollowResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ForumsFollowResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsFollowResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ForumsUnfollowResponse {
@@ -2455,13 +4294,15 @@ class ForumsUnfollowResponse {
     this.systemInfo,
   });
 
-  factory ForumsUnfollowResponse.fromJson(Map<String, dynamic> json) => ForumsUnfollowResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ForumsUnfollowResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsUnfollowResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ForumsFollowedParams {
@@ -2487,12 +4328,15 @@ class ForumsFollowedResponse {
     this.systemInfo,
   });
 
-  factory ForumsFollowedResponse.fromJson(Map<String, dynamic> json) => ForumsFollowedResponse(
-    forums: (json['forums'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ForumsFollowedResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsFollowedResponse(
+        forums:
+            (json['forums'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ForumsGetFeedOptionsResponse {
@@ -2510,15 +4354,21 @@ class ForumsGetFeedOptionsResponse {
     this.systemInfo,
   });
 
-  factory ForumsGetFeedOptionsResponse.fromJson(Map<String, dynamic> json) => ForumsGetFeedOptionsResponse(
-    forums: (json['forums'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    excludedForumsIds: (json['excluded_forums_ids'] as List<dynamic>?)?.cast<int>(),
-    defaultExcludedForumsIds: (json['default_excluded_forums_ids'] as List<dynamic>?)?.cast<int>(),
-    keywords: json['keywords'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ForumsGetFeedOptionsResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsGetFeedOptionsResponse(
+        forums:
+            (json['forums'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        excludedForumsIds:
+            (json['excluded_forums_ids'] as List<dynamic>?)?.cast<int>(),
+        defaultExcludedForumsIds:
+            (json['default_excluded_forums_ids'] as List<dynamic>?)
+                ?.cast<int>(),
+        keywords: json['keywords'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ForumsEditFeedOptionsBody {
@@ -2549,13 +4399,15 @@ class ForumsEditFeedOptionsResponse {
     this.systemInfo,
   });
 
-  factory ForumsEditFeedOptionsResponse.fromJson(Map<String, dynamic> json) => ForumsEditFeedOptionsResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ForumsEditFeedOptionsResponse.fromJson(Map<String, dynamic> json) =>
+      ForumsEditFeedOptionsResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── LinksApi Types ────────────────────────────────────────
@@ -2571,15 +4423,17 @@ class LinksListResponse {
     this.systemInfo,
   });
 
-  factory LinksListResponse.fromJson(Map<String, dynamic> json) => LinksListResponse(
-    linkForums: (json['link-forums'] as List<dynamic>?)
+  factory LinksListResponse.fromJson(Map<String, dynamic> json) =>
+      LinksListResponse(
+        linkForums: (json['link-forums'] as List<dynamic>?)
             ?.map((e) => RespLinkModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    linkForumsTotal: json['link-forums_total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        linkForumsTotal: json['link-forums_total'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class LinksGetResponse {
@@ -2591,14 +4445,16 @@ class LinksGetResponse {
     this.systemInfo,
   });
 
-  factory LinksGetResponse.fromJson(Map<String, dynamic> json) => LinksGetResponse(
-    linkForum: json['link-forum'] != null
+  factory LinksGetResponse.fromJson(Map<String, dynamic> json) =>
+      LinksGetResponse(
+        linkForum: json['link-forum'] != null
             ? RespLinkModel.fromJson(json['link-forum'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── NavigationApi Types ────────────────────────────────────────
@@ -2628,13 +4484,16 @@ class NavigationListResponse {
     this.systemInfo,
   });
 
-  factory NavigationListResponse.fromJson(Map<String, dynamic> json) => NavigationListResponse(
-    elements: (json['elements'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    elementsCount: json['elements_count'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory NavigationListResponse.fromJson(Map<String, dynamic> json) =>
+      NavigationListResponse(
+        elements:
+            (json['elements'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        elementsCount: json['elements_count'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── NotificationsApi Types ────────────────────────────────────────
@@ -2672,12 +4531,13 @@ class NotificationsListResponseLinks {
     this.next,
   });
 
-  factory NotificationsListResponseLinks.fromJson(Map<String, dynamic> json) => NotificationsListResponseLinks(
-    read: json['read'] as String?,
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory NotificationsListResponseLinks.fromJson(Map<String, dynamic> json) =>
+      NotificationsListResponseLinks(
+        read: json['read'] as String?,
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class NotificationsListResponse {
@@ -2693,18 +4553,22 @@ class NotificationsListResponse {
     this.systemInfo,
   });
 
-  factory NotificationsListResponse.fromJson(Map<String, dynamic> json) => NotificationsListResponse(
-    notifications: (json['notifications'] as List<dynamic>?)
-            ?.map((e) => RespNotificationModel.fromJson(e as Map<String, dynamic>))
+  factory NotificationsListResponse.fromJson(Map<String, dynamic> json) =>
+      NotificationsListResponse(
+        notifications: (json['notifications'] as List<dynamic>?)
+            ?.map((e) =>
+                RespNotificationModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    notificationsTotal: json['notifications_total'] as int?,
-    links: json['links'] != null
-            ? NotificationsListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        notificationsTotal: json['notifications_total'] as int?,
+        links: json['links'] != null
+            ? NotificationsListResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class NotificationsGetResponse {
@@ -2718,15 +4582,18 @@ class NotificationsGetResponse {
     this.systemInfo,
   });
 
-  factory NotificationsGetResponse.fromJson(Map<String, dynamic> json) => NotificationsGetResponse(
-    notificationId: json['notification_id'] as int?,
-    notification: json['notification'] != null
-            ? RespNotificationModel.fromJson(json['notification'] as Map<String, dynamic>)
+  factory NotificationsGetResponse.fromJson(Map<String, dynamic> json) =>
+      NotificationsGetResponse(
+        notificationId: json['notification_id'] as int?,
+        notification: json['notification'] != null
+            ? RespNotificationModel.fromJson(
+                json['notification'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class NotificationsReadBody {
@@ -2754,13 +4621,15 @@ class NotificationsReadResponse {
     this.systemInfo,
   });
 
-  factory NotificationsReadResponse.fromJson(Map<String, dynamic> json) => NotificationsReadResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory NotificationsReadResponse.fromJson(Map<String, dynamic> json) =>
+      NotificationsReadResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── OAuthApi Types ────────────────────────────────────────
@@ -2769,7 +4638,7 @@ class OAuthTokenBody {
   final String? grantType;
   final String? clientId;
   final String? clientSecret;
-  final Object? scope;
+  final List<String>? scope;
   final String? code;
   final String? redirectUri;
   final String? refreshToken;
@@ -2818,13 +4687,14 @@ class OAuthTokenResponse {
     this.scope,
   });
 
-  factory OAuthTokenResponse.fromJson(Map<String, dynamic> json) => OAuthTokenResponse(
-    accessToken: json['access_token'] as String?,
-    tokenType: json['token_type'] as String?,
-    expiresIn: json['expires_in'] as int?,
-    refreshToken: json['refresh_token'] as String?,
-    scope: json['scope'] as String?,
-  );
+  factory OAuthTokenResponse.fromJson(Map<String, dynamic> json) =>
+      OAuthTokenResponse(
+        accessToken: json['access_token'] as String?,
+        tokenType: json['token_type'] as String?,
+        expiresIn: json['expires_in'] as int?,
+        refreshToken: json['refresh_token'] as String?,
+        scope: json['scope'] as String?,
+      );
 }
 
 // ─── PagesApi Types ────────────────────────────────────────
@@ -2857,13 +4727,53 @@ class PagesListResponse {
     this.systemInfo,
   });
 
-  factory PagesListResponse.fromJson(Map<String, dynamic> json) => PagesListResponse(
-    pages: (json['pages'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    pagesTotal: json['pages_total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PagesListResponse.fromJson(Map<String, dynamic> json) =>
+      PagesListResponse(
+        pages: (json['pages'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        pagesTotal: json['pages_total'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
+}
+
+class PagesGetResponsePageLinks {
+  final String? permalink;
+  final String? detail;
+  final String? subPages;
+
+  const PagesGetResponsePageLinks({
+    this.permalink,
+    this.detail,
+    this.subPages,
+  });
+
+  factory PagesGetResponsePageLinks.fromJson(Map<String, dynamic> json) =>
+      PagesGetResponsePageLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        subPages: json['sub-pages'] as String?,
+      );
+}
+
+class PagesGetResponsePagePermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+
+  const PagesGetResponsePagePermissions({
+    this.view,
+    this.edit,
+    this.delete,
+  });
+
+  factory PagesGetResponsePagePermissions.fromJson(Map<String, dynamic> json) =>
+      PagesGetResponsePagePermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+      );
 }
 
 class PagesGetResponsePage {
@@ -2871,8 +4781,8 @@ class PagesGetResponsePage {
   final String? pageTitle;
   final String? pageDescription;
   final int? pageViewCount;
-  final Object? links;
-  final Object? permissions;
+  final PagesGetResponsePageLinks? links;
+  final PagesGetResponsePagePermissions? permissions;
   final String? pageHtml;
 
   const PagesGetResponsePage({
@@ -2885,15 +4795,22 @@ class PagesGetResponsePage {
     this.pageHtml,
   });
 
-  factory PagesGetResponsePage.fromJson(Map<String, dynamic> json) => PagesGetResponsePage(
-    pageId: json['page_id'] as int?,
-    pageTitle: json['page_title'] as String?,
-    pageDescription: json['page_description'] as String?,
-    pageViewCount: json['page_view_count'] as int?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-    pageHtml: json['page_html'] as String?,
-  );
+  factory PagesGetResponsePage.fromJson(Map<String, dynamic> json) =>
+      PagesGetResponsePage(
+        pageId: json['page_id'] as int?,
+        pageTitle: json['page_title'] as String?,
+        pageDescription: json['page_description'] as String?,
+        pageViewCount: json['page_view_count'] as int?,
+        links: json['links'] != null
+            ? PagesGetResponsePageLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? PagesGetResponsePagePermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        pageHtml: json['page_html'] as String?,
+      );
 }
 
 class PagesGetResponse {
@@ -2905,14 +4822,17 @@ class PagesGetResponse {
     this.systemInfo,
   });
 
-  factory PagesGetResponse.fromJson(Map<String, dynamic> json) => PagesGetResponse(
-    page: json['page'] != null
-            ? PagesGetResponsePage.fromJson(json['page'] as Map<String, dynamic>)
+  factory PagesGetResponse.fromJson(Map<String, dynamic> json) =>
+      PagesGetResponse(
+        page: json['page'] != null
+            ? PagesGetResponsePage.fromJson(
+                json['page'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── PostsApi Types ────────────────────────────────────────
@@ -2956,18 +4876,20 @@ class PostsListResponse {
     this.systemInfo,
   });
 
-  factory PostsListResponse.fromJson(Map<String, dynamic> json) => PostsListResponse(
-    posts: (json['posts'] as List<dynamic>?)
+  factory PostsListResponse.fromJson(Map<String, dynamic> json) =>
+      PostsListResponse(
+        posts: (json['posts'] as List<dynamic>?)
             ?.map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    thread: json['thread'] != null
+        thread: json['thread'] != null
             ? RespThreadModel.fromJson(json['thread'] as Map<String, dynamic>)
             : null,
-    postsTotal: json['posts_total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        postsTotal: json['posts_total'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsCreateBody {
@@ -2999,14 +4921,16 @@ class PostsCreateResponse {
     this.systemInfo,
   });
 
-  factory PostsCreateResponse.fromJson(Map<String, dynamic> json) => PostsCreateResponse(
-    post: json['post'] != null
+  factory PostsCreateResponse.fromJson(Map<String, dynamic> json) =>
+      PostsCreateResponse(
+        post: json['post'] != null
             ? RespPostModel.fromJson(json['post'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsGetResponse {
@@ -3018,14 +4942,16 @@ class PostsGetResponse {
     this.systemInfo,
   });
 
-  factory PostsGetResponse.fromJson(Map<String, dynamic> json) => PostsGetResponse(
-    post: json['post'] != null
+  factory PostsGetResponse.fromJson(Map<String, dynamic> json) =>
+      PostsGetResponse(
+        post: json['post'] != null
             ? RespPostModel.fromJson(json['post'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsEditBody {
@@ -3051,14 +4977,16 @@ class PostsEditResponse {
     this.systemInfo,
   });
 
-  factory PostsEditResponse.fromJson(Map<String, dynamic> json) => PostsEditResponse(
-    post: json['post'] != null
+  factory PostsEditResponse.fromJson(Map<String, dynamic> json) =>
+      PostsEditResponse(
+        post: json['post'] != null
             ? RespPostModel.fromJson(json['post'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsDeleteBody {
@@ -3086,13 +5014,15 @@ class PostsDeleteResponse {
     this.systemInfo,
   });
 
-  factory PostsDeleteResponse.fromJson(Map<String, dynamic> json) => PostsDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PostsDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      PostsDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsLikesParams {
@@ -3121,12 +5051,14 @@ class PostsLikesResponse {
     this.systemInfo,
   });
 
-  factory PostsLikesResponse.fromJson(Map<String, dynamic> json) => PostsLikesResponse(
-    users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PostsLikesResponse.fromJson(Map<String, dynamic> json) =>
+      PostsLikesResponse(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsLikeResponse {
@@ -3140,13 +5072,15 @@ class PostsLikeResponse {
     this.systemInfo,
   });
 
-  factory PostsLikeResponse.fromJson(Map<String, dynamic> json) => PostsLikeResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PostsLikeResponse.fromJson(Map<String, dynamic> json) =>
+      PostsLikeResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsUnlikeResponse {
@@ -3160,13 +5094,15 @@ class PostsUnlikeResponse {
     this.systemInfo,
   });
 
-  factory PostsUnlikeResponse.fromJson(Map<String, dynamic> json) => PostsUnlikeResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PostsUnlikeResponse.fromJson(Map<String, dynamic> json) =>
+      PostsUnlikeResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsReportReasonsResponse {
@@ -3178,12 +5114,14 @@ class PostsReportReasonsResponse {
     this.systemInfo,
   });
 
-  factory PostsReportReasonsResponse.fromJson(Map<String, dynamic> json) => PostsReportReasonsResponse(
-    reasons: (json['reasons'] as List<dynamic>?)?.cast<String>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PostsReportReasonsResponse.fromJson(Map<String, dynamic> json) =>
+      PostsReportReasonsResponse(
+        reasons: (json['reasons'] as List<dynamic>?)?.cast<String>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsReportBody {
@@ -3211,13 +5149,15 @@ class PostsReportResponse {
     this.systemInfo,
   });
 
-  factory PostsReportResponse.fromJson(Map<String, dynamic> json) => PostsReportResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PostsReportResponse.fromJson(Map<String, dynamic> json) =>
+      PostsReportResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsCommentsGetParams {
@@ -3249,14 +5189,17 @@ class PostsCommentsGetResponse {
     this.systemInfo,
   });
 
-  factory PostsCommentsGetResponse.fromJson(Map<String, dynamic> json) => PostsCommentsGetResponse(
-    comments: (json['comments'] as List<dynamic>?)
-            ?.map((e) => RespPostCommentModel.fromJson(e as Map<String, dynamic>))
+  factory PostsCommentsGetResponse.fromJson(Map<String, dynamic> json) =>
+      PostsCommentsGetResponse(
+        comments: (json['comments'] as List<dynamic>?)
+            ?.map(
+                (e) => RespPostCommentModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsCommentsCreateBody {
@@ -3276,6 +5219,70 @@ class PostsCommentsCreateBody {
   }
 }
 
+class PostsCommentsCreateResponseCommentLinks {
+  final String? permalink;
+  final String? detail;
+  final String? post;
+  final String? thread;
+  final String? poster;
+  final String? likes;
+  final String? report;
+  final String? posterAvatar;
+
+  const PostsCommentsCreateResponseCommentLinks({
+    this.permalink,
+    this.detail,
+    this.post,
+    this.thread,
+    this.poster,
+    this.likes,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory PostsCommentsCreateResponseCommentLinks.fromJson(
+          Map<String, dynamic> json) =>
+      PostsCommentsCreateResponseCommentLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        post: json['post'] as String?,
+        thread: json['thread'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class PostsCommentsCreateResponseCommentPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? reply;
+  final bool? like;
+  final bool? report;
+
+  const PostsCommentsCreateResponseCommentPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.reply,
+    this.like,
+    this.report,
+  });
+
+  factory PostsCommentsCreateResponseCommentPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      PostsCommentsCreateResponseCommentPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        reply: json['reply'] as bool?,
+        like: json['like'] as bool?,
+        report: json['report'] as bool?,
+      );
+}
+
 class PostsCommentsCreateResponseComment {
   final int? postCommentId;
   final int? postId;
@@ -3291,8 +5298,8 @@ class PostsCommentsCreateResponseComment {
   final bool? postCommentIsPublished;
   final bool? postCommentIsDeleted;
   final int? postCommentUpdateDate;
-  final Object? links;
-  final Object? permissions;
+  final PostsCommentsCreateResponseCommentLinks? links;
+  final PostsCommentsCreateResponseCommentPermissions? permissions;
 
   const PostsCommentsCreateResponseComment({
     this.postCommentId,
@@ -3313,24 +5320,33 @@ class PostsCommentsCreateResponseComment {
     this.permissions,
   });
 
-  factory PostsCommentsCreateResponseComment.fromJson(Map<String, dynamic> json) => PostsCommentsCreateResponseComment(
-    postCommentId: json['post_comment_id'] as int?,
-    postId: json['post_id'] as int?,
-    threadId: json['thread_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    posterUsernameHtml: json['poster_username_html'] as String?,
-    postCommentBody: json['post_comment_body'] as String?,
-    postCommentBodyHtml: json['post_comment_body_html'] as String?,
-    postCommentBodyPlainText: json['post_comment_body_plain_text'] as String?,
-    postCommentLikeCount: json['post_comment_like_count'] as int?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postCommentIsPublished: json['post_comment_is_published'] as bool?,
-    postCommentIsDeleted: json['post_comment_is_deleted'] as bool?,
-    postCommentUpdateDate: json['post_comment_update_date'] as int?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory PostsCommentsCreateResponseComment.fromJson(
+          Map<String, dynamic> json) =>
+      PostsCommentsCreateResponseComment(
+        postCommentId: json['post_comment_id'] as int?,
+        postId: json['post_id'] as int?,
+        threadId: json['thread_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCommentBody: json['post_comment_body'] as String?,
+        postCommentBodyHtml: json['post_comment_body_html'] as String?,
+        postCommentBodyPlainText:
+            json['post_comment_body_plain_text'] as String?,
+        postCommentLikeCount: json['post_comment_like_count'] as int?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postCommentIsPublished: json['post_comment_is_published'] as bool?,
+        postCommentIsDeleted: json['post_comment_is_deleted'] as bool?,
+        postCommentUpdateDate: json['post_comment_update_date'] as int?,
+        links: json['links'] != null
+            ? PostsCommentsCreateResponseCommentLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? PostsCommentsCreateResponseCommentPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class PostsCommentsCreateResponse {
@@ -3342,14 +5358,17 @@ class PostsCommentsCreateResponse {
     this.systemInfo,
   });
 
-  factory PostsCommentsCreateResponse.fromJson(Map<String, dynamic> json) => PostsCommentsCreateResponse(
-    comment: json['comment'] != null
-            ? PostsCommentsCreateResponseComment.fromJson(json['comment'] as Map<String, dynamic>)
+  factory PostsCommentsCreateResponse.fromJson(Map<String, dynamic> json) =>
+      PostsCommentsCreateResponse(
+        comment: json['comment'] != null
+            ? PostsCommentsCreateResponseComment.fromJson(
+                json['comment'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsCommentsEditBody {
@@ -3369,6 +5388,70 @@ class PostsCommentsEditBody {
   }
 }
 
+class PostsCommentsEditResponseCommentLinks {
+  final String? permalink;
+  final String? detail;
+  final String? post;
+  final String? thread;
+  final String? poster;
+  final String? likes;
+  final String? report;
+  final String? posterAvatar;
+
+  const PostsCommentsEditResponseCommentLinks({
+    this.permalink,
+    this.detail,
+    this.post,
+    this.thread,
+    this.poster,
+    this.likes,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory PostsCommentsEditResponseCommentLinks.fromJson(
+          Map<String, dynamic> json) =>
+      PostsCommentsEditResponseCommentLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        post: json['post'] as String?,
+        thread: json['thread'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class PostsCommentsEditResponseCommentPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? reply;
+  final bool? like;
+  final bool? report;
+
+  const PostsCommentsEditResponseCommentPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.reply,
+    this.like,
+    this.report,
+  });
+
+  factory PostsCommentsEditResponseCommentPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      PostsCommentsEditResponseCommentPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        reply: json['reply'] as bool?,
+        like: json['like'] as bool?,
+        report: json['report'] as bool?,
+      );
+}
+
 class PostsCommentsEditResponseComment {
   final int? postCommentId;
   final int? postId;
@@ -3384,8 +5467,8 @@ class PostsCommentsEditResponseComment {
   final bool? postCommentIsPublished;
   final bool? postCommentIsDeleted;
   final int? postCommentUpdateDate;
-  final Object? links;
-  final Object? permissions;
+  final PostsCommentsEditResponseCommentLinks? links;
+  final PostsCommentsEditResponseCommentPermissions? permissions;
 
   const PostsCommentsEditResponseComment({
     this.postCommentId,
@@ -3406,24 +5489,33 @@ class PostsCommentsEditResponseComment {
     this.permissions,
   });
 
-  factory PostsCommentsEditResponseComment.fromJson(Map<String, dynamic> json) => PostsCommentsEditResponseComment(
-    postCommentId: json['post_comment_id'] as int?,
-    postId: json['post_id'] as int?,
-    threadId: json['thread_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    posterUsernameHtml: json['poster_username_html'] as String?,
-    postCommentBody: json['post_comment_body'] as String?,
-    postCommentBodyHtml: json['post_comment_body_html'] as String?,
-    postCommentBodyPlainText: json['post_comment_body_plain_text'] as String?,
-    postCommentLikeCount: json['post_comment_like_count'] as int?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postCommentIsPublished: json['post_comment_is_published'] as bool?,
-    postCommentIsDeleted: json['post_comment_is_deleted'] as bool?,
-    postCommentUpdateDate: json['post_comment_update_date'] as int?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory PostsCommentsEditResponseComment.fromJson(
+          Map<String, dynamic> json) =>
+      PostsCommentsEditResponseComment(
+        postCommentId: json['post_comment_id'] as int?,
+        postId: json['post_id'] as int?,
+        threadId: json['thread_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCommentBody: json['post_comment_body'] as String?,
+        postCommentBodyHtml: json['post_comment_body_html'] as String?,
+        postCommentBodyPlainText:
+            json['post_comment_body_plain_text'] as String?,
+        postCommentLikeCount: json['post_comment_like_count'] as int?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postCommentIsPublished: json['post_comment_is_published'] as bool?,
+        postCommentIsDeleted: json['post_comment_is_deleted'] as bool?,
+        postCommentUpdateDate: json['post_comment_update_date'] as int?,
+        links: json['links'] != null
+            ? PostsCommentsEditResponseCommentLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? PostsCommentsEditResponseCommentPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class PostsCommentsEditResponse {
@@ -3435,14 +5527,17 @@ class PostsCommentsEditResponse {
     this.systemInfo,
   });
 
-  factory PostsCommentsEditResponse.fromJson(Map<String, dynamic> json) => PostsCommentsEditResponse(
-    comment: json['comment'] != null
-            ? PostsCommentsEditResponseComment.fromJson(json['comment'] as Map<String, dynamic>)
+  factory PostsCommentsEditResponse.fromJson(Map<String, dynamic> json) =>
+      PostsCommentsEditResponse(
+        comment: json['comment'] != null
+            ? PostsCommentsEditResponseComment.fromJson(
+                json['comment'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsCommentsDeleteBody {
@@ -3473,13 +5568,15 @@ class PostsCommentsDeleteResponse {
     this.systemInfo,
   });
 
-  factory PostsCommentsDeleteResponse.fromJson(Map<String, dynamic> json) => PostsCommentsDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PostsCommentsDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      PostsCommentsDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PostsCommentsReportBody {
@@ -3510,13 +5607,15 @@ class PostsCommentsReportResponse {
     this.systemInfo,
   });
 
-  factory PostsCommentsReportResponse.fromJson(Map<String, dynamic> json) => PostsCommentsReportResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PostsCommentsReportResponse.fromJson(Map<String, dynamic> json) =>
+      PostsCommentsReportResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ProfilePostsApi Types ────────────────────────────────────────
@@ -3525,7 +5624,7 @@ class ProfilePostsListParams {
   final int? postsUserId;
   final int? page;
   final int? limit;
-  final Object? fieldsInclude;
+  final List<String>? fieldsInclude;
 
   const ProfilePostsListParams({
     this.postsUserId,
@@ -3555,11 +5654,12 @@ class ProfilePostsListResponseLinks {
     this.next,
   });
 
-  factory ProfilePostsListResponseLinks.fromJson(Map<String, dynamic> json) => ProfilePostsListResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory ProfilePostsListResponseLinks.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsListResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class ProfilePostsListResponse {
@@ -3577,19 +5677,23 @@ class ProfilePostsListResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsListResponse.fromJson(Map<String, dynamic> json) => ProfilePostsListResponse(
-    profilePosts: (json['profile_posts'] as List<dynamic>?)
-            ?.map((e) => RespProfilePostModel.fromJson(e as Map<String, dynamic>))
+  factory ProfilePostsListResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsListResponse(
+        profilePosts: (json['profile_posts'] as List<dynamic>?)
+            ?.map(
+                (e) => RespProfilePostModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    totalProfilePosts: json['totalProfilePosts'] as int?,
-    canPostOnProfile: json['canPostOnProfile'] as bool?,
-    links: json['links'] != null
-            ? ProfilePostsListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        totalProfilePosts: json['totalProfilePosts'] as int?,
+        canPostOnProfile: json['canPostOnProfile'] as bool?,
+        links: json['links'] != null
+            ? ProfilePostsListResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsGetResponse {
@@ -3601,14 +5705,17 @@ class ProfilePostsGetResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsGetResponse.fromJson(Map<String, dynamic> json) => ProfilePostsGetResponse(
-    profilePost: json['profile_post'] != null
-            ? RespProfilePostModel.fromJson(json['profile_post'] as Map<String, dynamic>)
+  factory ProfilePostsGetResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsGetResponse(
+        profilePost: json['profile_post'] != null
+            ? RespProfilePostModel.fromJson(
+                json['profile_post'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsEditBody {
@@ -3628,6 +5735,73 @@ class ProfilePostsEditBody {
   }
 }
 
+class ProfilePostsEditResponseProfilePostLinks {
+  final String? permalink;
+  final String? detail;
+  final String? timeline;
+  final String? timelineUser;
+  final String? poster;
+  final String? likes;
+  final String? comments;
+  final String? report;
+  final String? posterAvatar;
+
+  const ProfilePostsEditResponseProfilePostLinks({
+    this.permalink,
+    this.detail,
+    this.timeline,
+    this.timelineUser,
+    this.poster,
+    this.likes,
+    this.comments,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory ProfilePostsEditResponseProfilePostLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsEditResponseProfilePostLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        timeline: json['timeline'] as String?,
+        timelineUser: json['timeline_user'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        comments: json['comments'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class ProfilePostsEditResponseProfilePostPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? like;
+  final bool? comment;
+  final bool? report;
+
+  const ProfilePostsEditResponseProfilePostPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.like,
+    this.comment,
+    this.report,
+  });
+
+  factory ProfilePostsEditResponseProfilePostPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsEditResponseProfilePostPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        like: json['like'] as bool?,
+        comment: json['comment'] as bool?,
+        report: json['report'] as bool?,
+      );
+}
+
 class ProfilePostsEditResponseProfilePost {
   final int? profilePostId;
   final int? timelineUserId;
@@ -3642,8 +5816,8 @@ class ProfilePostsEditResponseProfilePost {
   final bool? userIsIgnored;
   final bool? postIsPublished;
   final bool? postIsDeleted;
-  final Object? links;
-  final Object? permissions;
+  final ProfilePostsEditResponseProfilePostLinks? links;
+  final ProfilePostsEditResponseProfilePostPermissions? permissions;
 
   const ProfilePostsEditResponseProfilePost({
     this.profilePostId,
@@ -3663,23 +5837,31 @@ class ProfilePostsEditResponseProfilePost {
     this.permissions,
   });
 
-  factory ProfilePostsEditResponseProfilePost.fromJson(Map<String, dynamic> json) => ProfilePostsEditResponseProfilePost(
-    profilePostId: json['profile_post_id'] as int?,
-    timelineUserId: json['timeline_user_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    posterUsernameHtml: json['poster_username_html'] as String?,
-    postCreateDate: json['post_create_date'] as int?,
-    postBody: json['post_body'] as String?,
-    postLikeCount: json['post_like_count'] as int?,
-    postCommentCount: json['post_comment_count'] as int?,
-    timelineUsername: json['timeline_username'] as String?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postIsPublished: json['post_is_published'] as bool?,
-    postIsDeleted: json['post_is_deleted'] as bool?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory ProfilePostsEditResponseProfilePost.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsEditResponseProfilePost(
+        profilePostId: json['profile_post_id'] as int?,
+        timelineUserId: json['timeline_user_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCreateDate: json['post_create_date'] as int?,
+        postBody: json['post_body'] as String?,
+        postLikeCount: json['post_like_count'] as int?,
+        postCommentCount: json['post_comment_count'] as int?,
+        timelineUsername: json['timeline_username'] as String?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postIsPublished: json['post_is_published'] as bool?,
+        postIsDeleted: json['post_is_deleted'] as bool?,
+        links: json['links'] != null
+            ? ProfilePostsEditResponseProfilePostLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? ProfilePostsEditResponseProfilePostPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class ProfilePostsEditResponse {
@@ -3691,14 +5873,17 @@ class ProfilePostsEditResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsEditResponse.fromJson(Map<String, dynamic> json) => ProfilePostsEditResponse(
-    profilePost: json['profile_post'] != null
-            ? ProfilePostsEditResponseProfilePost.fromJson(json['profile_post'] as Map<String, dynamic>)
+  factory ProfilePostsEditResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsEditResponse(
+        profilePost: json['profile_post'] != null
+            ? ProfilePostsEditResponseProfilePost.fromJson(
+                json['profile_post'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsDeleteParams {
@@ -3726,13 +5911,15 @@ class ProfilePostsDeleteResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsDeleteResponse.fromJson(Map<String, dynamic> json) => ProfilePostsDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsReportReasonsResponse {
@@ -3744,12 +5931,15 @@ class ProfilePostsReportReasonsResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsReportReasonsResponse.fromJson(Map<String, dynamic> json) => ProfilePostsReportReasonsResponse(
-    reasons: (json['reasons'] as List<dynamic>?)?.cast<String>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsReportReasonsResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsReportReasonsResponse(
+        reasons: (json['reasons'] as List<dynamic>?)?.cast<String>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsReportBody {
@@ -3777,13 +5967,15 @@ class ProfilePostsReportResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsReportResponse.fromJson(Map<String, dynamic> json) => ProfilePostsReportResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsReportResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsReportResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsCreateBody {
@@ -3803,6 +5995,73 @@ class ProfilePostsCreateBody {
   }
 }
 
+class ProfilePostsCreateResponseProfilePostLinks {
+  final String? permalink;
+  final String? detail;
+  final String? timeline;
+  final String? timelineUser;
+  final String? poster;
+  final String? likes;
+  final String? comments;
+  final String? report;
+  final String? posterAvatar;
+
+  const ProfilePostsCreateResponseProfilePostLinks({
+    this.permalink,
+    this.detail,
+    this.timeline,
+    this.timelineUser,
+    this.poster,
+    this.likes,
+    this.comments,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory ProfilePostsCreateResponseProfilePostLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCreateResponseProfilePostLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        timeline: json['timeline'] as String?,
+        timelineUser: json['timeline_user'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        comments: json['comments'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class ProfilePostsCreateResponseProfilePostPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? like;
+  final bool? comment;
+  final bool? report;
+
+  const ProfilePostsCreateResponseProfilePostPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.like,
+    this.comment,
+    this.report,
+  });
+
+  factory ProfilePostsCreateResponseProfilePostPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCreateResponseProfilePostPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        like: json['like'] as bool?,
+        comment: json['comment'] as bool?,
+        report: json['report'] as bool?,
+      );
+}
+
 class ProfilePostsCreateResponseProfilePost {
   final int? profilePostId;
   final int? timelineUserId;
@@ -3817,8 +6076,8 @@ class ProfilePostsCreateResponseProfilePost {
   final bool? userIsIgnored;
   final bool? postIsPublished;
   final bool? postIsDeleted;
-  final Object? links;
-  final Object? permissions;
+  final ProfilePostsCreateResponseProfilePostLinks? links;
+  final ProfilePostsCreateResponseProfilePostPermissions? permissions;
 
   const ProfilePostsCreateResponseProfilePost({
     this.profilePostId,
@@ -3838,23 +6097,31 @@ class ProfilePostsCreateResponseProfilePost {
     this.permissions,
   });
 
-  factory ProfilePostsCreateResponseProfilePost.fromJson(Map<String, dynamic> json) => ProfilePostsCreateResponseProfilePost(
-    profilePostId: json['profile_post_id'] as int?,
-    timelineUserId: json['timeline_user_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    posterUsernameHtml: json['poster_username_html'] as String?,
-    postCreateDate: json['post_create_date'] as int?,
-    postBody: json['post_body'] as String?,
-    postLikeCount: json['post_like_count'] as int?,
-    postCommentCount: json['post_comment_count'] as int?,
-    timelineUsername: json['timeline_username'] as String?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postIsPublished: json['post_is_published'] as bool?,
-    postIsDeleted: json['post_is_deleted'] as bool?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory ProfilePostsCreateResponseProfilePost.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCreateResponseProfilePost(
+        profilePostId: json['profile_post_id'] as int?,
+        timelineUserId: json['timeline_user_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCreateDate: json['post_create_date'] as int?,
+        postBody: json['post_body'] as String?,
+        postLikeCount: json['post_like_count'] as int?,
+        postCommentCount: json['post_comment_count'] as int?,
+        timelineUsername: json['timeline_username'] as String?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postIsPublished: json['post_is_published'] as bool?,
+        postIsDeleted: json['post_is_deleted'] as bool?,
+        links: json['links'] != null
+            ? ProfilePostsCreateResponseProfilePostLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? ProfilePostsCreateResponseProfilePostPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class ProfilePostsCreateResponse {
@@ -3866,14 +6133,17 @@ class ProfilePostsCreateResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsCreateResponse.fromJson(Map<String, dynamic> json) => ProfilePostsCreateResponse(
-    profilePost: json['profile_post'] != null
-            ? ProfilePostsCreateResponseProfilePost.fromJson(json['profile_post'] as Map<String, dynamic>)
+  factory ProfilePostsCreateResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsCreateResponse(
+        profilePost: json['profile_post'] != null
+            ? ProfilePostsCreateResponseProfilePost.fromJson(
+                json['profile_post'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsStickResponse {
@@ -3887,13 +6157,15 @@ class ProfilePostsStickResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsStickResponse.fromJson(Map<String, dynamic> json) => ProfilePostsStickResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsStickResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsStickResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsUnstickResponse {
@@ -3907,13 +6179,15 @@ class ProfilePostsUnstickResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsUnstickResponse.fromJson(Map<String, dynamic> json) => ProfilePostsUnstickResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsUnstickResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsUnstickResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsLikesResponse {
@@ -3925,12 +6199,14 @@ class ProfilePostsLikesResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsLikesResponse.fromJson(Map<String, dynamic> json) => ProfilePostsLikesResponse(
-    users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsLikesResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsLikesResponse(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsLikeResponse {
@@ -3944,13 +6220,15 @@ class ProfilePostsLikeResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsLikeResponse.fromJson(Map<String, dynamic> json) => ProfilePostsLikeResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsLikeResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsLikeResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsUnlikeResponse {
@@ -3964,13 +6242,15 @@ class ProfilePostsUnlikeResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsUnlikeResponse.fromJson(Map<String, dynamic> json) => ProfilePostsUnlikeResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsUnlikeResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsUnlikeResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsCommentsListParams {
@@ -3993,6 +6273,73 @@ class ProfilePostsCommentsListParams {
   }
 }
 
+class ProfilePostsCommentsListResponseProfilePostLinks {
+  final String? permalink;
+  final String? detail;
+  final String? timeline;
+  final String? timelineUser;
+  final String? poster;
+  final String? likes;
+  final String? comments;
+  final String? report;
+  final String? posterAvatar;
+
+  const ProfilePostsCommentsListResponseProfilePostLinks({
+    this.permalink,
+    this.detail,
+    this.timeline,
+    this.timelineUser,
+    this.poster,
+    this.likes,
+    this.comments,
+    this.report,
+    this.posterAvatar,
+  });
+
+  factory ProfilePostsCommentsListResponseProfilePostLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsListResponseProfilePostLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        timeline: json['timeline'] as String?,
+        timelineUser: json['timeline_user'] as String?,
+        poster: json['poster'] as String?,
+        likes: json['likes'] as String?,
+        comments: json['comments'] as String?,
+        report: json['report'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class ProfilePostsCommentsListResponseProfilePostPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? like;
+  final bool? comment;
+  final bool? report;
+
+  const ProfilePostsCommentsListResponseProfilePostPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.like,
+    this.comment,
+    this.report,
+  });
+
+  factory ProfilePostsCommentsListResponseProfilePostPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsListResponseProfilePostPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        like: json['like'] as bool?,
+        comment: json['comment'] as bool?,
+        report: json['report'] as bool?,
+      );
+}
+
 class ProfilePostsCommentsListResponseProfilePost {
   final int? profilePostId;
   final int? timelineUserId;
@@ -4007,8 +6354,8 @@ class ProfilePostsCommentsListResponseProfilePost {
   final bool? userIsIgnored;
   final bool? postIsPublished;
   final bool? postIsDeleted;
-  final Object? links;
-  final Object? permissions;
+  final ProfilePostsCommentsListResponseProfilePostLinks? links;
+  final ProfilePostsCommentsListResponseProfilePostPermissions? permissions;
 
   const ProfilePostsCommentsListResponseProfilePost({
     this.profilePostId,
@@ -4028,23 +6375,31 @@ class ProfilePostsCommentsListResponseProfilePost {
     this.permissions,
   });
 
-  factory ProfilePostsCommentsListResponseProfilePost.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsListResponseProfilePost(
-    profilePostId: json['profile_post_id'] as int?,
-    timelineUserId: json['timeline_user_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    posterUsernameHtml: json['poster_username_html'] as String?,
-    postCreateDate: json['post_create_date'] as int?,
-    postBody: json['post_body'] as String?,
-    postLikeCount: json['post_like_count'] as int?,
-    postCommentCount: json['post_comment_count'] as int?,
-    timelineUsername: json['timeline_username'] as String?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postIsPublished: json['post_is_published'] as bool?,
-    postIsDeleted: json['post_is_deleted'] as bool?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory ProfilePostsCommentsListResponseProfilePost.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsListResponseProfilePost(
+        profilePostId: json['profile_post_id'] as int?,
+        timelineUserId: json['timeline_user_id'] as int?,
+        posterUserId: json['poster_user_id'] as int?,
+        posterUsername: json['poster_username'] as String?,
+        posterUsernameHtml: json['poster_username_html'] as String?,
+        postCreateDate: json['post_create_date'] as int?,
+        postBody: json['post_body'] as String?,
+        postLikeCount: json['post_like_count'] as int?,
+        postCommentCount: json['post_comment_count'] as int?,
+        timelineUsername: json['timeline_username'] as String?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        postIsPublished: json['post_is_published'] as bool?,
+        postIsDeleted: json['post_is_deleted'] as bool?,
+        links: json['links'] != null
+            ? ProfilePostsCommentsListResponseProfilePostLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? ProfilePostsCommentsListResponseProfilePostPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class ProfilePostsCommentsListResponse {
@@ -4062,21 +6417,27 @@ class ProfilePostsCommentsListResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsCommentsListResponse.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsListResponse(
-    comments: (json['comments'] as List<dynamic>?)
-            ?.map((e) => RespProfilePostCommentModel.fromJson(e as Map<String, dynamic>))
+  factory ProfilePostsCommentsListResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsListResponse(
+        comments: (json['comments'] as List<dynamic>?)
+            ?.map((e) =>
+                RespProfilePostCommentModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    commentsTotal: json['comments_total'] as int?,
-    profilePost: json['profile_post'] != null
-            ? ProfilePostsCommentsListResponseProfilePost.fromJson(json['profile_post'] as Map<String, dynamic>)
+        commentsTotal: json['comments_total'] as int?,
+        profilePost: json['profile_post'] != null
+            ? ProfilePostsCommentsListResponseProfilePost.fromJson(
+                json['profile_post'] as Map<String, dynamic>)
             : null,
-    timelineUser: json['timeline_user'] != null
-            ? RespUserModel.fromJson(json['timeline_user'] as Map<String, dynamic>)
+        timelineUser: json['timeline_user'] != null
+            ? RespUserModel.fromJson(
+                json['timeline_user'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsCommentsCreateBody {
@@ -4096,6 +6457,52 @@ class ProfilePostsCommentsCreateBody {
   }
 }
 
+class ProfilePostsCommentsCreateResponseCommentLinks {
+  final String? detail;
+  final String? profilePost;
+  final String? timeline;
+  final String? timelineUser;
+  final String? poster;
+  final String? posterAvatar;
+
+  const ProfilePostsCommentsCreateResponseCommentLinks({
+    this.detail,
+    this.profilePost,
+    this.timeline,
+    this.timelineUser,
+    this.poster,
+    this.posterAvatar,
+  });
+
+  factory ProfilePostsCommentsCreateResponseCommentLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsCreateResponseCommentLinks(
+        detail: json['detail'] as String?,
+        profilePost: json['profile_post'] as String?,
+        timeline: json['timeline'] as String?,
+        timelineUser: json['timeline_user'] as String?,
+        poster: json['poster'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class ProfilePostsCommentsCreateResponseCommentPermissions {
+  final bool? view;
+  final bool? delete;
+
+  const ProfilePostsCommentsCreateResponseCommentPermissions({
+    this.view,
+    this.delete,
+  });
+
+  factory ProfilePostsCommentsCreateResponseCommentPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsCreateResponseCommentPermissions(
+        view: json['view'] as bool?,
+        delete: json['delete'] as bool?,
+      );
+}
+
 class ProfilePostsCommentsCreateResponseComment {
   final int? commentId;
   final int? profilePostId;
@@ -4106,8 +6513,8 @@ class ProfilePostsCommentsCreateResponseComment {
   final String? commentBody;
   final bool? userIsIgnored;
   final int? timelineUserId;
-  final Object? links;
-  final Object? permissions;
+  final ProfilePostsCommentsCreateResponseCommentLinks? links;
+  final ProfilePostsCommentsCreateResponseCommentPermissions? permissions;
 
   const ProfilePostsCommentsCreateResponseComment({
     this.commentId,
@@ -4123,19 +6530,27 @@ class ProfilePostsCommentsCreateResponseComment {
     this.permissions,
   });
 
-  factory ProfilePostsCommentsCreateResponseComment.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsCreateResponseComment(
-    commentId: json['comment_id'] as int?,
-    profilePostId: json['profile_post_id'] as int?,
-    commentUserId: json['comment_user_id'] as int?,
-    commentUsername: json['comment_username'] as String?,
-    commentUsernameHtml: json['comment_username_html'] as String?,
-    commentCreateDate: json['comment_create_date'] as int?,
-    commentBody: json['comment_body'] as String?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    timelineUserId: json['timeline_user_id'] as int?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory ProfilePostsCommentsCreateResponseComment.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsCreateResponseComment(
+        commentId: json['comment_id'] as int?,
+        profilePostId: json['profile_post_id'] as int?,
+        commentUserId: json['comment_user_id'] as int?,
+        commentUsername: json['comment_username'] as String?,
+        commentUsernameHtml: json['comment_username_html'] as String?,
+        commentCreateDate: json['comment_create_date'] as int?,
+        commentBody: json['comment_body'] as String?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        timelineUserId: json['timeline_user_id'] as int?,
+        links: json['links'] != null
+            ? ProfilePostsCommentsCreateResponseCommentLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? ProfilePostsCommentsCreateResponseCommentPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class ProfilePostsCommentsCreateResponse {
@@ -4147,14 +6562,18 @@ class ProfilePostsCommentsCreateResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsCommentsCreateResponse.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsCreateResponse(
-    comment: json['comment'] != null
-            ? ProfilePostsCommentsCreateResponseComment.fromJson(json['comment'] as Map<String, dynamic>)
+  factory ProfilePostsCommentsCreateResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsCreateResponse(
+        comment: json['comment'] != null
+            ? ProfilePostsCommentsCreateResponseComment.fromJson(
+                json['comment'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsCommentsEditBody {
@@ -4174,6 +6593,52 @@ class ProfilePostsCommentsEditBody {
   }
 }
 
+class ProfilePostsCommentsEditResponseCommentLinks {
+  final String? detail;
+  final String? profilePost;
+  final String? timeline;
+  final String? timelineUser;
+  final String? poster;
+  final String? posterAvatar;
+
+  const ProfilePostsCommentsEditResponseCommentLinks({
+    this.detail,
+    this.profilePost,
+    this.timeline,
+    this.timelineUser,
+    this.poster,
+    this.posterAvatar,
+  });
+
+  factory ProfilePostsCommentsEditResponseCommentLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsEditResponseCommentLinks(
+        detail: json['detail'] as String?,
+        profilePost: json['profile_post'] as String?,
+        timeline: json['timeline'] as String?,
+        timelineUser: json['timeline_user'] as String?,
+        poster: json['poster'] as String?,
+        posterAvatar: json['poster_avatar'] as String?,
+      );
+}
+
+class ProfilePostsCommentsEditResponseCommentPermissions {
+  final bool? view;
+  final bool? delete;
+
+  const ProfilePostsCommentsEditResponseCommentPermissions({
+    this.view,
+    this.delete,
+  });
+
+  factory ProfilePostsCommentsEditResponseCommentPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsEditResponseCommentPermissions(
+        view: json['view'] as bool?,
+        delete: json['delete'] as bool?,
+      );
+}
+
 class ProfilePostsCommentsEditResponseComment {
   final int? commentId;
   final int? profilePostId;
@@ -4184,8 +6649,8 @@ class ProfilePostsCommentsEditResponseComment {
   final String? commentBody;
   final bool? userIsIgnored;
   final int? timelineUserId;
-  final Object? links;
-  final Object? permissions;
+  final ProfilePostsCommentsEditResponseCommentLinks? links;
+  final ProfilePostsCommentsEditResponseCommentPermissions? permissions;
 
   const ProfilePostsCommentsEditResponseComment({
     this.commentId,
@@ -4201,19 +6666,27 @@ class ProfilePostsCommentsEditResponseComment {
     this.permissions,
   });
 
-  factory ProfilePostsCommentsEditResponseComment.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsEditResponseComment(
-    commentId: json['comment_id'] as int?,
-    profilePostId: json['profile_post_id'] as int?,
-    commentUserId: json['comment_user_id'] as int?,
-    commentUsername: json['comment_username'] as String?,
-    commentUsernameHtml: json['comment_username_html'] as String?,
-    commentCreateDate: json['comment_create_date'] as int?,
-    commentBody: json['comment_body'] as String?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    timelineUserId: json['timeline_user_id'] as int?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-  );
+  factory ProfilePostsCommentsEditResponseComment.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsEditResponseComment(
+        commentId: json['comment_id'] as int?,
+        profilePostId: json['profile_post_id'] as int?,
+        commentUserId: json['comment_user_id'] as int?,
+        commentUsername: json['comment_username'] as String?,
+        commentUsernameHtml: json['comment_username_html'] as String?,
+        commentCreateDate: json['comment_create_date'] as int?,
+        commentBody: json['comment_body'] as String?,
+        userIsIgnored: json['user_is_ignored'] as bool?,
+        timelineUserId: json['timeline_user_id'] as int?,
+        links: json['links'] != null
+            ? ProfilePostsCommentsEditResponseCommentLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? ProfilePostsCommentsEditResponseCommentPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class ProfilePostsCommentsEditResponse {
@@ -4225,14 +6698,18 @@ class ProfilePostsCommentsEditResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsCommentsEditResponse.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsEditResponse(
-    comment: json['comment'] != null
-            ? ProfilePostsCommentsEditResponseComment.fromJson(json['comment'] as Map<String, dynamic>)
+  factory ProfilePostsCommentsEditResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsEditResponse(
+        comment: json['comment'] != null
+            ? ProfilePostsCommentsEditResponseComment.fromJson(
+                json['comment'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsCommentsDeleteBody {
@@ -4260,13 +6737,16 @@ class ProfilePostsCommentsDeleteResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsCommentsDeleteResponse.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsCommentsDeleteResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsCommentsGetResponse {
@@ -4278,14 +6758,17 @@ class ProfilePostsCommentsGetResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsCommentsGetResponse.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsGetResponse(
-    comment: json['comment'] != null
-            ? RespProfilePostCommentModel.fromJson(json['comment'] as Map<String, dynamic>)
+  factory ProfilePostsCommentsGetResponse.fromJson(Map<String, dynamic> json) =>
+      ProfilePostsCommentsGetResponse(
+        comment: json['comment'] != null
+            ? RespProfilePostCommentModel.fromJson(
+                json['comment'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProfilePostsCommentsReportBody {
@@ -4313,13 +6796,16 @@ class ProfilePostsCommentsReportResponse {
     this.systemInfo,
   });
 
-  factory ProfilePostsCommentsReportResponse.fromJson(Map<String, dynamic> json) => ProfilePostsCommentsReportResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfilePostsCommentsReportResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ProfilePostsCommentsReportResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── SearchApi Types ────────────────────────────────────────
@@ -4364,11 +6850,12 @@ class SearchAllResponseLinks {
     this.next,
   });
 
-  factory SearchAllResponseLinks.fromJson(Map<String, dynamic> json) => SearchAllResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory SearchAllResponseLinks.fromJson(Map<String, dynamic> json) =>
+      SearchAllResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class SearchAllResponse {
@@ -4386,19 +6873,22 @@ class SearchAllResponse {
     this.systemInfo,
   });
 
-  factory SearchAllResponse.fromJson(Map<String, dynamic> json) => SearchAllResponse(
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    dataTotal: json['data_total'] as int?,
-    users: (json['users'] as List<dynamic>?)
+  factory SearchAllResponse.fromJson(Map<String, dynamic> json) =>
+      SearchAllResponse(
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        dataTotal: json['data_total'] as int?,
+        users: (json['users'] as List<dynamic>?)
             ?.map((e) => RespUserModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    links: json['links'] != null
-            ? SearchAllResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        links: json['links'] != null
+            ? SearchAllResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class SearchThreadsBody {
@@ -4444,11 +6934,12 @@ class SearchThreadsResponseLinks {
     this.next,
   });
 
-  factory SearchThreadsResponseLinks.fromJson(Map<String, dynamic> json) => SearchThreadsResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory SearchThreadsResponseLinks.fromJson(Map<String, dynamic> json) =>
+      SearchThreadsResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class SearchThreadsResponse {
@@ -4464,16 +6955,19 @@ class SearchThreadsResponse {
     this.systemInfo,
   });
 
-  factory SearchThreadsResponse.fromJson(Map<String, dynamic> json) => SearchThreadsResponse(
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    dataTotal: json['data_total'] as int?,
-    links: json['links'] != null
-            ? SearchThreadsResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+  factory SearchThreadsResponse.fromJson(Map<String, dynamic> json) =>
+      SearchThreadsResponse(
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        dataTotal: json['data_total'] as int?,
+        links: json['links'] != null
+            ? SearchThreadsResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class SearchPostsBody {
@@ -4519,11 +7013,12 @@ class SearchPostsResponseLinks {
     this.next,
   });
 
-  factory SearchPostsResponseLinks.fromJson(Map<String, dynamic> json) => SearchPostsResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory SearchPostsResponseLinks.fromJson(Map<String, dynamic> json) =>
+      SearchPostsResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class SearchPostsResponse {
@@ -4539,16 +7034,19 @@ class SearchPostsResponse {
     this.systemInfo,
   });
 
-  factory SearchPostsResponse.fromJson(Map<String, dynamic> json) => SearchPostsResponse(
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    dataTotal: json['data_total'] as int?,
-    links: json['links'] != null
-            ? SearchPostsResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+  factory SearchPostsResponse.fromJson(Map<String, dynamic> json) =>
+      SearchPostsResponse(
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        dataTotal: json['data_total'] as int?,
+        links: json['links'] != null
+            ? SearchPostsResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class SearchUsersBody {
@@ -4574,14 +7072,16 @@ class SearchUsersResponse {
     this.systemInfo,
   });
 
-  factory SearchUsersResponse.fromJson(Map<String, dynamic> json) => SearchUsersResponse(
-    users: (json['users'] as List<dynamic>?)
+  factory SearchUsersResponse.fromJson(Map<String, dynamic> json) =>
+      SearchUsersResponse(
+        users: (json['users'] as List<dynamic>?)
             ?.map((e) => RespUserModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class SearchProfilePostsBody {
@@ -4618,11 +7118,12 @@ class SearchProfilePostsResponseLinks {
     this.next,
   });
 
-  factory SearchProfilePostsResponseLinks.fromJson(Map<String, dynamic> json) => SearchProfilePostsResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory SearchProfilePostsResponseLinks.fromJson(Map<String, dynamic> json) =>
+      SearchProfilePostsResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class SearchProfilePostsResponse {
@@ -4638,16 +7139,19 @@ class SearchProfilePostsResponse {
     this.systemInfo,
   });
 
-  factory SearchProfilePostsResponse.fromJson(Map<String, dynamic> json) => SearchProfilePostsResponse(
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    dataTotal: json['data_total'] as int?,
-    links: json['links'] != null
-            ? SearchProfilePostsResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+  factory SearchProfilePostsResponse.fromJson(Map<String, dynamic> json) =>
+      SearchProfilePostsResponse(
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        dataTotal: json['data_total'] as int?,
+        links: json['links'] != null
+            ? SearchProfilePostsResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class SearchTaggedBody {
@@ -4680,9 +7184,10 @@ class SearchTaggedResponseSearchTags {
     this.n160179,
   });
 
-  factory SearchTaggedResponseSearchTags.fromJson(Map<String, dynamic> json) => SearchTaggedResponseSearchTags(
-    n160179: json['160179'] as String?,
-  );
+  factory SearchTaggedResponseSearchTags.fromJson(Map<String, dynamic> json) =>
+      SearchTaggedResponseSearchTags(
+        n160179: json['160179'] as String?,
+      );
 }
 
 class SearchTaggedResponse {
@@ -4698,16 +7203,19 @@ class SearchTaggedResponse {
     this.systemInfo,
   });
 
-  factory SearchTaggedResponse.fromJson(Map<String, dynamic> json) => SearchTaggedResponse(
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    dataTotal: json['data_total'] as int?,
-    searchTags: json['search_tags'] != null
-            ? SearchTaggedResponseSearchTags.fromJson(json['search_tags'] as Map<String, dynamic>)
+  factory SearchTaggedResponse.fromJson(Map<String, dynamic> json) =>
+      SearchTaggedResponse(
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        dataTotal: json['data_total'] as int?,
+        searchTags: json['search_tags'] != null
+            ? SearchTaggedResponseSearchTags.fromJson(
+                json['search_tags'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class SearchResultsParams {
@@ -4734,9 +7242,10 @@ class SearchResultsResponseSearchTags {
     this.n160179,
   });
 
-  factory SearchResultsResponseSearchTags.fromJson(Map<String, dynamic> json) => SearchResultsResponseSearchTags(
-    n160179: json['160179'] as String?,
-  );
+  factory SearchResultsResponseSearchTags.fromJson(Map<String, dynamic> json) =>
+      SearchResultsResponseSearchTags(
+        n160179: json['160179'] as String?,
+      );
 }
 
 class SearchResultsResponse {
@@ -4752,16 +7261,19 @@ class SearchResultsResponse {
     this.systemInfo,
   });
 
-  factory SearchResultsResponse.fromJson(Map<String, dynamic> json) => SearchResultsResponse(
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    dataTotal: json['data_total'] as int?,
-    searchTags: json['search_tags'] != null
-            ? SearchResultsResponseSearchTags.fromJson(json['search_tags'] as Map<String, dynamic>)
+  factory SearchResultsResponse.fromJson(Map<String, dynamic> json) =>
+      SearchResultsResponse(
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        dataTotal: json['data_total'] as int?,
+        searchTags: json['search_tags'] != null
+            ? SearchResultsResponseSearchTags.fromJson(
+                json['search_tags'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── TagsApi Types ────────────────────────────────────────
@@ -4773,9 +7285,10 @@ class TagsPopularResponseTags {
     this.n000,
   });
 
-  factory TagsPopularResponseTags.fromJson(Map<String, dynamic> json) => TagsPopularResponseTags(
-    n000: json['000'] as String?,
-  );
+  factory TagsPopularResponseTags.fromJson(Map<String, dynamic> json) =>
+      TagsPopularResponseTags(
+        n000: json['000'] as String?,
+      );
 }
 
 class TagsPopularResponse {
@@ -4787,14 +7300,17 @@ class TagsPopularResponse {
     this.systemInfo,
   });
 
-  factory TagsPopularResponse.fromJson(Map<String, dynamic> json) => TagsPopularResponse(
-    tags: json['tags'] != null
-            ? TagsPopularResponseTags.fromJson(json['tags'] as Map<String, dynamic>)
+  factory TagsPopularResponse.fromJson(Map<String, dynamic> json) =>
+      TagsPopularResponse(
+        tags: json['tags'] != null
+            ? TagsPopularResponseTags.fromJson(
+                json['tags'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class TagsListParams {
@@ -4857,27 +7373,28 @@ class TagsListResponseTags {
     this.n20,
   });
 
-  factory TagsListResponseTags.fromJson(Map<String, dynamic> json) => TagsListResponseTags(
-    n1: json['1'] as String?,
-    n2: json['2'] as String?,
-    n3: json['3'] as String?,
-    n4: json['4'] as String?,
-    n5: json['5'] as String?,
-    n6: json['6'] as String?,
-    n7: json['7'] as String?,
-    n8: json['8'] as String?,
-    n9: json['9'] as String?,
-    n10: json['10'] as String?,
-    n11: json['11'] as String?,
-    n12: json['12'] as String?,
-    n14: json['14'] as String?,
-    n15: json['15'] as String?,
-    n16: json['16'] as String?,
-    n17: json['17'] as String?,
-    n18: json['18'] as String?,
-    n19: json['19'] as String?,
-    n20: json['20'] as String?,
-  );
+  factory TagsListResponseTags.fromJson(Map<String, dynamic> json) =>
+      TagsListResponseTags(
+        n1: json['1'] as String?,
+        n2: json['2'] as String?,
+        n3: json['3'] as String?,
+        n4: json['4'] as String?,
+        n5: json['5'] as String?,
+        n6: json['6'] as String?,
+        n7: json['7'] as String?,
+        n8: json['8'] as String?,
+        n9: json['9'] as String?,
+        n10: json['10'] as String?,
+        n11: json['11'] as String?,
+        n12: json['12'] as String?,
+        n14: json['14'] as String?,
+        n15: json['15'] as String?,
+        n16: json['16'] as String?,
+        n17: json['17'] as String?,
+        n18: json['18'] as String?,
+        n19: json['19'] as String?,
+        n20: json['20'] as String?,
+      );
 }
 
 class TagsListResponseLinks {
@@ -4891,11 +7408,12 @@ class TagsListResponseLinks {
     this.next,
   });
 
-  factory TagsListResponseLinks.fromJson(Map<String, dynamic> json) => TagsListResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory TagsListResponseLinks.fromJson(Map<String, dynamic> json) =>
+      TagsListResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class TagsListResponse {
@@ -4911,18 +7429,22 @@ class TagsListResponse {
     this.systemInfo,
   });
 
-  factory TagsListResponse.fromJson(Map<String, dynamic> json) => TagsListResponse(
-    tags: json['tags'] != null
-            ? TagsListResponseTags.fromJson(json['tags'] as Map<String, dynamic>)
+  factory TagsListResponse.fromJson(Map<String, dynamic> json) =>
+      TagsListResponse(
+        tags: json['tags'] != null
+            ? TagsListResponseTags.fromJson(
+                json['tags'] as Map<String, dynamic>)
             : null,
-    tagsTotal: json['tags_total'] as int?,
-    links: json['links'] != null
-            ? TagsListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        tagsTotal: json['tags_total'] as int?,
+        links: json['links'] != null
+            ? TagsListResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class TagsGetParams {
@@ -4942,11 +7464,27 @@ class TagsGetParams {
   }
 }
 
+class TagsGetResponseTagLinks {
+  final String? permalink;
+  final String? detail;
+
+  const TagsGetResponseTagLinks({
+    this.permalink,
+    this.detail,
+  });
+
+  factory TagsGetResponseTagLinks.fromJson(Map<String, dynamic> json) =>
+      TagsGetResponseTagLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+      );
+}
+
 class TagsGetResponseTag {
   final int? tagId;
   final String? tagText;
   final int? tagUseCount;
-  final Object? links;
+  final TagsGetResponseTagLinks? links;
 
   const TagsGetResponseTag({
     this.tagId,
@@ -4955,12 +7493,16 @@ class TagsGetResponseTag {
     this.links,
   });
 
-  factory TagsGetResponseTag.fromJson(Map<String, dynamic> json) => TagsGetResponseTag(
-    tagId: json['tag_id'] as int?,
-    tagText: json['tag_text'] as String?,
-    tagUseCount: json['tag_use_count'] as int?,
-    links: json['links'] as Object?,
-  );
+  factory TagsGetResponseTag.fromJson(Map<String, dynamic> json) =>
+      TagsGetResponseTag(
+        tagId: json['tag_id'] as int?,
+        tagText: json['tag_text'] as String?,
+        tagUseCount: json['tag_use_count'] as int?,
+        links: json['links'] != null
+            ? TagsGetResponseTagLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class TagsGetResponseLinks {
@@ -4974,11 +7516,12 @@ class TagsGetResponseLinks {
     this.next,
   });
 
-  factory TagsGetResponseLinks.fromJson(Map<String, dynamic> json) => TagsGetResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory TagsGetResponseLinks.fromJson(Map<String, dynamic> json) =>
+      TagsGetResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class TagsGetResponse {
@@ -4996,19 +7539,23 @@ class TagsGetResponse {
     this.systemInfo,
   });
 
-  factory TagsGetResponse.fromJson(Map<String, dynamic> json) => TagsGetResponse(
-    tag: json['tag'] != null
+  factory TagsGetResponse.fromJson(Map<String, dynamic> json) =>
+      TagsGetResponse(
+        tag: json['tag'] != null
             ? TagsGetResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
             : null,
-    tagged: (json['tagged'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    taggedTotal: json['tagged_total'] as int?,
-    links: json['links'] != null
-            ? TagsGetResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        tagged:
+            (json['tagged'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        taggedTotal: json['tagged_total'] as int?,
+        links: json['links'] != null
+            ? TagsGetResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class TagsFindParams {
@@ -5036,13 +7583,15 @@ class TagsFindResponse {
     this.systemInfo,
   });
 
-  factory TagsFindResponse.fromJson(Map<String, dynamic> json) => TagsFindResponse(
-    tags: (json['tags'] as List<dynamic>?)?.cast<String>(),
-    ids: (json['ids'] as List<dynamic>?)?.cast<int>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory TagsFindResponse.fromJson(Map<String, dynamic> json) =>
+      TagsFindResponse(
+        tags: (json['tags'] as List<dynamic>?)?.cast<String>(),
+        ids: (json['ids'] as List<dynamic>?)?.cast<int>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ThreadsApi Types ────────────────────────────────────────
@@ -5065,7 +7614,7 @@ class ThreadsListParams {
   final String? direction;
   final int? threadCreateDate;
   final int? threadUpdateDate;
-  final Object? fieldsInclude;
+  final List<String>? fieldsInclude;
 
   const ThreadsListParams({
     this.forumId,
@@ -5112,6 +7661,66 @@ class ThreadsListParams {
   }
 }
 
+class ThreadsListResponseForumLinks {
+  final String? permalink;
+  final String? detail;
+  final String? subCategories;
+  final String? subForums;
+  final String? threads;
+  final String? followers;
+
+  const ThreadsListResponseForumLinks({
+    this.permalink,
+    this.detail,
+    this.subCategories,
+    this.subForums,
+    this.threads,
+    this.followers,
+  });
+
+  factory ThreadsListResponseForumLinks.fromJson(Map<String, dynamic> json) =>
+      ThreadsListResponseForumLinks(
+        permalink: json['permalink'] as String?,
+        detail: json['detail'] as String?,
+        subCategories: json['sub-categories'] as String?,
+        subForums: json['sub-forums'] as String?,
+        threads: json['threads'] as String?,
+        followers: json['followers'] as String?,
+      );
+}
+
+class ThreadsListResponseForumPermissions {
+  final bool? view;
+  final bool? edit;
+  final bool? delete;
+  final bool? createThread;
+  final bool? uploadAttachment;
+  final bool? tagThread;
+  final bool? follow;
+
+  const ThreadsListResponseForumPermissions({
+    this.view,
+    this.edit,
+    this.delete,
+    this.createThread,
+    this.uploadAttachment,
+    this.tagThread,
+    this.follow,
+  });
+
+  factory ThreadsListResponseForumPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ThreadsListResponseForumPermissions(
+        view: json['view'] as bool?,
+        edit: json['edit'] as bool?,
+        delete: json['delete'] as bool?,
+        createThread: json['create_thread'] as bool?,
+        uploadAttachment: json['upload_attachment'] as bool?,
+        tagThread: json['tag_thread'] as bool?,
+        follow: json['follow'] as bool?,
+      );
+}
+
 class ThreadsListResponseForum {
   final int? forumId;
   final String? forumTitle;
@@ -5121,8 +7730,8 @@ class ThreadsListResponseForum {
   final List<Object>? forumPrefixes;
   final int? threadDefaultPrefixId;
   final bool? threadPrefixIsRequired;
-  final Object? links;
-  final Object? permissions;
+  final ThreadsListResponseForumLinks? links;
+  final ThreadsListResponseForumPermissions? permissions;
   final bool? forumIsFollowed;
 
   const ThreadsListResponseForum({
@@ -5139,19 +7748,27 @@ class ThreadsListResponseForum {
     this.forumIsFollowed,
   });
 
-  factory ThreadsListResponseForum.fromJson(Map<String, dynamic> json) => ThreadsListResponseForum(
-    forumId: json['forum_id'] as int?,
-    forumTitle: json['forum_title'] as String?,
-    forumDescription: json['forum_description'] as String?,
-    forumThreadCount: json['forum_thread_count'] as int?,
-    forumPostCount: json['forum_post_count'] as int?,
-    forumPrefixes: (json['forum_prefixes'] as List<dynamic>?)?.cast<Object>(),
-    threadDefaultPrefixId: json['thread_default_prefix_id'] as int?,
-    threadPrefixIsRequired: json['thread_prefix_is_required'] as bool?,
-    links: json['links'] as Object?,
-    permissions: json['permissions'] as Object?,
-    forumIsFollowed: json['forum_is_followed'] as bool?,
-  );
+  factory ThreadsListResponseForum.fromJson(Map<String, dynamic> json) =>
+      ThreadsListResponseForum(
+        forumId: json['forum_id'] as int?,
+        forumTitle: json['forum_title'] as String?,
+        forumDescription: json['forum_description'] as String?,
+        forumThreadCount: json['forum_thread_count'] as int?,
+        forumPostCount: json['forum_post_count'] as int?,
+        forumPrefixes:
+            (json['forum_prefixes'] as List<dynamic>?)?.cast<Object>(),
+        threadDefaultPrefixId: json['thread_default_prefix_id'] as int?,
+        threadPrefixIsRequired: json['thread_prefix_is_required'] as bool?,
+        links: json['links'] != null
+            ? ThreadsListResponseForumLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+        permissions: json['permissions'] != null
+            ? ThreadsListResponseForumPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        forumIsFollowed: json['forum_is_followed'] as bool?,
+      );
 }
 
 class ThreadsListResponseLinks {
@@ -5165,11 +7782,12 @@ class ThreadsListResponseLinks {
     this.next,
   });
 
-  factory ThreadsListResponseLinks.fromJson(Map<String, dynamic> json) => ThreadsListResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory ThreadsListResponseLinks.fromJson(Map<String, dynamic> json) =>
+      ThreadsListResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class ThreadsListResponse {
@@ -5187,21 +7805,25 @@ class ThreadsListResponse {
     this.systemInfo,
   });
 
-  factory ThreadsListResponse.fromJson(Map<String, dynamic> json) => ThreadsListResponse(
-    threads: (json['threads'] as List<dynamic>?)
+  factory ThreadsListResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsListResponse(
+        threads: (json['threads'] as List<dynamic>?)
             ?.map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    forum: json['forum'] != null
-            ? ThreadsListResponseForum.fromJson(json['forum'] as Map<String, dynamic>)
+        forum: json['forum'] != null
+            ? ThreadsListResponseForum.fromJson(
+                json['forum'] as Map<String, dynamic>)
             : null,
-    threadsTotal: json['threads_total'] as int?,
-    links: json['links'] != null
-            ? ThreadsListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        threadsTotal: json['threads_total'] as int?,
+        links: json['links'] != null
+            ? ThreadsListResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsCreateBody {
@@ -5213,7 +7835,7 @@ class ThreadsCreateBody {
   final List<String>? tags;
   final bool? hideContacts;
   final bool? allowAskHiddenContent;
-  final Object? replyGroup;
+  final int? replyGroup;
   final bool? commentIgnoreGroup;
   final bool? dontAlertFollowers;
   final String? scheduleDate;
@@ -5272,14 +7894,16 @@ class ThreadsCreateResponse {
     this.systemInfo,
   });
 
-  factory ThreadsCreateResponse.fromJson(Map<String, dynamic> json) => ThreadsCreateResponse(
-    thread: json['thread'] != null
+  factory ThreadsCreateResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsCreateResponse(
+        thread: json['thread'] != null
             ? RespThreadModel.fromJson(json['thread'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsCreateContestBody {
@@ -5294,12 +7918,12 @@ class ThreadsCreateContestBody {
   final double? prizeDataMoney;
   final bool? isMoneyPlaces;
   final List<double>? prizeDataPlaces;
-  final Object? prizeDataUpgrade;
+  final int? prizeDataUpgrade;
   final int requireLikeCount;
   final int requireTotalLikeCount;
   final String? secretAnswer;
   final List<String>? tags;
-  final Object? replyGroup;
+  final int? replyGroup;
   final bool? commentIgnoreGroup;
   final bool? dontAlertFollowers;
   final bool? hideContacts;
@@ -5380,14 +8004,16 @@ class ThreadsCreateContestResponse {
     this.systemInfo,
   });
 
-  factory ThreadsCreateContestResponse.fromJson(Map<String, dynamic> json) => ThreadsCreateContestResponse(
-    thread: json['thread'] != null
+  factory ThreadsCreateContestResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsCreateContestResponse(
+        thread: json['thread'] != null
             ? RespThreadModel.fromJson(json['thread'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsClaimBody {
@@ -5404,7 +8030,7 @@ class ThreadsClaimBody {
   final List<String>? tags;
   final bool? hideContacts;
   final bool? allowAskHiddenContent;
-  final Object? replyGroup;
+  final int? replyGroup;
   final bool? commentIgnoreGroup;
   final bool? dontAlertFollowers;
   final String? scheduleDate;
@@ -5476,18 +8102,20 @@ class ThreadsClaimResponse {
     this.systemInfo,
   });
 
-  factory ThreadsClaimResponse.fromJson(Map<String, dynamic> json) => ThreadsClaimResponse(
-    thread: json['thread'] != null
+  factory ThreadsClaimResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsClaimResponse(
+        thread: json['thread'] != null
             ? RespThreadModel.fromJson(json['thread'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsGetParams {
-  final Object? fieldsInclude;
+  final List<String>? fieldsInclude;
 
   const ThreadsGetParams({
     this.fieldsInclude,
@@ -5509,14 +8137,16 @@ class ThreadsGetResponse {
     this.systemInfo,
   });
 
-  factory ThreadsGetResponse.fromJson(Map<String, dynamic> json) => ThreadsGetResponse(
-    thread: json['thread'] != null
+  factory ThreadsGetResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsGetResponse(
+        thread: json['thread'] != null
             ? RespThreadModel.fromJson(json['thread'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsEditBody {
@@ -5527,7 +8157,7 @@ class ThreadsEditBody {
   final bool? discussionOpen;
   final bool? hideContacts;
   final bool? allowAskHiddenContent;
-  final Object? replyGroup;
+  final int? replyGroup;
   final bool? commentIgnoreGroup;
 
   const ThreadsEditBody({
@@ -5566,14 +8196,16 @@ class ThreadsEditResponse {
     this.systemInfo,
   });
 
-  factory ThreadsEditResponse.fromJson(Map<String, dynamic> json) => ThreadsEditResponse(
-    thread: json['thread'] != null
+  factory ThreadsEditResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsEditResponse(
+        thread: json['thread'] != null
             ? RespThreadModel.fromJson(json['thread'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsDeleteBody {
@@ -5601,13 +8233,15 @@ class ThreadsDeleteResponse {
     this.systemInfo,
   });
 
-  factory ThreadsDeleteResponse.fromJson(Map<String, dynamic> json) => ThreadsDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsMoveBody {
@@ -5650,13 +8284,15 @@ class ThreadsMoveResponse {
     this.systemInfo,
   });
 
-  factory ThreadsMoveResponse.fromJson(Map<String, dynamic> json) => ThreadsMoveResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsMoveResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsMoveResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsBumpResponse {
@@ -5670,13 +8306,15 @@ class ThreadsBumpResponse {
     this.systemInfo,
   });
 
-  factory ThreadsBumpResponse.fromJson(Map<String, dynamic> json) => ThreadsBumpResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsBumpResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsBumpResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsHideResponse {
@@ -5690,13 +8328,15 @@ class ThreadsHideResponse {
     this.systemInfo,
   });
 
-  factory ThreadsHideResponse.fromJson(Map<String, dynamic> json) => ThreadsHideResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsHideResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsHideResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsStarResponse {
@@ -5710,13 +8350,15 @@ class ThreadsStarResponse {
     this.systemInfo,
   });
 
-  factory ThreadsStarResponse.fromJson(Map<String, dynamic> json) => ThreadsStarResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsStarResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsStarResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsUnstarResponse {
@@ -5730,13 +8372,15 @@ class ThreadsUnstarResponse {
     this.systemInfo,
   });
 
-  factory ThreadsUnstarResponse.fromJson(Map<String, dynamic> json) => ThreadsUnstarResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsUnstarResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsUnstarResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsFollowersResponse {
@@ -5748,12 +8392,14 @@ class ThreadsFollowersResponse {
     this.systemInfo,
   });
 
-  factory ThreadsFollowersResponse.fromJson(Map<String, dynamic> json) => ThreadsFollowersResponse(
-    users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsFollowersResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsFollowersResponse(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsFollowBody {
@@ -5781,13 +8427,15 @@ class ThreadsFollowResponse {
     this.systemInfo,
   });
 
-  factory ThreadsFollowResponse.fromJson(Map<String, dynamic> json) => ThreadsFollowResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsFollowResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsFollowResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsUnfollowResponse {
@@ -5801,18 +8449,20 @@ class ThreadsUnfollowResponse {
     this.systemInfo,
   });
 
-  factory ThreadsUnfollowResponse.fromJson(Map<String, dynamic> json) => ThreadsUnfollowResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsUnfollowResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsUnfollowResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsFollowedParams {
   final bool? total;
-  final Object? fieldsInclude;
+  final List<String>? fieldsInclude;
 
   const ThreadsFollowedParams({
     this.total,
@@ -5838,13 +8488,16 @@ class ThreadsFollowedResponse {
     this.systemInfo,
   });
 
-  factory ThreadsFollowedResponse.fromJson(Map<String, dynamic> json) => ThreadsFollowedResponse(
-    threads: (json['threads'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    threadsTotal: json['threads_total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsFollowedResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsFollowedResponse(
+        threads:
+            (json['threads'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        threadsTotal: json['threads_total'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsNavigationResponse {
@@ -5858,13 +8511,46 @@ class ThreadsNavigationResponse {
     this.systemInfo,
   });
 
-  factory ThreadsNavigationResponse.fromJson(Map<String, dynamic> json) => ThreadsNavigationResponse(
-    elements: (json['elements'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    elementsCount: json['elements_count'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsNavigationResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsNavigationResponse(
+        elements:
+            (json['elements'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        elementsCount: json['elements_count'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
+}
+
+class ThreadsPollGetResponsePollPermissions {
+  final bool? vote;
+  final bool? result;
+
+  const ThreadsPollGetResponsePollPermissions({
+    this.vote,
+    this.result,
+  });
+
+  factory ThreadsPollGetResponsePollPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ThreadsPollGetResponsePollPermissions(
+        vote: json['vote'] as bool?,
+        result: json['result'] as bool?,
+      );
+}
+
+class ThreadsPollGetResponsePollLinks {
+  final String? vote;
+
+  const ThreadsPollGetResponsePollLinks({
+    this.vote,
+  });
+
+  factory ThreadsPollGetResponsePollLinks.fromJson(Map<String, dynamic> json) =>
+      ThreadsPollGetResponsePollLinks(
+        vote: json['vote'] as String?,
+      );
 }
 
 class ThreadsPollGetResponsePoll {
@@ -5875,8 +8561,8 @@ class ThreadsPollGetResponsePoll {
   final bool? pollIsOpen;
   final bool? pollIsVoted;
   final List<Map<String, dynamic>>? responses;
-  final Object? permissions;
-  final Object? links;
+  final ThreadsPollGetResponsePollPermissions? permissions;
+  final ThreadsPollGetResponsePollLinks? links;
 
   const ThreadsPollGetResponsePoll({
     this.pollId,
@@ -5890,17 +8576,25 @@ class ThreadsPollGetResponsePoll {
     this.links,
   });
 
-  factory ThreadsPollGetResponsePoll.fromJson(Map<String, dynamic> json) => ThreadsPollGetResponsePoll(
-    pollId: json['poll_id'] as int?,
-    pollQuestion: json['poll_question'] as String?,
-    pollVoteCount: json['poll_vote_count'] as int?,
-    pollMaxVotes: json['poll_max_votes'] as int?,
-    pollIsOpen: json['poll_is_open'] as bool?,
-    pollIsVoted: json['poll_is_voted'] as bool?,
-    responses: (json['responses'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    permissions: json['permissions'] as Object?,
-    links: json['links'] as Object?,
-  );
+  factory ThreadsPollGetResponsePoll.fromJson(Map<String, dynamic> json) =>
+      ThreadsPollGetResponsePoll(
+        pollId: json['poll_id'] as int?,
+        pollQuestion: json['poll_question'] as String?,
+        pollVoteCount: json['poll_vote_count'] as int?,
+        pollMaxVotes: json['poll_max_votes'] as int?,
+        pollIsOpen: json['poll_is_open'] as bool?,
+        pollIsVoted: json['poll_is_voted'] as bool?,
+        responses:
+            (json['responses'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        permissions: json['permissions'] != null
+            ? ThreadsPollGetResponsePollPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : null,
+        links: json['links'] != null
+            ? ThreadsPollGetResponsePollLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class ThreadsPollGetResponse {
@@ -5912,14 +8606,17 @@ class ThreadsPollGetResponse {
     this.systemInfo,
   });
 
-  factory ThreadsPollGetResponse.fromJson(Map<String, dynamic> json) => ThreadsPollGetResponse(
-    poll: json['poll'] != null
-            ? ThreadsPollGetResponsePoll.fromJson(json['poll'] as Map<String, dynamic>)
+  factory ThreadsPollGetResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsPollGetResponse(
+        poll: json['poll'] != null
+            ? ThreadsPollGetResponsePoll.fromJson(
+                json['poll'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsPollVoteBody {
@@ -5950,13 +8647,15 @@ class ThreadsPollVoteResponse {
     this.systemInfo,
   });
 
-  factory ThreadsPollVoteResponse.fromJson(Map<String, dynamic> json) => ThreadsPollVoteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsPollVoteResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsPollVoteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsUnreadParams {
@@ -5990,15 +8689,17 @@ class ThreadsUnreadResponse {
     this.systemInfo,
   });
 
-  factory ThreadsUnreadResponse.fromJson(Map<String, dynamic> json) => ThreadsUnreadResponse(
-    threads: (json['threads'] as List<dynamic>?)
+  factory ThreadsUnreadResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsUnreadResponse(
+        threads: (json['threads'] as List<dynamic>?)
             ?.map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsRecentParams {
@@ -6035,15 +8736,17 @@ class ThreadsRecentResponse {
     this.systemInfo,
   });
 
-  factory ThreadsRecentResponse.fromJson(Map<String, dynamic> json) => ThreadsRecentResponse(
-    threads: (json['threads'] as List<dynamic>?)
+  factory ThreadsRecentResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsRecentResponse(
+        threads: (json['threads'] as List<dynamic>?)
             ?.map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ThreadsFinishResponse {
@@ -6057,13 +8760,15 @@ class ThreadsFinishResponse {
     this.systemInfo,
   });
 
-  factory ThreadsFinishResponse.fromJson(Map<String, dynamic> json) => ThreadsFinishResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ThreadsFinishResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadsFinishResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── UsersApi Types ────────────────────────────────────────
@@ -6071,7 +8776,7 @@ class ThreadsFinishResponse {
 class UsersListParams {
   final int? page;
   final int? limit;
-  final Object? fieldsInclude;
+  final List<String>? fieldsInclude;
 
   const UsersListParams({
     this.page,
@@ -6099,11 +8804,12 @@ class UsersListResponseLinks {
     this.next,
   });
 
-  factory UsersListResponseLinks.fromJson(Map<String, dynamic> json) => UsersListResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory UsersListResponseLinks.fromJson(Map<String, dynamic> json) =>
+      UsersListResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class UsersListResponse {
@@ -6119,18 +8825,21 @@ class UsersListResponse {
     this.systemInfo,
   });
 
-  factory UsersListResponse.fromJson(Map<String, dynamic> json) => UsersListResponse(
-    users: (json['users'] as List<dynamic>?)
+  factory UsersListResponse.fromJson(Map<String, dynamic> json) =>
+      UsersListResponse(
+        users: (json['users'] as List<dynamic>?)
             ?.map((e) => RespUserModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    usersTotal: json['users_total'] as int?,
-    links: json['links'] != null
-            ? UsersListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        usersTotal: json['users_total'] as int?,
+        links: json['links'] != null
+            ? UsersListResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersFieldsResponse {
@@ -6142,18 +8851,21 @@ class UsersFieldsResponse {
     this.systemInfo,
   });
 
-  factory UsersFieldsResponse.fromJson(Map<String, dynamic> json) => UsersFieldsResponse(
-    fields: (json['fields'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersFieldsResponse.fromJson(Map<String, dynamic> json) =>
+      UsersFieldsResponse(
+        fields:
+            (json['fields'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersFindParams {
   final String? username;
-  final Map<String, dynamic>? customFields;
-  final Object? fieldsInclude;
+  final Map<String, String>? customFields;
+  final List<String>? fieldsInclude;
 
   const UsersFindParams({
     this.username,
@@ -6179,18 +8891,20 @@ class UsersFindResponse {
     this.systemInfo,
   });
 
-  factory UsersFindResponse.fromJson(Map<String, dynamic> json) => UsersFindResponse(
-    users: (json['users'] as List<dynamic>?)
+  factory UsersFindResponse.fromJson(Map<String, dynamic> json) =>
+      UsersFindResponse(
+        users: (json['users'] as List<dynamic>?)
             ?.map((e) => RespUserModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersGetParams {
-  final Object? fieldsInclude;
+  final List<String>? fieldsInclude;
 
   const UsersGetParams({
     this.fieldsInclude,
@@ -6212,14 +8926,16 @@ class UsersGetResponse {
     this.systemInfo,
   });
 
-  factory UsersGetResponse.fromJson(Map<String, dynamic> json) => UsersGetResponse(
-    user: json['user'] != null
+  factory UsersGetResponse.fromJson(Map<String, dynamic> json) =>
+      UsersGetResponse(
+        user: json['user'] != null
             ? RespUserModel.fromJson(json['user'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersEditBody {
@@ -6235,7 +8951,7 @@ class UsersEditBody {
   final String? secretAnswer;
   final int? secretAnswerType;
   final String? shortLink;
-  final Object? languageId;
+  final int? languageId;
   final String? gender;
   final String? timezone;
   final bool? receiveAdminEmail;
@@ -6248,7 +8964,7 @@ class UsersEditBody {
   final String? allowSendPersonalConversation;
   final String? allowInviteGroup;
   final String? allowReceiveNewsFeed;
-  final Map<String, dynamic>? alert;
+  final Map<String, bool>? alert;
   final Map<String, dynamic>? fields;
 
   const UsersEditBody({
@@ -6325,13 +9041,15 @@ class UsersEditResponse {
     this.systemInfo,
   });
 
-  factory UsersEditResponse.fromJson(Map<String, dynamic> json) => UsersEditResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersEditResponse.fromJson(Map<String, dynamic> json) =>
+      UsersEditResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersClaimsParams {
@@ -6351,19 +9069,71 @@ class UsersClaimsParams {
   }
 }
 
+class UsersClaimsResponseStatsMarket {
+  final int? total;
+  final int? solved;
+  final int? settled;
+  final int? rejected;
+
+  const UsersClaimsResponseStatsMarket({
+    this.total,
+    this.solved,
+    this.settled,
+    this.rejected,
+  });
+
+  factory UsersClaimsResponseStatsMarket.fromJson(Map<String, dynamic> json) =>
+      UsersClaimsResponseStatsMarket(
+        total: json['total'] as int?,
+        solved: json['solved'] as int?,
+        settled: json['settled'] as int?,
+        rejected: json['rejected'] as int?,
+      );
+}
+
+class UsersClaimsResponseStatsNoMarket {
+  final int? total;
+  final int? solved;
+  final int? settled;
+  final int? rejected;
+
+  const UsersClaimsResponseStatsNoMarket({
+    this.total,
+    this.solved,
+    this.settled,
+    this.rejected,
+  });
+
+  factory UsersClaimsResponseStatsNoMarket.fromJson(
+          Map<String, dynamic> json) =>
+      UsersClaimsResponseStatsNoMarket(
+        total: json['total'] as int?,
+        solved: json['solved'] as int?,
+        settled: json['settled'] as int?,
+        rejected: json['rejected'] as int?,
+      );
+}
+
 class UsersClaimsResponseStats {
-  final Object? market;
-  final Object? noMarket;
+  final UsersClaimsResponseStatsMarket? market;
+  final UsersClaimsResponseStatsNoMarket? noMarket;
 
   const UsersClaimsResponseStats({
     this.market,
     this.noMarket,
   });
 
-  factory UsersClaimsResponseStats.fromJson(Map<String, dynamic> json) => UsersClaimsResponseStats(
-    market: json['market'] as Object?,
-    noMarket: json['noMarket'] as Object?,
-  );
+  factory UsersClaimsResponseStats.fromJson(Map<String, dynamic> json) =>
+      UsersClaimsResponseStats(
+        market: json['market'] != null
+            ? UsersClaimsResponseStatsMarket.fromJson(
+                json['market'] as Map<String, dynamic>)
+            : null,
+        noMarket: json['noMarket'] != null
+            ? UsersClaimsResponseStatsNoMarket.fromJson(
+                json['noMarket'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class UsersClaimsResponse {
@@ -6377,15 +9147,19 @@ class UsersClaimsResponse {
     this.systemInfo,
   });
 
-  factory UsersClaimsResponse.fromJson(Map<String, dynamic> json) => UsersClaimsResponse(
-    claims: (json['claims'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    stats: json['stats'] != null
-            ? UsersClaimsResponseStats.fromJson(json['stats'] as Map<String, dynamic>)
+  factory UsersClaimsResponse.fromJson(Map<String, dynamic> json) =>
+      UsersClaimsResponse(
+        claims:
+            (json['claims'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        stats: json['stats'] != null
+            ? UsersClaimsResponseStats.fromJson(
+                json['stats'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersAvatarUploadBody {
@@ -6421,13 +9195,15 @@ class UsersAvatarUploadResponse {
     this.systemInfo,
   });
 
-  factory UsersAvatarUploadResponse.fromJson(Map<String, dynamic> json) => UsersAvatarUploadResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersAvatarUploadResponse.fromJson(Map<String, dynamic> json) =>
+      UsersAvatarUploadResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersAvatarDeleteResponse {
@@ -6441,13 +9217,15 @@ class UsersAvatarDeleteResponse {
     this.systemInfo,
   });
 
-  factory UsersAvatarDeleteResponse.fromJson(Map<String, dynamic> json) => UsersAvatarDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersAvatarDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      UsersAvatarDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersAvatarCropBody {
@@ -6481,13 +9259,15 @@ class UsersAvatarCropResponse {
     this.systemInfo,
   });
 
-  factory UsersAvatarCropResponse.fromJson(Map<String, dynamic> json) => UsersAvatarCropResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersAvatarCropResponse.fromJson(Map<String, dynamic> json) =>
+      UsersAvatarCropResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersBackgroundUploadBody {
@@ -6523,13 +9303,15 @@ class UsersBackgroundUploadResponse {
     this.systemInfo,
   });
 
-  factory UsersBackgroundUploadResponse.fromJson(Map<String, dynamic> json) => UsersBackgroundUploadResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersBackgroundUploadResponse.fromJson(Map<String, dynamic> json) =>
+      UsersBackgroundUploadResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersBackgroundDeleteResponse {
@@ -6543,13 +9325,15 @@ class UsersBackgroundDeleteResponse {
     this.systemInfo,
   });
 
-  factory UsersBackgroundDeleteResponse.fromJson(Map<String, dynamic> json) => UsersBackgroundDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersBackgroundDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      UsersBackgroundDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersBackgroundCropBody {
@@ -6583,13 +9367,15 @@ class UsersBackgroundCropResponse {
     this.systemInfo,
   });
 
-  factory UsersBackgroundCropResponse.fromJson(Map<String, dynamic> json) => UsersBackgroundCropResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersBackgroundCropResponse.fromJson(Map<String, dynamic> json) =>
+      UsersBackgroundCropResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersFollowersParams {
@@ -6623,11 +9409,12 @@ class UsersFollowersResponseLinks {
     this.next,
   });
 
-  factory UsersFollowersResponseLinks.fromJson(Map<String, dynamic> json) => UsersFollowersResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory UsersFollowersResponseLinks.fromJson(Map<String, dynamic> json) =>
+      UsersFollowersResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class UsersFollowersResponse {
@@ -6643,16 +9430,19 @@ class UsersFollowersResponse {
     this.systemInfo,
   });
 
-  factory UsersFollowersResponse.fromJson(Map<String, dynamic> json) => UsersFollowersResponse(
-    users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    usersTotal: json['users_total'] as int?,
-    links: json['links'] != null
-            ? UsersFollowersResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+  factory UsersFollowersResponse.fromJson(Map<String, dynamic> json) =>
+      UsersFollowersResponse(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        usersTotal: json['users_total'] as int?,
+        links: json['links'] != null
+            ? UsersFollowersResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersFollowResponse {
@@ -6666,13 +9456,15 @@ class UsersFollowResponse {
     this.systemInfo,
   });
 
-  factory UsersFollowResponse.fromJson(Map<String, dynamic> json) => UsersFollowResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersFollowResponse.fromJson(Map<String, dynamic> json) =>
+      UsersFollowResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersUnfollowResponse {
@@ -6686,13 +9478,15 @@ class UsersUnfollowResponse {
     this.systemInfo,
   });
 
-  factory UsersUnfollowResponse.fromJson(Map<String, dynamic> json) => UsersUnfollowResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersUnfollowResponse.fromJson(Map<String, dynamic> json) =>
+      UsersUnfollowResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersFollowingsParams {
@@ -6726,13 +9520,15 @@ class UsersFollowingsResponse {
     this.systemInfo,
   });
 
-  factory UsersFollowingsResponse.fromJson(Map<String, dynamic> json) => UsersFollowingsResponse(
-    users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    usersTotal: json['users_total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersFollowingsResponse.fromJson(Map<String, dynamic> json) =>
+      UsersFollowingsResponse(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        usersTotal: json['users_total'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersLikesParams {
@@ -6767,16 +9563,68 @@ class UsersLikesParams {
   }
 }
 
+class UsersLikesResponseLikes1234567890 {
+  final int? likeId;
+  final String? contentType;
+  final int? contentId;
+  final int? likeUserId;
+  final int? likeDate;
+  final int? contentUserId;
+  final String? contentState;
+  final RespUserModel? user;
+  final RespUserModel? actionUser;
+  final String? messageHtml;
+  final int? postDate;
+
+  const UsersLikesResponseLikes1234567890({
+    this.likeId,
+    this.contentType,
+    this.contentId,
+    this.likeUserId,
+    this.likeDate,
+    this.contentUserId,
+    this.contentState,
+    this.user,
+    this.actionUser,
+    this.messageHtml,
+    this.postDate,
+  });
+
+  factory UsersLikesResponseLikes1234567890.fromJson(
+          Map<String, dynamic> json) =>
+      UsersLikesResponseLikes1234567890(
+        likeId: json['like_id'] as int?,
+        contentType: json['content_type'] as String?,
+        contentId: json['content_id'] as int?,
+        likeUserId: json['like_user_id'] as int?,
+        likeDate: json['like_date'] as int?,
+        contentUserId: json['content_user_id'] as int?,
+        contentState: json['content_state'] as String?,
+        user: json['user'] != null
+            ? RespUserModel.fromJson(json['user'] as Map<String, dynamic>)
+            : null,
+        actionUser: json['actionUser'] != null
+            ? RespUserModel.fromJson(json['actionUser'] as Map<String, dynamic>)
+            : null,
+        messageHtml: json['messageHtml'] as String?,
+        postDate: json['post_date'] as int?,
+      );
+}
+
 class UsersLikesResponseLikes {
-  final Object? n1234567890;
+  final UsersLikesResponseLikes1234567890? n1234567890;
 
   const UsersLikesResponseLikes({
     this.n1234567890,
   });
 
-  factory UsersLikesResponseLikes.fromJson(Map<String, dynamic> json) => UsersLikesResponseLikes(
-    n1234567890: json['1234567890'] as Object?,
-  );
+  factory UsersLikesResponseLikes.fromJson(Map<String, dynamic> json) =>
+      UsersLikesResponseLikes(
+        n1234567890: json['1234567890'] != null
+            ? UsersLikesResponseLikes1234567890.fromJson(
+                json['1234567890'] as Map<String, dynamic>)
+            : null,
+      );
 }
 
 class UsersLikesResponse {
@@ -6796,18 +9644,21 @@ class UsersLikesResponse {
     this.systemInfo,
   });
 
-  factory UsersLikesResponse.fromJson(Map<String, dynamic> json) => UsersLikesResponse(
-    page: json['page'] as int?,
-    perPage: json['perPage'] as int?,
-    contentType: json['contentType'] as String?,
-    totalLikes: json['totalLikes'] as int?,
-    likes: json['likes'] != null
-            ? UsersLikesResponseLikes.fromJson(json['likes'] as Map<String, dynamic>)
+  factory UsersLikesResponse.fromJson(Map<String, dynamic> json) =>
+      UsersLikesResponse(
+        page: json['page'] as int?,
+        perPage: json['perPage'] as int?,
+        contentType: json['contentType'] as String?,
+        totalLikes: json['totalLikes'] as int?,
+        likes: json['likes'] != null
+            ? UsersLikesResponseLikes.fromJson(
+                json['likes'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersIgnoredParams {
@@ -6833,12 +9684,14 @@ class UsersIgnoredResponse {
     this.systemInfo,
   });
 
-  factory UsersIgnoredResponse.fromJson(Map<String, dynamic> json) => UsersIgnoredResponse(
-    users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersIgnoredResponse.fromJson(Map<String, dynamic> json) =>
+      UsersIgnoredResponse(
+        users: (json['users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersIgnoreResponse {
@@ -6852,13 +9705,15 @@ class UsersIgnoreResponse {
     this.systemInfo,
   });
 
-  factory UsersIgnoreResponse.fromJson(Map<String, dynamic> json) => UsersIgnoreResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersIgnoreResponse.fromJson(Map<String, dynamic> json) =>
+      UsersIgnoreResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersIgnoreEditParams {
@@ -6892,13 +9747,15 @@ class UsersIgnoreEditResponse {
     this.systemInfo,
   });
 
-  factory UsersIgnoreEditResponse.fromJson(Map<String, dynamic> json) => UsersIgnoreEditResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersIgnoreEditResponse.fromJson(Map<String, dynamic> json) =>
+      UsersIgnoreEditResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersUnignoreResponse {
@@ -6912,13 +9769,15 @@ class UsersUnignoreResponse {
     this.systemInfo,
   });
 
-  factory UsersUnignoreResponse.fromJson(Map<String, dynamic> json) => UsersUnignoreResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersUnignoreResponse.fromJson(Map<String, dynamic> json) =>
+      UsersUnignoreResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersContentsParams {
@@ -6949,11 +9808,12 @@ class UsersContentsResponseLinks {
     this.next,
   });
 
-  factory UsersContentsResponseLinks.fromJson(Map<String, dynamic> json) => UsersContentsResponseLinks(
-    pages: json['pages'] as int?,
-    page: json['page'] as int?,
-    next: json['next'] as String?,
-  );
+  factory UsersContentsResponseLinks.fromJson(Map<String, dynamic> json) =>
+      UsersContentsResponseLinks(
+        pages: json['pages'] as int?,
+        page: json['page'] as int?,
+        next: json['next'] as String?,
+      );
 }
 
 class UsersContentsResponse {
@@ -6971,19 +9831,22 @@ class UsersContentsResponse {
     this.systemInfo,
   });
 
-  factory UsersContentsResponse.fromJson(Map<String, dynamic> json) => UsersContentsResponse(
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    dataTotal: json['data_total'] as int?,
-    user: json['user'] != null
+  factory UsersContentsResponse.fromJson(Map<String, dynamic> json) =>
+      UsersContentsResponse(
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        dataTotal: json['data_total'] as int?,
+        user: json['user'] != null
             ? RespUserModel.fromJson(json['user'] as Map<String, dynamic>)
             : null,
-    links: json['links'] != null
-            ? UsersContentsResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
+        links: json['links'] != null
+            ? UsersContentsResponseLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersTrophiesResponse {
@@ -6995,12 +9858,15 @@ class UsersTrophiesResponse {
     this.systemInfo,
   });
 
-  factory UsersTrophiesResponse.fromJson(Map<String, dynamic> json) => UsersTrophiesResponse(
-    trophies: (json['trophies'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersTrophiesResponse.fromJson(Map<String, dynamic> json) =>
+      UsersTrophiesResponse(
+        trophies:
+            (json['trophies'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersSecretAnswerTypesResponse {
@@ -7012,12 +9878,14 @@ class UsersSecretAnswerTypesResponse {
     this.systemInfo,
   });
 
-  factory UsersSecretAnswerTypesResponse.fromJson(Map<String, dynamic> json) => UsersSecretAnswerTypesResponse(
-    data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersSecretAnswerTypesResponse.fromJson(Map<String, dynamic> json) =>
+      UsersSecretAnswerTypesResponse(
+        data: (json['data'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersSaResetResponse {
@@ -7031,13 +9899,15 @@ class UsersSaResetResponse {
     this.systemInfo,
   });
 
-  factory UsersSaResetResponse.fromJson(Map<String, dynamic> json) => UsersSaResetResponse(
-    success: json['success'] as bool?,
-    waitingTime: json['waiting_time'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersSaResetResponse.fromJson(Map<String, dynamic> json) =>
+      UsersSaResetResponse(
+        success: json['success'] as bool?,
+        waitingTime: json['waiting_time'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class UsersSaCancelResetResponse {
@@ -7051,12 +9921,13 @@ class UsersSaCancelResetResponse {
     this.systemInfo,
   });
 
-  factory UsersSaCancelResetResponse.fromJson(Map<String, dynamic> json) => UsersSaCancelResetResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory UsersSaCancelResetResponse.fromJson(Map<String, dynamic> json) =>
+      UsersSaCancelResetResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
-
