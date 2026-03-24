@@ -245,7 +245,8 @@ class LolzteamHttpClient {
       for (final entry in value.entries) {
         final subKey = '${key}[${entry.key}]';
         if (entry.value is bool) {
-          parts.add('${Uri.encodeQueryComponent(subKey)}=${entry.value ? '1' : '0'}');
+          parts.add(
+              '${Uri.encodeQueryComponent(subKey)}=${entry.value ? '1' : '0'}');
         } else if (entry.value != null) {
           parts.add(
               '${Uri.encodeQueryComponent(subKey)}=${Uri.encodeQueryComponent(entry.value.toString())}');
@@ -278,7 +279,8 @@ class LolzteamHttpClient {
       for (final entry in value.entries) {
         final subKey = '${key}[${entry.key}]';
         if (entry.value is bool) {
-          parts.add('${Uri.encodeQueryComponent(subKey)}=${entry.value ? '1' : '0'}');
+          parts.add(
+              '${Uri.encodeQueryComponent(subKey)}=${entry.value ? '1' : '0'}');
         } else if (entry.value != null) {
           parts.add(
               '${Uri.encodeQueryComponent(subKey)}=${Uri.encodeQueryComponent(entry.value.toString())}');
