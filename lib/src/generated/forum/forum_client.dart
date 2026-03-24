@@ -1666,4 +1666,8 @@ class ForumClient {
   void close() {
     _http.close();
   }
+
+  static ForumClient fromToken(String token) {
+    return ForumClient(ClientConfig(token: token));
+  }
 }

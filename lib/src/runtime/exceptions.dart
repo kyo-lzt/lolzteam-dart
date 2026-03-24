@@ -33,11 +33,17 @@ class RateLimitException extends HttpException {
         super(statusCode: 429);
 
   static Duration? _parseRetryAfter(Map<String, String> headers) {
-    final value = headers['retry-after'] ?? headers['Retry-After'];
+    final value = headers['retry-after'];
     if (value == null) return null;
     final seconds = int.tryParse(value);
-    if (seconds == null) return null;
-    return Duration(seconds: seconds);
+    if (seconds != null) return Duration(seconds: seconds);
+    try {
+      final date = HttpDate.parse(value);
+      final delta = date.difference(DateTime.now());
+      return delta.isNegative ? null : delta;
+    } catch (_) {
+      return null;
+    }
   }
 }
 

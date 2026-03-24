@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('createHttpException', () {
     test('returns RateLimitException for 429', () {
-      final ex = createHttpException(429, 'rate limited', {'Retry-After': '5'});
+      final ex = createHttpException(429, 'rate limited', {'retry-after': '5'});
       expect(ex, isA<RateLimitException>());
       expect((ex as RateLimitException).retryAfter, const Duration(seconds: 5));
     });

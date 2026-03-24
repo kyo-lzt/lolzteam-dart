@@ -1272,4 +1272,8 @@ class MarketClient {
   void close() {
     _http.close();
   }
+
+  static MarketClient fromToken(String token) {
+    return MarketClient(ClientConfig(token: token));
+  }
 }

@@ -15,6 +15,10 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: "3.5.0"
+      - name: Extract version from tag
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      - name: Set package version
+        run: sed -i "s/^version: .*/version: ${{ env.VERSION }}/" pubspec.yaml
       - run: dart pub get
       - run: dart pub publish --force
         env:

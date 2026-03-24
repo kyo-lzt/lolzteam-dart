@@ -54,8 +54,10 @@ class LolzteamHttpClient {
     }
 
     final directive = scheme == 'socks5' ? 'SOCKS5' : 'PROXY';
+    final port =
+        uri.hasPort ? uri.port : (scheme == 'socks5' ? 1080 : uri.port);
     final ioClient = HttpClient();
-    ioClient.findProxy = (url) => '$directive ${uri.host}:${uri.port}';
+    ioClient.findProxy = (url) => '$directive ${uri.host}:$port';
     return IOClient(ioClient);
   }
 
@@ -105,7 +107,7 @@ class LolzteamHttpClient {
     }
 
     final uri = Uri.parse(url);
-    http.BaseResponse response;
+    http.StreamedResponse? streamedResponse;
     String bodyText;
 
     try {
@@ -127,9 +129,8 @@ class LolzteamHttpClient {
           );
         }
 
-        final streamedResponse = await _sendRequest(multipartRequest);
+        streamedResponse = await _sendRequest(multipartRequest);
         bodyText = await streamedResponse.stream.bytesToString();
-        response = streamedResponse;
       } else {
         final request = http.Request(options.method, uri);
         request.headers['Authorization'] = 'Bearer $_token';
@@ -151,17 +152,26 @@ class LolzteamHttpClient {
           }
         }
 
-        final streamedResponse = await _sendRequest(request);
+        streamedResponse = await _sendRequest(request);
         bodyText = await streamedResponse.stream.bytesToString();
-        response = streamedResponse;
       }
+    } on LolzteamException {
+      rethrow;
     } on Exception catch (e) {
+      // Consume the stream to release the connection if response was received.
+      if (streamedResponse != null) {
+        try {
+          await streamedResponse.stream.drain<void>();
+        } catch (_) {}
+      }
       throw NetworkException(e);
     }
 
-    if (response.statusCode < 200 || response.statusCode >= 300) {
-      final headers = Map<String, String>.from(response.headers);
-      throw createHttpException(response.statusCode, bodyText, headers);
+    final headers = _normalizeHeaders(streamedResponse.headers);
+
+    if (streamedResponse.statusCode < 200 ||
+        streamedResponse.statusCode >= 300) {
+      throw createHttpException(streamedResponse.statusCode, bodyText, headers);
     }
 
     final Object? decoded;
@@ -184,17 +194,18 @@ class LolzteamHttpClient {
     }
 
     final uri = Uri.parse(url);
+    http.StreamedResponse? streamedResponse;
 
     try {
       final request = http.Request(options.method, uri);
       request.headers['Authorization'] = 'Bearer $_token';
 
-      final streamedResponse = await _sendRequest(request);
+      streamedResponse = await _sendRequest(request);
       final bodyText = await streamedResponse.stream.bytesToString();
 
       if (streamedResponse.statusCode < 200 ||
           streamedResponse.statusCode >= 300) {
-        final headers = Map<String, String>.from(streamedResponse.headers);
+        final headers = _normalizeHeaders(streamedResponse.headers);
         throw createHttpException(
             streamedResponse.statusCode, bodyText, headers);
       }
@@ -203,6 +214,11 @@ class LolzteamHttpClient {
     } on LolzteamException {
       rethrow;
     } on Exception catch (e) {
+      if (streamedResponse != null) {
+        try {
+          await streamedResponse.stream.drain<void>();
+        } catch (_) {}
+      }
       throw NetworkException(e);
     }
   }
@@ -226,7 +242,15 @@ class LolzteamHttpClient {
         _appendQueryValue(parts, key, item);
       }
     } else if (value is Map) {
-      // skip nested objects
+      for (final entry in value.entries) {
+        final subKey = '${key}[${entry.key}]';
+        if (entry.value is bool) {
+          parts.add('${Uri.encodeQueryComponent(subKey)}=${entry.value ? '1' : '0'}');
+        } else if (entry.value != null) {
+          parts.add(
+              '${Uri.encodeQueryComponent(subKey)}=${Uri.encodeQueryComponent(entry.value.toString())}');
+        }
+      }
     } else {
       parts.add(
           '${Uri.encodeQueryComponent(key)}=${Uri.encodeQueryComponent(value.toString())}');
@@ -251,8 +275,15 @@ class LolzteamHttpClient {
         }
       }
     } else if (value is Map) {
-      parts.add(
-          '${Uri.encodeQueryComponent(key)}=${Uri.encodeQueryComponent(jsonEncode(value))}');
+      for (final entry in value.entries) {
+        final subKey = '${key}[${entry.key}]';
+        if (entry.value is bool) {
+          parts.add('${Uri.encodeQueryComponent(subKey)}=${entry.value ? '1' : '0'}');
+        } else if (entry.value != null) {
+          parts.add(
+              '${Uri.encodeQueryComponent(subKey)}=${Uri.encodeQueryComponent(entry.value.toString())}');
+        }
+      }
     } else {
       parts.add(
           '${Uri.encodeQueryComponent(key)}=${Uri.encodeQueryComponent(value.toString())}');
@@ -282,6 +313,10 @@ class LolzteamHttpClient {
         fields[entry.key] = value.toString();
       }
     }
+  }
+
+  static Map<String, String> _normalizeHeaders(Map<String, String> headers) {
+    return headers.map((key, value) => MapEntry(key.toLowerCase(), value));
   }
 
   Future<http.StreamedResponse> _sendRequest(http.BaseRequest request) {

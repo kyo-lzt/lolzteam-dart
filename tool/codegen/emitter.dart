@@ -958,6 +958,10 @@ String emitDartClientFile({
   sb.writeln('  void close() {');
   sb.writeln('    _http.close();');
   sb.writeln('  }');
+  sb.writeln();
+  sb.writeln('  static $clientName fromToken(String token) {');
+  sb.writeln('    return $clientName(ClientConfig(token: token));');
+  sb.writeln('  }');
   sb.writeln('}');
   sb.writeln();
 
