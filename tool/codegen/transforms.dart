@@ -428,12 +428,29 @@ BodyExtractionResult extractBody(
     if (discriminated != null) {
       // Still emit merged properties for backwards compat with audit
       final allProps = <String, Object?>{};
+      // Collect required sets from each variant for intersection
+      final variantRequiredSets = <Set<String>>[];
+      final variantPropKeys = <Set<String>>[];
       for (final variant in oneOf) {
         if (variant is! Map<String, dynamic>) continue;
         final variantProps = variant['properties'];
         if (variantProps is! Map<String, dynamic>) continue;
+        variantPropKeys.add(variantProps.keys.toSet());
+        final reqList = variant['required'];
+        final reqSet =
+            reqList is List ? reqList.cast<String>().toSet() : <String>{};
+        variantRequiredSets.add(reqSet);
         for (final entry in variantProps.entries) {
           allProps[entry.key] = entry.value;
+        }
+      }
+      // A field is required only if present AND required in ALL variants
+      final requiredIntersection = <String>{};
+      for (final key in allProps.keys) {
+        final presentInAll = variantPropKeys.every((s) => s.contains(key));
+        final requiredInAll = variantRequiredSets.every((s) => s.contains(key));
+        if (presentInAll && requiredInAll) {
+          requiredIntersection.add(key);
         }
       }
       for (final entry in allProps.entries) {
@@ -444,7 +461,7 @@ BodyExtractionResult extractBody(
         bodyProperties.add(BodyProperty(
           name: entry.key,
           type: schemaToTypeString(entry.value, spec),
-          required: false,
+          required: requiredIntersection.contains(entry.key),
           enumValues: rawEnum is List ? rawEnum : null,
           defaultValue: propObj?['default'],
         ));
@@ -457,12 +474,27 @@ BodyExtractionResult extractBody(
     }
 
     final allProps = <String, Object?>{};
+    final variantRequiredSets = <Set<String>>[];
+    final variantPropKeys = <Set<String>>[];
     for (final variant in oneOf) {
       if (variant is! Map<String, dynamic>) continue;
       final variantProps = variant['properties'];
       if (variantProps is! Map<String, dynamic>) continue;
+      variantPropKeys.add(variantProps.keys.toSet());
+      final reqList = variant['required'];
+      final reqSet =
+          reqList is List ? reqList.cast<String>().toSet() : <String>{};
+      variantRequiredSets.add(reqSet);
       for (final entry in variantProps.entries) {
         allProps[entry.key] = entry.value;
+      }
+    }
+    final requiredIntersection = <String>{};
+    for (final key in allProps.keys) {
+      final presentInAll = variantPropKeys.every((s) => s.contains(key));
+      final requiredInAll = variantRequiredSets.every((s) => s.contains(key));
+      if (presentInAll && requiredInAll) {
+        requiredIntersection.add(key);
       }
     }
     for (final entry in allProps.entries) {
@@ -473,7 +505,7 @@ BodyExtractionResult extractBody(
       bodyProperties.add(BodyProperty(
         name: entry.key,
         type: schemaToTypeString(entry.value, spec),
-        required: false,
+        required: requiredIntersection.contains(entry.key),
         enumValues: rawEnum is List ? rawEnum : null,
         defaultValue: propObj?['default'],
       ));
@@ -558,12 +590,17 @@ Map<String, ComponentSchema> extractComponentSchemas(
     final rawProps = schema['properties'];
     if (rawProps is! Map<String, dynamic>) continue;
 
+    final requiredList = schema['required'];
+    final requiredSet =
+        requiredList is List ? requiredList.cast<String>().toSet() : <String>{};
+
     final properties = <String, SchemaProperty>{};
     for (final propEntry in rawProps.entries) {
       final propSchema = propEntry.value;
       if (propSchema is! Map<String, dynamic>) continue;
-      properties[propEntry.key] =
-          _schemaToProperty(propEntry.key, propSchema, rawSpec);
+      properties[propEntry.key] = _schemaToProperty(
+          propEntry.key, propSchema, rawSpec,
+          required: requiredSet.contains(propEntry.key));
     }
 
     schemas[name] = ComponentSchema(
@@ -578,7 +615,8 @@ Map<String, ComponentSchema> extractComponentSchemas(
 
 /// Build a [SchemaProperty] from a raw OpenAPI property schema.
 SchemaProperty _schemaToProperty(
-    String name, Map<String, dynamic> propSchema, Map<String, dynamic> spec) {
+    String name, Map<String, dynamic> propSchema, Map<String, dynamic> spec,
+    {bool required = false}) {
   // Direct $ref to component schema
   final ref = propSchema[r'$ref'];
   if (ref is String && ref.startsWith('#/components/schemas/')) {
@@ -587,6 +625,7 @@ SchemaProperty _schemaToProperty(
     return SchemaProperty(
       name: name,
       dartType: dartName,
+      required: required,
       isComponentRef: true,
       componentRefName: schemaName,
     );
@@ -605,6 +644,7 @@ SchemaProperty _schemaToProperty(
         return SchemaProperty(
           name: name,
           dartType: 'List<$dartName>',
+          required: required,
           isArrayOfComponentRef: true,
           arrayItemComponentName: schemaName,
         );
@@ -616,6 +656,7 @@ SchemaProperty _schemaToProperty(
     return SchemaProperty(
       name: name,
       dartType: 'List<${toDartType(itemType)}>',
+      required: required,
     );
   }
 
@@ -624,15 +665,21 @@ SchemaProperty _schemaToProperty(
       propSchema['properties'] is Map<String, dynamic>) {
     final inlineProps = <String, SchemaProperty>{};
     final rawInline = propSchema['properties'] as Map<String, dynamic>;
+    final inlineRequiredList = propSchema['required'];
+    final inlineRequiredSet = inlineRequiredList is List
+        ? inlineRequiredList.cast<String>().toSet()
+        : <String>{};
     for (final e in rawInline.entries) {
       if (e.value is Map<String, dynamic>) {
-        inlineProps[e.key] =
-            _schemaToProperty(e.key, e.value as Map<String, dynamic>, spec);
+        inlineProps[e.key] = _schemaToProperty(
+            e.key, e.value as Map<String, dynamic>, spec,
+            required: inlineRequiredSet.contains(e.key));
       }
     }
     return SchemaProperty(
       name: name,
       dartType: 'Object',
+      required: required,
       isInlineObject: true,
       inlineProperties: inlineProps,
     );
@@ -644,6 +691,7 @@ SchemaProperty _schemaToProperty(
   return SchemaProperty(
     name: name,
     dartType: toDartType(typeStr),
+    required: required,
   );
 }
 
@@ -691,11 +739,16 @@ ResponseSchema extractResponseSchema(
     return ResponseSchema.empty;
   }
 
+  final requiredList = schema['required'];
+  final requiredSet =
+      requiredList is List ? requiredList.cast<String>().toSet() : <String>{};
+
   final properties = <String, SchemaProperty>{};
   for (final entry in rawProps.entries) {
     final propSchema = entry.value;
     if (propSchema is! Map<String, dynamic>) continue;
-    properties[entry.key] = _schemaToProperty(entry.key, propSchema, rawSpec);
+    properties[entry.key] = _schemaToProperty(entry.key, propSchema, rawSpec,
+        required: requiredSet.contains(entry.key));
   }
 
   return ResponseSchema(properties: properties);

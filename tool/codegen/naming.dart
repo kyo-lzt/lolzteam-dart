@@ -270,7 +270,7 @@ String _enumValueType(List<Object?> values) {
     }
   }
 
-  // Step 2: build enum definitions with conflict resolution
+  // Step 2: build enum definitions — union all values for the same param name
   final enumDefs = <String, EnumDefinition>{};
   // Map: (paramName, valuesKey) → dart enum name
   final enumNameLookup = <String, String>{};
@@ -279,34 +279,24 @@ String _enumValueType(List<Object?> values) {
     final paramName = entry.key;
     final variants = entry.value; // valuesKey → [groups]
 
-    if (variants.length == 1) {
-      // No conflict — use plain PascalCase name
-      final valuesKey = variants.keys.first;
-      final dartName = _paramNameToPascal(paramName);
-      final values = _parseValuesKey(valuesKey);
-      enumDefs[dartName] = EnumDefinition(
-        dartName: dartName,
-        valueType: _enumValueType(values),
-        values: values,
-      );
+    // Union all values across all variants for this param name
+    final allValues = <String>{};
+    for (final valuesKey in variants.keys) {
+      allValues.addAll(_parseValuesKey(valuesKey).map((v) => v.toString()));
+    }
+    final unionedValues = allValues.toList()..sort();
+    final dartName = _paramNameToPascal(paramName);
+    final typedValues = _enumValueType(unionedValues) == 'int'
+        ? unionedValues.map((v) => int.parse(v)).toList()
+        : unionedValues;
+    enumDefs[dartName] = EnumDefinition(
+      dartName: dartName,
+      valueType: _enumValueType(unionedValues),
+      values: typedValues,
+    );
+    // Map all variant keys to the same unioned enum name
+    for (final valuesKey in variants.keys) {
       enumNameLookup['$paramName\x00$valuesKey'] = dartName;
-    } else {
-      // Conflict — prefix with group name
-      for (final variantEntry in variants.entries) {
-        final valuesKey = variantEntry.key;
-        final groupNames = variantEntry.value;
-        // Use the first group as prefix (they all share the same values)
-        final prefix = _capitalizeFirst(groupNames.first);
-        final dartName = '$prefix${_paramNameToPascal(paramName)}';
-        final values = _parseValuesKey(valuesKey);
-        enumDefs[dartName] = EnumDefinition(
-          dartName: dartName,
-          valueType: _enumValueType(values),
-          values: values,
-        );
-        // All groups sharing these values map to the same dart name
-        enumNameLookup['$paramName\x00$valuesKey'] = dartName;
-      }
     }
   }
 

@@ -299,7 +299,8 @@ String _emitComponentSchemaClass(
   for (final prop in schema.properties.values) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(schema.dartName, prop);
-    sb.writeln('  final $dartType? $dartName;');
+    final nullable = prop.required ? '' : '?';
+    sb.writeln('  final $dartType$nullable $dartName;');
   }
 
   sb.writeln();
@@ -307,7 +308,11 @@ String _emitComponentSchemaClass(
   // Constructor
   sb.writeln('  const ${schema.dartName}({');
   for (final prop in schema.properties.values) {
-    sb.writeln('    this.${safeDartName(prop.name)},');
+    if (prop.required) {
+      sb.writeln('    required this.${safeDartName(prop.name)},');
+    } else {
+      sb.writeln('    this.${safeDartName(prop.name)},');
+    }
   }
   sb.writeln('  });');
 
@@ -365,7 +370,8 @@ String _emitResponseClass(
   for (final prop in schema.properties.values) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(typeName, prop);
-    sb.writeln('  final $dartType? $dartName;');
+    final nullable = prop.required ? '' : '?';
+    sb.writeln('  final $dartType$nullable $dartName;');
   }
 
   sb.writeln();
@@ -373,7 +379,11 @@ String _emitResponseClass(
   // Constructor
   sb.writeln('  const $typeName({');
   for (final prop in schema.properties.values) {
-    sb.writeln('    this.${safeDartName(prop.name)},');
+    if (prop.required) {
+      sb.writeln('    required this.${safeDartName(prop.name)},');
+    } else {
+      sb.writeln('    this.${safeDartName(prop.name)},');
+    }
   }
   sb.writeln('  });');
 
@@ -442,14 +452,19 @@ String _emitInlineClass(
   for (final prop in properties.values) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(className, prop);
-    sb.writeln('  final $dartType? $dartName;');
+    final nullable = prop.required ? '' : '?';
+    sb.writeln('  final $dartType$nullable $dartName;');
   }
 
   sb.writeln();
 
   sb.writeln('  const $className({');
   for (final prop in properties.values) {
-    sb.writeln('    this.${safeDartName(prop.name)},');
+    if (prop.required) {
+      sb.writeln('    required this.${safeDartName(prop.name)},');
+    } else {
+      sb.writeln('    this.${safeDartName(prop.name)},');
+    }
   }
   sb.writeln('  });');
 
@@ -475,6 +490,9 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
     {String? parentTypeName}) {
   if (prop.isComponentRef && prop.componentRefName != null) {
     final dartName = componentSchemaToDartName(prop.componentRefName!);
+    if (prop.required) {
+      return '$dartName.fromJson($accessor as Map<String, dynamic>)';
+    }
     return '$accessor != null'
         '\n            ? $dartName.fromJson($accessor as Map<String, dynamic>)'
         '\n            : null';
@@ -482,6 +500,11 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
 
   if (prop.isArrayOfComponentRef && prop.arrayItemComponentName != null) {
     final dartName = componentSchemaToDartName(prop.arrayItemComponentName!);
+    if (prop.required) {
+      return '($accessor as List<dynamic>)'
+          '\n            .map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
+          '\n            .toList()';
+    }
     return '($accessor as List<dynamic>?)'
         '\n            ?.map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
         '\n            .toList()';
@@ -492,30 +515,39 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
       prop.inlineProperties!.isNotEmpty &&
       parentTypeName != null) {
     final inlineName = _inlineClassName(parentTypeName, prop.name);
+    if (prop.required) {
+      return '$inlineName.fromJson($accessor as Map<String, dynamic>)';
+    }
     return '$accessor != null'
         '\n            ? $inlineName.fromJson($accessor as Map<String, dynamic>)'
         '\n            : null';
   }
 
-  return _emitPrimitiveCast(accessor, prop.dartType);
+  return _emitPrimitiveCast(accessor, prop.dartType, prop.required);
 }
 
-String _emitPrimitiveCast(String accessor, String dartType) {
+String _emitPrimitiveCast(String accessor, String dartType, bool required) {
   // Handle List<PrimitiveType>
   final listMatch = RegExp(r'^List<(.+)>$').firstMatch(dartType);
   if (listMatch != null) {
     final inner = listMatch.group(1)!;
     if (inner == 'dynamic') {
-      return '$accessor as List<dynamic>?';
+      return required
+          ? '$accessor as List<dynamic>'
+          : '$accessor as List<dynamic>?';
     }
-    return '($accessor as List<dynamic>?)?.cast<$inner>()';
+    return required
+        ? '($accessor as List<dynamic>).cast<$inner>()'
+        : '($accessor as List<dynamic>?)?.cast<$inner>()';
   }
 
   if (dartType == 'Map<String, dynamic>') {
-    return '$accessor as Map<String, dynamic>?';
+    return required
+        ? '$accessor as Map<String, dynamic>'
+        : '$accessor as Map<String, dynamic>?';
   }
 
-  return '$accessor as $dartType?';
+  return required ? '$accessor as $dartType' : '$accessor as $dartType?';
 }
 
 String emitDartTypesFile(

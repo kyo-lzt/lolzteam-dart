@@ -105,14 +105,6 @@ enum Cancel {
   final int value;
 }
 
-enum CategoryEg {
-  v0(0),
-  v1(1);
-
-  const CategoryEg(this.value);
-  final int value;
-}
-
 enum CategoryId {
   v1(1),
   v10(10),
@@ -141,14 +133,6 @@ enum CategoryId {
 
   const CategoryId(this.value);
   final int value;
-}
-
-enum CategorySubscription {
-  pCGamePass('PC Game Pass'),
-  xboxGamePassUltimate('Xbox Game Pass Ultimate');
-
-  const CategorySubscription(this.value);
-  final String value;
 }
 
 enum ChangeEmail {
@@ -340,6 +324,16 @@ enum EditBtag {
   final String value;
 }
 
+enum Eg {
+  vMinus1(-1),
+  v0(0),
+  v1(1),
+  v2(2);
+
+  const Eg(this.value);
+  final int value;
+}
+
 enum Email {
   no('no'),
   nomatter('nomatter'),
@@ -459,6 +453,20 @@ enum HypixelSkyblockApiEnabled {
   final String value;
 }
 
+enum ItemOrigin {
+  autoreg('autoreg'),
+  brute('brute'),
+  dummy('dummy'),
+  personal('personal'),
+  phishing('phishing'),
+  resale('resale'),
+  selfRegistration('self_registration'),
+  stealer('stealer');
+
+  const ItemOrigin(this.value);
+  final String value;
+}
+
 enum Java {
   no('no'),
   nomatter('nomatter'),
@@ -528,32 +536,6 @@ enum Mafile {
   yes('yes');
 
   const Mafile(this.value);
-  final String value;
-}
-
-enum ManagingItemOrigin {
-  autoreg('autoreg'),
-  brute('brute'),
-  dummy('dummy'),
-  personal('personal'),
-  phishing('phishing'),
-  resale('resale'),
-  stealer('stealer');
-
-  const ManagingItemOrigin(this.value);
-  final String value;
-}
-
-enum ManagingType {
-  agents('agents'),
-  buddies('buddies'),
-  dances('dances'),
-  gliders('gliders'),
-  pickaxes('pickaxes'),
-  skins('skins'),
-  weapons('weapons');
-
-  const ManagingType(this.value);
   final String value;
 }
 
@@ -648,25 +630,6 @@ enum Password {
   final String value;
 }
 
-enum PaymentsType {
-  balanceExchange('balance_exchange'),
-  claimHold('claim_hold'),
-  contest('contest'),
-  insuranceDeposit('insurance_deposit'),
-  internalPurchase('internal_purchase'),
-  invoice('invoice'),
-  moneyTransfer('money_transfer'),
-  paidItem('paid_item'),
-  paidMail('paid_mail'),
-  receivingMoney('receiving_money'),
-  refilledBalance('refilled_balance'),
-  soldItem('sold_item'),
-  withdrawalBalance('withdrawal_balance');
-
-  const PaymentsType(this.value);
-  final String value;
-}
-
 enum Premium {
   no('no'),
   nomatter('nomatter'),
@@ -685,14 +648,6 @@ enum PremiumExpirationPeriod {
   final String value;
 }
 
-enum ProfileType {
-  market('market'),
-  nomarket('nomarket');
-
-  const ProfileType(this.value);
-  final String value;
-}
-
 enum PsnConnected {
   no('no'),
   nomatter('nomatter'),
@@ -708,27 +663,6 @@ enum PsnLinkable {
   yes('yes');
 
   const PsnLinkable(this.value);
-  final String value;
-}
-
-enum PublishingItemOrigin {
-  autoreg('autoreg'),
-  brute('brute'),
-  dummy('dummy'),
-  personal('personal'),
-  phishing('phishing'),
-  resale('resale'),
-  selfRegistration('self_registration'),
-  stealer('stealer');
-
-  const PublishingItemOrigin(this.value);
-  final String value;
-}
-
-enum PublishingType {
-  socialclub('socialclub');
-
-  const PublishingType(this.value);
   final String value;
 }
 
@@ -847,6 +781,30 @@ enum SteamConnected {
   final String value;
 }
 
+enum Subscription {
+  eAPlay('EA Play'),
+  eAPlayPro('EA Play Pro'),
+  pCGamePass('PC Game Pass'),
+  robloxPremium1000('RobloxPremium1000'),
+  robloxPremium100012Months('RobloxPremium100012Months'),
+  robloxPremium1000OneMonth('RobloxPremium1000OneMonth'),
+  robloxPremium2200('RobloxPremium2200'),
+  robloxPremium2200OneMonth('RobloxPremium2200OneMonth'),
+  robloxPremium450('RobloxPremium450'),
+  robloxPremium450OneMonth('RobloxPremium450OneMonth'),
+  xboxGamePassUltimate('Xbox Game Pass Ultimate'),
+  basic('basic'),
+  discordNitro('discord_nitro'),
+  discordNitroBasic('discord_nitro_basic'),
+  discordNitroTrial('discord_nitro_trial'),
+  premium('premium'),
+  premiumAnywhere('premiumAnywhere'),
+  telegramPremium('telegram_premium');
+
+  const Subscription(this.value);
+  final String value;
+}
+
 enum SubscriptionPeriod {
   day('day'),
   month('month'),
@@ -901,6 +859,37 @@ enum Transactions {
   final String value;
 }
 
+enum Type {
+  agents('agents'),
+  balanceExchange('balance_exchange'),
+  buddies('buddies'),
+  claimHold('claim_hold'),
+  contest('contest'),
+  dances('dances'),
+  games('games'),
+  gliders('gliders'),
+  insuranceDeposit('insurance_deposit'),
+  internalPurchase('internal_purchase'),
+  invoice('invoice'),
+  market('market'),
+  moneyTransfer('money_transfer'),
+  nomarket('nomarket'),
+  paidItem('paid_item'),
+  paidMail('paid_mail'),
+  pickaxes('pickaxes'),
+  profiles('profiles'),
+  receivingMoney('receiving_money'),
+  refilledBalance('refilled_balance'),
+  skins('skins'),
+  socialclub('socialclub'),
+  soldItem('sold_item'),
+  weapons('weapons'),
+  withdrawalBalance('withdrawal_balance');
+
+  const Type(this.value);
+  final String value;
+}
+
 enum Verified {
   no('no'),
   nomatter('nomatter'),
@@ -940,532 +929,534 @@ enum XboxLinkable {
 // ─── Component Schemas ────────────────────────────────────────
 
 class DiscountModel {
-  final int? categoryId;
-  final int? discountId;
-  final int? discountPercent;
-  final int? discountUserId;
-  final int? maxPrice;
-  final int? minPrice;
-  final int? userId;
+  final int categoryId;
+  final int discountId;
+  final int discountPercent;
+  final int discountUserId;
+  final int maxPrice;
+  final int minPrice;
+  final int userId;
 
   const DiscountModel({
-    this.categoryId,
-    this.discountId,
-    this.discountPercent,
-    this.discountUserId,
-    this.maxPrice,
-    this.minPrice,
-    this.userId,
+    required this.categoryId,
+    required this.discountId,
+    required this.discountPercent,
+    required this.discountUserId,
+    required this.maxPrice,
+    required this.minPrice,
+    required this.userId,
   });
 
   factory DiscountModel.fromJson(Map<String, dynamic> json) => DiscountModel(
-    categoryId: json['category_id'] as int?,
-    discountId: json['discount_id'] as int?,
-    discountPercent: json['discount_percent'] as int?,
-    discountUserId: json['discount_user_id'] as int?,
-    maxPrice: json['max_price'] as int?,
-    minPrice: json['min_price'] as int?,
-    userId: json['user_id'] as int?,
-  );
+        categoryId: json['category_id'] as int,
+        discountId: json['discount_id'] as int,
+        discountPercent: json['discount_percent'] as int,
+        discountUserId: json['discount_user_id'] as int,
+        maxPrice: json['max_price'] as int,
+        minPrice: json['min_price'] as int,
+        userId: json['user_id'] as int,
+      );
 }
 
 class UserModelCustomFields {
-  final String? n4;
-  final List<Object>? allowSelfUnban;
-  final String? banReason;
-  final String? discord;
-  final String? github;
-  final String? jabber;
-  final String? lztAwardUserTrophy;
-  final String? lztLikesIncreasing;
-  final String? lztLikesZeroing;
-  final String? lztSympathyIncreasing;
-  final String? lztSympathyZeroing;
-  final String? lztUnbanAmount;
-  final String? maecenasValue;
-  final String? scamURL;
-  final String? steam;
-  final String? telegram;
-  final String? vk;
-  final String? favoritePorn;
-  final String? favoriteVape;
-  final String? favoriteAnime;
-  final String? matrix;
+  final String n4;
+  final List<Object> allowSelfUnban;
+  final String banReason;
+  final String discord;
+  final String github;
+  final String jabber;
+  final String lztAwardUserTrophy;
+  final String lztLikesIncreasing;
+  final String lztLikesZeroing;
+  final String lztSympathyIncreasing;
+  final String lztSympathyZeroing;
+  final String lztUnbanAmount;
+  final String maecenasValue;
+  final String scamURL;
+  final String steam;
+  final String telegram;
+  final String vk;
+  final String favoritePorn;
+  final String favoriteVape;
+  final String favoriteAnime;
+  final String matrix;
 
   const UserModelCustomFields({
-    this.n4,
-    this.allowSelfUnban,
-    this.banReason,
-    this.discord,
-    this.github,
-    this.jabber,
-    this.lztAwardUserTrophy,
-    this.lztLikesIncreasing,
-    this.lztLikesZeroing,
-    this.lztSympathyIncreasing,
-    this.lztSympathyZeroing,
-    this.lztUnbanAmount,
-    this.maecenasValue,
-    this.scamURL,
-    this.steam,
-    this.telegram,
-    this.vk,
-    this.favoritePorn,
-    this.favoriteVape,
-    this.favoriteAnime,
-    this.matrix,
+    required this.n4,
+    required this.allowSelfUnban,
+    required this.banReason,
+    required this.discord,
+    required this.github,
+    required this.jabber,
+    required this.lztAwardUserTrophy,
+    required this.lztLikesIncreasing,
+    required this.lztLikesZeroing,
+    required this.lztSympathyIncreasing,
+    required this.lztSympathyZeroing,
+    required this.lztUnbanAmount,
+    required this.maecenasValue,
+    required this.scamURL,
+    required this.steam,
+    required this.telegram,
+    required this.vk,
+    required this.favoritePorn,
+    required this.favoriteVape,
+    required this.favoriteAnime,
+    required this.matrix,
   });
 
-  factory UserModelCustomFields.fromJson(Map<String, dynamic> json) => UserModelCustomFields(
-    n4: json['_4'] as String?,
-    allowSelfUnban: (json['allowSelfUnban'] as List<dynamic>?)?.cast<Object>(),
-    banReason: json['ban_reason'] as String?,
-    discord: json['discord'] as String?,
-    github: json['github'] as String?,
-    jabber: json['jabber'] as String?,
-    lztAwardUserTrophy: json['lztAwardUserTrophy'] as String?,
-    lztLikesIncreasing: json['lztLikesIncreasing'] as String?,
-    lztLikesZeroing: json['lztLikesZeroing'] as String?,
-    lztSympathyIncreasing: json['lztSympathyIncreasing'] as String?,
-    lztSympathyZeroing: json['lztSympathyZeroing'] as String?,
-    lztUnbanAmount: json['lztUnbanAmount'] as String?,
-    maecenasValue: json['maecenasValue'] as String?,
-    scamURL: json['scamURL'] as String?,
-    steam: json['steam'] as String?,
-    telegram: json['telegram'] as String?,
-    vk: json['vk'] as String?,
-    favoritePorn: json['favoritePorn'] as String?,
-    favoriteVape: json['favoriteVape'] as String?,
-    favoriteAnime: json['favoriteAnime'] as String?,
-    matrix: json['matrix'] as String?,
-  );
+  factory UserModelCustomFields.fromJson(Map<String, dynamic> json) =>
+      UserModelCustomFields(
+        n4: json['_4'] as String,
+        allowSelfUnban:
+            (json['allowSelfUnban'] as List<dynamic>).cast<Object>(),
+        banReason: json['ban_reason'] as String,
+        discord: json['discord'] as String,
+        github: json['github'] as String,
+        jabber: json['jabber'] as String,
+        lztAwardUserTrophy: json['lztAwardUserTrophy'] as String,
+        lztLikesIncreasing: json['lztLikesIncreasing'] as String,
+        lztLikesZeroing: json['lztLikesZeroing'] as String,
+        lztSympathyIncreasing: json['lztSympathyIncreasing'] as String,
+        lztSympathyZeroing: json['lztSympathyZeroing'] as String,
+        lztUnbanAmount: json['lztUnbanAmount'] as String,
+        maecenasValue: json['maecenasValue'] as String,
+        scamURL: json['scamURL'] as String,
+        steam: json['steam'] as String,
+        telegram: json['telegram'] as String,
+        vk: json['vk'] as String,
+        favoritePorn: json['favoritePorn'] as String,
+        favoriteVape: json['favoriteVape'] as String,
+        favoriteAnime: json['favoriteAnime'] as String,
+        matrix: json['matrix'] as String,
+      );
 }
 
 class UserModelDob {
-  final int? year;
-  final int? month;
-  final int? day;
+  final int year;
+  final int month;
+  final int day;
 
   const UserModelDob({
-    this.year,
-    this.month,
-    this.day,
+    required this.year,
+    required this.month,
+    required this.day,
   });
 
   factory UserModelDob.fromJson(Map<String, dynamic> json) => UserModelDob(
-    year: json['year'] as int?,
-    month: json['month'] as int?,
-    day: json['day'] as int?,
-  );
+        year: json['year'] as int,
+        month: json['month'] as int,
+        day: json['day'] as int,
+      );
 }
 
 class UserModelFeedbackData12345 {
-  final int? positive;
-  final int? negative;
+  final int positive;
+  final int negative;
 
   const UserModelFeedbackData12345({
-    this.positive,
-    this.negative,
+    required this.positive,
+    required this.negative,
   });
 
-  factory UserModelFeedbackData12345.fromJson(Map<String, dynamic> json) => UserModelFeedbackData12345(
-    positive: json['positive'] as int?,
-    negative: json['negative'] as int?,
-  );
+  factory UserModelFeedbackData12345.fromJson(Map<String, dynamic> json) =>
+      UserModelFeedbackData12345(
+        positive: json['positive'] as int,
+        negative: json['negative'] as int,
+      );
 }
 
 class UserModelFeedbackData {
-  final UserModelFeedbackData12345? n12345;
+  final UserModelFeedbackData12345 n12345;
 
   const UserModelFeedbackData({
-    this.n12345,
+    required this.n12345,
   });
 
-  factory UserModelFeedbackData.fromJson(Map<String, dynamic> json) => UserModelFeedbackData(
-    n12345: json['12345'] != null
-            ? UserModelFeedbackData12345.fromJson(json['12345'] as Map<String, dynamic>)
-            : null,
-  );
+  factory UserModelFeedbackData.fromJson(Map<String, dynamic> json) =>
+      UserModelFeedbackData(
+        n12345: UserModelFeedbackData12345.fromJson(
+            json['12345'] as Map<String, dynamic>),
+      );
 }
 
 class UserModelImapDataDomainZone {
-  final String? domain;
-  final String? imapServer;
-  final int? port;
-  final bool? secure;
+  final String domain;
+  final String imapServer;
+  final int port;
+  final bool secure;
 
   const UserModelImapDataDomainZone({
-    this.domain,
-    this.imapServer,
-    this.port,
-    this.secure,
+    required this.domain,
+    required this.imapServer,
+    required this.port,
+    required this.secure,
   });
 
-  factory UserModelImapDataDomainZone.fromJson(Map<String, dynamic> json) => UserModelImapDataDomainZone(
-    domain: json['domain'] as String?,
-    imapServer: json['imap_server'] as String?,
-    port: json['port'] as int?,
-    secure: json['secure'] as bool?,
-  );
+  factory UserModelImapDataDomainZone.fromJson(Map<String, dynamic> json) =>
+      UserModelImapDataDomainZone(
+        domain: json['domain'] as String,
+        imapServer: json['imap_server'] as String,
+        port: json['port'] as int,
+        secure: json['secure'] as bool,
+      );
 }
 
 class UserModelImapData {
-  final UserModelImapDataDomainZone? domainZone;
+  final UserModelImapDataDomainZone domainZone;
 
   const UserModelImapData({
-    this.domainZone,
+    required this.domainZone,
   });
 
-  factory UserModelImapData.fromJson(Map<String, dynamic> json) => UserModelImapData(
-    domainZone: json['domain.zone'] != null
-            ? UserModelImapDataDomainZone.fromJson(json['domain.zone'] as Map<String, dynamic>)
-            : null,
-  );
+  factory UserModelImapData.fromJson(Map<String, dynamic> json) =>
+      UserModelImapData(
+        domainZone: UserModelImapDataDomainZone.fromJson(
+            json['domain.zone'] as Map<String, dynamic>),
+      );
 }
 
 class UserModelRenderedAvatars {
-  final String? l;
-  final String? m;
-  final String? s;
+  final String l;
+  final String m;
+  final String s;
 
   const UserModelRenderedAvatars({
-    this.l,
-    this.m,
-    this.s,
+    required this.l,
+    required this.m,
+    required this.s,
   });
 
-  factory UserModelRenderedAvatars.fromJson(Map<String, dynamic> json) => UserModelRenderedAvatars(
-    l: json['l'] as String?,
-    m: json['m'] as String?,
-    s: json['s'] as String?,
-  );
+  factory UserModelRenderedAvatars.fromJson(Map<String, dynamic> json) =>
+      UserModelRenderedAvatars(
+        l: json['l'] as String,
+        m: json['m'] as String,
+        s: json['s'] as String,
+      );
 }
 
 class UserModelRenderedBackgrounds {
-  final String? l;
-  final String? m;
+  final String l;
+  final String m;
 
   const UserModelRenderedBackgrounds({
-    this.l,
-    this.m,
+    required this.l,
+    required this.m,
   });
 
-  factory UserModelRenderedBackgrounds.fromJson(Map<String, dynamic> json) => UserModelRenderedBackgrounds(
-    l: json['l'] as String?,
-    m: json['m'] as String?,
-  );
+  factory UserModelRenderedBackgrounds.fromJson(Map<String, dynamic> json) =>
+      UserModelRenderedBackgrounds(
+        l: json['l'] as String,
+        m: json['m'] as String,
+      );
 }
 
 class UserModelRendered {
-  final String? username;
-  final UserModelRenderedAvatars? avatars;
-  final UserModelRenderedBackgrounds? backgrounds;
-  final String? link;
+  final String username;
+  final UserModelRenderedAvatars avatars;
+  final UserModelRenderedBackgrounds backgrounds;
+  final String link;
 
   const UserModelRendered({
-    this.username,
-    this.avatars,
-    this.backgrounds,
-    this.link,
+    required this.username,
+    required this.avatars,
+    required this.backgrounds,
+    required this.link,
   });
 
-  factory UserModelRendered.fromJson(Map<String, dynamic> json) => UserModelRendered(
-    username: json['username'] as String?,
-    avatars: json['avatars'] != null
-            ? UserModelRenderedAvatars.fromJson(json['avatars'] as Map<String, dynamic>)
-            : null,
-    backgrounds: json['backgrounds'] != null
-            ? UserModelRenderedBackgrounds.fromJson(json['backgrounds'] as Map<String, dynamic>)
-            : null,
-    link: json['link'] as String?,
-  );
+  factory UserModelRendered.fromJson(Map<String, dynamic> json) =>
+      UserModelRendered(
+        username: json['username'] as String,
+        avatars: UserModelRenderedAvatars.fromJson(
+            json['avatars'] as Map<String, dynamic>),
+        backgrounds: UserModelRenderedBackgrounds.fromJson(
+            json['backgrounds'] as Map<String, dynamic>),
+        link: json['link'] as String,
+      );
 }
 
 class UserModelRestoreData {
-  final int? n12345;
+  final int n12345;
 
   const UserModelRestoreData({
-    this.n12345,
+    required this.n12345,
   });
 
-  factory UserModelRestoreData.fromJson(Map<String, dynamic> json) => UserModelRestoreData(
-    n12345: json['12345'] as int?,
-  );
+  factory UserModelRestoreData.fromJson(Map<String, dynamic> json) =>
+      UserModelRestoreData(
+        n12345: json['12345'] as int,
+      );
 }
 
 class UserModelTelegramClient {
-  final String? telegramApiId;
-  final String? telegramApiHash;
-  final String? telegramDeviceModel;
-  final String? telegramSystemVersion;
-  final String? telegramAppVersion;
-  final String? telegramSystemLangCode;
-  final String? telegramLangCode;
-  final String? telegramLangPack;
+  final String telegramApiId;
+  final String telegramApiHash;
+  final String telegramDeviceModel;
+  final String telegramSystemVersion;
+  final String telegramAppVersion;
+  final String telegramSystemLangCode;
+  final String telegramLangCode;
+  final String telegramLangPack;
 
   const UserModelTelegramClient({
-    this.telegramApiId,
-    this.telegramApiHash,
-    this.telegramDeviceModel,
-    this.telegramSystemVersion,
-    this.telegramAppVersion,
-    this.telegramSystemLangCode,
-    this.telegramLangCode,
-    this.telegramLangPack,
+    required this.telegramApiId,
+    required this.telegramApiHash,
+    required this.telegramDeviceModel,
+    required this.telegramSystemVersion,
+    required this.telegramAppVersion,
+    required this.telegramSystemLangCode,
+    required this.telegramLangCode,
+    required this.telegramLangPack,
   });
 
-  factory UserModelTelegramClient.fromJson(Map<String, dynamic> json) => UserModelTelegramClient(
-    telegramApiId: json['telegram_api_id'] as String?,
-    telegramApiHash: json['telegram_api_hash'] as String?,
-    telegramDeviceModel: json['telegram_device_model'] as String?,
-    telegramSystemVersion: json['telegram_system_version'] as String?,
-    telegramAppVersion: json['telegram_app_version'] as String?,
-    telegramSystemLangCode: json['telegram_system_lang_code'] as String?,
-    telegramLangCode: json['telegram_lang_code'] as String?,
-    telegramLangPack: json['telegram_lang_pack'] as String?,
-  );
+  factory UserModelTelegramClient.fromJson(Map<String, dynamic> json) =>
+      UserModelTelegramClient(
+        telegramApiId: json['telegram_api_id'] as String,
+        telegramApiHash: json['telegram_api_hash'] as String,
+        telegramDeviceModel: json['telegram_device_model'] as String,
+        telegramSystemVersion: json['telegram_system_version'] as String,
+        telegramAppVersion: json['telegram_app_version'] as String,
+        telegramSystemLangCode: json['telegram_system_lang_code'] as String,
+        telegramLangCode: json['telegram_lang_code'] as String,
+        telegramLangPack: json['telegram_lang_pack'] as String,
+      );
 }
 
 class UserModel {
-  final int? activeItemsCount;
-  final bool? activityVisible;
-  final int? age;
-  final String? balance;
-  final List<Map<String, dynamic>>? balances;
-  final int? bumpItemPeriod;
-  final bool? canEdit;
-  final bool? canFollow;
-  final bool? canIgnore;
-  final bool? canPostProfile;
-  final bool? canViewProfile;
-  final bool? canViewProfilePosts;
-  final bool? canWarn;
-  final int? contestCount;
-  final String? convWelcomeMessage;
-  final int? convertedBalance;
-  final int? convertedDeposit;
-  final int? convertedHold;
-  final String? currency;
-  final String? currencyPhrase;
-  final String? customAccountDownloadFormat;
-  final UserModelCustomFields? customFields;
-  final String? customTitle;
-  final int? deposit;
-  final UserModelDob? dob;
-  final UserModelFeedbackData? feedbackData;
-  final String? hold;
-  final String? homepage;
-  final UserModelImapData? imapData;
-  final bool? isAdmin;
-  final bool? isBanned;
-  final bool? isFollowed;
-  final bool? isIgnored;
-  final bool? isModerator;
-  final bool? isStaff;
-  final bool? isSuperAdmin;
-  final int? joinedDate;
-  final int? lastActivity;
-  final int? like2Count;
-  final int? likeCount;
-  final String? location;
-  final String? marketCustomTitle;
-  final int? maxDiscountPercent;
-  final int? messageCount;
-  final int? paidMailLeft;
-  final List<Map<String, dynamic>>? publicTags;
-  final int? registerDate;
-  final UserModelRendered? rendered;
-  final int? restoreCount;
-  final UserModelRestoreData? restoreData;
-  final String? shortLink;
-  final int? soldItemsCount;
-  final List<Map<String, dynamic>>? tags;
-  final UserModelTelegramClient? telegramClient;
-  final int? trophyPoints;
-  final bool? userAllowAskDiscount;
-  final int? userId;
-  final String? userTitle;
-  final String? username;
-  final String? viewUrl;
-  final bool? visible;
-  final int? warningPoints;
+  final int activeItemsCount;
+  final bool activityVisible;
+  final int age;
+  final String balance;
+  final List<Map<String, dynamic>> balances;
+  final int bumpItemPeriod;
+  final bool canEdit;
+  final bool canFollow;
+  final bool canIgnore;
+  final bool canPostProfile;
+  final bool canViewProfile;
+  final bool canViewProfilePosts;
+  final bool canWarn;
+  final int contestCount;
+  final String convWelcomeMessage;
+  final int convertedBalance;
+  final int convertedDeposit;
+  final int convertedHold;
+  final String currency;
+  final String currencyPhrase;
+  final String customAccountDownloadFormat;
+  final UserModelCustomFields customFields;
+  final String customTitle;
+  final int deposit;
+  final UserModelDob dob;
+  final UserModelFeedbackData feedbackData;
+  final String hold;
+  final String homepage;
+  final UserModelImapData imapData;
+  final bool isAdmin;
+  final bool isBanned;
+  final bool isFollowed;
+  final bool isIgnored;
+  final bool isModerator;
+  final bool isStaff;
+  final bool isSuperAdmin;
+  final int joinedDate;
+  final int lastActivity;
+  final int like2Count;
+  final int likeCount;
+  final String location;
+  final String marketCustomTitle;
+  final int maxDiscountPercent;
+  final int messageCount;
+  final int paidMailLeft;
+  final List<Map<String, dynamic>> publicTags;
+  final int registerDate;
+  final UserModelRendered rendered;
+  final int restoreCount;
+  final UserModelRestoreData restoreData;
+  final String shortLink;
+  final int soldItemsCount;
+  final List<Map<String, dynamic>> tags;
+  final UserModelTelegramClient telegramClient;
+  final int trophyPoints;
+  final bool userAllowAskDiscount;
+  final int userId;
+  final String userTitle;
+  final String username;
+  final String viewUrl;
+  final bool visible;
+  final int warningPoints;
 
   const UserModel({
-    this.activeItemsCount,
-    this.activityVisible,
-    this.age,
-    this.balance,
-    this.balances,
-    this.bumpItemPeriod,
-    this.canEdit,
-    this.canFollow,
-    this.canIgnore,
-    this.canPostProfile,
-    this.canViewProfile,
-    this.canViewProfilePosts,
-    this.canWarn,
-    this.contestCount,
-    this.convWelcomeMessage,
-    this.convertedBalance,
-    this.convertedDeposit,
-    this.convertedHold,
-    this.currency,
-    this.currencyPhrase,
-    this.customAccountDownloadFormat,
-    this.customFields,
-    this.customTitle,
-    this.deposit,
-    this.dob,
-    this.feedbackData,
-    this.hold,
-    this.homepage,
-    this.imapData,
-    this.isAdmin,
-    this.isBanned,
-    this.isFollowed,
-    this.isIgnored,
-    this.isModerator,
-    this.isStaff,
-    this.isSuperAdmin,
-    this.joinedDate,
-    this.lastActivity,
-    this.like2Count,
-    this.likeCount,
-    this.location,
-    this.marketCustomTitle,
-    this.maxDiscountPercent,
-    this.messageCount,
-    this.paidMailLeft,
-    this.publicTags,
-    this.registerDate,
-    this.rendered,
-    this.restoreCount,
-    this.restoreData,
-    this.shortLink,
-    this.soldItemsCount,
-    this.tags,
-    this.telegramClient,
-    this.trophyPoints,
-    this.userAllowAskDiscount,
-    this.userId,
-    this.userTitle,
-    this.username,
-    this.viewUrl,
-    this.visible,
-    this.warningPoints,
+    required this.activeItemsCount,
+    required this.activityVisible,
+    required this.age,
+    required this.balance,
+    required this.balances,
+    required this.bumpItemPeriod,
+    required this.canEdit,
+    required this.canFollow,
+    required this.canIgnore,
+    required this.canPostProfile,
+    required this.canViewProfile,
+    required this.canViewProfilePosts,
+    required this.canWarn,
+    required this.contestCount,
+    required this.convWelcomeMessage,
+    required this.convertedBalance,
+    required this.convertedDeposit,
+    required this.convertedHold,
+    required this.currency,
+    required this.currencyPhrase,
+    required this.customAccountDownloadFormat,
+    required this.customFields,
+    required this.customTitle,
+    required this.deposit,
+    required this.dob,
+    required this.feedbackData,
+    required this.hold,
+    required this.homepage,
+    required this.imapData,
+    required this.isAdmin,
+    required this.isBanned,
+    required this.isFollowed,
+    required this.isIgnored,
+    required this.isModerator,
+    required this.isStaff,
+    required this.isSuperAdmin,
+    required this.joinedDate,
+    required this.lastActivity,
+    required this.like2Count,
+    required this.likeCount,
+    required this.location,
+    required this.marketCustomTitle,
+    required this.maxDiscountPercent,
+    required this.messageCount,
+    required this.paidMailLeft,
+    required this.publicTags,
+    required this.registerDate,
+    required this.rendered,
+    required this.restoreCount,
+    required this.restoreData,
+    required this.shortLink,
+    required this.soldItemsCount,
+    required this.tags,
+    required this.telegramClient,
+    required this.trophyPoints,
+    required this.userAllowAskDiscount,
+    required this.userId,
+    required this.userTitle,
+    required this.username,
+    required this.viewUrl,
+    required this.visible,
+    required this.warningPoints,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    activeItemsCount: json['active_items_count'] as int?,
-    activityVisible: json['activity_visible'] as bool?,
-    age: json['age'] as int?,
-    balance: json['balance'] as String?,
-    balances: (json['balances'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    bumpItemPeriod: json['bump_item_period'] as int?,
-    canEdit: json['can_edit'] as bool?,
-    canFollow: json['can_follow'] as bool?,
-    canIgnore: json['can_ignore'] as bool?,
-    canPostProfile: json['can_post_profile'] as bool?,
-    canViewProfile: json['can_view_profile'] as bool?,
-    canViewProfilePosts: json['can_view_profile_posts'] as bool?,
-    canWarn: json['can_warn'] as bool?,
-    contestCount: json['contest_count'] as int?,
-    convWelcomeMessage: json['conv_welcome_message'] as String?,
-    convertedBalance: json['convertedBalance'] as int?,
-    convertedDeposit: json['convertedDeposit'] as int?,
-    convertedHold: json['convertedHold'] as int?,
-    currency: json['currency'] as String?,
-    currencyPhrase: json['currencyPhrase'] as String?,
-    customAccountDownloadFormat: json['custom_account_download_format'] as String?,
-    customFields: json['custom_fields'] != null
-            ? UserModelCustomFields.fromJson(json['custom_fields'] as Map<String, dynamic>)
-            : null,
-    customTitle: json['custom_title'] as String?,
-    deposit: json['deposit'] as int?,
-    dob: json['dob'] != null
-            ? UserModelDob.fromJson(json['dob'] as Map<String, dynamic>)
-            : null,
-    feedbackData: json['feedback_data'] != null
-            ? UserModelFeedbackData.fromJson(json['feedback_data'] as Map<String, dynamic>)
-            : null,
-    hold: json['hold'] as String?,
-    homepage: json['homepage'] as String?,
-    imapData: json['imap_data'] != null
-            ? UserModelImapData.fromJson(json['imap_data'] as Map<String, dynamic>)
-            : null,
-    isAdmin: json['is_admin'] as bool?,
-    isBanned: json['is_banned'] as bool?,
-    isFollowed: json['is_followed'] as bool?,
-    isIgnored: json['is_ignored'] as bool?,
-    isModerator: json['is_moderator'] as bool?,
-    isStaff: json['is_staff'] as bool?,
-    isSuperAdmin: json['is_super_admin'] as bool?,
-    joinedDate: json['joined_date'] as int?,
-    lastActivity: json['last_activity'] as int?,
-    like2Count: json['like2_count'] as int?,
-    likeCount: json['like_count'] as int?,
-    location: json['location'] as String?,
-    marketCustomTitle: json['market_custom_title'] as String?,
-    maxDiscountPercent: json['max_discount_percent'] as int?,
-    messageCount: json['message_count'] as int?,
-    paidMailLeft: json['paid_mail_left'] as int?,
-    publicTags: (json['public_tags'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    registerDate: json['register_date'] as int?,
-    rendered: json['rendered'] != null
-            ? UserModelRendered.fromJson(json['rendered'] as Map<String, dynamic>)
-            : null,
-    restoreCount: json['restore_count'] as int?,
-    restoreData: json['restore_data'] != null
-            ? UserModelRestoreData.fromJson(json['restore_data'] as Map<String, dynamic>)
-            : null,
-    shortLink: json['short_link'] as String?,
-    soldItemsCount: json['sold_items_count'] as int?,
-    tags: (json['tags'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    telegramClient: json['telegram_client'] != null
-            ? UserModelTelegramClient.fromJson(json['telegram_client'] as Map<String, dynamic>)
-            : null,
-    trophyPoints: json['trophy_points'] as int?,
-    userAllowAskDiscount: json['user_allow_ask_discount'] as bool?,
-    userId: json['user_id'] as int?,
-    userTitle: json['user_title'] as String?,
-    username: json['username'] as String?,
-    viewUrl: json['view_url'] as String?,
-    visible: json['visible'] as bool?,
-    warningPoints: json['warning_points'] as int?,
-  );
+        activeItemsCount: json['active_items_count'] as int,
+        activityVisible: json['activity_visible'] as bool,
+        age: json['age'] as int,
+        balance: json['balance'] as String,
+        balances:
+            (json['balances'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        bumpItemPeriod: json['bump_item_period'] as int,
+        canEdit: json['can_edit'] as bool,
+        canFollow: json['can_follow'] as bool,
+        canIgnore: json['can_ignore'] as bool,
+        canPostProfile: json['can_post_profile'] as bool,
+        canViewProfile: json['can_view_profile'] as bool,
+        canViewProfilePosts: json['can_view_profile_posts'] as bool,
+        canWarn: json['can_warn'] as bool,
+        contestCount: json['contest_count'] as int,
+        convWelcomeMessage: json['conv_welcome_message'] as String,
+        convertedBalance: json['convertedBalance'] as int,
+        convertedDeposit: json['convertedDeposit'] as int,
+        convertedHold: json['convertedHold'] as int,
+        currency: json['currency'] as String,
+        currencyPhrase: json['currencyPhrase'] as String,
+        customAccountDownloadFormat:
+            json['custom_account_download_format'] as String,
+        customFields: UserModelCustomFields.fromJson(
+            json['custom_fields'] as Map<String, dynamic>),
+        customTitle: json['custom_title'] as String,
+        deposit: json['deposit'] as int,
+        dob: UserModelDob.fromJson(json['dob'] as Map<String, dynamic>),
+        feedbackData: UserModelFeedbackData.fromJson(
+            json['feedback_data'] as Map<String, dynamic>),
+        hold: json['hold'] as String,
+        homepage: json['homepage'] as String,
+        imapData: UserModelImapData.fromJson(
+            json['imap_data'] as Map<String, dynamic>),
+        isAdmin: json['is_admin'] as bool,
+        isBanned: json['is_banned'] as bool,
+        isFollowed: json['is_followed'] as bool,
+        isIgnored: json['is_ignored'] as bool,
+        isModerator: json['is_moderator'] as bool,
+        isStaff: json['is_staff'] as bool,
+        isSuperAdmin: json['is_super_admin'] as bool,
+        joinedDate: json['joined_date'] as int,
+        lastActivity: json['last_activity'] as int,
+        like2Count: json['like2_count'] as int,
+        likeCount: json['like_count'] as int,
+        location: json['location'] as String,
+        marketCustomTitle: json['market_custom_title'] as String,
+        maxDiscountPercent: json['max_discount_percent'] as int,
+        messageCount: json['message_count'] as int,
+        paidMailLeft: json['paid_mail_left'] as int,
+        publicTags:
+            (json['public_tags'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        registerDate: json['register_date'] as int,
+        rendered: UserModelRendered.fromJson(
+            json['rendered'] as Map<String, dynamic>),
+        restoreCount: json['restore_count'] as int,
+        restoreData: UserModelRestoreData.fromJson(
+            json['restore_data'] as Map<String, dynamic>),
+        shortLink: json['short_link'] as String,
+        soldItemsCount: json['sold_items_count'] as int,
+        tags: (json['tags'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        telegramClient: UserModelTelegramClient.fromJson(
+            json['telegram_client'] as Map<String, dynamic>),
+        trophyPoints: json['trophy_points'] as int,
+        userAllowAskDiscount: json['user_allow_ask_discount'] as bool,
+        userId: json['user_id'] as int,
+        userTitle: json['user_title'] as String,
+        username: json['username'] as String,
+        viewUrl: json['view_url'] as String,
+        visible: json['visible'] as bool,
+        warningPoints: json['warning_points'] as int,
+      );
 }
 
 class BalanceModel {
-  final String? balance;
-  final int? balanceId;
-  final Object? customTitle;
-  final String? fullTitle;
-  final int? merchantId;
-  final String? title;
-  final String? type;
-  final int? userId;
+  final String balance;
+  final int balanceId;
+  final Object customTitle;
+  final String fullTitle;
+  final int merchantId;
+  final String title;
+  final String type;
+  final int userId;
 
   const BalanceModel({
-    this.balance,
-    this.balanceId,
-    this.customTitle,
-    this.fullTitle,
-    this.merchantId,
-    this.title,
-    this.type,
-    this.userId,
+    required this.balance,
+    required this.balanceId,
+    required this.customTitle,
+    required this.fullTitle,
+    required this.merchantId,
+    required this.title,
+    required this.type,
+    required this.userId,
   });
 
   factory BalanceModel.fromJson(Map<String, dynamic> json) => BalanceModel(
-    balance: json['balance'] as String?,
-    balanceId: json['balance_id'] as int?,
-    customTitle: json['custom_title'] as Object?,
-    fullTitle: json['fullTitle'] as String?,
-    merchantId: json['merchant_id'] as int?,
-    title: json['title'] as String?,
-    type: json['type'] as String?,
-    userId: json['user_id'] as int?,
-  );
+        balance: json['balance'] as String,
+        balanceId: json['balance_id'] as int,
+        customTitle: json['custom_title'] as Object,
+        fullTitle: json['fullTitle'] as String,
+        merchantId: json['merchant_id'] as int,
+        title: json['title'] as String,
+        type: json['type'] as String,
+        userId: json['user_id'] as int,
+      );
 }
 
 class ExtraModel {
@@ -1526,112 +1517,110 @@ class ExtraModel {
   });
 
   factory ExtraModel.fromJson(Map<String, dynamic> json) => ExtraModel(
-    proxy: json['proxy'] as String?,
-    closeItem: json['close_item'] as bool?,
-    region: json['region'] as String?,
-    service: json['service'] as String?,
-    system: json['system'] as String?,
-    confirmationCode: json['confirmationCode'] as String?,
-    cookies: json['cookies'] as String?,
-    loginWithoutCookies: json['login_without_cookies'] as bool?,
-    cookieLogin: json['cookie_login'] as bool?,
-    mfaFile: json['mfa_file'] as String?,
-    dota2Mmr: json['dota2_mmr'] as int?,
-    eaGames: json['ea_games'] as bool?,
-    uplayGames: json['uplay_games'] as bool?,
-    theQuarry: json['the_quarry'] as bool?,
-    warframe: json['warframe'] as bool?,
-    ark: json['ark'] as bool?,
-    arkAscended: json['ark_ascended'] as bool?,
-    genshinCurrency: json['genshin_currency'] as int?,
-    honkaiCurrency: json['honkai_currency'] as int?,
-    zenlessCurrency: json['zenless_currency'] as int?,
-    password: json['password'] as String?,
-    telegramClient: json['telegramClient'] as String?,
-    telegramJson: json['telegramJson'] as String?,
-    checkChannels: json['checkChannels'] as bool?,
-    checkSpam: json['checkSpam'] as bool?,
-    checkHypixelBan: json['checkHypixelBan'] as bool?,
-  );
+        proxy: json['proxy'] as String?,
+        closeItem: json['close_item'] as bool?,
+        region: json['region'] as String?,
+        service: json['service'] as String?,
+        system: json['system'] as String?,
+        confirmationCode: json['confirmationCode'] as String?,
+        cookies: json['cookies'] as String?,
+        loginWithoutCookies: json['login_without_cookies'] as bool?,
+        cookieLogin: json['cookie_login'] as bool?,
+        mfaFile: json['mfa_file'] as String?,
+        dota2Mmr: json['dota2_mmr'] as int?,
+        eaGames: json['ea_games'] as bool?,
+        uplayGames: json['uplay_games'] as bool?,
+        theQuarry: json['the_quarry'] as bool?,
+        warframe: json['warframe'] as bool?,
+        ark: json['ark'] as bool?,
+        arkAscended: json['ark_ascended'] as bool?,
+        genshinCurrency: json['genshin_currency'] as int?,
+        honkaiCurrency: json['honkai_currency'] as int?,
+        zenlessCurrency: json['zenless_currency'] as int?,
+        password: json['password'] as String?,
+        telegramClient: json['telegramClient'] as String?,
+        telegramJson: json['telegramJson'] as String?,
+        checkChannels: json['checkChannels'] as bool?,
+        checkSpam: json['checkSpam'] as bool?,
+        checkHypixelBan: json['checkHypixelBan'] as bool?,
+      );
 }
 
 class ConfirmationCodeModelCodeData {
-  final String? code;
-  final int? date;
-  final String? textPlain;
+  final String code;
+  final int date;
+  final String textPlain;
 
   const ConfirmationCodeModelCodeData({
-    this.code,
-    this.date,
-    this.textPlain,
+    required this.code,
+    required this.date,
+    required this.textPlain,
   });
 
-  factory ConfirmationCodeModelCodeData.fromJson(Map<String, dynamic> json) => ConfirmationCodeModelCodeData(
-    code: json['code'] as String?,
-    date: json['date'] as int?,
-    textPlain: json['textPlain'] as String?,
-  );
+  factory ConfirmationCodeModelCodeData.fromJson(Map<String, dynamic> json) =>
+      ConfirmationCodeModelCodeData(
+        code: json['code'] as String,
+        date: json['date'] as int,
+        textPlain: json['textPlain'] as String,
+      );
 }
 
 class ConfirmationCodeModel {
-  final ItemModel? item;
-  final ConfirmationCodeModelCodeData? codeData;
+  final ItemModel item;
+  final ConfirmationCodeModelCodeData codeData;
 
   const ConfirmationCodeModel({
-    this.item,
-    this.codeData,
+    required this.item,
+    required this.codeData,
   });
 
-  factory ConfirmationCodeModel.fromJson(Map<String, dynamic> json) => ConfirmationCodeModel(
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    codeData: json['codeData'] != null
-            ? ConfirmationCodeModelCodeData.fromJson(json['codeData'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ConfirmationCodeModel.fromJson(Map<String, dynamic> json) =>
+      ConfirmationCodeModel(
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        codeData: ConfirmationCodeModelCodeData.fromJson(
+            json['codeData'] as Map<String, dynamic>),
+      );
 }
 
 class ItemListModel {
-  final List<ItemFromListModel>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final String? searchUrl;
-  final List<ItemFromListModel>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<ItemFromListModel> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final String searchUrl;
+  final List<ItemFromListModel> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const ItemListModel({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
   factory ItemListModel.fromJson(Map<String, dynamic> json) => ItemListModel(
-    items: (json['items'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+        items: (json['items'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ItemFromListModelBumpSettings {
@@ -1647,12 +1636,13 @@ class ItemFromListModelBumpSettings {
     this.errorPhrase,
   });
 
-  factory ItemFromListModelBumpSettings.fromJson(Map<String, dynamic> json) => ItemFromListModelBumpSettings(
-    canBumpItem: json['canBumpItem'] as bool?,
-    canBumpItemGlobally: json['canBumpItemGlobally'] as bool?,
-    shortErrorPhrase: json['shortErrorPhrase'] as String?,
-    errorPhrase: json['errorPhrase'] as String?,
-  );
+  factory ItemFromListModelBumpSettings.fromJson(Map<String, dynamic> json) =>
+      ItemFromListModelBumpSettings(
+        canBumpItem: json['canBumpItem'] as bool?,
+        canBumpItemGlobally: json['canBumpItemGlobally'] as bool?,
+        shortErrorPhrase: json['shortErrorPhrase'] as String?,
+        errorPhrase: json['errorPhrase'] as String?,
+      );
 }
 
 class ItemFromListModelSeller {
@@ -1678,17 +1668,18 @@ class ItemFromListModelSeller {
     this.restorePercents,
   });
 
-  factory ItemFromListModelSeller.fromJson(Map<String, dynamic> json) => ItemFromListModelSeller(
-    userId: json['user_id'] as int?,
-    soldItemsCount: json['sold_items_count'] as int?,
-    activeItemCount: json['active_item_count'] as int?,
-    restoreData: json['restore_data'] as String?,
-    username: json['username'] as String?,
-    avatarDate: json['avatar_date'] as int?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    restorePercents: json['restore_percents'] as int?,
-  );
+  factory ItemFromListModelSeller.fromJson(Map<String, dynamic> json) =>
+      ItemFromListModelSeller(
+        userId: json['user_id'] as int?,
+        soldItemsCount: json['sold_items_count'] as int?,
+        activeItemCount: json['active_item_count'] as int?,
+        restoreData: json['restore_data'] as String?,
+        username: json['username'] as String?,
+        avatarDate: json['avatar_date'] as int?,
+        isBanned: json['is_banned'] as int?,
+        displayStyleGroupId: json['display_style_group_id'] as int?,
+        restorePercents: json['restore_percents'] as int?,
+      );
 }
 
 class ItemFromListModel {
@@ -1786,967 +1777,979 @@ class ItemFromListModel {
     this.seller,
   });
 
-  factory ItemFromListModel.fromJson(Map<String, dynamic> json) => ItemFromListModel(
-    itemId: json['item_id'] as int?,
-    itemState: json['item_state'] as String?,
-    categoryId: json['category_id'] as int?,
-    publishedDate: json['published_date'] as int?,
-    title: json['title'] as String?,
-    description: json['description'] as String?,
-    price: json['price'] as int?,
-    updateStatDate: json['update_stat_date'] as int?,
-    refreshedDate: json['refreshed_date'] as int?,
-    viewCount: json['view_count'] as int?,
-    isSticky: json['is_sticky'] as int?,
-    itemOrigin: json['item_origin'] as String?,
-    extendedGuarantee: json['extended_guarantee'] as int?,
-    nsb: json['nsb'] as int?,
-    allowAskDiscount: json['allow_ask_discount'] as int?,
-    titleEn: json['title_en'] as String?,
-    descriptionEn: json['description_en'] as String?,
-    itemDomain: json['item_domain'] as String?,
-    resaleItemOrigin: json['resale_item_origin'] as String?,
-    isIgnored: json['isIgnored'] as int?,
-    guarantee: json['guarantee'] as bool?,
-    canViewLoginData: json['canViewLoginData'] as bool?,
-    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
-    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
-    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
-    canOpenItem: json['canOpenItem'] as bool?,
-    canCloseItem: json['canCloseItem'] as bool?,
-    canEditItem: json['canEditItem'] as bool?,
-    canDeleteItem: json['canDeleteItem'] as bool?,
-    canStickItem: json['canStickItem'] as bool?,
-    canUnstickItem: json['canUnstickItem'] as bool?,
-    bumpSettings: json['bumpSettings'] != null
-            ? ItemFromListModelBumpSettings.fromJson(json['bumpSettings'] as Map<String, dynamic>)
+  factory ItemFromListModel.fromJson(Map<String, dynamic> json) =>
+      ItemFromListModel(
+        itemId: json['item_id'] as int?,
+        itemState: json['item_state'] as String?,
+        categoryId: json['category_id'] as int?,
+        publishedDate: json['published_date'] as int?,
+        title: json['title'] as String?,
+        description: json['description'] as String?,
+        price: json['price'] as int?,
+        updateStatDate: json['update_stat_date'] as int?,
+        refreshedDate: json['refreshed_date'] as int?,
+        viewCount: json['view_count'] as int?,
+        isSticky: json['is_sticky'] as int?,
+        itemOrigin: json['item_origin'] as String?,
+        extendedGuarantee: json['extended_guarantee'] as int?,
+        nsb: json['nsb'] as int?,
+        allowAskDiscount: json['allow_ask_discount'] as int?,
+        titleEn: json['title_en'] as String?,
+        descriptionEn: json['description_en'] as String?,
+        itemDomain: json['item_domain'] as String?,
+        resaleItemOrigin: json['resale_item_origin'] as String?,
+        isIgnored: json['isIgnored'] as int?,
+        guarantee: json['guarantee'] as bool?,
+        canViewLoginData: json['canViewLoginData'] as bool?,
+        canUpdateItemStats: json['canUpdateItemStats'] as bool?,
+        canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
+        canOpenItem: json['canOpenItem'] as bool?,
+        canCloseItem: json['canCloseItem'] as bool?,
+        canEditItem: json['canEditItem'] as bool?,
+        canDeleteItem: json['canDeleteItem'] as bool?,
+        canStickItem: json['canStickItem'] as bool?,
+        canUnstickItem: json['canUnstickItem'] as bool?,
+        bumpSettings: json['bumpSettings'] != null
+            ? ItemFromListModelBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
             : null,
-    canBumpItem: json['canBumpItem'] as bool?,
-    canBuyItem: json['canBuyItem'] as bool?,
-    rubPrice: json['rub_price'] as int?,
-    priceCurrency: json['price_currency'] as String?,
-    canValidateAccount: json['canValidateAccount'] as bool?,
-    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
-    canViewAccountLink: json['canViewAccountLink'] as bool?,
-    itemOriginPhrase: json['itemOriginPhrase'] as String?,
-    tags: (json['tags'] as List<dynamic>?)?.cast<String>(),
-    noteText: json['note_text'] as String?,
-    descriptionHtml: json['description_html'] as String?,
-    descriptionHtmlEn: json['description_html_en'] as String?,
-    seller: json['seller'] != null
-            ? ItemFromListModelSeller.fromJson(json['seller'] as Map<String, dynamic>)
+        canBumpItem: json['canBumpItem'] as bool?,
+        canBuyItem: json['canBuyItem'] as bool?,
+        rubPrice: json['rub_price'] as int?,
+        priceCurrency: json['price_currency'] as String?,
+        canValidateAccount: json['canValidateAccount'] as bool?,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
+        canViewAccountLink: json['canViewAccountLink'] as bool?,
+        itemOriginPhrase: json['itemOriginPhrase'] as String?,
+        tags: (json['tags'] as List<dynamic>?)?.cast<String>(),
+        noteText: json['note_text'] as String?,
+        descriptionHtml: json['description_html'] as String?,
+        descriptionHtmlEn: json['description_html_en'] as String?,
+        seller: json['seller'] != null
+            ? ItemFromListModelSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ItemModelGuarantee {
-  final int? duration;
-  final String? class$;
-  final String? durationPhrase;
-  final int? endDate;
-  final bool? active;
-  final bool? cancelled;
-  final int? remainingTime;
-  final String? remainingTimePhrase;
-  final String? cancelledReason;
-  final String? cancelledReasonPhrase;
+  final int duration;
+  final String class$;
+  final String durationPhrase;
+  final int endDate;
+  final bool active;
+  final bool cancelled;
+  final int remainingTime;
+  final String remainingTimePhrase;
+  final String cancelledReason;
+  final String cancelledReasonPhrase;
 
   const ItemModelGuarantee({
-    this.duration,
-    this.class$,
-    this.durationPhrase,
-    this.endDate,
-    this.active,
-    this.cancelled,
-    this.remainingTime,
-    this.remainingTimePhrase,
-    this.cancelledReason,
-    this.cancelledReasonPhrase,
+    required this.duration,
+    required this.class$,
+    required this.durationPhrase,
+    required this.endDate,
+    required this.active,
+    required this.cancelled,
+    required this.remainingTime,
+    required this.remainingTimePhrase,
+    required this.cancelledReason,
+    required this.cancelledReasonPhrase,
   });
 
-  factory ItemModelGuarantee.fromJson(Map<String, dynamic> json) => ItemModelGuarantee(
-    duration: json['duration'] as int?,
-    class$: json['class'] as String?,
-    durationPhrase: json['durationPhrase'] as String?,
-    endDate: json['endDate'] as int?,
-    active: json['active'] as bool?,
-    cancelled: json['cancelled'] as bool?,
-    remainingTime: json['remainingTime'] as int?,
-    remainingTimePhrase: json['remainingTimePhrase'] as String?,
-    cancelledReason: json['cancelledReason'] as String?,
-    cancelledReasonPhrase: json['cancelledReasonPhrase'] as String?,
-  );
+  factory ItemModelGuarantee.fromJson(Map<String, dynamic> json) =>
+      ItemModelGuarantee(
+        duration: json['duration'] as int,
+        class$: json['class'] as String,
+        durationPhrase: json['durationPhrase'] as String,
+        endDate: json['endDate'] as int,
+        active: json['active'] as bool,
+        cancelled: json['cancelled'] as bool,
+        remainingTime: json['remainingTime'] as int,
+        remainingTimePhrase: json['remainingTimePhrase'] as String,
+        cancelledReason: json['cancelledReason'] as String,
+        cancelledReasonPhrase: json['cancelledReasonPhrase'] as String,
+      );
 }
 
 class ItemModelLoginData {
-  final String? raw;
-  final String? encodedRaw;
-  final String? login;
-  final String? password;
-  final String? encodedPassword;
-  final String? oldPassword;
-  final Object? encodedOldPassword;
+  final String raw;
+  final String encodedRaw;
+  final String login;
+  final String password;
+  final String encodedPassword;
+  final String oldPassword;
+  final Object encodedOldPassword;
 
   const ItemModelLoginData({
-    this.raw,
-    this.encodedRaw,
-    this.login,
-    this.password,
-    this.encodedPassword,
-    this.oldPassword,
-    this.encodedOldPassword,
+    required this.raw,
+    required this.encodedRaw,
+    required this.login,
+    required this.password,
+    required this.encodedPassword,
+    required this.oldPassword,
+    required this.encodedOldPassword,
   });
 
-  factory ItemModelLoginData.fromJson(Map<String, dynamic> json) => ItemModelLoginData(
-    raw: json['raw'] as String?,
-    encodedRaw: json['encodedRaw'] as String?,
-    login: json['login'] as String?,
-    password: json['password'] as String?,
-    encodedPassword: json['encodedPassword'] as String?,
-    oldPassword: json['oldPassword'] as String?,
-    encodedOldPassword: json['encodedOldPassword'] as Object?,
-  );
+  factory ItemModelLoginData.fromJson(Map<String, dynamic> json) =>
+      ItemModelLoginData(
+        raw: json['raw'] as String,
+        encodedRaw: json['encodedRaw'] as String,
+        login: json['login'] as String,
+        password: json['password'] as String,
+        encodedPassword: json['encodedPassword'] as String,
+        oldPassword: json['oldPassword'] as String,
+        encodedOldPassword: json['encodedOldPassword'] as Object,
+      );
 }
 
 class ItemModelCopyFormatData {
-  final String? titleLink;
-  final String? loginData;
-  final String? full;
+  final String titleLink;
+  final String loginData;
+  final String full;
 
   const ItemModelCopyFormatData({
-    this.titleLink,
-    this.loginData,
-    this.full,
+    required this.titleLink,
+    required this.loginData,
+    required this.full,
   });
 
-  factory ItemModelCopyFormatData.fromJson(Map<String, dynamic> json) => ItemModelCopyFormatData(
-    titleLink: json['title_link'] as String?,
-    loginData: json['login_data'] as String?,
-    full: json['full'] as String?,
-  );
+  factory ItemModelCopyFormatData.fromJson(Map<String, dynamic> json) =>
+      ItemModelCopyFormatData(
+        titleLink: json['title_link'] as String,
+        loginData: json['login_data'] as String,
+        full: json['full'] as String,
+      );
 }
 
 class ItemModelBuyer {
-  final int? userId;
-  final int? operationDate;
-  final bool? visitorIsBuyer;
-  final String? username;
-  final int? isBanned;
-  final int? displayStyleGroupId;
-  final int? displayIconGroupId;
-  final String? uniqUsernameCss;
-  final String? uniqBanner;
-  final int? userGroupId;
+  final int userId;
+  final int operationDate;
+  final bool visitorIsBuyer;
+  final String username;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int displayIconGroupId;
+  final String uniqUsernameCss;
+  final String uniqBanner;
+  final int userGroupId;
 
   const ItemModelBuyer({
-    this.userId,
-    this.operationDate,
-    this.visitorIsBuyer,
-    this.username,
-    this.isBanned,
-    this.displayStyleGroupId,
-    this.displayIconGroupId,
-    this.uniqUsernameCss,
-    this.uniqBanner,
-    this.userGroupId,
+    required this.userId,
+    required this.operationDate,
+    required this.visitorIsBuyer,
+    required this.username,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.displayIconGroupId,
+    required this.uniqUsernameCss,
+    required this.uniqBanner,
+    required this.userGroupId,
   });
 
   factory ItemModelBuyer.fromJson(Map<String, dynamic> json) => ItemModelBuyer(
-    userId: json['user_id'] as int?,
-    operationDate: json['operation_date'] as int?,
-    visitorIsBuyer: json['visitorIsBuyer'] as bool?,
-    username: json['username'] as String?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    displayIconGroupId: json['display_icon_group_id'] as int?,
-    uniqUsernameCss: json['uniq_username_css'] as String?,
-    uniqBanner: json['uniq_banner'] as String?,
-    userGroupId: json['user_group_id'] as int?,
-  );
+        userId: json['user_id'] as int,
+        operationDate: json['operation_date'] as int,
+        visitorIsBuyer: json['visitorIsBuyer'] as bool,
+        username: json['username'] as String,
+        isBanned: json['is_banned'] as int,
+        displayStyleGroupId: json['display_style_group_id'] as int,
+        displayIconGroupId: json['display_icon_group_id'] as int,
+        uniqUsernameCss: json['uniq_username_css'] as String,
+        uniqBanner: json['uniq_banner'] as String,
+        userGroupId: json['user_group_id'] as int,
+      );
 }
 
 class ItemModelTags1234567890 {
-  final int? tagId;
-  final String? title;
-  final bool? isDefault;
-  final bool? forOwnedAccountsOnly;
-  final String? bc;
+  final int tagId;
+  final String title;
+  final bool isDefault;
+  final bool forOwnedAccountsOnly;
+  final String bc;
 
   const ItemModelTags1234567890({
-    this.tagId,
-    this.title,
-    this.isDefault,
-    this.forOwnedAccountsOnly,
-    this.bc,
+    required this.tagId,
+    required this.title,
+    required this.isDefault,
+    required this.forOwnedAccountsOnly,
+    required this.bc,
   });
 
-  factory ItemModelTags1234567890.fromJson(Map<String, dynamic> json) => ItemModelTags1234567890(
-    tagId: json['tag_id'] as int?,
-    title: json['title'] as String?,
-    isDefault: json['isDefault'] as bool?,
-    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
-    bc: json['bc'] as String?,
-  );
+  factory ItemModelTags1234567890.fromJson(Map<String, dynamic> json) =>
+      ItemModelTags1234567890(
+        tagId: json['tag_id'] as int,
+        title: json['title'] as String,
+        isDefault: json['isDefault'] as bool,
+        forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool,
+        bc: json['bc'] as String,
+      );
 }
 
 class ItemModelTags {
-  final ItemModelTags1234567890? n1234567890;
+  final ItemModelTags1234567890 n1234567890;
 
   const ItemModelTags({
-    this.n1234567890,
+    required this.n1234567890,
   });
 
   factory ItemModelTags.fromJson(Map<String, dynamic> json) => ItemModelTags(
-    n1234567890: json['1234567890'] != null
-            ? ItemModelTags1234567890.fromJson(json['1234567890'] as Map<String, dynamic>)
-            : null,
-  );
+        n1234567890: ItemModelTags1234567890.fromJson(
+            json['1234567890'] as Map<String, dynamic>),
+      );
 }
 
 class ItemModelCustomFields {
-  final String? n4;
-  final List<Object>? allowSelfUnban;
-  final String? banReason;
-  final String? discord;
-  final String? github;
-  final String? jabber;
-  final String? lztUnbanAmount;
-  final String? steam;
-  final String? telegram;
-  final String? vk;
+  final String n4;
+  final List<Object> allowSelfUnban;
+  final String banReason;
+  final String discord;
+  final String github;
+  final String jabber;
+  final String lztUnbanAmount;
+  final String steam;
+  final String telegram;
+  final String vk;
 
   const ItemModelCustomFields({
-    this.n4,
-    this.allowSelfUnban,
-    this.banReason,
-    this.discord,
-    this.github,
-    this.jabber,
-    this.lztUnbanAmount,
-    this.steam,
-    this.telegram,
-    this.vk,
+    required this.n4,
+    required this.allowSelfUnban,
+    required this.banReason,
+    required this.discord,
+    required this.github,
+    required this.jabber,
+    required this.lztUnbanAmount,
+    required this.steam,
+    required this.telegram,
+    required this.vk,
   });
 
-  factory ItemModelCustomFields.fromJson(Map<String, dynamic> json) => ItemModelCustomFields(
-    n4: json['_4'] as String?,
-    allowSelfUnban: (json['allowSelfUnban'] as List<dynamic>?)?.cast<Object>(),
-    banReason: json['ban_reason'] as String?,
-    discord: json['discord'] as String?,
-    github: json['github'] as String?,
-    jabber: json['jabber'] as String?,
-    lztUnbanAmount: json['lztUnbanAmount'] as String?,
-    steam: json['steam'] as String?,
-    telegram: json['telegram'] as String?,
-    vk: json['vk'] as String?,
-  );
+  factory ItemModelCustomFields.fromJson(Map<String, dynamic> json) =>
+      ItemModelCustomFields(
+        n4: json['_4'] as String,
+        allowSelfUnban:
+            (json['allowSelfUnban'] as List<dynamic>).cast<Object>(),
+        banReason: json['ban_reason'] as String,
+        discord: json['discord'] as String,
+        github: json['github'] as String,
+        jabber: json['jabber'] as String,
+        lztUnbanAmount: json['lztUnbanAmount'] as String,
+        steam: json['steam'] as String,
+        telegram: json['telegram'] as String,
+        vk: json['vk'] as String,
+      );
 }
 
 class ItemModelBumpSettings {
-  final bool? canBumpItem;
-  final bool? canBumpItemGlobally;
-  final Object? shortErrorPhrase;
-  final Object? nextAllowedBumpDate;
-  final Object? errorPhrase;
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final Object shortErrorPhrase;
+  final Object nextAllowedBumpDate;
+  final Object errorPhrase;
 
   const ItemModelBumpSettings({
-    this.canBumpItem,
-    this.canBumpItemGlobally,
-    this.shortErrorPhrase,
-    this.nextAllowedBumpDate,
-    this.errorPhrase,
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.nextAllowedBumpDate,
+    required this.errorPhrase,
   });
 
-  factory ItemModelBumpSettings.fromJson(Map<String, dynamic> json) => ItemModelBumpSettings(
-    canBumpItem: json['canBumpItem'] as bool?,
-    canBumpItemGlobally: json['canBumpItemGlobally'] as bool?,
-    shortErrorPhrase: json['shortErrorPhrase'] as Object?,
-    nextAllowedBumpDate: json['nextAllowedBumpDate'] as Object?,
-    errorPhrase: json['errorPhrase'] as Object?,
-  );
+  factory ItemModelBumpSettings.fromJson(Map<String, dynamic> json) =>
+      ItemModelBumpSettings(
+        canBumpItem: json['canBumpItem'] as bool,
+        canBumpItemGlobally: json['canBumpItemGlobally'] as bool,
+        shortErrorPhrase: json['shortErrorPhrase'] as Object,
+        nextAllowedBumpDate: json['nextAllowedBumpDate'] as Object,
+        errorPhrase: json['errorPhrase'] as Object,
+      );
 }
 
 class ItemModelSellerContacts {
-  final String? banReason;
-  final String? telegram;
+  final String banReason;
+  final String telegram;
 
   const ItemModelSellerContacts({
-    this.banReason,
-    this.telegram,
+    required this.banReason,
+    required this.telegram,
   });
 
-  factory ItemModelSellerContacts.fromJson(Map<String, dynamic> json) => ItemModelSellerContacts(
-    banReason: json['ban_reason'] as String?,
-    telegram: json['telegram'] as String?,
-  );
+  factory ItemModelSellerContacts.fromJson(Map<String, dynamic> json) =>
+      ItemModelSellerContacts(
+        banReason: json['ban_reason'] as String,
+        telegram: json['telegram'] as String,
+      );
 }
 
 class ItemModelSeller {
-  final int? userId;
-  final String? username;
-  final int? avatarDate;
-  final int? isBanned;
-  final int? displayStyleGroupId;
-  final int? joinedDate;
-  final int? soldItemsCount;
-  final int? activeItemsCount;
-  final String? restoreData;
-  final int? effectiveLastActivity;
-  final Object? restorePercents;
-  final bool? isOnline;
-  final ItemModelSellerContacts? contacts;
+  final int userId;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final int effectiveLastActivity;
+  final Object restorePercents;
+  final bool isOnline;
+  final ItemModelSellerContacts contacts;
 
   const ItemModelSeller({
-    this.userId,
-    this.username,
-    this.avatarDate,
-    this.isBanned,
-    this.displayStyleGroupId,
-    this.joinedDate,
-    this.soldItemsCount,
-    this.activeItemsCount,
-    this.restoreData,
-    this.effectiveLastActivity,
-    this.restorePercents,
-    this.isOnline,
-    this.contacts,
+    required this.userId,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.joinedDate,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.effectiveLastActivity,
+    required this.restorePercents,
+    required this.isOnline,
+    required this.contacts,
   });
 
-  factory ItemModelSeller.fromJson(Map<String, dynamic> json) => ItemModelSeller(
-    userId: json['user_id'] as int?,
-    username: json['username'] as String?,
-    avatarDate: json['avatar_date'] as int?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    joinedDate: json['joined_date'] as int?,
-    soldItemsCount: json['sold_items_count'] as int?,
-    activeItemsCount: json['active_items_count'] as int?,
-    restoreData: json['restore_data'] as String?,
-    effectiveLastActivity: json['effective_last_activity'] as int?,
-    restorePercents: json['restore_percents'] as Object?,
-    isOnline: json['isOnline'] as bool?,
-    contacts: json['contacts'] != null
-            ? ItemModelSellerContacts.fromJson(json['contacts'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ItemModelSeller.fromJson(Map<String, dynamic> json) =>
+      ItemModelSeller(
+        userId: json['user_id'] as int,
+        username: json['username'] as String,
+        avatarDate: json['avatar_date'] as int,
+        isBanned: json['is_banned'] as int,
+        displayStyleGroupId: json['display_style_group_id'] as int,
+        joinedDate: json['joined_date'] as int,
+        soldItemsCount: json['sold_items_count'] as int,
+        activeItemsCount: json['active_items_count'] as int,
+        restoreData: json['restore_data'] as String,
+        effectiveLastActivity: json['effective_last_activity'] as int,
+        restorePercents: json['restore_percents'] as Object,
+        isOnline: json['isOnline'] as bool,
+        contacts: ItemModelSellerContacts.fromJson(
+            json['contacts'] as Map<String, dynamic>),
+      );
 }
 
 class ItemModel {
-  final int? itemId;
-  final String? itemState;
-  final int? categoryId;
-  final int? publishedDate;
-  final String? title;
-  final String? description;
-  final int? price;
-  final int? updateStatDate;
-  final int? refreshedDate;
-  final int? editDate;
-  final int? pendingDeletionDate;
-  final String? login;
-  final String? tempEmail;
-  final int? viewCount;
-  final int? isSticky;
-  final String? information;
-  final String? itemOrigin;
-  final int? extendedGuarantee;
-  final int? nsb;
-  final int? allowAskDiscount;
-  final String? titleEn;
-  final String? descriptionEn;
-  final String? informationEn;
-  final String? emailType;
-  final String? emailProvider;
-  final String? itemDomain;
-  final String? resaleItemOrigin;
-  final String? noteText;
-  final Object? contentType;
-  final Object? contentId;
-  final int? deleteDate;
-  final int? deleteUserId;
-  final String? deleteUsername;
-  final String? deleteReason;
-  final int? userAllowAskDiscount;
-  final int? maxDiscountPercent;
-  final String? marketCustomTitle;
-  final String? feedbackData;
-  final int? buyerDisplayIconGroupId;
-  final String? buyerUniqBanner;
-  final int? buyerAvatarDate;
-  final int? buyerUserGroupId;
-  final Object? isFave;
-  final Object? inCart;
-  final Object? cartPrice;
-  final bool? canResellItem;
-  final double? priceWithSellerFee;
-  final ItemModelGuarantee? guarantee;
-  final bool? canViewLoginData;
-  final bool? canUpdateItemStats;
-  final bool? canReportItem;
-  final bool? canViewItemViews;
-  final ItemModelLoginData? loginData;
-  final bool? canViewEmailLoginData;
-  final ItemModelCopyFormatData? copyFormatData;
-  final bool? showGetEmailCodeButton;
-  final Object? getEmailCodeDisplayLogin;
-  final ItemModelBuyer? buyer;
-  final bool? isPersonalAccount;
-  final int? rubPrice;
-  final String? priceCurrency;
-  final String? priceWithSellerFeeLabel;
-  final bool? canValidateAccount;
-  final bool? canResellItemAfterPurchase;
-  final bool? isSmallExf;
-  final int? accountLastActivity;
-  final bool? canViewAccountLink;
-  final List<Map<String, dynamic>>? accountLinks;
-  final String? accountLink;
-  final List<String>? imagePreviewLinks;
-  final bool? canChangePassword;
-  final bool? canChangeEmailPassword;
-  final bool? uniqueKeyExists;
-  final String? itemOriginPhrase;
-  final bool? visitorIsAuthor;
-  final bool? canAskDiscount;
-  final ItemModelTags? tags;
-  final ItemModelCustomFields? customFields;
-  final List<Object>? externalAuth;
-  final bool? isTrusted;
-  final bool? isBirthdayToday;
-  final bool? isIgnored;
-  final int? deposit;
-  final List<Map<String, dynamic>>? extraPrices;
-  final bool? canViewAccountLoginAndTempEmail;
-  final ItemModelBumpSettings? bumpSettings;
-  final bool? canCheckGuarantee;
-  final bool? canShareItem;
-  final bool? canCheckAiPrice;
-  final int? aiPrice;
-  final int? aiPriceCheckDate;
-  final bool? needToRequireVideoToViewLoginData;
-  final bool? canCheckAutoBuyPrice;
-  final int? autoBuyPrice;
-  final int? autoBuyPriceCheckDate;
-  final String? descriptionHtml;
-  final String? descriptionEnHtml;
-  final String? descriptionPlain;
-  final String? descriptionEnPlain;
-  final ItemModelSeller? seller;
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int pendingDeletionDate;
+  final String login;
+  final String tempEmail;
+  final int viewCount;
+  final int isSticky;
+  final String information;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String informationEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final String noteText;
+  final Object contentType;
+  final Object contentId;
+  final int deleteDate;
+  final int deleteUserId;
+  final String deleteUsername;
+  final String deleteReason;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
+  final String marketCustomTitle;
+  final String feedbackData;
+  final int buyerDisplayIconGroupId;
+  final String buyerUniqBanner;
+  final int buyerAvatarDate;
+  final int buyerUserGroupId;
+  final Object isFave;
+  final Object inCart;
+  final Object cartPrice;
+  final bool canResellItem;
+  final double priceWithSellerFee;
+  final ItemModelGuarantee guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewItemViews;
+  final ItemModelLoginData loginData;
+  final bool canViewEmailLoginData;
+  final ItemModelCopyFormatData copyFormatData;
+  final bool showGetEmailCodeButton;
+  final Object getEmailCodeDisplayLogin;
+  final ItemModelBuyer buyer;
+  final bool isPersonalAccount;
+  final int rubPrice;
+  final String priceCurrency;
+  final String priceWithSellerFeeLabel;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final bool canViewAccountLink;
+  final List<Map<String, dynamic>> accountLinks;
+  final String accountLink;
+  final List<String> imagePreviewLinks;
+  final bool canChangePassword;
+  final bool canChangeEmailPassword;
+  final bool uniqueKeyExists;
+  final String itemOriginPhrase;
+  final bool visitorIsAuthor;
+  final bool canAskDiscount;
+  final ItemModelTags tags;
+  final ItemModelCustomFields customFields;
+  final List<Object> externalAuth;
+  final bool isTrusted;
+  final bool isBirthdayToday;
+  final bool isIgnored;
+  final int deposit;
+  final List<Map<String, dynamic>> extraPrices;
+  final bool canViewAccountLoginAndTempEmail;
+  final ItemModelBumpSettings bumpSettings;
+  final bool canCheckGuarantee;
+  final bool canShareItem;
+  final bool canCheckAiPrice;
+  final int aiPrice;
+  final int aiPriceCheckDate;
+  final bool needToRequireVideoToViewLoginData;
+  final bool canCheckAutoBuyPrice;
+  final int autoBuyPrice;
+  final int autoBuyPriceCheckDate;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final ItemModelSeller seller;
 
   const ItemModel({
-    this.itemId,
-    this.itemState,
-    this.categoryId,
-    this.publishedDate,
-    this.title,
-    this.description,
-    this.price,
-    this.updateStatDate,
-    this.refreshedDate,
-    this.editDate,
-    this.pendingDeletionDate,
-    this.login,
-    this.tempEmail,
-    this.viewCount,
-    this.isSticky,
-    this.information,
-    this.itemOrigin,
-    this.extendedGuarantee,
-    this.nsb,
-    this.allowAskDiscount,
-    this.titleEn,
-    this.descriptionEn,
-    this.informationEn,
-    this.emailType,
-    this.emailProvider,
-    this.itemDomain,
-    this.resaleItemOrigin,
-    this.noteText,
-    this.contentType,
-    this.contentId,
-    this.deleteDate,
-    this.deleteUserId,
-    this.deleteUsername,
-    this.deleteReason,
-    this.userAllowAskDiscount,
-    this.maxDiscountPercent,
-    this.marketCustomTitle,
-    this.feedbackData,
-    this.buyerDisplayIconGroupId,
-    this.buyerUniqBanner,
-    this.buyerAvatarDate,
-    this.buyerUserGroupId,
-    this.isFave,
-    this.inCart,
-    this.cartPrice,
-    this.canResellItem,
-    this.priceWithSellerFee,
-    this.guarantee,
-    this.canViewLoginData,
-    this.canUpdateItemStats,
-    this.canReportItem,
-    this.canViewItemViews,
-    this.loginData,
-    this.canViewEmailLoginData,
-    this.copyFormatData,
-    this.showGetEmailCodeButton,
-    this.getEmailCodeDisplayLogin,
-    this.buyer,
-    this.isPersonalAccount,
-    this.rubPrice,
-    this.priceCurrency,
-    this.priceWithSellerFeeLabel,
-    this.canValidateAccount,
-    this.canResellItemAfterPurchase,
-    this.isSmallExf,
-    this.accountLastActivity,
-    this.canViewAccountLink,
-    this.accountLinks,
-    this.accountLink,
-    this.imagePreviewLinks,
-    this.canChangePassword,
-    this.canChangeEmailPassword,
-    this.uniqueKeyExists,
-    this.itemOriginPhrase,
-    this.visitorIsAuthor,
-    this.canAskDiscount,
-    this.tags,
-    this.customFields,
-    this.externalAuth,
-    this.isTrusted,
-    this.isBirthdayToday,
-    this.isIgnored,
-    this.deposit,
-    this.extraPrices,
-    this.canViewAccountLoginAndTempEmail,
-    this.bumpSettings,
-    this.canCheckGuarantee,
-    this.canShareItem,
-    this.canCheckAiPrice,
-    this.aiPrice,
-    this.aiPriceCheckDate,
-    this.needToRequireVideoToViewLoginData,
-    this.canCheckAutoBuyPrice,
-    this.autoBuyPrice,
-    this.autoBuyPriceCheckDate,
-    this.descriptionHtml,
-    this.descriptionEnHtml,
-    this.descriptionPlain,
-    this.descriptionEnPlain,
-    this.seller,
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.pendingDeletionDate,
+    required this.login,
+    required this.tempEmail,
+    required this.viewCount,
+    required this.isSticky,
+    required this.information,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.informationEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.noteText,
+    required this.contentType,
+    required this.contentId,
+    required this.deleteDate,
+    required this.deleteUserId,
+    required this.deleteUsername,
+    required this.deleteReason,
+    required this.userAllowAskDiscount,
+    required this.maxDiscountPercent,
+    required this.marketCustomTitle,
+    required this.feedbackData,
+    required this.buyerDisplayIconGroupId,
+    required this.buyerUniqBanner,
+    required this.buyerAvatarDate,
+    required this.buyerUserGroupId,
+    required this.isFave,
+    required this.inCart,
+    required this.cartPrice,
+    required this.canResellItem,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewItemViews,
+    required this.loginData,
+    required this.canViewEmailLoginData,
+    required this.copyFormatData,
+    required this.showGetEmailCodeButton,
+    required this.getEmailCodeDisplayLogin,
+    required this.buyer,
+    required this.isPersonalAccount,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.priceWithSellerFeeLabel,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.imagePreviewLinks,
+    required this.canChangePassword,
+    required this.canChangeEmailPassword,
+    required this.uniqueKeyExists,
+    required this.itemOriginPhrase,
+    required this.visitorIsAuthor,
+    required this.canAskDiscount,
+    required this.tags,
+    required this.customFields,
+    required this.externalAuth,
+    required this.isTrusted,
+    required this.isBirthdayToday,
+    required this.isIgnored,
+    required this.deposit,
+    required this.extraPrices,
+    required this.canViewAccountLoginAndTempEmail,
+    required this.bumpSettings,
+    required this.canCheckGuarantee,
+    required this.canShareItem,
+    required this.canCheckAiPrice,
+    required this.aiPrice,
+    required this.aiPriceCheckDate,
+    required this.needToRequireVideoToViewLoginData,
+    required this.canCheckAutoBuyPrice,
+    required this.autoBuyPrice,
+    required this.autoBuyPriceCheckDate,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
   });
 
   factory ItemModel.fromJson(Map<String, dynamic> json) => ItemModel(
-    itemId: json['item_id'] as int?,
-    itemState: json['item_state'] as String?,
-    categoryId: json['category_id'] as int?,
-    publishedDate: json['published_date'] as int?,
-    title: json['title'] as String?,
-    description: json['description'] as String?,
-    price: json['price'] as int?,
-    updateStatDate: json['update_stat_date'] as int?,
-    refreshedDate: json['refreshed_date'] as int?,
-    editDate: json['edit_date'] as int?,
-    pendingDeletionDate: json['pending_deletion_date'] as int?,
-    login: json['login'] as String?,
-    tempEmail: json['temp_email'] as String?,
-    viewCount: json['view_count'] as int?,
-    isSticky: json['is_sticky'] as int?,
-    information: json['information'] as String?,
-    itemOrigin: json['item_origin'] as String?,
-    extendedGuarantee: json['extended_guarantee'] as int?,
-    nsb: json['nsb'] as int?,
-    allowAskDiscount: json['allow_ask_discount'] as int?,
-    titleEn: json['title_en'] as String?,
-    descriptionEn: json['description_en'] as String?,
-    informationEn: json['information_en'] as String?,
-    emailType: json['email_type'] as String?,
-    emailProvider: json['email_provider'] as String?,
-    itemDomain: json['item_domain'] as String?,
-    resaleItemOrigin: json['resale_item_origin'] as String?,
-    noteText: json['note_text'] as String?,
-    contentType: json['content_type'] as Object?,
-    contentId: json['content_id'] as Object?,
-    deleteDate: json['delete_date'] as int?,
-    deleteUserId: json['delete_user_id'] as int?,
-    deleteUsername: json['delete_username'] as String?,
-    deleteReason: json['delete_reason'] as String?,
-    userAllowAskDiscount: json['user_allow_ask_discount'] as int?,
-    maxDiscountPercent: json['max_discount_percent'] as int?,
-    marketCustomTitle: json['market_custom_title'] as String?,
-    feedbackData: json['feedback_data'] as String?,
-    buyerDisplayIconGroupId: json['buyer_display_icon_group_id'] as int?,
-    buyerUniqBanner: json['buyer_uniq_banner'] as String?,
-    buyerAvatarDate: json['buyer_avatar_date'] as int?,
-    buyerUserGroupId: json['buyer_user_group_id'] as int?,
-    isFave: json['is_fave'] as Object?,
-    inCart: json['in_cart'] as Object?,
-    cartPrice: json['cart_price'] as Object?,
-    canResellItem: json['canResellItem'] as bool?,
-    priceWithSellerFee: json['priceWithSellerFee'] as double?,
-    guarantee: json['guarantee'] != null
-            ? ItemModelGuarantee.fromJson(json['guarantee'] as Map<String, dynamic>)
-            : null,
-    canViewLoginData: json['canViewLoginData'] as bool?,
-    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
-    canReportItem: json['canReportItem'] as bool?,
-    canViewItemViews: json['canViewItemViews'] as bool?,
-    loginData: json['loginData'] != null
-            ? ItemModelLoginData.fromJson(json['loginData'] as Map<String, dynamic>)
-            : null,
-    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
-    copyFormatData: json['copyFormatData'] != null
-            ? ItemModelCopyFormatData.fromJson(json['copyFormatData'] as Map<String, dynamic>)
-            : null,
-    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
-    getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as Object?,
-    buyer: json['buyer'] != null
-            ? ItemModelBuyer.fromJson(json['buyer'] as Map<String, dynamic>)
-            : null,
-    isPersonalAccount: json['isPersonalAccount'] as bool?,
-    rubPrice: json['rub_price'] as int?,
-    priceCurrency: json['price_currency'] as String?,
-    priceWithSellerFeeLabel: json['priceWithSellerFeeLabel'] as String?,
-    canValidateAccount: json['canValidateAccount'] as bool?,
-    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
-    isSmallExf: json['isSmallExf'] as bool?,
-    accountLastActivity: json['account_last_activity'] as int?,
-    canViewAccountLink: json['canViewAccountLink'] as bool?,
-    accountLinks: (json['accountLinks'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    accountLink: json['accountLink'] as String?,
-    imagePreviewLinks: (json['imagePreviewLinks'] as List<dynamic>?)?.cast<String>(),
-    canChangePassword: json['canChangePassword'] as bool?,
-    canChangeEmailPassword: json['canChangeEmailPassword'] as bool?,
-    uniqueKeyExists: json['uniqueKeyExists'] as bool?,
-    itemOriginPhrase: json['itemOriginPhrase'] as String?,
-    visitorIsAuthor: json['visitorIsAuthor'] as bool?,
-    canAskDiscount: json['canAskDiscount'] as bool?,
-    tags: json['tags'] != null
-            ? ItemModelTags.fromJson(json['tags'] as Map<String, dynamic>)
-            : null,
-    customFields: json['customFields'] != null
-            ? ItemModelCustomFields.fromJson(json['customFields'] as Map<String, dynamic>)
-            : null,
-    externalAuth: (json['externalAuth'] as List<dynamic>?)?.cast<Object>(),
-    isTrusted: json['isTrusted'] as bool?,
-    isBirthdayToday: json['isBirthdayToday'] as bool?,
-    isIgnored: json['isIgnored'] as bool?,
-    deposit: json['deposit'] as int?,
-    extraPrices: (json['extraPrices'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    canViewAccountLoginAndTempEmail: json['canViewAccountLoginAndTempEmail'] as bool?,
-    bumpSettings: json['bumpSettings'] != null
-            ? ItemModelBumpSettings.fromJson(json['bumpSettings'] as Map<String, dynamic>)
-            : null,
-    canCheckGuarantee: json['canCheckGuarantee'] as bool?,
-    canShareItem: json['canShareItem'] as bool?,
-    canCheckAiPrice: json['canCheckAiPrice'] as bool?,
-    aiPrice: json['aiPrice'] as int?,
-    aiPriceCheckDate: json['aiPriceCheckDate'] as int?,
-    needToRequireVideoToViewLoginData: json['needToRequireVideoToViewLoginData'] as bool?,
-    canCheckAutoBuyPrice: json['canCheckAutoBuyPrice'] as bool?,
-    autoBuyPrice: json['autoBuyPrice'] as int?,
-    autoBuyPriceCheckDate: json['autoBuyPriceCheckDate'] as int?,
-    descriptionHtml: json['descriptionHtml'] as String?,
-    descriptionEnHtml: json['descriptionEnHtml'] as String?,
-    descriptionPlain: json['descriptionPlain'] as String?,
-    descriptionEnPlain: json['descriptionEnPlain'] as String?,
-    seller: json['seller'] != null
-            ? ItemModelSeller.fromJson(json['seller'] as Map<String, dynamic>)
-            : null,
-  );
+        itemId: json['item_id'] as int,
+        itemState: json['item_state'] as String,
+        categoryId: json['category_id'] as int,
+        publishedDate: json['published_date'] as int,
+        title: json['title'] as String,
+        description: json['description'] as String,
+        price: json['price'] as int,
+        updateStatDate: json['update_stat_date'] as int,
+        refreshedDate: json['refreshed_date'] as int,
+        editDate: json['edit_date'] as int,
+        pendingDeletionDate: json['pending_deletion_date'] as int,
+        login: json['login'] as String,
+        tempEmail: json['temp_email'] as String,
+        viewCount: json['view_count'] as int,
+        isSticky: json['is_sticky'] as int,
+        information: json['information'] as String,
+        itemOrigin: json['item_origin'] as String,
+        extendedGuarantee: json['extended_guarantee'] as int,
+        nsb: json['nsb'] as int,
+        allowAskDiscount: json['allow_ask_discount'] as int,
+        titleEn: json['title_en'] as String,
+        descriptionEn: json['description_en'] as String,
+        informationEn: json['information_en'] as String,
+        emailType: json['email_type'] as String,
+        emailProvider: json['email_provider'] as String,
+        itemDomain: json['item_domain'] as String,
+        resaleItemOrigin: json['resale_item_origin'] as String,
+        noteText: json['note_text'] as String,
+        contentType: json['content_type'] as Object,
+        contentId: json['content_id'] as Object,
+        deleteDate: json['delete_date'] as int,
+        deleteUserId: json['delete_user_id'] as int,
+        deleteUsername: json['delete_username'] as String,
+        deleteReason: json['delete_reason'] as String,
+        userAllowAskDiscount: json['user_allow_ask_discount'] as int,
+        maxDiscountPercent: json['max_discount_percent'] as int,
+        marketCustomTitle: json['market_custom_title'] as String,
+        feedbackData: json['feedback_data'] as String,
+        buyerDisplayIconGroupId: json['buyer_display_icon_group_id'] as int,
+        buyerUniqBanner: json['buyer_uniq_banner'] as String,
+        buyerAvatarDate: json['buyer_avatar_date'] as int,
+        buyerUserGroupId: json['buyer_user_group_id'] as int,
+        isFave: json['is_fave'] as Object,
+        inCart: json['in_cart'] as Object,
+        cartPrice: json['cart_price'] as Object,
+        canResellItem: json['canResellItem'] as bool,
+        priceWithSellerFee: json['priceWithSellerFee'] as double,
+        guarantee: ItemModelGuarantee.fromJson(
+            json['guarantee'] as Map<String, dynamic>),
+        canViewLoginData: json['canViewLoginData'] as bool,
+        canUpdateItemStats: json['canUpdateItemStats'] as bool,
+        canReportItem: json['canReportItem'] as bool,
+        canViewItemViews: json['canViewItemViews'] as bool,
+        loginData: ItemModelLoginData.fromJson(
+            json['loginData'] as Map<String, dynamic>),
+        canViewEmailLoginData: json['canViewEmailLoginData'] as bool,
+        copyFormatData: ItemModelCopyFormatData.fromJson(
+            json['copyFormatData'] as Map<String, dynamic>),
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool,
+        getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as Object,
+        buyer: ItemModelBuyer.fromJson(json['buyer'] as Map<String, dynamic>),
+        isPersonalAccount: json['isPersonalAccount'] as bool,
+        rubPrice: json['rub_price'] as int,
+        priceCurrency: json['price_currency'] as String,
+        priceWithSellerFeeLabel: json['priceWithSellerFeeLabel'] as String,
+        canValidateAccount: json['canValidateAccount'] as bool,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool,
+        isSmallExf: json['isSmallExf'] as bool,
+        accountLastActivity: json['account_last_activity'] as int,
+        canViewAccountLink: json['canViewAccountLink'] as bool,
+        accountLinks: (json['accountLinks'] as List<dynamic>)
+            .cast<Map<String, dynamic>>(),
+        accountLink: json['accountLink'] as String,
+        imagePreviewLinks:
+            (json['imagePreviewLinks'] as List<dynamic>).cast<String>(),
+        canChangePassword: json['canChangePassword'] as bool,
+        canChangeEmailPassword: json['canChangeEmailPassword'] as bool,
+        uniqueKeyExists: json['uniqueKeyExists'] as bool,
+        itemOriginPhrase: json['itemOriginPhrase'] as String,
+        visitorIsAuthor: json['visitorIsAuthor'] as bool,
+        canAskDiscount: json['canAskDiscount'] as bool,
+        tags: ItemModelTags.fromJson(json['tags'] as Map<String, dynamic>),
+        customFields: ItemModelCustomFields.fromJson(
+            json['customFields'] as Map<String, dynamic>),
+        externalAuth: (json['externalAuth'] as List<dynamic>).cast<Object>(),
+        isTrusted: json['isTrusted'] as bool,
+        isBirthdayToday: json['isBirthdayToday'] as bool,
+        isIgnored: json['isIgnored'] as bool,
+        deposit: json['deposit'] as int,
+        extraPrices:
+            (json['extraPrices'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        canViewAccountLoginAndTempEmail:
+            json['canViewAccountLoginAndTempEmail'] as bool,
+        bumpSettings: ItemModelBumpSettings.fromJson(
+            json['bumpSettings'] as Map<String, dynamic>),
+        canCheckGuarantee: json['canCheckGuarantee'] as bool,
+        canShareItem: json['canShareItem'] as bool,
+        canCheckAiPrice: json['canCheckAiPrice'] as bool,
+        aiPrice: json['aiPrice'] as int,
+        aiPriceCheckDate: json['aiPriceCheckDate'] as int,
+        needToRequireVideoToViewLoginData:
+            json['needToRequireVideoToViewLoginData'] as bool,
+        canCheckAutoBuyPrice: json['canCheckAutoBuyPrice'] as bool,
+        autoBuyPrice: json['autoBuyPrice'] as int,
+        autoBuyPriceCheckDate: json['autoBuyPriceCheckDate'] as int,
+        descriptionHtml: json['descriptionHtml'] as String,
+        descriptionEnHtml: json['descriptionEnHtml'] as String,
+        descriptionPlain: json['descriptionPlain'] as String,
+        descriptionEnPlain: json['descriptionEnPlain'] as String,
+        seller:
+            ItemModelSeller.fromJson(json['seller'] as Map<String, dynamic>),
+      );
 }
 
 class InvoiceModel {
-  final String? additionalData;
-  final int? amount;
-  final String? comment;
-  final int? expiresAt;
-  final int? invoiceDate;
-  final int? invoiceId;
-  final bool? isTest;
-  final int? merchantId;
-  final int? paidDate;
-  final int? payerUserId;
-  final String? paymentId;
-  final int? resendAttempts;
-  final String? status;
-  final String? url;
-  final String? urlCallback;
-  final String? urlSuccess;
-  final int? userId;
+  final String additionalData;
+  final int amount;
+  final String comment;
+  final int expiresAt;
+  final int invoiceDate;
+  final int invoiceId;
+  final bool isTest;
+  final int merchantId;
+  final int paidDate;
+  final int payerUserId;
+  final String paymentId;
+  final int resendAttempts;
+  final String status;
+  final String url;
+  final String urlCallback;
+  final String urlSuccess;
+  final int userId;
 
   const InvoiceModel({
-    this.additionalData,
-    this.amount,
-    this.comment,
-    this.expiresAt,
-    this.invoiceDate,
-    this.invoiceId,
-    this.isTest,
-    this.merchantId,
-    this.paidDate,
-    this.payerUserId,
-    this.paymentId,
-    this.resendAttempts,
-    this.status,
-    this.url,
-    this.urlCallback,
-    this.urlSuccess,
-    this.userId,
+    required this.additionalData,
+    required this.amount,
+    required this.comment,
+    required this.expiresAt,
+    required this.invoiceDate,
+    required this.invoiceId,
+    required this.isTest,
+    required this.merchantId,
+    required this.paidDate,
+    required this.payerUserId,
+    required this.paymentId,
+    required this.resendAttempts,
+    required this.status,
+    required this.url,
+    required this.urlCallback,
+    required this.urlSuccess,
+    required this.userId,
   });
 
   factory InvoiceModel.fromJson(Map<String, dynamic> json) => InvoiceModel(
-    additionalData: json['additional_data'] as String?,
-    amount: json['amount'] as int?,
-    comment: json['comment'] as String?,
-    expiresAt: json['expires_at'] as int?,
-    invoiceDate: json['invoice_date'] as int?,
-    invoiceId: json['invoice_id'] as int?,
-    isTest: json['is_test'] as bool?,
-    merchantId: json['merchant_id'] as int?,
-    paidDate: json['paid_date'] as int?,
-    payerUserId: json['payer_user_id'] as int?,
-    paymentId: json['payment_id'] as String?,
-    resendAttempts: json['resend_attempts'] as int?,
-    status: json['status'] as String?,
-    url: json['url'] as String?,
-    urlCallback: json['url_callback'] as String?,
-    urlSuccess: json['url_success'] as String?,
-    userId: json['user_id'] as int?,
-  );
+        additionalData: json['additional_data'] as String,
+        amount: json['amount'] as int,
+        comment: json['comment'] as String,
+        expiresAt: json['expires_at'] as int,
+        invoiceDate: json['invoice_date'] as int,
+        invoiceId: json['invoice_id'] as int,
+        isTest: json['is_test'] as bool,
+        merchantId: json['merchant_id'] as int,
+        paidDate: json['paid_date'] as int,
+        payerUserId: json['payer_user_id'] as int,
+        paymentId: json['payment_id'] as String,
+        resendAttempts: json['resend_attempts'] as int,
+        status: json['status'] as String,
+        url: json['url'] as String,
+        urlCallback: json['url_callback'] as String,
+        urlSuccess: json['url_success'] as String,
+        userId: json['user_id'] as int,
+      );
 }
 
 class RespSystemInfo {
-  final int? visitorId;
-  final int? time;
-  final int? logId;
+  final int visitorId;
+  final int time;
+  final int logId;
 
   const RespSystemInfo({
-    this.visitorId,
-    this.time,
-    this.logId,
+    required this.visitorId,
+    required this.time,
+    required this.logId,
   });
 
   factory RespSystemInfo.fromJson(Map<String, dynamic> json) => RespSystemInfo(
-    visitorId: json['visitor_id'] as int?,
-    time: json['time'] as int?,
-    logId: json['log_id'] as int?,
-  );
+        visitorId: json['visitor_id'] as int,
+        time: json['time'] as int,
+        logId: json['log_id'] as int,
+      );
 }
 
 // ─── AutoPaymentsApi Types ────────────────────────────────────────
 
 class AutoPaymentsListResponsePayments1234567890ReceiverLinks {
-  final String? permalink;
-  final String? detail;
-  final String? avatar;
-  final String? avatarBig;
-  final String? avatarSmall;
-  final String? followers;
-  final String? followings;
-  final String? ignore;
-  final String? timeline;
+  final String permalink;
+  final String detail;
+  final String avatar;
+  final String avatarBig;
+  final String avatarSmall;
+  final String followers;
+  final String followings;
+  final String ignore;
+  final String timeline;
 
   const AutoPaymentsListResponsePayments1234567890ReceiverLinks({
-    this.permalink,
-    this.detail,
-    this.avatar,
-    this.avatarBig,
-    this.avatarSmall,
-    this.followers,
-    this.followings,
-    this.ignore,
-    this.timeline,
+    required this.permalink,
+    required this.detail,
+    required this.avatar,
+    required this.avatarBig,
+    required this.avatarSmall,
+    required this.followers,
+    required this.followings,
+    required this.ignore,
+    required this.timeline,
   });
 
-  factory AutoPaymentsListResponsePayments1234567890ReceiverLinks.fromJson(Map<String, dynamic> json) => AutoPaymentsListResponsePayments1234567890ReceiverLinks(
-    permalink: json['permalink'] as String?,
-    detail: json['detail'] as String?,
-    avatar: json['avatar'] as String?,
-    avatarBig: json['avatar_big'] as String?,
-    avatarSmall: json['avatar_small'] as String?,
-    followers: json['followers'] as String?,
-    followings: json['followings'] as String?,
-    ignore: json['ignore'] as String?,
-    timeline: json['timeline'] as String?,
-  );
+  factory AutoPaymentsListResponsePayments1234567890ReceiverLinks.fromJson(
+          Map<String, dynamic> json) =>
+      AutoPaymentsListResponsePayments1234567890ReceiverLinks(
+        permalink: json['permalink'] as String,
+        detail: json['detail'] as String,
+        avatar: json['avatar'] as String,
+        avatarBig: json['avatar_big'] as String,
+        avatarSmall: json['avatar_small'] as String,
+        followers: json['followers'] as String,
+        followings: json['followings'] as String,
+        ignore: json['ignore'] as String,
+        timeline: json['timeline'] as String,
+      );
 }
 
 class AutoPaymentsListResponsePayments1234567890ReceiverPermissions {
-  final bool? edit;
-  final bool? follow;
-  final bool? ignore;
-  final bool? profilePost;
+  final bool edit;
+  final bool follow;
+  final bool ignore;
+  final bool profilePost;
 
   const AutoPaymentsListResponsePayments1234567890ReceiverPermissions({
-    this.edit,
-    this.follow,
-    this.ignore,
-    this.profilePost,
+    required this.edit,
+    required this.follow,
+    required this.ignore,
+    required this.profilePost,
   });
 
-  factory AutoPaymentsListResponsePayments1234567890ReceiverPermissions.fromJson(Map<String, dynamic> json) => AutoPaymentsListResponsePayments1234567890ReceiverPermissions(
-    edit: json['edit'] as bool?,
-    follow: json['follow'] as bool?,
-    ignore: json['ignore'] as bool?,
-    profilePost: json['profile_post'] as bool?,
-  );
+  factory AutoPaymentsListResponsePayments1234567890ReceiverPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      AutoPaymentsListResponsePayments1234567890ReceiverPermissions(
+        edit: json['edit'] as bool,
+        follow: json['follow'] as bool,
+        ignore: json['ignore'] as bool,
+        profilePost: json['profile_post'] as bool,
+      );
 }
 
 class AutoPaymentsListResponsePayments1234567890Receiver {
-  final int? userId;
-  final String? username;
-  final String? usernameHtml;
-  final int? userMessageCount;
-  final int? userRegisterDate;
-  final int? userLikeCount;
-  final int? userLike2Count;
-  final int? contestCount;
-  final int? trophyCount;
-  final String? customTitle;
-  final int? isBanned;
-  final String? userTitle;
-  final bool? userIsValid;
-  final bool? userIsVerified;
-  final bool? userIsFollowed;
-  final int? userLastSeenDate;
-  final int? userFollowingCount;
-  final int? userFollowersCount;
-  final AutoPaymentsListResponsePayments1234567890ReceiverLinks? links;
-  final AutoPaymentsListResponsePayments1234567890ReceiverPermissions? permissions;
-  final bool? userIsIgnored;
-  final bool? userIsVisitor;
-  final int? userGroupId;
-  final List<Map<String, dynamic>>? fields;
+  final int userId;
+  final String username;
+  final String usernameHtml;
+  final int userMessageCount;
+  final int userRegisterDate;
+  final int userLikeCount;
+  final int userLike2Count;
+  final int contestCount;
+  final int trophyCount;
+  final String customTitle;
+  final int isBanned;
+  final String userTitle;
+  final bool userIsValid;
+  final bool userIsVerified;
+  final bool userIsFollowed;
+  final int userLastSeenDate;
+  final int userFollowingCount;
+  final int userFollowersCount;
+  final AutoPaymentsListResponsePayments1234567890ReceiverLinks links;
+  final AutoPaymentsListResponsePayments1234567890ReceiverPermissions
+      permissions;
+  final bool userIsIgnored;
+  final bool userIsVisitor;
+  final int userGroupId;
+  final List<Map<String, dynamic>> fields;
 
   const AutoPaymentsListResponsePayments1234567890Receiver({
-    this.userId,
-    this.username,
-    this.usernameHtml,
-    this.userMessageCount,
-    this.userRegisterDate,
-    this.userLikeCount,
-    this.userLike2Count,
-    this.contestCount,
-    this.trophyCount,
-    this.customTitle,
-    this.isBanned,
-    this.userTitle,
-    this.userIsValid,
-    this.userIsVerified,
-    this.userIsFollowed,
-    this.userLastSeenDate,
-    this.userFollowingCount,
-    this.userFollowersCount,
-    this.links,
-    this.permissions,
-    this.userIsIgnored,
-    this.userIsVisitor,
-    this.userGroupId,
-    this.fields,
+    required this.userId,
+    required this.username,
+    required this.usernameHtml,
+    required this.userMessageCount,
+    required this.userRegisterDate,
+    required this.userLikeCount,
+    required this.userLike2Count,
+    required this.contestCount,
+    required this.trophyCount,
+    required this.customTitle,
+    required this.isBanned,
+    required this.userTitle,
+    required this.userIsValid,
+    required this.userIsVerified,
+    required this.userIsFollowed,
+    required this.userLastSeenDate,
+    required this.userFollowingCount,
+    required this.userFollowersCount,
+    required this.links,
+    required this.permissions,
+    required this.userIsIgnored,
+    required this.userIsVisitor,
+    required this.userGroupId,
+    required this.fields,
   });
 
-  factory AutoPaymentsListResponsePayments1234567890Receiver.fromJson(Map<String, dynamic> json) => AutoPaymentsListResponsePayments1234567890Receiver(
-    userId: json['user_id'] as int?,
-    username: json['username'] as String?,
-    usernameHtml: json['username_html'] as String?,
-    userMessageCount: json['user_message_count'] as int?,
-    userRegisterDate: json['user_register_date'] as int?,
-    userLikeCount: json['user_like_count'] as int?,
-    userLike2Count: json['user_like2_count'] as int?,
-    contestCount: json['contest_count'] as int?,
-    trophyCount: json['trophy_count'] as int?,
-    customTitle: json['custom_title'] as String?,
-    isBanned: json['is_banned'] as int?,
-    userTitle: json['user_title'] as String?,
-    userIsValid: json['user_is_valid'] as bool?,
-    userIsVerified: json['user_is_verified'] as bool?,
-    userIsFollowed: json['user_is_followed'] as bool?,
-    userLastSeenDate: json['user_last_seen_date'] as int?,
-    userFollowingCount: json['user_following_count'] as int?,
-    userFollowersCount: json['user_followers_count'] as int?,
-    links: json['links'] != null
-            ? AutoPaymentsListResponsePayments1234567890ReceiverLinks.fromJson(json['links'] as Map<String, dynamic>)
-            : null,
-    permissions: json['permissions'] != null
-            ? AutoPaymentsListResponsePayments1234567890ReceiverPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
-            : null,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    userIsVisitor: json['user_is_visitor'] as bool?,
-    userGroupId: json['user_group_id'] as int?,
-    fields: (json['fields'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-  );
+  factory AutoPaymentsListResponsePayments1234567890Receiver.fromJson(
+          Map<String, dynamic> json) =>
+      AutoPaymentsListResponsePayments1234567890Receiver(
+        userId: json['user_id'] as int,
+        username: json['username'] as String,
+        usernameHtml: json['username_html'] as String,
+        userMessageCount: json['user_message_count'] as int,
+        userRegisterDate: json['user_register_date'] as int,
+        userLikeCount: json['user_like_count'] as int,
+        userLike2Count: json['user_like2_count'] as int,
+        contestCount: json['contest_count'] as int,
+        trophyCount: json['trophy_count'] as int,
+        customTitle: json['custom_title'] as String,
+        isBanned: json['is_banned'] as int,
+        userTitle: json['user_title'] as String,
+        userIsValid: json['user_is_valid'] as bool,
+        userIsVerified: json['user_is_verified'] as bool,
+        userIsFollowed: json['user_is_followed'] as bool,
+        userLastSeenDate: json['user_last_seen_date'] as int,
+        userFollowingCount: json['user_following_count'] as int,
+        userFollowersCount: json['user_followers_count'] as int,
+        links: AutoPaymentsListResponsePayments1234567890ReceiverLinks.fromJson(
+            json['links'] as Map<String, dynamic>),
+        permissions:
+            AutoPaymentsListResponsePayments1234567890ReceiverPermissions
+                .fromJson(json['permissions'] as Map<String, dynamic>),
+        userIsIgnored: json['user_is_ignored'] as bool,
+        userIsVisitor: json['user_is_visitor'] as bool,
+        userGroupId: json['user_group_id'] as int,
+        fields: (json['fields'] as List<dynamic>).cast<Map<String, dynamic>>(),
+      );
 }
 
 class AutoPaymentsListResponsePayments1234567890 {
-  final int? userId;
-  final int? receiverId;
-  final String? amount;
-  final String? description;
-  final int? nextPayment;
-  final int? nextAlertDate;
-  final int? autoPaymentId;
-  final String? day;
-  final AutoPaymentsListResponsePayments1234567890Receiver? receiver;
+  final int userId;
+  final int receiverId;
+  final String amount;
+  final String description;
+  final int nextPayment;
+  final int nextAlertDate;
+  final int autoPaymentId;
+  final String day;
+  final AutoPaymentsListResponsePayments1234567890Receiver receiver;
 
   const AutoPaymentsListResponsePayments1234567890({
-    this.userId,
-    this.receiverId,
-    this.amount,
-    this.description,
-    this.nextPayment,
-    this.nextAlertDate,
-    this.autoPaymentId,
-    this.day,
-    this.receiver,
+    required this.userId,
+    required this.receiverId,
+    required this.amount,
+    required this.description,
+    required this.nextPayment,
+    required this.nextAlertDate,
+    required this.autoPaymentId,
+    required this.day,
+    required this.receiver,
   });
 
-  factory AutoPaymentsListResponsePayments1234567890.fromJson(Map<String, dynamic> json) => AutoPaymentsListResponsePayments1234567890(
-    userId: json['user_id'] as int?,
-    receiverId: json['receiver_id'] as int?,
-    amount: json['amount'] as String?,
-    description: json['description'] as String?,
-    nextPayment: json['next_payment'] as int?,
-    nextAlertDate: json['next_alert_date'] as int?,
-    autoPaymentId: json['auto_payment_id'] as int?,
-    day: json['day'] as String?,
-    receiver: json['receiver'] != null
-            ? AutoPaymentsListResponsePayments1234567890Receiver.fromJson(json['receiver'] as Map<String, dynamic>)
-            : null,
-  );
+  factory AutoPaymentsListResponsePayments1234567890.fromJson(
+          Map<String, dynamic> json) =>
+      AutoPaymentsListResponsePayments1234567890(
+        userId: json['user_id'] as int,
+        receiverId: json['receiver_id'] as int,
+        amount: json['amount'] as String,
+        description: json['description'] as String,
+        nextPayment: json['next_payment'] as int,
+        nextAlertDate: json['next_alert_date'] as int,
+        autoPaymentId: json['auto_payment_id'] as int,
+        day: json['day'] as String,
+        receiver: AutoPaymentsListResponsePayments1234567890Receiver.fromJson(
+            json['receiver'] as Map<String, dynamic>),
+      );
 }
 
 class AutoPaymentsListResponsePayments {
-  final AutoPaymentsListResponsePayments1234567890? n1234567890;
+  final AutoPaymentsListResponsePayments1234567890 n1234567890;
 
   const AutoPaymentsListResponsePayments({
-    this.n1234567890,
+    required this.n1234567890,
   });
 
-  factory AutoPaymentsListResponsePayments.fromJson(Map<String, dynamic> json) => AutoPaymentsListResponsePayments(
-    n1234567890: json['1234567890'] != null
-            ? AutoPaymentsListResponsePayments1234567890.fromJson(json['1234567890'] as Map<String, dynamic>)
-            : null,
-  );
+  factory AutoPaymentsListResponsePayments.fromJson(
+          Map<String, dynamic> json) =>
+      AutoPaymentsListResponsePayments(
+        n1234567890: AutoPaymentsListResponsePayments1234567890.fromJson(
+            json['1234567890'] as Map<String, dynamic>),
+      );
 }
 
 class AutoPaymentsListResponse {
-  final AutoPaymentsListResponsePayments? payments;
-  final RespSystemInfo? systemInfo;
+  final AutoPaymentsListResponsePayments payments;
+  final RespSystemInfo systemInfo;
 
   const AutoPaymentsListResponse({
-    this.payments,
-    this.systemInfo,
+    required this.payments,
+    required this.systemInfo,
   });
 
-  factory AutoPaymentsListResponse.fromJson(Map<String, dynamic> json) => AutoPaymentsListResponse(
-    payments: json['payments'] != null
-            ? AutoPaymentsListResponsePayments.fromJson(json['payments'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory AutoPaymentsListResponse.fromJson(Map<String, dynamic> json) =>
+      AutoPaymentsListResponse(
+        payments: AutoPaymentsListResponsePayments.fromJson(
+            json['payments'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class AutoPaymentsCreateBody {
@@ -2779,26 +2782,26 @@ class AutoPaymentsCreateBody {
 }
 
 class AutoPaymentsCreateResponse {
-  final String? status;
-  final String? message;
-  final int? autoPaymentId;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final int autoPaymentId;
+  final RespSystemInfo systemInfo;
 
   const AutoPaymentsCreateResponse({
-    this.status,
-    this.message,
-    this.autoPaymentId,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.autoPaymentId,
+    required this.systemInfo,
   });
 
-  factory AutoPaymentsCreateResponse.fromJson(Map<String, dynamic> json) => AutoPaymentsCreateResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    autoPaymentId: json['auto_payment_id'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory AutoPaymentsCreateResponse.fromJson(Map<String, dynamic> json) =>
+      AutoPaymentsCreateResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        autoPaymentId: json['auto_payment_id'] as int,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class AutoPaymentsDeleteBody {
@@ -2816,23 +2819,23 @@ class AutoPaymentsDeleteBody {
 }
 
 class AutoPaymentsDeleteResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const AutoPaymentsDeleteResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory AutoPaymentsDeleteResponse.fromJson(Map<String, dynamic> json) => AutoPaymentsDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory AutoPaymentsDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      AutoPaymentsDeleteResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 // ─── BatchApi Types ────────────────────────────────────────
@@ -2848,43 +2851,45 @@ class BatchBatchResponseJobsJobId {
     this.jobError,
   });
 
-  factory BatchBatchResponseJobsJobId.fromJson(Map<String, dynamic> json) => BatchBatchResponseJobsJobId(
-    jobResult: json['_job_result'] as String?,
-    jobError: json['_job_error'] as String?,
-  );
+  factory BatchBatchResponseJobsJobId.fromJson(Map<String, dynamic> json) =>
+      BatchBatchResponseJobsJobId(
+        jobResult: json['_job_result'] as String?,
+        jobError: json['_job_error'] as String?,
+      );
 }
 
 class BatchBatchResponseJobs {
-  final BatchBatchResponseJobsJobId? jobId;
+  final BatchBatchResponseJobsJobId jobId;
 
   const BatchBatchResponseJobs({
-    this.jobId,
+    required this.jobId,
   });
 
-  factory BatchBatchResponseJobs.fromJson(Map<String, dynamic> json) => BatchBatchResponseJobs(
-    jobId: json['job_id'] != null
-            ? BatchBatchResponseJobsJobId.fromJson(json['job_id'] as Map<String, dynamic>)
-            : null,
-  );
+  factory BatchBatchResponseJobs.fromJson(Map<String, dynamic> json) =>
+      BatchBatchResponseJobs(
+        jobId: BatchBatchResponseJobsJobId.fromJson(
+            json['job_id'] as Map<String, dynamic>),
+      );
 }
 
 class BatchBatchResponse {
-  final BatchBatchResponseJobs? jobs;
+  final BatchBatchResponseJobs jobs;
   final RespSystemInfo? systemInfo;
 
   const BatchBatchResponse({
-    this.jobs,
+    required this.jobs,
     this.systemInfo,
   });
 
-  factory BatchBatchResponse.fromJson(Map<String, dynamic> json) => BatchBatchResponse(
-    jobs: json['jobs'] != null
-            ? BatchBatchResponseJobs.fromJson(json['jobs'] as Map<String, dynamic>)
+  factory BatchBatchResponse.fromJson(Map<String, dynamic> json) =>
+      BatchBatchResponse(
+        jobs: BatchBatchResponseJobs.fromJson(
+            json['jobs'] as Map<String, dynamic>),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+      );
 }
 
 // ─── CartApi Types ────────────────────────────────────────
@@ -2967,45 +2972,45 @@ class CartGetParams {
 }
 
 class CartGetResponse {
-  final List<ItemFromListModel>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final String? searchUrl;
-  final List<ItemFromListModel>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<ItemFromListModel> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final String searchUrl;
+  final List<ItemFromListModel> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CartGetResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CartGetResponse.fromJson(Map<String, dynamic> json) => CartGetResponse(
-    items: (json['items'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+  factory CartGetResponse.fromJson(Map<String, dynamic> json) =>
+      CartGetResponse(
+        items: (json['items'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CartAddBody {
@@ -3023,20 +3028,20 @@ class CartAddBody {
 }
 
 class CartAddResponse {
-  final bool? success;
-  final RespSystemInfo? systemInfo;
+  final bool success;
+  final RespSystemInfo systemInfo;
 
   const CartAddResponse({
-    this.success,
-    this.systemInfo,
+    required this.success,
+    required this.systemInfo,
   });
 
-  factory CartAddResponse.fromJson(Map<String, dynamic> json) => CartAddResponse(
-    success: json['success'] as bool?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CartAddResponse.fromJson(Map<String, dynamic> json) =>
+      CartAddResponse(
+        success: json['success'] as bool,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CartDeleteBody {
@@ -3054,20 +3059,20 @@ class CartDeleteBody {
 }
 
 class CartDeleteResponse {
-  final bool? success;
-  final RespSystemInfo? systemInfo;
+  final bool success;
+  final RespSystemInfo systemInfo;
 
   const CartDeleteResponse({
-    this.success,
-    this.systemInfo,
+    required this.success,
+    required this.systemInfo,
   });
 
-  factory CartDeleteResponse.fromJson(Map<String, dynamic> json) => CartDeleteResponse(
-    success: json['success'] as bool?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CartDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      CartDeleteResponse(
+        success: json['success'] as bool,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 // ─── CategoryApi Types ────────────────────────────────────────
@@ -3147,45 +3152,45 @@ class CategoryAllParams {
 }
 
 class CategoryAllResponse {
-  final List<ItemFromListModel>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final String? searchUrl;
-  final List<ItemFromListModel>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<ItemFromListModel> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final String searchUrl;
+  final List<ItemFromListModel> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryAllResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryAllResponse.fromJson(Map<String, dynamic> json) => CategoryAllResponse(
-    items: (json['items'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+  factory CategoryAllResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryAllResponse(
+        items: (json['items'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategorySteamParams {
@@ -3215,9 +3220,10 @@ class CategorySteamParams {
   final List<int>? game;
   final Map<String, int>? hoursPlayed;
   final Map<String, int>? hoursPlayedMax;
-  final CategoryEg? eg;
+  final Eg? eg;
   final List<int>? vac;
   final bool? vacSkipGameCheck;
+
   /// Default: "no"
   final Rt? rt;
   final TradeBan? tradeBan;
@@ -3558,53 +3564,53 @@ class CategorySteamParams {
 }
 
 class CategorySteamResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategorySteamResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategorySteamResponse.fromJson(Map<String, dynamic> json) => CategorySteamResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategorySteamResponse.fromJson(Map<String, dynamic> json) =>
+      CategorySteamResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryFortniteParams {
@@ -3632,7 +3638,7 @@ class CategoryFortniteParams {
   final bool? parseSameItemIds;
   final TempEmail? tempEmail;
   final String? itemDomain;
-  final CategoryEg? eg;
+  final Eg? eg;
   final int? smin;
   final int? smax;
   final int? vbmin;
@@ -3844,53 +3850,53 @@ class CategoryFortniteParams {
 }
 
 class CategoryFortniteResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryFortniteResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryFortniteResponse.fromJson(Map<String, dynamic> json) => CategoryFortniteResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryFortniteResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryFortniteResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryMihoyoParams {
@@ -4151,53 +4157,53 @@ class CategoryMihoyoParams {
 }
 
 class CategoryMihoyoResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryMihoyoResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryMihoyoResponse.fromJson(Map<String, dynamic> json) => CategoryMihoyoResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryMihoyoResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryMihoyoResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryRiotParams {
@@ -4446,53 +4452,53 @@ class CategoryRiotParams {
 }
 
 class CategoryRiotResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryRiotResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryRiotResponse.fromJson(Map<String, dynamic> json) => CategoryRiotResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryRiotResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryRiotResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryTelegramParams {
@@ -4708,53 +4714,53 @@ class CategoryTelegramParams {
 }
 
 class CategoryTelegramResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryTelegramResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryTelegramResponse.fromJson(Map<String, dynamic> json) => CategoryTelegramResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryTelegramResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryTelegramResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategorySupercellParams {
@@ -4782,7 +4788,7 @@ class CategorySupercellParams {
   final int? daybreak;
   final List<String>? emailType;
   final String? itemDomain;
-  final CategoryEg? eg;
+  final Eg? eg;
   final Tel? tel;
   final int? brawlLevelMin;
   final int? brawlLevelMax;
@@ -4985,53 +4991,53 @@ class CategorySupercellParams {
 }
 
 class CategorySupercellResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategorySupercellResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategorySupercellResponse.fromJson(Map<String, dynamic> json) => CategorySupercellResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategorySupercellResponse.fromJson(Map<String, dynamic> json) =>
+      CategorySupercellResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryEaParams {
@@ -5071,7 +5077,7 @@ class CategoryEaParams {
   final XboxConnected? xboxConnected;
   final SteamConnected? steamConnected;
   final PsnConnected? psnConnected;
-  final CategorySubscription? subscription;
+  final Subscription? subscription;
   final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
   final Map<String, int>? hoursPlayed;
@@ -5172,53 +5178,53 @@ class CategoryEaParams {
 }
 
 class CategoryEaResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryEaResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryEaResponse.fromJson(Map<String, dynamic> json) => CategoryEaResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryEaResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryEaResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryWotParams {
@@ -5401,53 +5407,53 @@ class CategoryWotParams {
 }
 
 class CategoryWotResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryWotResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryWotResponse.fromJson(Map<String, dynamic> json) => CategoryWotResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryWotResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryWotResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryWotBlitzParams {
@@ -5630,53 +5636,53 @@ class CategoryWotBlitzParams {
 }
 
 class CategoryWotBlitzResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryWotBlitzResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryWotBlitzResponse.fromJson(Map<String, dynamic> json) => CategoryWotBlitzResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryWotBlitzResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryWotBlitzResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryGiftsParams {
@@ -5701,7 +5707,7 @@ class CategoryGiftsParams {
   final List<String>? emailProvider;
   final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
-  final CategorySubscription? subscription;
+  final Subscription? subscription;
   final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
 
@@ -5763,53 +5769,53 @@ class CategoryGiftsParams {
 }
 
 class CategoryGiftsResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryGiftsResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryGiftsResponse.fromJson(Map<String, dynamic> json) => CategoryGiftsResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryGiftsResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryGiftsResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryEpicGamesParams {
@@ -5836,7 +5842,7 @@ class CategoryEpicGamesParams {
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final CategoryEg? eg;
+  final Eg? eg;
   final List<String>? game;
   final ChangeEmail? changeEmail;
   final bool? rlPurchases;
@@ -5938,53 +5944,53 @@ class CategoryEpicGamesParams {
 }
 
 class CategoryEpicGamesResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryEpicGamesResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryEpicGamesResponse.fromJson(Map<String, dynamic> json) => CategoryEpicGamesResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryEpicGamesResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryEpicGamesResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryEscapeFromTarkovParams {
@@ -6092,53 +6098,54 @@ class CategoryEscapeFromTarkovParams {
 }
 
 class CategoryEscapeFromTarkovResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryEscapeFromTarkovResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryEscapeFromTarkovResponse.fromJson(Map<String, dynamic> json) => CategoryEscapeFromTarkovResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryEscapeFromTarkovResponse.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEscapeFromTarkovResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategorySocialClubParams {
@@ -6240,53 +6247,53 @@ class CategorySocialClubParams {
 }
 
 class CategorySocialClubResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategorySocialClubResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategorySocialClubResponse.fromJson(Map<String, dynamic> json) => CategorySocialClubResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategorySocialClubResponse.fromJson(Map<String, dynamic> json) =>
+      CategorySocialClubResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryUplayParams {
@@ -6319,7 +6326,7 @@ class CategoryUplayParams {
   final int? daybreak;
   final int? gmin;
   final int? gmax;
-  final CategorySubscription? subscription;
+  final Subscription? subscription;
   final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
   final int? r6LevelMin;
@@ -6454,53 +6461,53 @@ class CategoryUplayParams {
 }
 
 class CategoryUplayResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryUplayResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryUplayResponse.fromJson(Map<String, dynamic> json) => CategoryUplayResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryUplayResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryUplayResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryDiscordParams {
@@ -6698,53 +6705,53 @@ class CategoryDiscordParams {
 }
 
 class CategoryDiscordResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryDiscordResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryDiscordResponse.fromJson(Map<String, dynamic> json) => CategoryDiscordResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryDiscordResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryDiscordResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryTikTokParams {
@@ -6870,53 +6877,53 @@ class CategoryTikTokParams {
 }
 
 class CategoryTikTokResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryTikTokResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryTikTokResponse.fromJson(Map<String, dynamic> json) => CategoryTikTokResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryTikTokResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryTikTokResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryInstagramParams {
@@ -7033,53 +7040,53 @@ class CategoryInstagramParams {
 }
 
 class CategoryInstagramResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryInstagramResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryInstagramResponse.fromJson(Map<String, dynamic> json) => CategoryInstagramResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryInstagramResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryInstagramResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryBattleNetParams {
@@ -7106,7 +7113,7 @@ class CategoryBattleNetParams {
   final bool? parseSameItemIds;
   final List<String>? emailType;
   final String? itemDomain;
-  final CategoryEg? eg;
+  final Eg? eg;
   final List<int>? game;
   final int? daybreak;
   final List<String>? country;
@@ -7202,53 +7209,53 @@ class CategoryBattleNetParams {
 }
 
 class CategoryBattleNetResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryBattleNetResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryBattleNetResponse.fromJson(Map<String, dynamic> json) => CategoryBattleNetResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryBattleNetResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryBattleNetResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryChatGPTParams {
@@ -7365,53 +7372,53 @@ class CategoryChatGPTParams {
 }
 
 class CategoryChatGPTResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryChatGPTResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryChatGPTResponse.fromJson(Map<String, dynamic> json) => CategoryChatGPTResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryChatGPTResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryChatGPTResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryVpnParams {
@@ -7501,53 +7508,53 @@ class CategoryVpnParams {
 }
 
 class CategoryVpnResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryVpnResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryVpnResponse.fromJson(Map<String, dynamic> json) => CategoryVpnResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryVpnResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryVpnResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryRobloxParams {
@@ -7583,7 +7590,7 @@ class CategoryRobloxParams {
   final List<String>? notCountry;
   final int? reg;
   final RegPeriod? regPeriod;
-  final CategorySubscription? subscription;
+  final Subscription? subscription;
   final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
   final Autorenewal? autorenewal;
@@ -7736,53 +7743,53 @@ class CategoryRobloxParams {
 }
 
 class CategoryRobloxResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryRobloxResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryRobloxResponse.fromJson(Map<String, dynamic> json) => CategoryRobloxResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryRobloxResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryRobloxResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryWarfaceParams {
@@ -7890,53 +7897,53 @@ class CategoryWarfaceParams {
 }
 
 class CategoryWarfaceResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryWarfaceResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryWarfaceResponse.fromJson(Map<String, dynamic> json) => CategoryWarfaceResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryWarfaceResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryWarfaceResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryMinecraftParams {
@@ -7961,7 +7968,7 @@ class CategoryMinecraftParams {
   final List<String>? emailProvider;
   final NotEmailProvider? notEmailProvider;
   final bool? parseSameItemIds;
-  final CategorySubscription? subscription;
+  final Subscription? subscription;
   final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
   final Autorenewal? autorenewal;
@@ -8119,53 +8126,53 @@ class CategoryMinecraftParams {
 }
 
 class CategoryMinecraftResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryMinecraftResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryMinecraftResponse.fromJson(Map<String, dynamic> json) => CategoryMinecraftResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryMinecraftResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryMinecraftResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryHytaleParams {
@@ -8252,53 +8259,53 @@ class CategoryHytaleParams {
 }
 
 class CategoryHytaleResponse {
-  final List<Map<String, dynamic>>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final bool? wasCached;
-  final int? cacheTTL;
-  final int? lastModified;
-  final int? serverTime;
-  final String? searchUrl;
-  final List<Object>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final bool wasCached;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
+  final String searchUrl;
+  final List<Object> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const CategoryHytaleResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.wasCached,
-    this.cacheTTL,
-    this.lastModified,
-    this.serverTime,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.wasCached,
+    required this.cacheTTL,
+    required this.lastModified,
+    required this.serverTime,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory CategoryHytaleResponse.fromJson(Map<String, dynamic> json) => CategoryHytaleResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    wasCached: json['wasCached'] as bool?,
-    cacheTTL: json['cacheTTL'] as int?,
-    lastModified: json['lastModified'] as int?,
-    serverTime: json['serverTime'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)?.cast<Object>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryHytaleResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryHytaleResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        wasCached: json['wasCached'] as bool,
+        cacheTTL: json['cacheTTL'] as int,
+        lastModified: json['lastModified'] as int,
+        serverTime: json['serverTime'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>).cast<Object>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryListParams {
@@ -8316,212 +8323,218 @@ class CategoryListParams {
 }
 
 class CategoryListResponseCategoryLinks {
-  final String? permalink;
-  final String? detail;
-  final String? subCategories;
-  final String? subForums;
+  final String permalink;
+  final String detail;
+  final String subCategories;
+  final String subForums;
 
   const CategoryListResponseCategoryLinks({
-    this.permalink,
-    this.detail,
-    this.subCategories,
-    this.subForums,
+    required this.permalink,
+    required this.detail,
+    required this.subCategories,
+    required this.subForums,
   });
 
-  factory CategoryListResponseCategoryLinks.fromJson(Map<String, dynamic> json) => CategoryListResponseCategoryLinks(
-    permalink: json['permalink'] as String?,
-    detail: json['detail'] as String?,
-    subCategories: json['sub-categories'] as String?,
-    subForums: json['sub-forums'] as String?,
-  );
+  factory CategoryListResponseCategoryLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryListResponseCategoryLinks(
+        permalink: json['permalink'] as String,
+        detail: json['detail'] as String,
+        subCategories: json['sub-categories'] as String,
+        subForums: json['sub-forums'] as String,
+      );
 }
 
 class CategoryListResponseCategory {
-  final int? categoryId;
-  final String? categoryTitle;
-  final String? categoryDescription;
-  final CategoryListResponseCategoryLinks? links;
+  final int categoryId;
+  final String categoryTitle;
+  final String categoryDescription;
+  final CategoryListResponseCategoryLinks links;
 
   const CategoryListResponseCategory({
-    this.categoryId,
-    this.categoryTitle,
-    this.categoryDescription,
-    this.links,
+    required this.categoryId,
+    required this.categoryTitle,
+    required this.categoryDescription,
+    required this.links,
   });
 
-  factory CategoryListResponseCategory.fromJson(Map<String, dynamic> json) => CategoryListResponseCategory(
-    categoryId: json['category_id'] as int?,
-    categoryTitle: json['category_title'] as String?,
-    categoryDescription: json['category_description'] as String?,
-    links: json['links'] != null
-            ? CategoryListResponseCategoryLinks.fromJson(json['links'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryListResponseCategory.fromJson(Map<String, dynamic> json) =>
+      CategoryListResponseCategory(
+        categoryId: json['category_id'] as int,
+        categoryTitle: json['category_title'] as String,
+        categoryDescription: json['category_description'] as String,
+        links: CategoryListResponseCategoryLinks.fromJson(
+            json['links'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryListResponse {
-  final CategoryListResponseCategory? category;
-  final RespSystemInfo? systemInfo;
+  final CategoryListResponseCategory category;
+  final RespSystemInfo systemInfo;
 
   const CategoryListResponse({
-    this.category,
-    this.systemInfo,
+    required this.category,
+    required this.systemInfo,
   });
 
-  factory CategoryListResponse.fromJson(Map<String, dynamic> json) => CategoryListResponse(
-    category: json['category'] != null
-            ? CategoryListResponseCategory.fromJson(json['category'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryListResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryListResponse(
+        category: CategoryListResponseCategory.fromJson(
+            json['category'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryParamsResponseCategory {
-  final int? categoryId;
-  final int? subCategoryId;
-  final int? categoryOrder;
-  final String? categoryTitle;
-  final String? categoryName;
-  final String? categoryUrl;
-  final String? categoryDescriptionHtml;
-  final String? categoryLoginUrl;
-  final int? addItemAvailable;
-  final int? massUploadItemAvailable;
-  final int? hasGuarantee;
-  final int? hasAccountLink;
-  final int? requireTempEmail;
-  final String? recoveryLink;
-  final int? checkButtonEnabled;
-  final int? checkerEnabled;
-  final int? supportPersonalProxy;
-  final int? supportEmailLoginData;
-  final int? requireEmailLoginData;
-  final int? displayInList;
-  final String? categoryDescriptionHtmlEn;
-  final String? categoryH1HtmlEn;
-  final int? accountPriceMin;
-  final int? requireVideoRecording;
-  final String? topQueries;
-  final int? requireEldForNativeAccs;
-  final int? canBeResold;
-  final int? supportTempEmail;
-  final String? cookies;
-  final String? loginType;
-  final int? guestHidden;
-  final int? availableTempEmail;
-  final int? resaleDurationLimitDays;
-  final int? buyWithoutValidation;
-  final int? maxInvalidUploadTries;
+  final int categoryId;
+  final int subCategoryId;
+  final int categoryOrder;
+  final String categoryTitle;
+  final String categoryName;
+  final String categoryUrl;
+  final String categoryDescriptionHtml;
+  final String categoryLoginUrl;
+  final int addItemAvailable;
+  final int massUploadItemAvailable;
+  final int hasGuarantee;
+  final int hasAccountLink;
+  final int requireTempEmail;
+  final String recoveryLink;
+  final int checkButtonEnabled;
+  final int checkerEnabled;
+  final int supportPersonalProxy;
+  final int supportEmailLoginData;
+  final int requireEmailLoginData;
+  final int displayInList;
+  final String categoryDescriptionHtmlEn;
+  final String categoryH1HtmlEn;
+  final int accountPriceMin;
+  final int requireVideoRecording;
+  final String topQueries;
+  final int requireEldForNativeAccs;
+  final int canBeResold;
+  final int supportTempEmail;
+  final String cookies;
+  final String loginType;
+  final int guestHidden;
+  final int availableTempEmail;
+  final int resaleDurationLimitDays;
+  final int buyWithoutValidation;
+  final int maxInvalidUploadTries;
 
   const CategoryParamsResponseCategory({
-    this.categoryId,
-    this.subCategoryId,
-    this.categoryOrder,
-    this.categoryTitle,
-    this.categoryName,
-    this.categoryUrl,
-    this.categoryDescriptionHtml,
-    this.categoryLoginUrl,
-    this.addItemAvailable,
-    this.massUploadItemAvailable,
-    this.hasGuarantee,
-    this.hasAccountLink,
-    this.requireTempEmail,
-    this.recoveryLink,
-    this.checkButtonEnabled,
-    this.checkerEnabled,
-    this.supportPersonalProxy,
-    this.supportEmailLoginData,
-    this.requireEmailLoginData,
-    this.displayInList,
-    this.categoryDescriptionHtmlEn,
-    this.categoryH1HtmlEn,
-    this.accountPriceMin,
-    this.requireVideoRecording,
-    this.topQueries,
-    this.requireEldForNativeAccs,
-    this.canBeResold,
-    this.supportTempEmail,
-    this.cookies,
-    this.loginType,
-    this.guestHidden,
-    this.availableTempEmail,
-    this.resaleDurationLimitDays,
-    this.buyWithoutValidation,
-    this.maxInvalidUploadTries,
+    required this.categoryId,
+    required this.subCategoryId,
+    required this.categoryOrder,
+    required this.categoryTitle,
+    required this.categoryName,
+    required this.categoryUrl,
+    required this.categoryDescriptionHtml,
+    required this.categoryLoginUrl,
+    required this.addItemAvailable,
+    required this.massUploadItemAvailable,
+    required this.hasGuarantee,
+    required this.hasAccountLink,
+    required this.requireTempEmail,
+    required this.recoveryLink,
+    required this.checkButtonEnabled,
+    required this.checkerEnabled,
+    required this.supportPersonalProxy,
+    required this.supportEmailLoginData,
+    required this.requireEmailLoginData,
+    required this.displayInList,
+    required this.categoryDescriptionHtmlEn,
+    required this.categoryH1HtmlEn,
+    required this.accountPriceMin,
+    required this.requireVideoRecording,
+    required this.topQueries,
+    required this.requireEldForNativeAccs,
+    required this.canBeResold,
+    required this.supportTempEmail,
+    required this.cookies,
+    required this.loginType,
+    required this.guestHidden,
+    required this.availableTempEmail,
+    required this.resaleDurationLimitDays,
+    required this.buyWithoutValidation,
+    required this.maxInvalidUploadTries,
   });
 
-  factory CategoryParamsResponseCategory.fromJson(Map<String, dynamic> json) => CategoryParamsResponseCategory(
-    categoryId: json['category_id'] as int?,
-    subCategoryId: json['sub_category_id'] as int?,
-    categoryOrder: json['category_order'] as int?,
-    categoryTitle: json['category_title'] as String?,
-    categoryName: json['category_name'] as String?,
-    categoryUrl: json['category_url'] as String?,
-    categoryDescriptionHtml: json['category_description_html'] as String?,
-    categoryLoginUrl: json['category_login_url'] as String?,
-    addItemAvailable: json['add_item_available'] as int?,
-    massUploadItemAvailable: json['mass_upload_item_available'] as int?,
-    hasGuarantee: json['has_guarantee'] as int?,
-    hasAccountLink: json['has_account_link'] as int?,
-    requireTempEmail: json['require_temp_email'] as int?,
-    recoveryLink: json['recovery_link'] as String?,
-    checkButtonEnabled: json['check_button_enabled'] as int?,
-    checkerEnabled: json['checker_enabled'] as int?,
-    supportPersonalProxy: json['support_personal_proxy'] as int?,
-    supportEmailLoginData: json['support_email_login_data'] as int?,
-    requireEmailLoginData: json['require_email_login_data'] as int?,
-    displayInList: json['display_in_list'] as int?,
-    categoryDescriptionHtmlEn: json['category_description_html_en'] as String?,
-    categoryH1HtmlEn: json['category_h1_html_en'] as String?,
-    accountPriceMin: json['account_price_min'] as int?,
-    requireVideoRecording: json['require_video_recording'] as int?,
-    topQueries: json['top_queries'] as String?,
-    requireEldForNativeAccs: json['require_eld_for_native_accs'] as int?,
-    canBeResold: json['can_be_resold'] as int?,
-    supportTempEmail: json['support_temp_email'] as int?,
-    cookies: json['cookies'] as String?,
-    loginType: json['login_type'] as String?,
-    guestHidden: json['guest_hidden'] as int?,
-    availableTempEmail: json['available_temp_email'] as int?,
-    resaleDurationLimitDays: json['resale_duration_limit_days'] as int?,
-    buyWithoutValidation: json['buy_without_validation'] as int?,
-    maxInvalidUploadTries: json['max_invalid_upload_tries'] as int?,
-  );
+  factory CategoryParamsResponseCategory.fromJson(Map<String, dynamic> json) =>
+      CategoryParamsResponseCategory(
+        categoryId: json['category_id'] as int,
+        subCategoryId: json['sub_category_id'] as int,
+        categoryOrder: json['category_order'] as int,
+        categoryTitle: json['category_title'] as String,
+        categoryName: json['category_name'] as String,
+        categoryUrl: json['category_url'] as String,
+        categoryDescriptionHtml: json['category_description_html'] as String,
+        categoryLoginUrl: json['category_login_url'] as String,
+        addItemAvailable: json['add_item_available'] as int,
+        massUploadItemAvailable: json['mass_upload_item_available'] as int,
+        hasGuarantee: json['has_guarantee'] as int,
+        hasAccountLink: json['has_account_link'] as int,
+        requireTempEmail: json['require_temp_email'] as int,
+        recoveryLink: json['recovery_link'] as String,
+        checkButtonEnabled: json['check_button_enabled'] as int,
+        checkerEnabled: json['checker_enabled'] as int,
+        supportPersonalProxy: json['support_personal_proxy'] as int,
+        supportEmailLoginData: json['support_email_login_data'] as int,
+        requireEmailLoginData: json['require_email_login_data'] as int,
+        displayInList: json['display_in_list'] as int,
+        categoryDescriptionHtmlEn:
+            json['category_description_html_en'] as String,
+        categoryH1HtmlEn: json['category_h1_html_en'] as String,
+        accountPriceMin: json['account_price_min'] as int,
+        requireVideoRecording: json['require_video_recording'] as int,
+        topQueries: json['top_queries'] as String,
+        requireEldForNativeAccs: json['require_eld_for_native_accs'] as int,
+        canBeResold: json['can_be_resold'] as int,
+        supportTempEmail: json['support_temp_email'] as int,
+        cookies: json['cookies'] as String,
+        loginType: json['login_type'] as String,
+        guestHidden: json['guest_hidden'] as int,
+        availableTempEmail: json['available_temp_email'] as int,
+        resaleDurationLimitDays: json['resale_duration_limit_days'] as int,
+        buyWithoutValidation: json['buy_without_validation'] as int,
+        maxInvalidUploadTries: json['max_invalid_upload_tries'] as int,
+      );
 }
 
 class CategoryParamsResponseBaseParams0 {
-  final String? name;
-  final String? input;
-  final String? description;
+  final String name;
+  final String input;
+  final String description;
 
   const CategoryParamsResponseBaseParams0({
-    this.name,
-    this.input,
-    this.description,
+    required this.name,
+    required this.input,
+    required this.description,
   });
 
-  factory CategoryParamsResponseBaseParams0.fromJson(Map<String, dynamic> json) => CategoryParamsResponseBaseParams0(
-    name: json['name'] as String?,
-    input: json['input'] as String?,
-    description: json['description'] as String?,
-  );
+  factory CategoryParamsResponseBaseParams0.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryParamsResponseBaseParams0(
+        name: json['name'] as String,
+        input: json['input'] as String,
+        description: json['description'] as String,
+      );
 }
 
 class CategoryParamsResponseBaseParams {
-  final CategoryParamsResponseBaseParams0? n0;
+  final CategoryParamsResponseBaseParams0 n0;
 
   const CategoryParamsResponseBaseParams({
-    this.n0,
+    required this.n0,
   });
 
-  factory CategoryParamsResponseBaseParams.fromJson(Map<String, dynamic> json) => CategoryParamsResponseBaseParams(
-    n0: json['0'] != null
-            ? CategoryParamsResponseBaseParams0.fromJson(json['0'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CategoryParamsResponseBaseParams.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryParamsResponseBaseParams(
+        n0: CategoryParamsResponseBaseParams0.fromJson(
+            json['0'] as Map<String, dynamic>),
+      );
 }
 
 class CategoryParamsResponse {
@@ -8537,18 +8550,23 @@ class CategoryParamsResponse {
     this.systemInfo,
   });
 
-  factory CategoryParamsResponse.fromJson(Map<String, dynamic> json) => CategoryParamsResponse(
-    category: json['category'] != null
-            ? CategoryParamsResponseCategory.fromJson(json['category'] as Map<String, dynamic>)
+  factory CategoryParamsResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryParamsResponse(
+        category: json['category'] != null
+            ? CategoryParamsResponseCategory.fromJson(
+                json['category'] as Map<String, dynamic>)
             : null,
-    params: (json['params'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    baseParams: json['base_params'] != null
-            ? CategoryParamsResponseBaseParams.fromJson(json['base_params'] as Map<String, dynamic>)
+        params:
+            (json['params'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        baseParams: json['base_params'] != null
+            ? CategoryParamsResponseBaseParams.fromJson(
+                json['base_params'] as Map<String, dynamic>)
             : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class CategoryGamesResponse {
@@ -8560,36 +8578,38 @@ class CategoryGamesResponse {
     this.systemInfo,
   });
 
-  factory CategoryGamesResponse.fromJson(Map<String, dynamic> json) => CategoryGamesResponse(
-    games: (json['games'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory CategoryGamesResponse.fromJson(Map<String, dynamic> json) =>
+      CategoryGamesResponse(
+        games: (json['games'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── CustomDiscountsApi Types ────────────────────────────────────────
 
 class CustomDiscountsGetResponse {
-  final List<DiscountModel>? discounts;
-  final int? total;
-  final RespSystemInfo? systemInfo;
+  final List<DiscountModel> discounts;
+  final int total;
+  final RespSystemInfo systemInfo;
 
   const CustomDiscountsGetResponse({
-    this.discounts,
-    this.total,
-    this.systemInfo,
+    required this.discounts,
+    required this.total,
+    required this.systemInfo,
   });
 
-  factory CustomDiscountsGetResponse.fromJson(Map<String, dynamic> json) => CustomDiscountsGetResponse(
-    discounts: (json['discounts'] as List<dynamic>?)
-            ?.map((e) => DiscountModel.fromJson(e as Map<String, dynamic>))
+  factory CustomDiscountsGetResponse.fromJson(Map<String, dynamic> json) =>
+      CustomDiscountsGetResponse(
+        discounts: (json['discounts'] as List<dynamic>)
+            .map((e) => DiscountModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    total: json['total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        total: json['total'] as int,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CustomDiscountsCreateBody {
@@ -8622,25 +8642,24 @@ class CustomDiscountsCreateBody {
 }
 
 class CustomDiscountsCreateResponse {
-  final DiscountModel? discount;
-  final int? total;
-  final RespSystemInfo? systemInfo;
+  final DiscountModel discount;
+  final int total;
+  final RespSystemInfo systemInfo;
 
   const CustomDiscountsCreateResponse({
-    this.discount,
-    this.total,
-    this.systemInfo,
+    required this.discount,
+    required this.total,
+    required this.systemInfo,
   });
 
-  factory CustomDiscountsCreateResponse.fromJson(Map<String, dynamic> json) => CustomDiscountsCreateResponse(
-    discount: json['discount'] != null
-            ? DiscountModel.fromJson(json['discount'] as Map<String, dynamic>)
-            : null,
-    total: json['total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory CustomDiscountsCreateResponse.fromJson(Map<String, dynamic> json) =>
+      CustomDiscountsCreateResponse(
+        discount:
+            DiscountModel.fromJson(json['discount'] as Map<String, dynamic>),
+        total: json['total'] as int,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CustomDiscountsEditBody {
@@ -8667,25 +8686,25 @@ class CustomDiscountsEditBody {
 }
 
 class CustomDiscountsEditResponse {
-  final List<DiscountModel>? discounts;
-  final int? total;
-  final RespSystemInfo? systemInfo;
+  final List<DiscountModel> discounts;
+  final int total;
+  final RespSystemInfo systemInfo;
 
   const CustomDiscountsEditResponse({
-    this.discounts,
-    this.total,
-    this.systemInfo,
+    required this.discounts,
+    required this.total,
+    required this.systemInfo,
   });
 
-  factory CustomDiscountsEditResponse.fromJson(Map<String, dynamic> json) => CustomDiscountsEditResponse(
-    discounts: (json['discounts'] as List<dynamic>?)
-            ?.map((e) => DiscountModel.fromJson(e as Map<String, dynamic>))
+  factory CustomDiscountsEditResponse.fromJson(Map<String, dynamic> json) =>
+      CustomDiscountsEditResponse(
+        discounts: (json['discounts'] as List<dynamic>)
+            .map((e) => DiscountModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    total: json['total'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        total: json['total'] as int,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class CustomDiscountsDeleteBody {
@@ -8713,13 +8732,15 @@ class CustomDiscountsDeleteResponse {
     this.systemInfo,
   });
 
-  factory CustomDiscountsDeleteResponse.fromJson(Map<String, dynamic> json) => CustomDiscountsDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory CustomDiscountsDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      CustomDiscountsDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ImapApi Types ────────────────────────────────────────
@@ -8758,13 +8779,15 @@ class ImapCreateResponse {
     this.systemInfo,
   });
 
-  factory ImapCreateResponse.fromJson(Map<String, dynamic> json) => ImapCreateResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ImapCreateResponse.fromJson(Map<String, dynamic> json) =>
+      ImapCreateResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ImapDeleteBody {
@@ -8792,13 +8815,15 @@ class ImapDeleteResponse {
     this.systemInfo,
   });
 
-  factory ImapDeleteResponse.fromJson(Map<String, dynamic> json) => ImapDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ImapDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      ImapDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ListApi Types ────────────────────────────────────────
@@ -8893,45 +8918,45 @@ class ListUserParams {
 }
 
 class ListUserResponse {
-  final List<ItemFromListModel>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final String? searchUrl;
-  final List<ItemFromListModel>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<ItemFromListModel> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final String searchUrl;
+  final List<ItemFromListModel> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const ListUserResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory ListUserResponse.fromJson(Map<String, dynamic> json) => ListUserResponse(
-    items: (json['items'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+  factory ListUserResponse.fromJson(Map<String, dynamic> json) =>
+      ListUserResponse(
+        items: (json['items'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ListOrdersParams {
@@ -8991,45 +9016,45 @@ class ListOrdersParams {
 }
 
 class ListOrdersResponse {
-  final List<ItemFromListModel>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final String? searchUrl;
-  final List<ItemFromListModel>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<ItemFromListModel> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final String searchUrl;
+  final List<ItemFromListModel> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const ListOrdersResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory ListOrdersResponse.fromJson(Map<String, dynamic> json) => ListOrdersResponse(
-    items: (json['items'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+  factory ListOrdersResponse.fromJson(Map<String, dynamic> json) =>
+      ListOrdersResponse(
+        items: (json['items'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ListStatesParams {
@@ -9047,333 +9072,350 @@ class ListStatesParams {
 }
 
 class ListStatesResponseUserItemStatesStickied {
-  final String? itemState;
-  final int? itemCount;
-  final String? title;
-  final int? stickyLimit;
+  final String itemState;
+  final int itemCount;
+  final String title;
+  final int stickyLimit;
 
   const ListStatesResponseUserItemStatesStickied({
-    this.itemState,
-    this.itemCount,
-    this.title,
-    this.stickyLimit,
+    required this.itemState,
+    required this.itemCount,
+    required this.title,
+    required this.stickyLimit,
   });
 
-  factory ListStatesResponseUserItemStatesStickied.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesStickied(
-    itemState: json['item_state'] as String?,
-    itemCount: json['item_count'] as int?,
-    title: json['title'] as String?,
-    stickyLimit: json['stickyLimit'] as int?,
-  );
+  factory ListStatesResponseUserItemStatesStickied.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesStickied(
+        itemState: json['item_state'] as String,
+        itemCount: json['item_count'] as int,
+        title: json['title'] as String,
+        stickyLimit: json['stickyLimit'] as int,
+      );
 }
 
 class ListStatesResponseUserItemStatesDiscountRequest {
-  final String? itemState;
-  final int? itemCount;
-  final String? title;
+  final String itemState;
+  final int itemCount;
+  final String title;
 
   const ListStatesResponseUserItemStatesDiscountRequest({
-    this.itemState,
-    this.itemCount,
-    this.title,
+    required this.itemState,
+    required this.itemCount,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesDiscountRequest.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesDiscountRequest(
-    itemState: json['item_state'] as String?,
-    itemCount: json['item_count'] as int?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesDiscountRequest.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesDiscountRequest(
+        itemState: json['item_state'] as String,
+        itemCount: json['item_count'] as int,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesInBuyersFavorites {
-  final String? itemState;
-  final int? itemCount;
-  final String? title;
+  final String itemState;
+  final int itemCount;
+  final String title;
 
   const ListStatesResponseUserItemStatesInBuyersFavorites({
-    this.itemState,
-    this.itemCount,
-    this.title,
+    required this.itemState,
+    required this.itemCount,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesInBuyersFavorites.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesInBuyersFavorites(
-    itemState: json['item_state'] as String?,
-    itemCount: json['item_count'] as int?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesInBuyersFavorites.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesInBuyersFavorites(
+        itemState: json['item_state'] as String,
+        itemCount: json['item_count'] as int,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesActive {
-  final int? itemCount;
-  final String? itemState;
-  final String? title;
+  final int itemCount;
+  final String itemState;
+  final String title;
 
   const ListStatesResponseUserItemStatesActive({
-    this.itemCount,
-    this.itemState,
-    this.title,
+    required this.itemCount,
+    required this.itemState,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesActive.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesActive(
-    itemCount: json['item_count'] as int?,
-    itemState: json['item_state'] as String?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesActive.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesActive(
+        itemCount: json['item_count'] as int,
+        itemState: json['item_state'] as String,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesPaid {
-  final int? itemCount;
-  final String? itemState;
-  final String? title;
+  final int itemCount;
+  final String itemState;
+  final String title;
 
   const ListStatesResponseUserItemStatesPaid({
-    this.itemCount,
-    this.itemState,
-    this.title,
+    required this.itemCount,
+    required this.itemState,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesPaid.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesPaid(
-    itemCount: json['item_count'] as int?,
-    itemState: json['item_state'] as String?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesPaid.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesPaid(
+        itemCount: json['item_count'] as int,
+        itemState: json['item_state'] as String,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesClosed {
-  final String? itemState;
-  final int? itemCount;
-  final String? title;
+  final String itemState;
+  final int itemCount;
+  final String title;
 
   const ListStatesResponseUserItemStatesClosed({
-    this.itemState,
-    this.itemCount,
-    this.title,
+    required this.itemState,
+    required this.itemCount,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesClosed.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesClosed(
-    itemState: json['item_state'] as String?,
-    itemCount: json['item_count'] as int?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesClosed.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesClosed(
+        itemState: json['item_state'] as String,
+        itemCount: json['item_count'] as int,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesDeleted {
-  final int? itemCount;
-  final String? itemState;
-  final String? title;
+  final int itemCount;
+  final String itemState;
+  final String title;
 
   const ListStatesResponseUserItemStatesDeleted({
-    this.itemCount,
-    this.itemState,
-    this.title,
+    required this.itemCount,
+    required this.itemState,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesDeleted.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesDeleted(
-    itemCount: json['item_count'] as int?,
-    itemState: json['item_state'] as String?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesDeleted.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesDeleted(
+        itemCount: json['item_count'] as int,
+        itemState: json['item_state'] as String,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesAwaiting {
-  final int? itemCount;
-  final String? itemState;
-  final String? title;
+  final int itemCount;
+  final String itemState;
+  final String title;
 
   const ListStatesResponseUserItemStatesAwaiting({
-    this.itemCount,
-    this.itemState,
-    this.title,
+    required this.itemCount,
+    required this.itemState,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesAwaiting.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesAwaiting(
-    itemCount: json['item_count'] as int?,
-    itemState: json['item_state'] as String?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesAwaiting.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesAwaiting(
+        itemCount: json['item_count'] as int,
+        itemState: json['item_state'] as String,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesPreActive {
-  final String? itemState;
-  final int? itemCount;
-  final String? title;
+  final String itemState;
+  final int itemCount;
+  final String title;
 
   const ListStatesResponseUserItemStatesPreActive({
-    this.itemState,
-    this.itemCount,
-    this.title,
+    required this.itemState,
+    required this.itemCount,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesPreActive.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesPreActive(
-    itemState: json['item_state'] as String?,
-    itemCount: json['item_count'] as int?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesPreActive.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesPreActive(
+        itemState: json['item_state'] as String,
+        itemCount: json['item_count'] as int,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesPreUpload {
-  final String? itemState;
-  final int? itemCount;
-  final String? title;
+  final String itemState;
+  final int itemCount;
+  final String title;
 
   const ListStatesResponseUserItemStatesPreUpload({
-    this.itemState,
-    this.itemCount,
-    this.title,
+    required this.itemState,
+    required this.itemCount,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesPreUpload.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesPreUpload(
-    itemState: json['item_state'] as String?,
-    itemCount: json['item_count'] as int?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesPreUpload.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesPreUpload(
+        itemState: json['item_state'] as String,
+        itemCount: json['item_count'] as int,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesPendingDeletion {
-  final String? itemState;
-  final int? itemCount;
-  final String? title;
+  final String itemState;
+  final int itemCount;
+  final String title;
 
   const ListStatesResponseUserItemStatesPendingDeletion({
-    this.itemState,
-    this.itemCount,
-    this.title,
+    required this.itemState,
+    required this.itemCount,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesPendingDeletion.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesPendingDeletion(
-    itemState: json['item_state'] as String?,
-    itemCount: json['item_count'] as int?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesPendingDeletion.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesPendingDeletion(
+        itemState: json['item_state'] as String,
+        itemCount: json['item_count'] as int,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesClosedInactive {
-  final int? itemCount;
-  final String? itemState;
-  final String? title;
+  final int itemCount;
+  final String itemState;
+  final String title;
 
   const ListStatesResponseUserItemStatesClosedInactive({
-    this.itemCount,
-    this.itemState,
-    this.title,
+    required this.itemCount,
+    required this.itemState,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesClosedInactive.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesClosedInactive(
-    itemCount: json['item_count'] as int?,
-    itemState: json['item_state'] as String?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesClosedInactive.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesClosedInactive(
+        itemCount: json['item_count'] as int,
+        itemState: json['item_state'] as String,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStatesAutoBump {
-  final String? itemState;
-  final int? itemCount;
-  final String? title;
+  final String itemState;
+  final int itemCount;
+  final String title;
 
   const ListStatesResponseUserItemStatesAutoBump({
-    this.itemState,
-    this.itemCount,
-    this.title,
+    required this.itemState,
+    required this.itemCount,
+    required this.title,
   });
 
-  factory ListStatesResponseUserItemStatesAutoBump.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStatesAutoBump(
-    itemState: json['item_state'] as String?,
-    itemCount: json['item_count'] as int?,
-    title: json['title'] as String?,
-  );
+  factory ListStatesResponseUserItemStatesAutoBump.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStatesAutoBump(
+        itemState: json['item_state'] as String,
+        itemCount: json['item_count'] as int,
+        title: json['title'] as String,
+      );
 }
 
 class ListStatesResponseUserItemStates {
-  final ListStatesResponseUserItemStatesStickied? stickied;
-  final ListStatesResponseUserItemStatesDiscountRequest? discountRequest;
-  final ListStatesResponseUserItemStatesInBuyersFavorites? inBuyersFavorites;
-  final ListStatesResponseUserItemStatesActive? active;
-  final ListStatesResponseUserItemStatesPaid? paid;
-  final ListStatesResponseUserItemStatesClosed? closed;
-  final ListStatesResponseUserItemStatesDeleted? deleted;
-  final ListStatesResponseUserItemStatesAwaiting? awaiting;
-  final ListStatesResponseUserItemStatesPreActive? preActive;
-  final ListStatesResponseUserItemStatesPreUpload? preUpload;
-  final ListStatesResponseUserItemStatesPendingDeletion? pendingDeletion;
-  final ListStatesResponseUserItemStatesClosedInactive? closedInactive;
-  final ListStatesResponseUserItemStatesAutoBump? autoBump;
+  final ListStatesResponseUserItemStatesStickied stickied;
+  final ListStatesResponseUserItemStatesDiscountRequest discountRequest;
+  final ListStatesResponseUserItemStatesInBuyersFavorites inBuyersFavorites;
+  final ListStatesResponseUserItemStatesActive active;
+  final ListStatesResponseUserItemStatesPaid paid;
+  final ListStatesResponseUserItemStatesClosed closed;
+  final ListStatesResponseUserItemStatesDeleted deleted;
+  final ListStatesResponseUserItemStatesAwaiting awaiting;
+  final ListStatesResponseUserItemStatesPreActive preActive;
+  final ListStatesResponseUserItemStatesPreUpload preUpload;
+  final ListStatesResponseUserItemStatesPendingDeletion pendingDeletion;
+  final ListStatesResponseUserItemStatesClosedInactive closedInactive;
+  final ListStatesResponseUserItemStatesAutoBump autoBump;
 
   const ListStatesResponseUserItemStates({
-    this.stickied,
-    this.discountRequest,
-    this.inBuyersFavorites,
-    this.active,
-    this.paid,
-    this.closed,
-    this.deleted,
-    this.awaiting,
-    this.preActive,
-    this.preUpload,
-    this.pendingDeletion,
-    this.closedInactive,
-    this.autoBump,
+    required this.stickied,
+    required this.discountRequest,
+    required this.inBuyersFavorites,
+    required this.active,
+    required this.paid,
+    required this.closed,
+    required this.deleted,
+    required this.awaiting,
+    required this.preActive,
+    required this.preUpload,
+    required this.pendingDeletion,
+    required this.closedInactive,
+    required this.autoBump,
   });
 
-  factory ListStatesResponseUserItemStates.fromJson(Map<String, dynamic> json) => ListStatesResponseUserItemStates(
-    stickied: json['stickied'] != null
-            ? ListStatesResponseUserItemStatesStickied.fromJson(json['stickied'] as Map<String, dynamic>)
-            : null,
-    discountRequest: json['discount_request'] != null
-            ? ListStatesResponseUserItemStatesDiscountRequest.fromJson(json['discount_request'] as Map<String, dynamic>)
-            : null,
-    inBuyersFavorites: json['in_buyers_favorites'] != null
-            ? ListStatesResponseUserItemStatesInBuyersFavorites.fromJson(json['in_buyers_favorites'] as Map<String, dynamic>)
-            : null,
-    active: json['active'] != null
-            ? ListStatesResponseUserItemStatesActive.fromJson(json['active'] as Map<String, dynamic>)
-            : null,
-    paid: json['paid'] != null
-            ? ListStatesResponseUserItemStatesPaid.fromJson(json['paid'] as Map<String, dynamic>)
-            : null,
-    closed: json['closed'] != null
-            ? ListStatesResponseUserItemStatesClosed.fromJson(json['closed'] as Map<String, dynamic>)
-            : null,
-    deleted: json['deleted'] != null
-            ? ListStatesResponseUserItemStatesDeleted.fromJson(json['deleted'] as Map<String, dynamic>)
-            : null,
-    awaiting: json['awaiting'] != null
-            ? ListStatesResponseUserItemStatesAwaiting.fromJson(json['awaiting'] as Map<String, dynamic>)
-            : null,
-    preActive: json['pre_active'] != null
-            ? ListStatesResponseUserItemStatesPreActive.fromJson(json['pre_active'] as Map<String, dynamic>)
-            : null,
-    preUpload: json['pre_upload'] != null
-            ? ListStatesResponseUserItemStatesPreUpload.fromJson(json['pre_upload'] as Map<String, dynamic>)
-            : null,
-    pendingDeletion: json['pending_deletion'] != null
-            ? ListStatesResponseUserItemStatesPendingDeletion.fromJson(json['pending_deletion'] as Map<String, dynamic>)
-            : null,
-    closedInactive: json['closed_inactive'] != null
-            ? ListStatesResponseUserItemStatesClosedInactive.fromJson(json['closed_inactive'] as Map<String, dynamic>)
-            : null,
-    autoBump: json['auto_bump'] != null
-            ? ListStatesResponseUserItemStatesAutoBump.fromJson(json['auto_bump'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ListStatesResponseUserItemStates.fromJson(
+          Map<String, dynamic> json) =>
+      ListStatesResponseUserItemStates(
+        stickied: ListStatesResponseUserItemStatesStickied.fromJson(
+            json['stickied'] as Map<String, dynamic>),
+        discountRequest:
+            ListStatesResponseUserItemStatesDiscountRequest.fromJson(
+                json['discount_request'] as Map<String, dynamic>),
+        inBuyersFavorites:
+            ListStatesResponseUserItemStatesInBuyersFavorites.fromJson(
+                json['in_buyers_favorites'] as Map<String, dynamic>),
+        active: ListStatesResponseUserItemStatesActive.fromJson(
+            json['active'] as Map<String, dynamic>),
+        paid: ListStatesResponseUserItemStatesPaid.fromJson(
+            json['paid'] as Map<String, dynamic>),
+        closed: ListStatesResponseUserItemStatesClosed.fromJson(
+            json['closed'] as Map<String, dynamic>),
+        deleted: ListStatesResponseUserItemStatesDeleted.fromJson(
+            json['deleted'] as Map<String, dynamic>),
+        awaiting: ListStatesResponseUserItemStatesAwaiting.fromJson(
+            json['awaiting'] as Map<String, dynamic>),
+        preActive: ListStatesResponseUserItemStatesPreActive.fromJson(
+            json['pre_active'] as Map<String, dynamic>),
+        preUpload: ListStatesResponseUserItemStatesPreUpload.fromJson(
+            json['pre_upload'] as Map<String, dynamic>),
+        pendingDeletion:
+            ListStatesResponseUserItemStatesPendingDeletion.fromJson(
+                json['pending_deletion'] as Map<String, dynamic>),
+        closedInactive: ListStatesResponseUserItemStatesClosedInactive.fromJson(
+            json['closed_inactive'] as Map<String, dynamic>),
+        autoBump: ListStatesResponseUserItemStatesAutoBump.fromJson(
+            json['auto_bump'] as Map<String, dynamic>),
+      );
 }
 
 class ListStatesResponse {
-  final ListStatesResponseUserItemStates? userItemStates;
-  final RespSystemInfo? systemInfo;
+  final ListStatesResponseUserItemStates userItemStates;
+  final RespSystemInfo systemInfo;
 
   const ListStatesResponse({
-    this.userItemStates,
-    this.systemInfo,
+    required this.userItemStates,
+    required this.systemInfo,
   });
 
-  factory ListStatesResponse.fromJson(Map<String, dynamic> json) => ListStatesResponse(
-    userItemStates: json['userItemStates'] != null
-            ? ListStatesResponseUserItemStates.fromJson(json['userItemStates'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ListStatesResponse.fromJson(Map<String, dynamic> json) =>
+      ListStatesResponse(
+        userItemStates: ListStatesResponseUserItemStates.fromJson(
+            json['userItemStates'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ListDownloadParams {
@@ -9513,45 +9555,45 @@ class ListFavoritesParams {
 }
 
 class ListFavoritesResponse {
-  final List<ItemFromListModel>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final String? searchUrl;
-  final List<ItemFromListModel>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<ItemFromListModel> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final String searchUrl;
+  final List<ItemFromListModel> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const ListFavoritesResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory ListFavoritesResponse.fromJson(Map<String, dynamic> json) => ListFavoritesResponse(
-    items: (json['items'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+  factory ListFavoritesResponse.fromJson(Map<String, dynamic> json) =>
+      ListFavoritesResponse(
+        items: (json['items'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ListViewedParams {
@@ -9602,45 +9644,45 @@ class ListViewedParams {
 }
 
 class ListViewedResponse {
-  final List<ItemFromListModel>? items;
-  final int? totalItems;
-  final Object? totalItemsPrice;
-  final bool? hasNextPage;
-  final int? perPage;
-  final int? page;
-  final String? searchUrl;
-  final List<ItemFromListModel>? stickyItems;
-  final RespSystemInfo? systemInfo;
+  final List<ItemFromListModel> items;
+  final int totalItems;
+  final Object totalItemsPrice;
+  final bool hasNextPage;
+  final int perPage;
+  final int page;
+  final String searchUrl;
+  final List<ItemFromListModel> stickyItems;
+  final RespSystemInfo systemInfo;
 
   const ListViewedResponse({
-    this.items,
-    this.totalItems,
-    this.totalItemsPrice,
-    this.hasNextPage,
-    this.perPage,
-    this.page,
-    this.searchUrl,
-    this.stickyItems,
-    this.systemInfo,
+    required this.items,
+    required this.totalItems,
+    required this.totalItemsPrice,
+    required this.hasNextPage,
+    required this.perPage,
+    required this.page,
+    required this.searchUrl,
+    required this.stickyItems,
+    required this.systemInfo,
   });
 
-  factory ListViewedResponse.fromJson(Map<String, dynamic> json) => ListViewedResponse(
-    items: (json['items'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+  factory ListViewedResponse.fromJson(Map<String, dynamic> json) =>
+      ListViewedResponse(
+        items: (json['items'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    totalItems: json['totalItems'] as int?,
-    totalItemsPrice: json['totalItemsPrice'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    perPage: json['perPage'] as int?,
-    page: json['page'] as int?,
-    searchUrl: json['searchUrl'] as String?,
-    stickyItems: (json['stickyItems'] as List<dynamic>?)
-            ?.map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
+        totalItems: json['totalItems'] as int,
+        totalItemsPrice: json['totalItemsPrice'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        perPage: json['perPage'] as int,
+        page: json['page'] as int,
+        searchUrl: json['searchUrl'] as String,
+        stickyItems: (json['stickyItems'] as List<dynamic>)
+            .map((e) => ItemFromListModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 // ─── ManagingApi Types ────────────────────────────────────────
@@ -9660,79 +9702,77 @@ class ManagingGetParams {
 }
 
 class ManagingGetResponse {
-  final ItemModel? item;
-  final bool? canStickItem;
-  final bool? canUnstickItem;
-  final bool? canBuyItem;
-  final String? cannotBuyItemError;
-  final bool? canCloseItem;
-  final bool? canOpenItem;
-  final bool? canReportItem;
-  final bool? canEditItem;
-  final bool? canDeleteItem;
-  final bool? canCancelConfirmedBuy;
-  final bool? canViewItemHistory;
-  final bool? faveCount;
-  final bool? isVisibleItem;
-  final bool? canViewLoginData;
-  final bool? showToFavouritesButton;
-  final String? itemLink;
-  final bool? canChangeOwner;
-  final List<int>? sameItemsIds;
-  final int? sameItemsCount;
-  final RespSystemInfo? systemInfo;
+  final ItemModel item;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final bool canBuyItem;
+  final String cannotBuyItemError;
+  final bool canCloseItem;
+  final bool canOpenItem;
+  final bool canReportItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canCancelConfirmedBuy;
+  final bool canViewItemHistory;
+  final bool faveCount;
+  final bool isVisibleItem;
+  final bool canViewLoginData;
+  final bool showToFavouritesButton;
+  final String itemLink;
+  final bool canChangeOwner;
+  final List<int> sameItemsIds;
+  final int sameItemsCount;
+  final RespSystemInfo systemInfo;
 
   const ManagingGetResponse({
-    this.item,
-    this.canStickItem,
-    this.canUnstickItem,
-    this.canBuyItem,
-    this.cannotBuyItemError,
-    this.canCloseItem,
-    this.canOpenItem,
-    this.canReportItem,
-    this.canEditItem,
-    this.canDeleteItem,
-    this.canCancelConfirmedBuy,
-    this.canViewItemHistory,
-    this.faveCount,
-    this.isVisibleItem,
-    this.canViewLoginData,
-    this.showToFavouritesButton,
-    this.itemLink,
-    this.canChangeOwner,
-    this.sameItemsIds,
-    this.sameItemsCount,
-    this.systemInfo,
+    required this.item,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.canBuyItem,
+    required this.cannotBuyItemError,
+    required this.canCloseItem,
+    required this.canOpenItem,
+    required this.canReportItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canCancelConfirmedBuy,
+    required this.canViewItemHistory,
+    required this.faveCount,
+    required this.isVisibleItem,
+    required this.canViewLoginData,
+    required this.showToFavouritesButton,
+    required this.itemLink,
+    required this.canChangeOwner,
+    required this.sameItemsIds,
+    required this.sameItemsCount,
+    required this.systemInfo,
   });
 
-  factory ManagingGetResponse.fromJson(Map<String, dynamic> json) => ManagingGetResponse(
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    canStickItem: json['canStickItem'] as bool?,
-    canUnstickItem: json['canUnstickItem'] as bool?,
-    canBuyItem: json['canBuyItem'] as bool?,
-    cannotBuyItemError: json['cannotBuyItemError'] as String?,
-    canCloseItem: json['canCloseItem'] as bool?,
-    canOpenItem: json['canOpenItem'] as bool?,
-    canReportItem: json['canReportItem'] as bool?,
-    canEditItem: json['canEditItem'] as bool?,
-    canDeleteItem: json['canDeleteItem'] as bool?,
-    canCancelConfirmedBuy: json['canCancelConfirmedBuy'] as bool?,
-    canViewItemHistory: json['canViewItemHistory'] as bool?,
-    faveCount: json['faveCount'] as bool?,
-    isVisibleItem: json['isVisibleItem'] as bool?,
-    canViewLoginData: json['canViewLoginData'] as bool?,
-    showToFavouritesButton: json['showToFavouritesButton'] as bool?,
-    itemLink: json['itemLink'] as String?,
-    canChangeOwner: json['canChangeOwner'] as bool?,
-    sameItemsIds: (json['sameItemsIds'] as List<dynamic>?)?.cast<int>(),
-    sameItemsCount: json['sameItemsCount'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingGetResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingGetResponse(
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        canStickItem: json['canStickItem'] as bool,
+        canUnstickItem: json['canUnstickItem'] as bool,
+        canBuyItem: json['canBuyItem'] as bool,
+        cannotBuyItemError: json['cannotBuyItemError'] as String,
+        canCloseItem: json['canCloseItem'] as bool,
+        canOpenItem: json['canOpenItem'] as bool,
+        canReportItem: json['canReportItem'] as bool,
+        canEditItem: json['canEditItem'] as bool,
+        canDeleteItem: json['canDeleteItem'] as bool,
+        canCancelConfirmedBuy: json['canCancelConfirmedBuy'] as bool,
+        canViewItemHistory: json['canViewItemHistory'] as bool,
+        faveCount: json['faveCount'] as bool,
+        isVisibleItem: json['isVisibleItem'] as bool,
+        canViewLoginData: json['canViewLoginData'] as bool,
+        showToFavouritesButton: json['showToFavouritesButton'] as bool,
+        itemLink: json['itemLink'] as String,
+        canChangeOwner: json['canChangeOwner'] as bool,
+        sameItemsIds: (json['sameItemsIds'] as List<dynamic>).cast<int>(),
+        sameItemsCount: json['sameItemsCount'] as int,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingDeleteBody {
@@ -9750,23 +9790,23 @@ class ManagingDeleteBody {
 }
 
 class ManagingDeleteResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingDeleteResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingDeleteResponse.fromJson(Map<String, dynamic> json) => ManagingDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingDeleteResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingCreateClaimBody {
@@ -9787,422 +9827,437 @@ class ManagingCreateClaimBody {
 }
 
 class ManagingCreateClaimResponseThreadFirstPostLinks {
-  final String? permalink;
-  final String? detail;
-  final String? thread;
-  final String? poster;
-  final String? likes;
-  final String? report;
-  final String? attachments;
-  final String? posterAvatar;
+  final String permalink;
+  final String detail;
+  final String thread;
+  final String poster;
+  final String likes;
+  final String report;
+  final String attachments;
+  final String posterAvatar;
 
   const ManagingCreateClaimResponseThreadFirstPostLinks({
-    this.permalink,
-    this.detail,
-    this.thread,
-    this.poster,
-    this.likes,
-    this.report,
-    this.attachments,
-    this.posterAvatar,
+    required this.permalink,
+    required this.detail,
+    required this.thread,
+    required this.poster,
+    required this.likes,
+    required this.report,
+    required this.attachments,
+    required this.posterAvatar,
   });
 
-  factory ManagingCreateClaimResponseThreadFirstPostLinks.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThreadFirstPostLinks(
-    permalink: json['permalink'] as String?,
-    detail: json['detail'] as String?,
-    thread: json['thread'] as String?,
-    poster: json['poster'] as String?,
-    likes: json['likes'] as String?,
-    report: json['report'] as String?,
-    attachments: json['attachments'] as String?,
-    posterAvatar: json['poster_avatar'] as String?,
-  );
+  factory ManagingCreateClaimResponseThreadFirstPostLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadFirstPostLinks(
+        permalink: json['permalink'] as String,
+        detail: json['detail'] as String,
+        thread: json['thread'] as String,
+        poster: json['poster'] as String,
+        likes: json['likes'] as String,
+        report: json['report'] as String,
+        attachments: json['attachments'] as String,
+        posterAvatar: json['poster_avatar'] as String,
+      );
 }
 
 class ManagingCreateClaimResponseThreadFirstPostPermissions {
-  final bool? view;
-  final bool? edit;
-  final bool? delete;
-  final bool? reply;
-  final bool? like;
-  final bool? report;
-  final bool? uploadAttachment;
+  final bool view;
+  final bool edit;
+  final bool delete;
+  final bool reply;
+  final bool like;
+  final bool report;
+  final bool uploadAttachment;
 
   const ManagingCreateClaimResponseThreadFirstPostPermissions({
-    this.view,
-    this.edit,
-    this.delete,
-    this.reply,
-    this.like,
-    this.report,
-    this.uploadAttachment,
+    required this.view,
+    required this.edit,
+    required this.delete,
+    required this.reply,
+    required this.like,
+    required this.report,
+    required this.uploadAttachment,
   });
 
-  factory ManagingCreateClaimResponseThreadFirstPostPermissions.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThreadFirstPostPermissions(
-    view: json['view'] as bool?,
-    edit: json['edit'] as bool?,
-    delete: json['delete'] as bool?,
-    reply: json['reply'] as bool?,
-    like: json['like'] as bool?,
-    report: json['report'] as bool?,
-    uploadAttachment: json['upload_attachment'] as bool?,
-  );
+  factory ManagingCreateClaimResponseThreadFirstPostPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadFirstPostPermissions(
+        view: json['view'] as bool,
+        edit: json['edit'] as bool,
+        delete: json['delete'] as bool,
+        reply: json['reply'] as bool,
+        like: json['like'] as bool,
+        report: json['report'] as bool,
+        uploadAttachment: json['upload_attachment'] as bool,
+      );
 }
 
 class ManagingCreateClaimResponseThreadFirstPost {
-  final int? postId;
-  final int? threadId;
-  final int? posterUserId;
-  final String? posterUsername;
-  final int? postCreateDate;
-  final String? postBody;
-  final String? postBodyHtml;
-  final String? postBodyPlainText;
-  final String? signature;
-  final String? signatureHtml;
-  final String? signaturePlainText;
-  final int? postLikeCount;
-  final int? postAttachmentCount;
-  final List<Map<String, dynamic>>? likeUsers;
-  final bool? userIsIgnored;
-  final bool? postIsPublished;
-  final bool? postIsDeleted;
-  final int? postUpdateDate;
-  final bool? postIsFirstPost;
-  final ManagingCreateClaimResponseThreadFirstPostLinks? links;
-  final ManagingCreateClaimResponseThreadFirstPostPermissions? permissions;
+  final int postId;
+  final int threadId;
+  final int posterUserId;
+  final String posterUsername;
+  final int postCreateDate;
+  final String postBody;
+  final String postBodyHtml;
+  final String postBodyPlainText;
+  final String signature;
+  final String signatureHtml;
+  final String signaturePlainText;
+  final int postLikeCount;
+  final int postAttachmentCount;
+  final List<Map<String, dynamic>> likeUsers;
+  final bool userIsIgnored;
+  final bool postIsPublished;
+  final bool postIsDeleted;
+  final int postUpdateDate;
+  final bool postIsFirstPost;
+  final ManagingCreateClaimResponseThreadFirstPostLinks links;
+  final ManagingCreateClaimResponseThreadFirstPostPermissions permissions;
 
   const ManagingCreateClaimResponseThreadFirstPost({
-    this.postId,
-    this.threadId,
-    this.posterUserId,
-    this.posterUsername,
-    this.postCreateDate,
-    this.postBody,
-    this.postBodyHtml,
-    this.postBodyPlainText,
-    this.signature,
-    this.signatureHtml,
-    this.signaturePlainText,
-    this.postLikeCount,
-    this.postAttachmentCount,
-    this.likeUsers,
-    this.userIsIgnored,
-    this.postIsPublished,
-    this.postIsDeleted,
-    this.postUpdateDate,
-    this.postIsFirstPost,
-    this.links,
-    this.permissions,
+    required this.postId,
+    required this.threadId,
+    required this.posterUserId,
+    required this.posterUsername,
+    required this.postCreateDate,
+    required this.postBody,
+    required this.postBodyHtml,
+    required this.postBodyPlainText,
+    required this.signature,
+    required this.signatureHtml,
+    required this.signaturePlainText,
+    required this.postLikeCount,
+    required this.postAttachmentCount,
+    required this.likeUsers,
+    required this.userIsIgnored,
+    required this.postIsPublished,
+    required this.postIsDeleted,
+    required this.postUpdateDate,
+    required this.postIsFirstPost,
+    required this.links,
+    required this.permissions,
   });
 
-  factory ManagingCreateClaimResponseThreadFirstPost.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThreadFirstPost(
-    postId: json['post_id'] as int?,
-    threadId: json['thread_id'] as int?,
-    posterUserId: json['poster_user_id'] as int?,
-    posterUsername: json['poster_username'] as String?,
-    postCreateDate: json['post_create_date'] as int?,
-    postBody: json['post_body'] as String?,
-    postBodyHtml: json['post_body_html'] as String?,
-    postBodyPlainText: json['post_body_plain_text'] as String?,
-    signature: json['signature'] as String?,
-    signatureHtml: json['signature_html'] as String?,
-    signaturePlainText: json['signature_plain_text'] as String?,
-    postLikeCount: json['post_like_count'] as int?,
-    postAttachmentCount: json['post_attachment_count'] as int?,
-    likeUsers: (json['like_users'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    postIsPublished: json['post_is_published'] as bool?,
-    postIsDeleted: json['post_is_deleted'] as bool?,
-    postUpdateDate: json['post_update_date'] as int?,
-    postIsFirstPost: json['post_is_first_post'] as bool?,
-    links: json['links'] != null
-            ? ManagingCreateClaimResponseThreadFirstPostLinks.fromJson(json['links'] as Map<String, dynamic>)
-            : null,
-    permissions: json['permissions'] != null
-            ? ManagingCreateClaimResponseThreadFirstPostPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingCreateClaimResponseThreadFirstPost.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadFirstPost(
+        postId: json['post_id'] as int,
+        threadId: json['thread_id'] as int,
+        posterUserId: json['poster_user_id'] as int,
+        posterUsername: json['poster_username'] as String,
+        postCreateDate: json['post_create_date'] as int,
+        postBody: json['post_body'] as String,
+        postBodyHtml: json['post_body_html'] as String,
+        postBodyPlainText: json['post_body_plain_text'] as String,
+        signature: json['signature'] as String,
+        signatureHtml: json['signature_html'] as String,
+        signaturePlainText: json['signature_plain_text'] as String,
+        postLikeCount: json['post_like_count'] as int,
+        postAttachmentCount: json['post_attachment_count'] as int,
+        likeUsers:
+            (json['like_users'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        userIsIgnored: json['user_is_ignored'] as bool,
+        postIsPublished: json['post_is_published'] as bool,
+        postIsDeleted: json['post_is_deleted'] as bool,
+        postUpdateDate: json['post_update_date'] as int,
+        postIsFirstPost: json['post_is_first_post'] as bool,
+        links: ManagingCreateClaimResponseThreadFirstPostLinks.fromJson(
+            json['links'] as Map<String, dynamic>),
+        permissions:
+            ManagingCreateClaimResponseThreadFirstPostPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingCreateClaimResponseThreadLinks {
-  final String? permalink;
-  final String? detail;
-  final String? followers;
-  final String? forum;
-  final String? posts;
-  final String? firstPoster;
-  final String? firstPosterAvatar;
-  final String? firstPost;
-  final String? lastPoster;
-  final String? lastPost;
+  final String permalink;
+  final String detail;
+  final String followers;
+  final String forum;
+  final String posts;
+  final String firstPoster;
+  final String firstPosterAvatar;
+  final String firstPost;
+  final String lastPoster;
+  final String lastPost;
 
   const ManagingCreateClaimResponseThreadLinks({
-    this.permalink,
-    this.detail,
-    this.followers,
-    this.forum,
-    this.posts,
-    this.firstPoster,
-    this.firstPosterAvatar,
-    this.firstPost,
-    this.lastPoster,
-    this.lastPost,
+    required this.permalink,
+    required this.detail,
+    required this.followers,
+    required this.forum,
+    required this.posts,
+    required this.firstPoster,
+    required this.firstPosterAvatar,
+    required this.firstPost,
+    required this.lastPoster,
+    required this.lastPost,
   });
 
-  factory ManagingCreateClaimResponseThreadLinks.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThreadLinks(
-    permalink: json['permalink'] as String?,
-    detail: json['detail'] as String?,
-    followers: json['followers'] as String?,
-    forum: json['forum'] as String?,
-    posts: json['posts'] as String?,
-    firstPoster: json['first_poster'] as String?,
-    firstPosterAvatar: json['first_poster_avatar'] as String?,
-    firstPost: json['first_post'] as String?,
-    lastPoster: json['last_poster'] as String?,
-    lastPost: json['last_post'] as String?,
-  );
+  factory ManagingCreateClaimResponseThreadLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadLinks(
+        permalink: json['permalink'] as String,
+        detail: json['detail'] as String,
+        followers: json['followers'] as String,
+        forum: json['forum'] as String,
+        posts: json['posts'] as String,
+        firstPoster: json['first_poster'] as String,
+        firstPosterAvatar: json['first_poster_avatar'] as String,
+        firstPost: json['first_post'] as String,
+        lastPoster: json['last_poster'] as String,
+        lastPost: json['last_post'] as String,
+      );
 }
 
 class ManagingCreateClaimResponseThreadPermissions {
-  final bool? view;
-  final bool? delete;
-  final bool? follow;
-  final bool? post;
-  final bool? uploadAttachment;
-  final bool? edit;
+  final bool view;
+  final bool delete;
+  final bool follow;
+  final bool post;
+  final bool uploadAttachment;
+  final bool edit;
 
   const ManagingCreateClaimResponseThreadPermissions({
-    this.view,
-    this.delete,
-    this.follow,
-    this.post,
-    this.uploadAttachment,
-    this.edit,
+    required this.view,
+    required this.delete,
+    required this.follow,
+    required this.post,
+    required this.uploadAttachment,
+    required this.edit,
   });
 
-  factory ManagingCreateClaimResponseThreadPermissions.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThreadPermissions(
-    view: json['view'] as bool?,
-    delete: json['delete'] as bool?,
-    follow: json['follow'] as bool?,
-    post: json['post'] as bool?,
-    uploadAttachment: json['upload_attachment'] as bool?,
-    edit: json['edit'] as bool?,
-  );
+  factory ManagingCreateClaimResponseThreadPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadPermissions(
+        view: json['view'] as bool,
+        delete: json['delete'] as bool,
+        follow: json['follow'] as bool,
+        post: json['post'] as bool,
+        uploadAttachment: json['upload_attachment'] as bool,
+        edit: json['edit'] as bool,
+      );
 }
 
 class ManagingCreateClaimResponseThreadForumLinks {
-  final String? permalink;
-  final String? detail;
-  final String? subCategories;
-  final String? subForums;
-  final String? threads;
-  final String? followers;
+  final String permalink;
+  final String detail;
+  final String subCategories;
+  final String subForums;
+  final String threads;
+  final String followers;
 
   const ManagingCreateClaimResponseThreadForumLinks({
-    this.permalink,
-    this.detail,
-    this.subCategories,
-    this.subForums,
-    this.threads,
-    this.followers,
+    required this.permalink,
+    required this.detail,
+    required this.subCategories,
+    required this.subForums,
+    required this.threads,
+    required this.followers,
   });
 
-  factory ManagingCreateClaimResponseThreadForumLinks.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThreadForumLinks(
-    permalink: json['permalink'] as String?,
-    detail: json['detail'] as String?,
-    subCategories: json['sub-categories'] as String?,
-    subForums: json['sub-forums'] as String?,
-    threads: json['threads'] as String?,
-    followers: json['followers'] as String?,
-  );
+  factory ManagingCreateClaimResponseThreadForumLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadForumLinks(
+        permalink: json['permalink'] as String,
+        detail: json['detail'] as String,
+        subCategories: json['sub-categories'] as String,
+        subForums: json['sub-forums'] as String,
+        threads: json['threads'] as String,
+        followers: json['followers'] as String,
+      );
 }
 
 class ManagingCreateClaimResponseThreadForumPermissions {
-  final bool? view;
-  final bool? edit;
-  final bool? delete;
-  final bool? createThread;
-  final bool? uploadAttachment;
-  final bool? tagThread;
-  final bool? follow;
+  final bool view;
+  final bool edit;
+  final bool delete;
+  final bool createThread;
+  final bool uploadAttachment;
+  final bool tagThread;
+  final bool follow;
 
   const ManagingCreateClaimResponseThreadForumPermissions({
-    this.view,
-    this.edit,
-    this.delete,
-    this.createThread,
-    this.uploadAttachment,
-    this.tagThread,
-    this.follow,
+    required this.view,
+    required this.edit,
+    required this.delete,
+    required this.createThread,
+    required this.uploadAttachment,
+    required this.tagThread,
+    required this.follow,
   });
 
-  factory ManagingCreateClaimResponseThreadForumPermissions.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThreadForumPermissions(
-    view: json['view'] as bool?,
-    edit: json['edit'] as bool?,
-    delete: json['delete'] as bool?,
-    createThread: json['create_thread'] as bool?,
-    uploadAttachment: json['upload_attachment'] as bool?,
-    tagThread: json['tag_thread'] as bool?,
-    follow: json['follow'] as bool?,
-  );
+  factory ManagingCreateClaimResponseThreadForumPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadForumPermissions(
+        view: json['view'] as bool,
+        edit: json['edit'] as bool,
+        delete: json['delete'] as bool,
+        createThread: json['create_thread'] as bool,
+        uploadAttachment: json['upload_attachment'] as bool,
+        tagThread: json['tag_thread'] as bool,
+        follow: json['follow'] as bool,
+      );
 }
 
 class ManagingCreateClaimResponseThreadForum {
-  final int? forumId;
-  final String? forumTitle;
-  final String? forumDescription;
-  final int? forumThreadCount;
-  final int? forumPostCount;
-  final List<Map<String, dynamic>>? forumPrefixes;
-  final int? threadDefaultPrefixId;
-  final bool? threadPrefixIsRequired;
-  final ManagingCreateClaimResponseThreadForumLinks? links;
-  final ManagingCreateClaimResponseThreadForumPermissions? permissions;
-  final bool? forumIsFollowed;
+  final int forumId;
+  final String forumTitle;
+  final String forumDescription;
+  final int forumThreadCount;
+  final int forumPostCount;
+  final List<Map<String, dynamic>> forumPrefixes;
+  final int threadDefaultPrefixId;
+  final bool threadPrefixIsRequired;
+  final ManagingCreateClaimResponseThreadForumLinks links;
+  final ManagingCreateClaimResponseThreadForumPermissions permissions;
+  final bool forumIsFollowed;
 
   const ManagingCreateClaimResponseThreadForum({
-    this.forumId,
-    this.forumTitle,
-    this.forumDescription,
-    this.forumThreadCount,
-    this.forumPostCount,
-    this.forumPrefixes,
-    this.threadDefaultPrefixId,
-    this.threadPrefixIsRequired,
-    this.links,
-    this.permissions,
-    this.forumIsFollowed,
+    required this.forumId,
+    required this.forumTitle,
+    required this.forumDescription,
+    required this.forumThreadCount,
+    required this.forumPostCount,
+    required this.forumPrefixes,
+    required this.threadDefaultPrefixId,
+    required this.threadPrefixIsRequired,
+    required this.links,
+    required this.permissions,
+    required this.forumIsFollowed,
   });
 
-  factory ManagingCreateClaimResponseThreadForum.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThreadForum(
-    forumId: json['forum_id'] as int?,
-    forumTitle: json['forum_title'] as String?,
-    forumDescription: json['forum_description'] as String?,
-    forumThreadCount: json['forum_thread_count'] as int?,
-    forumPostCount: json['forum_post_count'] as int?,
-    forumPrefixes: (json['forum_prefixes'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    threadDefaultPrefixId: json['thread_default_prefix_id'] as int?,
-    threadPrefixIsRequired: json['thread_prefix_is_required'] as bool?,
-    links: json['links'] != null
-            ? ManagingCreateClaimResponseThreadForumLinks.fromJson(json['links'] as Map<String, dynamic>)
-            : null,
-    permissions: json['permissions'] != null
-            ? ManagingCreateClaimResponseThreadForumPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
-            : null,
-    forumIsFollowed: json['forum_is_followed'] as bool?,
-  );
+  factory ManagingCreateClaimResponseThreadForum.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadForum(
+        forumId: json['forum_id'] as int,
+        forumTitle: json['forum_title'] as String,
+        forumDescription: json['forum_description'] as String,
+        forumThreadCount: json['forum_thread_count'] as int,
+        forumPostCount: json['forum_post_count'] as int,
+        forumPrefixes: (json['forum_prefixes'] as List<dynamic>)
+            .cast<Map<String, dynamic>>(),
+        threadDefaultPrefixId: json['thread_default_prefix_id'] as int,
+        threadPrefixIsRequired: json['thread_prefix_is_required'] as bool,
+        links: ManagingCreateClaimResponseThreadForumLinks.fromJson(
+            json['links'] as Map<String, dynamic>),
+        permissions: ManagingCreateClaimResponseThreadForumPermissions.fromJson(
+            json['permissions'] as Map<String, dynamic>),
+        forumIsFollowed: json['forum_is_followed'] as bool,
+      );
 }
 
 class ManagingCreateClaimResponseThread {
-  final int? threadId;
-  final int? forumId;
-  final String? threadTitle;
-  final int? threadViewCount;
-  final int? creatorUserId;
-  final String? creatorUsername;
-  final int? threadCreateDate;
-  final int? threadUpdateDate;
-  final bool? userIsIgnored;
-  final int? threadPostCount;
-  final bool? threadIsPublished;
-  final bool? threadIsDeleted;
-  final bool? threadIsSticky;
-  final bool? threadIsFollowed;
-  final ManagingCreateClaimResponseThreadFirstPost? firstPost;
-  final List<Object>? threadPrefixes;
-  final List<Object>? threadTags;
-  final ManagingCreateClaimResponseThreadLinks? links;
-  final ManagingCreateClaimResponseThreadPermissions? permissions;
-  final ManagingCreateClaimResponseThreadForum? forum;
+  final int threadId;
+  final int forumId;
+  final String threadTitle;
+  final int threadViewCount;
+  final int creatorUserId;
+  final String creatorUsername;
+  final int threadCreateDate;
+  final int threadUpdateDate;
+  final bool userIsIgnored;
+  final int threadPostCount;
+  final bool threadIsPublished;
+  final bool threadIsDeleted;
+  final bool threadIsSticky;
+  final bool threadIsFollowed;
+  final ManagingCreateClaimResponseThreadFirstPost firstPost;
+  final List<Object> threadPrefixes;
+  final List<Object> threadTags;
+  final ManagingCreateClaimResponseThreadLinks links;
+  final ManagingCreateClaimResponseThreadPermissions permissions;
+  final ManagingCreateClaimResponseThreadForum forum;
 
   const ManagingCreateClaimResponseThread({
-    this.threadId,
-    this.forumId,
-    this.threadTitle,
-    this.threadViewCount,
-    this.creatorUserId,
-    this.creatorUsername,
-    this.threadCreateDate,
-    this.threadUpdateDate,
-    this.userIsIgnored,
-    this.threadPostCount,
-    this.threadIsPublished,
-    this.threadIsDeleted,
-    this.threadIsSticky,
-    this.threadIsFollowed,
-    this.firstPost,
-    this.threadPrefixes,
-    this.threadTags,
-    this.links,
-    this.permissions,
-    this.forum,
+    required this.threadId,
+    required this.forumId,
+    required this.threadTitle,
+    required this.threadViewCount,
+    required this.creatorUserId,
+    required this.creatorUsername,
+    required this.threadCreateDate,
+    required this.threadUpdateDate,
+    required this.userIsIgnored,
+    required this.threadPostCount,
+    required this.threadIsPublished,
+    required this.threadIsDeleted,
+    required this.threadIsSticky,
+    required this.threadIsFollowed,
+    required this.firstPost,
+    required this.threadPrefixes,
+    required this.threadTags,
+    required this.links,
+    required this.permissions,
+    required this.forum,
   });
 
-  factory ManagingCreateClaimResponseThread.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseThread(
-    threadId: json['thread_id'] as int?,
-    forumId: json['forum_id'] as int?,
-    threadTitle: json['thread_title'] as String?,
-    threadViewCount: json['thread_view_count'] as int?,
-    creatorUserId: json['creator_user_id'] as int?,
-    creatorUsername: json['creator_username'] as String?,
-    threadCreateDate: json['thread_create_date'] as int?,
-    threadUpdateDate: json['thread_update_date'] as int?,
-    userIsIgnored: json['user_is_ignored'] as bool?,
-    threadPostCount: json['thread_post_count'] as int?,
-    threadIsPublished: json['thread_is_published'] as bool?,
-    threadIsDeleted: json['thread_is_deleted'] as bool?,
-    threadIsSticky: json['thread_is_sticky'] as bool?,
-    threadIsFollowed: json['thread_is_followed'] as bool?,
-    firstPost: json['first_post'] != null
-            ? ManagingCreateClaimResponseThreadFirstPost.fromJson(json['first_post'] as Map<String, dynamic>)
-            : null,
-    threadPrefixes: (json['thread_prefixes'] as List<dynamic>?)?.cast<Object>(),
-    threadTags: (json['thread_tags'] as List<dynamic>?)?.cast<Object>(),
-    links: json['links'] != null
-            ? ManagingCreateClaimResponseThreadLinks.fromJson(json['links'] as Map<String, dynamic>)
-            : null,
-    permissions: json['permissions'] != null
-            ? ManagingCreateClaimResponseThreadPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
-            : null,
-    forum: json['forum'] != null
-            ? ManagingCreateClaimResponseThreadForum.fromJson(json['forum'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingCreateClaimResponseThread.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThread(
+        threadId: json['thread_id'] as int,
+        forumId: json['forum_id'] as int,
+        threadTitle: json['thread_title'] as String,
+        threadViewCount: json['thread_view_count'] as int,
+        creatorUserId: json['creator_user_id'] as int,
+        creatorUsername: json['creator_username'] as String,
+        threadCreateDate: json['thread_create_date'] as int,
+        threadUpdateDate: json['thread_update_date'] as int,
+        userIsIgnored: json['user_is_ignored'] as bool,
+        threadPostCount: json['thread_post_count'] as int,
+        threadIsPublished: json['thread_is_published'] as bool,
+        threadIsDeleted: json['thread_is_deleted'] as bool,
+        threadIsSticky: json['thread_is_sticky'] as bool,
+        threadIsFollowed: json['thread_is_followed'] as bool,
+        firstPost: ManagingCreateClaimResponseThreadFirstPost.fromJson(
+            json['first_post'] as Map<String, dynamic>),
+        threadPrefixes:
+            (json['thread_prefixes'] as List<dynamic>).cast<Object>(),
+        threadTags: (json['thread_tags'] as List<dynamic>).cast<Object>(),
+        links: ManagingCreateClaimResponseThreadLinks.fromJson(
+            json['links'] as Map<String, dynamic>),
+        permissions: ManagingCreateClaimResponseThreadPermissions.fromJson(
+            json['permissions'] as Map<String, dynamic>),
+        forum: ManagingCreateClaimResponseThreadForum.fromJson(
+            json['forum'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingCreateClaimResponseSystemInfo {
-  final int? visitorId;
-  final int? time;
+  final int visitorId;
+  final int time;
 
   const ManagingCreateClaimResponseSystemInfo({
-    this.visitorId,
-    this.time,
+    required this.visitorId,
+    required this.time,
   });
 
-  factory ManagingCreateClaimResponseSystemInfo.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponseSystemInfo(
-    visitorId: json['visitor_id'] as int?,
-    time: json['time'] as int?,
-  );
+  factory ManagingCreateClaimResponseSystemInfo.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseSystemInfo(
+        visitorId: json['visitor_id'] as int,
+        time: json['time'] as int,
+      );
 }
 
 class ManagingCreateClaimResponse {
-  final ManagingCreateClaimResponseThread? thread;
-  final ManagingCreateClaimResponseSystemInfo? systemInfo;
+  final ManagingCreateClaimResponseThread thread;
+  final ManagingCreateClaimResponseSystemInfo systemInfo;
 
   const ManagingCreateClaimResponse({
-    this.thread,
-    this.systemInfo,
+    required this.thread,
+    required this.systemInfo,
   });
 
-  factory ManagingCreateClaimResponse.fromJson(Map<String, dynamic> json) => ManagingCreateClaimResponse(
-    thread: json['thread'] != null
-            ? ManagingCreateClaimResponseThread.fromJson(json['thread'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? ManagingCreateClaimResponseSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingCreateClaimResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingCreateClaimResponse(
+        thread: ManagingCreateClaimResponseThread.fromJson(
+            json['thread'] as Map<String, dynamic>),
+        systemInfo: ManagingCreateClaimResponseSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingBulkGetBody {
@@ -10223,23 +10278,23 @@ class ManagingBulkGetBody {
 }
 
 class ManagingBulkGetResponse {
-  final List<Map<String, dynamic>>? items;
-  final List<int>? leftItemId;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> items;
+  final List<int> leftItemId;
+  final RespSystemInfo systemInfo;
 
   const ManagingBulkGetResponse({
-    this.items,
-    this.leftItemId,
-    this.systemInfo,
+    required this.items,
+    required this.leftItemId,
+    required this.systemInfo,
   });
 
-  factory ManagingBulkGetResponse.fromJson(Map<String, dynamic> json) => ManagingBulkGetResponse(
-    items: (json['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    leftItemId: (json['left_item_id'] as List<dynamic>?)?.cast<int>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingBulkGetResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingBulkGetResponse(
+        items: (json['items'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        leftItemId: (json['left_item_id'] as List<dynamic>).cast<int>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamInventoryValueParams {
@@ -10263,68 +10318,72 @@ class ManagingSteamInventoryValueParams {
 }
 
 class ManagingSteamInventoryValueResponseDataItems0Stickers {
-  final int? stickerCount;
-  final int? count;
-  final List<String>? images;
-  final String? title;
+  final int stickerCount;
+  final int count;
+  final List<String> images;
+  final String title;
 
   const ManagingSteamInventoryValueResponseDataItems0Stickers({
-    this.stickerCount,
-    this.count,
-    this.images,
-    this.title,
+    required this.stickerCount,
+    required this.count,
+    required this.images,
+    required this.title,
   });
 
-  factory ManagingSteamInventoryValueResponseDataItems0Stickers.fromJson(Map<String, dynamic> json) => ManagingSteamInventoryValueResponseDataItems0Stickers(
-    stickerCount: json['stickerCount'] as int?,
-    count: json['count'] as int?,
-    images: (json['images'] as List<dynamic>?)?.cast<String>(),
-    title: json['title'] as String?,
-  );
+  factory ManagingSteamInventoryValueResponseDataItems0Stickers.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamInventoryValueResponseDataItems0Stickers(
+        stickerCount: json['stickerCount'] as int,
+        count: json['count'] as int,
+        images: (json['images'] as List<dynamic>).cast<String>(),
+        title: json['title'] as String,
+      );
 }
 
 class ManagingSteamInventoryValueResponseDataItems0 {
-  final String? classid;
-  final int? tradable;
-  final int? marketable;
-  final String? imageUrl;
-  final String? title;
-  final double? price;
-  final int? count;
-  final String? type;
-  final String? marketHashName;
-  final Object? fraudwarnings;
-  final ManagingSteamInventoryValueResponseDataItems0Stickers? stickers;
+  final String classid;
+  final int tradable;
+  final int marketable;
+  final String imageUrl;
+  final String title;
+  final double price;
+  final int count;
+  final String type;
+  final String marketHashName;
+  final Object fraudwarnings;
+  final ManagingSteamInventoryValueResponseDataItems0Stickers stickers;
 
   const ManagingSteamInventoryValueResponseDataItems0({
-    this.classid,
-    this.tradable,
-    this.marketable,
-    this.imageUrl,
-    this.title,
-    this.price,
-    this.count,
-    this.type,
-    this.marketHashName,
-    this.fraudwarnings,
-    this.stickers,
+    required this.classid,
+    required this.tradable,
+    required this.marketable,
+    required this.imageUrl,
+    required this.title,
+    required this.price,
+    required this.count,
+    required this.type,
+    required this.marketHashName,
+    required this.fraudwarnings,
+    required this.stickers,
   });
 
-  factory ManagingSteamInventoryValueResponseDataItems0.fromJson(Map<String, dynamic> json) => ManagingSteamInventoryValueResponseDataItems0(
-    classid: json['classid'] as String?,
-    tradable: json['tradable'] as int?,
-    marketable: json['marketable'] as int?,
-    imageUrl: json['image_url'] as String?,
-    title: json['title'] as String?,
-    price: json['price'] as double?,
-    count: json['count'] as int?,
-    type: json['type'] as String?,
-    marketHashName: json['market_hash_name'] as String?,
-    fraudwarnings: json['fraudwarnings'] as Object?,
-    stickers: json['stickers'] != null
-            ? ManagingSteamInventoryValueResponseDataItems0Stickers.fromJson(json['stickers'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamInventoryValueResponseDataItems0.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamInventoryValueResponseDataItems0(
+        classid: json['classid'] as String,
+        tradable: json['tradable'] as int,
+        marketable: json['marketable'] as int,
+        imageUrl: json['image_url'] as String,
+        title: json['title'] as String,
+        price: json['price'] as double,
+        count: json['count'] as int,
+        type: json['type'] as String,
+        marketHashName: json['market_hash_name'] as String,
+        fraudwarnings: json['fraudwarnings'] as Object,
+        stickers:
+            ManagingSteamInventoryValueResponseDataItems0Stickers.fromJson(
+                json['stickers'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamInventoryValueResponseDataItems {
@@ -10334,55 +10393,59 @@ class ManagingSteamInventoryValueResponseDataItems {
     this.n0,
   });
 
-  factory ManagingSteamInventoryValueResponseDataItems.fromJson(Map<String, dynamic> json) => ManagingSteamInventoryValueResponseDataItems(
-    n0: json['0'] != null
-            ? ManagingSteamInventoryValueResponseDataItems0.fromJson(json['0'] as Map<String, dynamic>)
+  factory ManagingSteamInventoryValueResponseDataItems.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamInventoryValueResponseDataItems(
+        n0: json['0'] != null
+            ? ManagingSteamInventoryValueResponseDataItems0.fromJson(
+                json['0'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingSteamInventoryValueResponseData {
-  final ManagingSteamInventoryValueResponseDataItems? items;
-  final String? steamId;
-  final int? appId;
-  final String? appTitle;
-  final double? totalValue;
-  final int? itemCount;
-  final int? marketableItemCount;
-  final String? currency;
-  final String? currencyIcon;
-  final String? language;
-  final int? time;
+  final ManagingSteamInventoryValueResponseDataItems items;
+  final String steamId;
+  final int appId;
+  final String appTitle;
+  final double totalValue;
+  final int itemCount;
+  final int marketableItemCount;
+  final String currency;
+  final String currencyIcon;
+  final String language;
+  final int time;
 
   const ManagingSteamInventoryValueResponseData({
-    this.items,
-    this.steamId,
-    this.appId,
-    this.appTitle,
-    this.totalValue,
-    this.itemCount,
-    this.marketableItemCount,
-    this.currency,
-    this.currencyIcon,
-    this.language,
-    this.time,
+    required this.items,
+    required this.steamId,
+    required this.appId,
+    required this.appTitle,
+    required this.totalValue,
+    required this.itemCount,
+    required this.marketableItemCount,
+    required this.currency,
+    required this.currencyIcon,
+    required this.language,
+    required this.time,
   });
 
-  factory ManagingSteamInventoryValueResponseData.fromJson(Map<String, dynamic> json) => ManagingSteamInventoryValueResponseData(
-    items: json['items'] != null
-            ? ManagingSteamInventoryValueResponseDataItems.fromJson(json['items'] as Map<String, dynamic>)
-            : null,
-    steamId: json['steam_id'] as String?,
-    appId: json['appId'] as int?,
-    appTitle: json['appTitle'] as String?,
-    totalValue: json['totalValue'] as double?,
-    itemCount: json['itemCount'] as int?,
-    marketableItemCount: json['marketableItemCount'] as int?,
-    currency: json['currency'] as String?,
-    currencyIcon: json['currencyIcon'] as String?,
-    language: json['language'] as String?,
-    time: json['time'] as int?,
-  );
+  factory ManagingSteamInventoryValueResponseData.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamInventoryValueResponseData(
+        items: ManagingSteamInventoryValueResponseDataItems.fromJson(
+            json['items'] as Map<String, dynamic>),
+        steamId: json['steam_id'] as String,
+        appId: json['appId'] as int,
+        appTitle: json['appTitle'] as String,
+        totalValue: json['totalValue'] as double,
+        itemCount: json['itemCount'] as int,
+        marketableItemCount: json['marketableItemCount'] as int,
+        currency: json['currency'] as String,
+        currencyIcon: json['currencyIcon'] as String,
+        language: json['language'] as String,
+        time: json['time'] as int,
+      );
 }
 
 class ManagingSteamInventoryValueResponse {
@@ -10398,16 +10461,20 @@ class ManagingSteamInventoryValueResponse {
     this.systemInfo,
   });
 
-  factory ManagingSteamInventoryValueResponse.fromJson(Map<String, dynamic> json) => ManagingSteamInventoryValueResponse(
-    query: json['query'] as String?,
-    data: json['data'] != null
-            ? ManagingSteamInventoryValueResponseData.fromJson(json['data'] as Map<String, dynamic>)
+  factory ManagingSteamInventoryValueResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamInventoryValueResponse(
+        query: json['query'] as String?,
+        data: json['data'] != null
+            ? ManagingSteamInventoryValueResponseData.fromJson(
+                json['data'] as Map<String, dynamic>)
             : null,
-    appId: json['appId'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        appId: json['appId'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingSteamValueParams {
@@ -10434,68 +10501,71 @@ class ManagingSteamValueParams {
 }
 
 class ManagingSteamValueResponseDataItems0Stickers {
-  final int? stickerCount;
-  final int? count;
-  final List<String>? images;
-  final String? title;
+  final int stickerCount;
+  final int count;
+  final List<String> images;
+  final String title;
 
   const ManagingSteamValueResponseDataItems0Stickers({
-    this.stickerCount,
-    this.count,
-    this.images,
-    this.title,
+    required this.stickerCount,
+    required this.count,
+    required this.images,
+    required this.title,
   });
 
-  factory ManagingSteamValueResponseDataItems0Stickers.fromJson(Map<String, dynamic> json) => ManagingSteamValueResponseDataItems0Stickers(
-    stickerCount: json['stickerCount'] as int?,
-    count: json['count'] as int?,
-    images: (json['images'] as List<dynamic>?)?.cast<String>(),
-    title: json['title'] as String?,
-  );
+  factory ManagingSteamValueResponseDataItems0Stickers.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamValueResponseDataItems0Stickers(
+        stickerCount: json['stickerCount'] as int,
+        count: json['count'] as int,
+        images: (json['images'] as List<dynamic>).cast<String>(),
+        title: json['title'] as String,
+      );
 }
 
 class ManagingSteamValueResponseDataItems0 {
-  final String? classid;
-  final int? tradable;
-  final int? marketable;
-  final String? imageUrl;
-  final String? title;
-  final double? price;
-  final int? count;
-  final String? type;
-  final String? marketHashName;
-  final Object? fraudwarnings;
-  final ManagingSteamValueResponseDataItems0Stickers? stickers;
+  final String classid;
+  final int tradable;
+  final int marketable;
+  final String imageUrl;
+  final String title;
+  final double price;
+  final int count;
+  final String type;
+  final String marketHashName;
+  final Object fraudwarnings;
+  final ManagingSteamValueResponseDataItems0Stickers stickers;
 
   const ManagingSteamValueResponseDataItems0({
-    this.classid,
-    this.tradable,
-    this.marketable,
-    this.imageUrl,
-    this.title,
-    this.price,
-    this.count,
-    this.type,
-    this.marketHashName,
-    this.fraudwarnings,
-    this.stickers,
+    required this.classid,
+    required this.tradable,
+    required this.marketable,
+    required this.imageUrl,
+    required this.title,
+    required this.price,
+    required this.count,
+    required this.type,
+    required this.marketHashName,
+    required this.fraudwarnings,
+    required this.stickers,
   });
 
-  factory ManagingSteamValueResponseDataItems0.fromJson(Map<String, dynamic> json) => ManagingSteamValueResponseDataItems0(
-    classid: json['classid'] as String?,
-    tradable: json['tradable'] as int?,
-    marketable: json['marketable'] as int?,
-    imageUrl: json['image_url'] as String?,
-    title: json['title'] as String?,
-    price: json['price'] as double?,
-    count: json['count'] as int?,
-    type: json['type'] as String?,
-    marketHashName: json['market_hash_name'] as String?,
-    fraudwarnings: json['fraudwarnings'] as Object?,
-    stickers: json['stickers'] != null
-            ? ManagingSteamValueResponseDataItems0Stickers.fromJson(json['stickers'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamValueResponseDataItems0.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamValueResponseDataItems0(
+        classid: json['classid'] as String,
+        tradable: json['tradable'] as int,
+        marketable: json['marketable'] as int,
+        imageUrl: json['image_url'] as String,
+        title: json['title'] as String,
+        price: json['price'] as double,
+        count: json['count'] as int,
+        type: json['type'] as String,
+        marketHashName: json['market_hash_name'] as String,
+        fraudwarnings: json['fraudwarnings'] as Object,
+        stickers: ManagingSteamValueResponseDataItems0Stickers.fromJson(
+            json['stickers'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamValueResponseDataItems {
@@ -10505,55 +10575,58 @@ class ManagingSteamValueResponseDataItems {
     this.n0,
   });
 
-  factory ManagingSteamValueResponseDataItems.fromJson(Map<String, dynamic> json) => ManagingSteamValueResponseDataItems(
-    n0: json['0'] != null
-            ? ManagingSteamValueResponseDataItems0.fromJson(json['0'] as Map<String, dynamic>)
+  factory ManagingSteamValueResponseDataItems.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamValueResponseDataItems(
+        n0: json['0'] != null
+            ? ManagingSteamValueResponseDataItems0.fromJson(
+                json['0'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingSteamValueResponseData {
-  final ManagingSteamValueResponseDataItems? items;
-  final String? steamId;
-  final int? appId;
-  final String? appTitle;
-  final double? totalValue;
-  final int? itemCount;
-  final int? marketableItemCount;
-  final String? currency;
-  final String? currencyIcon;
-  final String? language;
-  final int? time;
+  final ManagingSteamValueResponseDataItems items;
+  final String steamId;
+  final int appId;
+  final String appTitle;
+  final double totalValue;
+  final int itemCount;
+  final int marketableItemCount;
+  final String currency;
+  final String currencyIcon;
+  final String language;
+  final int time;
 
   const ManagingSteamValueResponseData({
-    this.items,
-    this.steamId,
-    this.appId,
-    this.appTitle,
-    this.totalValue,
-    this.itemCount,
-    this.marketableItemCount,
-    this.currency,
-    this.currencyIcon,
-    this.language,
-    this.time,
+    required this.items,
+    required this.steamId,
+    required this.appId,
+    required this.appTitle,
+    required this.totalValue,
+    required this.itemCount,
+    required this.marketableItemCount,
+    required this.currency,
+    required this.currencyIcon,
+    required this.language,
+    required this.time,
   });
 
-  factory ManagingSteamValueResponseData.fromJson(Map<String, dynamic> json) => ManagingSteamValueResponseData(
-    items: json['items'] != null
-            ? ManagingSteamValueResponseDataItems.fromJson(json['items'] as Map<String, dynamic>)
-            : null,
-    steamId: json['steam_id'] as String?,
-    appId: json['appId'] as int?,
-    appTitle: json['appTitle'] as String?,
-    totalValue: json['totalValue'] as double?,
-    itemCount: json['itemCount'] as int?,
-    marketableItemCount: json['marketableItemCount'] as int?,
-    currency: json['currency'] as String?,
-    currencyIcon: json['currencyIcon'] as String?,
-    language: json['language'] as String?,
-    time: json['time'] as int?,
-  );
+  factory ManagingSteamValueResponseData.fromJson(Map<String, dynamic> json) =>
+      ManagingSteamValueResponseData(
+        items: ManagingSteamValueResponseDataItems.fromJson(
+            json['items'] as Map<String, dynamic>),
+        steamId: json['steam_id'] as String,
+        appId: json['appId'] as int,
+        appTitle: json['appTitle'] as String,
+        totalValue: json['totalValue'] as double,
+        itemCount: json['itemCount'] as int,
+        marketableItemCount: json['marketableItemCount'] as int,
+        currency: json['currency'] as String,
+        currencyIcon: json['currencyIcon'] as String,
+        language: json['language'] as String,
+        time: json['time'] as int,
+      );
 }
 
 class ManagingSteamValueResponse {
@@ -10569,20 +10642,23 @@ class ManagingSteamValueResponse {
     this.systemInfo,
   });
 
-  factory ManagingSteamValueResponse.fromJson(Map<String, dynamic> json) => ManagingSteamValueResponse(
-    query: json['query'] as String?,
-    data: json['data'] != null
-            ? ManagingSteamValueResponseData.fromJson(json['data'] as Map<String, dynamic>)
+  factory ManagingSteamValueResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingSteamValueResponse(
+        query: json['query'] as String?,
+        data: json['data'] != null
+            ? ManagingSteamValueResponseData.fromJson(
+                json['data'] as Map<String, dynamic>)
             : null,
-    appId: json['appId'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+        appId: json['appId'] as int?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingSteamPreviewParams {
-  final ManagingType? type;
+  final Type? type;
 
   const ManagingSteamPreviewParams({
     this.type,
@@ -10600,7 +10676,7 @@ class ManagingEditBody {
   final String? titleEn;
   final int? price;
   final Currency? currency;
-  final ManagingItemOrigin? itemOrigin;
+  final ItemOrigin? itemOrigin;
   final String? emailLoginData;
   final EmailType? emailType;
   final bool? allowAskDiscount;
@@ -10650,47 +10726,49 @@ class ManagingEditResponse {
     this.systemInfo,
   });
 
-  factory ManagingEditResponse.fromJson(Map<String, dynamic> json) => ManagingEditResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ManagingEditResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingEditResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingAIPriceResponse {
-  final int? price;
-  final RespSystemInfo? systemInfo;
+  final int price;
+  final RespSystemInfo systemInfo;
 
   const ManagingAIPriceResponse({
-    this.price,
-    this.systemInfo,
+    required this.price,
+    required this.systemInfo,
   });
 
-  factory ManagingAIPriceResponse.fromJson(Map<String, dynamic> json) => ManagingAIPriceResponse(
-    price: json['price'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingAIPriceResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingAIPriceResponse(
+        price: json['price'] as int,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingAutoBuyPriceResponse {
-  final int? price;
-  final RespSystemInfo? systemInfo;
+  final int price;
+  final RespSystemInfo systemInfo;
 
   const ManagingAutoBuyPriceResponse({
-    this.price,
-    this.systemInfo,
+    required this.price,
+    required this.systemInfo,
   });
 
-  factory ManagingAutoBuyPriceResponse.fromJson(Map<String, dynamic> json) => ManagingAutoBuyPriceResponse(
-    price: json['price'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingAutoBuyPriceResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingAutoBuyPriceResponse(
+        price: json['price'] as int,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingNoteBody {
@@ -10708,23 +10786,23 @@ class ManagingNoteBody {
 }
 
 class ManagingNoteResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingNoteResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingNoteResponse.fromJson(Map<String, dynamic> json) => ManagingNoteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingNoteResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingNoteResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamUpdateValueBody {
@@ -10748,45 +10826,44 @@ class ManagingSteamUpdateValueBody {
 }
 
 class ManagingSteamUpdateValueResponse {
-  final String? status;
-  final ItemModel? item;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final ItemModel item;
+  final RespSystemInfo systemInfo;
 
   const ManagingSteamUpdateValueResponse({
-    this.status,
-    this.item,
-    this.systemInfo,
+    required this.status,
+    required this.item,
+    required this.systemInfo,
   });
 
-  factory ManagingSteamUpdateValueResponse.fromJson(Map<String, dynamic> json) => ManagingSteamUpdateValueResponse(
-    status: json['status'] as String?,
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamUpdateValueResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamUpdateValueResponse(
+        status: json['status'] as String,
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingBumpResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingBumpResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingBumpResponse.fromJson(Map<String, dynamic> json) => ManagingBumpResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingBumpResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingBumpResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingAutoBumpBody {
@@ -10804,87 +10881,87 @@ class ManagingAutoBumpBody {
 }
 
 class ManagingAutoBumpResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingAutoBumpResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingAutoBumpResponse.fromJson(Map<String, dynamic> json) => ManagingAutoBumpResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingAutoBumpResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingAutoBumpResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingAutoBumpDisableResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingAutoBumpDisableResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingAutoBumpDisableResponse.fromJson(Map<String, dynamic> json) => ManagingAutoBumpDisableResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingAutoBumpDisableResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingAutoBumpDisableResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingOpenResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingOpenResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingOpenResponse.fromJson(Map<String, dynamic> json) => ManagingOpenResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingOpenResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingOpenResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingCloseResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingCloseResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingCloseResponse.fromJson(Map<String, dynamic> json) => ManagingCloseResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingCloseResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingCloseResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingImageParams {
-  final ManagingType type;
+  final Type type;
 
   const ManagingImageParams({
     required this.type,
@@ -10898,57 +10975,57 @@ class ManagingImageParams {
 }
 
 class ManagingImageResponse {
-  final String? base64;
-  final RespSystemInfo? systemInfo;
+  final String base64;
+  final RespSystemInfo systemInfo;
 
   const ManagingImageResponse({
-    this.base64,
-    this.systemInfo,
+    required this.base64,
+    required this.systemInfo,
   });
 
-  factory ManagingImageResponse.fromJson(Map<String, dynamic> json) => ManagingImageResponse(
-    base64: json['base64'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingImageResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingImageResponse(
+        base64: json['base64'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingEmailCodeResponseCodeData {
-  final String? code;
-  final int? date;
-  final String? textPlain;
+  final String code;
+  final int date;
+  final String textPlain;
 
   const ManagingEmailCodeResponseCodeData({
-    this.code,
-    this.date,
-    this.textPlain,
+    required this.code,
+    required this.date,
+    required this.textPlain,
   });
 
-  factory ManagingEmailCodeResponseCodeData.fromJson(Map<String, dynamic> json) => ManagingEmailCodeResponseCodeData(
-    code: json['code'] as String?,
-    date: json['date'] as int?,
-    textPlain: json['textPlain'] as String?,
-  );
+  factory ManagingEmailCodeResponseCodeData.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingEmailCodeResponseCodeData(
+        code: json['code'] as String,
+        date: json['date'] as int,
+        textPlain: json['textPlain'] as String,
+      );
 }
 
 class ManagingEmailCodeResponse {
-  final ItemModel? item;
-  final ManagingEmailCodeResponseCodeData? codeData;
+  final ItemModel item;
+  final ManagingEmailCodeResponseCodeData codeData;
 
   const ManagingEmailCodeResponse({
-    this.item,
-    this.codeData,
+    required this.item,
+    required this.codeData,
   });
 
-  factory ManagingEmailCodeResponse.fromJson(Map<String, dynamic> json) => ManagingEmailCodeResponse(
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    codeData: json['codeData'] != null
-            ? ManagingEmailCodeResponseCodeData.fromJson(json['codeData'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingEmailCodeResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingEmailCodeResponse(
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        codeData: ManagingEmailCodeResponseCodeData.fromJson(
+            json['codeData'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingGetLetters2Params {
@@ -10975,197 +11052,197 @@ class ManagingGetLetters2Params {
 }
 
 class ManagingGetLetters2Response {
-  final String? email;
-  final List<Map<String, dynamic>>? letters;
-  final RespSystemInfo? systemInfo;
+  final String email;
+  final List<Map<String, dynamic>> letters;
+  final RespSystemInfo systemInfo;
 
   const ManagingGetLetters2Response({
-    this.email,
-    this.letters,
-    this.systemInfo,
+    required this.email,
+    required this.letters,
+    required this.systemInfo,
   });
 
-  factory ManagingGetLetters2Response.fromJson(Map<String, dynamic> json) => ManagingGetLetters2Response(
-    email: json['email'] as String?,
-    letters: (json['letters'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingGetLetters2Response.fromJson(Map<String, dynamic> json) =>
+      ManagingGetLetters2Response(
+        email: json['email'] as String,
+        letters:
+            (json['letters'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamGetMafileResponseMaFileSession {
-  final String? sessionID;
-  final String? accessToken;
-  final String? refreshToken;
-  final String? steamID;
-  final String? steamLoginSecure;
+  final String sessionID;
+  final String accessToken;
+  final String refreshToken;
+  final String steamID;
+  final String steamLoginSecure;
 
   const ManagingSteamGetMafileResponseMaFileSession({
-    this.sessionID,
-    this.accessToken,
-    this.refreshToken,
-    this.steamID,
-    this.steamLoginSecure,
+    required this.sessionID,
+    required this.accessToken,
+    required this.refreshToken,
+    required this.steamID,
+    required this.steamLoginSecure,
   });
 
-  factory ManagingSteamGetMafileResponseMaFileSession.fromJson(Map<String, dynamic> json) => ManagingSteamGetMafileResponseMaFileSession(
-    sessionID: json['SessionID'] as String?,
-    accessToken: json['AccessToken'] as String?,
-    refreshToken: json['RefreshToken'] as String?,
-    steamID: json['SteamID'] as String?,
-    steamLoginSecure: json['SteamLoginSecure'] as String?,
-  );
+  factory ManagingSteamGetMafileResponseMaFileSession.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamGetMafileResponseMaFileSession(
+        sessionID: json['SessionID'] as String,
+        accessToken: json['AccessToken'] as String,
+        refreshToken: json['RefreshToken'] as String,
+        steamID: json['SteamID'] as String,
+        steamLoginSecure: json['SteamLoginSecure'] as String,
+      );
 }
 
 class ManagingSteamGetMafileResponseMaFile {
-  final String? sharedSecret;
-  final int? serialNumber;
-  final String? revocationCode;
-  final String? uri;
-  final String? accountName;
-  final String? tokenGid;
-  final String? identitySecret;
-  final String? secret_1;
-  final String? deviceId;
-  final bool? fullyEnrolled;
-  final ManagingSteamGetMafileResponseMaFileSession? session;
+  final String sharedSecret;
+  final int serialNumber;
+  final String revocationCode;
+  final String uri;
+  final String accountName;
+  final String tokenGid;
+  final String identitySecret;
+  final String secret_1;
+  final String deviceId;
+  final bool fullyEnrolled;
+  final ManagingSteamGetMafileResponseMaFileSession session;
 
   const ManagingSteamGetMafileResponseMaFile({
-    this.sharedSecret,
-    this.serialNumber,
-    this.revocationCode,
-    this.uri,
-    this.accountName,
-    this.tokenGid,
-    this.identitySecret,
-    this.secret_1,
-    this.deviceId,
-    this.fullyEnrolled,
-    this.session,
+    required this.sharedSecret,
+    required this.serialNumber,
+    required this.revocationCode,
+    required this.uri,
+    required this.accountName,
+    required this.tokenGid,
+    required this.identitySecret,
+    required this.secret_1,
+    required this.deviceId,
+    required this.fullyEnrolled,
+    required this.session,
   });
 
-  factory ManagingSteamGetMafileResponseMaFile.fromJson(Map<String, dynamic> json) => ManagingSteamGetMafileResponseMaFile(
-    sharedSecret: json['shared_secret'] as String?,
-    serialNumber: json['serial_number'] as int?,
-    revocationCode: json['revocation_code'] as String?,
-    uri: json['uri'] as String?,
-    accountName: json['account_name'] as String?,
-    tokenGid: json['token_gid'] as String?,
-    identitySecret: json['identity_secret'] as String?,
-    secret_1: json['secret_1'] as String?,
-    deviceId: json['device_id'] as String?,
-    fullyEnrolled: json['fully_enrolled'] as bool?,
-    session: json['Session'] != null
-            ? ManagingSteamGetMafileResponseMaFileSession.fromJson(json['Session'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamGetMafileResponseMaFile.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamGetMafileResponseMaFile(
+        sharedSecret: json['shared_secret'] as String,
+        serialNumber: json['serial_number'] as int,
+        revocationCode: json['revocation_code'] as String,
+        uri: json['uri'] as String,
+        accountName: json['account_name'] as String,
+        tokenGid: json['token_gid'] as String,
+        identitySecret: json['identity_secret'] as String,
+        secret_1: json['secret_1'] as String,
+        deviceId: json['device_id'] as String,
+        fullyEnrolled: json['fully_enrolled'] as bool,
+        session: ManagingSteamGetMafileResponseMaFileSession.fromJson(
+            json['Session'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamGetMafileResponse {
-  final ManagingSteamGetMafileResponseMaFile? maFile;
-  final RespSystemInfo? systemInfo;
+  final ManagingSteamGetMafileResponseMaFile maFile;
+  final RespSystemInfo systemInfo;
 
   const ManagingSteamGetMafileResponse({
-    this.maFile,
-    this.systemInfo,
+    required this.maFile,
+    required this.systemInfo,
   });
 
-  factory ManagingSteamGetMafileResponse.fromJson(Map<String, dynamic> json) => ManagingSteamGetMafileResponse(
-    maFile: json['maFile'] != null
-            ? ManagingSteamGetMafileResponseMaFile.fromJson(json['maFile'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamGetMafileResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingSteamGetMafileResponse(
+        maFile: ManagingSteamGetMafileResponseMaFile.fromJson(
+            json['maFile'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamAddMafileResponse {
-  final String? status;
-  final String? message;
-  final ItemModel? item;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final ItemModel item;
+  final RespSystemInfo systemInfo;
 
   const ManagingSteamAddMafileResponse({
-    this.status,
-    this.message,
-    this.item,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.item,
+    required this.systemInfo,
   });
 
-  factory ManagingSteamAddMafileResponse.fromJson(Map<String, dynamic> json) => ManagingSteamAddMafileResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamAddMafileResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingSteamAddMafileResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamRemoveMafileResponse {
-  final String? status;
-  final String? message;
-  final ItemModel? item;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final ItemModel item;
+  final RespSystemInfo systemInfo;
 
   const ManagingSteamRemoveMafileResponse({
-    this.status,
-    this.message,
-    this.item,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.item,
+    required this.systemInfo,
   });
 
-  factory ManagingSteamRemoveMafileResponse.fromJson(Map<String, dynamic> json) => ManagingSteamRemoveMafileResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamRemoveMafileResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamRemoveMafileResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamMafileCodeResponseCodeData {
-  final String? code;
-  final int? date;
-  final String? textPlain;
+  final String code;
+  final int date;
+  final String textPlain;
 
   const ManagingSteamMafileCodeResponseCodeData({
-    this.code,
-    this.date,
-    this.textPlain,
+    required this.code,
+    required this.date,
+    required this.textPlain,
   });
 
-  factory ManagingSteamMafileCodeResponseCodeData.fromJson(Map<String, dynamic> json) => ManagingSteamMafileCodeResponseCodeData(
-    code: json['code'] as String?,
-    date: json['date'] as int?,
-    textPlain: json['textPlain'] as String?,
-  );
+  factory ManagingSteamMafileCodeResponseCodeData.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingSteamMafileCodeResponseCodeData(
+        code: json['code'] as String,
+        date: json['date'] as int,
+        textPlain: json['textPlain'] as String,
+      );
 }
 
 class ManagingSteamMafileCodeResponse {
-  final ItemModel? item;
-  final ManagingSteamMafileCodeResponseCodeData? codeData;
+  final ItemModel item;
+  final ManagingSteamMafileCodeResponseCodeData codeData;
 
   const ManagingSteamMafileCodeResponse({
-    this.item,
-    this.codeData,
+    required this.item,
+    required this.codeData,
   });
 
-  factory ManagingSteamMafileCodeResponse.fromJson(Map<String, dynamic> json) => ManagingSteamMafileCodeResponse(
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    codeData: json['codeData'] != null
-            ? ManagingSteamMafileCodeResponseCodeData.fromJson(json['codeData'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamMafileCodeResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingSteamMafileCodeResponse(
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        codeData: ManagingSteamMafileCodeResponseCodeData.fromJson(
+            json['codeData'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingSteamSDABody {
@@ -11186,23 +11263,23 @@ class ManagingSteamSDABody {
 }
 
 class ManagingSteamSDAResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingSteamSDAResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingSteamSDAResponse.fromJson(Map<String, dynamic> json) => ManagingSteamSDAResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingSteamSDAResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingSteamSDAResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingTelegramCodeResponseCodes {
@@ -11214,29 +11291,29 @@ class ManagingTelegramCodeResponseCodes {
     this.date,
   });
 
-  factory ManagingTelegramCodeResponseCodes.fromJson(Map<String, dynamic> json) => ManagingTelegramCodeResponseCodes(
-    code: json['code'] as String?,
-    date: json['date'] as int?,
-  );
+  factory ManagingTelegramCodeResponseCodes.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingTelegramCodeResponseCodes(
+        code: json['code'] as String?,
+        date: json['date'] as int?,
+      );
 }
 
 class ManagingTelegramCodeResponse {
-  final ItemModel? item;
-  final ManagingTelegramCodeResponseCodes? codes;
+  final ItemModel item;
+  final ManagingTelegramCodeResponseCodes codes;
 
   const ManagingTelegramCodeResponse({
-    this.item,
-    this.codes,
+    required this.item,
+    required this.codes,
   });
 
-  factory ManagingTelegramCodeResponse.fromJson(Map<String, dynamic> json) => ManagingTelegramCodeResponse(
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    codes: json['codes'] != null
-            ? ManagingTelegramCodeResponseCodes.fromJson(json['codes'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingTelegramCodeResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingTelegramCodeResponse(
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        codes: ManagingTelegramCodeResponseCodes.fromJson(
+            json['codes'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingTelegramResetAuthResponse {
@@ -11250,13 +11327,16 @@ class ManagingTelegramResetAuthResponse {
     this.systemInfo,
   });
 
-  factory ManagingTelegramResetAuthResponse.fromJson(Map<String, dynamic> json) => ManagingTelegramResetAuthResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ManagingTelegramResetAuthResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingTelegramResetAuthResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingRefuseGuaranteeResponse {
@@ -11270,17 +11350,20 @@ class ManagingRefuseGuaranteeResponse {
     this.systemInfo,
   });
 
-  factory ManagingRefuseGuaranteeResponse.fromJson(Map<String, dynamic> json) => ManagingRefuseGuaranteeResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ManagingRefuseGuaranteeResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingRefuseGuaranteeResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingDeclineVideoRecordingBody {
-  final bool iVoluntarilyAndWithFullAwarenessOfMyActionsWaiveAnyClaimsRegardingThisItem;
+  final bool
+      iVoluntarilyAndWithFullAwarenessOfMyActionsWaiveAnyClaimsRegardingThisItem;
 
   const ManagingDeclineVideoRecordingBody({
     required this.iVoluntarilyAndWithFullAwarenessOfMyActionsWaiveAnyClaimsRegardingThisItem,
@@ -11288,7 +11371,8 @@ class ManagingDeclineVideoRecordingBody {
 
   Map<String, Object?> toMap() {
     return {
-      'i_voluntarily_and_with_full_awareness_of_my_actions_waive_any_claims_regarding_this_item': iVoluntarilyAndWithFullAwarenessOfMyActionsWaiveAnyClaimsRegardingThisItem,
+      'i_voluntarily_and_with_full_awareness_of_my_actions_waive_any_claims_regarding_this_item':
+          iVoluntarilyAndWithFullAwarenessOfMyActionsWaiveAnyClaimsRegardingThisItem,
     };
   }
 }
@@ -11304,30 +11388,33 @@ class ManagingDeclineVideoRecordingResponse {
     this.systemInfo,
   });
 
-  factory ManagingDeclineVideoRecordingResponse.fromJson(Map<String, dynamic> json) => ManagingDeclineVideoRecordingResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ManagingDeclineVideoRecordingResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingDeclineVideoRecordingResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingCheckGuaranteeResponse {
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingCheckGuaranteeResponse({
-    this.message,
-    this.systemInfo,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingCheckGuaranteeResponse.fromJson(Map<String, dynamic> json) => ManagingCheckGuaranteeResponse(
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingCheckGuaranteeResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingCheckGuaranteeResponse(
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingChangePasswordBody {
@@ -11347,45 +11434,49 @@ class ManagingChangePasswordBody {
 class ManagingChangePasswordResponse {
   final String? status;
   final String? message;
-  final String? newPassword;
+  final String newPassword;
 
   const ManagingChangePasswordResponse({
     this.status,
     this.message,
-    this.newPassword,
+    required this.newPassword,
   });
 
-  factory ManagingChangePasswordResponse.fromJson(Map<String, dynamic> json) => ManagingChangePasswordResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    newPassword: json['new_password'] as String?,
-  );
+  factory ManagingChangePasswordResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingChangePasswordResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        newPassword: json['new_password'] as String,
+      );
 }
 
 class ManagingTempEmailPasswordResponseItem {
-  final String? account;
+  final String account;
 
   const ManagingTempEmailPasswordResponseItem({
-    this.account,
+    required this.account,
   });
 
-  factory ManagingTempEmailPasswordResponseItem.fromJson(Map<String, dynamic> json) => ManagingTempEmailPasswordResponseItem(
-    account: json['account'] as String?,
-  );
+  factory ManagingTempEmailPasswordResponseItem.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingTempEmailPasswordResponseItem(
+        account: json['account'] as String,
+      );
 }
 
 class ManagingTempEmailPasswordResponse {
-  final ManagingTempEmailPasswordResponseItem? item;
+  final ManagingTempEmailPasswordResponseItem item;
 
   const ManagingTempEmailPasswordResponse({
-    this.item,
+    required this.item,
   });
 
-  factory ManagingTempEmailPasswordResponse.fromJson(Map<String, dynamic> json) => ManagingTempEmailPasswordResponse(
-    item: json['item'] != null
-            ? ManagingTempEmailPasswordResponseItem.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingTempEmailPasswordResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingTempEmailPasswordResponse(
+        item: ManagingTempEmailPasswordResponseItem.fromJson(
+            json['item'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingTagBody {
@@ -11403,55 +11494,55 @@ class ManagingTagBody {
 }
 
 class ManagingTagResponseTag {
-  final int? tagId;
-  final String? title;
-  final bool? isDefault;
-  final bool? forOwnedAccountsOnly;
-  final String? bc;
+  final int tagId;
+  final String title;
+  final bool isDefault;
+  final bool forOwnedAccountsOnly;
+  final String bc;
 
   const ManagingTagResponseTag({
-    this.tagId,
-    this.title,
-    this.isDefault,
-    this.forOwnedAccountsOnly,
-    this.bc,
+    required this.tagId,
+    required this.title,
+    required this.isDefault,
+    required this.forOwnedAccountsOnly,
+    required this.bc,
   });
 
-  factory ManagingTagResponseTag.fromJson(Map<String, dynamic> json) => ManagingTagResponseTag(
-    tagId: json['tag_id'] as int?,
-    title: json['title'] as String?,
-    isDefault: json['isDefault'] as bool?,
-    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
-    bc: json['bc'] as String?,
-  );
+  factory ManagingTagResponseTag.fromJson(Map<String, dynamic> json) =>
+      ManagingTagResponseTag(
+        tagId: json['tag_id'] as int,
+        title: json['title'] as String,
+        isDefault: json['isDefault'] as bool,
+        forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool,
+        bc: json['bc'] as String,
+      );
 }
 
 class ManagingTagResponse {
-  final int? itemId;
-  final ManagingTagResponseTag? tag;
-  final int? addedTagId;
-  final List<int>? deleteTags;
-  final RespSystemInfo? systemInfo;
+  final int itemId;
+  final ManagingTagResponseTag tag;
+  final int addedTagId;
+  final List<int> deleteTags;
+  final RespSystemInfo systemInfo;
 
   const ManagingTagResponse({
-    this.itemId,
-    this.tag,
-    this.addedTagId,
-    this.deleteTags,
-    this.systemInfo,
+    required this.itemId,
+    required this.tag,
+    required this.addedTagId,
+    required this.deleteTags,
+    required this.systemInfo,
   });
 
-  factory ManagingTagResponse.fromJson(Map<String, dynamic> json) => ManagingTagResponse(
-    itemId: json['itemId'] as int?,
-    tag: json['tag'] != null
-            ? ManagingTagResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
-            : null,
-    addedTagId: json['addedTagId'] as int?,
-    deleteTags: (json['deleteTags'] as List<dynamic>?)?.cast<int>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingTagResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingTagResponse(
+        itemId: json['itemId'] as int,
+        tag: ManagingTagResponseTag.fromJson(
+            json['tag'] as Map<String, dynamic>),
+        addedTagId: json['addedTagId'] as int,
+        deleteTags: (json['deleteTags'] as List<dynamic>).cast<int>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingUntagBody {
@@ -11469,55 +11560,55 @@ class ManagingUntagBody {
 }
 
 class ManagingUntagResponseTag {
-  final int? tagId;
-  final String? title;
-  final bool? isDefault;
-  final bool? forOwnedAccountsOnly;
-  final String? bc;
+  final int tagId;
+  final String title;
+  final bool isDefault;
+  final bool forOwnedAccountsOnly;
+  final String bc;
 
   const ManagingUntagResponseTag({
-    this.tagId,
-    this.title,
-    this.isDefault,
-    this.forOwnedAccountsOnly,
-    this.bc,
+    required this.tagId,
+    required this.title,
+    required this.isDefault,
+    required this.forOwnedAccountsOnly,
+    required this.bc,
   });
 
-  factory ManagingUntagResponseTag.fromJson(Map<String, dynamic> json) => ManagingUntagResponseTag(
-    tagId: json['tag_id'] as int?,
-    title: json['title'] as String?,
-    isDefault: json['isDefault'] as bool?,
-    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
-    bc: json['bc'] as String?,
-  );
+  factory ManagingUntagResponseTag.fromJson(Map<String, dynamic> json) =>
+      ManagingUntagResponseTag(
+        tagId: json['tag_id'] as int,
+        title: json['title'] as String,
+        isDefault: json['isDefault'] as bool,
+        forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool,
+        bc: json['bc'] as String,
+      );
 }
 
 class ManagingUntagResponse {
-  final int? itemId;
-  final ManagingUntagResponseTag? tag;
-  final int? addedTagId;
-  final List<int>? deleteTags;
-  final RespSystemInfo? systemInfo;
+  final int itemId;
+  final ManagingUntagResponseTag tag;
+  final int addedTagId;
+  final List<int> deleteTags;
+  final RespSystemInfo systemInfo;
 
   const ManagingUntagResponse({
-    this.itemId,
-    this.tag,
-    this.addedTagId,
-    this.deleteTags,
-    this.systemInfo,
+    required this.itemId,
+    required this.tag,
+    required this.addedTagId,
+    required this.deleteTags,
+    required this.systemInfo,
   });
 
-  factory ManagingUntagResponse.fromJson(Map<String, dynamic> json) => ManagingUntagResponse(
-    itemId: json['itemId'] as int?,
-    tag: json['tag'] != null
-            ? ManagingUntagResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
-            : null,
-    addedTagId: json['addedTagId'] as int?,
-    deleteTags: (json['deleteTags'] as List<dynamic>?)?.cast<int>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingUntagResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingUntagResponse(
+        itemId: json['itemId'] as int,
+        tag: ManagingUntagResponseTag.fromJson(
+            json['tag'] as Map<String, dynamic>),
+        addedTagId: json['addedTagId'] as int,
+        deleteTags: (json['deleteTags'] as List<dynamic>).cast<int>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingPublicTagBody {
@@ -11535,55 +11626,55 @@ class ManagingPublicTagBody {
 }
 
 class ManagingPublicTagResponseTag {
-  final int? tagId;
-  final String? title;
-  final bool? isDefault;
-  final bool? forOwnedAccountsOnly;
-  final String? bc;
+  final int tagId;
+  final String title;
+  final bool isDefault;
+  final bool forOwnedAccountsOnly;
+  final String bc;
 
   const ManagingPublicTagResponseTag({
-    this.tagId,
-    this.title,
-    this.isDefault,
-    this.forOwnedAccountsOnly,
-    this.bc,
+    required this.tagId,
+    required this.title,
+    required this.isDefault,
+    required this.forOwnedAccountsOnly,
+    required this.bc,
   });
 
-  factory ManagingPublicTagResponseTag.fromJson(Map<String, dynamic> json) => ManagingPublicTagResponseTag(
-    tagId: json['tag_id'] as int?,
-    title: json['title'] as String?,
-    isDefault: json['isDefault'] as bool?,
-    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
-    bc: json['bc'] as String?,
-  );
+  factory ManagingPublicTagResponseTag.fromJson(Map<String, dynamic> json) =>
+      ManagingPublicTagResponseTag(
+        tagId: json['tag_id'] as int,
+        title: json['title'] as String,
+        isDefault: json['isDefault'] as bool,
+        forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool,
+        bc: json['bc'] as String,
+      );
 }
 
 class ManagingPublicTagResponse {
-  final int? itemId;
-  final ManagingPublicTagResponseTag? tag;
-  final int? addedTagId;
-  final List<int>? deleteTags;
-  final RespSystemInfo? systemInfo;
+  final int itemId;
+  final ManagingPublicTagResponseTag tag;
+  final int addedTagId;
+  final List<int> deleteTags;
+  final RespSystemInfo systemInfo;
 
   const ManagingPublicTagResponse({
-    this.itemId,
-    this.tag,
-    this.addedTagId,
-    this.deleteTags,
-    this.systemInfo,
+    required this.itemId,
+    required this.tag,
+    required this.addedTagId,
+    required this.deleteTags,
+    required this.systemInfo,
   });
 
-  factory ManagingPublicTagResponse.fromJson(Map<String, dynamic> json) => ManagingPublicTagResponse(
-    itemId: json['itemId'] as int?,
-    tag: json['tag'] != null
-            ? ManagingPublicTagResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
-            : null,
-    addedTagId: json['addedTagId'] as int?,
-    deleteTags: (json['deleteTags'] as List<dynamic>?)?.cast<int>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingPublicTagResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingPublicTagResponse(
+        itemId: json['itemId'] as int,
+        tag: ManagingPublicTagResponseTag.fromJson(
+            json['tag'] as Map<String, dynamic>),
+        addedTagId: json['addedTagId'] as int,
+        deleteTags: (json['deleteTags'] as List<dynamic>).cast<int>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingPublicUntagBody {
@@ -11601,75 +11692,75 @@ class ManagingPublicUntagBody {
 }
 
 class ManagingPublicUntagResponseTag {
-  final int? tagId;
-  final String? title;
-  final bool? isDefault;
-  final bool? forOwnedAccountsOnly;
-  final String? bc;
+  final int tagId;
+  final String title;
+  final bool isDefault;
+  final bool forOwnedAccountsOnly;
+  final String bc;
 
   const ManagingPublicUntagResponseTag({
-    this.tagId,
-    this.title,
-    this.isDefault,
-    this.forOwnedAccountsOnly,
-    this.bc,
+    required this.tagId,
+    required this.title,
+    required this.isDefault,
+    required this.forOwnedAccountsOnly,
+    required this.bc,
   });
 
-  factory ManagingPublicUntagResponseTag.fromJson(Map<String, dynamic> json) => ManagingPublicUntagResponseTag(
-    tagId: json['tag_id'] as int?,
-    title: json['title'] as String?,
-    isDefault: json['isDefault'] as bool?,
-    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
-    bc: json['bc'] as String?,
-  );
+  factory ManagingPublicUntagResponseTag.fromJson(Map<String, dynamic> json) =>
+      ManagingPublicUntagResponseTag(
+        tagId: json['tag_id'] as int,
+        title: json['title'] as String,
+        isDefault: json['isDefault'] as bool,
+        forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool,
+        bc: json['bc'] as String,
+      );
 }
 
 class ManagingPublicUntagResponse {
-  final int? itemId;
-  final ManagingPublicUntagResponseTag? tag;
-  final int? addedTagId;
-  final List<int>? deleteTags;
-  final RespSystemInfo? systemInfo;
+  final int itemId;
+  final ManagingPublicUntagResponseTag tag;
+  final int addedTagId;
+  final List<int> deleteTags;
+  final RespSystemInfo systemInfo;
 
   const ManagingPublicUntagResponse({
-    this.itemId,
-    this.tag,
-    this.addedTagId,
-    this.deleteTags,
-    this.systemInfo,
+    required this.itemId,
+    required this.tag,
+    required this.addedTagId,
+    required this.deleteTags,
+    required this.systemInfo,
   });
 
-  factory ManagingPublicUntagResponse.fromJson(Map<String, dynamic> json) => ManagingPublicUntagResponse(
-    itemId: json['itemId'] as int?,
-    tag: json['tag'] != null
-            ? ManagingPublicUntagResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
-            : null,
-    addedTagId: json['addedTagId'] as int?,
-    deleteTags: (json['deleteTags'] as List<dynamic>?)?.cast<int>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingPublicUntagResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingPublicUntagResponse(
+        itemId: json['itemId'] as int,
+        tag: ManagingPublicUntagResponseTag.fromJson(
+            json['tag'] as Map<String, dynamic>),
+        addedTagId: json['addedTagId'] as int,
+        deleteTags: (json['deleteTags'] as List<dynamic>).cast<int>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingFavoriteResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const ManagingFavoriteResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory ManagingFavoriteResponse.fromJson(Map<String, dynamic> json) => ManagingFavoriteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ManagingFavoriteResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingFavoriteResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ManagingUnfavoriteResponse {
@@ -11683,13 +11774,15 @@ class ManagingUnfavoriteResponse {
     this.systemInfo,
   });
 
-  factory ManagingUnfavoriteResponse.fromJson(Map<String, dynamic> json) => ManagingUnfavoriteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ManagingUnfavoriteResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingUnfavoriteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingStickResponse {
@@ -11703,13 +11796,15 @@ class ManagingStickResponse {
     this.systemInfo,
   });
 
-  factory ManagingStickResponse.fromJson(Map<String, dynamic> json) => ManagingStickResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ManagingStickResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingStickResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingUnstickResponse {
@@ -11723,13 +11818,15 @@ class ManagingUnstickResponse {
     this.systemInfo,
   });
 
-  factory ManagingUnstickResponse.fromJson(Map<String, dynamic> json) => ManagingUnstickResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ManagingUnstickResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingUnstickResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ManagingTransferBody {
@@ -11760,13 +11857,15 @@ class ManagingTransferResponse {
     this.systemInfo,
   });
 
-  factory ManagingTransferResponse.fromJson(Map<String, dynamic> json) => ManagingTransferResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ManagingTransferResponse.fromJson(Map<String, dynamic> json) =>
+      ManagingTransferResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── PaymentsApi Types ────────────────────────────────────────
@@ -11789,22 +11888,20 @@ class PaymentsInvoiceGetParams {
 }
 
 class PaymentsInvoiceGetResponse {
-  final InvoiceModel? invoice;
-  final RespSystemInfo? systemInfo;
+  final InvoiceModel invoice;
+  final RespSystemInfo systemInfo;
 
   const PaymentsInvoiceGetResponse({
-    this.invoice,
-    this.systemInfo,
+    required this.invoice,
+    required this.systemInfo,
   });
 
-  factory PaymentsInvoiceGetResponse.fromJson(Map<String, dynamic> json) => PaymentsInvoiceGetResponse(
-    invoice: json['invoice'] != null
-            ? InvoiceModel.fromJson(json['invoice'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsInvoiceGetResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsInvoiceGetResponse(
+        invoice: InvoiceModel.fromJson(json['invoice'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsInvoiceCreateBody {
@@ -11817,6 +11914,7 @@ class PaymentsInvoiceCreateBody {
   final int merchantId;
   final int? requiredTelegramId;
   final String? requiredTelegramUsername;
+
   /// Default: 3600
   final double? lifetime;
   final String? additionalData;
@@ -11856,22 +11954,20 @@ class PaymentsInvoiceCreateBody {
 }
 
 class PaymentsInvoiceCreateResponse {
-  final InvoiceModel? invoice;
-  final RespSystemInfo? systemInfo;
+  final InvoiceModel invoice;
+  final RespSystemInfo systemInfo;
 
   const PaymentsInvoiceCreateResponse({
-    this.invoice,
-    this.systemInfo,
+    required this.invoice,
+    required this.systemInfo,
   });
 
-  factory PaymentsInvoiceCreateResponse.fromJson(Map<String, dynamic> json) => PaymentsInvoiceCreateResponse(
-    invoice: json['invoice'] != null
-            ? InvoiceModel.fromJson(json['invoice'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsInvoiceCreateResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsInvoiceCreateResponse(
+        invoice: InvoiceModel.fromJson(json['invoice'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsInvoiceListParams {
@@ -11901,1706 +11997,1764 @@ class PaymentsInvoiceListParams {
 }
 
 class PaymentsInvoiceListResponse {
-  final List<InvoiceModel>? invoices;
-  final int? count;
-  final int? page;
-  final int? perPage;
-  final RespSystemInfo? systemInfo;
+  final List<InvoiceModel> invoices;
+  final int count;
+  final int page;
+  final int perPage;
+  final RespSystemInfo systemInfo;
 
   const PaymentsInvoiceListResponse({
-    this.invoices,
-    this.count,
-    this.page,
-    this.perPage,
-    this.systemInfo,
+    required this.invoices,
+    required this.count,
+    required this.page,
+    required this.perPage,
+    required this.systemInfo,
   });
 
-  factory PaymentsInvoiceListResponse.fromJson(Map<String, dynamic> json) => PaymentsInvoiceListResponse(
-    invoices: (json['invoices'] as List<dynamic>?)
-            ?.map((e) => InvoiceModel.fromJson(e as Map<String, dynamic>))
+  factory PaymentsInvoiceListResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsInvoiceListResponse(
+        invoices: (json['invoices'] as List<dynamic>)
+            .map((e) => InvoiceModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-    count: json['count'] as int?,
-    page: json['page'] as int?,
-    perPage: json['perPage'] as int?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+        count: json['count'] as int,
+        page: json['page'] as int,
+        perPage: json['perPage'] as int,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListBTC {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListBTC({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListBTC.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListBTC(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListBTC.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListBTC(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListETH {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListETH({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListETH.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListETH(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListETH.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListETH(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListBNB {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListBNB({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListBNB.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListBNB(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListBNB.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListBNB(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListBCH {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListBCH({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListBCH.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListBCH(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListBCH.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListBCH(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListXMR {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListXMR({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListXMR.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListXMR(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListXMR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListXMR(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListSOL {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListSOL({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListSOL.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListSOL(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListSOL.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListSOL(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListLTC {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListLTC({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListLTC.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListLTC(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListLTC.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListLTC(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListDASH {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListDASH({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListDASH.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListDASH(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListDASH.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListDASH(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListTON {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListTON({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListTON.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListTON(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListTON.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListTON(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListUSDT {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListUSDT({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListUSDT.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListUSDT(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListUSDT.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListUSDT(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListMATIC {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListMATIC({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListMATIC.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListMATIC(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListMATIC.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListMATIC(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListTRX {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListTRX({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListTRX.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListTRX(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListTRX.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListTRX(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListDOGE {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListDOGE({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListDOGE.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListDOGE(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListDOGE.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListDOGE(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListKWD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListKWD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListKWD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListKWD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListKWD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListKWD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListGBP {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListGBP({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListGBP.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListGBP(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListGBP.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListGBP(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListCHF {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListCHF({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListCHF.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListCHF(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListCHF.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListCHF(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListEUR {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListEUR({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListEUR.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListEUR(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListEUR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListEUR(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListUSD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListUSD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListUSD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListUSD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListUSD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListUSD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListSGD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListSGD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListSGD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListSGD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListSGD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListSGD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListCAD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListCAD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListCAD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListCAD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListCAD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListCAD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListAUD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListAUD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListAUD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListAUD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListAUD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListAUD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListNZD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListNZD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListNZD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListNZD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListNZD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListNZD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListBGN {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListBGN({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListBGN.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListBGN(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListBGN.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListBGN(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListGEL {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListGEL({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListGEL.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListGEL(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListGEL.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListGEL(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListILS {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListILS({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListILS.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListILS(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListILS.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListILS(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListQAR {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListQAR({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListQAR.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListQAR(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListQAR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListQAR(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListPEN {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListPEN({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListPEN.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListPEN(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListPEN.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListPEN(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListAED {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListAED({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListAED.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListAED(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListAED.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListAED(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListSAR {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListSAR({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListSAR.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListSAR(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListSAR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListSAR(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListPLN {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListPLN({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListPLN.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListPLN(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListPLN.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListPLN(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListMYR {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListMYR({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListMYR.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListMYR(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListMYR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListMYR(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListRON {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListRON({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListRON.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListRON(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListRON.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListRON(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListBRL {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListBRL({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListBRL.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListBRL(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListBRL.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListBRL(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListDKK {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListDKK({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListDKK.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListDKK(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListDKK.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListDKK(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListCNY {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListCNY({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListCNY.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListCNY(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListCNY.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListCNY(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListHKD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListHKD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListHKD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListHKD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListHKD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListHKD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListSEK {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListSEK({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListSEK.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListSEK(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListSEK.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListSEK(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListNOK {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListNOK({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListNOK.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListNOK(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListNOK.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListNOK(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListZAR {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListZAR({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListZAR.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListZAR(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListZAR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListZAR(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListMXN {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListMXN({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListMXN.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListMXN(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListMXN.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListMXN(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListCZK {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListCZK({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListCZK.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListCZK(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListCZK.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListCZK(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListTWD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListTWD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListTWD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListTWD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListTWD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListTWD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListTHB {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListTHB({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListTHB.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListTHB(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListTHB.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListTHB(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListTRY {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListTRY({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListTRY.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListTRY(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListTRY.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListTRY(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListUAH {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListUAH({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListUAH.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListUAH(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListUAH.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListUAH(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListUYU {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListUYU({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListUYU.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListUYU(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListUYU.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListUYU(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListPHP {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListPHP({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListPHP.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListPHP(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListPHP.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListPHP(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListINR {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListINR({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListINR.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListINR(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListINR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListINR(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListRUB {
-  final String? title;
-  final int? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final int rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListRUB({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListRUB.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListRUB(
-    title: json['title'] as String?,
-    rate: json['rate'] as int?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListRUB.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListRUB(
+        title: json['title'] as String,
+        rate: json['rate'] as int,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListRSD {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListRSD({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListRSD.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListRSD(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListRSD.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListRSD(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListJPY {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListJPY({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListJPY.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListJPY(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListJPY.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListJPY(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListHUF {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListHUF({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListHUF.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListHUF(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListHUF.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListHUF(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListKZT {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListKZT({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListKZT.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListKZT(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListKZT.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListKZT(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListCRC {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListCRC({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListCRC.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListCRC(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListCRC.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListCRC(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListCLP {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListCLP({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListCLP.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListCLP(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListCLP.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListCLP(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListARS {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListARS({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListARS.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListARS(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListARS.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListARS(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListKRW {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListKRW({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListKRW.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListKRW(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListKRW.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListKRW(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListCOP {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListCOP({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListCOP.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListCOP(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListCOP.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListCOP(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListIDR {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListIDR({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListIDR.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListIDR(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListIDR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListIDR(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyListVND {
-  final String? title;
-  final double? rate;
-  final String? formattedRate;
-  final String? symbol;
+  final String title;
+  final double rate;
+  final String formattedRate;
+  final String symbol;
 
   const PaymentsCurrencyResponseCurrencyListVND({
-    this.title,
-    this.rate,
-    this.formattedRate,
-    this.symbol,
+    required this.title,
+    required this.rate,
+    required this.formattedRate,
+    required this.symbol,
   });
 
-  factory PaymentsCurrencyResponseCurrencyListVND.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyListVND(
-    title: json['title'] as String?,
-    rate: json['rate'] as double?,
-    formattedRate: json['formattedRate'] as String?,
-    symbol: json['symbol'] as String?,
-  );
+  factory PaymentsCurrencyResponseCurrencyListVND.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyListVND(
+        title: json['title'] as String,
+        rate: json['rate'] as double,
+        formattedRate: json['formattedRate'] as String,
+        symbol: json['symbol'] as String,
+      );
 }
 
 class PaymentsCurrencyResponseCurrencyList {
-  final PaymentsCurrencyResponseCurrencyListBTC? bTC;
-  final PaymentsCurrencyResponseCurrencyListETH? eTH;
-  final PaymentsCurrencyResponseCurrencyListBNB? bNB;
-  final PaymentsCurrencyResponseCurrencyListBCH? bCH;
-  final PaymentsCurrencyResponseCurrencyListXMR? xMR;
-  final PaymentsCurrencyResponseCurrencyListSOL? sOL;
-  final PaymentsCurrencyResponseCurrencyListLTC? lTC;
-  final PaymentsCurrencyResponseCurrencyListDASH? dASH;
-  final PaymentsCurrencyResponseCurrencyListTON? tON;
-  final PaymentsCurrencyResponseCurrencyListUSDT? uSDT;
-  final PaymentsCurrencyResponseCurrencyListMATIC? mATIC;
-  final PaymentsCurrencyResponseCurrencyListTRX? tRX;
-  final PaymentsCurrencyResponseCurrencyListDOGE? dOGE;
-  final PaymentsCurrencyResponseCurrencyListKWD? kWD;
-  final PaymentsCurrencyResponseCurrencyListGBP? gBP;
-  final PaymentsCurrencyResponseCurrencyListCHF? cHF;
-  final PaymentsCurrencyResponseCurrencyListEUR? eUR;
-  final PaymentsCurrencyResponseCurrencyListUSD? uSD;
-  final PaymentsCurrencyResponseCurrencyListSGD? sGD;
-  final PaymentsCurrencyResponseCurrencyListCAD? cAD;
-  final PaymentsCurrencyResponseCurrencyListAUD? aUD;
-  final PaymentsCurrencyResponseCurrencyListNZD? nZD;
-  final PaymentsCurrencyResponseCurrencyListBGN? bGN;
-  final PaymentsCurrencyResponseCurrencyListGEL? gEL;
-  final PaymentsCurrencyResponseCurrencyListILS? iLS;
-  final PaymentsCurrencyResponseCurrencyListQAR? qAR;
-  final PaymentsCurrencyResponseCurrencyListPEN? pEN;
-  final PaymentsCurrencyResponseCurrencyListAED? aED;
-  final PaymentsCurrencyResponseCurrencyListSAR? sAR;
-  final PaymentsCurrencyResponseCurrencyListPLN? pLN;
-  final PaymentsCurrencyResponseCurrencyListMYR? mYR;
-  final PaymentsCurrencyResponseCurrencyListRON? rON;
-  final PaymentsCurrencyResponseCurrencyListBRL? bRL;
-  final PaymentsCurrencyResponseCurrencyListDKK? dKK;
-  final PaymentsCurrencyResponseCurrencyListCNY? cNY;
-  final PaymentsCurrencyResponseCurrencyListHKD? hKD;
-  final PaymentsCurrencyResponseCurrencyListSEK? sEK;
-  final PaymentsCurrencyResponseCurrencyListNOK? nOK;
-  final PaymentsCurrencyResponseCurrencyListZAR? zAR;
-  final PaymentsCurrencyResponseCurrencyListMXN? mXN;
-  final PaymentsCurrencyResponseCurrencyListCZK? cZK;
-  final PaymentsCurrencyResponseCurrencyListTWD? tWD;
-  final PaymentsCurrencyResponseCurrencyListTHB? tHB;
-  final PaymentsCurrencyResponseCurrencyListTRY? tRY;
-  final PaymentsCurrencyResponseCurrencyListUAH? uAH;
-  final PaymentsCurrencyResponseCurrencyListUYU? uYU;
-  final PaymentsCurrencyResponseCurrencyListPHP? pHP;
-  final PaymentsCurrencyResponseCurrencyListINR? iNR;
-  final PaymentsCurrencyResponseCurrencyListRUB? rUB;
-  final PaymentsCurrencyResponseCurrencyListRSD? rSD;
-  final PaymentsCurrencyResponseCurrencyListJPY? jPY;
-  final PaymentsCurrencyResponseCurrencyListHUF? hUF;
-  final PaymentsCurrencyResponseCurrencyListKZT? kZT;
-  final PaymentsCurrencyResponseCurrencyListCRC? cRC;
-  final PaymentsCurrencyResponseCurrencyListCLP? cLP;
-  final PaymentsCurrencyResponseCurrencyListARS? aRS;
-  final PaymentsCurrencyResponseCurrencyListKRW? kRW;
-  final PaymentsCurrencyResponseCurrencyListCOP? cOP;
-  final PaymentsCurrencyResponseCurrencyListIDR? iDR;
-  final PaymentsCurrencyResponseCurrencyListVND? vND;
+  final PaymentsCurrencyResponseCurrencyListBTC bTC;
+  final PaymentsCurrencyResponseCurrencyListETH eTH;
+  final PaymentsCurrencyResponseCurrencyListBNB bNB;
+  final PaymentsCurrencyResponseCurrencyListBCH bCH;
+  final PaymentsCurrencyResponseCurrencyListXMR xMR;
+  final PaymentsCurrencyResponseCurrencyListSOL sOL;
+  final PaymentsCurrencyResponseCurrencyListLTC lTC;
+  final PaymentsCurrencyResponseCurrencyListDASH dASH;
+  final PaymentsCurrencyResponseCurrencyListTON tON;
+  final PaymentsCurrencyResponseCurrencyListUSDT uSDT;
+  final PaymentsCurrencyResponseCurrencyListMATIC mATIC;
+  final PaymentsCurrencyResponseCurrencyListTRX tRX;
+  final PaymentsCurrencyResponseCurrencyListDOGE dOGE;
+  final PaymentsCurrencyResponseCurrencyListKWD kWD;
+  final PaymentsCurrencyResponseCurrencyListGBP gBP;
+  final PaymentsCurrencyResponseCurrencyListCHF cHF;
+  final PaymentsCurrencyResponseCurrencyListEUR eUR;
+  final PaymentsCurrencyResponseCurrencyListUSD uSD;
+  final PaymentsCurrencyResponseCurrencyListSGD sGD;
+  final PaymentsCurrencyResponseCurrencyListCAD cAD;
+  final PaymentsCurrencyResponseCurrencyListAUD aUD;
+  final PaymentsCurrencyResponseCurrencyListNZD nZD;
+  final PaymentsCurrencyResponseCurrencyListBGN bGN;
+  final PaymentsCurrencyResponseCurrencyListGEL gEL;
+  final PaymentsCurrencyResponseCurrencyListILS iLS;
+  final PaymentsCurrencyResponseCurrencyListQAR qAR;
+  final PaymentsCurrencyResponseCurrencyListPEN pEN;
+  final PaymentsCurrencyResponseCurrencyListAED aED;
+  final PaymentsCurrencyResponseCurrencyListSAR sAR;
+  final PaymentsCurrencyResponseCurrencyListPLN pLN;
+  final PaymentsCurrencyResponseCurrencyListMYR mYR;
+  final PaymentsCurrencyResponseCurrencyListRON rON;
+  final PaymentsCurrencyResponseCurrencyListBRL bRL;
+  final PaymentsCurrencyResponseCurrencyListDKK dKK;
+  final PaymentsCurrencyResponseCurrencyListCNY cNY;
+  final PaymentsCurrencyResponseCurrencyListHKD hKD;
+  final PaymentsCurrencyResponseCurrencyListSEK sEK;
+  final PaymentsCurrencyResponseCurrencyListNOK nOK;
+  final PaymentsCurrencyResponseCurrencyListZAR zAR;
+  final PaymentsCurrencyResponseCurrencyListMXN mXN;
+  final PaymentsCurrencyResponseCurrencyListCZK cZK;
+  final PaymentsCurrencyResponseCurrencyListTWD tWD;
+  final PaymentsCurrencyResponseCurrencyListTHB tHB;
+  final PaymentsCurrencyResponseCurrencyListTRY tRY;
+  final PaymentsCurrencyResponseCurrencyListUAH uAH;
+  final PaymentsCurrencyResponseCurrencyListUYU uYU;
+  final PaymentsCurrencyResponseCurrencyListPHP pHP;
+  final PaymentsCurrencyResponseCurrencyListINR iNR;
+  final PaymentsCurrencyResponseCurrencyListRUB rUB;
+  final PaymentsCurrencyResponseCurrencyListRSD rSD;
+  final PaymentsCurrencyResponseCurrencyListJPY jPY;
+  final PaymentsCurrencyResponseCurrencyListHUF hUF;
+  final PaymentsCurrencyResponseCurrencyListKZT kZT;
+  final PaymentsCurrencyResponseCurrencyListCRC cRC;
+  final PaymentsCurrencyResponseCurrencyListCLP cLP;
+  final PaymentsCurrencyResponseCurrencyListARS aRS;
+  final PaymentsCurrencyResponseCurrencyListKRW kRW;
+  final PaymentsCurrencyResponseCurrencyListCOP cOP;
+  final PaymentsCurrencyResponseCurrencyListIDR iDR;
+  final PaymentsCurrencyResponseCurrencyListVND vND;
 
   const PaymentsCurrencyResponseCurrencyList({
-    this.bTC,
-    this.eTH,
-    this.bNB,
-    this.bCH,
-    this.xMR,
-    this.sOL,
-    this.lTC,
-    this.dASH,
-    this.tON,
-    this.uSDT,
-    this.mATIC,
-    this.tRX,
-    this.dOGE,
-    this.kWD,
-    this.gBP,
-    this.cHF,
-    this.eUR,
-    this.uSD,
-    this.sGD,
-    this.cAD,
-    this.aUD,
-    this.nZD,
-    this.bGN,
-    this.gEL,
-    this.iLS,
-    this.qAR,
-    this.pEN,
-    this.aED,
-    this.sAR,
-    this.pLN,
-    this.mYR,
-    this.rON,
-    this.bRL,
-    this.dKK,
-    this.cNY,
-    this.hKD,
-    this.sEK,
-    this.nOK,
-    this.zAR,
-    this.mXN,
-    this.cZK,
-    this.tWD,
-    this.tHB,
-    this.tRY,
-    this.uAH,
-    this.uYU,
-    this.pHP,
-    this.iNR,
-    this.rUB,
-    this.rSD,
-    this.jPY,
-    this.hUF,
-    this.kZT,
-    this.cRC,
-    this.cLP,
-    this.aRS,
-    this.kRW,
-    this.cOP,
-    this.iDR,
-    this.vND,
+    required this.bTC,
+    required this.eTH,
+    required this.bNB,
+    required this.bCH,
+    required this.xMR,
+    required this.sOL,
+    required this.lTC,
+    required this.dASH,
+    required this.tON,
+    required this.uSDT,
+    required this.mATIC,
+    required this.tRX,
+    required this.dOGE,
+    required this.kWD,
+    required this.gBP,
+    required this.cHF,
+    required this.eUR,
+    required this.uSD,
+    required this.sGD,
+    required this.cAD,
+    required this.aUD,
+    required this.nZD,
+    required this.bGN,
+    required this.gEL,
+    required this.iLS,
+    required this.qAR,
+    required this.pEN,
+    required this.aED,
+    required this.sAR,
+    required this.pLN,
+    required this.mYR,
+    required this.rON,
+    required this.bRL,
+    required this.dKK,
+    required this.cNY,
+    required this.hKD,
+    required this.sEK,
+    required this.nOK,
+    required this.zAR,
+    required this.mXN,
+    required this.cZK,
+    required this.tWD,
+    required this.tHB,
+    required this.tRY,
+    required this.uAH,
+    required this.uYU,
+    required this.pHP,
+    required this.iNR,
+    required this.rUB,
+    required this.rSD,
+    required this.jPY,
+    required this.hUF,
+    required this.kZT,
+    required this.cRC,
+    required this.cLP,
+    required this.aRS,
+    required this.kRW,
+    required this.cOP,
+    required this.iDR,
+    required this.vND,
   });
 
-  factory PaymentsCurrencyResponseCurrencyList.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponseCurrencyList(
-    bTC: json['BTC'] != null
-            ? PaymentsCurrencyResponseCurrencyListBTC.fromJson(json['BTC'] as Map<String, dynamic>)
-            : null,
-    eTH: json['ETH'] != null
-            ? PaymentsCurrencyResponseCurrencyListETH.fromJson(json['ETH'] as Map<String, dynamic>)
-            : null,
-    bNB: json['BNB'] != null
-            ? PaymentsCurrencyResponseCurrencyListBNB.fromJson(json['BNB'] as Map<String, dynamic>)
-            : null,
-    bCH: json['BCH'] != null
-            ? PaymentsCurrencyResponseCurrencyListBCH.fromJson(json['BCH'] as Map<String, dynamic>)
-            : null,
-    xMR: json['XMR'] != null
-            ? PaymentsCurrencyResponseCurrencyListXMR.fromJson(json['XMR'] as Map<String, dynamic>)
-            : null,
-    sOL: json['SOL'] != null
-            ? PaymentsCurrencyResponseCurrencyListSOL.fromJson(json['SOL'] as Map<String, dynamic>)
-            : null,
-    lTC: json['LTC'] != null
-            ? PaymentsCurrencyResponseCurrencyListLTC.fromJson(json['LTC'] as Map<String, dynamic>)
-            : null,
-    dASH: json['DASH'] != null
-            ? PaymentsCurrencyResponseCurrencyListDASH.fromJson(json['DASH'] as Map<String, dynamic>)
-            : null,
-    tON: json['TON'] != null
-            ? PaymentsCurrencyResponseCurrencyListTON.fromJson(json['TON'] as Map<String, dynamic>)
-            : null,
-    uSDT: json['USDT'] != null
-            ? PaymentsCurrencyResponseCurrencyListUSDT.fromJson(json['USDT'] as Map<String, dynamic>)
-            : null,
-    mATIC: json['MATIC'] != null
-            ? PaymentsCurrencyResponseCurrencyListMATIC.fromJson(json['MATIC'] as Map<String, dynamic>)
-            : null,
-    tRX: json['TRX'] != null
-            ? PaymentsCurrencyResponseCurrencyListTRX.fromJson(json['TRX'] as Map<String, dynamic>)
-            : null,
-    dOGE: json['DOGE'] != null
-            ? PaymentsCurrencyResponseCurrencyListDOGE.fromJson(json['DOGE'] as Map<String, dynamic>)
-            : null,
-    kWD: json['KWD'] != null
-            ? PaymentsCurrencyResponseCurrencyListKWD.fromJson(json['KWD'] as Map<String, dynamic>)
-            : null,
-    gBP: json['GBP'] != null
-            ? PaymentsCurrencyResponseCurrencyListGBP.fromJson(json['GBP'] as Map<String, dynamic>)
-            : null,
-    cHF: json['CHF'] != null
-            ? PaymentsCurrencyResponseCurrencyListCHF.fromJson(json['CHF'] as Map<String, dynamic>)
-            : null,
-    eUR: json['EUR'] != null
-            ? PaymentsCurrencyResponseCurrencyListEUR.fromJson(json['EUR'] as Map<String, dynamic>)
-            : null,
-    uSD: json['USD'] != null
-            ? PaymentsCurrencyResponseCurrencyListUSD.fromJson(json['USD'] as Map<String, dynamic>)
-            : null,
-    sGD: json['SGD'] != null
-            ? PaymentsCurrencyResponseCurrencyListSGD.fromJson(json['SGD'] as Map<String, dynamic>)
-            : null,
-    cAD: json['CAD'] != null
-            ? PaymentsCurrencyResponseCurrencyListCAD.fromJson(json['CAD'] as Map<String, dynamic>)
-            : null,
-    aUD: json['AUD'] != null
-            ? PaymentsCurrencyResponseCurrencyListAUD.fromJson(json['AUD'] as Map<String, dynamic>)
-            : null,
-    nZD: json['NZD'] != null
-            ? PaymentsCurrencyResponseCurrencyListNZD.fromJson(json['NZD'] as Map<String, dynamic>)
-            : null,
-    bGN: json['BGN'] != null
-            ? PaymentsCurrencyResponseCurrencyListBGN.fromJson(json['BGN'] as Map<String, dynamic>)
-            : null,
-    gEL: json['GEL'] != null
-            ? PaymentsCurrencyResponseCurrencyListGEL.fromJson(json['GEL'] as Map<String, dynamic>)
-            : null,
-    iLS: json['ILS'] != null
-            ? PaymentsCurrencyResponseCurrencyListILS.fromJson(json['ILS'] as Map<String, dynamic>)
-            : null,
-    qAR: json['QAR'] != null
-            ? PaymentsCurrencyResponseCurrencyListQAR.fromJson(json['QAR'] as Map<String, dynamic>)
-            : null,
-    pEN: json['PEN'] != null
-            ? PaymentsCurrencyResponseCurrencyListPEN.fromJson(json['PEN'] as Map<String, dynamic>)
-            : null,
-    aED: json['AED'] != null
-            ? PaymentsCurrencyResponseCurrencyListAED.fromJson(json['AED'] as Map<String, dynamic>)
-            : null,
-    sAR: json['SAR'] != null
-            ? PaymentsCurrencyResponseCurrencyListSAR.fromJson(json['SAR'] as Map<String, dynamic>)
-            : null,
-    pLN: json['PLN'] != null
-            ? PaymentsCurrencyResponseCurrencyListPLN.fromJson(json['PLN'] as Map<String, dynamic>)
-            : null,
-    mYR: json['MYR'] != null
-            ? PaymentsCurrencyResponseCurrencyListMYR.fromJson(json['MYR'] as Map<String, dynamic>)
-            : null,
-    rON: json['RON'] != null
-            ? PaymentsCurrencyResponseCurrencyListRON.fromJson(json['RON'] as Map<String, dynamic>)
-            : null,
-    bRL: json['BRL'] != null
-            ? PaymentsCurrencyResponseCurrencyListBRL.fromJson(json['BRL'] as Map<String, dynamic>)
-            : null,
-    dKK: json['DKK'] != null
-            ? PaymentsCurrencyResponseCurrencyListDKK.fromJson(json['DKK'] as Map<String, dynamic>)
-            : null,
-    cNY: json['CNY'] != null
-            ? PaymentsCurrencyResponseCurrencyListCNY.fromJson(json['CNY'] as Map<String, dynamic>)
-            : null,
-    hKD: json['HKD'] != null
-            ? PaymentsCurrencyResponseCurrencyListHKD.fromJson(json['HKD'] as Map<String, dynamic>)
-            : null,
-    sEK: json['SEK'] != null
-            ? PaymentsCurrencyResponseCurrencyListSEK.fromJson(json['SEK'] as Map<String, dynamic>)
-            : null,
-    nOK: json['NOK'] != null
-            ? PaymentsCurrencyResponseCurrencyListNOK.fromJson(json['NOK'] as Map<String, dynamic>)
-            : null,
-    zAR: json['ZAR'] != null
-            ? PaymentsCurrencyResponseCurrencyListZAR.fromJson(json['ZAR'] as Map<String, dynamic>)
-            : null,
-    mXN: json['MXN'] != null
-            ? PaymentsCurrencyResponseCurrencyListMXN.fromJson(json['MXN'] as Map<String, dynamic>)
-            : null,
-    cZK: json['CZK'] != null
-            ? PaymentsCurrencyResponseCurrencyListCZK.fromJson(json['CZK'] as Map<String, dynamic>)
-            : null,
-    tWD: json['TWD'] != null
-            ? PaymentsCurrencyResponseCurrencyListTWD.fromJson(json['TWD'] as Map<String, dynamic>)
-            : null,
-    tHB: json['THB'] != null
-            ? PaymentsCurrencyResponseCurrencyListTHB.fromJson(json['THB'] as Map<String, dynamic>)
-            : null,
-    tRY: json['TRY'] != null
-            ? PaymentsCurrencyResponseCurrencyListTRY.fromJson(json['TRY'] as Map<String, dynamic>)
-            : null,
-    uAH: json['UAH'] != null
-            ? PaymentsCurrencyResponseCurrencyListUAH.fromJson(json['UAH'] as Map<String, dynamic>)
-            : null,
-    uYU: json['UYU'] != null
-            ? PaymentsCurrencyResponseCurrencyListUYU.fromJson(json['UYU'] as Map<String, dynamic>)
-            : null,
-    pHP: json['PHP'] != null
-            ? PaymentsCurrencyResponseCurrencyListPHP.fromJson(json['PHP'] as Map<String, dynamic>)
-            : null,
-    iNR: json['INR'] != null
-            ? PaymentsCurrencyResponseCurrencyListINR.fromJson(json['INR'] as Map<String, dynamic>)
-            : null,
-    rUB: json['RUB'] != null
-            ? PaymentsCurrencyResponseCurrencyListRUB.fromJson(json['RUB'] as Map<String, dynamic>)
-            : null,
-    rSD: json['RSD'] != null
-            ? PaymentsCurrencyResponseCurrencyListRSD.fromJson(json['RSD'] as Map<String, dynamic>)
-            : null,
-    jPY: json['JPY'] != null
-            ? PaymentsCurrencyResponseCurrencyListJPY.fromJson(json['JPY'] as Map<String, dynamic>)
-            : null,
-    hUF: json['HUF'] != null
-            ? PaymentsCurrencyResponseCurrencyListHUF.fromJson(json['HUF'] as Map<String, dynamic>)
-            : null,
-    kZT: json['KZT'] != null
-            ? PaymentsCurrencyResponseCurrencyListKZT.fromJson(json['KZT'] as Map<String, dynamic>)
-            : null,
-    cRC: json['CRC'] != null
-            ? PaymentsCurrencyResponseCurrencyListCRC.fromJson(json['CRC'] as Map<String, dynamic>)
-            : null,
-    cLP: json['CLP'] != null
-            ? PaymentsCurrencyResponseCurrencyListCLP.fromJson(json['CLP'] as Map<String, dynamic>)
-            : null,
-    aRS: json['ARS'] != null
-            ? PaymentsCurrencyResponseCurrencyListARS.fromJson(json['ARS'] as Map<String, dynamic>)
-            : null,
-    kRW: json['KRW'] != null
-            ? PaymentsCurrencyResponseCurrencyListKRW.fromJson(json['KRW'] as Map<String, dynamic>)
-            : null,
-    cOP: json['COP'] != null
-            ? PaymentsCurrencyResponseCurrencyListCOP.fromJson(json['COP'] as Map<String, dynamic>)
-            : null,
-    iDR: json['IDR'] != null
-            ? PaymentsCurrencyResponseCurrencyListIDR.fromJson(json['IDR'] as Map<String, dynamic>)
-            : null,
-    vND: json['VND'] != null
-            ? PaymentsCurrencyResponseCurrencyListVND.fromJson(json['VND'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsCurrencyResponseCurrencyList.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsCurrencyResponseCurrencyList(
+        bTC: PaymentsCurrencyResponseCurrencyListBTC.fromJson(
+            json['BTC'] as Map<String, dynamic>),
+        eTH: PaymentsCurrencyResponseCurrencyListETH.fromJson(
+            json['ETH'] as Map<String, dynamic>),
+        bNB: PaymentsCurrencyResponseCurrencyListBNB.fromJson(
+            json['BNB'] as Map<String, dynamic>),
+        bCH: PaymentsCurrencyResponseCurrencyListBCH.fromJson(
+            json['BCH'] as Map<String, dynamic>),
+        xMR: PaymentsCurrencyResponseCurrencyListXMR.fromJson(
+            json['XMR'] as Map<String, dynamic>),
+        sOL: PaymentsCurrencyResponseCurrencyListSOL.fromJson(
+            json['SOL'] as Map<String, dynamic>),
+        lTC: PaymentsCurrencyResponseCurrencyListLTC.fromJson(
+            json['LTC'] as Map<String, dynamic>),
+        dASH: PaymentsCurrencyResponseCurrencyListDASH.fromJson(
+            json['DASH'] as Map<String, dynamic>),
+        tON: PaymentsCurrencyResponseCurrencyListTON.fromJson(
+            json['TON'] as Map<String, dynamic>),
+        uSDT: PaymentsCurrencyResponseCurrencyListUSDT.fromJson(
+            json['USDT'] as Map<String, dynamic>),
+        mATIC: PaymentsCurrencyResponseCurrencyListMATIC.fromJson(
+            json['MATIC'] as Map<String, dynamic>),
+        tRX: PaymentsCurrencyResponseCurrencyListTRX.fromJson(
+            json['TRX'] as Map<String, dynamic>),
+        dOGE: PaymentsCurrencyResponseCurrencyListDOGE.fromJson(
+            json['DOGE'] as Map<String, dynamic>),
+        kWD: PaymentsCurrencyResponseCurrencyListKWD.fromJson(
+            json['KWD'] as Map<String, dynamic>),
+        gBP: PaymentsCurrencyResponseCurrencyListGBP.fromJson(
+            json['GBP'] as Map<String, dynamic>),
+        cHF: PaymentsCurrencyResponseCurrencyListCHF.fromJson(
+            json['CHF'] as Map<String, dynamic>),
+        eUR: PaymentsCurrencyResponseCurrencyListEUR.fromJson(
+            json['EUR'] as Map<String, dynamic>),
+        uSD: PaymentsCurrencyResponseCurrencyListUSD.fromJson(
+            json['USD'] as Map<String, dynamic>),
+        sGD: PaymentsCurrencyResponseCurrencyListSGD.fromJson(
+            json['SGD'] as Map<String, dynamic>),
+        cAD: PaymentsCurrencyResponseCurrencyListCAD.fromJson(
+            json['CAD'] as Map<String, dynamic>),
+        aUD: PaymentsCurrencyResponseCurrencyListAUD.fromJson(
+            json['AUD'] as Map<String, dynamic>),
+        nZD: PaymentsCurrencyResponseCurrencyListNZD.fromJson(
+            json['NZD'] as Map<String, dynamic>),
+        bGN: PaymentsCurrencyResponseCurrencyListBGN.fromJson(
+            json['BGN'] as Map<String, dynamic>),
+        gEL: PaymentsCurrencyResponseCurrencyListGEL.fromJson(
+            json['GEL'] as Map<String, dynamic>),
+        iLS: PaymentsCurrencyResponseCurrencyListILS.fromJson(
+            json['ILS'] as Map<String, dynamic>),
+        qAR: PaymentsCurrencyResponseCurrencyListQAR.fromJson(
+            json['QAR'] as Map<String, dynamic>),
+        pEN: PaymentsCurrencyResponseCurrencyListPEN.fromJson(
+            json['PEN'] as Map<String, dynamic>),
+        aED: PaymentsCurrencyResponseCurrencyListAED.fromJson(
+            json['AED'] as Map<String, dynamic>),
+        sAR: PaymentsCurrencyResponseCurrencyListSAR.fromJson(
+            json['SAR'] as Map<String, dynamic>),
+        pLN: PaymentsCurrencyResponseCurrencyListPLN.fromJson(
+            json['PLN'] as Map<String, dynamic>),
+        mYR: PaymentsCurrencyResponseCurrencyListMYR.fromJson(
+            json['MYR'] as Map<String, dynamic>),
+        rON: PaymentsCurrencyResponseCurrencyListRON.fromJson(
+            json['RON'] as Map<String, dynamic>),
+        bRL: PaymentsCurrencyResponseCurrencyListBRL.fromJson(
+            json['BRL'] as Map<String, dynamic>),
+        dKK: PaymentsCurrencyResponseCurrencyListDKK.fromJson(
+            json['DKK'] as Map<String, dynamic>),
+        cNY: PaymentsCurrencyResponseCurrencyListCNY.fromJson(
+            json['CNY'] as Map<String, dynamic>),
+        hKD: PaymentsCurrencyResponseCurrencyListHKD.fromJson(
+            json['HKD'] as Map<String, dynamic>),
+        sEK: PaymentsCurrencyResponseCurrencyListSEK.fromJson(
+            json['SEK'] as Map<String, dynamic>),
+        nOK: PaymentsCurrencyResponseCurrencyListNOK.fromJson(
+            json['NOK'] as Map<String, dynamic>),
+        zAR: PaymentsCurrencyResponseCurrencyListZAR.fromJson(
+            json['ZAR'] as Map<String, dynamic>),
+        mXN: PaymentsCurrencyResponseCurrencyListMXN.fromJson(
+            json['MXN'] as Map<String, dynamic>),
+        cZK: PaymentsCurrencyResponseCurrencyListCZK.fromJson(
+            json['CZK'] as Map<String, dynamic>),
+        tWD: PaymentsCurrencyResponseCurrencyListTWD.fromJson(
+            json['TWD'] as Map<String, dynamic>),
+        tHB: PaymentsCurrencyResponseCurrencyListTHB.fromJson(
+            json['THB'] as Map<String, dynamic>),
+        tRY: PaymentsCurrencyResponseCurrencyListTRY.fromJson(
+            json['TRY'] as Map<String, dynamic>),
+        uAH: PaymentsCurrencyResponseCurrencyListUAH.fromJson(
+            json['UAH'] as Map<String, dynamic>),
+        uYU: PaymentsCurrencyResponseCurrencyListUYU.fromJson(
+            json['UYU'] as Map<String, dynamic>),
+        pHP: PaymentsCurrencyResponseCurrencyListPHP.fromJson(
+            json['PHP'] as Map<String, dynamic>),
+        iNR: PaymentsCurrencyResponseCurrencyListINR.fromJson(
+            json['INR'] as Map<String, dynamic>),
+        rUB: PaymentsCurrencyResponseCurrencyListRUB.fromJson(
+            json['RUB'] as Map<String, dynamic>),
+        rSD: PaymentsCurrencyResponseCurrencyListRSD.fromJson(
+            json['RSD'] as Map<String, dynamic>),
+        jPY: PaymentsCurrencyResponseCurrencyListJPY.fromJson(
+            json['JPY'] as Map<String, dynamic>),
+        hUF: PaymentsCurrencyResponseCurrencyListHUF.fromJson(
+            json['HUF'] as Map<String, dynamic>),
+        kZT: PaymentsCurrencyResponseCurrencyListKZT.fromJson(
+            json['KZT'] as Map<String, dynamic>),
+        cRC: PaymentsCurrencyResponseCurrencyListCRC.fromJson(
+            json['CRC'] as Map<String, dynamic>),
+        cLP: PaymentsCurrencyResponseCurrencyListCLP.fromJson(
+            json['CLP'] as Map<String, dynamic>),
+        aRS: PaymentsCurrencyResponseCurrencyListARS.fromJson(
+            json['ARS'] as Map<String, dynamic>),
+        kRW: PaymentsCurrencyResponseCurrencyListKRW.fromJson(
+            json['KRW'] as Map<String, dynamic>),
+        cOP: PaymentsCurrencyResponseCurrencyListCOP.fromJson(
+            json['COP'] as Map<String, dynamic>),
+        iDR: PaymentsCurrencyResponseCurrencyListIDR.fromJson(
+            json['IDR'] as Map<String, dynamic>),
+        vND: PaymentsCurrencyResponseCurrencyListVND.fromJson(
+            json['VND'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsCurrencyResponse {
-  final PaymentsCurrencyResponseCurrencyList? currencyList;
-  final int? lastUpdate;
-  final String? visitorCurrency;
-  final RespSystemInfo? systemInfo;
+  final PaymentsCurrencyResponseCurrencyList currencyList;
+  final int lastUpdate;
+  final String visitorCurrency;
+  final RespSystemInfo systemInfo;
 
   const PaymentsCurrencyResponse({
-    this.currencyList,
-    this.lastUpdate,
-    this.visitorCurrency,
-    this.systemInfo,
+    required this.currencyList,
+    required this.lastUpdate,
+    required this.visitorCurrency,
+    required this.systemInfo,
   });
 
-  factory PaymentsCurrencyResponse.fromJson(Map<String, dynamic> json) => PaymentsCurrencyResponse(
-    currencyList: json['currencyList'] != null
-            ? PaymentsCurrencyResponseCurrencyList.fromJson(json['currencyList'] as Map<String, dynamic>)
-            : null,
-    lastUpdate: json['lastUpdate'] as int?,
-    visitorCurrency: json['visitorCurrency'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsCurrencyResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsCurrencyResponse(
+        currencyList: PaymentsCurrencyResponseCurrencyList.fromJson(
+            json['currencyList'] as Map<String, dynamic>),
+        lastUpdate: json['lastUpdate'] as int,
+        visitorCurrency: json['visitorCurrency'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsBalanceListResponseFromBalance {
-  final String? balance;
-  final int? convertedBalance;
-  final String? fullTitle;
-  final String? title;
-  final String? type;
+  final String balance;
+  final int convertedBalance;
+  final String fullTitle;
+  final String title;
+  final String type;
 
   const PaymentsBalanceListResponseFromBalance({
-    this.balance,
-    this.convertedBalance,
-    this.fullTitle,
-    this.title,
-    this.type,
+    required this.balance,
+    required this.convertedBalance,
+    required this.fullTitle,
+    required this.title,
+    required this.type,
   });
 
-  factory PaymentsBalanceListResponseFromBalance.fromJson(Map<String, dynamic> json) => PaymentsBalanceListResponseFromBalance(
-    balance: json['balance'] as String?,
-    convertedBalance: json['convertedBalance'] as int?,
-    fullTitle: json['fullTitle'] as String?,
-    title: json['title'] as String?,
-    type: json['type'] as String?,
-  );
+  factory PaymentsBalanceListResponseFromBalance.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsBalanceListResponseFromBalance(
+        balance: json['balance'] as String,
+        convertedBalance: json['convertedBalance'] as int,
+        fullTitle: json['fullTitle'] as String,
+        title: json['title'] as String,
+        type: json['type'] as String,
+      );
 }
 
 class PaymentsBalanceListResponseFrom {
-  final PaymentsBalanceListResponseFromBalance? balance;
-  final BalanceModel? n12345;
+  final PaymentsBalanceListResponseFromBalance balance;
+  final BalanceModel n12345;
 
   const PaymentsBalanceListResponseFrom({
-    this.balance,
-    this.n12345,
+    required this.balance,
+    required this.n12345,
   });
 
-  factory PaymentsBalanceListResponseFrom.fromJson(Map<String, dynamic> json) => PaymentsBalanceListResponseFrom(
-    balance: json['balance'] != null
-            ? PaymentsBalanceListResponseFromBalance.fromJson(json['balance'] as Map<String, dynamic>)
-            : null,
-    n12345: json['12345'] != null
-            ? BalanceModel.fromJson(json['12345'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsBalanceListResponseFrom.fromJson(Map<String, dynamic> json) =>
+      PaymentsBalanceListResponseFrom(
+        balance: PaymentsBalanceListResponseFromBalance.fromJson(
+            json['balance'] as Map<String, dynamic>),
+        n12345: BalanceModel.fromJson(json['12345'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsBalanceListResponseTo {
-  final UserModel? balance;
+  final UserModel balance;
 
   const PaymentsBalanceListResponseTo({
-    this.balance,
+    required this.balance,
   });
 
-  factory PaymentsBalanceListResponseTo.fromJson(Map<String, dynamic> json) => PaymentsBalanceListResponseTo(
-    balance: json['balance'] != null
-            ? UserModel.fromJson(json['balance'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsBalanceListResponseTo.fromJson(Map<String, dynamic> json) =>
+      PaymentsBalanceListResponseTo(
+        balance: UserModel.fromJson(json['balance'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsBalanceListResponse {
-  final PaymentsBalanceListResponseFrom? from;
-  final PaymentsBalanceListResponseTo? to;
-  final RespSystemInfo? systemInfo;
+  final PaymentsBalanceListResponseFrom from;
+  final PaymentsBalanceListResponseTo to;
+  final RespSystemInfo systemInfo;
 
   const PaymentsBalanceListResponse({
-    this.from,
-    this.to,
-    this.systemInfo,
+    required this.from,
+    required this.to,
+    required this.systemInfo,
   });
 
-  factory PaymentsBalanceListResponse.fromJson(Map<String, dynamic> json) => PaymentsBalanceListResponse(
-    from: json['from'] != null
-            ? PaymentsBalanceListResponseFrom.fromJson(json['from'] as Map<String, dynamic>)
-            : null,
-    to: json['to'] != null
-            ? PaymentsBalanceListResponseTo.fromJson(json['to'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsBalanceListResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsBalanceListResponse(
+        from: PaymentsBalanceListResponseFrom.fromJson(
+            json['from'] as Map<String, dynamic>),
+        to: PaymentsBalanceListResponseTo.fromJson(
+            json['to'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsBalanceExchangeBody {
@@ -13624,84 +13778,83 @@ class PaymentsBalanceExchangeBody {
 }
 
 class PaymentsBalanceExchangeResponseFromBalance {
-  final String? balance;
-  final int? convertedBalance;
-  final String? fullTitle;
-  final String? title;
-  final String? type;
+  final String balance;
+  final int convertedBalance;
+  final String fullTitle;
+  final String title;
+  final String type;
 
   const PaymentsBalanceExchangeResponseFromBalance({
-    this.balance,
-    this.convertedBalance,
-    this.fullTitle,
-    this.title,
-    this.type,
+    required this.balance,
+    required this.convertedBalance,
+    required this.fullTitle,
+    required this.title,
+    required this.type,
   });
 
-  factory PaymentsBalanceExchangeResponseFromBalance.fromJson(Map<String, dynamic> json) => PaymentsBalanceExchangeResponseFromBalance(
-    balance: json['balance'] as String?,
-    convertedBalance: json['convertedBalance'] as int?,
-    fullTitle: json['fullTitle'] as String?,
-    title: json['title'] as String?,
-    type: json['type'] as String?,
-  );
+  factory PaymentsBalanceExchangeResponseFromBalance.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsBalanceExchangeResponseFromBalance(
+        balance: json['balance'] as String,
+        convertedBalance: json['convertedBalance'] as int,
+        fullTitle: json['fullTitle'] as String,
+        title: json['title'] as String,
+        type: json['type'] as String,
+      );
 }
 
 class PaymentsBalanceExchangeResponseFrom {
-  final PaymentsBalanceExchangeResponseFromBalance? balance;
-  final BalanceModel? n12345;
+  final PaymentsBalanceExchangeResponseFromBalance balance;
+  final BalanceModel n12345;
 
   const PaymentsBalanceExchangeResponseFrom({
-    this.balance,
-    this.n12345,
+    required this.balance,
+    required this.n12345,
   });
 
-  factory PaymentsBalanceExchangeResponseFrom.fromJson(Map<String, dynamic> json) => PaymentsBalanceExchangeResponseFrom(
-    balance: json['balance'] != null
-            ? PaymentsBalanceExchangeResponseFromBalance.fromJson(json['balance'] as Map<String, dynamic>)
-            : null,
-    n12345: json['12345'] != null
-            ? BalanceModel.fromJson(json['12345'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsBalanceExchangeResponseFrom.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsBalanceExchangeResponseFrom(
+        balance: PaymentsBalanceExchangeResponseFromBalance.fromJson(
+            json['balance'] as Map<String, dynamic>),
+        n12345: BalanceModel.fromJson(json['12345'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsBalanceExchangeResponseTo {
-  final UserModel? balance;
+  final UserModel balance;
 
   const PaymentsBalanceExchangeResponseTo({
-    this.balance,
+    required this.balance,
   });
 
-  factory PaymentsBalanceExchangeResponseTo.fromJson(Map<String, dynamic> json) => PaymentsBalanceExchangeResponseTo(
-    balance: json['balance'] != null
-            ? UserModel.fromJson(json['balance'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsBalanceExchangeResponseTo.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsBalanceExchangeResponseTo(
+        balance: UserModel.fromJson(json['balance'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsBalanceExchangeResponse {
-  final PaymentsBalanceExchangeResponseFrom? from;
-  final PaymentsBalanceExchangeResponseTo? to;
-  final RespSystemInfo? systemInfo;
+  final PaymentsBalanceExchangeResponseFrom from;
+  final PaymentsBalanceExchangeResponseTo to;
+  final RespSystemInfo systemInfo;
 
   const PaymentsBalanceExchangeResponse({
-    this.from,
-    this.to,
-    this.systemInfo,
+    required this.from,
+    required this.to,
+    required this.systemInfo,
   });
 
-  factory PaymentsBalanceExchangeResponse.fromJson(Map<String, dynamic> json) => PaymentsBalanceExchangeResponse(
-    from: json['from'] != null
-            ? PaymentsBalanceExchangeResponseFrom.fromJson(json['from'] as Map<String, dynamic>)
-            : null,
-    to: json['to'] != null
-            ? PaymentsBalanceExchangeResponseTo.fromJson(json['to'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsBalanceExchangeResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsBalanceExchangeResponse(
+        from: PaymentsBalanceExchangeResponseFrom.fromJson(
+            json['from'] as Map<String, dynamic>),
+        to: PaymentsBalanceExchangeResponseTo.fromJson(
+            json['to'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsTransferBody {
@@ -13746,23 +13899,23 @@ class PaymentsTransferBody {
 }
 
 class PaymentsTransferResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const PaymentsTransferResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory PaymentsTransferResponse.fromJson(Map<String, dynamic> json) => PaymentsTransferResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsTransferResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsTransferResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsFeeParams {
@@ -13780,46 +13933,46 @@ class PaymentsFeeParams {
 }
 
 class PaymentsFeeResponseCalculator {
-  final int? inputAmount;
-  final int? commissionAmount;
-  final int? totalOutputAmount;
+  final int inputAmount;
+  final int commissionAmount;
+  final int totalOutputAmount;
 
   const PaymentsFeeResponseCalculator({
-    this.inputAmount,
-    this.commissionAmount,
-    this.totalOutputAmount,
+    required this.inputAmount,
+    required this.commissionAmount,
+    required this.totalOutputAmount,
   });
 
-  factory PaymentsFeeResponseCalculator.fromJson(Map<String, dynamic> json) => PaymentsFeeResponseCalculator(
-    inputAmount: json['inputAmount'] as int?,
-    commissionAmount: json['commissionAmount'] as int?,
-    totalOutputAmount: json['totalOutputAmount'] as int?,
-  );
+  factory PaymentsFeeResponseCalculator.fromJson(Map<String, dynamic> json) =>
+      PaymentsFeeResponseCalculator(
+        inputAmount: json['inputAmount'] as int,
+        commissionAmount: json['commissionAmount'] as int,
+        totalOutputAmount: json['totalOutputAmount'] as int,
+      );
 }
 
 class PaymentsFeeResponse {
-  final int? commissionPercentage;
-  final int? spentCurrentMonth;
-  final PaymentsFeeResponseCalculator? calculator;
-  final RespSystemInfo? systemInfo;
+  final int commissionPercentage;
+  final int spentCurrentMonth;
+  final PaymentsFeeResponseCalculator calculator;
+  final RespSystemInfo systemInfo;
 
   const PaymentsFeeResponse({
-    this.commissionPercentage,
-    this.spentCurrentMonth,
-    this.calculator,
-    this.systemInfo,
+    required this.commissionPercentage,
+    required this.spentCurrentMonth,
+    required this.calculator,
+    required this.systemInfo,
   });
 
-  factory PaymentsFeeResponse.fromJson(Map<String, dynamic> json) => PaymentsFeeResponse(
-    commissionPercentage: json['commission_percentage'] as int?,
-    spentCurrentMonth: json['spentCurrentMonth'] as int?,
-    calculator: json['calculator'] != null
-            ? PaymentsFeeResponseCalculator.fromJson(json['calculator'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsFeeResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsFeeResponse(
+        commissionPercentage: json['commission_percentage'] as int,
+        spentCurrentMonth: json['spentCurrentMonth'] as int,
+        calculator: PaymentsFeeResponseCalculator.fromJson(
+            json['calculator'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsCancelBody {
@@ -13837,27 +13990,27 @@ class PaymentsCancelBody {
 }
 
 class PaymentsCancelResponse {
-  final String? status;
-  final String? message;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final String message;
+  final RespSystemInfo systemInfo;
 
   const PaymentsCancelResponse({
-    this.status,
-    this.message,
-    this.systemInfo,
+    required this.status,
+    required this.message,
+    required this.systemInfo,
   });
 
-  factory PaymentsCancelResponse.fromJson(Map<String, dynamic> json) => PaymentsCancelResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsCancelResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsCancelResponse(
+        status: json['status'] as String,
+        message: json['message'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsHistoryParams {
-  final PaymentsType? type;
+  final Type? type;
   final int? pmin;
   final int? pmax;
   final Currency? currency;
@@ -13913,389 +14066,397 @@ class PaymentsHistoryParams {
 }
 
 class PaymentsHistoryResponsePayments1234567890Data {
-  final int? userId;
-  final String? username;
-  final String? comment;
-  final int? fee;
-  final int? invoiceId;
-  final bool? isTest;
-  final String? paymentId;
-  final String? commentPlain;
-  final int? isBanned;
-  final int? displayStyleGroupId;
-  final String? uniqUsernameCss;
-  final String? uniqBanner;
-  final int? avatarDate;
-  final int? userGroupId;
-  final String? usernameHtml;
-  final String? avatar;
+  final int userId;
+  final String username;
+  final String comment;
+  final int fee;
+  final int invoiceId;
+  final bool isTest;
+  final String paymentId;
+  final String commentPlain;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final String uniqUsernameCss;
+  final String uniqBanner;
+  final int avatarDate;
+  final int userGroupId;
+  final String usernameHtml;
+  final String avatar;
 
   const PaymentsHistoryResponsePayments1234567890Data({
-    this.userId,
-    this.username,
-    this.comment,
-    this.fee,
-    this.invoiceId,
-    this.isTest,
-    this.paymentId,
-    this.commentPlain,
-    this.isBanned,
-    this.displayStyleGroupId,
-    this.uniqUsernameCss,
-    this.uniqBanner,
-    this.avatarDate,
-    this.userGroupId,
-    this.usernameHtml,
-    this.avatar,
+    required this.userId,
+    required this.username,
+    required this.comment,
+    required this.fee,
+    required this.invoiceId,
+    required this.isTest,
+    required this.paymentId,
+    required this.commentPlain,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.uniqUsernameCss,
+    required this.uniqBanner,
+    required this.avatarDate,
+    required this.userGroupId,
+    required this.usernameHtml,
+    required this.avatar,
   });
 
-  factory PaymentsHistoryResponsePayments1234567890Data.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePayments1234567890Data(
-    userId: json['user_id'] as int?,
-    username: json['username'] as String?,
-    comment: json['comment'] as String?,
-    fee: json['fee'] as int?,
-    invoiceId: json['invoice_id'] as int?,
-    isTest: json['is_test'] as bool?,
-    paymentId: json['payment_id'] as String?,
-    commentPlain: json['commentPlain'] as String?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    uniqUsernameCss: json['uniq_username_css'] as String?,
-    uniqBanner: json['uniq_banner'] as String?,
-    avatarDate: json['avatar_date'] as int?,
-    userGroupId: json['user_group_id'] as int?,
-    usernameHtml: json['username_html'] as String?,
-    avatar: json['avatar'] as String?,
-  );
+  factory PaymentsHistoryResponsePayments1234567890Data.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsHistoryResponsePayments1234567890Data(
+        userId: json['user_id'] as int,
+        username: json['username'] as String,
+        comment: json['comment'] as String,
+        fee: json['fee'] as int,
+        invoiceId: json['invoice_id'] as int,
+        isTest: json['is_test'] as bool,
+        paymentId: json['payment_id'] as String,
+        commentPlain: json['commentPlain'] as String,
+        isBanned: json['is_banned'] as int,
+        displayStyleGroupId: json['display_style_group_id'] as int,
+        uniqUsernameCss: json['uniq_username_css'] as String,
+        uniqBanner: json['uniq_banner'] as String,
+        avatarDate: json['avatar_date'] as int,
+        userGroupId: json['user_group_id'] as int,
+        usernameHtml: json['username_html'] as String,
+        avatar: json['avatar'] as String,
+      );
 }
 
 class PaymentsHistoryResponsePayments1234567890Label {
-  final String? title;
+  final String title;
 
   const PaymentsHistoryResponsePayments1234567890Label({
-    this.title,
+    required this.title,
   });
 
-  factory PaymentsHistoryResponsePayments1234567890Label.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePayments1234567890Label(
-    title: json['title'] as String?,
-  );
+  factory PaymentsHistoryResponsePayments1234567890Label.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsHistoryResponsePayments1234567890Label(
+        title: json['title'] as String,
+      );
 }
 
 class PaymentsHistoryResponsePayments1234567890Merchant {
-  final int? merchantId;
-  final String? name;
-  final int? userId;
-  final int? createdDate;
-  final String? secretKey;
-  final String? avatarData;
-  final String? url;
+  final int merchantId;
+  final String name;
+  final int userId;
+  final int createdDate;
+  final String secretKey;
+  final String avatarData;
+  final String url;
 
   const PaymentsHistoryResponsePayments1234567890Merchant({
-    this.merchantId,
-    this.name,
-    this.userId,
-    this.createdDate,
-    this.secretKey,
-    this.avatarData,
-    this.url,
+    required this.merchantId,
+    required this.name,
+    required this.userId,
+    required this.createdDate,
+    required this.secretKey,
+    required this.avatarData,
+    required this.url,
   });
 
-  factory PaymentsHistoryResponsePayments1234567890Merchant.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePayments1234567890Merchant(
-    merchantId: json['merchant_id'] as int?,
-    name: json['name'] as String?,
-    userId: json['user_id'] as int?,
-    createdDate: json['created_date'] as int?,
-    secretKey: json['secret_key'] as String?,
-    avatarData: json['avatar_data'] as String?,
-    url: json['url'] as String?,
-  );
+  factory PaymentsHistoryResponsePayments1234567890Merchant.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsHistoryResponsePayments1234567890Merchant(
+        merchantId: json['merchant_id'] as int,
+        name: json['name'] as String,
+        userId: json['user_id'] as int,
+        createdDate: json['created_date'] as int,
+        secretKey: json['secret_key'] as String,
+        avatarData: json['avatar_data'] as String,
+        url: json['url'] as String,
+      );
 }
 
 class PaymentsHistoryResponsePayments1234567890User {
-  final int? userId;
-  final String? userBalance;
-  final String? userHold;
-  final double? userBalanceWithHold;
+  final int userId;
+  final String userBalance;
+  final String userHold;
+  final double userBalanceWithHold;
 
   const PaymentsHistoryResponsePayments1234567890User({
-    this.userId,
-    this.userBalance,
-    this.userHold,
-    this.userBalanceWithHold,
+    required this.userId,
+    required this.userBalance,
+    required this.userHold,
+    required this.userBalanceWithHold,
   });
 
-  factory PaymentsHistoryResponsePayments1234567890User.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePayments1234567890User(
-    userId: json['user_id'] as int?,
-    userBalance: json['user_balance'] as String?,
-    userHold: json['user_hold'] as String?,
-    userBalanceWithHold: json['user_balance_with_hold'] as double?,
-  );
+  factory PaymentsHistoryResponsePayments1234567890User.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsHistoryResponsePayments1234567890User(
+        userId: json['user_id'] as int,
+        userBalance: json['user_balance'] as String,
+        userHold: json['user_hold'] as String,
+        userBalanceWithHold: json['user_balance_with_hold'] as double,
+      );
 }
 
 class PaymentsHistoryResponsePayments1234567890 {
-  final int? operationId;
-  final int? operationDate;
-  final String? operationType;
-  final String? outgoingSum;
-  final String? incomingSum;
-  final int? itemId;
-  final String? wallet;
-  final int? isFinished;
-  final int? isHold;
-  final String? paymentSystem;
-  final PaymentsHistoryResponsePayments1234567890Data? data;
-  final int? holdEndDate;
-  final int? operationEndDate;
-  final int? api;
-  final String? sum;
-  final String? paymentStatus;
-  final Object? supportLink;
-  final List<Object>? paymentSystemIcons;
-  final bool? canCancelPaidMailPayment;
-  final bool? canCancelBalanceTransfer;
-  final bool? canCancelBalancePayout;
-  final bool? canCancelBalanceHold;
-  final bool? canFinishBalanceTransfer;
-  final bool? canFinishBalancePayout;
-  final bool? canFinishBalanceHold;
-  final PaymentsHistoryResponsePayments1234567890Label? label;
-  final PaymentsHistoryResponsePayments1234567890Merchant? merchant;
-  final PaymentsHistoryResponsePayments1234567890User? user;
+  final int operationId;
+  final int operationDate;
+  final String operationType;
+  final String outgoingSum;
+  final String incomingSum;
+  final int itemId;
+  final String wallet;
+  final int isFinished;
+  final int isHold;
+  final String paymentSystem;
+  final PaymentsHistoryResponsePayments1234567890Data data;
+  final int holdEndDate;
+  final int operationEndDate;
+  final int api;
+  final String sum;
+  final String paymentStatus;
+  final Object supportLink;
+  final List<Object> paymentSystemIcons;
+  final bool canCancelPaidMailPayment;
+  final bool canCancelBalanceTransfer;
+  final bool canCancelBalancePayout;
+  final bool canCancelBalanceHold;
+  final bool canFinishBalanceTransfer;
+  final bool canFinishBalancePayout;
+  final bool canFinishBalanceHold;
+  final PaymentsHistoryResponsePayments1234567890Label label;
+  final PaymentsHistoryResponsePayments1234567890Merchant merchant;
+  final PaymentsHistoryResponsePayments1234567890User user;
 
   const PaymentsHistoryResponsePayments1234567890({
-    this.operationId,
-    this.operationDate,
-    this.operationType,
-    this.outgoingSum,
-    this.incomingSum,
-    this.itemId,
-    this.wallet,
-    this.isFinished,
-    this.isHold,
-    this.paymentSystem,
-    this.data,
-    this.holdEndDate,
-    this.operationEndDate,
-    this.api,
-    this.sum,
-    this.paymentStatus,
-    this.supportLink,
-    this.paymentSystemIcons,
-    this.canCancelPaidMailPayment,
-    this.canCancelBalanceTransfer,
-    this.canCancelBalancePayout,
-    this.canCancelBalanceHold,
-    this.canFinishBalanceTransfer,
-    this.canFinishBalancePayout,
-    this.canFinishBalanceHold,
-    this.label,
-    this.merchant,
-    this.user,
+    required this.operationId,
+    required this.operationDate,
+    required this.operationType,
+    required this.outgoingSum,
+    required this.incomingSum,
+    required this.itemId,
+    required this.wallet,
+    required this.isFinished,
+    required this.isHold,
+    required this.paymentSystem,
+    required this.data,
+    required this.holdEndDate,
+    required this.operationEndDate,
+    required this.api,
+    required this.sum,
+    required this.paymentStatus,
+    required this.supportLink,
+    required this.paymentSystemIcons,
+    required this.canCancelPaidMailPayment,
+    required this.canCancelBalanceTransfer,
+    required this.canCancelBalancePayout,
+    required this.canCancelBalanceHold,
+    required this.canFinishBalanceTransfer,
+    required this.canFinishBalancePayout,
+    required this.canFinishBalanceHold,
+    required this.label,
+    required this.merchant,
+    required this.user,
   });
 
-  factory PaymentsHistoryResponsePayments1234567890.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePayments1234567890(
-    operationId: json['operation_id'] as int?,
-    operationDate: json['operation_date'] as int?,
-    operationType: json['operation_type'] as String?,
-    outgoingSum: json['outgoing_sum'] as String?,
-    incomingSum: json['incoming_sum'] as String?,
-    itemId: json['item_id'] as int?,
-    wallet: json['wallet'] as String?,
-    isFinished: json['is_finished'] as int?,
-    isHold: json['is_hold'] as int?,
-    paymentSystem: json['payment_system'] as String?,
-    data: json['data'] != null
-            ? PaymentsHistoryResponsePayments1234567890Data.fromJson(json['data'] as Map<String, dynamic>)
-            : null,
-    holdEndDate: json['hold_end_date'] as int?,
-    operationEndDate: json['operation_end_date'] as int?,
-    api: json['api'] as int?,
-    sum: json['sum'] as String?,
-    paymentStatus: json['payment_status'] as String?,
-    supportLink: json['supportLink'] as Object?,
-    paymentSystemIcons: (json['paymentSystemIcons'] as List<dynamic>?)?.cast<Object>(),
-    canCancelPaidMailPayment: json['canCancelPaidMailPayment'] as bool?,
-    canCancelBalanceTransfer: json['canCancelBalanceTransfer'] as bool?,
-    canCancelBalancePayout: json['canCancelBalancePayout'] as bool?,
-    canCancelBalanceHold: json['canCancelBalanceHold'] as bool?,
-    canFinishBalanceTransfer: json['canFinishBalanceTransfer'] as bool?,
-    canFinishBalancePayout: json['canFinishBalancePayout'] as bool?,
-    canFinishBalanceHold: json['canFinishBalanceHold'] as bool?,
-    label: json['label'] != null
-            ? PaymentsHistoryResponsePayments1234567890Label.fromJson(json['label'] as Map<String, dynamic>)
-            : null,
-    merchant: json['merchant'] != null
-            ? PaymentsHistoryResponsePayments1234567890Merchant.fromJson(json['merchant'] as Map<String, dynamic>)
-            : null,
-    user: json['user'] != null
-            ? PaymentsHistoryResponsePayments1234567890User.fromJson(json['user'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsHistoryResponsePayments1234567890.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsHistoryResponsePayments1234567890(
+        operationId: json['operation_id'] as int,
+        operationDate: json['operation_date'] as int,
+        operationType: json['operation_type'] as String,
+        outgoingSum: json['outgoing_sum'] as String,
+        incomingSum: json['incoming_sum'] as String,
+        itemId: json['item_id'] as int,
+        wallet: json['wallet'] as String,
+        isFinished: json['is_finished'] as int,
+        isHold: json['is_hold'] as int,
+        paymentSystem: json['payment_system'] as String,
+        data: PaymentsHistoryResponsePayments1234567890Data.fromJson(
+            json['data'] as Map<String, dynamic>),
+        holdEndDate: json['hold_end_date'] as int,
+        operationEndDate: json['operation_end_date'] as int,
+        api: json['api'] as int,
+        sum: json['sum'] as String,
+        paymentStatus: json['payment_status'] as String,
+        supportLink: json['supportLink'] as Object,
+        paymentSystemIcons:
+            (json['paymentSystemIcons'] as List<dynamic>).cast<Object>(),
+        canCancelPaidMailPayment: json['canCancelPaidMailPayment'] as bool,
+        canCancelBalanceTransfer: json['canCancelBalanceTransfer'] as bool,
+        canCancelBalancePayout: json['canCancelBalancePayout'] as bool,
+        canCancelBalanceHold: json['canCancelBalanceHold'] as bool,
+        canFinishBalanceTransfer: json['canFinishBalanceTransfer'] as bool,
+        canFinishBalancePayout: json['canFinishBalancePayout'] as bool,
+        canFinishBalanceHold: json['canFinishBalanceHold'] as bool,
+        label: PaymentsHistoryResponsePayments1234567890Label.fromJson(
+            json['label'] as Map<String, dynamic>),
+        merchant: PaymentsHistoryResponsePayments1234567890Merchant.fromJson(
+            json['merchant'] as Map<String, dynamic>),
+        user: PaymentsHistoryResponsePayments1234567890User.fromJson(
+            json['user'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsHistoryResponsePayments {
-  final PaymentsHistoryResponsePayments1234567890? n1234567890;
+  final PaymentsHistoryResponsePayments1234567890 n1234567890;
 
   const PaymentsHistoryResponsePayments({
-    this.n1234567890,
+    required this.n1234567890,
   });
 
-  factory PaymentsHistoryResponsePayments.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePayments(
-    n1234567890: json['1234567890'] != null
-            ? PaymentsHistoryResponsePayments1234567890.fromJson(json['1234567890'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsHistoryResponsePayments.fromJson(Map<String, dynamic> json) =>
+      PaymentsHistoryResponsePayments(
+        n1234567890: PaymentsHistoryResponsePayments1234567890.fromJson(
+            json['1234567890'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsHistoryResponsePageNavParams {
-  final String? type;
-  final String? startDate;
-  final String? endDate;
+  final String type;
+  final String startDate;
+  final String endDate;
 
   const PaymentsHistoryResponsePageNavParams({
-    this.type,
-    this.startDate,
-    this.endDate,
+    required this.type,
+    required this.startDate,
+    required this.endDate,
   });
 
-  factory PaymentsHistoryResponsePageNavParams.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponsePageNavParams(
-    type: json['type'] as String?,
-    startDate: json['startDate'] as String?,
-    endDate: json['endDate'] as String?,
-  );
+  factory PaymentsHistoryResponsePageNavParams.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsHistoryResponsePageNavParams(
+        type: json['type'] as String,
+        startDate: json['startDate'] as String,
+        endDate: json['endDate'] as String,
+      );
 }
 
 class PaymentsHistoryResponseInput {
-  final int? userId;
-  final String? type;
-  final String? startDate;
-  final String? endDate;
-  final int? page;
-  final String? periodLabel;
-  final String? receiver;
-  final String? sender;
-  final String? comment;
-  final String? pmin;
-  final String? pmax;
-  final int? categoryId;
-  final String? wallet;
-  final bool? isHold;
-  final String? currency;
-  final int? operationIdLt;
+  final int userId;
+  final String type;
+  final String startDate;
+  final String endDate;
+  final int page;
+  final String periodLabel;
+  final String receiver;
+  final String sender;
+  final String comment;
+  final String pmin;
+  final String pmax;
+  final int categoryId;
+  final String wallet;
+  final bool isHold;
+  final String currency;
+  final int operationIdLt;
 
   const PaymentsHistoryResponseInput({
-    this.userId,
-    this.type,
-    this.startDate,
-    this.endDate,
-    this.page,
-    this.periodLabel,
-    this.receiver,
-    this.sender,
-    this.comment,
-    this.pmin,
-    this.pmax,
-    this.categoryId,
-    this.wallet,
-    this.isHold,
-    this.currency,
-    this.operationIdLt,
+    required this.userId,
+    required this.type,
+    required this.startDate,
+    required this.endDate,
+    required this.page,
+    required this.periodLabel,
+    required this.receiver,
+    required this.sender,
+    required this.comment,
+    required this.pmin,
+    required this.pmax,
+    required this.categoryId,
+    required this.wallet,
+    required this.isHold,
+    required this.currency,
+    required this.operationIdLt,
   });
 
-  factory PaymentsHistoryResponseInput.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponseInput(
-    userId: json['user_id'] as int?,
-    type: json['type'] as String?,
-    startDate: json['startDate'] as String?,
-    endDate: json['endDate'] as String?,
-    page: json['page'] as int?,
-    periodLabel: json['period_label'] as String?,
-    receiver: json['receiver'] as String?,
-    sender: json['sender'] as String?,
-    comment: json['comment'] as String?,
-    pmin: json['pmin'] as String?,
-    pmax: json['pmax'] as String?,
-    categoryId: json['category_id'] as int?,
-    wallet: json['wallet'] as String?,
-    isHold: json['is_hold'] as bool?,
-    currency: json['currency'] as String?,
-    operationIdLt: json['operation_id_lt'] as int?,
-  );
+  factory PaymentsHistoryResponseInput.fromJson(Map<String, dynamic> json) =>
+      PaymentsHistoryResponseInput(
+        userId: json['user_id'] as int,
+        type: json['type'] as String,
+        startDate: json['startDate'] as String,
+        endDate: json['endDate'] as String,
+        page: json['page'] as int,
+        periodLabel: json['period_label'] as String,
+        receiver: json['receiver'] as String,
+        sender: json['sender'] as String,
+        comment: json['comment'] as String,
+        pmin: json['pmin'] as String,
+        pmax: json['pmax'] as String,
+        categoryId: json['category_id'] as int,
+        wallet: json['wallet'] as String,
+        isHold: json['is_hold'] as bool,
+        currency: json['currency'] as String,
+        operationIdLt: json['operation_id_lt'] as int,
+      );
 }
 
 class PaymentsHistoryResponse {
-  final PaymentsHistoryResponsePayments? payments;
-  final String? perPage;
-  final int? page;
-  final String? pageNavLink;
-  final PaymentsHistoryResponsePageNavParams? pageNavParams;
-  final String? periodLabel;
-  final String? periodLabelPhrase;
-  final bool? filterDatesDefault;
-  final PaymentsHistoryResponseInput? input;
-  final Object? paymentStats;
-  final bool? hasNextPage;
-  final int? lastOperationId;
-  final String? nextPageHref;
-  final RespSystemInfo? systemInfo;
+  final PaymentsHistoryResponsePayments payments;
+  final String perPage;
+  final int page;
+  final String pageNavLink;
+  final PaymentsHistoryResponsePageNavParams pageNavParams;
+  final String periodLabel;
+  final String periodLabelPhrase;
+  final bool filterDatesDefault;
+  final PaymentsHistoryResponseInput input;
+  final Object paymentStats;
+  final bool hasNextPage;
+  final int lastOperationId;
+  final String nextPageHref;
+  final RespSystemInfo systemInfo;
 
   const PaymentsHistoryResponse({
-    this.payments,
-    this.perPage,
-    this.page,
-    this.pageNavLink,
-    this.pageNavParams,
-    this.periodLabel,
-    this.periodLabelPhrase,
-    this.filterDatesDefault,
-    this.input,
-    this.paymentStats,
-    this.hasNextPage,
-    this.lastOperationId,
-    this.nextPageHref,
-    this.systemInfo,
+    required this.payments,
+    required this.perPage,
+    required this.page,
+    required this.pageNavLink,
+    required this.pageNavParams,
+    required this.periodLabel,
+    required this.periodLabelPhrase,
+    required this.filterDatesDefault,
+    required this.input,
+    required this.paymentStats,
+    required this.hasNextPage,
+    required this.lastOperationId,
+    required this.nextPageHref,
+    required this.systemInfo,
   });
 
-  factory PaymentsHistoryResponse.fromJson(Map<String, dynamic> json) => PaymentsHistoryResponse(
-    payments: json['payments'] != null
-            ? PaymentsHistoryResponsePayments.fromJson(json['payments'] as Map<String, dynamic>)
-            : null,
-    perPage: json['perPage'] as String?,
-    page: json['page'] as int?,
-    pageNavLink: json['pageNavLink'] as String?,
-    pageNavParams: json['pageNavParams'] != null
-            ? PaymentsHistoryResponsePageNavParams.fromJson(json['pageNavParams'] as Map<String, dynamic>)
-            : null,
-    periodLabel: json['periodLabel'] as String?,
-    periodLabelPhrase: json['periodLabelPhrase'] as String?,
-    filterDatesDefault: json['filterDatesDefault'] as bool?,
-    input: json['input'] != null
-            ? PaymentsHistoryResponseInput.fromJson(json['input'] as Map<String, dynamic>)
-            : null,
-    paymentStats: json['paymentStats'] as Object?,
-    hasNextPage: json['hasNextPage'] as bool?,
-    lastOperationId: json['lastOperationId'] as int?,
-    nextPageHref: json['nextPageHref'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsHistoryResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsHistoryResponse(
+        payments: PaymentsHistoryResponsePayments.fromJson(
+            json['payments'] as Map<String, dynamic>),
+        perPage: json['perPage'] as String,
+        page: json['page'] as int,
+        pageNavLink: json['pageNavLink'] as String,
+        pageNavParams: PaymentsHistoryResponsePageNavParams.fromJson(
+            json['pageNavParams'] as Map<String, dynamic>),
+        periodLabel: json['periodLabel'] as String,
+        periodLabelPhrase: json['periodLabelPhrase'] as String,
+        filterDatesDefault: json['filterDatesDefault'] as bool,
+        input: PaymentsHistoryResponseInput.fromJson(
+            json['input'] as Map<String, dynamic>),
+        paymentStats: json['paymentStats'] as Object,
+        hasNextPage: json['hasNextPage'] as bool,
+        lastOperationId: json['lastOperationId'] as int,
+        nextPageHref: json['nextPageHref'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsPayoutServicesResponse {
-  final List<Map<String, dynamic>>? systems;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> systems;
+  final RespSystemInfo systemInfo;
 
   const PaymentsPayoutServicesResponse({
-    this.systems,
-    this.systemInfo,
+    required this.systems,
+    required this.systemInfo,
   });
 
-  factory PaymentsPayoutServicesResponse.fromJson(Map<String, dynamic> json) => PaymentsPayoutServicesResponse(
-    systems: (json['systems'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PaymentsPayoutServicesResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponse(
+        systems:
+            (json['systems'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PaymentsPayoutBody {
@@ -14338,19 +14499,21 @@ class PaymentsPayoutResponse {
     this.systemInfo,
   });
 
-  factory PaymentsPayoutResponse.fromJson(Map<String, dynamic> json) => PaymentsPayoutResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PaymentsPayoutResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentsPayoutResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ProfileApi Types ────────────────────────────────────────
 
 class ProfileClaimsParams {
-  final ProfileType? type;
+  final Type? type;
   final ClaimState? claimState;
 
   const ProfileClaimsParams({
@@ -14367,86 +14530,88 @@ class ProfileClaimsParams {
 }
 
 class ProfileClaimsResponseStatsMarket {
-  final int? total;
-  final int? solved;
-  final int? settled;
-  final int? rejected;
+  final int total;
+  final int solved;
+  final int settled;
+  final int rejected;
 
   const ProfileClaimsResponseStatsMarket({
-    this.total,
-    this.solved,
-    this.settled,
-    this.rejected,
+    required this.total,
+    required this.solved,
+    required this.settled,
+    required this.rejected,
   });
 
-  factory ProfileClaimsResponseStatsMarket.fromJson(Map<String, dynamic> json) => ProfileClaimsResponseStatsMarket(
-    total: json['total'] as int?,
-    solved: json['solved'] as int?,
-    settled: json['settled'] as int?,
-    rejected: json['rejected'] as int?,
-  );
+  factory ProfileClaimsResponseStatsMarket.fromJson(
+          Map<String, dynamic> json) =>
+      ProfileClaimsResponseStatsMarket(
+        total: json['total'] as int,
+        solved: json['solved'] as int,
+        settled: json['settled'] as int,
+        rejected: json['rejected'] as int,
+      );
 }
 
 class ProfileClaimsResponseStatsNoMarket {
-  final int? total;
-  final int? solved;
-  final int? settled;
-  final int? rejected;
+  final int total;
+  final int solved;
+  final int settled;
+  final int rejected;
 
   const ProfileClaimsResponseStatsNoMarket({
-    this.total,
-    this.solved,
-    this.settled,
-    this.rejected,
+    required this.total,
+    required this.solved,
+    required this.settled,
+    required this.rejected,
   });
 
-  factory ProfileClaimsResponseStatsNoMarket.fromJson(Map<String, dynamic> json) => ProfileClaimsResponseStatsNoMarket(
-    total: json['total'] as int?,
-    solved: json['solved'] as int?,
-    settled: json['settled'] as int?,
-    rejected: json['rejected'] as int?,
-  );
+  factory ProfileClaimsResponseStatsNoMarket.fromJson(
+          Map<String, dynamic> json) =>
+      ProfileClaimsResponseStatsNoMarket(
+        total: json['total'] as int,
+        solved: json['solved'] as int,
+        settled: json['settled'] as int,
+        rejected: json['rejected'] as int,
+      );
 }
 
 class ProfileClaimsResponseStats {
-  final ProfileClaimsResponseStatsMarket? market;
-  final ProfileClaimsResponseStatsNoMarket? noMarket;
+  final ProfileClaimsResponseStatsMarket market;
+  final ProfileClaimsResponseStatsNoMarket noMarket;
 
   const ProfileClaimsResponseStats({
-    this.market,
-    this.noMarket,
+    required this.market,
+    required this.noMarket,
   });
 
-  factory ProfileClaimsResponseStats.fromJson(Map<String, dynamic> json) => ProfileClaimsResponseStats(
-    market: json['market'] != null
-            ? ProfileClaimsResponseStatsMarket.fromJson(json['market'] as Map<String, dynamic>)
-            : null,
-    noMarket: json['noMarket'] != null
-            ? ProfileClaimsResponseStatsNoMarket.fromJson(json['noMarket'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ProfileClaimsResponseStats.fromJson(Map<String, dynamic> json) =>
+      ProfileClaimsResponseStats(
+        market: ProfileClaimsResponseStatsMarket.fromJson(
+            json['market'] as Map<String, dynamic>),
+        noMarket: ProfileClaimsResponseStatsNoMarket.fromJson(
+            json['noMarket'] as Map<String, dynamic>),
+      );
 }
 
 class ProfileClaimsResponse {
-  final List<Map<String, dynamic>>? claims;
-  final ProfileClaimsResponseStats? stats;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> claims;
+  final ProfileClaimsResponseStats stats;
+  final RespSystemInfo systemInfo;
 
   const ProfileClaimsResponse({
-    this.claims,
-    this.stats,
-    this.systemInfo,
+    required this.claims,
+    required this.stats,
+    required this.systemInfo,
   });
 
-  factory ProfileClaimsResponse.fromJson(Map<String, dynamic> json) => ProfileClaimsResponse(
-    claims: (json['claims'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    stats: json['stats'] != null
-            ? ProfileClaimsResponseStats.fromJson(json['stats'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ProfileClaimsResponse.fromJson(Map<String, dynamic> json) =>
+      ProfileClaimsResponse(
+        claims: (json['claims'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        stats: ProfileClaimsResponseStats.fromJson(
+            json['stats'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ProfileGetParams {
@@ -14464,22 +14629,20 @@ class ProfileGetParams {
 }
 
 class ProfileGetResponse {
-  final UserModel? user;
-  final RespSystemInfo? systemInfo;
+  final UserModel user;
+  final RespSystemInfo systemInfo;
 
   const ProfileGetResponse({
-    this.user,
-    this.systemInfo,
+    required this.user,
+    required this.systemInfo,
   });
 
-  factory ProfileGetResponse.fromJson(Map<String, dynamic> json) => ProfileGetResponse(
-    user: json['user'] != null
-            ? UserModel.fromJson(json['user'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ProfileGetResponse.fromJson(Map<String, dynamic> json) =>
+      ProfileGetResponse(
+        user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ProfileEditBody {
@@ -14540,32 +14703,35 @@ class ProfileEditResponse {
     this.systemInfo,
   });
 
-  factory ProfileEditResponse.fromJson(Map<String, dynamic> json) => ProfileEditResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProfileEditResponse.fromJson(Map<String, dynamic> json) =>
+      ProfileEditResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── ProxyApi Types ────────────────────────────────────────
 
 class ProxyGetResponse {
-  final List<Map<String, dynamic>>? proxies;
-  final RespSystemInfo? systemInfo;
+  final List<Map<String, dynamic>> proxies;
+  final RespSystemInfo systemInfo;
 
   const ProxyGetResponse({
-    this.proxies,
-    this.systemInfo,
+    required this.proxies,
+    required this.systemInfo,
   });
 
-  factory ProxyGetResponse.fromJson(Map<String, dynamic> json) => ProxyGetResponse(
-    proxies: (json['proxies'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory ProxyGetResponse.fromJson(Map<String, dynamic> json) =>
+      ProxyGetResponse(
+        proxies:
+            (json['proxies'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class ProxyAddBody {
@@ -14605,13 +14771,15 @@ class ProxyAddResponse {
     this.systemInfo,
   });
 
-  factory ProxyAddResponse.fromJson(Map<String, dynamic> json) => ProxyAddResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProxyAddResponse.fromJson(Map<String, dynamic> json) =>
+      ProxyAddResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class ProxyDeleteBody {
@@ -14642,13 +14810,15 @@ class ProxyDeleteResponse {
     this.systemInfo,
   });
 
-  factory ProxyDeleteResponse.fromJson(Map<String, dynamic> json) => ProxyDeleteResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory ProxyDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      ProxyDeleteResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── PublishingApi Types ────────────────────────────────────────
@@ -14659,7 +14829,7 @@ class PublishingFastSellBody {
   final double price;
   final CategoryId categoryId;
   final Currency currency;
-  final PublishingItemOrigin itemOrigin;
+  final ItemOrigin itemOrigin;
   final ExtendedGuarantee? extendedGuarantee;
   final bool? allowAskDiscount;
   final int? proxyId;
@@ -14722,25 +14892,23 @@ class PublishingFastSellBody {
 }
 
 class PublishingFastSellResponse {
-  final ItemModel? item;
-  final String? itemLink;
-  final RespSystemInfo? systemInfo;
+  final ItemModel item;
+  final String itemLink;
+  final RespSystemInfo systemInfo;
 
   const PublishingFastSellResponse({
-    this.item,
-    this.itemLink,
-    this.systemInfo,
+    required this.item,
+    required this.itemLink,
+    required this.systemInfo,
   });
 
-  factory PublishingFastSellResponse.fromJson(Map<String, dynamic> json) => PublishingFastSellResponse(
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    itemLink: json['itemLink'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PublishingFastSellResponse.fromJson(Map<String, dynamic> json) =>
+      PublishingFastSellResponse(
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        itemLink: json['itemLink'] as String,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PublishingAddBody {
@@ -14749,7 +14917,7 @@ class PublishingAddBody {
   final double price;
   final CategoryId categoryId;
   final Currency currency;
-  final PublishingItemOrigin itemOrigin;
+  final ItemOrigin itemOrigin;
   final ExtendedGuarantee? extendedGuarantee;
   final String? description;
   final String? information;
@@ -14806,25 +14974,23 @@ class PublishingAddBody {
 }
 
 class PublishingAddResponse {
-  final String? status;
-  final ItemModel? item;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final ItemModel item;
+  final RespSystemInfo systemInfo;
 
   const PublishingAddResponse({
-    this.status,
-    this.item,
-    this.systemInfo,
+    required this.status,
+    required this.item,
+    required this.systemInfo,
   });
 
-  factory PublishingAddResponse.fromJson(Map<String, dynamic> json) => PublishingAddResponse(
-    status: json['status'] as String?,
-    item: json['item'] != null
-            ? ItemModel.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PublishingAddResponse.fromJson(Map<String, dynamic> json) =>
+      PublishingAddResponse(
+        status: json['status'] as String,
+        item: ItemModel.fromJson(json['item'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PublishingCheckBody {
@@ -14866,510 +15032,521 @@ class PublishingCheckBody {
 }
 
 class PublishingCheckResponseItemGuarantee {
-  final int? duration;
-  final String? class$;
-  final String? durationPhrase;
-  final int? endDate;
-  final bool? active;
-  final bool? cancelled;
-  final int? remainingTime;
-  final String? remainingTimePhrase;
+  final int duration;
+  final String class$;
+  final String durationPhrase;
+  final int endDate;
+  final bool active;
+  final bool cancelled;
+  final int remainingTime;
+  final String remainingTimePhrase;
 
   const PublishingCheckResponseItemGuarantee({
-    this.duration,
-    this.class$,
-    this.durationPhrase,
-    this.endDate,
-    this.active,
-    this.cancelled,
-    this.remainingTime,
-    this.remainingTimePhrase,
+    required this.duration,
+    required this.class$,
+    required this.durationPhrase,
+    required this.endDate,
+    required this.active,
+    required this.cancelled,
+    required this.remainingTime,
+    required this.remainingTimePhrase,
   });
 
-  factory PublishingCheckResponseItemGuarantee.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItemGuarantee(
-    duration: json['duration'] as int?,
-    class$: json['class'] as String?,
-    durationPhrase: json['durationPhrase'] as String?,
-    endDate: json['endDate'] as int?,
-    active: json['active'] as bool?,
-    cancelled: json['cancelled'] as bool?,
-    remainingTime: json['remainingTime'] as int?,
-    remainingTimePhrase: json['remainingTimePhrase'] as String?,
-  );
+  factory PublishingCheckResponseItemGuarantee.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemGuarantee(
+        duration: json['duration'] as int,
+        class$: json['class'] as String,
+        durationPhrase: json['durationPhrase'] as String,
+        endDate: json['endDate'] as int,
+        active: json['active'] as bool,
+        cancelled: json['cancelled'] as bool,
+        remainingTime: json['remainingTime'] as int,
+        remainingTimePhrase: json['remainingTimePhrase'] as String,
+      );
 }
 
 class PublishingCheckResponseItemLoginData {
-  final String? raw;
-  final String? encodedRaw;
-  final String? login;
-  final String? password;
-  final String? encodedPassword;
-  final String? oldPassword;
-  final Object? encodedOldPassword;
+  final String raw;
+  final String encodedRaw;
+  final String login;
+  final String password;
+  final String encodedPassword;
+  final String oldPassword;
+  final Object encodedOldPassword;
 
   const PublishingCheckResponseItemLoginData({
-    this.raw,
-    this.encodedRaw,
-    this.login,
-    this.password,
-    this.encodedPassword,
-    this.oldPassword,
-    this.encodedOldPassword,
+    required this.raw,
+    required this.encodedRaw,
+    required this.login,
+    required this.password,
+    required this.encodedPassword,
+    required this.oldPassword,
+    required this.encodedOldPassword,
   });
 
-  factory PublishingCheckResponseItemLoginData.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItemLoginData(
-    raw: json['raw'] as String?,
-    encodedRaw: json['encodedRaw'] as String?,
-    login: json['login'] as String?,
-    password: json['password'] as String?,
-    encodedPassword: json['encodedPassword'] as String?,
-    oldPassword: json['oldPassword'] as String?,
-    encodedOldPassword: json['encodedOldPassword'] as Object?,
-  );
+  factory PublishingCheckResponseItemLoginData.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemLoginData(
+        raw: json['raw'] as String,
+        encodedRaw: json['encodedRaw'] as String,
+        login: json['login'] as String,
+        password: json['password'] as String,
+        encodedPassword: json['encodedPassword'] as String,
+        oldPassword: json['oldPassword'] as String,
+        encodedOldPassword: json['encodedOldPassword'] as Object,
+      );
 }
 
 class PublishingCheckResponseItemEmailLoginData {
-  final String? raw;
-  final String? encodedRaw;
-  final String? login;
-  final String? password;
-  final String? encodedPassword;
-  final String? oldPassword;
-  final String? encodedOldPassword;
+  final String raw;
+  final String encodedRaw;
+  final String login;
+  final String password;
+  final String encodedPassword;
+  final String oldPassword;
+  final String encodedOldPassword;
 
   const PublishingCheckResponseItemEmailLoginData({
-    this.raw,
-    this.encodedRaw,
-    this.login,
-    this.password,
-    this.encodedPassword,
-    this.oldPassword,
-    this.encodedOldPassword,
+    required this.raw,
+    required this.encodedRaw,
+    required this.login,
+    required this.password,
+    required this.encodedPassword,
+    required this.oldPassword,
+    required this.encodedOldPassword,
   });
 
-  factory PublishingCheckResponseItemEmailLoginData.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItemEmailLoginData(
-    raw: json['raw'] as String?,
-    encodedRaw: json['encodedRaw'] as String?,
-    login: json['login'] as String?,
-    password: json['password'] as String?,
-    encodedPassword: json['encodedPassword'] as String?,
-    oldPassword: json['oldPassword'] as String?,
-    encodedOldPassword: json['encodedOldPassword'] as String?,
-  );
+  factory PublishingCheckResponseItemEmailLoginData.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemEmailLoginData(
+        raw: json['raw'] as String,
+        encodedRaw: json['encodedRaw'] as String,
+        login: json['login'] as String,
+        password: json['password'] as String,
+        encodedPassword: json['encodedPassword'] as String,
+        oldPassword: json['oldPassword'] as String,
+        encodedOldPassword: json['encodedOldPassword'] as String,
+      );
 }
 
 class PublishingCheckResponseItemBuyer {
-  final int? userId;
-  final int? operationDate;
-  final bool? visitorIsBuyer;
-  final String? username;
-  final int? isBanned;
-  final int? displayStyleGroupId;
-  final String? uniqUsernameCss;
-  final int? userGroupId;
+  final int userId;
+  final int operationDate;
+  final bool visitorIsBuyer;
+  final String username;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final String uniqUsernameCss;
+  final int userGroupId;
 
   const PublishingCheckResponseItemBuyer({
-    this.userId,
-    this.operationDate,
-    this.visitorIsBuyer,
-    this.username,
-    this.isBanned,
-    this.displayStyleGroupId,
-    this.uniqUsernameCss,
-    this.userGroupId,
+    required this.userId,
+    required this.operationDate,
+    required this.visitorIsBuyer,
+    required this.username,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.uniqUsernameCss,
+    required this.userGroupId,
   });
 
-  factory PublishingCheckResponseItemBuyer.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItemBuyer(
-    userId: json['user_id'] as int?,
-    operationDate: json['operation_date'] as int?,
-    visitorIsBuyer: json['visitorIsBuyer'] as bool?,
-    username: json['username'] as String?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    uniqUsernameCss: json['uniq_username_css'] as String?,
-    userGroupId: json['user_group_id'] as int?,
-  );
+  factory PublishingCheckResponseItemBuyer.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemBuyer(
+        userId: json['user_id'] as int,
+        operationDate: json['operation_date'] as int,
+        visitorIsBuyer: json['visitorIsBuyer'] as bool,
+        username: json['username'] as String,
+        isBanned: json['is_banned'] as int,
+        displayStyleGroupId: json['display_style_group_id'] as int,
+        uniqUsernameCss: json['uniq_username_css'] as String,
+        userGroupId: json['user_group_id'] as int,
+      );
 }
 
 class PublishingCheckResponseItemTags1 {
-  final int? tagId;
-  final String? title;
-  final bool? isDefault;
-  final bool? forOwnedAccountsOnly;
-  final String? bc;
+  final int tagId;
+  final String title;
+  final bool isDefault;
+  final bool forOwnedAccountsOnly;
+  final String bc;
 
   const PublishingCheckResponseItemTags1({
-    this.tagId,
-    this.title,
-    this.isDefault,
-    this.forOwnedAccountsOnly,
-    this.bc,
+    required this.tagId,
+    required this.title,
+    required this.isDefault,
+    required this.forOwnedAccountsOnly,
+    required this.bc,
   });
 
-  factory PublishingCheckResponseItemTags1.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItemTags1(
-    tagId: json['tag_id'] as int?,
-    title: json['title'] as String?,
-    isDefault: json['isDefault'] as bool?,
-    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
-    bc: json['bc'] as String?,
-  );
+  factory PublishingCheckResponseItemTags1.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemTags1(
+        tagId: json['tag_id'] as int,
+        title: json['title'] as String,
+        isDefault: json['isDefault'] as bool,
+        forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool,
+        bc: json['bc'] as String,
+      );
 }
 
 class PublishingCheckResponseItemTags {
-  final PublishingCheckResponseItemTags1? n1;
+  final PublishingCheckResponseItemTags1 n1;
 
   const PublishingCheckResponseItemTags({
-    this.n1,
+    required this.n1,
   });
 
-  factory PublishingCheckResponseItemTags.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItemTags(
-    n1: json['1'] != null
-            ? PublishingCheckResponseItemTags1.fromJson(json['1'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PublishingCheckResponseItemTags.fromJson(Map<String, dynamic> json) =>
+      PublishingCheckResponseItemTags(
+        n1: PublishingCheckResponseItemTags1.fromJson(
+            json['1'] as Map<String, dynamic>),
+      );
 }
 
 class PublishingCheckResponseItemBumpSettings {
-  final bool? canBumpItem;
-  final bool? canBumpItemGlobally;
-  final Object? shortErrorPhrase;
-  final Object? errorPhrase;
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final Object shortErrorPhrase;
+  final Object errorPhrase;
 
   const PublishingCheckResponseItemBumpSettings({
-    this.canBumpItem,
-    this.canBumpItemGlobally,
-    this.shortErrorPhrase,
-    this.errorPhrase,
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
   });
 
-  factory PublishingCheckResponseItemBumpSettings.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItemBumpSettings(
-    canBumpItem: json['canBumpItem'] as bool?,
-    canBumpItemGlobally: json['canBumpItemGlobally'] as bool?,
-    shortErrorPhrase: json['shortErrorPhrase'] as Object?,
-    errorPhrase: json['errorPhrase'] as Object?,
-  );
+  factory PublishingCheckResponseItemBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemBumpSettings(
+        canBumpItem: json['canBumpItem'] as bool,
+        canBumpItemGlobally: json['canBumpItemGlobally'] as bool,
+        shortErrorPhrase: json['shortErrorPhrase'] as Object,
+        errorPhrase: json['errorPhrase'] as Object,
+      );
 }
 
 class PublishingCheckResponseItemSeller {
-  final int? userId;
-  final String? username;
-  final int? avatarDate;
-  final int? isBanned;
-  final int? displayStyleGroupId;
-  final int? joinedDate;
-  final int? soldItemsCount;
-  final int? activeItemsCount;
-  final String? restoreData;
-  final int? restorePercents;
-  final bool? isOnline;
+  final int userId;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final int restorePercents;
+  final bool isOnline;
 
   const PublishingCheckResponseItemSeller({
-    this.userId,
-    this.username,
-    this.avatarDate,
-    this.isBanned,
-    this.displayStyleGroupId,
-    this.joinedDate,
-    this.soldItemsCount,
-    this.activeItemsCount,
-    this.restoreData,
-    this.restorePercents,
-    this.isOnline,
+    required this.userId,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.joinedDate,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.restorePercents,
+    required this.isOnline,
   });
 
-  factory PublishingCheckResponseItemSeller.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItemSeller(
-    userId: json['user_id'] as int?,
-    username: json['username'] as String?,
-    avatarDate: json['avatar_date'] as int?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    joinedDate: json['joined_date'] as int?,
-    soldItemsCount: json['sold_items_count'] as int?,
-    activeItemsCount: json['active_items_count'] as int?,
-    restoreData: json['restore_data'] as String?,
-    restorePercents: json['restore_percents'] as int?,
-    isOnline: json['isOnline'] as bool?,
-  );
+  factory PublishingCheckResponseItemSeller.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemSeller(
+        userId: json['user_id'] as int,
+        username: json['username'] as String,
+        avatarDate: json['avatar_date'] as int,
+        isBanned: json['is_banned'] as int,
+        displayStyleGroupId: json['display_style_group_id'] as int,
+        joinedDate: json['joined_date'] as int,
+        soldItemsCount: json['sold_items_count'] as int,
+        activeItemsCount: json['active_items_count'] as int,
+        restoreData: json['restore_data'] as String,
+        restorePercents: json['restore_percents'] as int,
+        isOnline: json['isOnline'] as bool,
+      );
 }
 
 class PublishingCheckResponseItem {
-  final int? itemId;
-  final String? itemState;
-  final int? categoryId;
-  final int? publishedDate;
-  final String? title;
-  final String? description;
-  final int? price;
-  final int? updateStatDate;
-  final int? refreshedDate;
-  final int? editDate;
-  final String? login;
-  final String? tempEmail;
-  final int? viewCount;
-  final int? isSticky;
-  final String? information;
-  final String? itemOrigin;
-  final int? extendedGuarantee;
-  final int? nsb;
-  final int? allowAskDiscount;
-  final String? titleEn;
-  final String? descriptionEn;
-  final String? informationEn;
-  final String? emailType;
-  final String? emailProvider;
-  final String? itemDomain;
-  final String? resaleItemOrigin;
-  final int? userAllowAskDiscount;
-  final int? maxDiscountPercent;
-  final String? marketCustomTitle;
-  final String? feedbackData;
-  final int? buyerAvatarDate;
-  final int? buyerUserGroupId;
-  final int? priceWithSellerFee;
-  final PublishingCheckResponseItemGuarantee? guarantee;
-  final bool? canViewLoginData;
-  final bool? canUpdateItemStats;
-  final bool? canReportItem;
-  final PublishingCheckResponseItemLoginData? loginData;
-  final bool? canViewEmailLoginData;
-  final PublishingCheckResponseItemEmailLoginData? emailLoginData;
-  final bool? showGetEmailCodeButton;
-  final String? getEmailCodeDisplayLogin;
-  final PublishingCheckResponseItemBuyer? buyer;
-  final bool? isPersonalAccount;
-  final int? soldItemsCategoryCount;
-  final int? restoreItemsCategoryCount;
-  final int? rubPrice;
-  final String? priceCurrency;
-  final bool? canValidateAccount;
-  final bool? canResellItemAfterPurchase;
-  final int? accountLastActivity;
-  final bool? displayConvertedBalance;
-  final bool? canViewAccountLink;
-  final List<Map<String, dynamic>>? accountLinks;
-  final String? accountLink;
-  final String? emailLoginUrl;
-  final bool? canChangePassword;
-  final String? itemOriginPhrase;
-  final bool? visitorIsAuthor;
-  final bool? canAskDiscount;
-  final PublishingCheckResponseItemTags? tags;
-  final List<Object>? customFields;
-  final List<Object>? externalAuth;
-  final bool? isTrusted;
-  final bool? isBirthdayToday;
-  final bool? isIgnored;
-  final int? deposit;
-  final List<Map<String, dynamic>>? extraPrices;
-  final bool? canViewAccountLoginAndTempEmail;
-  final PublishingCheckResponseItemBumpSettings? bumpSettings;
-  final bool? canCheckGuarantee;
-  final bool? needToRequireVideoToViewLoginData;
-  final String? descriptionHtml;
-  final String? descriptionEnHtml;
-  final String? descriptionPlain;
-  final String? descriptionEnPlain;
-  final PublishingCheckResponseItemSeller? seller;
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final String login;
+  final String tempEmail;
+  final int viewCount;
+  final int isSticky;
+  final String information;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String informationEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
+  final String marketCustomTitle;
+  final String feedbackData;
+  final int buyerAvatarDate;
+  final int buyerUserGroupId;
+  final int priceWithSellerFee;
+  final PublishingCheckResponseItemGuarantee guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final PublishingCheckResponseItemLoginData loginData;
+  final bool canViewEmailLoginData;
+  final PublishingCheckResponseItemEmailLoginData emailLoginData;
+  final bool showGetEmailCodeButton;
+  final String getEmailCodeDisplayLogin;
+  final PublishingCheckResponseItemBuyer buyer;
+  final bool isPersonalAccount;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final int accountLastActivity;
+  final bool displayConvertedBalance;
+  final bool canViewAccountLink;
+  final List<Map<String, dynamic>> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final bool visitorIsAuthor;
+  final bool canAskDiscount;
+  final PublishingCheckResponseItemTags tags;
+  final List<Object> customFields;
+  final List<Object> externalAuth;
+  final bool isTrusted;
+  final bool isBirthdayToday;
+  final bool isIgnored;
+  final int deposit;
+  final List<Map<String, dynamic>> extraPrices;
+  final bool canViewAccountLoginAndTempEmail;
+  final PublishingCheckResponseItemBumpSettings bumpSettings;
+  final bool canCheckGuarantee;
+  final bool needToRequireVideoToViewLoginData;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final PublishingCheckResponseItemSeller seller;
 
   const PublishingCheckResponseItem({
-    this.itemId,
-    this.itemState,
-    this.categoryId,
-    this.publishedDate,
-    this.title,
-    this.description,
-    this.price,
-    this.updateStatDate,
-    this.refreshedDate,
-    this.editDate,
-    this.login,
-    this.tempEmail,
-    this.viewCount,
-    this.isSticky,
-    this.information,
-    this.itemOrigin,
-    this.extendedGuarantee,
-    this.nsb,
-    this.allowAskDiscount,
-    this.titleEn,
-    this.descriptionEn,
-    this.informationEn,
-    this.emailType,
-    this.emailProvider,
-    this.itemDomain,
-    this.resaleItemOrigin,
-    this.userAllowAskDiscount,
-    this.maxDiscountPercent,
-    this.marketCustomTitle,
-    this.feedbackData,
-    this.buyerAvatarDate,
-    this.buyerUserGroupId,
-    this.priceWithSellerFee,
-    this.guarantee,
-    this.canViewLoginData,
-    this.canUpdateItemStats,
-    this.canReportItem,
-    this.loginData,
-    this.canViewEmailLoginData,
-    this.emailLoginData,
-    this.showGetEmailCodeButton,
-    this.getEmailCodeDisplayLogin,
-    this.buyer,
-    this.isPersonalAccount,
-    this.soldItemsCategoryCount,
-    this.restoreItemsCategoryCount,
-    this.rubPrice,
-    this.priceCurrency,
-    this.canValidateAccount,
-    this.canResellItemAfterPurchase,
-    this.accountLastActivity,
-    this.displayConvertedBalance,
-    this.canViewAccountLink,
-    this.accountLinks,
-    this.accountLink,
-    this.emailLoginUrl,
-    this.canChangePassword,
-    this.itemOriginPhrase,
-    this.visitorIsAuthor,
-    this.canAskDiscount,
-    this.tags,
-    this.customFields,
-    this.externalAuth,
-    this.isTrusted,
-    this.isBirthdayToday,
-    this.isIgnored,
-    this.deposit,
-    this.extraPrices,
-    this.canViewAccountLoginAndTempEmail,
-    this.bumpSettings,
-    this.canCheckGuarantee,
-    this.needToRequireVideoToViewLoginData,
-    this.descriptionHtml,
-    this.descriptionEnHtml,
-    this.descriptionPlain,
-    this.descriptionEnPlain,
-    this.seller,
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.login,
+    required this.tempEmail,
+    required this.viewCount,
+    required this.isSticky,
+    required this.information,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.informationEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.userAllowAskDiscount,
+    required this.maxDiscountPercent,
+    required this.marketCustomTitle,
+    required this.feedbackData,
+    required this.buyerAvatarDate,
+    required this.buyerUserGroupId,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.loginData,
+    required this.canViewEmailLoginData,
+    required this.emailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.getEmailCodeDisplayLogin,
+    required this.buyer,
+    required this.isPersonalAccount,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.accountLastActivity,
+    required this.displayConvertedBalance,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.visitorIsAuthor,
+    required this.canAskDiscount,
+    required this.tags,
+    required this.customFields,
+    required this.externalAuth,
+    required this.isTrusted,
+    required this.isBirthdayToday,
+    required this.isIgnored,
+    required this.deposit,
+    required this.extraPrices,
+    required this.canViewAccountLoginAndTempEmail,
+    required this.bumpSettings,
+    required this.canCheckGuarantee,
+    required this.needToRequireVideoToViewLoginData,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
   });
 
-  factory PublishingCheckResponseItem.fromJson(Map<String, dynamic> json) => PublishingCheckResponseItem(
-    itemId: json['item_id'] as int?,
-    itemState: json['item_state'] as String?,
-    categoryId: json['category_id'] as int?,
-    publishedDate: json['published_date'] as int?,
-    title: json['title'] as String?,
-    description: json['description'] as String?,
-    price: json['price'] as int?,
-    updateStatDate: json['update_stat_date'] as int?,
-    refreshedDate: json['refreshed_date'] as int?,
-    editDate: json['edit_date'] as int?,
-    login: json['login'] as String?,
-    tempEmail: json['temp_email'] as String?,
-    viewCount: json['view_count'] as int?,
-    isSticky: json['is_sticky'] as int?,
-    information: json['information'] as String?,
-    itemOrigin: json['item_origin'] as String?,
-    extendedGuarantee: json['extended_guarantee'] as int?,
-    nsb: json['nsb'] as int?,
-    allowAskDiscount: json['allow_ask_discount'] as int?,
-    titleEn: json['title_en'] as String?,
-    descriptionEn: json['description_en'] as String?,
-    informationEn: json['information_en'] as String?,
-    emailType: json['email_type'] as String?,
-    emailProvider: json['email_provider'] as String?,
-    itemDomain: json['item_domain'] as String?,
-    resaleItemOrigin: json['resale_item_origin'] as String?,
-    userAllowAskDiscount: json['user_allow_ask_discount'] as int?,
-    maxDiscountPercent: json['max_discount_percent'] as int?,
-    marketCustomTitle: json['market_custom_title'] as String?,
-    feedbackData: json['feedback_data'] as String?,
-    buyerAvatarDate: json['buyer_avatar_date'] as int?,
-    buyerUserGroupId: json['buyer_user_group_id'] as int?,
-    priceWithSellerFee: json['priceWithSellerFee'] as int?,
-    guarantee: json['guarantee'] != null
-            ? PublishingCheckResponseItemGuarantee.fromJson(json['guarantee'] as Map<String, dynamic>)
-            : null,
-    canViewLoginData: json['canViewLoginData'] as bool?,
-    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
-    canReportItem: json['canReportItem'] as bool?,
-    loginData: json['loginData'] != null
-            ? PublishingCheckResponseItemLoginData.fromJson(json['loginData'] as Map<String, dynamic>)
-            : null,
-    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
-    emailLoginData: json['emailLoginData'] != null
-            ? PublishingCheckResponseItemEmailLoginData.fromJson(json['emailLoginData'] as Map<String, dynamic>)
-            : null,
-    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
-    getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as String?,
-    buyer: json['buyer'] != null
-            ? PublishingCheckResponseItemBuyer.fromJson(json['buyer'] as Map<String, dynamic>)
-            : null,
-    isPersonalAccount: json['isPersonalAccount'] as bool?,
-    soldItemsCategoryCount: json['sold_items_category_count'] as int?,
-    restoreItemsCategoryCount: json['restore_items_category_count'] as int?,
-    rubPrice: json['rub_price'] as int?,
-    priceCurrency: json['price_currency'] as String?,
-    canValidateAccount: json['canValidateAccount'] as bool?,
-    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
-    accountLastActivity: json['account_last_activity'] as int?,
-    displayConvertedBalance: json['displayConvertedBalance'] as bool?,
-    canViewAccountLink: json['canViewAccountLink'] as bool?,
-    accountLinks: (json['accountLinks'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    accountLink: json['accountLink'] as String?,
-    emailLoginUrl: json['emailLoginUrl'] as String?,
-    canChangePassword: json['canChangePassword'] as bool?,
-    itemOriginPhrase: json['itemOriginPhrase'] as String?,
-    visitorIsAuthor: json['visitorIsAuthor'] as bool?,
-    canAskDiscount: json['canAskDiscount'] as bool?,
-    tags: json['tags'] != null
-            ? PublishingCheckResponseItemTags.fromJson(json['tags'] as Map<String, dynamic>)
-            : null,
-    customFields: (json['customFields'] as List<dynamic>?)?.cast<Object>(),
-    externalAuth: (json['externalAuth'] as List<dynamic>?)?.cast<Object>(),
-    isTrusted: json['isTrusted'] as bool?,
-    isBirthdayToday: json['isBirthdayToday'] as bool?,
-    isIgnored: json['isIgnored'] as bool?,
-    deposit: json['deposit'] as int?,
-    extraPrices: (json['extraPrices'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    canViewAccountLoginAndTempEmail: json['canViewAccountLoginAndTempEmail'] as bool?,
-    bumpSettings: json['bumpSettings'] != null
-            ? PublishingCheckResponseItemBumpSettings.fromJson(json['bumpSettings'] as Map<String, dynamic>)
-            : null,
-    canCheckGuarantee: json['canCheckGuarantee'] as bool?,
-    needToRequireVideoToViewLoginData: json['needToRequireVideoToViewLoginData'] as bool?,
-    descriptionHtml: json['descriptionHtml'] as String?,
-    descriptionEnHtml: json['descriptionEnHtml'] as String?,
-    descriptionPlain: json['descriptionPlain'] as String?,
-    descriptionEnPlain: json['descriptionEnPlain'] as String?,
-    seller: json['seller'] != null
-            ? PublishingCheckResponseItemSeller.fromJson(json['seller'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PublishingCheckResponseItem.fromJson(Map<String, dynamic> json) =>
+      PublishingCheckResponseItem(
+        itemId: json['item_id'] as int,
+        itemState: json['item_state'] as String,
+        categoryId: json['category_id'] as int,
+        publishedDate: json['published_date'] as int,
+        title: json['title'] as String,
+        description: json['description'] as String,
+        price: json['price'] as int,
+        updateStatDate: json['update_stat_date'] as int,
+        refreshedDate: json['refreshed_date'] as int,
+        editDate: json['edit_date'] as int,
+        login: json['login'] as String,
+        tempEmail: json['temp_email'] as String,
+        viewCount: json['view_count'] as int,
+        isSticky: json['is_sticky'] as int,
+        information: json['information'] as String,
+        itemOrigin: json['item_origin'] as String,
+        extendedGuarantee: json['extended_guarantee'] as int,
+        nsb: json['nsb'] as int,
+        allowAskDiscount: json['allow_ask_discount'] as int,
+        titleEn: json['title_en'] as String,
+        descriptionEn: json['description_en'] as String,
+        informationEn: json['information_en'] as String,
+        emailType: json['email_type'] as String,
+        emailProvider: json['email_provider'] as String,
+        itemDomain: json['item_domain'] as String,
+        resaleItemOrigin: json['resale_item_origin'] as String,
+        userAllowAskDiscount: json['user_allow_ask_discount'] as int,
+        maxDiscountPercent: json['max_discount_percent'] as int,
+        marketCustomTitle: json['market_custom_title'] as String,
+        feedbackData: json['feedback_data'] as String,
+        buyerAvatarDate: json['buyer_avatar_date'] as int,
+        buyerUserGroupId: json['buyer_user_group_id'] as int,
+        priceWithSellerFee: json['priceWithSellerFee'] as int,
+        guarantee: PublishingCheckResponseItemGuarantee.fromJson(
+            json['guarantee'] as Map<String, dynamic>),
+        canViewLoginData: json['canViewLoginData'] as bool,
+        canUpdateItemStats: json['canUpdateItemStats'] as bool,
+        canReportItem: json['canReportItem'] as bool,
+        loginData: PublishingCheckResponseItemLoginData.fromJson(
+            json['loginData'] as Map<String, dynamic>),
+        canViewEmailLoginData: json['canViewEmailLoginData'] as bool,
+        emailLoginData: PublishingCheckResponseItemEmailLoginData.fromJson(
+            json['emailLoginData'] as Map<String, dynamic>),
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool,
+        getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as String,
+        buyer: PublishingCheckResponseItemBuyer.fromJson(
+            json['buyer'] as Map<String, dynamic>),
+        isPersonalAccount: json['isPersonalAccount'] as bool,
+        soldItemsCategoryCount: json['sold_items_category_count'] as int,
+        restoreItemsCategoryCount: json['restore_items_category_count'] as int,
+        rubPrice: json['rub_price'] as int,
+        priceCurrency: json['price_currency'] as String,
+        canValidateAccount: json['canValidateAccount'] as bool,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool,
+        accountLastActivity: json['account_last_activity'] as int,
+        displayConvertedBalance: json['displayConvertedBalance'] as bool,
+        canViewAccountLink: json['canViewAccountLink'] as bool,
+        accountLinks: (json['accountLinks'] as List<dynamic>)
+            .cast<Map<String, dynamic>>(),
+        accountLink: json['accountLink'] as String,
+        emailLoginUrl: json['emailLoginUrl'] as String,
+        canChangePassword: json['canChangePassword'] as bool,
+        itemOriginPhrase: json['itemOriginPhrase'] as String,
+        visitorIsAuthor: json['visitorIsAuthor'] as bool,
+        canAskDiscount: json['canAskDiscount'] as bool,
+        tags: PublishingCheckResponseItemTags.fromJson(
+            json['tags'] as Map<String, dynamic>),
+        customFields: (json['customFields'] as List<dynamic>).cast<Object>(),
+        externalAuth: (json['externalAuth'] as List<dynamic>).cast<Object>(),
+        isTrusted: json['isTrusted'] as bool,
+        isBirthdayToday: json['isBirthdayToday'] as bool,
+        isIgnored: json['isIgnored'] as bool,
+        deposit: json['deposit'] as int,
+        extraPrices:
+            (json['extraPrices'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        canViewAccountLoginAndTempEmail:
+            json['canViewAccountLoginAndTempEmail'] as bool,
+        bumpSettings: PublishingCheckResponseItemBumpSettings.fromJson(
+            json['bumpSettings'] as Map<String, dynamic>),
+        canCheckGuarantee: json['canCheckGuarantee'] as bool,
+        needToRequireVideoToViewLoginData:
+            json['needToRequireVideoToViewLoginData'] as bool,
+        descriptionHtml: json['descriptionHtml'] as String,
+        descriptionEnHtml: json['descriptionEnHtml'] as String,
+        descriptionPlain: json['descriptionPlain'] as String,
+        descriptionEnPlain: json['descriptionEnPlain'] as String,
+        seller: PublishingCheckResponseItemSeller.fromJson(
+            json['seller'] as Map<String, dynamic>),
+      );
 }
 
 class PublishingCheckResponse {
-  final String? status;
-  final PublishingCheckResponseItem? item;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final PublishingCheckResponseItem item;
+  final RespSystemInfo systemInfo;
 
   const PublishingCheckResponse({
-    this.status,
-    this.item,
-    this.systemInfo,
+    required this.status,
+    required this.item,
+    required this.systemInfo,
   });
 
-  factory PublishingCheckResponse.fromJson(Map<String, dynamic> json) => PublishingCheckResponse(
-    status: json['status'] as String?,
-    item: json['item'] != null
-            ? PublishingCheckResponseItem.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PublishingCheckResponse.fromJson(Map<String, dynamic> json) =>
+      PublishingCheckResponse(
+        status: json['status'] as String,
+        item: PublishingCheckResponseItem.fromJson(
+            json['item'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PublishingExternalBody {
-  final PublishingType type;
+  final Type type;
   final String? login;
   final String? emailLoginData;
   final String? cookies;
@@ -15402,13 +15579,15 @@ class PublishingExternalResponse {
     this.systemInfo,
   });
 
-  factory PublishingExternalResponse.fromJson(Map<String, dynamic> json) => PublishingExternalResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PublishingExternalResponse.fromJson(Map<String, dynamic> json) =>
+      PublishingExternalResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 // ─── PurchasingApi Types ────────────────────────────────────────
@@ -15431,897 +15610,916 @@ class PurchasingFastBuyBody {
 }
 
 class PurchasingFastBuyResponseItemGuarantee {
-  final int? duration;
-  final String? class$;
-  final String? durationPhrase;
-  final int? endDate;
-  final bool? active;
-  final bool? cancelled;
-  final int? remainingTime;
-  final String? remainingTimePhrase;
+  final int duration;
+  final String class$;
+  final String durationPhrase;
+  final int endDate;
+  final bool active;
+  final bool cancelled;
+  final int remainingTime;
+  final String remainingTimePhrase;
 
   const PurchasingFastBuyResponseItemGuarantee({
-    this.duration,
-    this.class$,
-    this.durationPhrase,
-    this.endDate,
-    this.active,
-    this.cancelled,
-    this.remainingTime,
-    this.remainingTimePhrase,
+    required this.duration,
+    required this.class$,
+    required this.durationPhrase,
+    required this.endDate,
+    required this.active,
+    required this.cancelled,
+    required this.remainingTime,
+    required this.remainingTimePhrase,
   });
 
-  factory PurchasingFastBuyResponseItemGuarantee.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItemGuarantee(
-    duration: json['duration'] as int?,
-    class$: json['class'] as String?,
-    durationPhrase: json['durationPhrase'] as String?,
-    endDate: json['endDate'] as int?,
-    active: json['active'] as bool?,
-    cancelled: json['cancelled'] as bool?,
-    remainingTime: json['remainingTime'] as int?,
-    remainingTimePhrase: json['remainingTimePhrase'] as String?,
-  );
+  factory PurchasingFastBuyResponseItemGuarantee.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemGuarantee(
+        duration: json['duration'] as int,
+        class$: json['class'] as String,
+        durationPhrase: json['durationPhrase'] as String,
+        endDate: json['endDate'] as int,
+        active: json['active'] as bool,
+        cancelled: json['cancelled'] as bool,
+        remainingTime: json['remainingTime'] as int,
+        remainingTimePhrase: json['remainingTimePhrase'] as String,
+      );
 }
 
 class PurchasingFastBuyResponseItemLoginData {
-  final String? raw;
-  final String? encodedRaw;
-  final String? login;
-  final String? password;
-  final String? encodedPassword;
-  final String? oldPassword;
-  final Object? encodedOldPassword;
+  final String raw;
+  final String encodedRaw;
+  final String login;
+  final String password;
+  final String encodedPassword;
+  final String oldPassword;
+  final Object encodedOldPassword;
 
   const PurchasingFastBuyResponseItemLoginData({
-    this.raw,
-    this.encodedRaw,
-    this.login,
-    this.password,
-    this.encodedPassword,
-    this.oldPassword,
-    this.encodedOldPassword,
+    required this.raw,
+    required this.encodedRaw,
+    required this.login,
+    required this.password,
+    required this.encodedPassword,
+    required this.oldPassword,
+    required this.encodedOldPassword,
   });
 
-  factory PurchasingFastBuyResponseItemLoginData.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItemLoginData(
-    raw: json['raw'] as String?,
-    encodedRaw: json['encodedRaw'] as String?,
-    login: json['login'] as String?,
-    password: json['password'] as String?,
-    encodedPassword: json['encodedPassword'] as String?,
-    oldPassword: json['oldPassword'] as String?,
-    encodedOldPassword: json['encodedOldPassword'] as Object?,
-  );
+  factory PurchasingFastBuyResponseItemLoginData.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemLoginData(
+        raw: json['raw'] as String,
+        encodedRaw: json['encodedRaw'] as String,
+        login: json['login'] as String,
+        password: json['password'] as String,
+        encodedPassword: json['encodedPassword'] as String,
+        oldPassword: json['oldPassword'] as String,
+        encodedOldPassword: json['encodedOldPassword'] as Object,
+      );
 }
 
 class PurchasingFastBuyResponseItemEmailLoginData {
-  final String? raw;
-  final String? encodedRaw;
-  final String? login;
-  final String? password;
-  final String? encodedPassword;
-  final String? oldPassword;
-  final String? encodedOldPassword;
+  final String raw;
+  final String encodedRaw;
+  final String login;
+  final String password;
+  final String encodedPassword;
+  final String oldPassword;
+  final String encodedOldPassword;
 
   const PurchasingFastBuyResponseItemEmailLoginData({
-    this.raw,
-    this.encodedRaw,
-    this.login,
-    this.password,
-    this.encodedPassword,
-    this.oldPassword,
-    this.encodedOldPassword,
+    required this.raw,
+    required this.encodedRaw,
+    required this.login,
+    required this.password,
+    required this.encodedPassword,
+    required this.oldPassword,
+    required this.encodedOldPassword,
   });
 
-  factory PurchasingFastBuyResponseItemEmailLoginData.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItemEmailLoginData(
-    raw: json['raw'] as String?,
-    encodedRaw: json['encodedRaw'] as String?,
-    login: json['login'] as String?,
-    password: json['password'] as String?,
-    encodedPassword: json['encodedPassword'] as String?,
-    oldPassword: json['oldPassword'] as String?,
-    encodedOldPassword: json['encodedOldPassword'] as String?,
-  );
+  factory PurchasingFastBuyResponseItemEmailLoginData.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemEmailLoginData(
+        raw: json['raw'] as String,
+        encodedRaw: json['encodedRaw'] as String,
+        login: json['login'] as String,
+        password: json['password'] as String,
+        encodedPassword: json['encodedPassword'] as String,
+        oldPassword: json['oldPassword'] as String,
+        encodedOldPassword: json['encodedOldPassword'] as String,
+      );
 }
 
 class PurchasingFastBuyResponseItemBuyer {
-  final int? userId;
-  final int? operationDate;
-  final bool? visitorIsBuyer;
-  final String? username;
-  final int? isBanned;
-  final int? displayStyleGroupId;
-  final String? uniqUsernameCss;
-  final int? userGroupId;
+  final int userId;
+  final int operationDate;
+  final bool visitorIsBuyer;
+  final String username;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final String uniqUsernameCss;
+  final int userGroupId;
 
   const PurchasingFastBuyResponseItemBuyer({
-    this.userId,
-    this.operationDate,
-    this.visitorIsBuyer,
-    this.username,
-    this.isBanned,
-    this.displayStyleGroupId,
-    this.uniqUsernameCss,
-    this.userGroupId,
+    required this.userId,
+    required this.operationDate,
+    required this.visitorIsBuyer,
+    required this.username,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.uniqUsernameCss,
+    required this.userGroupId,
   });
 
-  factory PurchasingFastBuyResponseItemBuyer.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItemBuyer(
-    userId: json['user_id'] as int?,
-    operationDate: json['operation_date'] as int?,
-    visitorIsBuyer: json['visitorIsBuyer'] as bool?,
-    username: json['username'] as String?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    uniqUsernameCss: json['uniq_username_css'] as String?,
-    userGroupId: json['user_group_id'] as int?,
-  );
+  factory PurchasingFastBuyResponseItemBuyer.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemBuyer(
+        userId: json['user_id'] as int,
+        operationDate: json['operation_date'] as int,
+        visitorIsBuyer: json['visitorIsBuyer'] as bool,
+        username: json['username'] as String,
+        isBanned: json['is_banned'] as int,
+        displayStyleGroupId: json['display_style_group_id'] as int,
+        uniqUsernameCss: json['uniq_username_css'] as String,
+        userGroupId: json['user_group_id'] as int,
+      );
 }
 
 class PurchasingFastBuyResponseItemTags1 {
-  final int? tagId;
-  final String? title;
-  final bool? isDefault;
-  final bool? forOwnedAccountsOnly;
-  final String? bc;
+  final int tagId;
+  final String title;
+  final bool isDefault;
+  final bool forOwnedAccountsOnly;
+  final String bc;
 
   const PurchasingFastBuyResponseItemTags1({
-    this.tagId,
-    this.title,
-    this.isDefault,
-    this.forOwnedAccountsOnly,
-    this.bc,
+    required this.tagId,
+    required this.title,
+    required this.isDefault,
+    required this.forOwnedAccountsOnly,
+    required this.bc,
   });
 
-  factory PurchasingFastBuyResponseItemTags1.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItemTags1(
-    tagId: json['tag_id'] as int?,
-    title: json['title'] as String?,
-    isDefault: json['isDefault'] as bool?,
-    forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool?,
-    bc: json['bc'] as String?,
-  );
+  factory PurchasingFastBuyResponseItemTags1.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemTags1(
+        tagId: json['tag_id'] as int,
+        title: json['title'] as String,
+        isDefault: json['isDefault'] as bool,
+        forOwnedAccountsOnly: json['forOwnedAccountsOnly'] as bool,
+        bc: json['bc'] as String,
+      );
 }
 
 class PurchasingFastBuyResponseItemTags {
-  final PurchasingFastBuyResponseItemTags1? n1;
+  final PurchasingFastBuyResponseItemTags1 n1;
 
   const PurchasingFastBuyResponseItemTags({
-    this.n1,
+    required this.n1,
   });
 
-  factory PurchasingFastBuyResponseItemTags.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItemTags(
-    n1: json['1'] != null
-            ? PurchasingFastBuyResponseItemTags1.fromJson(json['1'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PurchasingFastBuyResponseItemTags.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemTags(
+        n1: PurchasingFastBuyResponseItemTags1.fromJson(
+            json['1'] as Map<String, dynamic>),
+      );
 }
 
 class PurchasingFastBuyResponseItemBumpSettings {
-  final bool? canBumpItem;
-  final bool? canBumpItemGlobally;
-  final Object? shortErrorPhrase;
-  final Object? errorPhrase;
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final Object shortErrorPhrase;
+  final Object errorPhrase;
 
   const PurchasingFastBuyResponseItemBumpSettings({
-    this.canBumpItem,
-    this.canBumpItemGlobally,
-    this.shortErrorPhrase,
-    this.errorPhrase,
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
   });
 
-  factory PurchasingFastBuyResponseItemBumpSettings.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItemBumpSettings(
-    canBumpItem: json['canBumpItem'] as bool?,
-    canBumpItemGlobally: json['canBumpItemGlobally'] as bool?,
-    shortErrorPhrase: json['shortErrorPhrase'] as Object?,
-    errorPhrase: json['errorPhrase'] as Object?,
-  );
+  factory PurchasingFastBuyResponseItemBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemBumpSettings(
+        canBumpItem: json['canBumpItem'] as bool,
+        canBumpItemGlobally: json['canBumpItemGlobally'] as bool,
+        shortErrorPhrase: json['shortErrorPhrase'] as Object,
+        errorPhrase: json['errorPhrase'] as Object,
+      );
 }
 
 class PurchasingFastBuyResponseItemSeller {
-  final int? userId;
-  final String? username;
-  final int? avatarDate;
-  final int? isBanned;
-  final int? displayStyleGroupId;
-  final int? joinedDate;
-  final int? soldItemsCount;
-  final int? activeItemsCount;
-  final String? restoreData;
-  final int? restorePercents;
-  final bool? isOnline;
+  final int userId;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final int restorePercents;
+  final bool isOnline;
 
   const PurchasingFastBuyResponseItemSeller({
-    this.userId,
-    this.username,
-    this.avatarDate,
-    this.isBanned,
-    this.displayStyleGroupId,
-    this.joinedDate,
-    this.soldItemsCount,
-    this.activeItemsCount,
-    this.restoreData,
-    this.restorePercents,
-    this.isOnline,
+    required this.userId,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.joinedDate,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.restorePercents,
+    required this.isOnline,
   });
 
-  factory PurchasingFastBuyResponseItemSeller.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItemSeller(
-    userId: json['user_id'] as int?,
-    username: json['username'] as String?,
-    avatarDate: json['avatar_date'] as int?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    joinedDate: json['joined_date'] as int?,
-    soldItemsCount: json['sold_items_count'] as int?,
-    activeItemsCount: json['active_items_count'] as int?,
-    restoreData: json['restore_data'] as String?,
-    restorePercents: json['restore_percents'] as int?,
-    isOnline: json['isOnline'] as bool?,
-  );
+  factory PurchasingFastBuyResponseItemSeller.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemSeller(
+        userId: json['user_id'] as int,
+        username: json['username'] as String,
+        avatarDate: json['avatar_date'] as int,
+        isBanned: json['is_banned'] as int,
+        displayStyleGroupId: json['display_style_group_id'] as int,
+        joinedDate: json['joined_date'] as int,
+        soldItemsCount: json['sold_items_count'] as int,
+        activeItemsCount: json['active_items_count'] as int,
+        restoreData: json['restore_data'] as String,
+        restorePercents: json['restore_percents'] as int,
+        isOnline: json['isOnline'] as bool,
+      );
 }
 
 class PurchasingFastBuyResponseItem {
-  final int? itemId;
-  final String? itemState;
-  final int? categoryId;
-  final int? publishedDate;
-  final String? title;
-  final String? description;
-  final int? price;
-  final int? updateStatDate;
-  final int? refreshedDate;
-  final int? editDate;
-  final String? login;
-  final String? tempEmail;
-  final int? viewCount;
-  final int? isSticky;
-  final String? information;
-  final String? itemOrigin;
-  final int? extendedGuarantee;
-  final int? nsb;
-  final int? allowAskDiscount;
-  final String? titleEn;
-  final String? descriptionEn;
-  final String? informationEn;
-  final String? emailType;
-  final String? emailProvider;
-  final String? itemDomain;
-  final String? resaleItemOrigin;
-  final int? userAllowAskDiscount;
-  final int? maxDiscountPercent;
-  final String? marketCustomTitle;
-  final String? feedbackData;
-  final int? buyerAvatarDate;
-  final int? buyerUserGroupId;
-  final int? priceWithSellerFee;
-  final PurchasingFastBuyResponseItemGuarantee? guarantee;
-  final bool? canViewLoginData;
-  final bool? canUpdateItemStats;
-  final bool? canReportItem;
-  final PurchasingFastBuyResponseItemLoginData? loginData;
-  final bool? canViewEmailLoginData;
-  final PurchasingFastBuyResponseItemEmailLoginData? emailLoginData;
-  final bool? showGetEmailCodeButton;
-  final String? getEmailCodeDisplayLogin;
-  final PurchasingFastBuyResponseItemBuyer? buyer;
-  final bool? isPersonalAccount;
-  final int? soldItemsCategoryCount;
-  final int? restoreItemsCategoryCount;
-  final int? rubPrice;
-  final String? priceCurrency;
-  final bool? canValidateAccount;
-  final bool? canResellItemAfterPurchase;
-  final int? accountLastActivity;
-  final bool? displayConvertedBalance;
-  final bool? canViewAccountLink;
-  final List<Map<String, dynamic>>? accountLinks;
-  final String? accountLink;
-  final String? emailLoginUrl;
-  final bool? canChangePassword;
-  final String? itemOriginPhrase;
-  final bool? visitorIsAuthor;
-  final bool? canAskDiscount;
-  final PurchasingFastBuyResponseItemTags? tags;
-  final List<Object>? customFields;
-  final List<Object>? externalAuth;
-  final bool? isTrusted;
-  final bool? isBirthdayToday;
-  final bool? isIgnored;
-  final int? deposit;
-  final List<Map<String, dynamic>>? extraPrices;
-  final bool? canViewAccountLoginAndTempEmail;
-  final PurchasingFastBuyResponseItemBumpSettings? bumpSettings;
-  final bool? canCheckGuarantee;
-  final bool? needToRequireVideoToViewLoginData;
-  final String? descriptionHtml;
-  final String? descriptionEnHtml;
-  final String? descriptionPlain;
-  final String? descriptionEnPlain;
-  final PurchasingFastBuyResponseItemSeller? seller;
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final String login;
+  final String tempEmail;
+  final int viewCount;
+  final int isSticky;
+  final String information;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String informationEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
+  final String marketCustomTitle;
+  final String feedbackData;
+  final int buyerAvatarDate;
+  final int buyerUserGroupId;
+  final int priceWithSellerFee;
+  final PurchasingFastBuyResponseItemGuarantee guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final PurchasingFastBuyResponseItemLoginData loginData;
+  final bool canViewEmailLoginData;
+  final PurchasingFastBuyResponseItemEmailLoginData emailLoginData;
+  final bool showGetEmailCodeButton;
+  final String getEmailCodeDisplayLogin;
+  final PurchasingFastBuyResponseItemBuyer buyer;
+  final bool isPersonalAccount;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final int accountLastActivity;
+  final bool displayConvertedBalance;
+  final bool canViewAccountLink;
+  final List<Map<String, dynamic>> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final bool visitorIsAuthor;
+  final bool canAskDiscount;
+  final PurchasingFastBuyResponseItemTags tags;
+  final List<Object> customFields;
+  final List<Object> externalAuth;
+  final bool isTrusted;
+  final bool isBirthdayToday;
+  final bool isIgnored;
+  final int deposit;
+  final List<Map<String, dynamic>> extraPrices;
+  final bool canViewAccountLoginAndTempEmail;
+  final PurchasingFastBuyResponseItemBumpSettings bumpSettings;
+  final bool canCheckGuarantee;
+  final bool needToRequireVideoToViewLoginData;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final PurchasingFastBuyResponseItemSeller seller;
 
   const PurchasingFastBuyResponseItem({
-    this.itemId,
-    this.itemState,
-    this.categoryId,
-    this.publishedDate,
-    this.title,
-    this.description,
-    this.price,
-    this.updateStatDate,
-    this.refreshedDate,
-    this.editDate,
-    this.login,
-    this.tempEmail,
-    this.viewCount,
-    this.isSticky,
-    this.information,
-    this.itemOrigin,
-    this.extendedGuarantee,
-    this.nsb,
-    this.allowAskDiscount,
-    this.titleEn,
-    this.descriptionEn,
-    this.informationEn,
-    this.emailType,
-    this.emailProvider,
-    this.itemDomain,
-    this.resaleItemOrigin,
-    this.userAllowAskDiscount,
-    this.maxDiscountPercent,
-    this.marketCustomTitle,
-    this.feedbackData,
-    this.buyerAvatarDate,
-    this.buyerUserGroupId,
-    this.priceWithSellerFee,
-    this.guarantee,
-    this.canViewLoginData,
-    this.canUpdateItemStats,
-    this.canReportItem,
-    this.loginData,
-    this.canViewEmailLoginData,
-    this.emailLoginData,
-    this.showGetEmailCodeButton,
-    this.getEmailCodeDisplayLogin,
-    this.buyer,
-    this.isPersonalAccount,
-    this.soldItemsCategoryCount,
-    this.restoreItemsCategoryCount,
-    this.rubPrice,
-    this.priceCurrency,
-    this.canValidateAccount,
-    this.canResellItemAfterPurchase,
-    this.accountLastActivity,
-    this.displayConvertedBalance,
-    this.canViewAccountLink,
-    this.accountLinks,
-    this.accountLink,
-    this.emailLoginUrl,
-    this.canChangePassword,
-    this.itemOriginPhrase,
-    this.visitorIsAuthor,
-    this.canAskDiscount,
-    this.tags,
-    this.customFields,
-    this.externalAuth,
-    this.isTrusted,
-    this.isBirthdayToday,
-    this.isIgnored,
-    this.deposit,
-    this.extraPrices,
-    this.canViewAccountLoginAndTempEmail,
-    this.bumpSettings,
-    this.canCheckGuarantee,
-    this.needToRequireVideoToViewLoginData,
-    this.descriptionHtml,
-    this.descriptionEnHtml,
-    this.descriptionPlain,
-    this.descriptionEnPlain,
-    this.seller,
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.login,
+    required this.tempEmail,
+    required this.viewCount,
+    required this.isSticky,
+    required this.information,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.informationEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.userAllowAskDiscount,
+    required this.maxDiscountPercent,
+    required this.marketCustomTitle,
+    required this.feedbackData,
+    required this.buyerAvatarDate,
+    required this.buyerUserGroupId,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.loginData,
+    required this.canViewEmailLoginData,
+    required this.emailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.getEmailCodeDisplayLogin,
+    required this.buyer,
+    required this.isPersonalAccount,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.accountLastActivity,
+    required this.displayConvertedBalance,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.visitorIsAuthor,
+    required this.canAskDiscount,
+    required this.tags,
+    required this.customFields,
+    required this.externalAuth,
+    required this.isTrusted,
+    required this.isBirthdayToday,
+    required this.isIgnored,
+    required this.deposit,
+    required this.extraPrices,
+    required this.canViewAccountLoginAndTempEmail,
+    required this.bumpSettings,
+    required this.canCheckGuarantee,
+    required this.needToRequireVideoToViewLoginData,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
   });
 
-  factory PurchasingFastBuyResponseItem.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponseItem(
-    itemId: json['item_id'] as int?,
-    itemState: json['item_state'] as String?,
-    categoryId: json['category_id'] as int?,
-    publishedDate: json['published_date'] as int?,
-    title: json['title'] as String?,
-    description: json['description'] as String?,
-    price: json['price'] as int?,
-    updateStatDate: json['update_stat_date'] as int?,
-    refreshedDate: json['refreshed_date'] as int?,
-    editDate: json['edit_date'] as int?,
-    login: json['login'] as String?,
-    tempEmail: json['temp_email'] as String?,
-    viewCount: json['view_count'] as int?,
-    isSticky: json['is_sticky'] as int?,
-    information: json['information'] as String?,
-    itemOrigin: json['item_origin'] as String?,
-    extendedGuarantee: json['extended_guarantee'] as int?,
-    nsb: json['nsb'] as int?,
-    allowAskDiscount: json['allow_ask_discount'] as int?,
-    titleEn: json['title_en'] as String?,
-    descriptionEn: json['description_en'] as String?,
-    informationEn: json['information_en'] as String?,
-    emailType: json['email_type'] as String?,
-    emailProvider: json['email_provider'] as String?,
-    itemDomain: json['item_domain'] as String?,
-    resaleItemOrigin: json['resale_item_origin'] as String?,
-    userAllowAskDiscount: json['user_allow_ask_discount'] as int?,
-    maxDiscountPercent: json['max_discount_percent'] as int?,
-    marketCustomTitle: json['market_custom_title'] as String?,
-    feedbackData: json['feedback_data'] as String?,
-    buyerAvatarDate: json['buyer_avatar_date'] as int?,
-    buyerUserGroupId: json['buyer_user_group_id'] as int?,
-    priceWithSellerFee: json['priceWithSellerFee'] as int?,
-    guarantee: json['guarantee'] != null
-            ? PurchasingFastBuyResponseItemGuarantee.fromJson(json['guarantee'] as Map<String, dynamic>)
-            : null,
-    canViewLoginData: json['canViewLoginData'] as bool?,
-    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
-    canReportItem: json['canReportItem'] as bool?,
-    loginData: json['loginData'] != null
-            ? PurchasingFastBuyResponseItemLoginData.fromJson(json['loginData'] as Map<String, dynamic>)
-            : null,
-    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
-    emailLoginData: json['emailLoginData'] != null
-            ? PurchasingFastBuyResponseItemEmailLoginData.fromJson(json['emailLoginData'] as Map<String, dynamic>)
-            : null,
-    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
-    getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as String?,
-    buyer: json['buyer'] != null
-            ? PurchasingFastBuyResponseItemBuyer.fromJson(json['buyer'] as Map<String, dynamic>)
-            : null,
-    isPersonalAccount: json['isPersonalAccount'] as bool?,
-    soldItemsCategoryCount: json['sold_items_category_count'] as int?,
-    restoreItemsCategoryCount: json['restore_items_category_count'] as int?,
-    rubPrice: json['rub_price'] as int?,
-    priceCurrency: json['price_currency'] as String?,
-    canValidateAccount: json['canValidateAccount'] as bool?,
-    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
-    accountLastActivity: json['account_last_activity'] as int?,
-    displayConvertedBalance: json['displayConvertedBalance'] as bool?,
-    canViewAccountLink: json['canViewAccountLink'] as bool?,
-    accountLinks: (json['accountLinks'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    accountLink: json['accountLink'] as String?,
-    emailLoginUrl: json['emailLoginUrl'] as String?,
-    canChangePassword: json['canChangePassword'] as bool?,
-    itemOriginPhrase: json['itemOriginPhrase'] as String?,
-    visitorIsAuthor: json['visitorIsAuthor'] as bool?,
-    canAskDiscount: json['canAskDiscount'] as bool?,
-    tags: json['tags'] != null
-            ? PurchasingFastBuyResponseItemTags.fromJson(json['tags'] as Map<String, dynamic>)
-            : null,
-    customFields: (json['customFields'] as List<dynamic>?)?.cast<Object>(),
-    externalAuth: (json['externalAuth'] as List<dynamic>?)?.cast<Object>(),
-    isTrusted: json['isTrusted'] as bool?,
-    isBirthdayToday: json['isBirthdayToday'] as bool?,
-    isIgnored: json['isIgnored'] as bool?,
-    deposit: json['deposit'] as int?,
-    extraPrices: (json['extraPrices'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    canViewAccountLoginAndTempEmail: json['canViewAccountLoginAndTempEmail'] as bool?,
-    bumpSettings: json['bumpSettings'] != null
-            ? PurchasingFastBuyResponseItemBumpSettings.fromJson(json['bumpSettings'] as Map<String, dynamic>)
-            : null,
-    canCheckGuarantee: json['canCheckGuarantee'] as bool?,
-    needToRequireVideoToViewLoginData: json['needToRequireVideoToViewLoginData'] as bool?,
-    descriptionHtml: json['descriptionHtml'] as String?,
-    descriptionEnHtml: json['descriptionEnHtml'] as String?,
-    descriptionPlain: json['descriptionPlain'] as String?,
-    descriptionEnPlain: json['descriptionEnPlain'] as String?,
-    seller: json['seller'] != null
-            ? PurchasingFastBuyResponseItemSeller.fromJson(json['seller'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PurchasingFastBuyResponseItem.fromJson(Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItem(
+        itemId: json['item_id'] as int,
+        itemState: json['item_state'] as String,
+        categoryId: json['category_id'] as int,
+        publishedDate: json['published_date'] as int,
+        title: json['title'] as String,
+        description: json['description'] as String,
+        price: json['price'] as int,
+        updateStatDate: json['update_stat_date'] as int,
+        refreshedDate: json['refreshed_date'] as int,
+        editDate: json['edit_date'] as int,
+        login: json['login'] as String,
+        tempEmail: json['temp_email'] as String,
+        viewCount: json['view_count'] as int,
+        isSticky: json['is_sticky'] as int,
+        information: json['information'] as String,
+        itemOrigin: json['item_origin'] as String,
+        extendedGuarantee: json['extended_guarantee'] as int,
+        nsb: json['nsb'] as int,
+        allowAskDiscount: json['allow_ask_discount'] as int,
+        titleEn: json['title_en'] as String,
+        descriptionEn: json['description_en'] as String,
+        informationEn: json['information_en'] as String,
+        emailType: json['email_type'] as String,
+        emailProvider: json['email_provider'] as String,
+        itemDomain: json['item_domain'] as String,
+        resaleItemOrigin: json['resale_item_origin'] as String,
+        userAllowAskDiscount: json['user_allow_ask_discount'] as int,
+        maxDiscountPercent: json['max_discount_percent'] as int,
+        marketCustomTitle: json['market_custom_title'] as String,
+        feedbackData: json['feedback_data'] as String,
+        buyerAvatarDate: json['buyer_avatar_date'] as int,
+        buyerUserGroupId: json['buyer_user_group_id'] as int,
+        priceWithSellerFee: json['priceWithSellerFee'] as int,
+        guarantee: PurchasingFastBuyResponseItemGuarantee.fromJson(
+            json['guarantee'] as Map<String, dynamic>),
+        canViewLoginData: json['canViewLoginData'] as bool,
+        canUpdateItemStats: json['canUpdateItemStats'] as bool,
+        canReportItem: json['canReportItem'] as bool,
+        loginData: PurchasingFastBuyResponseItemLoginData.fromJson(
+            json['loginData'] as Map<String, dynamic>),
+        canViewEmailLoginData: json['canViewEmailLoginData'] as bool,
+        emailLoginData: PurchasingFastBuyResponseItemEmailLoginData.fromJson(
+            json['emailLoginData'] as Map<String, dynamic>),
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool,
+        getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'] as String,
+        buyer: PurchasingFastBuyResponseItemBuyer.fromJson(
+            json['buyer'] as Map<String, dynamic>),
+        isPersonalAccount: json['isPersonalAccount'] as bool,
+        soldItemsCategoryCount: json['sold_items_category_count'] as int,
+        restoreItemsCategoryCount: json['restore_items_category_count'] as int,
+        rubPrice: json['rub_price'] as int,
+        priceCurrency: json['price_currency'] as String,
+        canValidateAccount: json['canValidateAccount'] as bool,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool,
+        accountLastActivity: json['account_last_activity'] as int,
+        displayConvertedBalance: json['displayConvertedBalance'] as bool,
+        canViewAccountLink: json['canViewAccountLink'] as bool,
+        accountLinks: (json['accountLinks'] as List<dynamic>)
+            .cast<Map<String, dynamic>>(),
+        accountLink: json['accountLink'] as String,
+        emailLoginUrl: json['emailLoginUrl'] as String,
+        canChangePassword: json['canChangePassword'] as bool,
+        itemOriginPhrase: json['itemOriginPhrase'] as String,
+        visitorIsAuthor: json['visitorIsAuthor'] as bool,
+        canAskDiscount: json['canAskDiscount'] as bool,
+        tags: PurchasingFastBuyResponseItemTags.fromJson(
+            json['tags'] as Map<String, dynamic>),
+        customFields: (json['customFields'] as List<dynamic>).cast<Object>(),
+        externalAuth: (json['externalAuth'] as List<dynamic>).cast<Object>(),
+        isTrusted: json['isTrusted'] as bool,
+        isBirthdayToday: json['isBirthdayToday'] as bool,
+        isIgnored: json['isIgnored'] as bool,
+        deposit: json['deposit'] as int,
+        extraPrices:
+            (json['extraPrices'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        canViewAccountLoginAndTempEmail:
+            json['canViewAccountLoginAndTempEmail'] as bool,
+        bumpSettings: PurchasingFastBuyResponseItemBumpSettings.fromJson(
+            json['bumpSettings'] as Map<String, dynamic>),
+        canCheckGuarantee: json['canCheckGuarantee'] as bool,
+        needToRequireVideoToViewLoginData:
+            json['needToRequireVideoToViewLoginData'] as bool,
+        descriptionHtml: json['descriptionHtml'] as String,
+        descriptionEnHtml: json['descriptionEnHtml'] as String,
+        descriptionPlain: json['descriptionPlain'] as String,
+        descriptionEnPlain: json['descriptionEnPlain'] as String,
+        seller: PurchasingFastBuyResponseItemSeller.fromJson(
+            json['seller'] as Map<String, dynamic>),
+      );
 }
 
 class PurchasingFastBuyResponse {
-  final String? status;
-  final PurchasingFastBuyResponseItem? item;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final PurchasingFastBuyResponseItem item;
+  final RespSystemInfo systemInfo;
 
   const PurchasingFastBuyResponse({
-    this.status,
-    this.item,
-    this.systemInfo,
+    required this.status,
+    required this.item,
+    required this.systemInfo,
   });
 
-  factory PurchasingFastBuyResponse.fromJson(Map<String, dynamic> json) => PurchasingFastBuyResponse(
-    status: json['status'] as String?,
-    item: json['item'] != null
-            ? PurchasingFastBuyResponseItem.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PurchasingFastBuyResponse.fromJson(Map<String, dynamic> json) =>
+      PurchasingFastBuyResponse(
+        status: json['status'] as String,
+        item: PurchasingFastBuyResponseItem.fromJson(
+            json['item'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PurchasingCheckResponseItemGuarantee {
-  final int? duration;
-  final String? class$;
-  final String? durationPhrase;
-  final Object? endDate;
-  final Object? active;
-  final Object? cancelled;
-  final Object? remainingTime;
+  final int duration;
+  final String class$;
+  final String durationPhrase;
+  final Object endDate;
+  final Object active;
+  final Object cancelled;
+  final Object remainingTime;
 
   const PurchasingCheckResponseItemGuarantee({
-    this.duration,
-    this.class$,
-    this.durationPhrase,
-    this.endDate,
-    this.active,
-    this.cancelled,
-    this.remainingTime,
+    required this.duration,
+    required this.class$,
+    required this.durationPhrase,
+    required this.endDate,
+    required this.active,
+    required this.cancelled,
+    required this.remainingTime,
   });
 
-  factory PurchasingCheckResponseItemGuarantee.fromJson(Map<String, dynamic> json) => PurchasingCheckResponseItemGuarantee(
-    duration: json['duration'] as int?,
-    class$: json['class'] as String?,
-    durationPhrase: json['durationPhrase'] as String?,
-    endDate: json['endDate'] as Object?,
-    active: json['active'] as Object?,
-    cancelled: json['cancelled'] as Object?,
-    remainingTime: json['remainingTime'] as Object?,
-  );
+  factory PurchasingCheckResponseItemGuarantee.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingCheckResponseItemGuarantee(
+        duration: json['duration'] as int,
+        class$: json['class'] as String,
+        durationPhrase: json['durationPhrase'] as String,
+        endDate: json['endDate'] as Object,
+        active: json['active'] as Object,
+        cancelled: json['cancelled'] as Object,
+        remainingTime: json['remainingTime'] as Object,
+      );
 }
 
 class PurchasingCheckResponseItemBumpSettings {
-  final bool? canBumpItem;
-  final bool? canBumpItemGlobally;
-  final Object? shortErrorPhrase;
-  final Object? errorPhrase;
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final Object shortErrorPhrase;
+  final Object errorPhrase;
 
   const PurchasingCheckResponseItemBumpSettings({
-    this.canBumpItem,
-    this.canBumpItemGlobally,
-    this.shortErrorPhrase,
-    this.errorPhrase,
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
   });
 
-  factory PurchasingCheckResponseItemBumpSettings.fromJson(Map<String, dynamic> json) => PurchasingCheckResponseItemBumpSettings(
-    canBumpItem: json['canBumpItem'] as bool?,
-    canBumpItemGlobally: json['canBumpItemGlobally'] as bool?,
-    shortErrorPhrase: json['shortErrorPhrase'] as Object?,
-    errorPhrase: json['errorPhrase'] as Object?,
-  );
+  factory PurchasingCheckResponseItemBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingCheckResponseItemBumpSettings(
+        canBumpItem: json['canBumpItem'] as bool,
+        canBumpItemGlobally: json['canBumpItemGlobally'] as bool,
+        shortErrorPhrase: json['shortErrorPhrase'] as Object,
+        errorPhrase: json['errorPhrase'] as Object,
+      );
 }
 
 class PurchasingCheckResponseItemSeller {
-  final int? userId;
-  final String? username;
-  final int? avatarDate;
-  final int? isBanned;
-  final int? displayStyleGroupId;
-  final int? joinedDate;
-  final int? soldItemsCount;
-  final int? activeItemsCount;
-  final String? restoreData;
-  final Object? restorePercents;
-  final bool? isOnline;
+  final int userId;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final Object restorePercents;
+  final bool isOnline;
 
   const PurchasingCheckResponseItemSeller({
-    this.userId,
-    this.username,
-    this.avatarDate,
-    this.isBanned,
-    this.displayStyleGroupId,
-    this.joinedDate,
-    this.soldItemsCount,
-    this.activeItemsCount,
-    this.restoreData,
-    this.restorePercents,
-    this.isOnline,
+    required this.userId,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.joinedDate,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.restorePercents,
+    required this.isOnline,
   });
 
-  factory PurchasingCheckResponseItemSeller.fromJson(Map<String, dynamic> json) => PurchasingCheckResponseItemSeller(
-    userId: json['user_id'] as int?,
-    username: json['username'] as String?,
-    avatarDate: json['avatar_date'] as int?,
-    isBanned: json['is_banned'] as int?,
-    displayStyleGroupId: json['display_style_group_id'] as int?,
-    joinedDate: json['joined_date'] as int?,
-    soldItemsCount: json['sold_items_count'] as int?,
-    activeItemsCount: json['active_items_count'] as int?,
-    restoreData: json['restore_data'] as String?,
-    restorePercents: json['restore_percents'] as Object?,
-    isOnline: json['isOnline'] as bool?,
-  );
+  factory PurchasingCheckResponseItemSeller.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingCheckResponseItemSeller(
+        userId: json['user_id'] as int,
+        username: json['username'] as String,
+        avatarDate: json['avatar_date'] as int,
+        isBanned: json['is_banned'] as int,
+        displayStyleGroupId: json['display_style_group_id'] as int,
+        joinedDate: json['joined_date'] as int,
+        soldItemsCount: json['sold_items_count'] as int,
+        activeItemsCount: json['active_items_count'] as int,
+        restoreData: json['restore_data'] as String,
+        restorePercents: json['restore_percents'] as Object,
+        isOnline: json['isOnline'] as bool,
+      );
 }
 
 class PurchasingCheckResponseItem {
-  final int? itemId;
-  final String? itemState;
-  final int? categoryId;
-  final int? publishedDate;
-  final String? title;
-  final String? description;
-  final int? price;
-  final int? updateStatDate;
-  final int? refreshedDate;
-  final int? editDate;
-  final int? viewCount;
-  final int? isSticky;
-  final String? itemOrigin;
-  final int? extendedGuarantee;
-  final int? nsb;
-  final int? allowAskDiscount;
-  final String? titleEn;
-  final String? descriptionEn;
-  final String? emailType;
-  final String? emailProvider;
-  final String? itemDomain;
-  final String? resaleItemOrigin;
-  final int? userAllowAskDiscount;
-  final int? maxDiscountPercent;
-  final String? marketCustomTitle;
-  final String? feedbackData;
-  final String? categoryTitle;
-  final String? categoryUrl;
-  final int? requireTempEmail;
-  final int? availableTempEmail;
-  final int? checkButtonEnabled;
-  final int? checkerEnabled;
-  final int? buyWithoutValidation;
-  final int? hasGuarantee;
-  final int? requireVideoRecording;
-  final int? canBeResold;
-  final String? loginType;
-  final int? requireEmailLoginData;
-  final int? categoryPrefixId;
-  final Object? askUserId;
-  final Object? askItemId;
-  final Object? askDate;
-  final Object? discountPrice;
-  final Object? discountAccepted;
-  final Object? userAlerted;
-  final Object? message;
-  final int? minPrice;
-  final int? priceWithSellerFee;
-  final PurchasingCheckResponseItemGuarantee? guarantee;
-  final bool? canViewLoginData;
-  final bool? canUpdateItemStats;
-  final bool? canReportItem;
-  final bool? canViewEmailLoginData;
-  final bool? showGetEmailCodeButton;
-  final bool? isPersonalAccount;
-  final int? rubPrice;
-  final String? priceCurrency;
-  final bool? canValidateAccount;
-  final bool? canResellItemAfterPurchase;
-  final bool? isSmallExf;
-  final int? accountLastActivity;
-  final bool? canViewAccountLink;
-  final List<Map<String, dynamic>>? accountLinks;
-  final String? accountLink;
-  final String? emailLoginUrl;
-  final bool? canChangePassword;
-  final String? itemOriginPhrase;
-  final bool? visitorIsAuthor;
-  final bool? canAskDiscount;
-  final List<Object>? tags;
-  final List<Object>? customFields;
-  final List<Object>? externalAuth;
-  final bool? isTrusted;
-  final bool? isBirthdayToday;
-  final bool? isIgnored;
-  final int? deposit;
-  final List<Map<String, dynamic>>? extraPrices;
-  final bool? canViewAccountLoginAndTempEmail;
-  final PurchasingCheckResponseItemBumpSettings? bumpSettings;
-  final bool? canCheckGuarantee;
-  final bool? needToRequireVideoToViewLoginData;
-  final String? descriptionHtml;
-  final String? descriptionEnHtml;
-  final String? descriptionPlain;
-  final String? descriptionEnPlain;
-  final PurchasingCheckResponseItemSeller? seller;
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
+  final String marketCustomTitle;
+  final String feedbackData;
+  final String categoryTitle;
+  final String categoryUrl;
+  final int requireTempEmail;
+  final int availableTempEmail;
+  final int checkButtonEnabled;
+  final int checkerEnabled;
+  final int buyWithoutValidation;
+  final int hasGuarantee;
+  final int requireVideoRecording;
+  final int canBeResold;
+  final String loginType;
+  final int requireEmailLoginData;
+  final int categoryPrefixId;
+  final Object askUserId;
+  final Object askItemId;
+  final Object askDate;
+  final Object discountPrice;
+  final Object discountAccepted;
+  final Object userAlerted;
+  final Object message;
+  final int minPrice;
+  final int priceWithSellerFee;
+  final PurchasingCheckResponseItemGuarantee guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool isPersonalAccount;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final bool canViewAccountLink;
+  final List<Map<String, dynamic>> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final bool visitorIsAuthor;
+  final bool canAskDiscount;
+  final List<Object> tags;
+  final List<Object> customFields;
+  final List<Object> externalAuth;
+  final bool isTrusted;
+  final bool isBirthdayToday;
+  final bool isIgnored;
+  final int deposit;
+  final List<Map<String, dynamic>> extraPrices;
+  final bool canViewAccountLoginAndTempEmail;
+  final PurchasingCheckResponseItemBumpSettings bumpSettings;
+  final bool canCheckGuarantee;
+  final bool needToRequireVideoToViewLoginData;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final PurchasingCheckResponseItemSeller seller;
 
   const PurchasingCheckResponseItem({
-    this.itemId,
-    this.itemState,
-    this.categoryId,
-    this.publishedDate,
-    this.title,
-    this.description,
-    this.price,
-    this.updateStatDate,
-    this.refreshedDate,
-    this.editDate,
-    this.viewCount,
-    this.isSticky,
-    this.itemOrigin,
-    this.extendedGuarantee,
-    this.nsb,
-    this.allowAskDiscount,
-    this.titleEn,
-    this.descriptionEn,
-    this.emailType,
-    this.emailProvider,
-    this.itemDomain,
-    this.resaleItemOrigin,
-    this.userAllowAskDiscount,
-    this.maxDiscountPercent,
-    this.marketCustomTitle,
-    this.feedbackData,
-    this.categoryTitle,
-    this.categoryUrl,
-    this.requireTempEmail,
-    this.availableTempEmail,
-    this.checkButtonEnabled,
-    this.checkerEnabled,
-    this.buyWithoutValidation,
-    this.hasGuarantee,
-    this.requireVideoRecording,
-    this.canBeResold,
-    this.loginType,
-    this.requireEmailLoginData,
-    this.categoryPrefixId,
-    this.askUserId,
-    this.askItemId,
-    this.askDate,
-    this.discountPrice,
-    this.discountAccepted,
-    this.userAlerted,
-    this.message,
-    this.minPrice,
-    this.priceWithSellerFee,
-    this.guarantee,
-    this.canViewLoginData,
-    this.canUpdateItemStats,
-    this.canReportItem,
-    this.canViewEmailLoginData,
-    this.showGetEmailCodeButton,
-    this.isPersonalAccount,
-    this.rubPrice,
-    this.priceCurrency,
-    this.canValidateAccount,
-    this.canResellItemAfterPurchase,
-    this.isSmallExf,
-    this.accountLastActivity,
-    this.canViewAccountLink,
-    this.accountLinks,
-    this.accountLink,
-    this.emailLoginUrl,
-    this.canChangePassword,
-    this.itemOriginPhrase,
-    this.visitorIsAuthor,
-    this.canAskDiscount,
-    this.tags,
-    this.customFields,
-    this.externalAuth,
-    this.isTrusted,
-    this.isBirthdayToday,
-    this.isIgnored,
-    this.deposit,
-    this.extraPrices,
-    this.canViewAccountLoginAndTempEmail,
-    this.bumpSettings,
-    this.canCheckGuarantee,
-    this.needToRequireVideoToViewLoginData,
-    this.descriptionHtml,
-    this.descriptionEnHtml,
-    this.descriptionPlain,
-    this.descriptionEnPlain,
-    this.seller,
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.userAllowAskDiscount,
+    required this.maxDiscountPercent,
+    required this.marketCustomTitle,
+    required this.feedbackData,
+    required this.categoryTitle,
+    required this.categoryUrl,
+    required this.requireTempEmail,
+    required this.availableTempEmail,
+    required this.checkButtonEnabled,
+    required this.checkerEnabled,
+    required this.buyWithoutValidation,
+    required this.hasGuarantee,
+    required this.requireVideoRecording,
+    required this.canBeResold,
+    required this.loginType,
+    required this.requireEmailLoginData,
+    required this.categoryPrefixId,
+    required this.askUserId,
+    required this.askItemId,
+    required this.askDate,
+    required this.discountPrice,
+    required this.discountAccepted,
+    required this.userAlerted,
+    required this.message,
+    required this.minPrice,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.isPersonalAccount,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.visitorIsAuthor,
+    required this.canAskDiscount,
+    required this.tags,
+    required this.customFields,
+    required this.externalAuth,
+    required this.isTrusted,
+    required this.isBirthdayToday,
+    required this.isIgnored,
+    required this.deposit,
+    required this.extraPrices,
+    required this.canViewAccountLoginAndTempEmail,
+    required this.bumpSettings,
+    required this.canCheckGuarantee,
+    required this.needToRequireVideoToViewLoginData,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
   });
 
-  factory PurchasingCheckResponseItem.fromJson(Map<String, dynamic> json) => PurchasingCheckResponseItem(
-    itemId: json['item_id'] as int?,
-    itemState: json['item_state'] as String?,
-    categoryId: json['category_id'] as int?,
-    publishedDate: json['published_date'] as int?,
-    title: json['title'] as String?,
-    description: json['description'] as String?,
-    price: json['price'] as int?,
-    updateStatDate: json['update_stat_date'] as int?,
-    refreshedDate: json['refreshed_date'] as int?,
-    editDate: json['edit_date'] as int?,
-    viewCount: json['view_count'] as int?,
-    isSticky: json['is_sticky'] as int?,
-    itemOrigin: json['item_origin'] as String?,
-    extendedGuarantee: json['extended_guarantee'] as int?,
-    nsb: json['nsb'] as int?,
-    allowAskDiscount: json['allow_ask_discount'] as int?,
-    titleEn: json['title_en'] as String?,
-    descriptionEn: json['description_en'] as String?,
-    emailType: json['email_type'] as String?,
-    emailProvider: json['email_provider'] as String?,
-    itemDomain: json['item_domain'] as String?,
-    resaleItemOrigin: json['resale_item_origin'] as String?,
-    userAllowAskDiscount: json['user_allow_ask_discount'] as int?,
-    maxDiscountPercent: json['max_discount_percent'] as int?,
-    marketCustomTitle: json['market_custom_title'] as String?,
-    feedbackData: json['feedback_data'] as String?,
-    categoryTitle: json['category_title'] as String?,
-    categoryUrl: json['category_url'] as String?,
-    requireTempEmail: json['require_temp_email'] as int?,
-    availableTempEmail: json['available_temp_email'] as int?,
-    checkButtonEnabled: json['check_button_enabled'] as int?,
-    checkerEnabled: json['checker_enabled'] as int?,
-    buyWithoutValidation: json['buy_without_validation'] as int?,
-    hasGuarantee: json['has_guarantee'] as int?,
-    requireVideoRecording: json['require_video_recording'] as int?,
-    canBeResold: json['can_be_resold'] as int?,
-    loginType: json['login_type'] as String?,
-    requireEmailLoginData: json['require_email_login_data'] as int?,
-    categoryPrefixId: json['category_prefix_id'] as int?,
-    askUserId: json['ask_user_id'] as Object?,
-    askItemId: json['ask_item_id'] as Object?,
-    askDate: json['ask_date'] as Object?,
-    discountPrice: json['discount_price'] as Object?,
-    discountAccepted: json['discount_accepted'] as Object?,
-    userAlerted: json['user_alerted'] as Object?,
-    message: json['message'] as Object?,
-    minPrice: json['min_price'] as int?,
-    priceWithSellerFee: json['priceWithSellerFee'] as int?,
-    guarantee: json['guarantee'] != null
-            ? PurchasingCheckResponseItemGuarantee.fromJson(json['guarantee'] as Map<String, dynamic>)
-            : null,
-    canViewLoginData: json['canViewLoginData'] as bool?,
-    canUpdateItemStats: json['canUpdateItemStats'] as bool?,
-    canReportItem: json['canReportItem'] as bool?,
-    canViewEmailLoginData: json['canViewEmailLoginData'] as bool?,
-    showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool?,
-    isPersonalAccount: json['isPersonalAccount'] as bool?,
-    rubPrice: json['rub_price'] as int?,
-    priceCurrency: json['price_currency'] as String?,
-    canValidateAccount: json['canValidateAccount'] as bool?,
-    canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool?,
-    isSmallExf: json['isSmallExf'] as bool?,
-    accountLastActivity: json['account_last_activity'] as int?,
-    canViewAccountLink: json['canViewAccountLink'] as bool?,
-    accountLinks: (json['accountLinks'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    accountLink: json['accountLink'] as String?,
-    emailLoginUrl: json['emailLoginUrl'] as String?,
-    canChangePassword: json['canChangePassword'] as bool?,
-    itemOriginPhrase: json['itemOriginPhrase'] as String?,
-    visitorIsAuthor: json['visitorIsAuthor'] as bool?,
-    canAskDiscount: json['canAskDiscount'] as bool?,
-    tags: (json['tags'] as List<dynamic>?)?.cast<Object>(),
-    customFields: (json['customFields'] as List<dynamic>?)?.cast<Object>(),
-    externalAuth: (json['externalAuth'] as List<dynamic>?)?.cast<Object>(),
-    isTrusted: json['isTrusted'] as bool?,
-    isBirthdayToday: json['isBirthdayToday'] as bool?,
-    isIgnored: json['isIgnored'] as bool?,
-    deposit: json['deposit'] as int?,
-    extraPrices: (json['extraPrices'] as List<dynamic>?)?.cast<Map<String, dynamic>>(),
-    canViewAccountLoginAndTempEmail: json['canViewAccountLoginAndTempEmail'] as bool?,
-    bumpSettings: json['bumpSettings'] != null
-            ? PurchasingCheckResponseItemBumpSettings.fromJson(json['bumpSettings'] as Map<String, dynamic>)
-            : null,
-    canCheckGuarantee: json['canCheckGuarantee'] as bool?,
-    needToRequireVideoToViewLoginData: json['needToRequireVideoToViewLoginData'] as bool?,
-    descriptionHtml: json['descriptionHtml'] as String?,
-    descriptionEnHtml: json['descriptionEnHtml'] as String?,
-    descriptionPlain: json['descriptionPlain'] as String?,
-    descriptionEnPlain: json['descriptionEnPlain'] as String?,
-    seller: json['seller'] != null
-            ? PurchasingCheckResponseItemSeller.fromJson(json['seller'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PurchasingCheckResponseItem.fromJson(Map<String, dynamic> json) =>
+      PurchasingCheckResponseItem(
+        itemId: json['item_id'] as int,
+        itemState: json['item_state'] as String,
+        categoryId: json['category_id'] as int,
+        publishedDate: json['published_date'] as int,
+        title: json['title'] as String,
+        description: json['description'] as String,
+        price: json['price'] as int,
+        updateStatDate: json['update_stat_date'] as int,
+        refreshedDate: json['refreshed_date'] as int,
+        editDate: json['edit_date'] as int,
+        viewCount: json['view_count'] as int,
+        isSticky: json['is_sticky'] as int,
+        itemOrigin: json['item_origin'] as String,
+        extendedGuarantee: json['extended_guarantee'] as int,
+        nsb: json['nsb'] as int,
+        allowAskDiscount: json['allow_ask_discount'] as int,
+        titleEn: json['title_en'] as String,
+        descriptionEn: json['description_en'] as String,
+        emailType: json['email_type'] as String,
+        emailProvider: json['email_provider'] as String,
+        itemDomain: json['item_domain'] as String,
+        resaleItemOrigin: json['resale_item_origin'] as String,
+        userAllowAskDiscount: json['user_allow_ask_discount'] as int,
+        maxDiscountPercent: json['max_discount_percent'] as int,
+        marketCustomTitle: json['market_custom_title'] as String,
+        feedbackData: json['feedback_data'] as String,
+        categoryTitle: json['category_title'] as String,
+        categoryUrl: json['category_url'] as String,
+        requireTempEmail: json['require_temp_email'] as int,
+        availableTempEmail: json['available_temp_email'] as int,
+        checkButtonEnabled: json['check_button_enabled'] as int,
+        checkerEnabled: json['checker_enabled'] as int,
+        buyWithoutValidation: json['buy_without_validation'] as int,
+        hasGuarantee: json['has_guarantee'] as int,
+        requireVideoRecording: json['require_video_recording'] as int,
+        canBeResold: json['can_be_resold'] as int,
+        loginType: json['login_type'] as String,
+        requireEmailLoginData: json['require_email_login_data'] as int,
+        categoryPrefixId: json['category_prefix_id'] as int,
+        askUserId: json['ask_user_id'] as Object,
+        askItemId: json['ask_item_id'] as Object,
+        askDate: json['ask_date'] as Object,
+        discountPrice: json['discount_price'] as Object,
+        discountAccepted: json['discount_accepted'] as Object,
+        userAlerted: json['user_alerted'] as Object,
+        message: json['message'] as Object,
+        minPrice: json['min_price'] as int,
+        priceWithSellerFee: json['priceWithSellerFee'] as int,
+        guarantee: PurchasingCheckResponseItemGuarantee.fromJson(
+            json['guarantee'] as Map<String, dynamic>),
+        canViewLoginData: json['canViewLoginData'] as bool,
+        canUpdateItemStats: json['canUpdateItemStats'] as bool,
+        canReportItem: json['canReportItem'] as bool,
+        canViewEmailLoginData: json['canViewEmailLoginData'] as bool,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] as bool,
+        isPersonalAccount: json['isPersonalAccount'] as bool,
+        rubPrice: json['rub_price'] as int,
+        priceCurrency: json['price_currency'] as String,
+        canValidateAccount: json['canValidateAccount'] as bool,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] as bool,
+        isSmallExf: json['isSmallExf'] as bool,
+        accountLastActivity: json['account_last_activity'] as int,
+        canViewAccountLink: json['canViewAccountLink'] as bool,
+        accountLinks: (json['accountLinks'] as List<dynamic>)
+            .cast<Map<String, dynamic>>(),
+        accountLink: json['accountLink'] as String,
+        emailLoginUrl: json['emailLoginUrl'] as String,
+        canChangePassword: json['canChangePassword'] as bool,
+        itemOriginPhrase: json['itemOriginPhrase'] as String,
+        visitorIsAuthor: json['visitorIsAuthor'] as bool,
+        canAskDiscount: json['canAskDiscount'] as bool,
+        tags: (json['tags'] as List<dynamic>).cast<Object>(),
+        customFields: (json['customFields'] as List<dynamic>).cast<Object>(),
+        externalAuth: (json['externalAuth'] as List<dynamic>).cast<Object>(),
+        isTrusted: json['isTrusted'] as bool,
+        isBirthdayToday: json['isBirthdayToday'] as bool,
+        isIgnored: json['isIgnored'] as bool,
+        deposit: json['deposit'] as int,
+        extraPrices:
+            (json['extraPrices'] as List<dynamic>).cast<Map<String, dynamic>>(),
+        canViewAccountLoginAndTempEmail:
+            json['canViewAccountLoginAndTempEmail'] as bool,
+        bumpSettings: PurchasingCheckResponseItemBumpSettings.fromJson(
+            json['bumpSettings'] as Map<String, dynamic>),
+        canCheckGuarantee: json['canCheckGuarantee'] as bool,
+        needToRequireVideoToViewLoginData:
+            json['needToRequireVideoToViewLoginData'] as bool,
+        descriptionHtml: json['descriptionHtml'] as String,
+        descriptionEnHtml: json['descriptionEnHtml'] as String,
+        descriptionPlain: json['descriptionPlain'] as String,
+        descriptionEnPlain: json['descriptionEnPlain'] as String,
+        seller: PurchasingCheckResponseItemSeller.fromJson(
+            json['seller'] as Map<String, dynamic>),
+      );
 }
 
 class PurchasingCheckResponse {
-  final String? status;
-  final PurchasingCheckResponseItem? item;
-  final bool? requireVideoRecording;
-  final RespSystemInfo? systemInfo;
+  final String status;
+  final PurchasingCheckResponseItem item;
+  final bool requireVideoRecording;
+  final RespSystemInfo systemInfo;
 
   const PurchasingCheckResponse({
-    this.status,
-    this.item,
-    this.requireVideoRecording,
-    this.systemInfo,
+    required this.status,
+    required this.item,
+    required this.requireVideoRecording,
+    required this.systemInfo,
   });
 
-  factory PurchasingCheckResponse.fromJson(Map<String, dynamic> json) => PurchasingCheckResponse(
-    status: json['status'] as String?,
-    item: json['item'] != null
-            ? PurchasingCheckResponseItem.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    requireVideoRecording: json['requireVideoRecording'] as bool?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PurchasingCheckResponse.fromJson(Map<String, dynamic> json) =>
+      PurchasingCheckResponse(
+        status: json['status'] as String,
+        item: PurchasingCheckResponseItem.fromJson(
+            json['item'] as Map<String, dynamic>),
+        requireVideoRecording: json['requireVideoRecording'] as bool,
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PurchasingConfirmBody {
@@ -16342,72 +16540,73 @@ class PurchasingConfirmBody {
 }
 
 class PurchasingConfirmResponseItemLoginData {
-  final String? raw;
-  final String? encodedRaw;
-  final String? login;
-  final String? password;
-  final String? encodedPassword;
-  final String? oldPassword;
-  final String? encodedOldPassword;
-  final bool? adviceToChangePassword;
+  final String raw;
+  final String encodedRaw;
+  final String login;
+  final String password;
+  final String encodedPassword;
+  final String oldPassword;
+  final String encodedOldPassword;
+  final bool adviceToChangePassword;
 
   const PurchasingConfirmResponseItemLoginData({
-    this.raw,
-    this.encodedRaw,
-    this.login,
-    this.password,
-    this.encodedPassword,
-    this.oldPassword,
-    this.encodedOldPassword,
-    this.adviceToChangePassword,
+    required this.raw,
+    required this.encodedRaw,
+    required this.login,
+    required this.password,
+    required this.encodedPassword,
+    required this.oldPassword,
+    required this.encodedOldPassword,
+    required this.adviceToChangePassword,
   });
 
-  factory PurchasingConfirmResponseItemLoginData.fromJson(Map<String, dynamic> json) => PurchasingConfirmResponseItemLoginData(
-    raw: json['raw'] as String?,
-    encodedRaw: json['encodedRaw'] as String?,
-    login: json['login'] as String?,
-    password: json['password'] as String?,
-    encodedPassword: json['encodedPassword'] as String?,
-    oldPassword: json['oldPassword'] as String?,
-    encodedOldPassword: json['encodedOldPassword'] as String?,
-    adviceToChangePassword: json['adviceToChangePassword'] as bool?,
-  );
+  factory PurchasingConfirmResponseItemLoginData.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingConfirmResponseItemLoginData(
+        raw: json['raw'] as String,
+        encodedRaw: json['encodedRaw'] as String,
+        login: json['login'] as String,
+        password: json['password'] as String,
+        encodedPassword: json['encodedPassword'] as String,
+        oldPassword: json['oldPassword'] as String,
+        encodedOldPassword: json['encodedOldPassword'] as String,
+        adviceToChangePassword: json['adviceToChangePassword'] as bool,
+      );
 }
 
 class PurchasingConfirmResponseItem {
-  final PurchasingConfirmResponseItemLoginData? loginData;
+  final PurchasingConfirmResponseItemLoginData loginData;
 
   const PurchasingConfirmResponseItem({
-    this.loginData,
+    required this.loginData,
   });
 
-  factory PurchasingConfirmResponseItem.fromJson(Map<String, dynamic> json) => PurchasingConfirmResponseItem(
-    loginData: json['loginData'] != null
-            ? PurchasingConfirmResponseItemLoginData.fromJson(json['loginData'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PurchasingConfirmResponseItem.fromJson(Map<String, dynamic> json) =>
+      PurchasingConfirmResponseItem(
+        loginData: PurchasingConfirmResponseItemLoginData.fromJson(
+            json['loginData'] as Map<String, dynamic>),
+      );
 }
 
 class PurchasingConfirmResponse {
   final String? status;
-  final PurchasingConfirmResponseItem? item;
-  final RespSystemInfo? systemInfo;
+  final PurchasingConfirmResponseItem item;
+  final RespSystemInfo systemInfo;
 
   const PurchasingConfirmResponse({
     this.status,
-    this.item,
-    this.systemInfo,
+    required this.item,
+    required this.systemInfo,
   });
 
-  factory PurchasingConfirmResponse.fromJson(Map<String, dynamic> json) => PurchasingConfirmResponse(
-    status: json['status'] as String?,
-    item: json['item'] != null
-            ? PurchasingConfirmResponseItem.fromJson(json['item'] as Map<String, dynamic>)
-            : null,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
-            : null,
-  );
+  factory PurchasingConfirmResponse.fromJson(Map<String, dynamic> json) =>
+      PurchasingConfirmResponse(
+        status: json['status'] as String?,
+        item: PurchasingConfirmResponseItem.fromJson(
+            json['item'] as Map<String, dynamic>),
+        systemInfo: RespSystemInfo.fromJson(
+            json['system_info'] as Map<String, dynamic>),
+      );
 }
 
 class PurchasingDiscountRequestBody {
@@ -16438,13 +16637,16 @@ class PurchasingDiscountRequestResponse {
     this.systemInfo,
   });
 
-  factory PurchasingDiscountRequestResponse.fromJson(Map<String, dynamic> json) => PurchasingDiscountRequestResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PurchasingDiscountRequestResponse.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingDiscountRequestResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
 
 class PurchasingDiscountCancelResponse {
@@ -16458,12 +16660,14 @@ class PurchasingDiscountCancelResponse {
     this.systemInfo,
   });
 
-  factory PurchasingDiscountCancelResponse.fromJson(Map<String, dynamic> json) => PurchasingDiscountCancelResponse(
-    status: json['status'] as String?,
-    message: json['message'] as String?,
-    systemInfo: json['system_info'] != null
-            ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
+  factory PurchasingDiscountCancelResponse.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingDiscountCancelResponse(
+        status: json['status'] as String?,
+        message: json['message'] as String?,
+        systemInfo: json['system_info'] != null
+            ? RespSystemInfo.fromJson(
+                json['system_info'] as Map<String, dynamic>)
             : null,
-  );
+      );
 }
-

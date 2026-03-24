@@ -143,6 +143,7 @@ class ParsedGroup {
 class SchemaProperty {
   final String name;
   final String dartType;
+  final bool required;
   final bool isComponentRef;
   final String? componentRefName;
   final bool isArrayOfComponentRef;
@@ -153,6 +154,7 @@ class SchemaProperty {
   const SchemaProperty({
     required this.name,
     required this.dartType,
+    this.required = false,
     this.isComponentRef = false,
     this.componentRefName,
     this.isArrayOfComponentRef = false,
