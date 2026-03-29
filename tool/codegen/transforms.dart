@@ -217,10 +217,10 @@ String toDartType(String tsType, {Set<String> knownSchemas = const {}}) {
 
   return switch (tsType) {
     'string' => 'String',
-    'number' => 'double',
-    'integer' => 'int',
+    'number' => 'num',
+    'integer' => 'num',
     'boolean' => 'bool',
-    'unknown' => 'Object',
+    'unknown' => 'dynamic',
     'Blob' => 'List<int>',
     _ => () {
         if (tsType.startsWith('"') || RegExp(r'^\d+$').hasMatch(tsType)) {
@@ -262,12 +262,15 @@ OperationParameters extractParameters(
     final defaultValue =
         schema is Map<String, dynamic> ? schema['default'] : null;
 
+    final description = param['description'] as String?;
+
     final parsed = ParsedParameter(
       name: name,
       type: type,
       required: inValue == 'path' ? true : required,
       enumValues: enumValues,
       defaultValue: defaultValue,
+      description: description,
     );
 
     if (inValue == 'path') {
@@ -357,6 +360,7 @@ List<OneOfVariant>? _tryExtractDiscriminatedOneOf(
         required: requiredSet.contains(entry.key),
         enumValues: rawEnum is List ? rawEnum : null,
         defaultValue: propObj?['default'],
+        description: propObj?['description'] as String?,
       ));
     }
 
@@ -464,6 +468,7 @@ BodyExtractionResult extractBody(
           required: requiredIntersection.contains(entry.key),
           enumValues: rawEnum is List ? rawEnum : null,
           defaultValue: propObj?['default'],
+          description: propObj?['description'] as String?,
         ));
       }
       return BodyExtractionResult(
@@ -508,6 +513,7 @@ BodyExtractionResult extractBody(
         required: requiredIntersection.contains(entry.key),
         enumValues: rawEnum is List ? rawEnum : null,
         defaultValue: propObj?['default'],
+        description: propObj?['description'] as String?,
       ));
     }
   } else {
@@ -532,6 +538,7 @@ BodyExtractionResult extractBody(
           required: requiredSet.contains(entry.key),
           enumValues: rawEnum is List ? rawEnum : null,
           defaultValue: propObj?['default'],
+          description: propObj?['description'] as String?,
         ));
       }
     }
@@ -663,8 +670,17 @@ SchemaProperty _schemaToProperty(
   // Inline object with properties
   if ((type == 'object' || propSchema.containsKey('properties')) &&
       propSchema['properties'] is Map<String, dynamic>) {
-    final inlineProps = <String, SchemaProperty>{};
     final rawInline = propSchema['properties'] as Map<String, dynamic>;
+    // All-numeric property keys → flexible dynamic (API returns dict-like objects)
+    if (rawInline.isNotEmpty &&
+        rawInline.keys.every((k) => RegExp(r'^\d+$').hasMatch(k))) {
+      return SchemaProperty(
+        name: name,
+        dartType: 'dynamic',
+        required: required,
+      );
+    }
+    final inlineProps = <String, SchemaProperty>{};
     final inlineRequiredList = propSchema['required'];
     final inlineRequiredSet = inlineRequiredList is List
         ? inlineRequiredList.cast<String>().toSet()
@@ -772,6 +788,9 @@ MethodDefinition extractMethodDefinition({
   final responseSchema = extractResponseSchema(rawOperation, rawSpec);
   final htmlResponse = isHtmlResponse(rawOperation);
 
+  final summary = operation['summary'] as String?;
+  final description = operation['description'] as String?;
+
   final isGet = httpMethod.toUpperCase() == 'GET';
 
   // GET requests can't have body — treat body properties as query params
@@ -783,7 +802,8 @@ MethodDefinition extractMethodDefinition({
               type: p.type,
               required: false,
               enumValues: p.enumValues,
-              defaultValue: p.defaultValue)),
+              defaultValue: p.defaultValue,
+              description: p.description)),
         ]
       : params.queryParams;
 
@@ -818,6 +838,8 @@ MethodDefinition extractMethodDefinition({
     responseSchema: responseSchema,
     bodyOneOfVariants: isGet ? const [] : body.oneOfVariants,
     responseIsHtml: htmlResponse,
+    summary: summary,
+    description: description,
   );
 }
 

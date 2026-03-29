@@ -4,6 +4,40 @@ import 'models.dart';
 import 'naming.dart';
 import 'transforms.dart';
 
+// ─── DartDoc Helpers ─────────────────────────────────────────────────────────
+
+/// Strip **bold** markdown markers for plain DartDoc text.
+String _stripMarkdown(String text) {
+  return text.replaceAll(RegExp(r'\*\*(.+?)\*\*'), r'$1');
+}
+
+/// Emit `///`-prefixed DartDoc lines with the given indent.
+String _emitDocComment(String text, {String indent = ''}) {
+  final stripped = _stripMarkdown(text.trim());
+  final lines = stripped.split('\n');
+  return lines.map((line) {
+    final trimmed = line.trimRight();
+    return trimmed.isEmpty ? '$indent///' : '$indent/// $trimmed';
+  }).join('\n');
+}
+
+/// Build a single-line `/// Description. Default: value.` field doc comment.
+String? _fieldDocComment(String? description, Object? defaultValue,
+    {String indent = '  '}) {
+  final parts = <String>[];
+  if (description != null && description.trim().isNotEmpty) {
+    parts.add(_stripMarkdown(
+        description.trim().replaceAll(RegExp(r'\s*\n\s*'), ' ')));
+  }
+  if (defaultValue != null) {
+    parts.add('Default: ${_formatDefaultValue(defaultValue)}');
+  }
+  if (parts.isEmpty) return null;
+  final text = parts.join('. ');
+  final suffix = text.endsWith('.') ? '' : '.';
+  return '$indent/// $text$suffix';
+}
+
 // ─── Default Value Formatting ─────────────────────────────────────────────────
 
 String _formatDefaultValue(Object? value) {
@@ -27,6 +61,12 @@ String _emitDefaultSuffix(String type, Object? defaultValue, bool required) {
         final v = defaultValue is int
             ? defaultValue
             : int.tryParse(defaultValue.toString());
+        return v != null ? ' = $v' : '';
+      }(),
+    'num' => () {
+        final v = defaultValue is num
+            ? defaultValue
+            : num.tryParse(defaultValue.toString());
         return v != null ? ' = $v' : '';
       }(),
     'double' => () {
@@ -83,9 +123,8 @@ String? _emitQueryParamsClass(String group, MethodDefinition method) {
     final isEnum = _enumNames.contains(param.type);
     final dartType = isEnum ? param.type : toDartType(param.type);
     final nullable = param.required ? '' : '?';
-    if (param.defaultValue != null) {
-      sb.writeln('  /// Default: ${_formatDefaultValue(param.defaultValue)}');
-    }
+    final doc = _fieldDocComment(param.description, param.defaultValue);
+    if (doc != null) sb.writeln(doc);
     sb.writeln('  final $dartType$nullable ${safeDartName(param.name)};');
   }
 
@@ -152,9 +191,8 @@ String? _emitBodyClass(String group, MethodDefinition method) {
         ? 'List<int>'
         : (isEnum ? prop.type : toDartType(prop.type));
     final nullable = prop.required ? '' : '?';
-    if (prop.defaultValue != null) {
-      sb.writeln('  /// Default: ${_formatDefaultValue(prop.defaultValue)}');
-    }
+    final doc = _fieldDocComment(prop.description, prop.defaultValue);
+    if (doc != null) sb.writeln(doc);
     sb.writeln('  final $dartType$nullable ${safeDartName(prop.name)};');
   }
 
@@ -216,9 +254,8 @@ String _emitSealedBodyClass(String baseName, List<OneOfVariant> variants) {
           ? 'List<int>'
           : (isEnum ? prop.type : toDartType(prop.type));
       final nullable = prop.required ? '' : '?';
-      if (prop.defaultValue != null) {
-        sb.writeln('  /// Default: ${_formatDefaultValue(prop.defaultValue)}');
-      }
+      final doc = _fieldDocComment(prop.description, prop.defaultValue);
+      if (doc != null) sb.writeln(doc);
       sb.writeln('  final $dartType$nullable ${safeDartName(prop.name)};');
     }
 
@@ -299,7 +336,7 @@ String _emitComponentSchemaClass(
   for (final prop in schema.properties.values) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(schema.dartName, prop);
-    final nullable = prop.required ? '' : '?';
+    final nullable = !prop.required && dartType != 'dynamic' ? '?' : '';
     sb.writeln('  final $dartType$nullable $dartName;');
   }
 
@@ -370,7 +407,7 @@ String _emitResponseClass(
   for (final prop in schema.properties.values) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(typeName, prop);
-    final nullable = prop.required ? '' : '?';
+    final nullable = !prop.required && dartType != 'dynamic' ? '?' : '';
     sb.writeln('  final $dartType$nullable $dartName;');
   }
 
@@ -452,7 +489,7 @@ String _emitInlineClass(
   for (final prop in properties.values) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(className, prop);
-    final nullable = prop.required ? '' : '?';
+    final nullable = !prop.required && dartType != 'dynamic' ? '?' : '';
     sb.writeln('  final $dartType$nullable $dartName;');
   }
 
@@ -490,24 +527,27 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
     {String? parentTypeName}) {
   if (prop.isComponentRef && prop.componentRefName != null) {
     final dartName = componentSchemaToDartName(prop.componentRefName!);
-    if (prop.required) {
-      return '$dartName.fromJson($accessor as Map<String, dynamic>)';
-    }
-    return '$accessor != null'
+    final fallback =
+        prop.required ? '$dartName.fromJson(const {})' : 'null';
+    return '$accessor is Map<String, dynamic>'
         '\n            ? $dartName.fromJson($accessor as Map<String, dynamic>)'
-        '\n            : null';
+        '\n            : $fallback';
   }
 
   if (prop.isArrayOfComponentRef && prop.arrayItemComponentName != null) {
     final dartName = componentSchemaToDartName(prop.arrayItemComponentName!);
     if (prop.required) {
-      return '($accessor as List<dynamic>)'
-          '\n            .map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
-          '\n            .toList()';
+      return '$accessor is List'
+          '\n            ? ($accessor as List<dynamic>)'
+          '\n                .map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
+          '\n                .toList()'
+          '\n            : const []';
     }
-    return '($accessor as List<dynamic>?)'
-        '\n            ?.map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
-        '\n            .toList()';
+    return '$accessor is List'
+        '\n            ? ($accessor as List<dynamic>)'
+        '\n                .map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
+        '\n                .toList()'
+        '\n            : null';
   }
 
   if (prop.isInlineObject &&
@@ -515,39 +555,60 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
       prop.inlineProperties!.isNotEmpty &&
       parentTypeName != null) {
     final inlineName = _inlineClassName(parentTypeName, prop.name);
-    if (prop.required) {
-      return '$inlineName.fromJson($accessor as Map<String, dynamic>)';
-    }
-    return '$accessor != null'
+    final fallback =
+        prop.required ? '$inlineName.fromJson(const {})' : 'null';
+    return '$accessor is Map<String, dynamic>'
         '\n            ? $inlineName.fromJson($accessor as Map<String, dynamic>)'
-        '\n            : null';
+        '\n            : $fallback';
   }
 
   return _emitPrimitiveCast(accessor, prop.dartType, prop.required);
 }
 
 String _emitPrimitiveCast(String accessor, String dartType, bool required) {
+  // dynamic needs no cast
+  if (dartType == 'dynamic') {
+    return accessor;
+  }
+
   // Handle List<PrimitiveType>
   final listMatch = RegExp(r'^List<(.+)>$').firstMatch(dartType);
   if (listMatch != null) {
     final inner = listMatch.group(1)!;
     if (inner == 'dynamic') {
       return required
-          ? '$accessor as List<dynamic>'
-          : '$accessor as List<dynamic>?';
+          ? '$accessor is List ? $accessor as List<dynamic> : const []'
+          : '$accessor is List ? $accessor as List<dynamic> : null';
     }
     return required
-        ? '($accessor as List<dynamic>).cast<$inner>()'
-        : '($accessor as List<dynamic>?)?.cast<$inner>()';
+        ? '$accessor is List ? ($accessor as List<dynamic>).cast<$inner>() : const []'
+        : '$accessor is List ? ($accessor as List<dynamic>).cast<$inner>() : null';
   }
 
   if (dartType == 'Map<String, dynamic>') {
     return required
-        ? '$accessor as Map<String, dynamic>'
-        : '$accessor as Map<String, dynamic>?';
+        ? '$accessor is Map<String, dynamic> ? $accessor as Map<String, dynamic> : const {}'
+        : '$accessor is Map<String, dynamic> ? $accessor as Map<String, dynamic> : null';
   }
 
-  return required ? '$accessor as $dartType' : '$accessor as $dartType?';
+  // Null-safe casts for required primitive fields — API may return null
+  if (required) {
+    final defaultValue = switch (dartType) {
+      'String' => "''",
+      'num' => '0',
+      'int' => '0',
+      'double' => '0.0',
+      'bool' => 'false',
+      _ => null,
+    };
+    if (defaultValue != null) {
+      return '$accessor is $dartType ? $accessor as $dartType : $defaultValue';
+    }
+    return '$accessor as $dartType';
+  }
+
+  // Nullable — use `is` check to tolerate API returning unexpected types
+  return '$accessor is $dartType ? $accessor as $dartType : null';
 }
 
 String emitDartTypesFile(
@@ -631,8 +692,25 @@ String _buildPathExpression(String path) {
   return "'$template'";
 }
 
+void _emitMethodDoc(StringBuffer sb, MethodDefinition method) {
+  final hasSummary =
+      method.summary != null && method.summary!.trim().isNotEmpty;
+  final hasDesc =
+      method.description != null && method.description!.trim().isNotEmpty;
+  if (!hasSummary && !hasDesc) return;
+
+  if (hasSummary) {
+    sb.writeln(_emitDocComment(method.summary!, indent: '  '));
+  }
+  if (hasDesc) {
+    if (hasSummary) sb.writeln('  ///');
+    sb.writeln(_emitDocComment(method.description!, indent: '  '));
+  }
+}
+
 String _emitHtmlMethod(String group, MethodDefinition method) {
   final sb = StringBuffer();
+  _emitMethodDoc(sb, method);
   final args = <String>[];
 
   for (final param in method.params.pathParams) {
@@ -670,6 +748,8 @@ String _emitDartMethod(String group, MethodDefinition method) {
   if (method.responseIsHtml) {
     return _emitHtmlMethod(group, method);
   }
+
+  _emitMethodDoc(sb, method);
 
   // Build argument list
   final args = <String>[];

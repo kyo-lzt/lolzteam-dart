@@ -1,9 +1,10 @@
 // Core HTTP client for the Lolzteam API.
 import 'dart:convert';
-import 'dart:io' show HttpClient;
+import 'dart:io' show HttpClient, InternetAddress;
 
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
+import 'package:socks5_proxy/socks_client.dart';
 
 import 'config.dart';
 import 'exceptions.dart';
@@ -53,11 +54,15 @@ class LolzteamHttpClient {
       throw const ConfigException('proxy URL has no host');
     }
 
-    final directive = scheme == 'socks5' ? 'SOCKS5' : 'PROXY';
     final port =
         uri.hasPort ? uri.port : (scheme == 'socks5' ? 1080 : uri.port);
     final ioClient = HttpClient();
-    ioClient.findProxy = (url) => '$directive ${uri.host}:$port';
+    if (scheme == 'socks5') {
+      SocksTCPClient.assignToHttpClient(
+          ioClient, [ProxySettings(InternetAddress(uri.host), port)]);
+    } else {
+      ioClient.findProxy = (url) => 'PROXY ${uri.host}:$port';
+    }
     return IOClient(ioClient);
   }
 

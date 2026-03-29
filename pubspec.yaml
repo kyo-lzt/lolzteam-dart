@@ -10,6 +10,7 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
 dependencies:
   http: ^1.2.0
+  socks5_proxy: ^1.0.6
 dev_dependencies:
   test: ^1.25.0
   lints: ^5.0.0

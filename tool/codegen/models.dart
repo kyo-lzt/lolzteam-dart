@@ -26,6 +26,7 @@ class ParsedParameter {
   final bool required;
   final List<Object?>? enumValues;
   final Object? defaultValue;
+  final String? description;
 
   const ParsedParameter({
     required this.name,
@@ -33,6 +34,7 @@ class ParsedParameter {
     required this.required,
     this.enumValues,
     this.defaultValue,
+    this.description,
   });
 }
 
@@ -52,6 +54,7 @@ class BodyProperty {
   final bool required;
   final List<Object?>? enumValues;
   final Object? defaultValue;
+  final String? description;
 
   const BodyProperty({
     required this.name,
@@ -59,6 +62,7 @@ class BodyProperty {
     required this.required,
     this.enumValues,
     this.defaultValue,
+    this.description,
   });
 }
 
@@ -109,6 +113,8 @@ class MethodDefinition {
   final ResponseSchema responseSchema;
   final List<OneOfVariant> bodyOneOfVariants;
   final bool responseIsHtml;
+  final String? summary;
+  final String? description;
 
   const MethodDefinition({
     required this.operationId,
@@ -126,6 +132,8 @@ class MethodDefinition {
     this.responseSchema = const ResponseSchema(properties: {}),
     this.bodyOneOfVariants = const [],
     this.responseIsHtml = false,
+    this.summary,
+    this.description,
   });
 }
 
