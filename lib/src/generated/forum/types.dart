@@ -1461,7 +1461,7 @@ class RespThreadModel {
             ? RespThreadModelFirstPost.fromJson(json['first_post'] as Map<String, dynamic>)
             : RespThreadModelFirstPost.fromJson(const {}),
     threadPrefixes: json['thread_prefixes'] is List ? (json['thread_prefixes'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
-    threadTags: json['thread_tags'] as Map<String, String>,
+    threadTags: json['thread_tags'] is Map ? (json['thread_tags'] as Map<String, dynamic>).cast<String, String>() : const {},
     links: json['links'] is Map<String, dynamic>
             ? RespThreadModelLinks.fromJson(json['links'] as Map<String, dynamic>)
             : RespThreadModelLinks.fromJson(const {}),
@@ -7061,7 +7061,7 @@ class TagsPopularResponse {
   });
 
   factory TagsPopularResponse.fromJson(Map<String, dynamic> json) => TagsPopularResponse(
-    tags: json['tags'] as Map<String, String>,
+    tags: json['tags'] is Map ? (json['tags'] as Map<String, dynamic>).cast<String, String>() : const {},
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
             : RespSystemInfo.fromJson(const {}),
@@ -7119,7 +7119,7 @@ class TagsListResponse {
   });
 
   factory TagsListResponse.fromJson(Map<String, dynamic> json) => TagsListResponse(
-    tags: json['tags'] as Map<String, String>,
+    tags: json['tags'] is Map ? (json['tags'] as Map<String, dynamic>).cast<String, String>() : const {},
     tagsTotal: json['tags_total'] is num ? json['tags_total'] as num : 0,
     links: json['links'] is Map<String, dynamic>
             ? TagsListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)

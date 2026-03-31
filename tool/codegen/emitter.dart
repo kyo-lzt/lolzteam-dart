@@ -585,10 +585,18 @@ String _emitPrimitiveCast(String accessor, String dartType, bool required) {
         : '$accessor is List ? ($accessor as List<dynamic>).cast<$inner>() : null';
   }
 
-  if (dartType == 'Map<String, dynamic>') {
+  // Handle Map<String, V>
+  final mapMatch = RegExp(r'^Map<String, (.+)>$').firstMatch(dartType);
+  if (mapMatch != null) {
+    final inner = mapMatch.group(1)!;
+    if (inner == 'dynamic') {
+      return required
+          ? '$accessor is Map ? $accessor as Map<String, dynamic> : const {}'
+          : '$accessor is Map ? $accessor as Map<String, dynamic> : null';
+    }
     return required
-        ? '$accessor is Map<String, dynamic> ? $accessor as Map<String, dynamic> : const {}'
-        : '$accessor is Map<String, dynamic> ? $accessor as Map<String, dynamic> : null';
+        ? '$accessor is Map ? ($accessor as Map<String, dynamic>).cast<String, $inner>() : const {}'
+        : '$accessor is Map ? ($accessor as Map<String, dynamic>).cast<String, $inner>() : null';
   }
 
   // Null-safe casts for required primitive fields — API may return null
