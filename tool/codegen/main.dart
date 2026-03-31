@@ -122,6 +122,15 @@ void main() {
   final barrelContent = emitBarrelFile(barrelEntries);
   File('$root/lib/lolzteam.dart').writeAsStringSync(barrelContent);
   stdout.writeln('Generated lib/lolzteam.dart (barrel file)');
+
+  // Run dart format on generated files
+  stdout.writeln('\nFormatting generated files...');
+  final formatResult = Process.runSync('dart', ['format', '$root/lib']);
+  stdout.write(formatResult.stdout);
+  if (formatResult.exitCode != 0) {
+    stderr.write(formatResult.stderr);
+    exit(formatResult.exitCode);
+  }
 }
 
 String _toSnakeCase(String name) {

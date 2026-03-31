@@ -527,8 +527,7 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
     {String? parentTypeName}) {
   if (prop.isComponentRef && prop.componentRefName != null) {
     final dartName = componentSchemaToDartName(prop.componentRefName!);
-    final fallback =
-        prop.required ? '$dartName.fromJson(const {})' : 'null';
+    final fallback = prop.required ? '$dartName.fromJson(const {})' : 'null';
     return '$accessor is Map<String, dynamic>'
         '\n            ? $dartName.fromJson($accessor as Map<String, dynamic>)'
         '\n            : $fallback';
@@ -555,8 +554,7 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
       prop.inlineProperties!.isNotEmpty &&
       parentTypeName != null) {
     final inlineName = _inlineClassName(parentTypeName, prop.name);
-    final fallback =
-        prop.required ? '$inlineName.fromJson(const {})' : 'null';
+    final fallback = prop.required ? '$inlineName.fromJson(const {})' : 'null';
     return '$accessor is Map<String, dynamic>'
         '\n            ? $inlineName.fromJson($accessor as Map<String, dynamic>)'
         '\n            : $fallback';

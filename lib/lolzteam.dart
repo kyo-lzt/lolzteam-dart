@@ -45,8 +45,4 @@ export 'src/generated/market/market_client.dart'
         PublishingApi,
         PurchasingApi;
 export 'src/generated/market/types.dart'
-    hide
-        ClaimState,
-        Currency,
-        RespSystemInfo,
-        Type;
+    hide ClaimState, Currency, RespSystemInfo, Type;

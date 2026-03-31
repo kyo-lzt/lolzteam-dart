@@ -70,8 +70,7 @@ class LolzteamHttpClient {
       );
     }
     final ioClient = _createIoClient(config.proxy, config.timeout);
-    final client =
-        ioClient != null ? IOClient(ioClient) : http.Client();
+    final client = ioClient != null ? IOClient(ioClient) : http.Client();
     return LolzteamHttpClient._(
       baseUrl: baseUrl,
       token: config.token,
@@ -105,8 +104,7 @@ class LolzteamHttpClient {
       throw const ConfigException('proxy URL has no host');
     }
 
-    final port =
-        uri.hasPort ? uri.port : (scheme == 'socks5' ? 1080 : 3128);
+    final port = uri.hasPort ? uri.port : (scheme == 'socks5' ? 1080 : 3128);
     final ioClient = HttpClient();
     if (timeout != null) {
       ioClient.connectionTimeout = timeout;
