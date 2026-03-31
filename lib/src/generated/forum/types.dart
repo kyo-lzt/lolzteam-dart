@@ -1234,8 +1234,8 @@ class RespThreadModelLinks {
 class RespThreadModelPermissionsBump {
   final bool can;
   final num availableCount;
-  final dynamic error;
-  final dynamic nextAvailableTime;
+  final String error;
+  final num nextAvailableTime;
 
   const RespThreadModelPermissionsBump({
     required this.can,
@@ -1247,8 +1247,8 @@ class RespThreadModelPermissionsBump {
   factory RespThreadModelPermissionsBump.fromJson(Map<String, dynamic> json) => RespThreadModelPermissionsBump(
     can: json['can'] is bool ? json['can'] as bool : false,
     availableCount: json['available_count'] is num ? json['available_count'] as num : 0,
-    error: json['error'],
-    nextAvailableTime: json['next_available_time'],
+    error: json['error'] is String ? json['error'] as String : '',
+    nextAvailableTime: json['next_available_time'] is num ? json['next_available_time'] as num : 0,
   );
 }
 
@@ -1302,142 +1302,6 @@ class RespThreadModelRestrictions {
   );
 }
 
-class RespThreadModelLastPostLinks {
-  final String permalink;
-  final String detail;
-  final String thread;
-  final String poster;
-  final String likes;
-  final String report;
-  final String posterAvatar;
-
-  const RespThreadModelLastPostLinks({
-    required this.permalink,
-    required this.detail,
-    required this.thread,
-    required this.poster,
-    required this.likes,
-    required this.report,
-    required this.posterAvatar,
-  });
-
-  factory RespThreadModelLastPostLinks.fromJson(Map<String, dynamic> json) => RespThreadModelLastPostLinks(
-    permalink: json['permalink'] is String ? json['permalink'] as String : '',
-    detail: json['detail'] is String ? json['detail'] as String : '',
-    thread: json['thread'] is String ? json['thread'] as String : '',
-    poster: json['poster'] is String ? json['poster'] as String : '',
-    likes: json['likes'] is String ? json['likes'] as String : '',
-    report: json['report'] is String ? json['report'] as String : '',
-    posterAvatar: json['poster_avatar'] is String ? json['poster_avatar'] as String : '',
-  );
-}
-
-class RespThreadModelLastPostPermissions {
-  final bool view;
-  final bool edit;
-  final bool delete;
-  final bool reply;
-  final bool like;
-  final bool report;
-
-  const RespThreadModelLastPostPermissions({
-    required this.view,
-    required this.edit,
-    required this.delete,
-    required this.reply,
-    required this.like,
-    required this.report,
-  });
-
-  factory RespThreadModelLastPostPermissions.fromJson(Map<String, dynamic> json) => RespThreadModelLastPostPermissions(
-    view: json['view'] is bool ? json['view'] as bool : false,
-    edit: json['edit'] is bool ? json['edit'] as bool : false,
-    delete: json['delete'] is bool ? json['delete'] as bool : false,
-    reply: json['reply'] is bool ? json['reply'] as bool : false,
-    like: json['like'] is bool ? json['like'] as bool : false,
-    report: json['report'] is bool ? json['report'] as bool : false,
-  );
-}
-
-class RespThreadModelLastPost {
-  final num postId;
-  final num threadId;
-  final num posterUserId;
-  final String posterUsername;
-  final String posterUsernameHtml;
-  final num postCreateDate;
-  final String postBody;
-  final String postBodyHtml;
-  final String postBodyPlainText;
-  final String signature;
-  final String signatureHtml;
-  final String signaturePlainText;
-  final num postLikeCount;
-  final bool userIsIgnored;
-  final bool postIsPublished;
-  final bool postIsDeleted;
-  final num postUpdateDate;
-  final bool postIsFirstPost;
-  final bool postIsLiked;
-  final RespThreadModelLastPostLinks links;
-  final RespThreadModelLastPostPermissions permissions;
-  final bool threadIsDeleted;
-
-  const RespThreadModelLastPost({
-    required this.postId,
-    required this.threadId,
-    required this.posterUserId,
-    required this.posterUsername,
-    required this.posterUsernameHtml,
-    required this.postCreateDate,
-    required this.postBody,
-    required this.postBodyHtml,
-    required this.postBodyPlainText,
-    required this.signature,
-    required this.signatureHtml,
-    required this.signaturePlainText,
-    required this.postLikeCount,
-    required this.userIsIgnored,
-    required this.postIsPublished,
-    required this.postIsDeleted,
-    required this.postUpdateDate,
-    required this.postIsFirstPost,
-    required this.postIsLiked,
-    required this.links,
-    required this.permissions,
-    required this.threadIsDeleted,
-  });
-
-  factory RespThreadModelLastPost.fromJson(Map<String, dynamic> json) => RespThreadModelLastPost(
-    postId: json['post_id'] is num ? json['post_id'] as num : 0,
-    threadId: json['thread_id'] is num ? json['thread_id'] as num : 0,
-    posterUserId: json['poster_user_id'] is num ? json['poster_user_id'] as num : 0,
-    posterUsername: json['poster_username'] is String ? json['poster_username'] as String : '',
-    posterUsernameHtml: json['poster_username_html'] is String ? json['poster_username_html'] as String : '',
-    postCreateDate: json['post_create_date'] is num ? json['post_create_date'] as num : 0,
-    postBody: json['post_body'] is String ? json['post_body'] as String : '',
-    postBodyHtml: json['post_body_html'] is String ? json['post_body_html'] as String : '',
-    postBodyPlainText: json['post_body_plain_text'] is String ? json['post_body_plain_text'] as String : '',
-    signature: json['signature'] is String ? json['signature'] as String : '',
-    signatureHtml: json['signature_html'] is String ? json['signature_html'] as String : '',
-    signaturePlainText: json['signature_plain_text'] is String ? json['signature_plain_text'] as String : '',
-    postLikeCount: json['post_like_count'] is num ? json['post_like_count'] as num : 0,
-    userIsIgnored: json['user_is_ignored'] is bool ? json['user_is_ignored'] as bool : false,
-    postIsPublished: json['post_is_published'] is bool ? json['post_is_published'] as bool : false,
-    postIsDeleted: json['post_is_deleted'] is bool ? json['post_is_deleted'] as bool : false,
-    postUpdateDate: json['post_update_date'] is num ? json['post_update_date'] as num : 0,
-    postIsFirstPost: json['post_is_first_post'] is bool ? json['post_is_first_post'] as bool : false,
-    postIsLiked: json['post_is_liked'] is bool ? json['post_is_liked'] as bool : false,
-    links: json['links'] is Map<String, dynamic>
-            ? RespThreadModelLastPostLinks.fromJson(json['links'] as Map<String, dynamic>)
-            : RespThreadModelLastPostLinks.fromJson(const {}),
-    permissions: json['permissions'] is Map<String, dynamic>
-            ? RespThreadModelLastPostPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
-            : RespThreadModelLastPostPermissions.fromJson(const {}),
-    threadIsDeleted: json['thread_is_deleted'] is bool ? json['thread_is_deleted'] as bool : false,
-  );
-}
-
 class RespThreadModelContestPermissions {
   final bool canFinish;
   final bool canParticipate;
@@ -1473,7 +1337,7 @@ class RespThreadModelContest {
   final num prizeData;
   final num isMoneyPlaces;
   final num chanceToWin;
-  final List<num> winners;
+  final List<num>? winners;
   final bool alreadyParticipate;
   final RespThreadModelContestPermissions permissions;
 
@@ -1491,7 +1355,7 @@ class RespThreadModelContest {
     required this.prizeData,
     required this.isMoneyPlaces,
     required this.chanceToWin,
-    required this.winners,
+    this.winners,
     required this.alreadyParticipate,
     required this.permissions,
   });
@@ -1510,7 +1374,7 @@ class RespThreadModelContest {
     prizeData: json['prize_data'] is num ? json['prize_data'] as num : 0,
     isMoneyPlaces: json['is_money_places'] is num ? json['is_money_places'] as num : 0,
     chanceToWin: json['chance_to_win'] is num ? json['chance_to_win'] as num : 0,
-    winners: json['winners'] is List ? (json['winners'] as List<dynamic>).cast<num>() : const [],
+    winners: json['winners'] is List ? (json['winners'] as List<dynamic>).cast<num>() : null,
     alreadyParticipate: json['already_participate'] is bool ? json['already_participate'] as bool : false,
     permissions: json['permissions'] is Map<String, dynamic>
             ? RespThreadModelContestPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
@@ -1537,14 +1401,14 @@ class RespThreadModel {
   final bool threadIsFollowed;
   final bool threadIsStarred;
   final RespThreadModelFirstPost firstPost;
-  final List<dynamic> threadPrefixes;
-  final dynamic threadTags;
+  final List<Map<String, dynamic>> threadPrefixes;
+  final Map<String, String> threadTags;
   final RespThreadModelLinks links;
   final RespThreadModelPermissions permissions;
   final String nodeTitle;
-  final RespThreadModelRestrictions restrictions;
-  final RespThreadModelLastPost lastPost;
-  final RespThreadModelContest contest;
+  final RespForumModel? forum;
+  final RespThreadModelRestrictions? restrictions;
+  final RespThreadModelContest? contest;
 
   const RespThreadModel({
     required this.threadId,
@@ -1570,9 +1434,9 @@ class RespThreadModel {
     required this.links,
     required this.permissions,
     required this.nodeTitle,
-    required this.restrictions,
-    required this.lastPost,
-    required this.contest,
+    this.forum,
+    this.restrictions,
+    this.contest,
   });
 
   factory RespThreadModel.fromJson(Map<String, dynamic> json) => RespThreadModel(
@@ -1596,8 +1460,8 @@ class RespThreadModel {
     firstPost: json['first_post'] is Map<String, dynamic>
             ? RespThreadModelFirstPost.fromJson(json['first_post'] as Map<String, dynamic>)
             : RespThreadModelFirstPost.fromJson(const {}),
-    threadPrefixes: json['thread_prefixes'] is List ? json['thread_prefixes'] as List<dynamic> : const [],
-    threadTags: json['thread_tags'],
+    threadPrefixes: json['thread_prefixes'] is List ? (json['thread_prefixes'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    threadTags: json['thread_tags'] as Map<String, String>,
     links: json['links'] is Map<String, dynamic>
             ? RespThreadModelLinks.fromJson(json['links'] as Map<String, dynamic>)
             : RespThreadModelLinks.fromJson(const {}),
@@ -1605,15 +1469,15 @@ class RespThreadModel {
             ? RespThreadModelPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
             : RespThreadModelPermissions.fromJson(const {}),
     nodeTitle: json['node_title'] is String ? json['node_title'] as String : '',
+    forum: json['forum'] is Map<String, dynamic>
+            ? RespForumModel.fromJson(json['forum'] as Map<String, dynamic>)
+            : null,
     restrictions: json['restrictions'] is Map<String, dynamic>
             ? RespThreadModelRestrictions.fromJson(json['restrictions'] as Map<String, dynamic>)
-            : RespThreadModelRestrictions.fromJson(const {}),
-    lastPost: json['last_post'] is Map<String, dynamic>
-            ? RespThreadModelLastPost.fromJson(json['last_post'] as Map<String, dynamic>)
-            : RespThreadModelLastPost.fromJson(const {}),
+            : null,
     contest: json['contest'] is Map<String, dynamic>
             ? RespThreadModelContest.fromJson(json['contest'] as Map<String, dynamic>)
-            : RespThreadModelContest.fromJson(const {}),
+            : null,
   );
 }
 
@@ -2377,6 +2241,121 @@ class RespConversationMessageModel {
     permissions: json['permissions'] is Map<String, dynamic>
             ? RespConversationMessageModelPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
             : RespConversationMessageModelPermissions.fromJson(const {}),
+  );
+}
+
+class RespForumModelLinks {
+  final String permalink;
+  final String detail;
+  final String subCategories;
+  final String subForums;
+  final String threads;
+  final String followers;
+
+  const RespForumModelLinks({
+    required this.permalink,
+    required this.detail,
+    required this.subCategories,
+    required this.subForums,
+    required this.threads,
+    required this.followers,
+  });
+
+  factory RespForumModelLinks.fromJson(Map<String, dynamic> json) => RespForumModelLinks(
+    permalink: json['permalink'] is String ? json['permalink'] as String : '',
+    detail: json['detail'] is String ? json['detail'] as String : '',
+    subCategories: json['sub-categories'] is String ? json['sub-categories'] as String : '',
+    subForums: json['sub-forums'] is String ? json['sub-forums'] as String : '',
+    threads: json['threads'] is String ? json['threads'] as String : '',
+    followers: json['followers'] is String ? json['followers'] as String : '',
+  );
+}
+
+class RespForumModelPermissions {
+  final bool view;
+  final bool edit;
+  final bool delete;
+  final bool createThread;
+  final bool tagThread;
+  final bool follow;
+
+  const RespForumModelPermissions({
+    required this.view,
+    required this.edit,
+    required this.delete,
+    required this.createThread,
+    required this.tagThread,
+    required this.follow,
+  });
+
+  factory RespForumModelPermissions.fromJson(Map<String, dynamic> json) => RespForumModelPermissions(
+    view: json['view'] is bool ? json['view'] as bool : false,
+    edit: json['edit'] is bool ? json['edit'] as bool : false,
+    delete: json['delete'] is bool ? json['delete'] as bool : false,
+    createThread: json['create_thread'] is bool ? json['create_thread'] as bool : false,
+    tagThread: json['tag_thread'] is bool ? json['tag_thread'] as bool : false,
+    follow: json['follow'] is bool ? json['follow'] as bool : false,
+  );
+}
+
+class RespForumModel {
+  final num forumId;
+  final String forumTitle;
+  final String forumDescription;
+  final num forumThreadCount;
+  final num forumPostCount;
+  final num parentNodeId;
+  final String nodeTypeId;
+  final String iconContent;
+  final String activeIconContent;
+  final num forumRulesThreadId;
+  final List<Map<String, dynamic>> forumPrefixes;
+  final num threadDefaultPrefixId;
+  final bool threadPrefixIsRequired;
+  final RespForumModelLinks links;
+  final RespForumModelPermissions permissions;
+  final bool forumIsFollowed;
+
+  const RespForumModel({
+    required this.forumId,
+    required this.forumTitle,
+    required this.forumDescription,
+    required this.forumThreadCount,
+    required this.forumPostCount,
+    required this.parentNodeId,
+    required this.nodeTypeId,
+    required this.iconContent,
+    required this.activeIconContent,
+    required this.forumRulesThreadId,
+    required this.forumPrefixes,
+    required this.threadDefaultPrefixId,
+    required this.threadPrefixIsRequired,
+    required this.links,
+    required this.permissions,
+    required this.forumIsFollowed,
+  });
+
+  factory RespForumModel.fromJson(Map<String, dynamic> json) => RespForumModel(
+    forumId: json['forum_id'] is num ? json['forum_id'] as num : 0,
+    forumTitle: json['forum_title'] is String ? json['forum_title'] as String : '',
+    forumDescription: json['forum_description'] is String ? json['forum_description'] as String : '',
+    forumThreadCount: json['forum_thread_count'] is num ? json['forum_thread_count'] as num : 0,
+    forumPostCount: json['forum_post_count'] is num ? json['forum_post_count'] as num : 0,
+    parentNodeId: json['parent_node_id'] is num ? json['parent_node_id'] as num : 0,
+    nodeTypeId: json['node_type_id'] is String ? json['node_type_id'] as String : '',
+    iconContent: json['icon_content'] is String ? json['icon_content'] as String : '',
+    activeIconContent: json['active_icon_content'] is String ? json['active_icon_content'] as String : '',
+    forumRulesThreadId: json['forum_rules_thread_id'] is num ? json['forum_rules_thread_id'] as num : 0,
+    forumPrefixes: json['forum_prefixes'] is List ? (json['forum_prefixes'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    threadDefaultPrefixId: json['thread_default_prefix_id'] is num ? json['thread_default_prefix_id'] as num : 0,
+    threadPrefixIsRequired: json['thread_prefix_is_required'] is bool ? json['thread_prefix_is_required'] as bool : false,
+    links: json['links'] is Map<String, dynamic>
+            ? RespForumModelLinks.fromJson(json['links'] as Map<String, dynamic>)
+            : RespForumModelLinks.fromJson(const {}),
+    permissions: json['permissions'] is Map<String, dynamic>
+            ? RespForumModelPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
+            : RespForumModelPermissions.fromJson(const {}),
+    forumIsFollowed: json['forum_is_followed'] is bool ? json['forum_is_followed'] as bool : false,
   );
 }
 
@@ -3919,139 +3898,9 @@ class FormsCreateBodyComplaint extends FormsCreateBody {
   }
 }
 
-class FormsCreateResponseContentLinks {
-  final String permalink;
-  final String detail;
-  final String followers;
-  final String forum;
-  final String posts;
-  final String firstPoster;
-  final String firstPosterAvatar;
-  final String firstPost;
-
-  const FormsCreateResponseContentLinks({
-    required this.permalink,
-    required this.detail,
-    required this.followers,
-    required this.forum,
-    required this.posts,
-    required this.firstPoster,
-    required this.firstPosterAvatar,
-    required this.firstPost,
-  });
-
-  factory FormsCreateResponseContentLinks.fromJson(Map<String, dynamic> json) => FormsCreateResponseContentLinks(
-    permalink: json['permalink'] is String ? json['permalink'] as String : '',
-    detail: json['detail'] is String ? json['detail'] as String : '',
-    followers: json['followers'] is String ? json['followers'] as String : '',
-    forum: json['forum'] is String ? json['forum'] as String : '',
-    posts: json['posts'] is String ? json['posts'] as String : '',
-    firstPoster: json['first_poster'] is String ? json['first_poster'] as String : '',
-    firstPosterAvatar: json['first_poster_avatar'] is String ? json['first_poster_avatar'] as String : '',
-    firstPost: json['first_post'] is String ? json['first_post'] as String : '',
-  );
-}
-
-class FormsCreateResponseContentPermissions {
-  final bool view;
-  final bool delete;
-  final bool follow;
-  final bool post;
-
-  const FormsCreateResponseContentPermissions({
-    required this.view,
-    required this.delete,
-    required this.follow,
-    required this.post,
-  });
-
-  factory FormsCreateResponseContentPermissions.fromJson(Map<String, dynamic> json) => FormsCreateResponseContentPermissions(
-    view: json['view'] is bool ? json['view'] as bool : false,
-    delete: json['delete'] is bool ? json['delete'] as bool : false,
-    follow: json['follow'] is bool ? json['follow'] as bool : false,
-    post: json['post'] is bool ? json['post'] as bool : false,
-  );
-}
-
-class FormsCreateResponseContent {
-  final num threadId;
-  final num forumId;
-  final String threadTitle;
-  final num threadViewCount;
-  final num creatorUserId;
-  final String creatorUsername;
-  final String creatorUsernameHtml;
-  final num threadCreateDate;
-  final num threadUpdateDate;
-  final bool userIsIgnored;
-  final num threadPostCount;
-  final bool threadIsPublished;
-  final bool threadIsDeleted;
-  final bool threadIsSticky;
-  final bool threadIsClosed;
-  final bool threadIsFollowed;
-  final List<dynamic> threadPrefixes;
-  final List<dynamic> threadTags;
-  final FormsCreateResponseContentLinks links;
-  final FormsCreateResponseContentPermissions permissions;
-  final String nodeTitle;
-
-  const FormsCreateResponseContent({
-    required this.threadId,
-    required this.forumId,
-    required this.threadTitle,
-    required this.threadViewCount,
-    required this.creatorUserId,
-    required this.creatorUsername,
-    required this.creatorUsernameHtml,
-    required this.threadCreateDate,
-    required this.threadUpdateDate,
-    required this.userIsIgnored,
-    required this.threadPostCount,
-    required this.threadIsPublished,
-    required this.threadIsDeleted,
-    required this.threadIsSticky,
-    required this.threadIsClosed,
-    required this.threadIsFollowed,
-    required this.threadPrefixes,
-    required this.threadTags,
-    required this.links,
-    required this.permissions,
-    required this.nodeTitle,
-  });
-
-  factory FormsCreateResponseContent.fromJson(Map<String, dynamic> json) => FormsCreateResponseContent(
-    threadId: json['thread_id'] is num ? json['thread_id'] as num : 0,
-    forumId: json['forum_id'] is num ? json['forum_id'] as num : 0,
-    threadTitle: json['thread_title'] is String ? json['thread_title'] as String : '',
-    threadViewCount: json['thread_view_count'] is num ? json['thread_view_count'] as num : 0,
-    creatorUserId: json['creator_user_id'] is num ? json['creator_user_id'] as num : 0,
-    creatorUsername: json['creator_username'] is String ? json['creator_username'] as String : '',
-    creatorUsernameHtml: json['creator_username_html'] is String ? json['creator_username_html'] as String : '',
-    threadCreateDate: json['thread_create_date'] is num ? json['thread_create_date'] as num : 0,
-    threadUpdateDate: json['thread_update_date'] is num ? json['thread_update_date'] as num : 0,
-    userIsIgnored: json['user_is_ignored'] is bool ? json['user_is_ignored'] as bool : false,
-    threadPostCount: json['thread_post_count'] is num ? json['thread_post_count'] as num : 0,
-    threadIsPublished: json['thread_is_published'] is bool ? json['thread_is_published'] as bool : false,
-    threadIsDeleted: json['thread_is_deleted'] is bool ? json['thread_is_deleted'] as bool : false,
-    threadIsSticky: json['thread_is_sticky'] is bool ? json['thread_is_sticky'] as bool : false,
-    threadIsClosed: json['thread_is_closed'] is bool ? json['thread_is_closed'] as bool : false,
-    threadIsFollowed: json['thread_is_followed'] is bool ? json['thread_is_followed'] as bool : false,
-    threadPrefixes: json['thread_prefixes'] is List ? json['thread_prefixes'] as List<dynamic> : const [],
-    threadTags: json['thread_tags'] is List ? json['thread_tags'] as List<dynamic> : const [],
-    links: json['links'] is Map<String, dynamic>
-            ? FormsCreateResponseContentLinks.fromJson(json['links'] as Map<String, dynamic>)
-            : FormsCreateResponseContentLinks.fromJson(const {}),
-    permissions: json['permissions'] is Map<String, dynamic>
-            ? FormsCreateResponseContentPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
-            : FormsCreateResponseContentPermissions.fromJson(const {}),
-    nodeTitle: json['node_title'] is String ? json['node_title'] as String : '',
-  );
-}
-
 class FormsCreateResponse {
   final String message;
-  final FormsCreateResponseContent content;
+  final RespThreadModel content;
   final RespSystemInfo systemInfo;
 
   const FormsCreateResponse({
@@ -4063,8 +3912,8 @@ class FormsCreateResponse {
   factory FormsCreateResponse.fromJson(Map<String, dynamic> json) => FormsCreateResponse(
     message: json['message'] is String ? json['message'] as String : '',
     content: json['content'] is Map<String, dynamic>
-            ? FormsCreateResponseContent.fromJson(json['content'] as Map<String, dynamic>)
-            : FormsCreateResponseContent.fromJson(const {}),
+            ? RespThreadModel.fromJson(json['content'] as Map<String, dynamic>)
+            : RespThreadModel.fromJson(const {}),
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
             : RespSystemInfo.fromJson(const {}),
@@ -4096,7 +3945,7 @@ class ForumsListParams {
 }
 
 class ForumsListResponse {
-  final List<Map<String, dynamic>> forums;
+  final List<RespForumModel> forums;
   final num forumsTotal;
   final List<Map<String, dynamic>> tabs;
   final RespSystemInfo systemInfo;
@@ -4109,7 +3958,11 @@ class ForumsListResponse {
   });
 
   factory ForumsListResponse.fromJson(Map<String, dynamic> json) => ForumsListResponse(
-    forums: json['forums'] is List ? (json['forums'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    forums: json['forums'] is List
+            ? (json['forums'] as List<dynamic>)
+                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     forumsTotal: json['forums_total'] is num ? json['forums_total'] as num : 0,
     tabs: json['tabs'] is List ? (json['tabs'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
     systemInfo: json['system_info'] is Map<String, dynamic>
@@ -4119,7 +3972,7 @@ class ForumsListResponse {
 }
 
 class ForumsGroupedResponse {
-  final dynamic data;
+  final List<List<Map<String, dynamic>>> data;
   final List<Map<String, dynamic>> tabs;
   final RespSystemInfo systemInfo;
 
@@ -4130,7 +3983,7 @@ class ForumsGroupedResponse {
   });
 
   factory ForumsGroupedResponse.fromJson(Map<String, dynamic> json) => ForumsGroupedResponse(
-    data: json['data'],
+    data: json['data'] is List ? (json['data'] as List<dynamic>).cast<List<Map<String, dynamic>>>() : const [],
     tabs: json['tabs'] is List ? (json['tabs'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
@@ -4138,111 +3991,8 @@ class ForumsGroupedResponse {
   );
 }
 
-class ForumsGetResponseForumLinks {
-  final String permalink;
-  final String detail;
-  final String subCategories;
-  final String subForums;
-  final String threads;
-  final String followers;
-
-  const ForumsGetResponseForumLinks({
-    required this.permalink,
-    required this.detail,
-    required this.subCategories,
-    required this.subForums,
-    required this.threads,
-    required this.followers,
-  });
-
-  factory ForumsGetResponseForumLinks.fromJson(Map<String, dynamic> json) => ForumsGetResponseForumLinks(
-    permalink: json['permalink'] is String ? json['permalink'] as String : '',
-    detail: json['detail'] is String ? json['detail'] as String : '',
-    subCategories: json['sub-categories'] is String ? json['sub-categories'] as String : '',
-    subForums: json['sub-forums'] is String ? json['sub-forums'] as String : '',
-    threads: json['threads'] is String ? json['threads'] as String : '',
-    followers: json['followers'] is String ? json['followers'] as String : '',
-  );
-}
-
-class ForumsGetResponseForumPermissions {
-  final bool view;
-  final bool edit;
-  final bool delete;
-  final bool createThread;
-  final bool uploadAttachment;
-  final bool tagThread;
-  final bool follow;
-
-  const ForumsGetResponseForumPermissions({
-    required this.view,
-    required this.edit,
-    required this.delete,
-    required this.createThread,
-    required this.uploadAttachment,
-    required this.tagThread,
-    required this.follow,
-  });
-
-  factory ForumsGetResponseForumPermissions.fromJson(Map<String, dynamic> json) => ForumsGetResponseForumPermissions(
-    view: json['view'] is bool ? json['view'] as bool : false,
-    edit: json['edit'] is bool ? json['edit'] as bool : false,
-    delete: json['delete'] is bool ? json['delete'] as bool : false,
-    createThread: json['create_thread'] is bool ? json['create_thread'] as bool : false,
-    uploadAttachment: json['upload_attachment'] is bool ? json['upload_attachment'] as bool : false,
-    tagThread: json['tag_thread'] is bool ? json['tag_thread'] as bool : false,
-    follow: json['follow'] is bool ? json['follow'] as bool : false,
-  );
-}
-
-class ForumsGetResponseForum {
-  final num forumId;
-  final String forumTitle;
-  final String forumDescription;
-  final num forumThreadCount;
-  final num forumPostCount;
-  final List<Map<String, dynamic>> forumPrefixes;
-  final num threadDefaultPrefixId;
-  final bool threadPrefixIsRequired;
-  final ForumsGetResponseForumLinks links;
-  final ForumsGetResponseForumPermissions permissions;
-  final bool forumIsFollowed;
-
-  const ForumsGetResponseForum({
-    required this.forumId,
-    required this.forumTitle,
-    required this.forumDescription,
-    required this.forumThreadCount,
-    required this.forumPostCount,
-    required this.forumPrefixes,
-    required this.threadDefaultPrefixId,
-    required this.threadPrefixIsRequired,
-    required this.links,
-    required this.permissions,
-    required this.forumIsFollowed,
-  });
-
-  factory ForumsGetResponseForum.fromJson(Map<String, dynamic> json) => ForumsGetResponseForum(
-    forumId: json['forum_id'] is num ? json['forum_id'] as num : 0,
-    forumTitle: json['forum_title'] is String ? json['forum_title'] as String : '',
-    forumDescription: json['forum_description'] is String ? json['forum_description'] as String : '',
-    forumThreadCount: json['forum_thread_count'] is num ? json['forum_thread_count'] as num : 0,
-    forumPostCount: json['forum_post_count'] is num ? json['forum_post_count'] as num : 0,
-    forumPrefixes: json['forum_prefixes'] is List ? (json['forum_prefixes'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
-    threadDefaultPrefixId: json['thread_default_prefix_id'] is num ? json['thread_default_prefix_id'] as num : 0,
-    threadPrefixIsRequired: json['thread_prefix_is_required'] is bool ? json['thread_prefix_is_required'] as bool : false,
-    links: json['links'] is Map<String, dynamic>
-            ? ForumsGetResponseForumLinks.fromJson(json['links'] as Map<String, dynamic>)
-            : ForumsGetResponseForumLinks.fromJson(const {}),
-    permissions: json['permissions'] is Map<String, dynamic>
-            ? ForumsGetResponseForumPermissions.fromJson(json['permissions'] as Map<String, dynamic>)
-            : ForumsGetResponseForumPermissions.fromJson(const {}),
-    forumIsFollowed: json['forum_is_followed'] is bool ? json['forum_is_followed'] as bool : false,
-  );
-}
-
 class ForumsGetResponse {
-  final ForumsGetResponseForum forum;
+  final RespForumModel forum;
   final RespSystemInfo systemInfo;
 
   const ForumsGetResponse({
@@ -4252,8 +4002,8 @@ class ForumsGetResponse {
 
   factory ForumsGetResponse.fromJson(Map<String, dynamic> json) => ForumsGetResponse(
     forum: json['forum'] is Map<String, dynamic>
-            ? ForumsGetResponseForum.fromJson(json['forum'] as Map<String, dynamic>)
-            : ForumsGetResponseForum.fromJson(const {}),
+            ? RespForumModel.fromJson(json['forum'] as Map<String, dynamic>)
+            : RespForumModel.fromJson(const {}),
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
             : RespSystemInfo.fromJson(const {}),
@@ -4364,7 +4114,7 @@ class ForumsFollowedParams {
 }
 
 class ForumsFollowedResponse {
-  final List<Map<String, dynamic>> forums;
+  final List<RespForumModel> forums;
   final RespSystemInfo systemInfo;
 
   const ForumsFollowedResponse({
@@ -4373,7 +4123,11 @@ class ForumsFollowedResponse {
   });
 
   factory ForumsFollowedResponse.fromJson(Map<String, dynamic> json) => ForumsFollowedResponse(
-    forums: json['forums'] is List ? (json['forums'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    forums: json['forums'] is List
+            ? (json['forums'] as List<dynamic>)
+                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
             : RespSystemInfo.fromJson(const {}),
@@ -4381,7 +4135,7 @@ class ForumsFollowedResponse {
 }
 
 class ForumsGetFeedOptionsResponse {
-  final List<Map<String, dynamic>> forums;
+  final List<RespForumModel> forums;
   final List<num> excludedForumsIds;
   final List<num> defaultExcludedForumsIds;
   final String keywords;
@@ -4396,7 +4150,11 @@ class ForumsGetFeedOptionsResponse {
   });
 
   factory ForumsGetFeedOptionsResponse.fromJson(Map<String, dynamic> json) => ForumsGetFeedOptionsResponse(
-    forums: json['forums'] is List ? (json['forums'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    forums: json['forums'] is List
+            ? (json['forums'] as List<dynamic>)
+                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     excludedForumsIds: json['excluded_forums_ids'] is List ? (json['excluded_forums_ids'] as List<dynamic>).cast<num>() : const [],
     defaultExcludedForumsIds: json['default_excluded_forums_ids'] is List ? (json['default_excluded_forums_ids'] as List<dynamic>).cast<num>() : const [],
     keywords: json['keywords'] is String ? json['keywords'] as String : '',
@@ -6868,7 +6626,7 @@ class SearchAllResponseLinks {
 }
 
 class SearchAllResponse {
-  final List<Map<String, dynamic>> data;
+  final List<RespForumModel> data;
   final num dataTotal;
   final List<RespUserModel> users;
   final SearchAllResponseLinks links;
@@ -6883,7 +6641,11 @@ class SearchAllResponse {
   });
 
   factory SearchAllResponse.fromJson(Map<String, dynamic> json) => SearchAllResponse(
-    data: json['data'] is List ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    data: json['data'] is List
+            ? (json['data'] as List<dynamic>)
+                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
     users: json['users'] is List
             ? (json['users'] as List<dynamic>)
@@ -6960,7 +6722,7 @@ class SearchThreadsResponseLinks {
 }
 
 class SearchThreadsResponse {
-  final List<Map<String, dynamic>> data;
+  final List<RespForumModel> data;
   final num dataTotal;
   final SearchThreadsResponseLinks links;
   final RespSystemInfo systemInfo;
@@ -6973,7 +6735,11 @@ class SearchThreadsResponse {
   });
 
   factory SearchThreadsResponse.fromJson(Map<String, dynamic> json) => SearchThreadsResponse(
-    data: json['data'] is List ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    data: json['data'] is List
+            ? (json['data'] as List<dynamic>)
+                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
     links: json['links'] is Map<String, dynamic>
             ? SearchThreadsResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
@@ -7045,7 +6811,7 @@ class SearchPostsResponseLinks {
 }
 
 class SearchPostsResponse {
-  final List<Map<String, dynamic>> data;
+  final List<RespPostModel> data;
   final num dataTotal;
   final SearchPostsResponseLinks links;
   final RespSystemInfo systemInfo;
@@ -7058,7 +6824,11 @@ class SearchPostsResponse {
   });
 
   factory SearchPostsResponse.fromJson(Map<String, dynamic> json) => SearchPostsResponse(
-    data: json['data'] is List ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    data: json['data'] is List
+            ? (json['data'] as List<dynamic>)
+                .map((e) => RespPostModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
     links: json['links'] is Map<String, dynamic>
             ? SearchPostsResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
@@ -7207,7 +6977,7 @@ class SearchTaggedBody {
 }
 
 class SearchTaggedResponse {
-  final List<Map<String, dynamic>> data;
+  final List<RespThreadModel> data;
   final num dataTotal;
   final dynamic searchTags;
   final RespSystemInfo systemInfo;
@@ -7220,7 +6990,11 @@ class SearchTaggedResponse {
   });
 
   factory SearchTaggedResponse.fromJson(Map<String, dynamic> json) => SearchTaggedResponse(
-    data: json['data'] is List ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    data: json['data'] is List
+            ? (json['data'] as List<dynamic>)
+                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
     searchTags: json['search_tags'],
     systemInfo: json['system_info'] is Map<String, dynamic>
@@ -7249,7 +7023,7 @@ class SearchResultsParams {
 }
 
 class SearchResultsResponse {
-  final List<Map<String, dynamic>> data;
+  final List<RespThreadModel> data;
   final num dataTotal;
   final dynamic searchTags;
   final RespSystemInfo systemInfo;
@@ -7262,7 +7036,11 @@ class SearchResultsResponse {
   });
 
   factory SearchResultsResponse.fromJson(Map<String, dynamic> json) => SearchResultsResponse(
-    data: json['data'] is List ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    data: json['data'] is List
+            ? (json['data'] as List<dynamic>)
+                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
     searchTags: json['search_tags'],
     systemInfo: json['system_info'] is Map<String, dynamic>
@@ -7274,7 +7052,7 @@ class SearchResultsResponse {
 // ─── TagsApi Types ────────────────────────────────────────
 
 class TagsPopularResponse {
-  final dynamic tags;
+  final Map<String, String> tags;
   final RespSystemInfo systemInfo;
 
   const TagsPopularResponse({
@@ -7283,7 +7061,7 @@ class TagsPopularResponse {
   });
 
   factory TagsPopularResponse.fromJson(Map<String, dynamic> json) => TagsPopularResponse(
-    tags: json['tags'],
+    tags: json['tags'] as Map<String, String>,
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
             : RespSystemInfo.fromJson(const {}),
@@ -7328,7 +7106,7 @@ class TagsListResponseLinks {
 }
 
 class TagsListResponse {
-  final dynamic tags;
+  final Map<String, String> tags;
   final num tagsTotal;
   final TagsListResponseLinks links;
   final RespSystemInfo systemInfo;
@@ -7341,7 +7119,7 @@ class TagsListResponse {
   });
 
   factory TagsListResponse.fromJson(Map<String, dynamic> json) => TagsListResponse(
-    tags: json['tags'],
+    tags: json['tags'] as Map<String, String>,
     tagsTotal: json['tags_total'] is num ? json['tags_total'] as num : 0,
     links: json['links'] is Map<String, dynamic>
             ? TagsListResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
@@ -7429,7 +7207,7 @@ class TagsGetResponseLinks {
 
 class TagsGetResponse {
   final TagsGetResponseTag tag;
-  final List<Map<String, dynamic>> tagged;
+  final List<RespThreadModel> tagged;
   final num taggedTotal;
   final TagsGetResponseLinks links;
   final RespSystemInfo systemInfo;
@@ -7446,7 +7224,11 @@ class TagsGetResponse {
     tag: json['tag'] is Map<String, dynamic>
             ? TagsGetResponseTag.fromJson(json['tag'] as Map<String, dynamic>)
             : TagsGetResponseTag.fromJson(const {}),
-    tagged: json['tagged'] is List ? (json['tagged'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    tagged: json['tagged'] is List
+            ? (json['tagged'] as List<dynamic>)
+                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     taggedTotal: json['tagged_total'] is num ? json['tagged_total'] as num : 0,
     links: json['links'] is Map<String, dynamic>
             ? TagsGetResponseLinks.fromJson(json['links'] as Map<String, dynamic>)
@@ -8429,7 +8211,7 @@ class ThreadsFollowedParams {
 }
 
 class ThreadsFollowedResponse {
-  final List<Map<String, dynamic>> threads;
+  final List<RespThreadModel> threads;
   final num threadsTotal;
   final RespSystemInfo systemInfo;
 
@@ -8440,7 +8222,11 @@ class ThreadsFollowedResponse {
   });
 
   factory ThreadsFollowedResponse.fromJson(Map<String, dynamic> json) => ThreadsFollowedResponse(
-    threads: json['threads'] is List ? (json['threads'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    threads: json['threads'] is List
+            ? (json['threads'] as List<dynamic>)
+                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : const [],
     threadsTotal: json['threads_total'] is num ? json['threads_total'] as num : 0,
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
@@ -8617,8 +8403,8 @@ class ThreadsUnreadParams {
 }
 
 class ThreadsUnreadResponse {
-  final List<RespThreadModel> threads;
-  final List<Map<String, dynamic>> data;
+  final List<Map<String, dynamic>> threads;
+  final List<RespThreadModel> data;
   final RespSystemInfo systemInfo;
 
   const ThreadsUnreadResponse({
@@ -8628,12 +8414,12 @@ class ThreadsUnreadResponse {
   });
 
   factory ThreadsUnreadResponse.fromJson(Map<String, dynamic> json) => ThreadsUnreadResponse(
-    threads: json['threads'] is List
-            ? (json['threads'] as List<dynamic>)
+    threads: json['threads'] is List ? (json['threads'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    data: json['data'] is List
+            ? (json['data'] as List<dynamic>)
                 .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
                 .toList()
             : const [],
-    data: json['data'] is List ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
             : RespSystemInfo.fromJson(const {}),
@@ -8668,8 +8454,8 @@ class ThreadsRecentParams {
 }
 
 class ThreadsRecentResponse {
-  final List<RespThreadModel> threads;
-  final List<Map<String, dynamic>> data;
+  final List<Map<String, dynamic>> threads;
+  final List<RespThreadModel> data;
   final RespSystemInfo systemInfo;
 
   const ThreadsRecentResponse({
@@ -8679,12 +8465,12 @@ class ThreadsRecentResponse {
   });
 
   factory ThreadsRecentResponse.fromJson(Map<String, dynamic> json) => ThreadsRecentResponse(
-    threads: json['threads'] is List
-            ? (json['threads'] as List<dynamic>)
+    threads: json['threads'] is List ? (json['threads'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
+    data: json['data'] is List
+            ? (json['data'] as List<dynamic>)
                 .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
                 .toList()
             : const [],
-    data: json['data'] is List ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>() : const [],
     systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(json['system_info'] as Map<String, dynamic>)
             : RespSystemInfo.fromJson(const {}),

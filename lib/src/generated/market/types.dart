@@ -460,6 +460,7 @@ enum ItemOrigin {
   personal('personal'),
   phishing('phishing'),
   resale('resale'),
+  retrieveViaSupport('retrieve_via_support'),
   selfRegistration('self_registration'),
   stealer('stealer');
 
@@ -609,6 +610,21 @@ enum OrderBy {
   priceToUp('price_to_up');
 
   const OrderBy(this.value);
+  final String value;
+}
+
+enum Origin {
+  autoreg('autoreg'),
+  brute('brute'),
+  dummy('dummy'),
+  personal('personal'),
+  phishing('phishing'),
+  resale('resale'),
+  retrieveViaSupport('retrieve_via_support'),
+  selfRegistration('self_registration'),
+  stealer('stealer');
+
+  const Origin(this.value);
   final String value;
 }
 
@@ -2625,8 +2641,7 @@ class CartGetParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -2685,7 +2700,7 @@ class CartGetParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -2831,8 +2846,7 @@ class CategoryAllParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -2889,7 +2903,7 @@ class CategoryAllParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -2969,8 +2983,7 @@ class CategorySteamParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -3308,7 +3321,7 @@ class CategorySteamParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -3490,8 +3503,7 @@ class CategoryFortniteParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -3702,7 +3714,7 @@ class CategoryFortniteParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -3840,8 +3852,7 @@ class CategoryMihoyoParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -4079,7 +4090,7 @@ class CategoryMihoyoParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -4224,8 +4235,7 @@ class CategoryRiotParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -4451,7 +4461,7 @@ class CategoryRiotParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -4592,8 +4602,7 @@ class CategoryTelegramParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -4781,7 +4790,7 @@ class CategoryTelegramParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -4911,8 +4920,7 @@ class CategorySupercellParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -5117,7 +5125,7 @@ class CategorySupercellParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -5252,8 +5260,7 @@ class CategoryEaParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -5366,7 +5373,7 @@ class CategoryEaParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -5471,8 +5478,7 @@ class CategoryWotParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -5630,7 +5636,7 @@ class CategoryWotParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -5749,8 +5755,7 @@ class CategoryWotBlitzParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -5908,7 +5913,7 @@ class CategoryWotBlitzParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -6027,8 +6032,7 @@ class CategoryGiftsParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -6092,7 +6096,7 @@ class CategoryGiftsParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -6179,8 +6183,7 @@ class CategoryEpicGamesParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -6286,7 +6289,7 @@ class CategoryEpicGamesParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -6387,8 +6390,7 @@ class CategoryEscapeFromTarkovParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -6471,7 +6473,7 @@ class CategoryEscapeFromTarkovParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -6565,8 +6567,7 @@ class CategorySocialClubParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -6647,7 +6648,7 @@ class CategorySocialClubParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -6739,8 +6740,7 @@ class CategoryUplayParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -6879,7 +6879,7 @@ class CategoryUplayParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -6993,8 +6993,7 @@ class CategoryDiscordParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -7162,7 +7161,7 @@ class CategoryDiscordParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -7286,8 +7285,7 @@ class CategoryTikTokParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -7387,7 +7385,7 @@ class CategoryTikTokParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -7487,8 +7485,7 @@ class CategoryInstagramParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -7580,7 +7577,7 @@ class CategoryInstagramParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -7677,8 +7674,7 @@ class CategoryBattleNetParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -7773,7 +7769,7 @@ class CategoryBattleNetParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -7872,8 +7868,7 @@ class CategoryChatGPTParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -7964,7 +7959,7 @@ class CategoryChatGPTParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -8061,8 +8056,7 @@ class CategoryVpnParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -8129,7 +8123,7 @@ class CategoryVpnParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -8217,8 +8211,7 @@ class CategoryRobloxParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -8375,7 +8368,7 @@ class CategoryRobloxParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -8496,8 +8489,7 @@ class CategoryWarfaceParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -8583,7 +8575,7 @@ class CategoryWarfaceParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -8677,8 +8669,7 @@ class CategoryMinecraftParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -8826,7 +8817,7 @@ class CategoryMinecraftParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -8945,8 +8936,7 @@ class CategoryHytaleParams {
   final List<num>? publicTagId;
   /// List of tag ids that won't be included (Tag list is available via $1).
   final List<num>? notPublicTagId;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   /// Search accounts of user.
@@ -9012,7 +9002,7 @@ class CategoryHytaleParams {
       'not_tag_id[]': notTagId,
       'public_tag_id[]': publicTagId,
       'not_public_tag_id[]': notPublicTagId,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'user_id': userId,
       'nsb': nsb,
@@ -9585,8 +9575,7 @@ class ListUserParams {
   final num? pmax;
   /// Login.
   final String? login;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   final OrderBy? orderBy;
@@ -9659,7 +9648,7 @@ class ListUserParams {
       'pmin': pmin,
       'pmax': pmax,
       'login': login,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'order_by': orderBy?.value,
       'sb': sb,
@@ -9741,8 +9730,7 @@ class ListOrdersParams {
   final num? pmax;
   /// Login.
   final String? login;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   final OrderBy? orderBy;
@@ -9783,7 +9771,7 @@ class ListOrdersParams {
       'pmin': pmin,
       'pmax': pmax,
       'login': login,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'order_by': orderBy?.value,
       'sb': sb,
@@ -10201,8 +10189,7 @@ class ListDownloadParams {
   final num? pmin;
   /// Maximum price of account (Inclusive).
   final num? pmax;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   final OrderBy? orderBy;
@@ -10275,7 +10262,7 @@ class ListDownloadParams {
       'title': title,
       'pmin': pmin,
       'pmax': pmax,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'order_by': orderBy?.value,
       'sb': sb,
@@ -10306,8 +10293,7 @@ class ListFavoritesParams {
   final num? pmin;
   /// Maximum price of account (Inclusive).
   final num? pmax;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   final OrderBy? orderBy;
@@ -10342,7 +10328,7 @@ class ListFavoritesParams {
       'title': title,
       'pmin': pmin,
       'pmax': pmax,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'order_by': orderBy?.value,
       'sb': sb,
@@ -10409,8 +10395,7 @@ class ListViewedParams {
   final num? pmin;
   /// Maximum price of account (Inclusive).
   final num? pmax;
-  /// List of account origins.
-  final List<String>? origin;
+  final Origin? origin;
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
   final OrderBy? orderBy;
@@ -10445,7 +10430,7 @@ class ListViewedParams {
       'title': title,
       'pmin': pmin,
       'pmax': pmax,
-      'origin[]': origin,
+      'origin[]': origin?.value,
       'not_origin[]': notOrigin,
       'order_by': orderBy?.value,
       'sb': sb,

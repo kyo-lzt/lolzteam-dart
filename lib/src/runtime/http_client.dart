@@ -21,26 +21,77 @@ class LolzteamHttpClient {
   final RateLimiter? _rateLimiter;
   final RateLimiter? _searchRateLimiter;
   final http.Client _client;
+  final HttpClient? _ioClient;
   final bool _ownsClient;
 
-  LolzteamHttpClient(ClientConfig config, {http.Client? httpClient})
-      : _baseUrl = config.baseUrl?.replaceAll(RegExp(r'/+$'), '') ??
-            (throw const ConfigException('baseUrl is required')),
-        _token = config.token,
-        _retryConfig = config.retry,
-        _timeout = config.timeout,
-        _onRetry = config.onRetry,
-        _rateLimiter = config.rateLimit != null
+  LolzteamHttpClient._({
+    required String baseUrl,
+    required String token,
+    required RetryConfig? retryConfig,
+    required Duration? timeout,
+    required OnRetryCallback? onRetry,
+    required RateLimiter? rateLimiter,
+    required RateLimiter? searchRateLimiter,
+    required http.Client client,
+    required HttpClient? ioClient,
+    required bool ownsClient,
+  })  : _baseUrl = baseUrl,
+        _token = token,
+        _retryConfig = retryConfig,
+        _timeout = timeout,
+        _onRetry = onRetry,
+        _rateLimiter = rateLimiter,
+        _searchRateLimiter = searchRateLimiter,
+        _client = client,
+        _ioClient = ioClient,
+        _ownsClient = ownsClient;
+
+  factory LolzteamHttpClient(ClientConfig config, {http.Client? httpClient}) {
+    final baseUrl = config.baseUrl?.replaceAll(RegExp(r'/+$'), '');
+    if (baseUrl == null) {
+      throw const ConfigException('baseUrl is required');
+    }
+    if (httpClient != null) {
+      return LolzteamHttpClient._(
+        baseUrl: baseUrl,
+        token: config.token,
+        retryConfig: config.retry,
+        timeout: config.timeout,
+        onRetry: config.onRetry,
+        rateLimiter: config.rateLimit != null
             ? RateLimiter(config.rateLimit!.requestsPerMinute)
             : null,
-        _searchRateLimiter = config.searchRateLimit != null
+        searchRateLimiter: config.searchRateLimit != null
             ? RateLimiter(config.searchRateLimit!.requestsPerMinute)
             : null,
-        _ownsClient = httpClient == null,
-        _client = httpClient ?? _createClient(config.proxy);
+        client: httpClient,
+        ioClient: null,
+        ownsClient: false,
+      );
+    }
+    final ioClient = _createIoClient(config.proxy, config.timeout);
+    final client =
+        ioClient != null ? IOClient(ioClient) : http.Client();
+    return LolzteamHttpClient._(
+      baseUrl: baseUrl,
+      token: config.token,
+      retryConfig: config.retry,
+      timeout: config.timeout,
+      onRetry: config.onRetry,
+      rateLimiter: config.rateLimit != null
+          ? RateLimiter(config.rateLimit!.requestsPerMinute)
+          : null,
+      searchRateLimiter: config.searchRateLimit != null
+          ? RateLimiter(config.searchRateLimit!.requestsPerMinute)
+          : null,
+      client: client,
+      ioClient: ioClient,
+      ownsClient: true,
+    );
+  }
 
-  static http.Client _createClient(ProxyConfig? proxy) {
-    if (proxy == null) return http.Client();
+  static HttpClient? _createIoClient(ProxyConfig? proxy, Duration? timeout) {
+    if (proxy == null) return null;
 
     final uri = Uri.tryParse(proxy.url);
     if (uri == null) {
@@ -55,15 +106,18 @@ class LolzteamHttpClient {
     }
 
     final port =
-        uri.hasPort ? uri.port : (scheme == 'socks5' ? 1080 : uri.port);
+        uri.hasPort ? uri.port : (scheme == 'socks5' ? 1080 : 3128);
     final ioClient = HttpClient();
+    if (timeout != null) {
+      ioClient.connectionTimeout = timeout;
+    }
     if (scheme == 'socks5') {
       SocksTCPClient.assignToHttpClient(
           ioClient, [ProxySettings(InternetAddress(uri.host), port)]);
     } else {
       ioClient.findProxy = (url) => 'PROXY ${uri.host}:$port';
     }
-    return IOClient(ioClient);
+    return ioClient;
   }
 
   Future<Map<String, dynamic>> request(RequestOptions options) async {
@@ -334,6 +388,7 @@ class LolzteamHttpClient {
   void close() {
     if (_ownsClient) {
       _client.close();
+      _ioClient?.close(force: true);
     }
   }
 }
