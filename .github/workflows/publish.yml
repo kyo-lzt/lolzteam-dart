@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   publish:
@@ -21,5 +22,3 @@ jobs:
         run: sed -i "s/^version: .*/version: ${{ env.VERSION }}/" pubspec.yaml
       - run: dart pub get
       - run: dart pub publish --force
-        env:
-          PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
