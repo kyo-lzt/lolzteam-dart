@@ -363,6 +363,7 @@ class CategoryApi {
       method: 'GET',
       path: '/category',
       query: params?.toMap(),
+      isSearch: true,
     ));
     return CategoryListResponse.fromJson(raw);
   }
@@ -371,6 +372,7 @@ class CategoryApi {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$categoryName/params',
+      isSearch: true,
     ));
     return CategoryParamsResponse.fromJson(raw);
   }
@@ -379,6 +381,7 @@ class CategoryApi {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$categoryName/games',
+      isSearch: true,
     ));
     return CategoryGamesResponse.fromJson(raw);
   }
@@ -521,7 +524,7 @@ class ManagingApi {
 
   ManagingApi(this._http);
 
-  Future<ManagingGetResponse> get(num itemId, ManagingGetParams? params) async {
+  Future<ManagingGetResponse> get(int itemId, ManagingGetParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId',
@@ -531,7 +534,7 @@ class ManagingApi {
   }
 
   Future<ManagingDeleteResponse> delete(
-      num itemId, ManagingDeleteBody? body) async {
+      int itemId, ManagingDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId',
@@ -563,7 +566,7 @@ class ManagingApi {
   }
 
   Future<ManagingSteamInventoryValueResponse> steamInventoryValue(
-      num itemId, ManagingSteamInventoryValueParams? params) async {
+      int itemId, ManagingSteamInventoryValueParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/inventory-value',
@@ -583,7 +586,7 @@ class ManagingApi {
   }
 
   Future<String> steamPreview(
-      num itemId, ManagingSteamPreviewParams? params) async {
+      int itemId, ManagingSteamPreviewParams? params) async {
     return _http.requestText(RequestOptions(
       method: 'GET',
       path: '/$itemId/steam-preview',
@@ -591,7 +594,7 @@ class ManagingApi {
     ));
   }
 
-  Future<ManagingEditResponse> edit(num itemId, ManagingEditBody? body) async {
+  Future<ManagingEditResponse> edit(int itemId, ManagingEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/$itemId/edit',
@@ -601,7 +604,7 @@ class ManagingApi {
     return ManagingEditResponse.fromJson(raw);
   }
 
-  Future<ManagingAIPriceResponse> aIPrice(num itemId) async {
+  Future<ManagingAIPriceResponse> aIPrice(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/ai-price',
@@ -609,7 +612,7 @@ class ManagingApi {
     return ManagingAIPriceResponse.fromJson(raw);
   }
 
-  Future<ManagingAutoBuyPriceResponse> autoBuyPrice(num itemId) async {
+  Future<ManagingAutoBuyPriceResponse> autoBuyPrice(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/auto-buy-price',
@@ -617,7 +620,7 @@ class ManagingApi {
     return ManagingAutoBuyPriceResponse.fromJson(raw);
   }
 
-  Future<ManagingNoteResponse> note(num itemId, ManagingNoteBody? body) async {
+  Future<ManagingNoteResponse> note(int itemId, ManagingNoteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/note-save',
@@ -628,7 +631,7 @@ class ManagingApi {
   }
 
   Future<ManagingSteamUpdateValueResponse> steamUpdateValue(
-      num itemId, ManagingSteamUpdateValueBody? body) async {
+      int itemId, ManagingSteamUpdateValueBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/update-inventory',
@@ -638,7 +641,7 @@ class ManagingApi {
     return ManagingSteamUpdateValueResponse.fromJson(raw);
   }
 
-  Future<ManagingBumpResponse> bump(num itemId) async {
+  Future<ManagingBumpResponse> bump(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/bump',
@@ -647,7 +650,7 @@ class ManagingApi {
   }
 
   Future<ManagingAutoBumpResponse> autoBump(
-      num itemId, ManagingAutoBumpBody? body) async {
+      int itemId, ManagingAutoBumpBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/auto-bump',
@@ -657,7 +660,7 @@ class ManagingApi {
     return ManagingAutoBumpResponse.fromJson(raw);
   }
 
-  Future<ManagingAutoBumpDisableResponse> autoBumpDisable(num itemId) async {
+  Future<ManagingAutoBumpDisableResponse> autoBumpDisable(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/auto-bump',
@@ -665,7 +668,7 @@ class ManagingApi {
     return ManagingAutoBumpDisableResponse.fromJson(raw);
   }
 
-  Future<ManagingOpenResponse> open(num itemId) async {
+  Future<ManagingOpenResponse> open(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/open',
@@ -673,7 +676,7 @@ class ManagingApi {
     return ManagingOpenResponse.fromJson(raw);
   }
 
-  Future<ManagingCloseResponse> close(num itemId) async {
+  Future<ManagingCloseResponse> close(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/close',
@@ -682,7 +685,7 @@ class ManagingApi {
   }
 
   Future<ManagingImageResponse> image(
-      num itemId, ManagingImageParams? params) async {
+      int itemId, ManagingImageParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/image',
@@ -691,7 +694,7 @@ class ManagingApi {
     return ManagingImageResponse.fromJson(raw);
   }
 
-  Future<ManagingEmailCodeResponse> emailCode(num itemId) async {
+  Future<ManagingEmailCodeResponse> emailCode(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/email-code',
@@ -709,7 +712,7 @@ class ManagingApi {
     return ManagingGetLetters2Response.fromJson(raw);
   }
 
-  Future<ManagingSteamGetMafileResponse> steamGetMafile(num itemId) async {
+  Future<ManagingSteamGetMafileResponse> steamGetMafile(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/mafile',
@@ -717,7 +720,7 @@ class ManagingApi {
     return ManagingSteamGetMafileResponse.fromJson(raw);
   }
 
-  Future<ManagingSteamAddMafileResponse> steamAddMafile(num itemId) async {
+  Future<ManagingSteamAddMafileResponse> steamAddMafile(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/mafile',
@@ -726,7 +729,7 @@ class ManagingApi {
   }
 
   Future<ManagingSteamRemoveMafileResponse> steamRemoveMafile(
-      num itemId) async {
+      int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/mafile',
@@ -734,7 +737,7 @@ class ManagingApi {
     return ManagingSteamRemoveMafileResponse.fromJson(raw);
   }
 
-  Future<ManagingSteamMafileCodeResponse> steamMafileCode(num itemId) async {
+  Future<ManagingSteamMafileCodeResponse> steamMafileCode(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/guard-code',
@@ -743,7 +746,7 @@ class ManagingApi {
   }
 
   Future<ManagingSteamSDAResponse> steamSDA(
-      num itemId, ManagingSteamSDABody? body) async {
+      int itemId, ManagingSteamSDABody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/confirm-sda',
@@ -753,7 +756,7 @@ class ManagingApi {
     return ManagingSteamSDAResponse.fromJson(raw);
   }
 
-  Future<ManagingTelegramCodeResponse> telegramCode(num itemId) async {
+  Future<ManagingTelegramCodeResponse> telegramCode(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/telegram-login-code',
@@ -762,7 +765,7 @@ class ManagingApi {
   }
 
   Future<ManagingTelegramResetAuthResponse> telegramResetAuth(
-      num itemId) async {
+      int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/telegram-reset-authorizations',
@@ -770,7 +773,7 @@ class ManagingApi {
     return ManagingTelegramResetAuthResponse.fromJson(raw);
   }
 
-  Future<ManagingRefuseGuaranteeResponse> refuseGuarantee(num itemId) async {
+  Future<ManagingRefuseGuaranteeResponse> refuseGuarantee(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/refuse-guarantee',
@@ -779,7 +782,7 @@ class ManagingApi {
   }
 
   Future<ManagingDeclineVideoRecordingResponse> declineVideoRecording(
-      num itemId, ManagingDeclineVideoRecordingBody? body) async {
+      int itemId, ManagingDeclineVideoRecordingBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/decline-video-recording',
@@ -789,7 +792,7 @@ class ManagingApi {
     return ManagingDeclineVideoRecordingResponse.fromJson(raw);
   }
 
-  Future<ManagingCheckGuaranteeResponse> checkGuarantee(num itemId) async {
+  Future<ManagingCheckGuaranteeResponse> checkGuarantee(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/check-guarantee',
@@ -798,7 +801,7 @@ class ManagingApi {
   }
 
   Future<ManagingChangePasswordResponse> changePassword(
-      num itemId, ManagingChangePasswordBody? body) async {
+      int itemId, ManagingChangePasswordBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/change-password',
@@ -809,7 +812,7 @@ class ManagingApi {
   }
 
   Future<ManagingTempEmailPasswordResponse> tempEmailPassword(
-      num itemId) async {
+      int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/$itemId/temp-email-password',
@@ -817,7 +820,7 @@ class ManagingApi {
     return ManagingTempEmailPasswordResponse.fromJson(raw);
   }
 
-  Future<ManagingTagResponse> tag(num itemId, ManagingTagBody? body) async {
+  Future<ManagingTagResponse> tag(int itemId, ManagingTagBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/tag',
@@ -828,7 +831,7 @@ class ManagingApi {
   }
 
   Future<ManagingUntagResponse> untag(
-      num itemId, ManagingUntagBody? body) async {
+      int itemId, ManagingUntagBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/tag',
@@ -839,7 +842,7 @@ class ManagingApi {
   }
 
   Future<ManagingPublicTagResponse> publicTag(
-      num itemId, ManagingPublicTagBody? body) async {
+      int itemId, ManagingPublicTagBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/public-tag',
@@ -850,7 +853,7 @@ class ManagingApi {
   }
 
   Future<ManagingPublicUntagResponse> publicUntag(
-      num itemId, ManagingPublicUntagBody? body) async {
+      int itemId, ManagingPublicUntagBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/public-tag',
@@ -860,7 +863,7 @@ class ManagingApi {
     return ManagingPublicUntagResponse.fromJson(raw);
   }
 
-  Future<ManagingFavoriteResponse> favorite(num itemId) async {
+  Future<ManagingFavoriteResponse> favorite(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/star',
@@ -868,7 +871,7 @@ class ManagingApi {
     return ManagingFavoriteResponse.fromJson(raw);
   }
 
-  Future<ManagingUnfavoriteResponse> unfavorite(num itemId) async {
+  Future<ManagingUnfavoriteResponse> unfavorite(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/star',
@@ -876,7 +879,7 @@ class ManagingApi {
     return ManagingUnfavoriteResponse.fromJson(raw);
   }
 
-  Future<ManagingStickResponse> stick(num itemId) async {
+  Future<ManagingStickResponse> stick(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/stick',
@@ -884,7 +887,7 @@ class ManagingApi {
     return ManagingStickResponse.fromJson(raw);
   }
 
-  Future<ManagingUnstickResponse> unstick(num itemId) async {
+  Future<ManagingUnstickResponse> unstick(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/stick',
@@ -893,7 +896,7 @@ class ManagingApi {
   }
 
   Future<ManagingTransferResponse> transfer(
-      num itemId, ManagingTransferBody? body) async {
+      int itemId, ManagingTransferBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/change-owner',
@@ -1119,7 +1122,7 @@ class PublishingApi {
   }
 
   Future<PublishingCheckResponse> check(
-      num itemId, PublishingCheckBody? body) async {
+      int itemId, PublishingCheckBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/goods/check',
@@ -1130,7 +1133,7 @@ class PublishingApi {
   }
 
   Future<PublishingExternalResponse> external(
-      num itemId, PublishingExternalBody? body) async {
+      int itemId, PublishingExternalBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/external-account',
@@ -1147,7 +1150,7 @@ class PurchasingApi {
   PurchasingApi(this._http);
 
   Future<PurchasingFastBuyResponse> fastBuy(
-      num itemId, PurchasingFastBuyBody? body) async {
+      int itemId, PurchasingFastBuyBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/fast-buy',
@@ -1157,7 +1160,7 @@ class PurchasingApi {
     return PurchasingFastBuyResponse.fromJson(raw);
   }
 
-  Future<PurchasingCheckResponse> check(num itemId) async {
+  Future<PurchasingCheckResponse> check(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/check-account',
@@ -1166,7 +1169,7 @@ class PurchasingApi {
   }
 
   Future<PurchasingConfirmResponse> confirm(
-      num itemId, PurchasingConfirmBody? body) async {
+      int itemId, PurchasingConfirmBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/confirm-buy',
@@ -1177,7 +1180,7 @@ class PurchasingApi {
   }
 
   Future<PurchasingDiscountRequestResponse> discountRequest(
-      num itemId, PurchasingDiscountRequestBody? body) async {
+      int itemId, PurchasingDiscountRequestBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/$itemId/discount',
@@ -1187,7 +1190,7 @@ class PurchasingApi {
     return PurchasingDiscountRequestResponse.fromJson(raw);
   }
 
-  Future<PurchasingDiscountCancelResponse> discountCancel(num itemId) async {
+  Future<PurchasingDiscountCancelResponse> discountCancel(int itemId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/$itemId/discount',

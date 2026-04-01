@@ -945,13 +945,13 @@ enum XboxLinkable {
 // ─── Component Schemas ────────────────────────────────────────
 
 class DiscountModel {
-  final num categoryId;
-  final num discountId;
-  final num discountPercent;
-  final num discountUserId;
-  final num maxPrice;
-  final num minPrice;
-  final num userId;
+  final int categoryId;
+  final int discountId;
+  final int discountPercent;
+  final int discountUserId;
+  final int maxPrice;
+  final int minPrice;
+  final int userId;
 
   const DiscountModel({
     required this.categoryId,
@@ -964,17 +964,57 @@ class DiscountModel {
   });
 
   factory DiscountModel.fromJson(Map<String, dynamic> json) => DiscountModel(
-        categoryId: json['category_id'] is num ? json['category_id'] as num : 0,
-        discountId: json['discount_id'] is num ? json['discount_id'] as num : 0,
-        discountPercent: json['discount_percent'] is num
-            ? json['discount_percent'] as num
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        discountId: json['discount_id'] is int ? json['discount_id'] as int : 0,
+        discountPercent: json['discount_percent'] is int
+            ? json['discount_percent'] as int
             : 0,
-        discountUserId: json['discount_user_id'] is num
-            ? json['discount_user_id'] as num
+        discountUserId: json['discount_user_id'] is int
+            ? json['discount_user_id'] as int
             : 0,
-        maxPrice: json['max_price'] is num ? json['max_price'] as num : 0,
-        minPrice: json['min_price'] is num ? json['min_price'] as num : 0,
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        maxPrice: json['max_price'] is int ? json['max_price'] as int : 0,
+        minPrice: json['min_price'] is int ? json['min_price'] as int : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+      );
+}
+
+class UserModelBalances {
+  final String balance;
+  final int balanceId;
+  final num convertedBalance;
+  final dynamic customTitle;
+  final String fullTitle;
+  final int merchantId;
+  final String title;
+  final String type;
+  final int userId;
+
+  const UserModelBalances({
+    required this.balance,
+    required this.balanceId,
+    required this.convertedBalance,
+    required this.customTitle,
+    required this.fullTitle,
+    required this.merchantId,
+    required this.title,
+    required this.type,
+    required this.userId,
+  });
+
+  factory UserModelBalances.fromJson(Map<String, dynamic> json) =>
+      UserModelBalances(
+        balance: json['balance'] is String ? json['balance'] as String : '',
+        balanceId: json['balance_id'] is int ? json['balance_id'] as int : 0,
+        convertedBalance: json['convertedBalance'] is num
+            ? json['convertedBalance'] as num
+            : 0,
+        customTitle: json['custom_title'],
+        fullTitle:
+            json['fullTitle'] is String ? json['fullTitle'] as String : '',
+        merchantId: json['merchant_id'] is int ? json['merchant_id'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        type: json['type'] is String ? json['type'] as String : '',
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
       );
 }
 
@@ -1075,9 +1115,9 @@ class UserModelCustomFields {
 }
 
 class UserModelDob {
-  final num year;
-  final num month;
-  final num day;
+  final int year;
+  final int month;
+  final int day;
 
   const UserModelDob({
     required this.year,
@@ -1086,16 +1126,16 @@ class UserModelDob {
   });
 
   factory UserModelDob.fromJson(Map<String, dynamic> json) => UserModelDob(
-        year: json['year'] is num ? json['year'] as num : 0,
-        month: json['month'] is num ? json['month'] as num : 0,
-        day: json['day'] is num ? json['day'] as num : 0,
+        year: json['year'] is int ? json['year'] as int : 0,
+        month: json['month'] is int ? json['month'] as int : 0,
+        day: json['day'] is int ? json['day'] as int : 0,
       );
 }
 
 class UserModelImapDataDomainZone {
   final String domain;
   final String imapServer;
-  final num port;
+  final int port;
   final bool secure;
 
   const UserModelImapDataDomainZone({
@@ -1110,7 +1150,7 @@ class UserModelImapDataDomainZone {
         domain: json['domain'] is String ? json['domain'] as String : '',
         imapServer:
             json['imap_server'] is String ? json['imap_server'] as String : '',
-        port: json['port'] is num ? json['port'] as num : 0,
+        port: json['port'] is int ? json['port'] as int : 0,
         secure: json['secure'] is bool ? json['secure'] as bool : false,
       );
 }
@@ -1128,6 +1168,27 @@ class UserModelImapData {
             ? UserModelImapDataDomainZone.fromJson(
                 json['domain.zone'] as Map<String, dynamic>)
             : UserModelImapDataDomainZone.fromJson(const {}),
+      );
+}
+
+class UserModelPublicTags {
+  final String backgroundColor;
+  final int tagId;
+  final String title;
+
+  const UserModelPublicTags({
+    required this.backgroundColor,
+    required this.tagId,
+    required this.title,
+  });
+
+  factory UserModelPublicTags.fromJson(Map<String, dynamic> json) =>
+      UserModelPublicTags(
+        backgroundColor: json['background_color'] is String
+            ? json['background_color'] as String
+            : '',
+        tagId: json['tag_id'] is int ? json['tag_id'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
       );
 }
 
@@ -1194,6 +1255,33 @@ class UserModelRendered {
       );
 }
 
+class UserModelTags {
+  final int tagId;
+  final String title;
+  final bool isDefault;
+  final bool forOwnedAccountsOnly;
+  final String bc;
+
+  const UserModelTags({
+    required this.tagId,
+    required this.title,
+    required this.isDefault,
+    required this.forOwnedAccountsOnly,
+    required this.bc,
+  });
+
+  factory UserModelTags.fromJson(Map<String, dynamic> json) => UserModelTags(
+        tagId: json['tag_id'] is int ? json['tag_id'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        isDefault:
+            json['isDefault'] is bool ? json['isDefault'] as bool : false,
+        forOwnedAccountsOnly: json['forOwnedAccountsOnly'] is bool
+            ? json['forOwnedAccountsOnly'] as bool
+            : false,
+        bc: json['bc'] is String ? json['bc'] as String : '',
+      );
+}
+
 class UserModelTelegramClient {
   final String telegramApiId;
   final String telegramApiHash;
@@ -1245,12 +1333,12 @@ class UserModelTelegramClient {
 }
 
 class UserModel {
-  final num activeItemsCount;
+  final int activeItemsCount;
   final bool activityVisible;
-  final num age;
+  final int age;
   final String balance;
-  final List<Map<String, dynamic>> balances;
-  final num bumpItemPeriod;
+  final List<UserModelBalances> balances;
+  final int bumpItemPeriod;
   final bool canEdit;
   final bool canFollow;
   final bool canIgnore;
@@ -1258,17 +1346,17 @@ class UserModel {
   final bool canViewProfile;
   final bool canViewProfilePosts;
   final bool canWarn;
-  final num contestCount;
+  final int contestCount;
   final String convWelcomeMessage;
-  final num convertedBalance;
-  final num convertedDeposit;
-  final num convertedHold;
+  final int convertedBalance;
+  final int convertedDeposit;
+  final int convertedHold;
   final String currency;
   final String currencyPhrase;
   final String customAccountDownloadFormat;
   final UserModelCustomFields customFields;
   final String customTitle;
-  final num deposit;
+  final int deposit;
   final UserModelDob dob;
   final dynamic feedbackData;
   final String hold;
@@ -1281,32 +1369,32 @@ class UserModel {
   final bool isModerator;
   final bool isStaff;
   final bool isSuperAdmin;
-  final num joinedDate;
-  final num lastActivity;
-  final num like2Count;
-  final num likeCount;
+  final int joinedDate;
+  final int lastActivity;
+  final int like2Count;
+  final int likeCount;
   final String location;
   final String marketCustomTitle;
-  final num maxDiscountPercent;
-  final num messageCount;
-  final num paidMailLeft;
-  final List<Map<String, dynamic>> publicTags;
-  final num registerDate;
+  final int maxDiscountPercent;
+  final int messageCount;
+  final int paidMailLeft;
+  final List<UserModelPublicTags> publicTags;
+  final int registerDate;
   final UserModelRendered rendered;
-  final num restoreCount;
+  final int restoreCount;
   final dynamic restoreData;
   final String shortLink;
-  final num soldItemsCount;
-  final List<Map<String, dynamic>> tags;
+  final int soldItemsCount;
+  final List<UserModelTags> tags;
   final UserModelTelegramClient telegramClient;
-  final num trophyPoints;
+  final int trophyPoints;
   final bool userAllowAskDiscount;
-  final num userId;
+  final int userId;
   final String userTitle;
   final String username;
   final String viewUrl;
   final bool visible;
-  final num warningPoints;
+  final int warningPoints;
 
   const UserModel({
     required this.activeItemsCount,
@@ -1374,21 +1462,22 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        activeItemsCount: json['active_items_count'] is num
-            ? json['active_items_count'] as num
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
             : 0,
         activityVisible: json['activity_visible'] is bool
             ? json['activity_visible'] as bool
             : false,
-        age: json['age'] is num ? json['age'] as num : 0,
+        age: json['age'] is int ? json['age'] as int : 0,
         balance: json['balance'] is String ? json['balance'] as String : '',
         balances: json['balances'] is List
             ? (json['balances'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => UserModelBalances.fromJson(e))
                 .toList()
             : const [],
-        bumpItemPeriod: json['bump_item_period'] is num
-            ? json['bump_item_period'] as num
+        bumpItemPeriod: json['bump_item_period'] is int
+            ? json['bump_item_period'] as int
             : 0,
         canEdit: json['can_edit'] is bool ? json['can_edit'] as bool : false,
         canFollow:
@@ -1406,18 +1495,18 @@ class UserModel {
             : false,
         canWarn: json['can_warn'] is bool ? json['can_warn'] as bool : false,
         contestCount:
-            json['contest_count'] is num ? json['contest_count'] as num : 0,
+            json['contest_count'] is int ? json['contest_count'] as int : 0,
         convWelcomeMessage: json['conv_welcome_message'] is String
             ? json['conv_welcome_message'] as String
             : '',
-        convertedBalance: json['convertedBalance'] is num
-            ? json['convertedBalance'] as num
+        convertedBalance: json['convertedBalance'] is int
+            ? json['convertedBalance'] as int
             : 0,
-        convertedDeposit: json['convertedDeposit'] is num
-            ? json['convertedDeposit'] as num
+        convertedDeposit: json['convertedDeposit'] is int
+            ? json['convertedDeposit'] as int
             : 0,
         convertedHold:
-            json['convertedHold'] is num ? json['convertedHold'] as num : 0,
+            json['convertedHold'] is int ? json['convertedHold'] as int : 0,
         currency: json['currency'] is String ? json['currency'] as String : '',
         currencyPhrase: json['currencyPhrase'] is String
             ? json['currencyPhrase'] as String
@@ -1433,7 +1522,7 @@ class UserModel {
         customTitle: json['custom_title'] is String
             ? json['custom_title'] as String
             : '',
-        deposit: json['deposit'] is num ? json['deposit'] as num : 0,
+        deposit: json['deposit'] is int ? json['deposit'] as int : 0,
         dob: json['dob'] is Map<String, dynamic>
             ? UserModelDob.fromJson(json['dob'] as Map<String, dynamic>)
             : UserModelDob.fromJson(const {}),
@@ -1456,44 +1545,46 @@ class UserModel {
         isSuperAdmin: json['is_super_admin'] is bool
             ? json['is_super_admin'] as bool
             : false,
-        joinedDate: json['joined_date'] is num ? json['joined_date'] as num : 0,
+        joinedDate: json['joined_date'] is int ? json['joined_date'] as int : 0,
         lastActivity:
-            json['last_activity'] is num ? json['last_activity'] as num : 0,
-        like2Count: json['like2_count'] is num ? json['like2_count'] as num : 0,
-        likeCount: json['like_count'] is num ? json['like_count'] as num : 0,
+            json['last_activity'] is int ? json['last_activity'] as int : 0,
+        like2Count: json['like2_count'] is int ? json['like2_count'] as int : 0,
+        likeCount: json['like_count'] is int ? json['like_count'] as int : 0,
         location: json['location'] is String ? json['location'] as String : '',
         marketCustomTitle: json['market_custom_title'] is String
             ? json['market_custom_title'] as String
             : '',
-        maxDiscountPercent: json['max_discount_percent'] is num
-            ? json['max_discount_percent'] as num
+        maxDiscountPercent: json['max_discount_percent'] is int
+            ? json['max_discount_percent'] as int
             : 0,
         messageCount:
-            json['message_count'] is num ? json['message_count'] as num : 0,
+            json['message_count'] is int ? json['message_count'] as int : 0,
         paidMailLeft:
-            json['paid_mail_left'] is num ? json['paid_mail_left'] as num : 0,
+            json['paid_mail_left'] is int ? json['paid_mail_left'] as int : 0,
         publicTags: json['public_tags'] is List
             ? (json['public_tags'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => UserModelPublicTags.fromJson(e))
                 .toList()
             : const [],
         registerDate:
-            json['register_date'] is num ? json['register_date'] as num : 0,
+            json['register_date'] is int ? json['register_date'] as int : 0,
         rendered: json['rendered'] is Map<String, dynamic>
             ? UserModelRendered.fromJson(
                 json['rendered'] as Map<String, dynamic>)
             : UserModelRendered.fromJson(const {}),
         restoreCount:
-            json['restore_count'] is num ? json['restore_count'] as num : 0,
+            json['restore_count'] is int ? json['restore_count'] as int : 0,
         restoreData: json['restore_data'],
         shortLink:
             json['short_link'] is String ? json['short_link'] as String : '',
-        soldItemsCount: json['sold_items_count'] is num
-            ? json['sold_items_count'] as num
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
             : 0,
         tags: json['tags'] is List
             ? (json['tags'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => UserModelTags.fromJson(e))
                 .toList()
             : const [],
         telegramClient: json['telegram_client'] is Map<String, dynamic>
@@ -1501,30 +1592,30 @@ class UserModel {
                 json['telegram_client'] as Map<String, dynamic>)
             : UserModelTelegramClient.fromJson(const {}),
         trophyPoints:
-            json['trophy_points'] is num ? json['trophy_points'] as num : 0,
+            json['trophy_points'] is int ? json['trophy_points'] as int : 0,
         userAllowAskDiscount: json['user_allow_ask_discount'] is bool
             ? json['user_allow_ask_discount'] as bool
             : false,
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         userTitle:
             json['user_title'] is String ? json['user_title'] as String : '',
         username: json['username'] is String ? json['username'] as String : '',
         viewUrl: json['view_url'] is String ? json['view_url'] as String : '',
         visible: json['visible'] is bool ? json['visible'] as bool : false,
         warningPoints:
-            json['warning_points'] is num ? json['warning_points'] as num : 0,
+            json['warning_points'] is int ? json['warning_points'] as int : 0,
       );
 }
 
 class BalanceModel {
   final String balance;
-  final num balanceId;
+  final int balanceId;
   final dynamic customTitle;
   final String fullTitle;
-  final num merchantId;
+  final int merchantId;
   final String title;
   final String type;
-  final num userId;
+  final int userId;
 
   const BalanceModel({
     required this.balance,
@@ -1539,14 +1630,14 @@ class BalanceModel {
 
   factory BalanceModel.fromJson(Map<String, dynamic> json) => BalanceModel(
         balance: json['balance'] is String ? json['balance'] as String : '',
-        balanceId: json['balance_id'] is num ? json['balance_id'] as num : 0,
+        balanceId: json['balance_id'] is int ? json['balance_id'] as int : 0,
         customTitle: json['custom_title'],
         fullTitle:
             json['fullTitle'] is String ? json['fullTitle'] as String : '',
-        merchantId: json['merchant_id'] is num ? json['merchant_id'] as num : 0,
+        merchantId: json['merchant_id'] is int ? json['merchant_id'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         type: json['type'] is String ? json['type'] as String : '',
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
       );
 }
 
@@ -1561,16 +1652,16 @@ class ExtraModel {
   final bool? loginWithoutCookies;
   final bool? cookieLogin;
   final String? mfaFile;
-  final num? dota2Mmr;
+  final int? dota2Mmr;
   final bool? eaGames;
   final bool? uplayGames;
   final bool? theQuarry;
   final bool? warframe;
   final bool? ark;
   final bool? arkAscended;
-  final num? genshinCurrency;
-  final num? honkaiCurrency;
-  final num? zenlessCurrency;
+  final int? genshinCurrency;
+  final int? honkaiCurrency;
+  final int? zenlessCurrency;
   final String? password;
   final String? telegramClient;
   final String? telegramJson;
@@ -1624,7 +1715,7 @@ class ExtraModel {
         cookieLogin:
             json['cookie_login'] is bool ? json['cookie_login'] as bool : null,
         mfaFile: json['mfa_file'] is String ? json['mfa_file'] as String : null,
-        dota2Mmr: json['dota2_mmr'] is num ? json['dota2_mmr'] as num : null,
+        dota2Mmr: json['dota2_mmr'] is int ? json['dota2_mmr'] as int : null,
         eaGames: json['ea_games'] is bool ? json['ea_games'] as bool : null,
         uplayGames:
             json['uplay_games'] is bool ? json['uplay_games'] as bool : null,
@@ -1634,14 +1725,14 @@ class ExtraModel {
         ark: json['ark'] is bool ? json['ark'] as bool : null,
         arkAscended:
             json['ark_ascended'] is bool ? json['ark_ascended'] as bool : null,
-        genshinCurrency: json['genshin_currency'] is num
-            ? json['genshin_currency'] as num
+        genshinCurrency: json['genshin_currency'] is int
+            ? json['genshin_currency'] as int
             : null,
-        honkaiCurrency: json['honkai_currency'] is num
-            ? json['honkai_currency'] as num
+        honkaiCurrency: json['honkai_currency'] is int
+            ? json['honkai_currency'] as int
             : null,
-        zenlessCurrency: json['zenless_currency'] is num
-            ? json['zenless_currency'] as num
+        zenlessCurrency: json['zenless_currency'] is int
+            ? json['zenless_currency'] as int
             : null,
         password:
             json['password'] is String ? json['password'] as String : null,
@@ -1663,7 +1754,7 @@ class ExtraModel {
 
 class ConfirmationCodeModelCodeData {
   final String code;
-  final num date;
+  final int date;
   final String textPlain;
 
   const ConfirmationCodeModelCodeData({
@@ -1675,7 +1766,7 @@ class ConfirmationCodeModelCodeData {
   factory ConfirmationCodeModelCodeData.fromJson(Map<String, dynamic> json) =>
       ConfirmationCodeModelCodeData(
         code: json['code'] is String ? json['code'] as String : '',
-        date: json['date'] is num ? json['date'] as num : 0,
+        date: json['date'] is int ? json['date'] as int : 0,
         textPlain:
             json['textPlain'] is String ? json['textPlain'] as String : '',
       );
@@ -1704,11 +1795,11 @@ class ConfirmationCodeModel {
 
 class ItemListModel {
   final List<ItemFromListModel> items;
-  final num totalItems;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final String searchUrl;
   final List<ItemFromListModel> stickyItems;
   final RespSystemInfo systemInfo;
@@ -1732,12 +1823,12 @@ class ItemListModel {
                 .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -1783,15 +1874,15 @@ class ItemFromListModelBumpSettings {
 }
 
 class ItemFromListModelSeller {
-  final num? userId;
-  final num? soldItemsCount;
-  final num? activeItemCount;
+  final int? userId;
+  final int? soldItemsCount;
+  final int? activeItemCount;
   final String? restoreData;
   final String? username;
-  final num? avatarDate;
-  final num? isBanned;
-  final num? displayStyleGroupId;
-  final num? restorePercents;
+  final int? avatarDate;
+  final int? isBanned;
+  final int? displayStyleGroupId;
+  final int? restorePercents;
 
   const ItemFromListModelSeller({
     this.userId,
@@ -1807,12 +1898,12 @@ class ItemFromListModelSeller {
 
   factory ItemFromListModelSeller.fromJson(Map<String, dynamic> json) =>
       ItemFromListModelSeller(
-        userId: json['user_id'] is num ? json['user_id'] as num : null,
-        soldItemsCount: json['sold_items_count'] is num
-            ? json['sold_items_count'] as num
+        userId: json['user_id'] is int ? json['user_id'] as int : null,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
             : null,
-        activeItemCount: json['active_item_count'] is num
-            ? json['active_item_count'] as num
+        activeItemCount: json['active_item_count'] is int
+            ? json['active_item_count'] as int
             : null,
         restoreData: json['restore_data'] is String
             ? json['restore_data'] as String
@@ -1820,38 +1911,38 @@ class ItemFromListModelSeller {
         username:
             json['username'] is String ? json['username'] as String : null,
         avatarDate:
-            json['avatar_date'] is num ? json['avatar_date'] as num : null,
-        isBanned: json['is_banned'] is num ? json['is_banned'] as num : null,
-        displayStyleGroupId: json['display_style_group_id'] is num
-            ? json['display_style_group_id'] as num
+            json['avatar_date'] is int ? json['avatar_date'] as int : null,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : null,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
             : null,
-        restorePercents: json['restore_percents'] is num
-            ? json['restore_percents'] as num
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
             : null,
       );
 }
 
 class ItemFromListModel {
-  final num? itemId;
+  final int? itemId;
   final String? itemState;
-  final num? categoryId;
-  final num? publishedDate;
+  final int? categoryId;
+  final int? publishedDate;
   final String? title;
   final String? description;
-  final num? price;
-  final num? updateStatDate;
-  final num? refreshedDate;
-  final num? viewCount;
-  final num? isSticky;
+  final int? price;
+  final int? updateStatDate;
+  final int? refreshedDate;
+  final int? viewCount;
+  final int? isSticky;
   final String? itemOrigin;
-  final num? extendedGuarantee;
-  final num? nsb;
-  final num? allowAskDiscount;
+  final int? extendedGuarantee;
+  final int? nsb;
+  final int? allowAskDiscount;
   final String? titleEn;
   final String? descriptionEn;
   final String? itemDomain;
   final String? resaleItemOrigin;
-  final num? isIgnored;
+  final int? isIgnored;
   final bool? guarantee;
   final bool? canViewLoginData;
   final bool? canUpdateItemStats;
@@ -1866,7 +1957,7 @@ class ItemFromListModel {
   final ItemFromListModelBumpSettings? bumpSettings;
   final bool? canBumpItem;
   final bool? canBuyItem;
-  final num? rubPrice;
+  final int? rubPrice;
   final String? priceCurrency;
   final bool? canValidateAccount;
   final bool? canResellItemAfterPurchase;
@@ -1928,36 +2019,36 @@ class ItemFromListModel {
 
   factory ItemFromListModel.fromJson(Map<String, dynamic> json) =>
       ItemFromListModel(
-        itemId: json['item_id'] is num ? json['item_id'] as num : null,
+        itemId: json['item_id'] is int ? json['item_id'] as int : null,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : null,
         categoryId:
-            json['category_id'] is num ? json['category_id'] as num : null,
-        publishedDate: json['published_date'] is num
-            ? json['published_date'] as num
+            json['category_id'] is int ? json['category_id'] as int : null,
+        publishedDate: json['published_date'] is int
+            ? json['published_date'] as int
             : null,
         title: json['title'] is String ? json['title'] as String : null,
         description: json['description'] is String
             ? json['description'] as String
             : null,
-        price: json['price'] is num ? json['price'] as num : null,
-        updateStatDate: json['update_stat_date'] is num
-            ? json['update_stat_date'] as num
+        price: json['price'] is int ? json['price'] as int : null,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
             : null,
-        refreshedDate: json['refreshed_date'] is num
-            ? json['refreshed_date'] as num
+        refreshedDate: json['refreshed_date'] is int
+            ? json['refreshed_date'] as int
             : null,
-        viewCount: json['view_count'] is num ? json['view_count'] as num : null,
-        isSticky: json['is_sticky'] is num ? json['is_sticky'] as num : null,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : null,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : null,
         itemOrigin: json['item_origin'] is String
             ? json['item_origin'] as String
             : null,
-        extendedGuarantee: json['extended_guarantee'] is num
-            ? json['extended_guarantee'] as num
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
             : null,
-        nsb: json['nsb'] is num ? json['nsb'] as num : null,
-        allowAskDiscount: json['allow_ask_discount'] is num
-            ? json['allow_ask_discount'] as num
+        nsb: json['nsb'] is int ? json['nsb'] as int : null,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
             : null,
         titleEn: json['title_en'] is String ? json['title_en'] as String : null,
         descriptionEn: json['description_en'] is String
@@ -1969,7 +2060,7 @@ class ItemFromListModel {
         resaleItemOrigin: json['resale_item_origin'] is String
             ? json['resale_item_origin'] as String
             : null,
-        isIgnored: json['isIgnored'] is num ? json['isIgnored'] as num : null,
+        isIgnored: json['isIgnored'] is int ? json['isIgnored'] as int : null,
         guarantee: json['guarantee'] is bool ? json['guarantee'] as bool : null,
         canViewLoginData: json['canViewLoginData'] is bool
             ? json['canViewLoginData'] as bool
@@ -2005,7 +2096,7 @@ class ItemFromListModel {
             json['canBumpItem'] is bool ? json['canBumpItem'] as bool : null,
         canBuyItem:
             json['canBuyItem'] is bool ? json['canBuyItem'] as bool : null,
-        rubPrice: json['rub_price'] is num ? json['rub_price'] as num : null,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : null,
         priceCurrency: json['price_currency'] is String
             ? json['price_currency'] as String
             : null,
@@ -2040,13 +2131,13 @@ class ItemFromListModel {
 }
 
 class ItemModelGuarantee {
-  final num duration;
+  final int duration;
   final String class$;
   final String durationPhrase;
-  final num endDate;
+  final int endDate;
   final bool active;
   final bool cancelled;
-  final num remainingTime;
+  final int remainingTime;
   final String remainingTimePhrase;
   final String cancelledReason;
   final String cancelledReasonPhrase;
@@ -2066,17 +2157,17 @@ class ItemModelGuarantee {
 
   factory ItemModelGuarantee.fromJson(Map<String, dynamic> json) =>
       ItemModelGuarantee(
-        duration: json['duration'] is num ? json['duration'] as num : 0,
+        duration: json['duration'] is int ? json['duration'] as int : 0,
         class$: json['class'] is String ? json['class'] as String : '',
         durationPhrase: json['durationPhrase'] is String
             ? json['durationPhrase'] as String
             : '',
-        endDate: json['endDate'] is num ? json['endDate'] as num : 0,
+        endDate: json['endDate'] is int ? json['endDate'] as int : 0,
         active: json['active'] is bool ? json['active'] as bool : false,
         cancelled:
             json['cancelled'] is bool ? json['cancelled'] as bool : false,
         remainingTime:
-            json['remainingTime'] is num ? json['remainingTime'] as num : 0,
+            json['remainingTime'] is int ? json['remainingTime'] as int : 0,
         remainingTimePhrase: json['remainingTimePhrase'] is String
             ? json['remainingTimePhrase'] as String
             : '',
@@ -2146,16 +2237,16 @@ class ItemModelCopyFormatData {
 }
 
 class ItemModelBuyer {
-  final num userId;
-  final num operationDate;
+  final int userId;
+  final int operationDate;
   final bool visitorIsBuyer;
   final String username;
-  final num isBanned;
-  final num displayStyleGroupId;
-  final num displayIconGroupId;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int displayIconGroupId;
   final String uniqUsernameCss;
   final String uniqBanner;
-  final num userGroupId;
+  final int userGroupId;
 
   const ItemModelBuyer({
     required this.userId,
@@ -2171,19 +2262,19 @@ class ItemModelBuyer {
   });
 
   factory ItemModelBuyer.fromJson(Map<String, dynamic> json) => ItemModelBuyer(
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         operationDate:
-            json['operation_date'] is num ? json['operation_date'] as num : 0,
+            json['operation_date'] is int ? json['operation_date'] as int : 0,
         visitorIsBuyer: json['visitorIsBuyer'] is bool
             ? json['visitorIsBuyer'] as bool
             : false,
         username: json['username'] is String ? json['username'] as String : '',
-        isBanned: json['is_banned'] is num ? json['is_banned'] as num : 0,
-        displayStyleGroupId: json['display_style_group_id'] is num
-            ? json['display_style_group_id'] as num
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
             : 0,
-        displayIconGroupId: json['display_icon_group_id'] is num
-            ? json['display_icon_group_id'] as num
+        displayIconGroupId: json['display_icon_group_id'] is int
+            ? json['display_icon_group_id'] as int
             : 0,
         uniqUsernameCss: json['uniq_username_css'] is String
             ? json['uniq_username_css'] as String
@@ -2191,7 +2282,27 @@ class ItemModelBuyer {
         uniqBanner:
             json['uniq_banner'] is String ? json['uniq_banner'] as String : '',
         userGroupId:
-            json['user_group_id'] is num ? json['user_group_id'] as num : 0,
+            json['user_group_id'] is int ? json['user_group_id'] as int : 0,
+      );
+}
+
+class ItemModelAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const ItemModelAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory ItemModelAccountLinks.fromJson(Map<String, dynamic> json) =>
+      ItemModelAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
       );
 }
 
@@ -2237,6 +2348,25 @@ class ItemModelCustomFields {
         steam: json['steam'] is String ? json['steam'] as String : '',
         telegram: json['telegram'] is String ? json['telegram'] as String : '',
         vk: json['vk'] is String ? json['vk'] as String : '',
+      );
+}
+
+class ItemModelExtraPrices {
+  final String currency;
+  final String price;
+  final num priceValue;
+
+  const ItemModelExtraPrices({
+    required this.currency,
+    required this.price,
+    required this.priceValue,
+  });
+
+  factory ItemModelExtraPrices.fromJson(Map<String, dynamic> json) =>
+      ItemModelExtraPrices(
+        currency: json['currency'] is String ? json['currency'] as String : '',
+        price: json['price'] is String ? json['price'] as String : '',
+        priceValue: json['priceValue'] is num ? json['priceValue'] as num : 0,
       );
 }
 
@@ -2286,16 +2416,16 @@ class ItemModelSellerContacts {
 }
 
 class ItemModelSeller {
-  final num userId;
+  final int userId;
   final String username;
-  final num avatarDate;
-  final num isBanned;
-  final num displayStyleGroupId;
-  final num joinedDate;
-  final num soldItemsCount;
-  final num activeItemsCount;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
   final String restoreData;
-  final num effectiveLastActivity;
+  final int effectiveLastActivity;
   final dynamic restorePercents;
   final bool isOnline;
   final ItemModelSellerContacts contacts;
@@ -2318,25 +2448,25 @@ class ItemModelSeller {
 
   factory ItemModelSeller.fromJson(Map<String, dynamic> json) =>
       ItemModelSeller(
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         username: json['username'] is String ? json['username'] as String : '',
-        avatarDate: json['avatar_date'] is num ? json['avatar_date'] as num : 0,
-        isBanned: json['is_banned'] is num ? json['is_banned'] as num : 0,
-        displayStyleGroupId: json['display_style_group_id'] is num
-            ? json['display_style_group_id'] as num
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
             : 0,
-        joinedDate: json['joined_date'] is num ? json['joined_date'] as num : 0,
-        soldItemsCount: json['sold_items_count'] is num
-            ? json['sold_items_count'] as num
+        joinedDate: json['joined_date'] is int ? json['joined_date'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
             : 0,
-        activeItemsCount: json['active_items_count'] is num
-            ? json['active_items_count'] as num
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
             : 0,
         restoreData: json['restore_data'] is String
             ? json['restore_data'] as String
             : '',
-        effectiveLastActivity: json['effective_last_activity'] is num
-            ? json['effective_last_activity'] as num
+        effectiveLastActivity: json['effective_last_activity'] is int
+            ? json['effective_last_activity'] as int
             : 0,
         restorePercents: json['restore_percents'],
         isOnline: json['isOnline'] is bool ? json['isOnline'] as bool : false,
@@ -2348,26 +2478,26 @@ class ItemModelSeller {
 }
 
 class ItemModel {
-  final num itemId;
+  final int itemId;
   final String itemState;
-  final num categoryId;
-  final num publishedDate;
+  final int categoryId;
+  final int publishedDate;
   final String title;
   final String description;
-  final num price;
-  final num updateStatDate;
-  final num refreshedDate;
-  final num editDate;
-  final num pendingDeletionDate;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int pendingDeletionDate;
   final String login;
   final String tempEmail;
-  final num viewCount;
-  final num isSticky;
+  final int viewCount;
+  final int isSticky;
   final String information;
   final String itemOrigin;
-  final num extendedGuarantee;
-  final num nsb;
-  final num allowAskDiscount;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
   final String titleEn;
   final String descriptionEn;
   final String informationEn;
@@ -2378,18 +2508,18 @@ class ItemModel {
   final String noteText;
   final dynamic contentType;
   final dynamic contentId;
-  final num deleteDate;
-  final num deleteUserId;
+  final int deleteDate;
+  final int deleteUserId;
   final String deleteUsername;
   final String deleteReason;
-  final num userAllowAskDiscount;
-  final num maxDiscountPercent;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
   final String marketCustomTitle;
   final String feedbackData;
-  final num buyerDisplayIconGroupId;
+  final int buyerDisplayIconGroupId;
   final String buyerUniqBanner;
-  final num buyerAvatarDate;
-  final num buyerUserGroupId;
+  final int buyerAvatarDate;
+  final int buyerUserGroupId;
   final dynamic isFave;
   final dynamic inCart;
   final dynamic cartPrice;
@@ -2407,15 +2537,15 @@ class ItemModel {
   final dynamic getEmailCodeDisplayLogin;
   final ItemModelBuyer buyer;
   final bool isPersonalAccount;
-  final num rubPrice;
+  final int rubPrice;
   final String priceCurrency;
   final String priceWithSellerFeeLabel;
   final bool canValidateAccount;
   final bool canResellItemAfterPurchase;
   final bool isSmallExf;
-  final num accountLastActivity;
+  final int accountLastActivity;
   final bool canViewAccountLink;
-  final List<Map<String, dynamic>> accountLinks;
+  final List<ItemModelAccountLinks> accountLinks;
   final String accountLink;
   final List<String> imagePreviewLinks;
   final bool canChangePassword;
@@ -2430,19 +2560,19 @@ class ItemModel {
   final bool isTrusted;
   final bool isBirthdayToday;
   final bool isIgnored;
-  final num deposit;
-  final List<Map<String, dynamic>> extraPrices;
+  final int deposit;
+  final List<ItemModelExtraPrices> extraPrices;
   final bool canViewAccountLoginAndTempEmail;
   final ItemModelBumpSettings bumpSettings;
   final bool canCheckGuarantee;
   final bool canShareItem;
   final bool canCheckAiPrice;
-  final num aiPrice;
-  final num aiPriceCheckDate;
+  final int aiPrice;
+  final int aiPriceCheckDate;
   final bool needToRequireVideoToViewLoginData;
   final bool canCheckAutoBuyPrice;
-  final num autoBuyPrice;
-  final num autoBuyPriceCheckDate;
+  final int autoBuyPrice;
+  final int autoBuyPriceCheckDate;
   final String descriptionHtml;
   final String descriptionEnHtml;
   final String descriptionPlain;
@@ -2553,40 +2683,40 @@ class ItemModel {
   });
 
   factory ItemModel.fromJson(Map<String, dynamic> json) => ItemModel(
-        itemId: json['item_id'] is num ? json['item_id'] as num : 0,
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        categoryId: json['category_id'] is num ? json['category_id'] as num : 0,
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
         publishedDate:
-            json['published_date'] is num ? json['published_date'] as num : 0,
+            json['published_date'] is int ? json['published_date'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         description:
             json['description'] is String ? json['description'] as String : '',
-        price: json['price'] is num ? json['price'] as num : 0,
-        updateStatDate: json['update_stat_date'] is num
-            ? json['update_stat_date'] as num
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
             : 0,
         refreshedDate:
-            json['refreshed_date'] is num ? json['refreshed_date'] as num : 0,
-        editDate: json['edit_date'] is num ? json['edit_date'] as num : 0,
-        pendingDeletionDate: json['pending_deletion_date'] is num
-            ? json['pending_deletion_date'] as num
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        pendingDeletionDate: json['pending_deletion_date'] is int
+            ? json['pending_deletion_date'] as int
             : 0,
         login: json['login'] is String ? json['login'] as String : '',
         tempEmail:
             json['temp_email'] is String ? json['temp_email'] as String : '',
-        viewCount: json['view_count'] is num ? json['view_count'] as num : 0,
-        isSticky: json['is_sticky'] is num ? json['is_sticky'] as num : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
         information:
             json['information'] is String ? json['information'] as String : '',
         itemOrigin:
             json['item_origin'] is String ? json['item_origin'] as String : '',
-        extendedGuarantee: json['extended_guarantee'] is num
-            ? json['extended_guarantee'] as num
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
             : 0,
-        nsb: json['nsb'] is num ? json['nsb'] as num : 0,
-        allowAskDiscount: json['allow_ask_discount'] is num
-            ? json['allow_ask_discount'] as num
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
             : 0,
         titleEn: json['title_en'] is String ? json['title_en'] as String : '',
         descriptionEn: json['description_en'] is String
@@ -2609,20 +2739,20 @@ class ItemModel {
             json['note_text'] is String ? json['note_text'] as String : '',
         contentType: json['content_type'],
         contentId: json['content_id'],
-        deleteDate: json['delete_date'] is num ? json['delete_date'] as num : 0,
+        deleteDate: json['delete_date'] is int ? json['delete_date'] as int : 0,
         deleteUserId:
-            json['delete_user_id'] is num ? json['delete_user_id'] as num : 0,
+            json['delete_user_id'] is int ? json['delete_user_id'] as int : 0,
         deleteUsername: json['delete_username'] is String
             ? json['delete_username'] as String
             : '',
         deleteReason: json['delete_reason'] is String
             ? json['delete_reason'] as String
             : '',
-        userAllowAskDiscount: json['user_allow_ask_discount'] is num
-            ? json['user_allow_ask_discount'] as num
+        userAllowAskDiscount: json['user_allow_ask_discount'] is int
+            ? json['user_allow_ask_discount'] as int
             : 0,
-        maxDiscountPercent: json['max_discount_percent'] is num
-            ? json['max_discount_percent'] as num
+        maxDiscountPercent: json['max_discount_percent'] is int
+            ? json['max_discount_percent'] as int
             : 0,
         marketCustomTitle: json['market_custom_title'] is String
             ? json['market_custom_title'] as String
@@ -2630,17 +2760,17 @@ class ItemModel {
         feedbackData: json['feedback_data'] is String
             ? json['feedback_data'] as String
             : '',
-        buyerDisplayIconGroupId: json['buyer_display_icon_group_id'] is num
-            ? json['buyer_display_icon_group_id'] as num
+        buyerDisplayIconGroupId: json['buyer_display_icon_group_id'] is int
+            ? json['buyer_display_icon_group_id'] as int
             : 0,
         buyerUniqBanner: json['buyer_uniq_banner'] is String
             ? json['buyer_uniq_banner'] as String
             : '',
-        buyerAvatarDate: json['buyer_avatar_date'] is num
-            ? json['buyer_avatar_date'] as num
+        buyerAvatarDate: json['buyer_avatar_date'] is int
+            ? json['buyer_avatar_date'] as int
             : 0,
-        buyerUserGroupId: json['buyer_user_group_id'] is num
-            ? json['buyer_user_group_id'] as num
+        buyerUserGroupId: json['buyer_user_group_id'] is int
+            ? json['buyer_user_group_id'] as int
             : 0,
         isFave: json['is_fave'],
         inCart: json['in_cart'],
@@ -2688,7 +2818,7 @@ class ItemModel {
         isPersonalAccount: json['isPersonalAccount'] is bool
             ? json['isPersonalAccount'] as bool
             : false,
-        rubPrice: json['rub_price'] is num ? json['rub_price'] as num : 0,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
         priceCurrency: json['price_currency'] is String
             ? json['price_currency'] as String
             : '',
@@ -2703,8 +2833,8 @@ class ItemModel {
             : false,
         isSmallExf:
             json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
-        accountLastActivity: json['account_last_activity'] is num
-            ? json['account_last_activity'] as num
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
             : 0,
         canViewAccountLink: json['canViewAccountLink'] is bool
             ? json['canViewAccountLink'] as bool
@@ -2712,6 +2842,7 @@ class ItemModel {
         accountLinks: json['accountLinks'] is List
             ? (json['accountLinks'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => ItemModelAccountLinks.fromJson(e))
                 .toList()
             : const [],
         accountLink:
@@ -2754,10 +2885,11 @@ class ItemModel {
             : false,
         isIgnored:
             json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
-        deposit: json['deposit'] is num ? json['deposit'] as num : 0,
+        deposit: json['deposit'] is int ? json['deposit'] as int : 0,
         extraPrices: json['extraPrices'] is List
             ? (json['extraPrices'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => ItemModelExtraPrices.fromJson(e))
                 .toList()
             : const [],
         canViewAccountLoginAndTempEmail:
@@ -2776,9 +2908,9 @@ class ItemModel {
         canCheckAiPrice: json['canCheckAiPrice'] is bool
             ? json['canCheckAiPrice'] as bool
             : false,
-        aiPrice: json['aiPrice'] is num ? json['aiPrice'] as num : 0,
-        aiPriceCheckDate: json['aiPriceCheckDate'] is num
-            ? json['aiPriceCheckDate'] as num
+        aiPrice: json['aiPrice'] is int ? json['aiPrice'] as int : 0,
+        aiPriceCheckDate: json['aiPriceCheckDate'] is int
+            ? json['aiPriceCheckDate'] as int
             : 0,
         needToRequireVideoToViewLoginData:
             json['needToRequireVideoToViewLoginData'] is bool
@@ -2788,9 +2920,9 @@ class ItemModel {
             ? json['canCheckAutoBuyPrice'] as bool
             : false,
         autoBuyPrice:
-            json['autoBuyPrice'] is num ? json['autoBuyPrice'] as num : 0,
-        autoBuyPriceCheckDate: json['autoBuyPriceCheckDate'] is num
-            ? json['autoBuyPriceCheckDate'] as num
+            json['autoBuyPrice'] is int ? json['autoBuyPrice'] as int : 0,
+        autoBuyPriceCheckDate: json['autoBuyPriceCheckDate'] is int
+            ? json['autoBuyPriceCheckDate'] as int
             : 0,
         descriptionHtml: json['descriptionHtml'] is String
             ? json['descriptionHtml'] as String
@@ -2812,22 +2944,22 @@ class ItemModel {
 
 class InvoiceModel {
   final String additionalData;
-  final num amount;
+  final int amount;
   final String comment;
-  final num expiresAt;
-  final num invoiceDate;
-  final num invoiceId;
+  final int expiresAt;
+  final int invoiceDate;
+  final int invoiceId;
   final bool isTest;
-  final num merchantId;
-  final num paidDate;
-  final num payerUserId;
+  final int merchantId;
+  final int paidDate;
+  final int payerUserId;
   final String paymentId;
-  final num resendAttempts;
+  final int resendAttempts;
   final String status;
   final String url;
   final String urlCallback;
   final String urlSuccess;
-  final num userId;
+  final int userId;
 
   const InvoiceModel({
     required this.additionalData,
@@ -2853,21 +2985,21 @@ class InvoiceModel {
         additionalData: json['additional_data'] is String
             ? json['additional_data'] as String
             : '',
-        amount: json['amount'] is num ? json['amount'] as num : 0,
+        amount: json['amount'] is int ? json['amount'] as int : 0,
         comment: json['comment'] is String ? json['comment'] as String : '',
-        expiresAt: json['expires_at'] is num ? json['expires_at'] as num : 0,
+        expiresAt: json['expires_at'] is int ? json['expires_at'] as int : 0,
         invoiceDate:
-            json['invoice_date'] is num ? json['invoice_date'] as num : 0,
-        invoiceId: json['invoice_id'] is num ? json['invoice_id'] as num : 0,
+            json['invoice_date'] is int ? json['invoice_date'] as int : 0,
+        invoiceId: json['invoice_id'] is int ? json['invoice_id'] as int : 0,
         isTest: json['is_test'] is bool ? json['is_test'] as bool : false,
-        merchantId: json['merchant_id'] is num ? json['merchant_id'] as num : 0,
-        paidDate: json['paid_date'] is num ? json['paid_date'] as num : 0,
+        merchantId: json['merchant_id'] is int ? json['merchant_id'] as int : 0,
+        paidDate: json['paid_date'] is int ? json['paid_date'] as int : 0,
         payerUserId:
-            json['payer_user_id'] is num ? json['payer_user_id'] as num : 0,
+            json['payer_user_id'] is int ? json['payer_user_id'] as int : 0,
         paymentId:
             json['payment_id'] is String ? json['payment_id'] as String : '',
         resendAttempts:
-            json['resend_attempts'] is num ? json['resend_attempts'] as num : 0,
+            json['resend_attempts'] is int ? json['resend_attempts'] as int : 0,
         status: json['status'] is String ? json['status'] as String : '',
         url: json['url'] is String ? json['url'] as String : '',
         urlCallback: json['url_callback'] is String
@@ -2875,14 +3007,14 @@ class InvoiceModel {
             : '',
         urlSuccess:
             json['url_success'] is String ? json['url_success'] as String : '',
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
       );
 }
 
 class RespSystemInfo {
-  final num visitorId;
-  final num time;
-  final num logId;
+  final int visitorId;
+  final int time;
+  final int logId;
 
   const RespSystemInfo({
     required this.visitorId,
@@ -2891,9 +3023,9 @@ class RespSystemInfo {
   });
 
   factory RespSystemInfo.fromJson(Map<String, dynamic> json) => RespSystemInfo(
-        visitorId: json['visitor_id'] is num ? json['visitor_id'] as num : 0,
-        time: json['time'] is num ? json['time'] as num : 0,
-        logId: json['log_id'] is num ? json['log_id'] as num : 0,
+        visitorId: json['visitor_id'] is int ? json['visitor_id'] as int : 0,
+        time: json['time'] is int ? json['time'] as int : 0,
+        logId: json['log_id'] is int ? json['log_id'] as int : 0,
       );
 }
 
@@ -2957,7 +3089,7 @@ class AutoPaymentsCreateBody {
 class AutoPaymentsCreateResponse {
   final String status;
   final String message;
-  final num autoPaymentId;
+  final int autoPaymentId;
   final RespSystemInfo systemInfo;
 
   const AutoPaymentsCreateResponse({
@@ -2972,7 +3104,7 @@ class AutoPaymentsCreateResponse {
         status: json['status'] is String ? json['status'] as String : '',
         message: json['message'] is String ? json['message'] as String : '',
         autoPaymentId:
-            json['auto_payment_id'] is num ? json['auto_payment_id'] as num : 0,
+            json['auto_payment_id'] is int ? json['auto_payment_id'] as int : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -2982,7 +3114,7 @@ class AutoPaymentsCreateResponse {
 
 class AutoPaymentsDeleteBody {
   /// Auto payment ID.
-  final num autoPaymentId;
+  final int autoPaymentId;
 
   const AutoPaymentsDeleteBody({
     required this.autoPaymentId,
@@ -3084,36 +3216,36 @@ class CartGetParams {
   final CategoryId? categoryId;
 
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -3193,11 +3325,11 @@ class CartGetParams {
 
 class CartGetResponse {
   final List<ItemFromListModel> items;
-  final num totalItems;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final String searchUrl;
   final List<ItemFromListModel> stickyItems;
   final RespSystemInfo systemInfo;
@@ -3222,12 +3354,12 @@ class CartGetResponse {
                 .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -3245,7 +3377,7 @@ class CartGetResponse {
 
 class CartAddBody {
   /// Item id.
-  final num itemId;
+  final int itemId;
 
   const CartAddBody({
     required this.itemId,
@@ -3279,7 +3411,7 @@ class CartAddResponse {
 
 class CartDeleteBody {
   /// Item id.
-  final num? itemId;
+  final int? itemId;
 
   const CartDeleteBody({
     this.itemId,
@@ -3315,36 +3447,36 @@ class CartDeleteResponse {
 
 class CategoryAllParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -3422,11 +3554,11 @@ class CategoryAllParams {
 
 class CategoryAllResponse {
   final List<ItemFromListModel> items;
-  final num totalItems;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final String searchUrl;
   final List<ItemFromListModel> stickyItems;
   final RespSystemInfo systemInfo;
@@ -3451,12 +3583,12 @@ class CategoryAllResponse {
                 .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -3474,36 +3606,36 @@ class CategoryAllResponse {
 
 class CategorySteamParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -3535,17 +3667,17 @@ class CategorySteamParams {
   final String? itemDomain;
 
   /// List of games.
-  final List<num>? game;
+  final List<int>? game;
 
   /// List of minimum hours played by game.
-  final Map<String, num>? hoursPlayed;
+  final Map<String, int>? hoursPlayed;
 
   /// List of maximum hours played by game.
-  final Map<String, num>? hoursPlayedMax;
+  final Map<String, int>? hoursPlayedMax;
   final Eg? eg;
 
   /// List of VAC bans by game.
-  final List<num>? vac;
+  final List<int>? vac;
 
   /// Don't check game existence while checking for vac.
   final bool? vacSkipGameCheck;
@@ -3556,44 +3688,44 @@ class CategorySteamParams {
   final TradeLimit? tradeLimit;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
   final Limit? limit;
   final Mafile? mafile;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   /// Minimum level.
-  final num? lmin;
+  final int? lmin;
 
   /// Maximum level.
-  final num? lmax;
+  final int? lmax;
 
   /// Minimum rank in CS2 Matchmaking.
-  final num? rmin;
+  final int? rmin;
 
   /// Maximum rank in CS2 Matchmaking.
-  final num? rmax;
+  final int? rmax;
 
   /// Minimum rank in CS2 Wingman.
-  final num? wingmanRmin;
+  final int? wingmanRmin;
 
   /// Maximum rank in CS2 Wingman.
-  final num? wingmanRmax;
+  final int? wingmanRmax;
 
   /// Has no VAC ban.
   final bool? noVac;
   final MmBan? mmBan;
 
   /// Minimum balance.
-  final num? balanceMin;
+  final int? balanceMin;
 
   /// Maximum balance.
-  final num? balanceMax;
+  final int? balanceMax;
 
   /// Game ID to check inventory price.
-  final num? invGame;
+  final int? invGame;
 
   /// Minimum inventory price for game.
   final num? invMin;
@@ -3602,49 +3734,49 @@ class CategorySteamParams {
   final num? invMax;
 
   /// Minimum number of friends.
-  final num? friendsMin;
+  final int? friendsMin;
 
   /// Maximum number of friends.
-  final num? friendsMax;
+  final int? friendsMax;
 
   /// Minimum number of games.
-  final num? gmin;
+  final int? gmin;
 
   /// Maximum number of games.
-  final num? gmax;
+  final int? gmax;
 
   /// Minimum number of wins.
-  final num? winCountMin;
+  final int? winCountMin;
 
   /// Maximum number of wins.
-  final num? winCountMax;
+  final int? winCountMax;
 
   /// List of medal IDs.
-  final List<num>? medalId;
+  final List<int>? medalId;
 
   /// Search for medals using "OR" instead of "AND".
   final bool? medalOperatorOr;
 
   /// Minimum number of medals.
-  final num? medalMin;
+  final int? medalMin;
 
   /// Maximum number of medals.
-  final num? medalMax;
+  final int? medalMax;
 
   /// List of gifts.
   final List<String>? gift;
 
   /// Minimum number of gifts.
-  final num? giftMin;
+  final int? giftMin;
 
   /// Maximum number of gifts.
-  final num? giftMax;
+  final int? giftMax;
 
   /// Minimum number of recently played hours.
-  final num? recentlyHoursMin;
+  final int? recentlyHoursMin;
 
   /// Maximum number of recently played hours.
-  final num? recentlyHoursMax;
+  final int? recentlyHoursMax;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -3653,59 +3785,59 @@ class CategorySteamParams {
   final List<String>? notCountry;
 
   /// Minimum CS2 rank.
-  final num? cs2ProfileRankMin;
+  final int? cs2ProfileRankMin;
 
   /// Maximum CS2 rank.
-  final num? cs2ProfileRankMax;
+  final int? cs2ProfileRankMax;
 
   /// Minimum number of Dota 2 MMR.
-  final num? solommrMin;
+  final int? solommrMin;
 
   /// Maximum number of Dota 2 MMR.
-  final num? solommrMax;
+  final int? solommrMax;
 
   /// Minimum number of Dota 2 games.
-  final num? d2GameCountMin;
+  final int? d2GameCountMin;
 
   /// Maximum number of Dota 2 games.
-  final num? d2GameCountMax;
+  final int? d2GameCountMax;
 
   /// Minimum number of Dota 2 wins.
-  final num? d2WinCountMin;
+  final int? d2WinCountMin;
 
   /// Maximum number of Dota 2 wins.
-  final num? d2WinCountMax;
+  final int? d2WinCountMax;
 
   /// Minimum number of Dota 2 behavior.
-  final num? d2BehaviorMin;
+  final int? d2BehaviorMin;
 
   /// Maximum number of Dota 2 behavior.
-  final num? d2BehaviorMax;
+  final int? d2BehaviorMax;
 
   /// Minimum FACEIT level.
-  final num? faceitLvlMin;
+  final int? faceitLvlMin;
 
   /// Maximum FACEIT level.
-  final num? faceitLvlMax;
+  final int? faceitLvlMax;
 
   /// Minimum number of Steam points.
-  final num? pointsMin;
+  final int? pointsMin;
 
   /// Maximum number of Steam points.
-  final num? pointsMax;
+  final int? pointsMax;
 
   /// Minimum number of relevant games.
-  final num? relevantGmin;
+  final int? relevantGmin;
 
   /// Maximum number of relevant games.
-  final num? relevantGmax;
+  final int? relevantGmax;
 
   /// How old is last transaction.
-  final num? lastTransDate;
+  final int? lastTransDate;
   final LastTransDatePeriod? lastTransDatePeriod;
 
   /// How new is last transaction.
-  final num? lastTransDateLater;
+  final int? lastTransDateLater;
   final LastTransDatePeriodLater? lastTransDatePeriodLater;
 
   /// Has no transactions.
@@ -3746,52 +3878,52 @@ class CategorySteamParams {
   final HasActivatedKeys? hasActivatedKeys;
 
   /// Minimum Premier ELO in CS2.
-  final num? eloMin;
+  final int? eloMin;
 
   /// Maximum Premier ELO in CS2.
-  final num? eloMax;
+  final int? eloMax;
   final Cs2MapRank? cs2MapRank;
 
   /// Minimum rank in CS2 on a certain map.
-  final num? cs2MapRmin;
+  final int? cs2MapRmin;
 
   /// Maximum rank in CS2 on a certain map.
-  final num? cs2MapRmax;
+  final int? cs2MapRmax;
   final HasFaceit? hasFaceit;
 
   /// Minimum FACEIT level.
-  final num? faceitCsgoLvlMin;
+  final int? faceitCsgoLvlMin;
 
   /// Maximum FACEIT level.
-  final num? faceitCsgoLvlMax;
+  final int? faceitCsgoLvlMax;
 
   /// Minimum number of Rust deaths.
-  final num? rustDeathsMin;
+  final int? rustDeathsMin;
 
   /// Maximum number of Rust deaths.
-  final num? rustDeathsMax;
+  final int? rustDeathsMax;
 
   /// Minimum number of Rust kills.
-  final num? rustKillsMin;
+  final int? rustKillsMin;
 
   /// Maximum number of Rust kills.
-  final num? rustKillsMax;
+  final int? rustKillsMax;
 
   /// How old is last match of Dota 2.
-  final num? d2LastMatchDate;
+  final int? d2LastMatchDate;
   final D2LastMatchDatePeriod? d2LastMatchDatePeriod;
 
   /// Minimum number of available to collect trading cards.
-  final num? cardsMin;
+  final int? cardsMin;
 
   /// Maximum number of available to collect trading cards.
-  final num? cardsMax;
+  final int? cardsMax;
 
   /// Minimum number of available games with available to collect trading cards.
-  final num? cardsGamesMin;
+  final int? cardsGamesMin;
 
   /// Maximum number of available games with available to collect trading cards.
-  final num? cardsGamesMax;
+  final int? cardsGamesMax;
 
   /// Ignore inventory value if game has VAC ban.
   final bool? skipVacInv;
@@ -4043,17 +4175,868 @@ class CategorySteamParams {
   }
 }
 
+class CategorySteamResponseItemsSteamFullGames {
+  final dynamic list;
+  final int total;
+
+  const CategorySteamResponseItemsSteamFullGames({
+    required this.list,
+    required this.total,
+  });
+
+  factory CategorySteamResponseItemsSteamFullGames.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySteamResponseItemsSteamFullGames(
+        list: json['list'],
+        total: json['total'] is int ? json['total'] as int : 0,
+      );
+}
+
+class CategorySteamResponseItemsGuarantee {
+  final int duration;
+  final String class$;
+  final String durationPhrase;
+  final dynamic endDate;
+  final dynamic active;
+  final dynamic cancelled;
+  final dynamic remainingTime;
+
+  const CategorySteamResponseItemsGuarantee({
+    required this.duration,
+    required this.class$,
+    required this.durationPhrase,
+    required this.endDate,
+    required this.active,
+    required this.cancelled,
+    required this.remainingTime,
+  });
+
+  factory CategorySteamResponseItemsGuarantee.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySteamResponseItemsGuarantee(
+        duration: json['duration'] is int ? json['duration'] as int : 0,
+        class$: json['class'] is String ? json['class'] as String : '',
+        durationPhrase: json['durationPhrase'] is String
+            ? json['durationPhrase'] as String
+            : '',
+        endDate: json['endDate'],
+        active: json['active'],
+        cancelled: json['cancelled'],
+        remainingTime: json['remainingTime'],
+      );
+}
+
+class CategorySteamResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategorySteamResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategorySteamResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySteamResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategorySteamResponseItemsSteamData {
+  final List<dynamic> steamBanTypeId;
+
+  const CategorySteamResponseItemsSteamData({
+    required this.steamBanTypeId,
+  });
+
+  factory CategorySteamResponseItemsSteamData.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySteamResponseItemsSteamData(
+        steamBanTypeId: json['steam_ban_type_id'] is List
+            ? json['steam_ban_type_id'] as List<dynamic>
+            : const [],
+      );
+}
+
+class CategorySteamResponseItemsSteamTransactions {
+  final String date;
+  final String product;
+  final String type;
+  final String source;
+  final String amount;
+
+  const CategorySteamResponseItemsSteamTransactions({
+    required this.date,
+    required this.product,
+    required this.type,
+    required this.source,
+    required this.amount,
+  });
+
+  factory CategorySteamResponseItemsSteamTransactions.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySteamResponseItemsSteamTransactions(
+        date: json['date'] is String ? json['date'] as String : '',
+        product: json['product'] is String ? json['product'] as String : '',
+        type: json['type'] is String ? json['type'] as String : '',
+        source: json['source'] is String ? json['source'] as String : '',
+        amount: json['amount'] is String ? json['amount'] as String : '',
+      );
+}
+
+class CategorySteamResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategorySteamResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategorySteamResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySteamResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategorySteamResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategorySteamResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategorySteamResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySteamResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategorySteamResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int steamItemId;
+  final String steamCountry;
+  final int steamRegisterDate;
+  final int steamLastActivity;
+  final CategorySteamResponseItemsSteamFullGames steamFullGames;
+  final int steamCommunityBan;
+  final String steamBans;
+  final int steamCs2ProfileRank;
+  final String steamBalance;
+  final int steamCs2RankId;
+  final int steamIsLimited;
+  final int steamLevel;
+  final int steamFriendCount;
+  final int steamCs2LastActivity;
+  final int steamDota2SoloMmr;
+  final int steamCs2BanDate;
+  final int steamConvertedBalance;
+  final int steamCardsCount;
+  final int steamCardsGames;
+  final int steamPubgInvValue;
+  final int steamCs2InvValue;
+  final int steamDota2InvValue;
+  final int steamTf2InvValue;
+  final int steamRustInvValue;
+  final int steamCs2WingmanRankId;
+  final int steamGameCount;
+  final int steamSteamInvValue;
+  final int steamInvValue;
+  final int steamCs2WinCount;
+  final int steamDota2GameCount;
+  final int steamDota2LoseCount;
+  final int steamDota2WinCount;
+  final String steamHoursPlayedRecently;
+  final int steamFaceitLevel;
+  final int steamPoints;
+  final int steamLastTransactionDate;
+  final int steamRelevantGameCount;
+  final int steamGiftCount;
+  final String steamLimitSpent;
+  final int steamDota2Behavior;
+  final int steamMfa;
+  final int steamMarket;
+  final int steamMarketRestrictions;
+  final int steamMarketBanEndDate;
+  final int steamUnturnedInvValue;
+  final int steamCs2LastLaunched;
+  final int steamKf2InvValue;
+  final int steamDstInvValue;
+  final int steamCs2PremierElo;
+  final int steamHasActivatedKeys;
+  final int steamCs2BanType;
+  final int steamRustKillPlayer;
+  final int steamRustDeaths;
+  final int steamTotalGiftsRub;
+  final int steamTotalRefundsRub;
+  final int steamTotalIngameRub;
+  final int steamTotalGamesRub;
+  final int steamTotalPurchasedRub;
+  final int steamDota2LastMatchDate;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final CategorySteamResponseItemsGuarantee guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategorySteamResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final CategorySteamResponseItemsSteamData steamData;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final bool hasCs2;
+  final bool hasDota2;
+  final bool hasPubg;
+  final bool hasTf2;
+  final bool hasRust;
+  final bool steamCs2BanDateActive;
+  final bool dota2CalibrationWarning;
+  final bool displayConvertedBalance;
+  final List<dynamic> inventoryValue;
+  final List<dynamic> steamCs2Medals;
+  final bool cs2RankExpired;
+  final int steamDota2WinRate;
+  final List<CategorySteamResponseItemsSteamTransactions> steamTransactions;
+  final bool hasPossibleBanInDota2;
+  final bool chineseAccount;
+  final List<dynamic> cs2MapsRanks;
+  final List<dynamic> cs2PremierElo;
+  final bool steamLifetimeTradeBan;
+  final bool canViewAccountLink;
+  final List<CategorySteamResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategorySteamResponseItemsSeller seller;
+
+  const CategorySteamResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.steamItemId,
+    required this.steamCountry,
+    required this.steamRegisterDate,
+    required this.steamLastActivity,
+    required this.steamFullGames,
+    required this.steamCommunityBan,
+    required this.steamBans,
+    required this.steamCs2ProfileRank,
+    required this.steamBalance,
+    required this.steamCs2RankId,
+    required this.steamIsLimited,
+    required this.steamLevel,
+    required this.steamFriendCount,
+    required this.steamCs2LastActivity,
+    required this.steamDota2SoloMmr,
+    required this.steamCs2BanDate,
+    required this.steamConvertedBalance,
+    required this.steamCardsCount,
+    required this.steamCardsGames,
+    required this.steamPubgInvValue,
+    required this.steamCs2InvValue,
+    required this.steamDota2InvValue,
+    required this.steamTf2InvValue,
+    required this.steamRustInvValue,
+    required this.steamCs2WingmanRankId,
+    required this.steamGameCount,
+    required this.steamSteamInvValue,
+    required this.steamInvValue,
+    required this.steamCs2WinCount,
+    required this.steamDota2GameCount,
+    required this.steamDota2LoseCount,
+    required this.steamDota2WinCount,
+    required this.steamHoursPlayedRecently,
+    required this.steamFaceitLevel,
+    required this.steamPoints,
+    required this.steamLastTransactionDate,
+    required this.steamRelevantGameCount,
+    required this.steamGiftCount,
+    required this.steamLimitSpent,
+    required this.steamDota2Behavior,
+    required this.steamMfa,
+    required this.steamMarket,
+    required this.steamMarketRestrictions,
+    required this.steamMarketBanEndDate,
+    required this.steamUnturnedInvValue,
+    required this.steamCs2LastLaunched,
+    required this.steamKf2InvValue,
+    required this.steamDstInvValue,
+    required this.steamCs2PremierElo,
+    required this.steamHasActivatedKeys,
+    required this.steamCs2BanType,
+    required this.steamRustKillPlayer,
+    required this.steamRustDeaths,
+    required this.steamTotalGiftsRub,
+    required this.steamTotalRefundsRub,
+    required this.steamTotalIngameRub,
+    required this.steamTotalGamesRub,
+    required this.steamTotalPurchasedRub,
+    required this.steamDota2LastMatchDate,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.steamData,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.hasCs2,
+    required this.hasDota2,
+    required this.hasPubg,
+    required this.hasTf2,
+    required this.hasRust,
+    required this.steamCs2BanDateActive,
+    required this.dota2CalibrationWarning,
+    required this.displayConvertedBalance,
+    required this.inventoryValue,
+    required this.steamCs2Medals,
+    required this.cs2RankExpired,
+    required this.steamDota2WinRate,
+    required this.steamTransactions,
+    required this.hasPossibleBanInDota2,
+    required this.chineseAccount,
+    required this.cs2MapsRanks,
+    required this.cs2PremierElo,
+    required this.steamLifetimeTradeBan,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategorySteamResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategorySteamResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        steamItemId:
+            json['steam_item_id'] is int ? json['steam_item_id'] as int : 0,
+        steamCountry: json['steam_country'] is String
+            ? json['steam_country'] as String
+            : '',
+        steamRegisterDate: json['steam_register_date'] is int
+            ? json['steam_register_date'] as int
+            : 0,
+        steamLastActivity: json['steam_last_activity'] is int
+            ? json['steam_last_activity'] as int
+            : 0,
+        steamFullGames: json['steam_full_games'] is Map<String, dynamic>
+            ? CategorySteamResponseItemsSteamFullGames.fromJson(
+                json['steam_full_games'] as Map<String, dynamic>)
+            : CategorySteamResponseItemsSteamFullGames.fromJson(const {}),
+        steamCommunityBan: json['steam_community_ban'] is int
+            ? json['steam_community_ban'] as int
+            : 0,
+        steamBans:
+            json['steam_bans'] is String ? json['steam_bans'] as String : '',
+        steamCs2ProfileRank: json['steam_cs2_profile_rank'] is int
+            ? json['steam_cs2_profile_rank'] as int
+            : 0,
+        steamBalance: json['steam_balance'] is String
+            ? json['steam_balance'] as String
+            : '',
+        steamCs2RankId: json['steam_cs2_rank_id'] is int
+            ? json['steam_cs2_rank_id'] as int
+            : 0,
+        steamIsLimited: json['steam_is_limited'] is int
+            ? json['steam_is_limited'] as int
+            : 0,
+        steamLevel: json['steam_level'] is int ? json['steam_level'] as int : 0,
+        steamFriendCount: json['steam_friend_count'] is int
+            ? json['steam_friend_count'] as int
+            : 0,
+        steamCs2LastActivity: json['steam_cs2_last_activity'] is int
+            ? json['steam_cs2_last_activity'] as int
+            : 0,
+        steamDota2SoloMmr: json['steam_dota2_solo_mmr'] is int
+            ? json['steam_dota2_solo_mmr'] as int
+            : 0,
+        steamCs2BanDate: json['steam_cs2_ban_date'] is int
+            ? json['steam_cs2_ban_date'] as int
+            : 0,
+        steamConvertedBalance: json['steam_converted_balance'] is int
+            ? json['steam_converted_balance'] as int
+            : 0,
+        steamCardsCount: json['steam_cards_count'] is int
+            ? json['steam_cards_count'] as int
+            : 0,
+        steamCardsGames: json['steam_cards_games'] is int
+            ? json['steam_cards_games'] as int
+            : 0,
+        steamPubgInvValue: json['steam_pubg_inv_value'] is int
+            ? json['steam_pubg_inv_value'] as int
+            : 0,
+        steamCs2InvValue: json['steam_cs2_inv_value'] is int
+            ? json['steam_cs2_inv_value'] as int
+            : 0,
+        steamDota2InvValue: json['steam_dota2_inv_value'] is int
+            ? json['steam_dota2_inv_value'] as int
+            : 0,
+        steamTf2InvValue: json['steam_tf2_inv_value'] is int
+            ? json['steam_tf2_inv_value'] as int
+            : 0,
+        steamRustInvValue: json['steam_rust_inv_value'] is int
+            ? json['steam_rust_inv_value'] as int
+            : 0,
+        steamCs2WingmanRankId: json['steam_cs2_wingman_rank_id'] is int
+            ? json['steam_cs2_wingman_rank_id'] as int
+            : 0,
+        steamGameCount: json['steam_game_count'] is int
+            ? json['steam_game_count'] as int
+            : 0,
+        steamSteamInvValue: json['steam_steam_inv_value'] is int
+            ? json['steam_steam_inv_value'] as int
+            : 0,
+        steamInvValue:
+            json['steam_inv_value'] is int ? json['steam_inv_value'] as int : 0,
+        steamCs2WinCount: json['steam_cs2_win_count'] is int
+            ? json['steam_cs2_win_count'] as int
+            : 0,
+        steamDota2GameCount: json['steam_dota2_game_count'] is int
+            ? json['steam_dota2_game_count'] as int
+            : 0,
+        steamDota2LoseCount: json['steam_dota2_lose_count'] is int
+            ? json['steam_dota2_lose_count'] as int
+            : 0,
+        steamDota2WinCount: json['steam_dota2_win_count'] is int
+            ? json['steam_dota2_win_count'] as int
+            : 0,
+        steamHoursPlayedRecently: json['steam_hours_played_recently'] is String
+            ? json['steam_hours_played_recently'] as String
+            : '',
+        steamFaceitLevel: json['steam_faceit_level'] is int
+            ? json['steam_faceit_level'] as int
+            : 0,
+        steamPoints:
+            json['steam_points'] is int ? json['steam_points'] as int : 0,
+        steamLastTransactionDate: json['steam_last_transaction_date'] is int
+            ? json['steam_last_transaction_date'] as int
+            : 0,
+        steamRelevantGameCount: json['steamRelevantGameCount'] is int
+            ? json['steamRelevantGameCount'] as int
+            : 0,
+        steamGiftCount: json['steam_gift_count'] is int
+            ? json['steam_gift_count'] as int
+            : 0,
+        steamLimitSpent: json['steam_limit_spent'] is String
+            ? json['steam_limit_spent'] as String
+            : '',
+        steamDota2Behavior: json['steam_dota2_behavior'] is int
+            ? json['steam_dota2_behavior'] as int
+            : 0,
+        steamMfa: json['steam_mfa'] is int ? json['steam_mfa'] as int : 0,
+        steamMarket:
+            json['steam_market'] is int ? json['steam_market'] as int : 0,
+        steamMarketRestrictions: json['steam_market_restrictions'] is int
+            ? json['steam_market_restrictions'] as int
+            : 0,
+        steamMarketBanEndDate: json['steam_market_ban_end_date'] is int
+            ? json['steam_market_ban_end_date'] as int
+            : 0,
+        steamUnturnedInvValue: json['steam_unturned_inv_value'] is int
+            ? json['steam_unturned_inv_value'] as int
+            : 0,
+        steamCs2LastLaunched: json['steam_cs2_last_launched'] is int
+            ? json['steam_cs2_last_launched'] as int
+            : 0,
+        steamKf2InvValue: json['steam_kf2_inv_value'] is int
+            ? json['steam_kf2_inv_value'] as int
+            : 0,
+        steamDstInvValue: json['steam_dst_inv_value'] is int
+            ? json['steam_dst_inv_value'] as int
+            : 0,
+        steamCs2PremierElo: json['steam_cs2_premier_elo'] is int
+            ? json['steam_cs2_premier_elo'] as int
+            : 0,
+        steamHasActivatedKeys: json['steam_has_activated_keys'] is int
+            ? json['steam_has_activated_keys'] as int
+            : 0,
+        steamCs2BanType: json['steam_cs2_ban_type'] is int
+            ? json['steam_cs2_ban_type'] as int
+            : 0,
+        steamRustKillPlayer: json['steam_rust_kill_player'] is int
+            ? json['steam_rust_kill_player'] as int
+            : 0,
+        steamRustDeaths: json['steam_rust_deaths'] is int
+            ? json['steam_rust_deaths'] as int
+            : 0,
+        steamTotalGiftsRub: json['steam_total_gifts_rub'] is int
+            ? json['steam_total_gifts_rub'] as int
+            : 0,
+        steamTotalRefundsRub: json['steam_total_refunds_rub'] is int
+            ? json['steam_total_refunds_rub'] as int
+            : 0,
+        steamTotalIngameRub: json['steam_total_ingame_rub'] is int
+            ? json['steam_total_ingame_rub'] as int
+            : 0,
+        steamTotalGamesRub: json['steam_total_games_rub'] is int
+            ? json['steam_total_games_rub'] as int
+            : 0,
+        steamTotalPurchasedRub: json['steam_total_purchased_rub'] is int
+            ? json['steam_total_purchased_rub'] as int
+            : 0,
+        steamDota2LastMatchDate: json['steam_dota2_last_match_date'] is int
+            ? json['steam_dota2_last_match_date'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'] is Map<String, dynamic>
+            ? CategorySteamResponseItemsGuarantee.fromJson(
+                json['guarantee'] as Map<String, dynamic>)
+            : CategorySteamResponseItemsGuarantee.fromJson(const {}),
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategorySteamResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategorySteamResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        steamData: json['steamData'] is Map<String, dynamic>
+            ? CategorySteamResponseItemsSteamData.fromJson(
+                json['steamData'] as Map<String, dynamic>)
+            : CategorySteamResponseItemsSteamData.fromJson(const {}),
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        hasCs2: json['hasCs2'] is bool ? json['hasCs2'] as bool : false,
+        hasDota2: json['hasDota2'] is bool ? json['hasDota2'] as bool : false,
+        hasPubg: json['hasPubg'] is bool ? json['hasPubg'] as bool : false,
+        hasTf2: json['hasTf2'] is bool ? json['hasTf2'] as bool : false,
+        hasRust: json['hasRust'] is bool ? json['hasRust'] as bool : false,
+        steamCs2BanDateActive: json['steam_cs2_ban_date_active'] is bool
+            ? json['steam_cs2_ban_date_active'] as bool
+            : false,
+        dota2CalibrationWarning: json['dota2CalibrationWarning'] is bool
+            ? json['dota2CalibrationWarning'] as bool
+            : false,
+        displayConvertedBalance: json['displayConvertedBalance'] is bool
+            ? json['displayConvertedBalance'] as bool
+            : false,
+        inventoryValue: json['inventoryValue'] is List
+            ? json['inventoryValue'] as List<dynamic>
+            : const [],
+        steamCs2Medals: json['steamCs2Medals'] is List
+            ? json['steamCs2Medals'] as List<dynamic>
+            : const [],
+        cs2RankExpired: json['cs2RankExpired'] is bool
+            ? json['cs2RankExpired'] as bool
+            : false,
+        steamDota2WinRate: json['steamDota2WinRate'] is int
+            ? json['steamDota2WinRate'] as int
+            : 0,
+        steamTransactions: json['steamTransactions'] is List
+            ? (json['steamTransactions'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategorySteamResponseItemsSteamTransactions.fromJson(e))
+                .toList()
+            : const [],
+        hasPossibleBanInDota2: json['hasPossibleBanInDota2'] is bool
+            ? json['hasPossibleBanInDota2'] as bool
+            : false,
+        chineseAccount: json['chineseAccount'] is bool
+            ? json['chineseAccount'] as bool
+            : false,
+        cs2MapsRanks: json['cs2MapsRanks'] is List
+            ? json['cs2MapsRanks'] as List<dynamic>
+            : const [],
+        cs2PremierElo: json['cs2PremierElo'] is List
+            ? json['cs2PremierElo'] as List<dynamic>
+            : const [],
+        steamLifetimeTradeBan: json['steamLifetimeTradeBan'] is bool
+            ? json['steamLifetimeTradeBan'] as bool
+            : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategorySteamResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategorySteamResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategorySteamResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategorySteamResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategorySteamResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -4079,20 +5062,21 @@ class CategorySteamResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategorySteamResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -4107,36 +5091,36 @@ class CategorySteamResponse {
 
 class CategoryFortniteParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -4170,16 +5154,16 @@ class CategoryFortniteParams {
   final Eg? eg;
 
   /// Minimum number of skins.
-  final num? smin;
+  final int? smin;
 
   /// Maximum number of skins.
-  final num? smax;
+  final int? smax;
 
   /// Minimum number of V-Bucks.
-  final num? vbmin;
+  final int? vbmin;
 
   /// Maximum number of V-Bucks.
-  final num? vbmax;
+  final int? vbmax;
 
   /// Skins.
   final List<String>? skin;
@@ -4198,68 +5182,68 @@ class CategoryFortniteParams {
   final List<String>? platform;
 
   /// Minimum number of shop skins.
-  final num? skinsShopMin;
+  final int? skinsShopMin;
 
   /// Maximum number of shop skins.
-  final num? skinsShopMax;
+  final int? skinsShopMax;
 
   /// Minimum number of shop pickaxes.
-  final num? pickaxesShopMin;
+  final int? pickaxesShopMin;
 
   /// Maximum number of shop pickaxes.
-  final num? pickaxesShopMax;
+  final int? pickaxesShopMax;
 
   /// Minimum number of shop dances.
-  final num? dancesShopMin;
+  final int? dancesShopMin;
 
   /// Maximum number of shop dances.
-  final num? dancesShopMax;
+  final int? dancesShopMax;
 
   /// Minimum number of shop gliders.
-  final num? glidersShopMin;
+  final int? glidersShopMin;
 
   /// Maximum number of shop gliders.
-  final num? glidersShopMax;
+  final int? glidersShopMax;
 
   /// Minimum total cost of all skins in the shop in V-Bucks.
-  final num? skinsShopVbmin;
+  final int? skinsShopVbmin;
 
   /// Maximum total cost of all skins in the shop in V-Bucks.
-  final num? skinsShopVbmax;
+  final int? skinsShopVbmax;
 
   /// Minimum total cost of all pickaxes in the shop in V-Bucks.
-  final num? pickaxesShopVbmin;
+  final int? pickaxesShopVbmin;
 
   /// Maximum total cost of all pickaxes in the shop in V-Bucks.
-  final num? pickaxesShopVbmax;
+  final int? pickaxesShopVbmax;
 
   /// Minimum total cost of all dances in the shop in V-Bucks.
-  final num? dancesShopVbmin;
+  final int? dancesShopVbmin;
 
   /// Maximum total cost of all dances in the shop in V-Bucks.
-  final num? dancesShopVbmax;
+  final int? dancesShopVbmax;
 
   /// Minimum total cost of all gliders in the shop in V-Bucks.
-  final num? glidersShopVbmin;
+  final int? glidersShopVbmin;
 
   /// Maximum total cost of all gliders in the shop in V-Bucks.
-  final num? glidersShopVbmax;
+  final int? glidersShopVbmax;
   final Bp? bp;
 
   /// Minimum level.
-  final num? lmin;
+  final int? lmin;
 
   /// Maximum level.
-  final num? lmax;
+  final int? lmax;
 
   /// Minimum level of Battle Pass.
-  final num? bpLmin;
+  final int? bpLmin;
 
   /// Maximum level of Battle Pass.
-  final num? bpLmax;
+  final int? bpLmax;
 
   /// How old is last transaction.
-  final num? lastTransDate;
+  final int? lastTransDate;
   final LastTransDatePeriod? lastTransDatePeriod;
 
   /// Has no transactions.
@@ -4268,38 +5252,38 @@ class CategoryFortniteParams {
   final PsnLinkable? psnLinkable;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Has Rocket League purchases.
   final bool? rlPurchases;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   /// Minimum number of available refund credits.
-  final num? refundCreditsMin;
+  final int? refundCreditsMin;
 
   /// Maximum number of available refund credits.
-  final num? refundCreditsMax;
+  final int? refundCreditsMax;
 
   /// Minimum number of pickaxes.
-  final num? pickaxeMin;
+  final int? pickaxeMin;
 
   /// Maximum number of pickaxes.
-  final num? pickaxeMax;
+  final int? pickaxeMax;
 
   /// Minimum number of dances.
-  final num? dmin;
+  final int? dmin;
 
   /// Maximum number of dances.
-  final num? dmax;
+  final int? dmax;
 
   /// Minimum number of gliders.
-  final num? gmin;
+  final int? gmin;
 
   /// Maximum number of gliders.
-  final num? gmax;
+  final int? gmax;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -4466,17 +5450,766 @@ class CategoryFortniteParams {
   }
 }
 
+class CategoryFortniteResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryFortniteResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryFortniteResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryFortniteResponseItemsFortniteSkins {
+  final String id;
+  final String title;
+  final String rarity;
+  final String type;
+  final int fromShop;
+
+  const CategoryFortniteResponseItemsFortniteSkins({
+    required this.id,
+    required this.title,
+    required this.rarity,
+    required this.type,
+    required this.fromShop,
+  });
+
+  factory CategoryFortniteResponseItemsFortniteSkins.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsFortniteSkins(
+        id: json['id'] is String ? json['id'] as String : '',
+        title: json['title'] is String ? json['title'] as String : '',
+        rarity: json['rarity'] is String ? json['rarity'] as String : '',
+        type: json['type'] is String ? json['type'] as String : '',
+        fromShop: json['from_shop'] is int ? json['from_shop'] as int : 0,
+      );
+}
+
+class CategoryFortniteResponseItemsFortnitePickaxe {
+  final String id;
+  final String title;
+  final String rarity;
+  final String type;
+  final int fromShop;
+
+  const CategoryFortniteResponseItemsFortnitePickaxe({
+    required this.id,
+    required this.title,
+    required this.rarity,
+    required this.type,
+    required this.fromShop,
+  });
+
+  factory CategoryFortniteResponseItemsFortnitePickaxe.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsFortnitePickaxe(
+        id: json['id'] is String ? json['id'] as String : '',
+        title: json['title'] is String ? json['title'] as String : '',
+        rarity: json['rarity'] is String ? json['rarity'] as String : '',
+        type: json['type'] is String ? json['type'] as String : '',
+        fromShop: json['from_shop'] is int ? json['from_shop'] as int : 0,
+      );
+}
+
+class CategoryFortniteResponseItemsFortniteDance {
+  final String id;
+  final String title;
+  final String rarity;
+  final String type;
+  final int fromShop;
+
+  const CategoryFortniteResponseItemsFortniteDance({
+    required this.id,
+    required this.title,
+    required this.rarity,
+    required this.type,
+    required this.fromShop,
+  });
+
+  factory CategoryFortniteResponseItemsFortniteDance.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsFortniteDance(
+        id: json['id'] is String ? json['id'] as String : '',
+        title: json['title'] is String ? json['title'] as String : '',
+        rarity: json['rarity'] is String ? json['rarity'] as String : '',
+        type: json['type'] is String ? json['type'] as String : '',
+        fromShop: json['from_shop'] is int ? json['from_shop'] as int : 0,
+      );
+}
+
+class CategoryFortniteResponseItemsFortniteGliders {
+  final String id;
+  final String title;
+  final String rarity;
+  final String type;
+  final int fromShop;
+
+  const CategoryFortniteResponseItemsFortniteGliders({
+    required this.id,
+    required this.title,
+    required this.rarity,
+    required this.type,
+    required this.fromShop,
+  });
+
+  factory CategoryFortniteResponseItemsFortniteGliders.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsFortniteGliders(
+        id: json['id'] is String ? json['id'] as String : '',
+        title: json['title'] is String ? json['title'] as String : '',
+        rarity: json['rarity'] is String ? json['rarity'] as String : '',
+        type: json['type'] is String ? json['type'] as String : '',
+        fromShop: json['from_shop'] is int ? json['from_shop'] as int : 0,
+      );
+}
+
+class CategoryFortniteResponseItemsFortnitePastSeasons {
+  final int numWins;
+  final int seasonXp;
+  final bool purchasedVIP;
+  final int survivorPrestige;
+  final int seasonLevel;
+  final int numLowBracket;
+  final int bookLevel;
+  final int numRoyalRoyales;
+  final int seasonNumber;
+  final int survivorTier;
+  final int numHighBracket;
+
+  const CategoryFortniteResponseItemsFortnitePastSeasons({
+    required this.numWins,
+    required this.seasonXp,
+    required this.purchasedVIP,
+    required this.survivorPrestige,
+    required this.seasonLevel,
+    required this.numLowBracket,
+    required this.bookLevel,
+    required this.numRoyalRoyales,
+    required this.seasonNumber,
+    required this.survivorTier,
+    required this.numHighBracket,
+  });
+
+  factory CategoryFortniteResponseItemsFortnitePastSeasons.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsFortnitePastSeasons(
+        numWins: json['numWins'] is int ? json['numWins'] as int : 0,
+        seasonXp: json['seasonXp'] is int ? json['seasonXp'] as int : 0,
+        purchasedVIP:
+            json['purchasedVIP'] is bool ? json['purchasedVIP'] as bool : false,
+        survivorPrestige: json['survivorPrestige'] is int
+            ? json['survivorPrestige'] as int
+            : 0,
+        seasonLevel:
+            json['seasonLevel'] is int ? json['seasonLevel'] as int : 0,
+        numLowBracket:
+            json['numLowBracket'] is int ? json['numLowBracket'] as int : 0,
+        bookLevel: json['bookLevel'] is int ? json['bookLevel'] as int : 0,
+        numRoyalRoyales:
+            json['numRoyalRoyales'] is int ? json['numRoyalRoyales'] as int : 0,
+        seasonNumber:
+            json['seasonNumber'] is int ? json['seasonNumber'] as int : 0,
+        survivorTier:
+            json['survivorTier'] is int ? json['survivorTier'] as int : 0,
+        numHighBracket:
+            json['numHighBracket'] is int ? json['numHighBracket'] as int : 0,
+      );
+}
+
+class CategoryFortniteResponseItemsFortniteTransactions {
+  final int date;
+  final String title;
+  final String presentmentTotal;
+  final String orderType;
+
+  const CategoryFortniteResponseItemsFortniteTransactions({
+    required this.date,
+    required this.title,
+    required this.presentmentTotal,
+    required this.orderType,
+  });
+
+  factory CategoryFortniteResponseItemsFortniteTransactions.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsFortniteTransactions(
+        date: json['date'] is int ? json['date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        presentmentTotal: json['presentmentTotal'] is String
+            ? json['presentmentTotal'] as String
+            : '',
+        orderType:
+            json['orderType'] is String ? json['orderType'] as String : '',
+      );
+}
+
+class CategoryFortniteResponseItemsShopCounts {
+  final int shopSkinsCount;
+  final int shopPickaxesCount;
+  final int shopDancesCount;
+  final int shopGlidersCount;
+
+  const CategoryFortniteResponseItemsShopCounts({
+    required this.shopSkinsCount,
+    required this.shopPickaxesCount,
+    required this.shopDancesCount,
+    required this.shopGlidersCount,
+  });
+
+  factory CategoryFortniteResponseItemsShopCounts.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsShopCounts(
+        shopSkinsCount:
+            json['shopSkinsCount'] is int ? json['shopSkinsCount'] as int : 0,
+        shopPickaxesCount: json['shopPickaxesCount'] is int
+            ? json['shopPickaxesCount'] as int
+            : 0,
+        shopDancesCount:
+            json['shopDancesCount'] is int ? json['shopDancesCount'] as int : 0,
+        shopGlidersCount: json['shopGlidersCount'] is int
+            ? json['shopGlidersCount'] as int
+            : 0,
+      );
+}
+
+class CategoryFortniteResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryFortniteResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryFortniteResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryFortniteResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryFortniteResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int fortniteItemId;
+  final String fortnitePlatform;
+  final int fortniteRegisterDate;
+  final int fortniteLastActivity;
+  final int fortniteBookLevel;
+  final int fortniteLifetimeWins;
+  final int fortniteLevel;
+  final int fortniteSeasonNum;
+  final int fortniteBooksPurchased;
+  final int fortniteBalance;
+  final int fortniteSkinCount;
+  final int fortniteChangeEmail;
+  final int fortniteRlPurchases;
+  final int fortniteNextChangeEmailDate;
+  final int fortniteLastTransDate;
+  final int fortniteXboxLinkable;
+  final int fortnitePsnLinkable;
+  final int fortniteShopSkinsCount;
+  final int fortniteShopPickaxesCount;
+  final int fortniteShopDancesCount;
+  final int fortniteShopGlidersCount;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryFortniteResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final List<CategoryFortniteResponseItemsFortniteSkins> fortniteSkins;
+  final List<CategoryFortniteResponseItemsFortnitePickaxe> fortnitePickaxe;
+  final List<CategoryFortniteResponseItemsFortniteDance> fortniteDance;
+  final List<CategoryFortniteResponseItemsFortniteGliders> fortniteGliders;
+  final int fortnitePickaxeCount;
+  final int fortniteDanceCount;
+  final int fortniteGliderCount;
+  final List<CategoryFortniteResponseItemsFortnitePastSeasons>
+      fortnitePastSeasons;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final List<CategoryFortniteResponseItemsFortniteTransactions>
+      fortniteTransactions;
+  final String domain;
+  final CategoryFortniteResponseItemsShopCounts shopCounts;
+  final bool canViewAccountLink;
+  final List<dynamic> accountLinks;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryFortniteResponseItemsSeller seller;
+
+  const CategoryFortniteResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.fortniteItemId,
+    required this.fortnitePlatform,
+    required this.fortniteRegisterDate,
+    required this.fortniteLastActivity,
+    required this.fortniteBookLevel,
+    required this.fortniteLifetimeWins,
+    required this.fortniteLevel,
+    required this.fortniteSeasonNum,
+    required this.fortniteBooksPurchased,
+    required this.fortniteBalance,
+    required this.fortniteSkinCount,
+    required this.fortniteChangeEmail,
+    required this.fortniteRlPurchases,
+    required this.fortniteNextChangeEmailDate,
+    required this.fortniteLastTransDate,
+    required this.fortniteXboxLinkable,
+    required this.fortnitePsnLinkable,
+    required this.fortniteShopSkinsCount,
+    required this.fortniteShopPickaxesCount,
+    required this.fortniteShopDancesCount,
+    required this.fortniteShopGlidersCount,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.fortniteSkins,
+    required this.fortnitePickaxe,
+    required this.fortniteDance,
+    required this.fortniteGliders,
+    required this.fortnitePickaxeCount,
+    required this.fortniteDanceCount,
+    required this.fortniteGliderCount,
+    required this.fortnitePastSeasons,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.fortniteTransactions,
+    required this.domain,
+    required this.shopCounts,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryFortniteResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryFortniteResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        fortniteItemId: json['fortnite_item_id'] is int
+            ? json['fortnite_item_id'] as int
+            : 0,
+        fortnitePlatform: json['fortnite_platform'] is String
+            ? json['fortnite_platform'] as String
+            : '',
+        fortniteRegisterDate: json['fortnite_register_date'] is int
+            ? json['fortnite_register_date'] as int
+            : 0,
+        fortniteLastActivity: json['fortnite_last_activity'] is int
+            ? json['fortnite_last_activity'] as int
+            : 0,
+        fortniteBookLevel: json['fortnite_book_level'] is int
+            ? json['fortnite_book_level'] as int
+            : 0,
+        fortniteLifetimeWins: json['fortnite_lifetime_wins'] is int
+            ? json['fortnite_lifetime_wins'] as int
+            : 0,
+        fortniteLevel:
+            json['fortnite_level'] is int ? json['fortnite_level'] as int : 0,
+        fortniteSeasonNum: json['fortnite_season_num'] is int
+            ? json['fortnite_season_num'] as int
+            : 0,
+        fortniteBooksPurchased: json['fortnite_books_purchased'] is int
+            ? json['fortnite_books_purchased'] as int
+            : 0,
+        fortniteBalance: json['fortnite_balance'] is int
+            ? json['fortnite_balance'] as int
+            : 0,
+        fortniteSkinCount: json['fortnite_skin_count'] is int
+            ? json['fortnite_skin_count'] as int
+            : 0,
+        fortniteChangeEmail: json['fortnite_change_email'] is int
+            ? json['fortnite_change_email'] as int
+            : 0,
+        fortniteRlPurchases: json['fortnite_rl_purchases'] is int
+            ? json['fortnite_rl_purchases'] as int
+            : 0,
+        fortniteNextChangeEmailDate:
+            json['fortnite_next_change_email_date'] is int
+                ? json['fortnite_next_change_email_date'] as int
+                : 0,
+        fortniteLastTransDate: json['fortnite_last_trans_date'] is int
+            ? json['fortnite_last_trans_date'] as int
+            : 0,
+        fortniteXboxLinkable: json['fortnite_xbox_linkable'] is int
+            ? json['fortnite_xbox_linkable'] as int
+            : 0,
+        fortnitePsnLinkable: json['fortnite_psn_linkable'] is int
+            ? json['fortnite_psn_linkable'] as int
+            : 0,
+        fortniteShopSkinsCount: json['fortnite_shop_skins_count'] is int
+            ? json['fortnite_shop_skins_count'] as int
+            : 0,
+        fortniteShopPickaxesCount: json['fortnite_shop_pickaxes_count'] is int
+            ? json['fortnite_shop_pickaxes_count'] as int
+            : 0,
+        fortniteShopDancesCount: json['fortnite_shop_dances_count'] is int
+            ? json['fortnite_shop_dances_count'] as int
+            : 0,
+        fortniteShopGlidersCount: json['fortnite_shop_gliders_count'] is int
+            ? json['fortnite_shop_gliders_count'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryFortniteResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryFortniteResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        fortniteSkins: json['fortniteSkins'] is List
+            ? (json['fortniteSkins'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryFortniteResponseItemsFortniteSkins.fromJson(e))
+                .toList()
+            : const [],
+        fortnitePickaxe: json['fortnitePickaxe'] is List
+            ? (json['fortnitePickaxe'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryFortniteResponseItemsFortnitePickaxe.fromJson(e))
+                .toList()
+            : const [],
+        fortniteDance: json['fortniteDance'] is List
+            ? (json['fortniteDance'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryFortniteResponseItemsFortniteDance.fromJson(e))
+                .toList()
+            : const [],
+        fortniteGliders: json['fortniteGliders'] is List
+            ? (json['fortniteGliders'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryFortniteResponseItemsFortniteGliders.fromJson(e))
+                .toList()
+            : const [],
+        fortnitePickaxeCount: json['fortnite_pickaxe_count'] is int
+            ? json['fortnite_pickaxe_count'] as int
+            : 0,
+        fortniteDanceCount: json['fortnite_dance_count'] is int
+            ? json['fortnite_dance_count'] as int
+            : 0,
+        fortniteGliderCount: json['fortnite_glider_count'] is int
+            ? json['fortnite_glider_count'] as int
+            : 0,
+        fortnitePastSeasons: json['fortnitePastSeasons'] is List
+            ? (json['fortnitePastSeasons'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryFortniteResponseItemsFortnitePastSeasons.fromJson(
+                        e))
+                .toList()
+            : const [],
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        fortniteTransactions: json['fortniteTransactions'] is List
+            ? (json['fortniteTransactions'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryFortniteResponseItemsFortniteTransactions.fromJson(
+                        e))
+                .toList()
+            : const [],
+        domain: json['domain'] is String ? json['domain'] as String : '',
+        shopCounts: json['shopCounts'] is Map<String, dynamic>
+            ? CategoryFortniteResponseItemsShopCounts.fromJson(
+                json['shopCounts'] as Map<String, dynamic>)
+            : CategoryFortniteResponseItemsShopCounts.fromJson(const {}),
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? json['accountLinks'] as List<dynamic>
+            : const [],
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryFortniteResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryFortniteResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryFortniteResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryFortniteResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -4502,20 +6235,21 @@ class CategoryFortniteResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryFortniteResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -4530,36 +6264,36 @@ class CategoryFortniteResponse {
 
 class CategoryMihoyoParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -4599,169 +6333,169 @@ class CategoryMihoyoParams {
   final List<String>? notRegion;
 
   /// List of characters.
-  final List<num>? genshinCharacter;
+  final List<int>? genshinCharacter;
 
   /// List of minimum constellations on characters.
-  final Map<String, num>? genshinCharacterConstellations;
+  final Map<String, int>? genshinCharacterConstellations;
 
   /// List of maximum constellations on characters.
-  final Map<String, num>? genshinCharacterConstellationsMax;
+  final Map<String, int>? genshinCharacterConstellationsMax;
 
   /// List of weapons.
-  final List<num>? genshinWeapon;
+  final List<int>? genshinWeapon;
 
   /// Minimum number of characters.
-  final num? genshinCharMin;
+  final int? genshinCharMin;
 
   /// Maximum number of characters.
-  final num? genshinCharMax;
+  final int? genshinCharMax;
 
   /// Minimum number of legendary characters.
-  final num? genshinLegendaryMin;
+  final int? genshinLegendaryMin;
 
   /// Maximum number of legendary characters.
-  final num? genshinLegendaryMax;
+  final int? genshinLegendaryMax;
 
   /// Minimum level.
-  final num? genshinLevelMin;
+  final int? genshinLevelMin;
 
   /// Maximum level.
-  final num? genshinLevelMax;
+  final int? genshinLevelMax;
 
   /// Minimum number of legendary weapon characters.
-  final num? genshinLegendaryWeaponMin;
+  final int? genshinLegendaryWeaponMin;
 
   /// Maximum number of legendary weapon characters.
-  final num? genshinLegendaryWeaponMax;
+  final int? genshinLegendaryWeaponMax;
 
   /// Minimum number of constellations on legendary characters.
-  final num? constellationsMin;
+  final int? constellationsMin;
 
   /// Maximum number of constellations on legendary characters.
-  final num? constellationsMax;
+  final int? constellationsMax;
 
   /// Minimum number of achievements.
-  final num? genshinAchievementMin;
+  final int? genshinAchievementMin;
 
   /// Maximum number of achievements.
-  final num? genshinAchievementMax;
+  final int? genshinAchievementMax;
 
   /// Minimum number of primogems.
-  final num? genshinCurrencyMin;
+  final int? genshinCurrencyMin;
 
   /// Maximum number of primogems.
-  final num? genshinCurrencyMax;
+  final int? genshinCurrencyMax;
 
   /// List of characters.
-  final List<num>? honkaiCharacter;
+  final List<int>? honkaiCharacter;
 
   /// List of minimum eidolons on characters.
-  final Map<String, num>? honkaiCharacterEidolons;
+  final Map<String, int>? honkaiCharacterEidolons;
 
   /// List of maximum eidolons on characters.
-  final Map<String, num>? honkaiCharacterEidolonsMax;
+  final Map<String, int>? honkaiCharacterEidolonsMax;
 
   /// List of weapons.
-  final List<num>? honkaiWeapon;
+  final List<int>? honkaiWeapon;
 
   /// Minimum number of characters.
-  final num? honkaiCharMin;
+  final int? honkaiCharMin;
 
   /// Maximum number of characters.
-  final num? honkaiCharMax;
+  final int? honkaiCharMax;
 
   /// Minimum number of legendary characters.
-  final num? honkaiLegendaryMin;
+  final int? honkaiLegendaryMin;
 
   /// Maximum number of legendary characters.
-  final num? honkaiLegendaryMax;
+  final int? honkaiLegendaryMax;
 
   /// Minimum level.
-  final num? honkaiLevelMin;
+  final int? honkaiLevelMin;
 
   /// Maximum level.
-  final num? honkaiLevelMax;
+  final int? honkaiLevelMax;
 
   /// Minimum number of legendary weapon characters.
-  final num? honkaiLegendaryWeaponMin;
+  final int? honkaiLegendaryWeaponMin;
 
   /// Maximum number of legendary weapon characters.
-  final num? honkaiLegendaryWeaponMax;
+  final int? honkaiLegendaryWeaponMax;
 
   /// Minimum number of constellations on Honkai: Star Rail legendary characters.
-  final num? eidolonsMin;
+  final int? eidolonsMin;
 
   /// Maximum number of legendary Honkai: Star Rail weapon characters.
-  final num? eidolonsMax;
+  final int? eidolonsMax;
 
   /// Minimum number of achievements.
-  final num? honkaiAchievementMin;
+  final int? honkaiAchievementMin;
 
   /// Maximum number of achievements.
-  final num? honkaiAchievementMax;
+  final int? honkaiAchievementMax;
 
   /// Minimum number of Stellar Jade.
-  final num? honkaiCurrencyMin;
+  final int? honkaiCurrencyMin;
 
   /// Maximum number of Stellar Jade.
-  final num? honkaiCurrencyMax;
+  final int? honkaiCurrencyMax;
 
   /// List of Zenless Zone Zero characters.
-  final List<num>? zenlessCharacter;
+  final List<int>? zenlessCharacter;
 
   /// List of minimum cinemas on characters.
-  final Map<String, num>? zenlessCharacterCinemas;
+  final Map<String, int>? zenlessCharacterCinemas;
 
   /// List of maximum cinemas on characters.
-  final Map<String, num>? zenlessCharacterCinemasMax;
+  final Map<String, int>? zenlessCharacterCinemasMax;
 
   /// List of Zenless Zone Zero weapons.
-  final List<num>? zenlessWeapon;
+  final List<int>? zenlessWeapon;
 
   /// Minimum number of Zenless Zone Zero legendary characters.
-  final num? zenlessLegendaryMin;
+  final int? zenlessLegendaryMin;
 
   /// Maximum number of Zenless Zone Zero legendary characters.
-  final num? zenlessLegendaryMax;
+  final int? zenlessLegendaryMax;
 
   /// Minimum number of cinemas on Zenless Zone Zero characters.
-  final num? cinemasMin;
+  final int? cinemasMin;
 
   /// Maximum number of cinemas on Zenless Zone Zero characters.
-  final num? cinemasMax;
+  final int? cinemasMax;
 
   /// Minimum number of legendary Zenless Zone Zero weapon characters.
-  final num? zenlessLegendaryWeaponMin;
+  final int? zenlessLegendaryWeaponMin;
 
   /// Maximum number of legendary Zenless Zone Zero weapon characters.
-  final num? zenlessLegendaryWeaponMax;
+  final int? zenlessLegendaryWeaponMax;
 
   /// Minimum number of Zenless Zone Zero characters.
-  final num? zenlessCharMin;
+  final int? zenlessCharMin;
 
   /// Maximum number of Zenless Zone Zero characters.
-  final num? zenlessCharMax;
+  final int? zenlessCharMax;
 
   /// Minimum Zenless Zone Zero level.
-  final num? zenlessLevelMin;
+  final int? zenlessLevelMin;
 
   /// Maximum Zenless Zone Zero level.
-  final num? zenlessLevelMax;
+  final int? zenlessLevelMax;
 
   /// Minimum count of Zenless Zone Zero achievements.
-  final num? zenlessAchievementMin;
+  final int? zenlessAchievementMin;
 
   /// Maximum count of Zenless Zone Zero achievements.
-  final num? zenlessAchievementMax;
+  final int? zenlessAchievementMax;
 
   /// Minimum count of Zenless Zone Zero polychrome.
-  final num? zenlessCurrencyMin;
+  final int? zenlessCurrencyMin;
 
   /// Maximum count of Zenless Zone Zero polychrome.
-  final num? zenlessCurrencyMax;
+  final int? zenlessCurrencyMax;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   const CategoryMihoyoParams({
     this.page,
@@ -4936,17 +6670,1245 @@ class CategoryMihoyoParams {
   }
 }
 
+class CategoryMihoyoResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryMihoyoResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryMihoyoResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryMihoyoResponseItemsMihoyoLinkedAccounts {
+  final List<String> links;
+  final bool legacy;
+
+  const CategoryMihoyoResponseItemsMihoyoLinkedAccounts({
+    required this.links,
+    required this.legacy,
+  });
+
+  factory CategoryMihoyoResponseItemsMihoyoLinkedAccounts.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsMihoyoLinkedAccounts(
+        links: json['links'] is List
+            ? (json['links'] as List<dynamic>).whereType<String>().toList()
+            : const [],
+        legacy: json['legacy'] is bool ? json['legacy'] as bool : false,
+      );
+}
+
+class CategoryMihoyoResponseItemsHonkaiCharactersEquip {
+  final int id;
+  final int level;
+  final int rank;
+  final String name;
+  final String desc;
+  final String icon;
+  final int rarity;
+
+  const CategoryMihoyoResponseItemsHonkaiCharactersEquip({
+    required this.id,
+    required this.level,
+    required this.rank,
+    required this.name,
+    required this.desc,
+    required this.icon,
+    required this.rarity,
+  });
+
+  factory CategoryMihoyoResponseItemsHonkaiCharactersEquip.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsHonkaiCharactersEquip(
+        id: json['id'] is int ? json['id'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        rank: json['rank'] is int ? json['rank'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        desc: json['desc'] is String ? json['desc'] as String : '',
+        icon: json['icon'] is String ? json['icon'] as String : '',
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+      );
+}
+
+class CategoryMihoyoResponseItemsHonkaiCharactersRelicsMainProperty {
+  final int propertyType;
+  final String value;
+  final int times;
+
+  const CategoryMihoyoResponseItemsHonkaiCharactersRelicsMainProperty({
+    required this.propertyType,
+    required this.value,
+    required this.times,
+  });
+
+  factory CategoryMihoyoResponseItemsHonkaiCharactersRelicsMainProperty.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsHonkaiCharactersRelicsMainProperty(
+        propertyType:
+            json['property_type'] is int ? json['property_type'] as int : 0,
+        value: json['value'] is String ? json['value'] as String : '',
+        times: json['times'] is int ? json['times'] as int : 0,
+      );
+}
+
+class CategoryMihoyoResponseItemsHonkaiCharactersRelicsProperties {
+  final int propertyType;
+  final String value;
+  final int times;
+
+  const CategoryMihoyoResponseItemsHonkaiCharactersRelicsProperties({
+    required this.propertyType,
+    required this.value,
+    required this.times,
+  });
+
+  factory CategoryMihoyoResponseItemsHonkaiCharactersRelicsProperties.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsHonkaiCharactersRelicsProperties(
+        propertyType:
+            json['property_type'] is int ? json['property_type'] as int : 0,
+        value: json['value'] is String ? json['value'] as String : '',
+        times: json['times'] is int ? json['times'] as int : 0,
+      );
+}
+
+class CategoryMihoyoResponseItemsHonkaiCharactersRelics {
+  final int id;
+  final int level;
+  final int pos;
+  final String name;
+  final String desc;
+  final String icon;
+  final int rarity;
+  final CategoryMihoyoResponseItemsHonkaiCharactersRelicsMainProperty
+      mainProperty;
+  final List<CategoryMihoyoResponseItemsHonkaiCharactersRelicsProperties>
+      properties;
+
+  const CategoryMihoyoResponseItemsHonkaiCharactersRelics({
+    required this.id,
+    required this.level,
+    required this.pos,
+    required this.name,
+    required this.desc,
+    required this.icon,
+    required this.rarity,
+    required this.mainProperty,
+    required this.properties,
+  });
+
+  factory CategoryMihoyoResponseItemsHonkaiCharactersRelics.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsHonkaiCharactersRelics(
+        id: json['id'] is int ? json['id'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        pos: json['pos'] is int ? json['pos'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        desc: json['desc'] is String ? json['desc'] as String : '',
+        icon: json['icon'] is String ? json['icon'] as String : '',
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+        mainProperty: json['main_property'] is Map<String, dynamic>
+            ? CategoryMihoyoResponseItemsHonkaiCharactersRelicsMainProperty
+                .fromJson(json['main_property'] as Map<String, dynamic>)
+            : CategoryMihoyoResponseItemsHonkaiCharactersRelicsMainProperty
+                .fromJson(const {}),
+        properties: json['properties'] is List
+            ? (json['properties'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsHonkaiCharactersRelicsProperties
+                        .fromJson(e))
+                .toList()
+            : const [],
+      );
+}
+
+class CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsMainProperty {
+  final int propertyType;
+  final String value;
+  final int times;
+
+  const CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsMainProperty({
+    required this.propertyType,
+    required this.value,
+    required this.times,
+  });
+
+  factory CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsMainProperty.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsMainProperty(
+        propertyType:
+            json['property_type'] is int ? json['property_type'] as int : 0,
+        value: json['value'] is String ? json['value'] as String : '',
+        times: json['times'] is int ? json['times'] as int : 0,
+      );
+}
+
+class CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsProperties {
+  final int propertyType;
+  final String value;
+  final int times;
+
+  const CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsProperties({
+    required this.propertyType,
+    required this.value,
+    required this.times,
+  });
+
+  factory CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsProperties.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsProperties(
+        propertyType:
+            json['property_type'] is int ? json['property_type'] as int : 0,
+        value: json['value'] is String ? json['value'] as String : '',
+        times: json['times'] is int ? json['times'] as int : 0,
+      );
+}
+
+class CategoryMihoyoResponseItemsHonkaiCharactersOrnaments {
+  final int id;
+  final int level;
+  final int pos;
+  final String name;
+  final String desc;
+  final String icon;
+  final int rarity;
+  final CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsMainProperty
+      mainProperty;
+  final List<CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsProperties>
+      properties;
+
+  const CategoryMihoyoResponseItemsHonkaiCharactersOrnaments({
+    required this.id,
+    required this.level,
+    required this.pos,
+    required this.name,
+    required this.desc,
+    required this.icon,
+    required this.rarity,
+    required this.mainProperty,
+    required this.properties,
+  });
+
+  factory CategoryMihoyoResponseItemsHonkaiCharactersOrnaments.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsHonkaiCharactersOrnaments(
+        id: json['id'] is int ? json['id'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        pos: json['pos'] is int ? json['pos'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        desc: json['desc'] is String ? json['desc'] as String : '',
+        icon: json['icon'] is String ? json['icon'] as String : '',
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+        mainProperty: json['main_property'] is Map<String, dynamic>
+            ? CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsMainProperty
+                .fromJson(json['main_property'] as Map<String, dynamic>)
+            : CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsMainProperty
+                .fromJson(const {}),
+        properties: json['properties'] is List
+            ? (json['properties'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsHonkaiCharactersOrnamentsProperties
+                        .fromJson(e))
+                .toList()
+            : const [],
+      );
+}
+
+class CategoryMihoyoResponseItemsHonkaiCharacters {
+  final int id;
+  final int level;
+  final String name;
+  final String element;
+  final String icon;
+  final int rarity;
+  final int rank;
+  final String image;
+  final CategoryMihoyoResponseItemsHonkaiCharactersEquip equip;
+  final List<CategoryMihoyoResponseItemsHonkaiCharactersRelics> relics;
+  final List<CategoryMihoyoResponseItemsHonkaiCharactersOrnaments> ornaments;
+  final int baseType;
+  final String figurePath;
+  final String elementImage;
+
+  const CategoryMihoyoResponseItemsHonkaiCharacters({
+    required this.id,
+    required this.level,
+    required this.name,
+    required this.element,
+    required this.icon,
+    required this.rarity,
+    required this.rank,
+    required this.image,
+    required this.equip,
+    required this.relics,
+    required this.ornaments,
+    required this.baseType,
+    required this.figurePath,
+    required this.elementImage,
+  });
+
+  factory CategoryMihoyoResponseItemsHonkaiCharacters.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsHonkaiCharacters(
+        id: json['id'] is int ? json['id'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        element: json['element'] is String ? json['element'] as String : '',
+        icon: json['icon'] is String ? json['icon'] as String : '',
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+        rank: json['rank'] is int ? json['rank'] as int : 0,
+        image: json['image'] is String ? json['image'] as String : '',
+        equip: json['equip'] is Map<String, dynamic>
+            ? CategoryMihoyoResponseItemsHonkaiCharactersEquip.fromJson(
+                json['equip'] as Map<String, dynamic>)
+            : CategoryMihoyoResponseItemsHonkaiCharactersEquip.fromJson(
+                const {}),
+        relics: json['relics'] is List
+            ? (json['relics'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsHonkaiCharactersRelics.fromJson(
+                        e))
+                .toList()
+            : const [],
+        ornaments: json['ornaments'] is List
+            ? (json['ornaments'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryMihoyoResponseItemsHonkaiCharactersOrnaments
+                    .fromJson(e))
+                .toList()
+            : const [],
+        baseType: json['base_type'] is int ? json['base_type'] as int : 0,
+        figurePath:
+            json['figure_path'] is String ? json['figure_path'] as String : '',
+        elementImage: json['elementImage'] is String
+            ? json['elementImage'] as String
+            : '',
+      );
+}
+
+class CategoryMihoyoResponseItemsGenshinCharactersWeapon {
+  final int id;
+  final String name;
+  final String icon;
+  final int type;
+  final int rarity;
+  final int level;
+  final int promoteLevel;
+  final String typeName;
+  final String desc;
+  final int affixLevel;
+
+  const CategoryMihoyoResponseItemsGenshinCharactersWeapon({
+    required this.id,
+    required this.name,
+    required this.icon,
+    required this.type,
+    required this.rarity,
+    required this.level,
+    required this.promoteLevel,
+    required this.typeName,
+    required this.desc,
+    required this.affixLevel,
+  });
+
+  factory CategoryMihoyoResponseItemsGenshinCharactersWeapon.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsGenshinCharactersWeapon(
+        id: json['id'] is int ? json['id'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        icon: json['icon'] is String ? json['icon'] as String : '',
+        type: json['type'] is int ? json['type'] as int : 0,
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        promoteLevel:
+            json['promote_level'] is int ? json['promote_level'] as int : 0,
+        typeName:
+            json['type_name'] is String ? json['type_name'] as String : '',
+        desc: json['desc'] is String ? json['desc'] as String : '',
+        affixLevel: json['affix_level'] is int ? json['affix_level'] as int : 0,
+      );
+}
+
+class CategoryMihoyoResponseItemsGenshinCharactersReliquaries {
+  final int id;
+  final String name;
+  final String icon;
+  final int pos;
+  final int rarity;
+  final int level;
+  final String posName;
+
+  const CategoryMihoyoResponseItemsGenshinCharactersReliquaries({
+    required this.id,
+    required this.name,
+    required this.icon,
+    required this.pos,
+    required this.rarity,
+    required this.level,
+    required this.posName,
+  });
+
+  factory CategoryMihoyoResponseItemsGenshinCharactersReliquaries.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsGenshinCharactersReliquaries(
+        id: json['id'] is int ? json['id'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        icon: json['icon'] is String ? json['icon'] as String : '',
+        pos: json['pos'] is int ? json['pos'] as int : 0,
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        posName: json['pos_name'] is String ? json['pos_name'] as String : '',
+      );
+}
+
+class CategoryMihoyoResponseItemsGenshinCharacters {
+  final int id;
+  final String image;
+  final String icon;
+  final String name;
+  final String element;
+  final int fetter;
+  final int level;
+  final int rarity;
+  final CategoryMihoyoResponseItemsGenshinCharactersWeapon weapon;
+  final List<CategoryMihoyoResponseItemsGenshinCharactersReliquaries>
+      reliquaries;
+  final int activedConstellationNum;
+  final List<dynamic> costumes;
+  final dynamic external;
+  final String background;
+
+  const CategoryMihoyoResponseItemsGenshinCharacters({
+    required this.id,
+    required this.image,
+    required this.icon,
+    required this.name,
+    required this.element,
+    required this.fetter,
+    required this.level,
+    required this.rarity,
+    required this.weapon,
+    required this.reliquaries,
+    required this.activedConstellationNum,
+    required this.costumes,
+    required this.external,
+    required this.background,
+  });
+
+  factory CategoryMihoyoResponseItemsGenshinCharacters.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsGenshinCharacters(
+        id: json['id'] is int ? json['id'] as int : 0,
+        image: json['image'] is String ? json['image'] as String : '',
+        icon: json['icon'] is String ? json['icon'] as String : '',
+        name: json['name'] is String ? json['name'] as String : '',
+        element: json['element'] is String ? json['element'] as String : '',
+        fetter: json['fetter'] is int ? json['fetter'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+        weapon: json['weapon'] is Map<String, dynamic>
+            ? CategoryMihoyoResponseItemsGenshinCharactersWeapon.fromJson(
+                json['weapon'] as Map<String, dynamic>)
+            : CategoryMihoyoResponseItemsGenshinCharactersWeapon.fromJson(
+                const {}),
+        reliquaries: json['reliquaries'] is List
+            ? (json['reliquaries'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsGenshinCharactersReliquaries
+                        .fromJson(e))
+                .toList()
+            : const [],
+        activedConstellationNum: json['actived_constellation_num'] is int
+            ? json['actived_constellation_num'] as int
+            : 0,
+        costumes: json['costumes'] is List
+            ? json['costumes'] as List<dynamic>
+            : const [],
+        external: json['external'],
+        background:
+            json['background'] is String ? json['background'] as String : '',
+      );
+}
+
+class CategoryMihoyoResponseItemsZenlessCharactersWeaponProperties {
+  final String propertyName;
+  final int propertyId;
+  final String base;
+
+  const CategoryMihoyoResponseItemsZenlessCharactersWeaponProperties({
+    required this.propertyName,
+    required this.propertyId,
+    required this.base,
+  });
+
+  factory CategoryMihoyoResponseItemsZenlessCharactersWeaponProperties.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsZenlessCharactersWeaponProperties(
+        propertyName: json['property_name'] is String
+            ? json['property_name'] as String
+            : '',
+        propertyId: json['property_id'] is int ? json['property_id'] as int : 0,
+        base: json['base'] is String ? json['base'] as String : '',
+      );
+}
+
+class CategoryMihoyoResponseItemsZenlessCharactersWeaponMainProperties {
+  final String propertyName;
+  final int propertyId;
+  final String base;
+
+  const CategoryMihoyoResponseItemsZenlessCharactersWeaponMainProperties({
+    required this.propertyName,
+    required this.propertyId,
+    required this.base,
+  });
+
+  factory CategoryMihoyoResponseItemsZenlessCharactersWeaponMainProperties.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsZenlessCharactersWeaponMainProperties(
+        propertyName: json['property_name'] is String
+            ? json['property_name'] as String
+            : '',
+        propertyId: json['property_id'] is int ? json['property_id'] as int : 0,
+        base: json['base'] is String ? json['base'] as String : '',
+      );
+}
+
+class CategoryMihoyoResponseItemsZenlessCharactersWeapon {
+  final int id;
+  final int level;
+  final String name;
+  final int star;
+  final String icon;
+  final int rarity;
+  final List<CategoryMihoyoResponseItemsZenlessCharactersWeaponProperties>
+      properties;
+  final List<CategoryMihoyoResponseItemsZenlessCharactersWeaponMainProperties>
+      mainProperties;
+  final String talentTitle;
+  final String talentContent;
+  final int profession;
+  final String starIcon;
+  final String rarityIcon;
+
+  const CategoryMihoyoResponseItemsZenlessCharactersWeapon({
+    required this.id,
+    required this.level,
+    required this.name,
+    required this.star,
+    required this.icon,
+    required this.rarity,
+    required this.properties,
+    required this.mainProperties,
+    required this.talentTitle,
+    required this.talentContent,
+    required this.profession,
+    required this.starIcon,
+    required this.rarityIcon,
+  });
+
+  factory CategoryMihoyoResponseItemsZenlessCharactersWeapon.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsZenlessCharactersWeapon(
+        id: json['id'] is int ? json['id'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        star: json['star'] is int ? json['star'] as int : 0,
+        icon: json['icon'] is String ? json['icon'] as String : '',
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+        properties: json['properties'] is List
+            ? (json['properties'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsZenlessCharactersWeaponProperties
+                        .fromJson(e))
+                .toList()
+            : const [],
+        mainProperties: json['main_properties'] is List
+            ? (json['main_properties'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsZenlessCharactersWeaponMainProperties
+                        .fromJson(e))
+                .toList()
+            : const [],
+        talentTitle: json['talent_title'] is String
+            ? json['talent_title'] as String
+            : '',
+        talentContent: json['talent_content'] is String
+            ? json['talent_content'] as String
+            : '',
+        profession: json['profession'] is int ? json['profession'] as int : 0,
+        starIcon: json['starIcon'] is String ? json['starIcon'] as String : '',
+        rarityIcon:
+            json['rarityIcon'] is String ? json['rarityIcon'] as String : '',
+      );
+}
+
+class CategoryMihoyoResponseItemsZenlessCharacters {
+  final int id;
+  final int level;
+  final String nameMi18n;
+  final String fullNameMi18n;
+  final int elementType;
+  final String campNameMi18n;
+  final int avatarProfession;
+  final int rarity;
+  final CategoryMihoyoResponseItemsZenlessCharactersWeapon weapon;
+  final int rank;
+  final String name;
+  final String rarityIcon;
+  final String elementIcon;
+  final String professionIcon;
+
+  const CategoryMihoyoResponseItemsZenlessCharacters({
+    required this.id,
+    required this.level,
+    required this.nameMi18n,
+    required this.fullNameMi18n,
+    required this.elementType,
+    required this.campNameMi18n,
+    required this.avatarProfession,
+    required this.rarity,
+    required this.weapon,
+    required this.rank,
+    required this.name,
+    required this.rarityIcon,
+    required this.elementIcon,
+    required this.professionIcon,
+  });
+
+  factory CategoryMihoyoResponseItemsZenlessCharacters.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsZenlessCharacters(
+        id: json['id'] is int ? json['id'] as int : 0,
+        level: json['level'] is int ? json['level'] as int : 0,
+        nameMi18n:
+            json['name_mi18n'] is String ? json['name_mi18n'] as String : '',
+        fullNameMi18n: json['full_name_mi18n'] is String
+            ? json['full_name_mi18n'] as String
+            : '',
+        elementType:
+            json['element_type'] is int ? json['element_type'] as int : 0,
+        campNameMi18n: json['camp_name_mi18n'] is String
+            ? json['camp_name_mi18n'] as String
+            : '',
+        avatarProfession: json['avatar_profession'] is int
+            ? json['avatar_profession'] as int
+            : 0,
+        rarity: json['rarity'] is int ? json['rarity'] as int : 0,
+        weapon: json['weapon'] is Map<String, dynamic>
+            ? CategoryMihoyoResponseItemsZenlessCharactersWeapon.fromJson(
+                json['weapon'] as Map<String, dynamic>)
+            : CategoryMihoyoResponseItemsZenlessCharactersWeapon.fromJson(
+                const {}),
+        rank: json['rank'] is int ? json['rank'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        rarityIcon:
+            json['rarityIcon'] is String ? json['rarityIcon'] as String : '',
+        elementIcon:
+            json['elementIcon'] is String ? json['elementIcon'] as String : '',
+        professionIcon: json['professionIcon'] is String
+            ? json['professionIcon'] as String
+            : '',
+      );
+}
+
+class CategoryMihoyoResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategoryMihoyoResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategoryMihoyoResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategoryMihoyoResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryMihoyoResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryMihoyoResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryMihoyoResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int mihoyoItemId;
+  final int mihoyoId;
+  final int mihoyoEmail;
+  final int mihoyoHasLinkedAccounts;
+  final String mihoyoRegion;
+  final int mihoyoLastActivity;
+  final int mihoyoGenshinLevel;
+  final int mihoyoGenshinCharacterCount;
+  final int mihoyoGenshinAchievementCount;
+  final String mihoyoGenshinAbyssProcess;
+  final int mihoyoGenshinLegendaryCharactersCount;
+  final int mihoyoGenshinConstellationsCount;
+  final int mihoyoGenshinLegendaryWeaponsCount;
+  final int mihoyoGenshinActivityDays;
+  final int mihoyoGenshinCurrency;
+  final int mihoyoHonkaiLevel;
+  final int mihoyoHonkaiCharacterCount;
+  final int mihoyoHonkaiAchievementCount;
+  final String mihoyoHonkaiAbyssProcess;
+  final int mihoyoHonkaiLegendaryCharactersCount;
+  final int mihoyoHonkaiEidolonsCount;
+  final int mihoyoHonkaiLegendaryWeaponsCount;
+  final int mihoyoHonkaiActivityDays;
+  final int mihoyoHonkaiCurrency;
+  final int mihoyoZenlessLevel;
+  final int mihoyoZenlessCharacterCount;
+  final int mihoyoZenlessAchievementCount;
+  final String mihoyoZenlessAbyssProcess;
+  final int mihoyoZenlessLegendaryCharactersCount;
+  final int mihoyoZenlessCinemasCount;
+  final int mihoyoZenlessLegendaryWeaponsCount;
+  final int mihoyoZenlessActivityDays;
+  final int mihoyoZenlessCurrency;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryMihoyoResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String mihoyoRegionPhrase;
+  final CategoryMihoyoResponseItemsMihoyoLinkedAccounts mihoyoLinkedAccounts;
+  final String mihoyoLinkedAccountsString;
+  final List<CategoryMihoyoResponseItemsHonkaiCharacters> honkaiCharacters;
+  final List<CategoryMihoyoResponseItemsGenshinCharacters> genshinCharacters;
+  final List<CategoryMihoyoResponseItemsZenlessCharacters> zenlessCharacters;
+  final bool canViewAccountLink;
+  final List<CategoryMihoyoResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryMihoyoResponseItemsSeller seller;
+
+  const CategoryMihoyoResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.mihoyoItemId,
+    required this.mihoyoId,
+    required this.mihoyoEmail,
+    required this.mihoyoHasLinkedAccounts,
+    required this.mihoyoRegion,
+    required this.mihoyoLastActivity,
+    required this.mihoyoGenshinLevel,
+    required this.mihoyoGenshinCharacterCount,
+    required this.mihoyoGenshinAchievementCount,
+    required this.mihoyoGenshinAbyssProcess,
+    required this.mihoyoGenshinLegendaryCharactersCount,
+    required this.mihoyoGenshinConstellationsCount,
+    required this.mihoyoGenshinLegendaryWeaponsCount,
+    required this.mihoyoGenshinActivityDays,
+    required this.mihoyoGenshinCurrency,
+    required this.mihoyoHonkaiLevel,
+    required this.mihoyoHonkaiCharacterCount,
+    required this.mihoyoHonkaiAchievementCount,
+    required this.mihoyoHonkaiAbyssProcess,
+    required this.mihoyoHonkaiLegendaryCharactersCount,
+    required this.mihoyoHonkaiEidolonsCount,
+    required this.mihoyoHonkaiLegendaryWeaponsCount,
+    required this.mihoyoHonkaiActivityDays,
+    required this.mihoyoHonkaiCurrency,
+    required this.mihoyoZenlessLevel,
+    required this.mihoyoZenlessCharacterCount,
+    required this.mihoyoZenlessAchievementCount,
+    required this.mihoyoZenlessAbyssProcess,
+    required this.mihoyoZenlessLegendaryCharactersCount,
+    required this.mihoyoZenlessCinemasCount,
+    required this.mihoyoZenlessLegendaryWeaponsCount,
+    required this.mihoyoZenlessActivityDays,
+    required this.mihoyoZenlessCurrency,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.mihoyoRegionPhrase,
+    required this.mihoyoLinkedAccounts,
+    required this.mihoyoLinkedAccountsString,
+    required this.honkaiCharacters,
+    required this.genshinCharacters,
+    required this.zenlessCharacters,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryMihoyoResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryMihoyoResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        mihoyoItemId:
+            json['mihoyo_item_id'] is int ? json['mihoyo_item_id'] as int : 0,
+        mihoyoId: json['mihoyo_id'] is int ? json['mihoyo_id'] as int : 0,
+        mihoyoEmail:
+            json['mihoyo_email'] is int ? json['mihoyo_email'] as int : 0,
+        mihoyoHasLinkedAccounts: json['mihoyo_has_linked_accounts'] is int
+            ? json['mihoyo_has_linked_accounts'] as int
+            : 0,
+        mihoyoRegion: json['mihoyo_region'] is String
+            ? json['mihoyo_region'] as String
+            : '',
+        mihoyoLastActivity: json['mihoyo_last_activity'] is int
+            ? json['mihoyo_last_activity'] as int
+            : 0,
+        mihoyoGenshinLevel: json['mihoyo_genshin_level'] is int
+            ? json['mihoyo_genshin_level'] as int
+            : 0,
+        mihoyoGenshinCharacterCount:
+            json['mihoyo_genshin_character_count'] is int
+                ? json['mihoyo_genshin_character_count'] as int
+                : 0,
+        mihoyoGenshinAchievementCount:
+            json['mihoyo_genshin_achievement_count'] is int
+                ? json['mihoyo_genshin_achievement_count'] as int
+                : 0,
+        mihoyoGenshinAbyssProcess:
+            json['mihoyo_genshin_abyss_process'] is String
+                ? json['mihoyo_genshin_abyss_process'] as String
+                : '',
+        mihoyoGenshinLegendaryCharactersCount:
+            json['mihoyo_genshin_legendary_characters_count'] is int
+                ? json['mihoyo_genshin_legendary_characters_count'] as int
+                : 0,
+        mihoyoGenshinConstellationsCount:
+            json['mihoyo_genshin_constellations_count'] is int
+                ? json['mihoyo_genshin_constellations_count'] as int
+                : 0,
+        mihoyoGenshinLegendaryWeaponsCount:
+            json['mihoyo_genshin_legendary_weapons_count'] is int
+                ? json['mihoyo_genshin_legendary_weapons_count'] as int
+                : 0,
+        mihoyoGenshinActivityDays: json['mihoyo_genshin_activity_days'] is int
+            ? json['mihoyo_genshin_activity_days'] as int
+            : 0,
+        mihoyoGenshinCurrency: json['mihoyo_genshin_currency'] is int
+            ? json['mihoyo_genshin_currency'] as int
+            : 0,
+        mihoyoHonkaiLevel: json['mihoyo_honkai_level'] is int
+            ? json['mihoyo_honkai_level'] as int
+            : 0,
+        mihoyoHonkaiCharacterCount: json['mihoyo_honkai_character_count'] is int
+            ? json['mihoyo_honkai_character_count'] as int
+            : 0,
+        mihoyoHonkaiAchievementCount:
+            json['mihoyo_honkai_achievement_count'] is int
+                ? json['mihoyo_honkai_achievement_count'] as int
+                : 0,
+        mihoyoHonkaiAbyssProcess: json['mihoyo_honkai_abyss_process'] is String
+            ? json['mihoyo_honkai_abyss_process'] as String
+            : '',
+        mihoyoHonkaiLegendaryCharactersCount:
+            json['mihoyo_honkai_legendary_characters_count'] is int
+                ? json['mihoyo_honkai_legendary_characters_count'] as int
+                : 0,
+        mihoyoHonkaiEidolonsCount: json['mihoyo_honkai_eidolons_count'] is int
+            ? json['mihoyo_honkai_eidolons_count'] as int
+            : 0,
+        mihoyoHonkaiLegendaryWeaponsCount:
+            json['mihoyo_honkai_legendary_weapons_count'] is int
+                ? json['mihoyo_honkai_legendary_weapons_count'] as int
+                : 0,
+        mihoyoHonkaiActivityDays: json['mihoyo_honkai_activity_days'] is int
+            ? json['mihoyo_honkai_activity_days'] as int
+            : 0,
+        mihoyoHonkaiCurrency: json['mihoyo_honkai_currency'] is int
+            ? json['mihoyo_honkai_currency'] as int
+            : 0,
+        mihoyoZenlessLevel: json['mihoyo_zenless_level'] is int
+            ? json['mihoyo_zenless_level'] as int
+            : 0,
+        mihoyoZenlessCharacterCount:
+            json['mihoyo_zenless_character_count'] is int
+                ? json['mihoyo_zenless_character_count'] as int
+                : 0,
+        mihoyoZenlessAchievementCount:
+            json['mihoyo_zenless_achievement_count'] is int
+                ? json['mihoyo_zenless_achievement_count'] as int
+                : 0,
+        mihoyoZenlessAbyssProcess:
+            json['mihoyo_zenless_abyss_process'] is String
+                ? json['mihoyo_zenless_abyss_process'] as String
+                : '',
+        mihoyoZenlessLegendaryCharactersCount:
+            json['mihoyo_zenless_legendary_characters_count'] is int
+                ? json['mihoyo_zenless_legendary_characters_count'] as int
+                : 0,
+        mihoyoZenlessCinemasCount: json['mihoyo_zenless_cinemas_count'] is int
+            ? json['mihoyo_zenless_cinemas_count'] as int
+            : 0,
+        mihoyoZenlessLegendaryWeaponsCount:
+            json['mihoyo_zenless_legendary_weapons_count'] is int
+                ? json['mihoyo_zenless_legendary_weapons_count'] as int
+                : 0,
+        mihoyoZenlessActivityDays: json['mihoyo_zenless_activity_days'] is int
+            ? json['mihoyo_zenless_activity_days'] as int
+            : 0,
+        mihoyoZenlessCurrency: json['mihoyo_zenless_currency'] is int
+            ? json['mihoyo_zenless_currency'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryMihoyoResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryMihoyoResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        mihoyoRegionPhrase: json['mihoyoRegionPhrase'] is String
+            ? json['mihoyoRegionPhrase'] as String
+            : '',
+        mihoyoLinkedAccounts:
+            json['mihoyoLinkedAccounts'] is Map<String, dynamic>
+                ? CategoryMihoyoResponseItemsMihoyoLinkedAccounts.fromJson(
+                    json['mihoyoLinkedAccounts'] as Map<String, dynamic>)
+                : CategoryMihoyoResponseItemsMihoyoLinkedAccounts.fromJson(
+                    const {}),
+        mihoyoLinkedAccountsString: json['mihoyoLinkedAccountsString'] is String
+            ? json['mihoyoLinkedAccountsString'] as String
+            : '',
+        honkaiCharacters: json['honkaiCharacters'] is List
+            ? (json['honkaiCharacters'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsHonkaiCharacters.fromJson(e))
+                .toList()
+            : const [],
+        genshinCharacters: json['genshinCharacters'] is List
+            ? (json['genshinCharacters'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsGenshinCharacters.fromJson(e))
+                .toList()
+            : const [],
+        zenlessCharacters: json['zenlessCharacters'] is List
+            ? (json['zenlessCharacters'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMihoyoResponseItemsZenlessCharacters.fromJson(e))
+                .toList()
+            : const [],
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryMihoyoResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryMihoyoResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryMihoyoResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryMihoyoResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryMihoyoResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -4972,20 +7934,21 @@ class CategoryMihoyoResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryMihoyoResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -5000,36 +7963,36 @@ class CategoryMihoyoResponse {
 
 class CategoryRiotParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -5061,22 +8024,22 @@ class CategoryRiotParams {
   final String? itemDomain;
 
   /// Minimum valorant rank.
-  final num? rmin;
+  final int? rmin;
 
   /// Maximum valorant rank.
-  final num? rmax;
+  final int? rmax;
 
   /// Last minimum valorant rank.
-  final num? lastRmin;
+  final int? lastRmin;
 
   /// Last maximum valorant rank.
-  final num? lastRmax;
+  final int? lastRmax;
 
   /// Previous minimum rank.
-  final num? previousRmin;
+  final int? previousRmin;
 
   /// Previous maximum rank.
-  final num? previousRmax;
+  final int? previousRmax;
 
   /// List of weapon skins.
   final List<String>? weaponSkin;
@@ -5100,46 +8063,46 @@ class CategoryRiotParams {
   final List<String>? notCountry;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Minimum level in Valorant.
-  final num? valorantLevelMin;
+  final int? valorantLevelMin;
 
   /// Maximum level in Valorant.
-  final num? valorantLevelMax;
+  final int? valorantLevelMax;
 
   /// Minimum level in LoL.
-  final num? lolLevelMin;
+  final int? lolLevelMin;
 
   /// Maximum level in LoL.
-  final num? lolLevelMax;
+  final int? lolLevelMax;
 
   /// Minimum inventory value.
-  final num? invMin;
+  final int? invMin;
 
   /// Maximum inventory value.
-  final num? invMax;
+  final int? invMax;
 
   /// Minimum number of Valorant points.
-  final num? vpMin;
+  final int? vpMin;
 
   /// Maximum number of Valorant points.
-  final num? vpMax;
+  final int? vpMax;
 
   /// Minimum number of skins.
-  final num? valorantSmin;
+  final int? valorantSmin;
 
   /// Maximum number of skins.
-  final num? valorantSmax;
+  final int? valorantSmax;
 
   /// List of allowed rank types.
   final List<String>? valorantRankType;
 
   /// Minimum amount of agents.
-  final num? amin;
+  final int? amin;
 
   /// Maximum amount of agents.
-  final num? amax;
+  final int? amax;
 
   /// List of allowed regions in Valorant.
   final List<String>? valorantRegion;
@@ -5157,66 +8120,66 @@ class CategoryRiotParams {
   final bool? knife;
 
   /// Minimum number of skins in LoL.
-  final num? lolSmin;
+  final int? lolSmin;
 
   /// Maximum number of skins in LoL.
-  final num? lolSmax;
+  final int? lolSmax;
 
   /// Minimum number of champions.
-  final num? championMin;
+  final int? championMin;
 
   /// Maximum number of champions.
-  final num? championMax;
+  final int? championMax;
 
   /// Minimum win-rate.
-  final num? winRateMin;
+  final int? winRateMin;
 
   /// Maximum win-rate.
-  final num? winRateMax;
+  final int? winRateMax;
 
   /// Minimum wallet blue balance.
-  final num? blueMin;
+  final int? blueMin;
 
   /// Maximum wallet blue balance.
-  final num? blueMax;
+  final int? blueMax;
 
   /// Minimum wallet orange balance.
-  final num? orangeMin;
+  final int? orangeMin;
 
   /// Maximum wallet orange balance.
-  final num? orangeMax;
+  final int? orangeMax;
 
   /// Minimum wallet mythic balance.
-  final num? mythicMin;
+  final int? mythicMin;
 
   /// Maximum wallet mythic balance.
-  final num? mythicMax;
+  final int? mythicMax;
 
   /// Minimum wallet riot balance.
-  final num? riotMin;
+  final int? riotMin;
 
   /// Maximum wallet riot balance.
-  final num? riotMax;
+  final int? riotMax;
   final Email? email;
   final Tel? tel;
 
   /// Minimum knifes in Valorant.
-  final num? valorantKnifeMin;
+  final int? valorantKnifeMin;
 
   /// Maximum knifes in Valorant.
-  final num? valorantKnifeMax;
+  final int? valorantKnifeMax;
 
   /// Minimum number of Valorant Radiant Points.
-  final num? rpMin;
+  final int? rpMin;
 
   /// Maximum number of Valorant Radiant Points.
-  final num? rpMax;
+  final int? rpMax;
 
   /// Minimum number of Valorant free agents.
-  final num? faMin;
+  final int? faMin;
 
   /// Maximum number of Valorant free agents.
-  final num? faMax;
+  final int? faMax;
 
   /// List of allowed ranks in LoL.
   final List<String>? lolRank;
@@ -5386,17 +8349,641 @@ class CategoryRiotParams {
   }
 }
 
+class CategoryRiotResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryRiotResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryRiotResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRiotResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryRiotResponseItemsValorantInventory {
+  final List<String> weaponSkins;
+  final List<String> agent;
+  final List<String> buddy;
+
+  const CategoryRiotResponseItemsValorantInventory({
+    required this.weaponSkins,
+    required this.agent,
+    required this.buddy,
+  });
+
+  factory CategoryRiotResponseItemsValorantInventory.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRiotResponseItemsValorantInventory(
+        weaponSkins: json['WeaponSkins'] is List
+            ? (json['WeaponSkins'] as List<dynamic>)
+                .whereType<String>()
+                .toList()
+            : const [],
+        agent: json['Agent'] is List
+            ? (json['Agent'] as List<dynamic>).whereType<String>().toList()
+            : const [],
+        buddy: json['Buddy'] is List
+            ? (json['Buddy'] as List<dynamic>).whereType<String>().toList()
+            : const [],
+      );
+}
+
+class CategoryRiotResponseItemsLolInventory {
+  final List<int> champion;
+  final List<int> skin;
+
+  const CategoryRiotResponseItemsLolInventory({
+    required this.champion,
+    required this.skin,
+  });
+
+  factory CategoryRiotResponseItemsLolInventory.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRiotResponseItemsLolInventory(
+        champion: json['Champion'] is List
+            ? (json['Champion'] as List<dynamic>).whereType<int>().toList()
+            : const [],
+        skin: json['Skin'] is List
+            ? (json['Skin'] as List<dynamic>).whereType<int>().toList()
+            : const [],
+      );
+}
+
+class CategoryRiotResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategoryRiotResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategoryRiotResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRiotResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategoryRiotResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryRiotResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryRiotResponseItemsSeller.fromJson(Map<String, dynamic> json) =>
+      CategoryRiotResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryRiotResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int riotItemId;
+  final String riotId;
+  final int riotAccountVerified;
+  final int riotEmailVerified;
+  final String riotCountry;
+  final int riotPasswordChange;
+  final int riotPhoneVerified;
+  final int riotLastActivity;
+  final int riotValorantWalletVp;
+  final int riotValorantWalletRp;
+  final int riotValorantWalletFa;
+  final int riotValorantLevel;
+  final String riotUsername;
+  final int riotValorantRank;
+  final String riotValorantRegion;
+  final int riotValorantSkinCount;
+  final int riotValorantAgentCount;
+  final int riotValorantPreviousRank;
+  final int riotValorantLastRank;
+  final String riotValorantRankType;
+  final int riotValorantInventoryValue;
+  final int riotValorantKnife;
+  final String riotLolRegion;
+  final int riotLolSkinCount;
+  final int riotLolChampionCount;
+  final int riotLolLevel;
+  final int riotLolWalletBlue;
+  final int riotLolWalletOrange;
+  final int riotLolWalletMythic;
+  final int riotLolWalletRiot;
+  final String riotLolRank;
+  final int riotLolRankWinRate;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryRiotResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String valorantRegionPhrase;
+  final String valorantRankTitle;
+  final String valorantRankImgPath;
+  final String valorantPreviousRankTitle;
+  final String valorantLastRankTitle;
+  final String lolRegionPhrase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final CategoryRiotResponseItemsValorantInventory valorantInventory;
+  final CategoryRiotResponseItemsLolInventory lolInventory;
+  final bool canViewAccountLink;
+  final List<CategoryRiotResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryRiotResponseItemsSeller seller;
+
+  const CategoryRiotResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.riotItemId,
+    required this.riotId,
+    required this.riotAccountVerified,
+    required this.riotEmailVerified,
+    required this.riotCountry,
+    required this.riotPasswordChange,
+    required this.riotPhoneVerified,
+    required this.riotLastActivity,
+    required this.riotValorantWalletVp,
+    required this.riotValorantWalletRp,
+    required this.riotValorantWalletFa,
+    required this.riotValorantLevel,
+    required this.riotUsername,
+    required this.riotValorantRank,
+    required this.riotValorantRegion,
+    required this.riotValorantSkinCount,
+    required this.riotValorantAgentCount,
+    required this.riotValorantPreviousRank,
+    required this.riotValorantLastRank,
+    required this.riotValorantRankType,
+    required this.riotValorantInventoryValue,
+    required this.riotValorantKnife,
+    required this.riotLolRegion,
+    required this.riotLolSkinCount,
+    required this.riotLolChampionCount,
+    required this.riotLolLevel,
+    required this.riotLolWalletBlue,
+    required this.riotLolWalletOrange,
+    required this.riotLolWalletMythic,
+    required this.riotLolWalletRiot,
+    required this.riotLolRank,
+    required this.riotLolRankWinRate,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.valorantRegionPhrase,
+    required this.valorantRankTitle,
+    required this.valorantRankImgPath,
+    required this.valorantPreviousRankTitle,
+    required this.valorantLastRankTitle,
+    required this.lolRegionPhrase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.valorantInventory,
+    required this.lolInventory,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryRiotResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryRiotResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        riotItemId:
+            json['riot_item_id'] is int ? json['riot_item_id'] as int : 0,
+        riotId: json['riot_id'] is String ? json['riot_id'] as String : '',
+        riotAccountVerified: json['riot_account_verified'] is int
+            ? json['riot_account_verified'] as int
+            : 0,
+        riotEmailVerified: json['riot_email_verified'] is int
+            ? json['riot_email_verified'] as int
+            : 0,
+        riotCountry: json['riot_country'] is String
+            ? json['riot_country'] as String
+            : '',
+        riotPasswordChange: json['riot_password_change'] is int
+            ? json['riot_password_change'] as int
+            : 0,
+        riotPhoneVerified: json['riot_phone_verified'] is int
+            ? json['riot_phone_verified'] as int
+            : 0,
+        riotLastActivity: json['riot_last_activity'] is int
+            ? json['riot_last_activity'] as int
+            : 0,
+        riotValorantWalletVp: json['riot_valorant_wallet_vp'] is int
+            ? json['riot_valorant_wallet_vp'] as int
+            : 0,
+        riotValorantWalletRp: json['riot_valorant_wallet_rp'] is int
+            ? json['riot_valorant_wallet_rp'] as int
+            : 0,
+        riotValorantWalletFa: json['riot_valorant_wallet_fa'] is int
+            ? json['riot_valorant_wallet_fa'] as int
+            : 0,
+        riotValorantLevel: json['riot_valorant_level'] is int
+            ? json['riot_valorant_level'] as int
+            : 0,
+        riotUsername: json['riot_username'] is String
+            ? json['riot_username'] as String
+            : '',
+        riotValorantRank: json['riot_valorant_rank'] is int
+            ? json['riot_valorant_rank'] as int
+            : 0,
+        riotValorantRegion: json['riot_valorant_region'] is String
+            ? json['riot_valorant_region'] as String
+            : '',
+        riotValorantSkinCount: json['riot_valorant_skin_count'] is int
+            ? json['riot_valorant_skin_count'] as int
+            : 0,
+        riotValorantAgentCount: json['riot_valorant_agent_count'] is int
+            ? json['riot_valorant_agent_count'] as int
+            : 0,
+        riotValorantPreviousRank: json['riot_valorant_previous_rank'] is int
+            ? json['riot_valorant_previous_rank'] as int
+            : 0,
+        riotValorantLastRank: json['riot_valorant_last_rank'] is int
+            ? json['riot_valorant_last_rank'] as int
+            : 0,
+        riotValorantRankType: json['riot_valorant_rank_type'] is String
+            ? json['riot_valorant_rank_type'] as String
+            : '',
+        riotValorantInventoryValue: json['riot_valorant_inventory_value'] is int
+            ? json['riot_valorant_inventory_value'] as int
+            : 0,
+        riotValorantKnife: json['riot_valorant_knife'] is int
+            ? json['riot_valorant_knife'] as int
+            : 0,
+        riotLolRegion: json['riot_lol_region'] is String
+            ? json['riot_lol_region'] as String
+            : '',
+        riotLolSkinCount: json['riot_lol_skin_count'] is int
+            ? json['riot_lol_skin_count'] as int
+            : 0,
+        riotLolChampionCount: json['riot_lol_champion_count'] is int
+            ? json['riot_lol_champion_count'] as int
+            : 0,
+        riotLolLevel:
+            json['riot_lol_level'] is int ? json['riot_lol_level'] as int : 0,
+        riotLolWalletBlue: json['riot_lol_wallet_blue'] is int
+            ? json['riot_lol_wallet_blue'] as int
+            : 0,
+        riotLolWalletOrange: json['riot_lol_wallet_orange'] is int
+            ? json['riot_lol_wallet_orange'] as int
+            : 0,
+        riotLolWalletMythic: json['riot_lol_wallet_mythic'] is int
+            ? json['riot_lol_wallet_mythic'] as int
+            : 0,
+        riotLolWalletRiot: json['riot_lol_wallet_riot'] is int
+            ? json['riot_lol_wallet_riot'] as int
+            : 0,
+        riotLolRank: json['riot_lol_rank'] is String
+            ? json['riot_lol_rank'] as String
+            : '',
+        riotLolRankWinRate: json['riot_lol_rank_win_rate'] is int
+            ? json['riot_lol_rank_win_rate'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryRiotResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryRiotResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        valorantRegionPhrase: json['valorantRegionPhrase'] is String
+            ? json['valorantRegionPhrase'] as String
+            : '',
+        valorantRankTitle: json['valorantRankTitle'] is String
+            ? json['valorantRankTitle'] as String
+            : '',
+        valorantRankImgPath: json['valorantRankImgPath'] is String
+            ? json['valorantRankImgPath'] as String
+            : '',
+        valorantPreviousRankTitle: json['valorantPreviousRankTitle'] is String
+            ? json['valorantPreviousRankTitle'] as String
+            : '',
+        valorantLastRankTitle: json['valorantLastRankTitle'] is String
+            ? json['valorantLastRankTitle'] as String
+            : '',
+        lolRegionPhrase: json['lolRegionPhrase'] is String
+            ? json['lolRegionPhrase'] as String
+            : '',
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        valorantInventory: json['valorantInventory'] is Map<String, dynamic>
+            ? CategoryRiotResponseItemsValorantInventory.fromJson(
+                json['valorantInventory'] as Map<String, dynamic>)
+            : CategoryRiotResponseItemsValorantInventory.fromJson(const {}),
+        lolInventory: json['lolInventory'] is Map<String, dynamic>
+            ? CategoryRiotResponseItemsLolInventory.fromJson(
+                json['lolInventory'] as Map<String, dynamic>)
+            : CategoryRiotResponseItemsLolInventory.fromJson(const {}),
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryRiotResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryRiotResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryRiotResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryRiotResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryRiotResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -5422,20 +9009,21 @@ class CategoryRiotResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryRiotResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -5450,36 +9038,36 @@ class CategoryRiotResponse {
 
 class CategoryTelegramParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -5508,7 +9096,7 @@ class CategoryTelegramParams {
   final Premium? premium;
 
   /// When premium subscription will be active.
-  final num? premiumExpiration;
+  final int? premiumExpiration;
   final PremiumExpirationPeriod? premiumExpirationPeriod;
 
   /// List of allowed countries.
@@ -5518,115 +9106,115 @@ class CategoryTelegramParams {
   final List<String>? notCountry;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Minimum number of channels.
-  final num? minChannels;
+  final int? minChannels;
 
   /// Maximum number of channels.
-  final num? maxChannels;
+  final int? maxChannels;
 
   /// Minimum number of chats.
-  final num? minChats;
+  final int? minChats;
 
   /// Maximum number of chats.
-  final num? maxChats;
+  final int? maxChats;
 
   /// Minimum number of conversations.
-  final num? minConversations;
+  final int? minConversations;
 
   /// Maximum number of conversations.
-  final num? maxConversations;
+  final int? maxConversations;
 
   /// Minimum number of channels, where account is administrator/owner.
-  final num? minAdmin;
+  final int? minAdmin;
 
   /// Maximum number of channels, where account is administrator/owner.
-  final num? maxAdmin;
+  final int? maxAdmin;
 
   /// Minimum number of subscribers in channel, where account is administrator/owner.
-  final num? minAdminSub;
+  final int? minAdminSub;
 
   /// Maximum number of subscribers in channel, where account is administrator/owner.
-  final num? maxAdminSub;
+  final int? maxAdminSub;
 
   /// Minimum number of digits in ID.
-  final num? digMin;
+  final int? digMin;
 
   /// Maximum number of digits in ID.
-  final num? digMax;
+  final int? digMax;
 
   /// Minimum number of contacts.
-  final num? minContacts;
+  final int? minContacts;
 
   /// Maximum number of contacts.
-  final num? maxContacts;
+  final int? maxContacts;
 
   /// Minimum number of Telegram Stars.
-  final num? minStars;
+  final int? minStars;
 
   /// Maximum number of Telegram Stars.
-  final num? maxStars;
+  final int? maxStars;
 
   /// Birthday was X time before.
-  final num? birthday;
+  final int? birthday;
   final BirthdayPeriod? birthdayPeriod;
 
   /// Birthday was X time after.
-  final num? birthdayAfter;
+  final int? birthdayAfter;
   final BirthdayAfterPeriod? birthdayAfterPeriod;
 
   /// Minimum ID of account, will be rounded down till nearest 10k. Available if your balance is higher than 100000 RUB.
-  final num? minId;
+  final int? minId;
 
   /// Maximum ID of account, will be rounded down till nearest 10k. Available if your balance is higher than 100000 RUB.
-  final num? maxId;
+  final int? maxId;
 
   /// Allow geo spam block in search with spam=no.
   final bool? allowGeoSpamblock;
 
   /// Minimum number of Telegram gifts on account.
-  final num? minGifts;
+  final int? minGifts;
 
   /// Maximum number of Telegram gifts on account.
-  final num? maxGifts;
+  final int? maxGifts;
 
   /// Minimum number of Telegram NFT gifts on account.
-  final num? minNftGifts;
+  final int? minNftGifts;
 
   /// Maximum number of Telegram NFT gifts on account.
-  final num? maxNftGifts;
+  final int? maxNftGifts;
 
   /// Minimum value of all Stars gifts.
-  final num? minGiftsStars;
+  final int? minGiftsStars;
 
   /// Maximum value of all Stars gifts.
-  final num? maxGiftsStars;
+  final int? maxGiftsStars;
 
   /// Minimum value of all Stars gifts after convert.
-  final num? minGiftsConvertStars;
+  final int? minGiftsConvertStars;
 
   /// Maximum value of all Stars gifts after convert.
-  final num? maxGiftsConvertStars;
+  final int? maxGiftsConvertStars;
 
   /// List of allowed DC ID.
-  final List<num>? dcId;
+  final List<int>? dcId;
 
   /// List of disallowed DC ID.
-  final List<num>? notDcId;
+  final List<int>? notDcId;
   final Email? email;
 
   /// Minimum number of bots.
-  final num? minBots;
+  final int? minBots;
 
   /// Maximum number of bots.
-  final num? maxBots;
+  final int? maxBots;
 
   /// Minimum active users in bot.
-  final num? minBotActiveUsers;
+  final int? minBotActiveUsers;
 
   /// Maximum active users in bot.
-  final num? maxBotActiveUsers;
+  final int? maxBotActiveUsers;
 
   const CategoryTelegramParams({
     this.page,
@@ -5771,17 +9359,450 @@ class CategoryTelegramParams {
   }
 }
 
+class CategoryTelegramResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryTelegramResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryTelegramResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryTelegramResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryTelegramResponseItemsTelegramGroupCounters {
+  final int chats;
+  final int channels;
+  final int conversations;
+  final int admin;
+
+  const CategoryTelegramResponseItemsTelegramGroupCounters({
+    required this.chats,
+    required this.channels,
+    required this.conversations,
+    required this.admin,
+  });
+
+  factory CategoryTelegramResponseItemsTelegramGroupCounters.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryTelegramResponseItemsTelegramGroupCounters(
+        chats: json['chats'] is int ? json['chats'] as int : 0,
+        channels: json['channels'] is int ? json['channels'] as int : 0,
+        conversations:
+            json['conversations'] is int ? json['conversations'] as int : 0,
+        admin: json['admin'] is int ? json['admin'] as int : 0,
+      );
+}
+
+class CategoryTelegramResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategoryTelegramResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryTelegramResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryTelegramResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategoryTelegramResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final dynamic emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int telegramItemId;
+  final String telegramCountry;
+  final int telegramLastSeen;
+  final int telegramPremium;
+  final int telegramStarsCount;
+  final int telegramBirthday;
+  final int telegramPassword;
+  final int telegramPremiumExpires;
+  final dynamic telegramSpamBlock;
+  final int telegramChannelsCount;
+  final int telegramChatsCount;
+  final int telegramAdminCount;
+  final int telegramAdminSubsCount;
+  final int telegramConversationsCount;
+  final int telegramIdCount;
+  final int telegramContactsCount;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryTelegramResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final CategoryTelegramResponseItemsTelegramGroupCounters
+      telegramGroupCounters;
+  final bool canViewAccountLink;
+  final List<dynamic> accountLinks;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryTelegramResponseItemsSeller seller;
+
+  const CategoryTelegramResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.telegramItemId,
+    required this.telegramCountry,
+    required this.telegramLastSeen,
+    required this.telegramPremium,
+    required this.telegramStarsCount,
+    required this.telegramBirthday,
+    required this.telegramPassword,
+    required this.telegramPremiumExpires,
+    required this.telegramSpamBlock,
+    required this.telegramChannelsCount,
+    required this.telegramChatsCount,
+    required this.telegramAdminCount,
+    required this.telegramAdminSubsCount,
+    required this.telegramConversationsCount,
+    required this.telegramIdCount,
+    required this.telegramContactsCount,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.telegramGroupCounters,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryTelegramResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryTelegramResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'],
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        telegramItemId: json['telegram_item_id'] is int
+            ? json['telegram_item_id'] as int
+            : 0,
+        telegramCountry: json['telegram_country'] is String
+            ? json['telegram_country'] as String
+            : '',
+        telegramLastSeen: json['telegram_last_seen'] is int
+            ? json['telegram_last_seen'] as int
+            : 0,
+        telegramPremium: json['telegram_premium'] is int
+            ? json['telegram_premium'] as int
+            : 0,
+        telegramStarsCount: json['telegram_stars_count'] is int
+            ? json['telegram_stars_count'] as int
+            : 0,
+        telegramBirthday: json['telegram_birthday'] is int
+            ? json['telegram_birthday'] as int
+            : 0,
+        telegramPassword: json['telegram_password'] is int
+            ? json['telegram_password'] as int
+            : 0,
+        telegramPremiumExpires: json['telegram_premium_expires'] is int
+            ? json['telegram_premium_expires'] as int
+            : 0,
+        telegramSpamBlock: json['telegram_spam_block'],
+        telegramChannelsCount: json['telegram_channels_count'] is int
+            ? json['telegram_channels_count'] as int
+            : 0,
+        telegramChatsCount: json['telegram_chats_count'] is int
+            ? json['telegram_chats_count'] as int
+            : 0,
+        telegramAdminCount: json['telegram_admin_count'] is int
+            ? json['telegram_admin_count'] as int
+            : 0,
+        telegramAdminSubsCount: json['telegram_admin_subs_count'] is int
+            ? json['telegram_admin_subs_count'] as int
+            : 0,
+        telegramConversationsCount: json['telegram_conversations_count'] is int
+            ? json['telegram_conversations_count'] as int
+            : 0,
+        telegramIdCount: json['telegram_id_count'] is int
+            ? json['telegram_id_count'] as int
+            : 0,
+        telegramContactsCount: json['telegram_contacts_count'] is int
+            ? json['telegram_contacts_count'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryTelegramResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryTelegramResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        telegramGroupCounters:
+            json['telegram_group_counters'] is Map<String, dynamic>
+                ? CategoryTelegramResponseItemsTelegramGroupCounters.fromJson(
+                    json['telegram_group_counters'] as Map<String, dynamic>)
+                : CategoryTelegramResponseItemsTelegramGroupCounters.fromJson(
+                    const {}),
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? json['accountLinks'] as List<dynamic>
+            : const [],
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryTelegramResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryTelegramResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryTelegramResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryTelegramResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -5807,20 +9828,21 @@ class CategoryTelegramResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryTelegramResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -5835,36 +9857,36 @@ class CategoryTelegramResponse {
 
 class CategorySupercellParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -5890,7 +9912,7 @@ class CategorySupercellParams {
   final bool? parseSameItemIds;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Email type.
   final List<String>? emailType;
@@ -5901,136 +9923,136 @@ class CategorySupercellParams {
   final Tel? tel;
 
   /// Minimum Brawl Stars level.
-  final num? brawlLevelMin;
+  final int? brawlLevelMin;
 
   /// Maximum Brawl Stars level.
-  final num? brawlLevelMax;
+  final int? brawlLevelMax;
 
   /// Minimum number of Brawl Stars trophies.
-  final num? brawlCupMin;
+  final int? brawlCupMin;
 
   /// Maximum number of Brawl Stars trophies.
-  final num? brawlCupMax;
+  final int? brawlCupMax;
 
   /// Minimum number of Brawl Stars wins.
-  final num? brawlWinsMin;
+  final int? brawlWinsMin;
 
   /// Maximum number of Brawl Stars wins.
-  final num? brawlWinsMax;
+  final int? brawlWinsMax;
   final BrawlPass? brawlPass;
 
   /// List of brawlers.
   final List<String>? brawler;
 
   /// Minimum number of brawlers.
-  final num? brawlersMin;
+  final int? brawlersMin;
 
   /// Maximum number of brawlers.
-  final num? brawlersMax;
+  final int? brawlersMax;
 
   /// Minimum number of legendary brawlers.
-  final num? legendaryBrawlersMin;
+  final int? legendaryBrawlersMin;
 
   /// Maximum number of legendary brawlers.
-  final num? legendaryBrawlersMax;
+  final int? legendaryBrawlersMax;
 
   /// Minimum Clash Royale level.
-  final num? royaleLevelMin;
+  final int? royaleLevelMin;
 
   /// Maximum Clash Royale level.
-  final num? royaleLevelMax;
+  final int? royaleLevelMax;
 
   /// Minimum number of Clash Royale trophies.
-  final num? royaleCupMin;
+  final int? royaleCupMin;
 
   /// Maximum number of Clash Royale trophies.
-  final num? royaleCupMax;
+  final int? royaleCupMax;
 
   /// Minimum number of Clash Royale wins.
-  final num? royaleWinsMin;
+  final int? royaleWinsMin;
 
   /// Maximum number of Clash Royale wins.
-  final num? royaleWinsMax;
+  final int? royaleWinsMax;
 
   /// Minimum King level in Clash Royale.
-  final num? kingLevelMin;
+  final int? kingLevelMin;
 
   /// Maximum King level in Clash Royale.
-  final num? kingLevelMax;
+  final int? kingLevelMax;
   final RoyalePass? royalePass;
 
   /// Minimum Clash of Clans level.
-  final num? clashLevelMin;
+  final int? clashLevelMin;
 
   /// Maximum Clash of Clans level.
-  final num? clashLevelMax;
+  final int? clashLevelMax;
 
   /// Minimum number of Clash of Clans trophies.
-  final num? clashCupMin;
+  final int? clashCupMin;
 
   /// Maximum number of Clash of Clans trophies.
-  final num? clashCupMax;
+  final int? clashCupMax;
 
   /// Minimum number of Clash of Clans wins.
-  final num? clashWinsMin;
+  final int? clashWinsMin;
 
   /// Maximum number of Clash of Clans wins.
-  final num? clashWinsMax;
+  final int? clashWinsMax;
   final ClashPass? clashPass;
 
   /// Minimum total heroes level count in Clash of Clans.
-  final num? totalHeroesLevelMin;
+  final int? totalHeroesLevelMin;
 
   /// Maximum total heroes level count in Clash of Clans.
-  final num? totalHeroesLevelMax;
+  final int? totalHeroesLevelMax;
 
   /// Minimum total troops level count in Clash of Clans.
-  final num? totalTroopsLevelMin;
+  final int? totalTroopsLevelMin;
 
   /// Maximum total troops level count in Clash of Clans.
-  final num? totalTroopsLevelMax;
+  final int? totalTroopsLevelMax;
 
   /// Minimum total spells level count in Clash of Clans.
-  final num? totalSpellsLevelMin;
+  final int? totalSpellsLevelMin;
 
   /// Maximum total spells level count in Clash of Clans.
-  final num? totalSpellsLevelMax;
+  final int? totalSpellsLevelMax;
 
   /// Minimum total builder village heroes level count in Clash of Clans.
-  final num? totalBuilderHeroesLevelMin;
+  final int? totalBuilderHeroesLevelMin;
 
   /// Maximum total builder village heroes level count in Clash of Clans.
-  final num? totalBuilderHeroesLevelMax;
+  final int? totalBuilderHeroesLevelMax;
 
   /// Minimum total builder village troops level count in Clash of Clans.
-  final num? totalBuilderTroopsLevelMin;
+  final int? totalBuilderTroopsLevelMin;
 
   /// Maximum total builder village troops level count in Clash of Clans.
-  final num? totalBuilderTroopsLevelMax;
+  final int? totalBuilderTroopsLevelMax;
 
   /// Minimum level of town hall.
-  final num? townHallLevelMin;
+  final int? townHallLevelMin;
 
   /// Maximum level of town hall.
-  final num? townHallLevelMax;
+  final int? townHallLevelMax;
 
   /// Minimum level of builder hall.
-  final num? builderHallLevelMin;
+  final int? builderHallLevelMin;
 
   /// Maximum level of builder hall.
-  final num? builderHallLevelMax;
+  final int? builderHallLevelMax;
 
   /// Minimum number of builder hall cups.
-  final num? builderHallCupMin;
+  final int? builderHallCupMin;
 
   /// Maximum number of builder hall cups.
-  final num? builderHallCupMax;
+  final int? builderHallCupMax;
 
   /// Minimum account creation year (e.g. 2023).
-  final num? creationYearMin;
+  final int? creationYearMin;
 
   /// Maximum account creation year (e.g. 2024).
-  final num? creationYearMax;
+  final int? creationYearMax;
 
   const CategorySupercellParams({
     this.page,
@@ -6185,17 +10207,532 @@ class CategorySupercellParams {
   }
 }
 
+class CategorySupercellResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategorySupercellResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategorySupercellResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySupercellResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategorySupercellResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategorySupercellResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategorySupercellResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySupercellResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategorySupercellResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategorySupercellResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategorySupercellResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySupercellResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategorySupercellResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int supercellItemId;
+  final String supercellId;
+  final String supercellArena;
+  final int supercellBrawlerCount;
+  final int supercellLastActivity;
+  final int supercellLegendaryBrawlerCount;
+  final int supercellTownHallLevel;
+  final int supercellBuilderHallLevel;
+  final int supercellBuilderHallCupCount;
+  final int supercellPhone;
+  final int supercellLaserLevel;
+  final int supercellScrollLevel;
+  final int supercellMagicLevel;
+  final int supercellLaserTrophies;
+  final int supercellScrollTrophies;
+  final int supercellMagicTrophies;
+  final int supercellLaserVictories;
+  final int supercellScrollVictories;
+  final int supercellMagicVictories;
+  final int supercellLaserBattlePass;
+  final int supercellScrollBattlePass;
+  final int supercellMagicBattlePass;
+  final String supercellSystems;
+  final int supercellKingLevel;
+  final int supercellTotalHeroesLevel;
+  final int supercellTotalTroopsLevel;
+  final int supercellTotalSpellsLevel;
+  final int supercellTotalBuilderHeroesLevel;
+  final int supercellTotalBuilderTroopsLevel;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategorySupercellResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool isSmallExf;
+  final List<dynamic> supercellBrawlers;
+  final bool canViewAccountLink;
+  final List<CategorySupercellResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategorySupercellResponseItemsSeller seller;
+
+  const CategorySupercellResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.supercellItemId,
+    required this.supercellId,
+    required this.supercellArena,
+    required this.supercellBrawlerCount,
+    required this.supercellLastActivity,
+    required this.supercellLegendaryBrawlerCount,
+    required this.supercellTownHallLevel,
+    required this.supercellBuilderHallLevel,
+    required this.supercellBuilderHallCupCount,
+    required this.supercellPhone,
+    required this.supercellLaserLevel,
+    required this.supercellScrollLevel,
+    required this.supercellMagicLevel,
+    required this.supercellLaserTrophies,
+    required this.supercellScrollTrophies,
+    required this.supercellMagicTrophies,
+    required this.supercellLaserVictories,
+    required this.supercellScrollVictories,
+    required this.supercellMagicVictories,
+    required this.supercellLaserBattlePass,
+    required this.supercellScrollBattlePass,
+    required this.supercellMagicBattlePass,
+    required this.supercellSystems,
+    required this.supercellKingLevel,
+    required this.supercellTotalHeroesLevel,
+    required this.supercellTotalTroopsLevel,
+    required this.supercellTotalSpellsLevel,
+    required this.supercellTotalBuilderHeroesLevel,
+    required this.supercellTotalBuilderTroopsLevel,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.isSmallExf,
+    required this.supercellBrawlers,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategorySupercellResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategorySupercellResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        supercellItemId: json['supercell_item_id'] is int
+            ? json['supercell_item_id'] as int
+            : 0,
+        supercellId: json['supercell_id'] is String
+            ? json['supercell_id'] as String
+            : '',
+        supercellArena: json['supercell_arena'] is String
+            ? json['supercell_arena'] as String
+            : '',
+        supercellBrawlerCount: json['supercell_brawler_count'] is int
+            ? json['supercell_brawler_count'] as int
+            : 0,
+        supercellLastActivity: json['supercell_last_activity'] is int
+            ? json['supercell_last_activity'] as int
+            : 0,
+        supercellLegendaryBrawlerCount:
+            json['supercell_legendary_brawler_count'] is int
+                ? json['supercell_legendary_brawler_count'] as int
+                : 0,
+        supercellTownHallLevel: json['supercell_town_hall_level'] is int
+            ? json['supercell_town_hall_level'] as int
+            : 0,
+        supercellBuilderHallLevel: json['supercell_builder_hall_level'] is int
+            ? json['supercell_builder_hall_level'] as int
+            : 0,
+        supercellBuilderHallCupCount:
+            json['supercell_builder_hall_cup_count'] is int
+                ? json['supercell_builder_hall_cup_count'] as int
+                : 0,
+        supercellPhone:
+            json['supercell_phone'] is int ? json['supercell_phone'] as int : 0,
+        supercellLaserLevel: json['supercell_laser_level'] is int
+            ? json['supercell_laser_level'] as int
+            : 0,
+        supercellScrollLevel: json['supercell_scroll_level'] is int
+            ? json['supercell_scroll_level'] as int
+            : 0,
+        supercellMagicLevel: json['supercell_magic_level'] is int
+            ? json['supercell_magic_level'] as int
+            : 0,
+        supercellLaserTrophies: json['supercell_laser_trophies'] is int
+            ? json['supercell_laser_trophies'] as int
+            : 0,
+        supercellScrollTrophies: json['supercell_scroll_trophies'] is int
+            ? json['supercell_scroll_trophies'] as int
+            : 0,
+        supercellMagicTrophies: json['supercell_magic_trophies'] is int
+            ? json['supercell_magic_trophies'] as int
+            : 0,
+        supercellLaserVictories: json['supercell_laser_victories'] is int
+            ? json['supercell_laser_victories'] as int
+            : 0,
+        supercellScrollVictories: json['supercell_scroll_victories'] is int
+            ? json['supercell_scroll_victories'] as int
+            : 0,
+        supercellMagicVictories: json['supercell_magic_victories'] is int
+            ? json['supercell_magic_victories'] as int
+            : 0,
+        supercellLaserBattlePass: json['supercell_laser_battle_pass'] is int
+            ? json['supercell_laser_battle_pass'] as int
+            : 0,
+        supercellScrollBattlePass: json['supercell_scroll_battle_pass'] is int
+            ? json['supercell_scroll_battle_pass'] as int
+            : 0,
+        supercellMagicBattlePass: json['supercell_magic_battle_pass'] is int
+            ? json['supercell_magic_battle_pass'] as int
+            : 0,
+        supercellSystems: json['supercell_systems'] is String
+            ? json['supercell_systems'] as String
+            : '',
+        supercellKingLevel: json['supercell_king_level'] is int
+            ? json['supercell_king_level'] as int
+            : 0,
+        supercellTotalHeroesLevel: json['supercell_total_heroes_level'] is int
+            ? json['supercell_total_heroes_level'] as int
+            : 0,
+        supercellTotalTroopsLevel: json['supercell_total_troops_level'] is int
+            ? json['supercell_total_troops_level'] as int
+            : 0,
+        supercellTotalSpellsLevel: json['supercell_total_spells_level'] is int
+            ? json['supercell_total_spells_level'] as int
+            : 0,
+        supercellTotalBuilderHeroesLevel:
+            json['supercell_total_builder_heroes_level'] is int
+                ? json['supercell_total_builder_heroes_level'] as int
+                : 0,
+        supercellTotalBuilderTroopsLevel:
+            json['supercell_total_builder_troops_level'] is int
+                ? json['supercell_total_builder_troops_level'] as int
+                : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategorySupercellResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategorySupercellResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        supercellBrawlers: json['supercellBrawlers'] is List
+            ? json['supercellBrawlers'] as List<dynamic>
+            : const [],
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategorySupercellResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategorySupercellResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategorySupercellResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategorySupercellResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategorySupercellResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -6221,20 +10758,21 @@ class CategorySupercellResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategorySupercellResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -6249,36 +10787,36 @@ class CategorySupercellResponse {
 
 class CategoryEaParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -6319,22 +10857,22 @@ class CategoryEaParams {
   final List<String>? notCountry;
 
   /// Minimum count of games.
-  final num? gmin;
+  final int? gmin;
 
   /// Maximum count of games.
-  final num? gmax;
+  final int? gmax;
 
   /// Minimum rank points in Apex Legends.
-  final num? alRankMin;
+  final int? alRankMin;
 
   /// Maximum rank points in Apex Legends.
-  final num? alRankMax;
+  final int? alRankMax;
 
   /// Minimum level in Apex Legends.
-  final num? alLevelMin;
+  final int? alLevelMin;
 
   /// Maximum level in Apex Legends.
-  final num? alLevelMax;
+  final int? alLevelMax;
   final HasBan? hasBan;
   final XboxConnected? xboxConnected;
   final SteamConnected? steamConnected;
@@ -6342,14 +10880,14 @@ class CategoryEaParams {
   final Subscription? subscription;
 
   /// Length of subscription.
-  final num? subscriptionLength;
+  final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
 
   /// List of minimum hours played by game.
-  final Map<String, num>? hoursPlayed;
+  final Map<String, int>? hoursPlayed;
 
   /// List of maximum hours played by game.
-  final Map<String, num>? hoursPlayedMax;
+  final Map<String, int>? hoursPlayedMax;
   final Transactions? transactions;
 
   const CategoryEaParams({
@@ -6445,17 +10983,499 @@ class CategoryEaParams {
   }
 }
 
+class CategoryEaResponseItemsEaGamesApexLegends {
+  final String gameId;
+  final String title;
+  final int lastActivity;
+  final int totalPlayed;
+  final String img;
+
+  const CategoryEaResponseItemsEaGamesApexLegends({
+    required this.gameId,
+    required this.title,
+    required this.lastActivity,
+    required this.totalPlayed,
+    required this.img,
+  });
+
+  factory CategoryEaResponseItemsEaGamesApexLegends.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEaResponseItemsEaGamesApexLegends(
+        gameId: json['game_id'] is String ? json['game_id'] as String : '',
+        title: json['title'] is String ? json['title'] as String : '',
+        lastActivity:
+            json['last_activity'] is int ? json['last_activity'] as int : 0,
+        totalPlayed:
+            json['total_played'] is int ? json['total_played'] as int : 0,
+        img: json['img'] is String ? json['img'] as String : '',
+      );
+}
+
+class CategoryEaResponseItemsEaGames {
+  final CategoryEaResponseItemsEaGamesApexLegends apexLegends;
+
+  const CategoryEaResponseItemsEaGames({
+    required this.apexLegends,
+  });
+
+  factory CategoryEaResponseItemsEaGames.fromJson(Map<String, dynamic> json) =>
+      CategoryEaResponseItemsEaGames(
+        apexLegends: json['apex-legends'] is Map<String, dynamic>
+            ? CategoryEaResponseItemsEaGamesApexLegends.fromJson(
+                json['apex-legends'] as Map<String, dynamic>)
+            : CategoryEaResponseItemsEaGamesApexLegends.fromJson(const {}),
+      );
+}
+
+class CategoryEaResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryEaResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryEaResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEaResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryEaResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategoryEaResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategoryEaResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEaResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategoryEaResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryEaResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryEaResponseItemsSeller.fromJson(Map<String, dynamic> json) =>
+      CategoryEaResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryEaResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int eaItemId;
+  final int eaId;
+  final String eaCountry;
+  final CategoryEaResponseItemsEaGames eaGames;
+  final int eaGameCount;
+  final int eaLastActivity;
+  final int eaAlLevel;
+  final int eaAlRankScore;
+  final String eaSubscription;
+  final int eaSubscriptionEndDate;
+  final String eaUsername;
+  final int eaXboxConnected;
+  final int eaSteamConnected;
+  final int eaPsnConnected;
+  final List<dynamic> eaBans;
+  final int eaHasBan;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryEaResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool canViewAccountLink;
+  final List<CategoryEaResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryEaResponseItemsSeller seller;
+
+  const CategoryEaResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.eaItemId,
+    required this.eaId,
+    required this.eaCountry,
+    required this.eaGames,
+    required this.eaGameCount,
+    required this.eaLastActivity,
+    required this.eaAlLevel,
+    required this.eaAlRankScore,
+    required this.eaSubscription,
+    required this.eaSubscriptionEndDate,
+    required this.eaUsername,
+    required this.eaXboxConnected,
+    required this.eaSteamConnected,
+    required this.eaPsnConnected,
+    required this.eaBans,
+    required this.eaHasBan,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryEaResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryEaResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        eaItemId: json['ea_item_id'] is int ? json['ea_item_id'] as int : 0,
+        eaId: json['ea_id'] is int ? json['ea_id'] as int : 0,
+        eaCountry:
+            json['ea_country'] is String ? json['ea_country'] as String : '',
+        eaGames: json['ea_games'] is Map<String, dynamic>
+            ? CategoryEaResponseItemsEaGames.fromJson(
+                json['ea_games'] as Map<String, dynamic>)
+            : CategoryEaResponseItemsEaGames.fromJson(const {}),
+        eaGameCount:
+            json['ea_game_count'] is int ? json['ea_game_count'] as int : 0,
+        eaLastActivity: json['ea_last_activity'] is int
+            ? json['ea_last_activity'] as int
+            : 0,
+        eaAlLevel: json['ea_al_level'] is int ? json['ea_al_level'] as int : 0,
+        eaAlRankScore: json['ea_al_rank_score'] is int
+            ? json['ea_al_rank_score'] as int
+            : 0,
+        eaSubscription: json['ea_subscription'] is String
+            ? json['ea_subscription'] as String
+            : '',
+        eaSubscriptionEndDate: json['ea_subscription_end_date'] is int
+            ? json['ea_subscription_end_date'] as int
+            : 0,
+        eaUsername:
+            json['ea_username'] is String ? json['ea_username'] as String : '',
+        eaXboxConnected: json['ea_xbox_connected'] is int
+            ? json['ea_xbox_connected'] as int
+            : 0,
+        eaSteamConnected: json['ea_steam_connected'] is int
+            ? json['ea_steam_connected'] as int
+            : 0,
+        eaPsnConnected: json['ea_psn_connected'] is int
+            ? json['ea_psn_connected'] as int
+            : 0,
+        eaBans: json['ea_bans'] is List
+            ? json['ea_bans'] as List<dynamic>
+            : const [],
+        eaHasBan: json['ea_has_ban'] is int ? json['ea_has_ban'] as int : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryEaResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryEaResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryEaResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryEaResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryEaResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryEaResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryEaResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -6481,20 +11501,21 @@ class CategoryEaResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryEaResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -6509,36 +11530,36 @@ class CategoryEaResponse {
 
 class CategoryWotParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -6571,52 +11592,52 @@ class CategoryWotParams {
   final Tel? tel;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Minimum number of battles.
-  final num? battlesMin;
+  final int? battlesMin;
 
   /// Maximum number of battles.
-  final num? battlesMax;
+  final int? battlesMax;
 
   /// Minimum number of gold.
-  final num? goldMin;
+  final int? goldMin;
 
   /// Maximum number of gold.
-  final num? goldMax;
+  final int? goldMax;
 
   /// Minimum number of silver.
-  final num? silverMin;
+  final int? silverMin;
 
   /// Maximum number of silver.
-  final num? silverMax;
+  final int? silverMax;
 
   /// Minimum number of top tanks.
-  final num? topMin;
+  final int? topMin;
 
   /// Maximum number of top tanks.
-  final num? topMax;
+  final int? topMax;
 
   /// Minimum number of premium tanks.
-  final num? premMin;
+  final int? premMin;
 
   /// Maximum number of premium tanks.
-  final num? premMax;
+  final int? premMax;
 
   /// Minimum number of top premium tanks.
-  final num? topPremMin;
+  final int? topPremMin;
 
   /// Maximum number of top premium tanks.
-  final num? topPremMax;
+  final int? topPremMax;
 
   /// Minimum number of wins.
-  final num? winPmin;
+  final int? winPmin;
 
   /// Maximum number of wins.
-  final num? winPmax;
+  final int? winPmax;
 
   /// List of tanks.
-  final List<num>? tank;
+  final List<int>? tank;
 
   /// Region.
   final List<String>? region;
@@ -6626,7 +11647,7 @@ class CategoryWotParams {
   final Premium? premium;
 
   /// When premium subscription will be active.
-  final num? premiumExpiration;
+  final int? premiumExpiration;
   final PremiumExpirationPeriod? premiumExpirationPeriod;
   final Clan? clan;
 
@@ -6637,22 +11658,22 @@ class CategoryWotParams {
   final List<String>? notClanRole;
 
   /// Minimum number of gold in clan treasure.
-  final num? clanGoldMin;
+  final int? clanGoldMin;
 
   /// Maximum number of gold in clan treasure.
-  final num? clanGoldMax;
+  final int? clanGoldMax;
 
   /// Minimum number of credits in clan treasure.
-  final num? clanCreditsMin;
+  final int? clanCreditsMin;
 
   /// Maximum number of credits in clan treasure.
-  final num? clanCreditsMax;
+  final int? clanCreditsMax;
 
   /// Minimum number of crystal in clan treasure.
-  final num? clanCrystalMin;
+  final int? clanCrystalMin;
 
   /// Maximum number of crystal in clan treasure.
-  final num? clanCrystalMax;
+  final int? clanCrystalMax;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -6781,17 +11802,449 @@ class CategoryWotParams {
   }
 }
 
+class CategoryWotResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryWotResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryWotResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryWotResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryWotResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryWotResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryWotResponseItemsSeller.fromJson(Map<String, dynamic> json) =>
+      CategoryWotResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryWotResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final dynamic emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int wotItemId;
+  final int wotLastActivity;
+  final int wotRegisterDate;
+  final int wotMobile;
+  final int wotPremium;
+  final int wotPremiumExpires;
+  final int wotGold;
+  final int wotCredits;
+  final int wotBattleCount;
+  final int wotWinCount;
+  final int wotLossCount;
+  final int wotWinCountPercents;
+  final dynamic wotTopTanks;
+  final dynamic wotPremiumTanks;
+  final dynamic wotTopPremiumTanks;
+  final String wotRegion;
+  final int wotBlitz;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryWotResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String wotRegionPhrase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final dynamic wotTanks;
+  final int wotPremiumTankCount;
+  final int wotTankCount;
+  final String wotLauncherTitle;
+  final bool wotHasClan;
+  final bool canViewAccountLink;
+  final List<dynamic> accountLinks;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryWotResponseItemsSeller seller;
+
+  const CategoryWotResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.wotItemId,
+    required this.wotLastActivity,
+    required this.wotRegisterDate,
+    required this.wotMobile,
+    required this.wotPremium,
+    required this.wotPremiumExpires,
+    required this.wotGold,
+    required this.wotCredits,
+    required this.wotBattleCount,
+    required this.wotWinCount,
+    required this.wotLossCount,
+    required this.wotWinCountPercents,
+    required this.wotTopTanks,
+    required this.wotPremiumTanks,
+    required this.wotTopPremiumTanks,
+    required this.wotRegion,
+    required this.wotBlitz,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.wotRegionPhrase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.wotTanks,
+    required this.wotPremiumTankCount,
+    required this.wotTankCount,
+    required this.wotLauncherTitle,
+    required this.wotHasClan,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryWotResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryWotResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'],
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        wotItemId: json['wot_item_id'] is int ? json['wot_item_id'] as int : 0,
+        wotLastActivity: json['wot_last_activity'] is int
+            ? json['wot_last_activity'] as int
+            : 0,
+        wotRegisterDate: json['wot_register_date'] is int
+            ? json['wot_register_date'] as int
+            : 0,
+        wotMobile: json['wot_mobile'] is int ? json['wot_mobile'] as int : 0,
+        wotPremium: json['wot_premium'] is int ? json['wot_premium'] as int : 0,
+        wotPremiumExpires: json['wot_premium_expires'] is int
+            ? json['wot_premium_expires'] as int
+            : 0,
+        wotGold: json['wot_gold'] is int ? json['wot_gold'] as int : 0,
+        wotCredits: json['wot_credits'] is int ? json['wot_credits'] as int : 0,
+        wotBattleCount: json['wot_battle_count'] is int
+            ? json['wot_battle_count'] as int
+            : 0,
+        wotWinCount:
+            json['wot_win_count'] is int ? json['wot_win_count'] as int : 0,
+        wotLossCount:
+            json['wot_loss_count'] is int ? json['wot_loss_count'] as int : 0,
+        wotWinCountPercents: json['wot_win_count_percents'] is int
+            ? json['wot_win_count_percents'] as int
+            : 0,
+        wotTopTanks: json['wotTopTanks'],
+        wotPremiumTanks: json['wotPremiumTanks'],
+        wotTopPremiumTanks: json['wotTopPremiumTanks'],
+        wotRegion:
+            json['wot_region'] is String ? json['wot_region'] as String : '',
+        wotBlitz: json['wot_blitz'] is int ? json['wot_blitz'] as int : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryWotResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryWotResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        wotRegionPhrase: json['wotRegionPhrase'] is String
+            ? json['wotRegionPhrase'] as String
+            : '',
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        wotTanks: json['wotTanks'],
+        wotPremiumTankCount: json['wotPremiumTankCount'] is int
+            ? json['wotPremiumTankCount'] as int
+            : 0,
+        wotTankCount:
+            json['wotTankCount'] is int ? json['wotTankCount'] as int : 0,
+        wotLauncherTitle: json['wotLauncherTitle'] is String
+            ? json['wotLauncherTitle'] as String
+            : '',
+        wotHasClan:
+            json['wot_has_clan'] is bool ? json['wot_has_clan'] as bool : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? json['accountLinks'] as List<dynamic>
+            : const [],
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryWotResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryWotResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryWotResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryWotResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -6817,20 +12270,21 @@ class CategoryWotResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryWotResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -6845,36 +12299,36 @@ class CategoryWotResponse {
 
 class CategoryWotBlitzParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -6907,52 +12361,52 @@ class CategoryWotBlitzParams {
   final Tel? tel;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Minimum number of battles.
-  final num? battlesMin;
+  final int? battlesMin;
 
   /// Maximum number of battles.
-  final num? battlesMax;
+  final int? battlesMax;
 
   /// Minimum number of gold.
-  final num? goldMin;
+  final int? goldMin;
 
   /// Maximum number of gold.
-  final num? goldMax;
+  final int? goldMax;
 
   /// Minimum number of silver.
-  final num? silverMin;
+  final int? silverMin;
 
   /// Maximum number of silver.
-  final num? silverMax;
+  final int? silverMax;
 
   /// Minimum number of top tanks.
-  final num? topMin;
+  final int? topMin;
 
   /// Maximum number of top tanks.
-  final num? topMax;
+  final int? topMax;
 
   /// Minimum number of premium tanks.
-  final num? premMin;
+  final int? premMin;
 
   /// Maximum number of premium tanks.
-  final num? premMax;
+  final int? premMax;
 
   /// Minimum number of top premium tanks.
-  final num? topPremMin;
+  final int? topPremMin;
 
   /// Maximum number of top premium tanks.
-  final num? topPremMax;
+  final int? topPremMax;
 
   /// Minimum number of wins.
-  final num? winPmin;
+  final int? winPmin;
 
   /// Maximum number of wins.
-  final num? winPmax;
+  final int? winPmax;
 
   /// List of tanks.
-  final List<num>? tank;
+  final List<int>? tank;
 
   /// Region.
   final List<String>? region;
@@ -6962,7 +12416,7 @@ class CategoryWotBlitzParams {
   final Premium? premium;
 
   /// When premium subscription will be active.
-  final num? premiumExpiration;
+  final int? premiumExpiration;
   final PremiumExpirationPeriod? premiumExpirationPeriod;
   final Clan? clan;
 
@@ -6973,22 +12427,22 @@ class CategoryWotBlitzParams {
   final List<String>? notClanRole;
 
   /// Minimum number of gold in clan treasure.
-  final num? clanGoldMin;
+  final int? clanGoldMin;
 
   /// Maximum number of gold in clan treasure.
-  final num? clanGoldMax;
+  final int? clanGoldMax;
 
   /// Minimum number of credits in clan treasure.
-  final num? clanCreditsMin;
+  final int? clanCreditsMin;
 
   /// Maximum number of credits in clan treasure.
-  final num? clanCreditsMax;
+  final int? clanCreditsMax;
 
   /// Minimum number of crystal in clan treasure.
-  final num? clanCrystalMin;
+  final int? clanCrystalMin;
 
   /// Maximum number of crystal in clan treasure.
-  final num? clanCrystalMax;
+  final int? clanCrystalMax;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -7117,17 +12571,450 @@ class CategoryWotBlitzParams {
   }
 }
 
+class CategoryWotBlitzResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryWotBlitzResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryWotBlitzResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryWotBlitzResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryWotBlitzResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryWotBlitzResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryWotBlitzResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryWotBlitzResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryWotBlitzResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final dynamic emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int wotItemId;
+  final int wotLastActivity;
+  final int wotRegisterDate;
+  final int wotMobile;
+  final int wotPremium;
+  final int wotPremiumExpires;
+  final int wotGold;
+  final int wotCredits;
+  final int wotBattleCount;
+  final int wotWinCount;
+  final int wotLossCount;
+  final int wotWinCountPercents;
+  final dynamic wotTopTanks;
+  final dynamic wotPremiumTanks;
+  final dynamic wotTopPremiumTanks;
+  final String wotRegion;
+  final int wotBlitz;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryWotBlitzResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String wotRegionPhrase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final dynamic wotTanks;
+  final int wotPremiumTankCount;
+  final int wotTankCount;
+  final String wotLauncherTitle;
+  final bool wotHasClan;
+  final bool canViewAccountLink;
+  final List<dynamic> accountLinks;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryWotBlitzResponseItemsSeller seller;
+
+  const CategoryWotBlitzResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.wotItemId,
+    required this.wotLastActivity,
+    required this.wotRegisterDate,
+    required this.wotMobile,
+    required this.wotPremium,
+    required this.wotPremiumExpires,
+    required this.wotGold,
+    required this.wotCredits,
+    required this.wotBattleCount,
+    required this.wotWinCount,
+    required this.wotLossCount,
+    required this.wotWinCountPercents,
+    required this.wotTopTanks,
+    required this.wotPremiumTanks,
+    required this.wotTopPremiumTanks,
+    required this.wotRegion,
+    required this.wotBlitz,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.wotRegionPhrase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.wotTanks,
+    required this.wotPremiumTankCount,
+    required this.wotTankCount,
+    required this.wotLauncherTitle,
+    required this.wotHasClan,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryWotBlitzResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryWotBlitzResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'],
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        wotItemId: json['wot_item_id'] is int ? json['wot_item_id'] as int : 0,
+        wotLastActivity: json['wot_last_activity'] is int
+            ? json['wot_last_activity'] as int
+            : 0,
+        wotRegisterDate: json['wot_register_date'] is int
+            ? json['wot_register_date'] as int
+            : 0,
+        wotMobile: json['wot_mobile'] is int ? json['wot_mobile'] as int : 0,
+        wotPremium: json['wot_premium'] is int ? json['wot_premium'] as int : 0,
+        wotPremiumExpires: json['wot_premium_expires'] is int
+            ? json['wot_premium_expires'] as int
+            : 0,
+        wotGold: json['wot_gold'] is int ? json['wot_gold'] as int : 0,
+        wotCredits: json['wot_credits'] is int ? json['wot_credits'] as int : 0,
+        wotBattleCount: json['wot_battle_count'] is int
+            ? json['wot_battle_count'] as int
+            : 0,
+        wotWinCount:
+            json['wot_win_count'] is int ? json['wot_win_count'] as int : 0,
+        wotLossCount:
+            json['wot_loss_count'] is int ? json['wot_loss_count'] as int : 0,
+        wotWinCountPercents: json['wot_win_count_percents'] is int
+            ? json['wot_win_count_percents'] as int
+            : 0,
+        wotTopTanks: json['wotTopTanks'],
+        wotPremiumTanks: json['wotPremiumTanks'],
+        wotTopPremiumTanks: json['wotTopPremiumTanks'],
+        wotRegion:
+            json['wot_region'] is String ? json['wot_region'] as String : '',
+        wotBlitz: json['wot_blitz'] is int ? json['wot_blitz'] as int : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryWotBlitzResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryWotBlitzResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        wotRegionPhrase: json['wotRegionPhrase'] is String
+            ? json['wotRegionPhrase'] as String
+            : '',
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        wotTanks: json['wotTanks'],
+        wotPremiumTankCount: json['wotPremiumTankCount'] is int
+            ? json['wotPremiumTankCount'] as int
+            : 0,
+        wotTankCount:
+            json['wotTankCount'] is int ? json['wotTankCount'] as int : 0,
+        wotLauncherTitle: json['wotLauncherTitle'] is String
+            ? json['wotLauncherTitle'] as String
+            : '',
+        wotHasClan:
+            json['wot_has_clan'] is bool ? json['wot_has_clan'] as bool : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? json['accountLinks'] as List<dynamic>
+            : const [],
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryWotBlitzResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryWotBlitzResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryWotBlitzResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryWotBlitzResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -7153,20 +13040,21 @@ class CategoryWotBlitzResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryWotBlitzResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -7181,36 +13069,36 @@ class CategoryWotBlitzResponse {
 
 class CategoryGiftsParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -7237,7 +13125,7 @@ class CategoryGiftsParams {
   final Subscription? subscription;
 
   /// Length of subscription.
-  final num? subscriptionLength;
+  final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
 
   const CategoryGiftsParams({
@@ -7297,17 +13185,361 @@ class CategoryGiftsParams {
   }
 }
 
+class CategoryGiftsResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryGiftsResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryGiftsResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryGiftsResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryGiftsResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategoryGiftsResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryGiftsResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryGiftsResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategoryGiftsResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final dynamic emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int giftsItemId;
+  final String giftsService;
+  final int giftsDuration;
+  final String giftsType;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryGiftsResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String giftsSubscriptionName;
+  final String giftsServiceName;
+  final bool canViewAccountLink;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryGiftsResponseItemsSeller seller;
+
+  const CategoryGiftsResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.giftsItemId,
+    required this.giftsService,
+    required this.giftsDuration,
+    required this.giftsType,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.giftsSubscriptionName,
+    required this.giftsServiceName,
+    required this.canViewAccountLink,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryGiftsResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryGiftsResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'],
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        giftsItemId:
+            json['gifts_item_id'] is int ? json['gifts_item_id'] as int : 0,
+        giftsService: json['gifts_service'] is String
+            ? json['gifts_service'] as String
+            : '',
+        giftsDuration:
+            json['gifts_duration'] is int ? json['gifts_duration'] as int : 0,
+        giftsType:
+            json['gifts_type'] is String ? json['gifts_type'] as String : '',
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryGiftsResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryGiftsResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        giftsSubscriptionName: json['giftsSubscriptionName'] is String
+            ? json['giftsSubscriptionName'] as String
+            : '',
+        giftsServiceName: json['giftsServiceName'] is String
+            ? json['giftsServiceName'] as String
+            : '',
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryGiftsResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryGiftsResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryGiftsResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryGiftsResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -7333,20 +13565,21 @@ class CategoryGiftsResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryGiftsResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -7361,36 +13594,36 @@ class CategoryGiftsResponse {
 
 class CategoryEpicGamesParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -7442,10 +13675,10 @@ class CategoryEpicGamesParams {
   final num? rewardsBalanceMax;
 
   /// Minimum number of games.
-  final num? gmin;
+  final int? gmin;
 
   /// Maximum number of games.
-  final num? gmax;
+  final int? gmax;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -7454,13 +13687,13 @@ class CategoryEpicGamesParams {
   final List<String>? notCountry;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// List of minimum hours played by game.
-  final Map<String, num>? hoursPlayed;
+  final Map<String, int>? hoursPlayed;
 
   /// List of maximum hours played by game.
-  final Map<String, num>? hoursPlayedMax;
+  final Map<String, int>? hoursPlayedMax;
 
   const CategoryEpicGamesParams({
     this.page,
@@ -7547,17 +13780,463 @@ class CategoryEpicGamesParams {
   }
 }
 
+class CategoryEpicGamesResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryEpicGamesResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryEpicGamesResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEpicGamesResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryEpicGamesResponseItemsEgTransactions {
+  final int date;
+  final String title;
+  final String presentmentTotal;
+  final String orderType;
+
+  const CategoryEpicGamesResponseItemsEgTransactions({
+    required this.date,
+    required this.title,
+    required this.presentmentTotal,
+    required this.orderType,
+  });
+
+  factory CategoryEpicGamesResponseItemsEgTransactions.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEpicGamesResponseItemsEgTransactions(
+        date: json['date'] is int ? json['date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        presentmentTotal: json['presentmentTotal'] is String
+            ? json['presentmentTotal'] as String
+            : '',
+        orderType:
+            json['orderType'] is String ? json['orderType'] as String : '',
+      );
+}
+
+class CategoryEpicGamesResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryEpicGamesResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryEpicGamesResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEpicGamesResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryEpicGamesResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int egItemId;
+  final String egCountry;
+  final List<dynamic> egCodeRedemptionHistory;
+  final List<dynamic> egCoupons;
+  final dynamic egGames;
+  final int egChangeEmail;
+  final int egCanUpdateDisplayName;
+  final int egLastActivity;
+  final List<dynamic> egPaymentMethods;
+  final int egRlPurchases;
+  final String egUsername;
+  final int egRewardsBalance;
+  final int egRewardsExpirationDate;
+  final int egNextChangeEmailDate;
+  final int egGameCount;
+  final String egBalance;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryEpicGamesResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final List<CategoryEpicGamesResponseItemsEgTransactions> egTransactions;
+  final bool canViewAccountLink;
+  final List<dynamic> accountLinks;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryEpicGamesResponseItemsSeller seller;
+
+  const CategoryEpicGamesResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.egItemId,
+    required this.egCountry,
+    required this.egCodeRedemptionHistory,
+    required this.egCoupons,
+    required this.egGames,
+    required this.egChangeEmail,
+    required this.egCanUpdateDisplayName,
+    required this.egLastActivity,
+    required this.egPaymentMethods,
+    required this.egRlPurchases,
+    required this.egUsername,
+    required this.egRewardsBalance,
+    required this.egRewardsExpirationDate,
+    required this.egNextChangeEmailDate,
+    required this.egGameCount,
+    required this.egBalance,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.egTransactions,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryEpicGamesResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryEpicGamesResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        egItemId: json['eg_item_id'] is int ? json['eg_item_id'] as int : 0,
+        egCountry:
+            json['eg_country'] is String ? json['eg_country'] as String : '',
+        egCodeRedemptionHistory: json['eg_code_redemption_history'] is List
+            ? json['eg_code_redemption_history'] as List<dynamic>
+            : const [],
+        egCoupons: json['eg_coupons'] is List
+            ? json['eg_coupons'] as List<dynamic>
+            : const [],
+        egGames: json['eg_games'],
+        egChangeEmail:
+            json['eg_change_email'] is int ? json['eg_change_email'] as int : 0,
+        egCanUpdateDisplayName: json['eg_can_update_display_name'] is int
+            ? json['eg_can_update_display_name'] as int
+            : 0,
+        egLastActivity: json['eg_last_activity'] is int
+            ? json['eg_last_activity'] as int
+            : 0,
+        egPaymentMethods: json['eg_payment_methods'] is List
+            ? json['eg_payment_methods'] as List<dynamic>
+            : const [],
+        egRlPurchases:
+            json['eg_rl_purchases'] is int ? json['eg_rl_purchases'] as int : 0,
+        egUsername:
+            json['eg_username'] is String ? json['eg_username'] as String : '',
+        egRewardsBalance: json['eg_rewards_balance'] is int
+            ? json['eg_rewards_balance'] as int
+            : 0,
+        egRewardsExpirationDate: json['eg_rewards_expiration_date'] is int
+            ? json['eg_rewards_expiration_date'] as int
+            : 0,
+        egNextChangeEmailDate: json['eg_next_change_email_date'] is int
+            ? json['eg_next_change_email_date'] as int
+            : 0,
+        egGameCount:
+            json['egGameCount'] is int ? json['egGameCount'] as int : 0,
+        egBalance:
+            json['egBalance'] is String ? json['egBalance'] as String : '',
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryEpicGamesResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryEpicGamesResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        egTransactions: json['egTransactions'] is List
+            ? (json['egTransactions'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryEpicGamesResponseItemsEgTransactions.fromJson(e))
+                .toList()
+            : const [],
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? json['accountLinks'] as List<dynamic>
+            : const [],
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryEpicGamesResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryEpicGamesResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryEpicGamesResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryEpicGamesResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -7583,20 +14262,21 @@ class CategoryEpicGamesResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryEpicGamesResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -7611,36 +14291,36 @@ class CategoryEpicGamesResponse {
 
 class CategoryEscapeFromTarkovParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -7676,14 +14356,14 @@ class CategoryEscapeFromTarkovParams {
   final List<String>? version;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   /// Minimum level.
-  final num? levelMin;
+  final int? levelMin;
 
   /// Maximum level.
-  final num? levelMax;
+  final int? levelMax;
   final Pve? pve;
   final Side? side;
 
@@ -7758,17 +14438,457 @@ class CategoryEscapeFromTarkovParams {
   }
 }
 
+class CategoryEscapeFromTarkovResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryEscapeFromTarkovResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryEscapeFromTarkovResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEscapeFromTarkovResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryEscapeFromTarkovResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryEscapeFromTarkovResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryEscapeFromTarkovResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEscapeFromTarkovResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryEscapeFromTarkovResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int tarkovItemId;
+  final String tarkovGameVersion;
+  final int tarkovRegisterDate;
+  final int tarkovLevel;
+  final int tarkovExp;
+  final int tarkovLastActivity;
+  final String tarkovSide;
+  final int tarkovRubles;
+  final String tarkovSecuredContainer;
+  final int tarkovEuros;
+  final int tarkovDollars;
+  final int tarkovKd;
+  final int tarkovDeaths;
+  final int tarkovKills;
+  final int tarkovSessions;
+  final String tarkovRegion;
+  final int tarkovTotalInGame;
+  final int tarkovMailForwarding;
+  final String tarkovUsername;
+  final int tarkovPurchaseDate;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryEscapeFromTarkovResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String tarkovRegionPhrase;
+  final String tarkovGameVersionPhrase;
+  final String accountDomain;
+  final bool canViewAccountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryEscapeFromTarkovResponseItemsSeller seller;
+
+  const CategoryEscapeFromTarkovResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.tarkovItemId,
+    required this.tarkovGameVersion,
+    required this.tarkovRegisterDate,
+    required this.tarkovLevel,
+    required this.tarkovExp,
+    required this.tarkovLastActivity,
+    required this.tarkovSide,
+    required this.tarkovRubles,
+    required this.tarkovSecuredContainer,
+    required this.tarkovEuros,
+    required this.tarkovDollars,
+    required this.tarkovKd,
+    required this.tarkovDeaths,
+    required this.tarkovKills,
+    required this.tarkovSessions,
+    required this.tarkovRegion,
+    required this.tarkovTotalInGame,
+    required this.tarkovMailForwarding,
+    required this.tarkovUsername,
+    required this.tarkovPurchaseDate,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.tarkovRegionPhrase,
+    required this.tarkovGameVersionPhrase,
+    required this.accountDomain,
+    required this.canViewAccountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryEscapeFromTarkovResponseItems.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryEscapeFromTarkovResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        tarkovItemId:
+            json['tarkov_item_id'] is int ? json['tarkov_item_id'] as int : 0,
+        tarkovGameVersion: json['tarkov_game_version'] is String
+            ? json['tarkov_game_version'] as String
+            : '',
+        tarkovRegisterDate: json['tarkov_register_date'] is int
+            ? json['tarkov_register_date'] as int
+            : 0,
+        tarkovLevel:
+            json['tarkov_level'] is int ? json['tarkov_level'] as int : 0,
+        tarkovExp: json['tarkov_exp'] is int ? json['tarkov_exp'] as int : 0,
+        tarkovLastActivity: json['tarkov_last_activity'] is int
+            ? json['tarkov_last_activity'] as int
+            : 0,
+        tarkovSide:
+            json['tarkov_side'] is String ? json['tarkov_side'] as String : '',
+        tarkovRubles:
+            json['tarkov_rubles'] is int ? json['tarkov_rubles'] as int : 0,
+        tarkovSecuredContainer: json['tarkovSecuredContainer'] is String
+            ? json['tarkovSecuredContainer'] as String
+            : '',
+        tarkovEuros:
+            json['tarkov_euros'] is int ? json['tarkov_euros'] as int : 0,
+        tarkovDollars:
+            json['tarkov_dollars'] is int ? json['tarkov_dollars'] as int : 0,
+        tarkovKd: json['tarkovKd'] is int ? json['tarkovKd'] as int : 0,
+        tarkovDeaths:
+            json['tarkov_deaths'] is int ? json['tarkov_deaths'] as int : 0,
+        tarkovKills:
+            json['tarkov_kills'] is int ? json['tarkov_kills'] as int : 0,
+        tarkovSessions:
+            json['tarkov_sessions'] is int ? json['tarkov_sessions'] as int : 0,
+        tarkovRegion: json['tarkov_region'] is String
+            ? json['tarkov_region'] as String
+            : '',
+        tarkovTotalInGame: json['tarkov_total_in_game'] is int
+            ? json['tarkov_total_in_game'] as int
+            : 0,
+        tarkovMailForwarding: json['tarkov_mail_forwarding'] is int
+            ? json['tarkov_mail_forwarding'] as int
+            : 0,
+        tarkovUsername: json['tarkov_username'] is String
+            ? json['tarkov_username'] as String
+            : '',
+        tarkovPurchaseDate: json['tarkov_purchase_date'] is int
+            ? json['tarkov_purchase_date'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryEscapeFromTarkovResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryEscapeFromTarkovResponseItemsBumpSettings.fromJson(
+                const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        tarkovRegionPhrase: json['tarkovRegionPhrase'] is String
+            ? json['tarkovRegionPhrase'] as String
+            : '',
+        tarkovGameVersionPhrase: json['tarkovGameVersionPhrase'] is String
+            ? json['tarkovGameVersionPhrase'] as String
+            : '',
+        accountDomain: json['accountDomain'] is String
+            ? json['accountDomain'] as String
+            : '',
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryEscapeFromTarkovResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryEscapeFromTarkovResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryEscapeFromTarkovResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryEscapeFromTarkovResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -7795,20 +14915,21 @@ class CategoryEscapeFromTarkovResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryEscapeFromTarkovResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -7823,36 +14944,36 @@ class CategoryEscapeFromTarkovResponse {
 
 class CategorySocialClubParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -7878,25 +14999,25 @@ class CategorySocialClubParams {
   final bool? parseSameItemIds;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Minimum number of Social Club level.
-  final num? levelMin;
+  final int? levelMin;
 
   /// Maximum number of Social Club level.
-  final num? levelMax;
+  final int? levelMax;
 
   /// Minimum number of GTA V cash.
-  final num? cashMin;
+  final int? cashMin;
 
   /// Maximum number of GTA V cash.
-  final num? cashMax;
+  final int? cashMax;
 
   /// Minimum number of GTA V bank cash.
-  final num? bankCashMin;
+  final int? bankCashMin;
 
   /// Maximum number of GTA V bank cash.
-  final num? bankCashMax;
+  final int? bankCashMax;
 
   /// List of games.
   final List<String>? game;
@@ -7968,17 +15089,452 @@ class CategorySocialClubParams {
   }
 }
 
+class CategorySocialClubResponseItemsSocialclubGames {
+  final int id;
+  final String name;
+  final String defaultPlatform;
+  final String platform;
+  final String lastSeen;
+  final int internalGameId;
+  final String appId;
+  final String title;
+  final String abbr;
+  final int categoryId;
+  final String img;
+  final String url;
+  final dynamic ru;
+
+  const CategorySocialClubResponseItemsSocialclubGames({
+    required this.id,
+    required this.name,
+    required this.defaultPlatform,
+    required this.platform,
+    required this.lastSeen,
+    required this.internalGameId,
+    required this.appId,
+    required this.title,
+    required this.abbr,
+    required this.categoryId,
+    required this.img,
+    required this.url,
+    required this.ru,
+  });
+
+  factory CategorySocialClubResponseItemsSocialclubGames.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySocialClubResponseItemsSocialclubGames(
+        id: json['id'] is int ? json['id'] as int : 0,
+        name: json['name'] is String ? json['name'] as String : '',
+        defaultPlatform: json['defaultPlatform'] is String
+            ? json['defaultPlatform'] as String
+            : '',
+        platform: json['platform'] is String ? json['platform'] as String : '',
+        lastSeen: json['lastSeen'] is String ? json['lastSeen'] as String : '',
+        internalGameId: json['internal_game_id'] is int
+            ? json['internal_game_id'] as int
+            : 0,
+        appId: json['app_id'] is String ? json['app_id'] as String : '',
+        title: json['title'] is String ? json['title'] as String : '',
+        abbr: json['abbr'] is String ? json['abbr'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        img: json['img'] is String ? json['img'] as String : '',
+        url: json['url'] is String ? json['url'] as String : '',
+        ru: json['ru'],
+      );
+}
+
+class CategorySocialClubResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategorySocialClubResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategorySocialClubResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySocialClubResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategorySocialClubResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategorySocialClubResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategorySocialClubResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategorySocialClubResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategorySocialClubResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int socialclubItemId;
+  final int socialclubLevel;
+  final int socialclubCash;
+  final int socialclubBankCash;
+  final List<CategorySocialClubResponseItemsSocialclubGames> socialclubGames;
+  final int socialclubLastActivity;
+  final int socialclubHasGtav;
+  final int socialclubHasRdr2;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategorySocialClubResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final bool canViewAccountLink;
+  final List<dynamic> accountLinks;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategorySocialClubResponseItemsSeller seller;
+
+  const CategorySocialClubResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.socialclubItemId,
+    required this.socialclubLevel,
+    required this.socialclubCash,
+    required this.socialclubBankCash,
+    required this.socialclubGames,
+    required this.socialclubLastActivity,
+    required this.socialclubHasGtav,
+    required this.socialclubHasRdr2,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategorySocialClubResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategorySocialClubResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        socialclubItemId: json['socialclub_item_id'] is int
+            ? json['socialclub_item_id'] as int
+            : 0,
+        socialclubLevel: json['socialclub_level'] is int
+            ? json['socialclub_level'] as int
+            : 0,
+        socialclubCash:
+            json['socialclub_cash'] is int ? json['socialclub_cash'] as int : 0,
+        socialclubBankCash: json['socialclub_bank_cash'] is int
+            ? json['socialclub_bank_cash'] as int
+            : 0,
+        socialclubGames: json['socialclub_games'] is List
+            ? (json['socialclub_games'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategorySocialClubResponseItemsSocialclubGames.fromJson(e))
+                .toList()
+            : const [],
+        socialclubLastActivity: json['socialclub_last_activity'] is int
+            ? json['socialclub_last_activity'] as int
+            : 0,
+        socialclubHasGtav: json['socialclub_has_gtav'] is int
+            ? json['socialclub_has_gtav'] as int
+            : 0,
+        socialclubHasRdr2: json['socialclub_has_rdr2'] is int
+            ? json['socialclub_has_rdr2'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategorySocialClubResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategorySocialClubResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? json['accountLinks'] as List<dynamic>
+            : const [],
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategorySocialClubResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategorySocialClubResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategorySocialClubResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategorySocialClubResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -8004,20 +15560,21 @@ class CategorySocialClubResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategorySocialClubResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -8032,36 +15589,36 @@ class CategorySocialClubResponse {
 
 class CategoryUplayParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -8102,43 +15659,43 @@ class CategoryUplayParams {
   final List<String>? notCountry;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Minimum count of games.
-  final num? gmin;
+  final int? gmin;
 
   /// Maximum count of games.
-  final num? gmax;
+  final int? gmax;
   final Subscription? subscription;
 
   /// Length of subscription.
-  final num? subscriptionLength;
+  final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
 
   /// Minimum level in Tom Clancy's Rainbow Six Siege.
-  final num? r6LevelMin;
+  final int? r6LevelMin;
 
   /// Maximum level in Tom Clancy's Rainbow Six Siege.
-  final num? r6LevelMax;
+  final int? r6LevelMax;
 
   /// Minimum rank points in Tom Clancy's Rainbow Six Siege.
-  final num? r6RankMin;
+  final int? r6RankMin;
 
   /// Maximum rank points in Tom Clancy's Rainbow Six Siege.
-  final num? r6RankMax;
+  final int? r6RankMax;
 
   /// Minimum count of operators in Tom Clancy's Rainbow Six Siege.
-  final num? r6OperatorsMin;
+  final int? r6OperatorsMin;
 
   /// Maximum count of operators in Tom Clancy's Rainbow Six Siege.
-  final num? r6OperatorsMax;
+  final int? r6OperatorsMax;
   final R6Ban? r6Ban;
 
   /// Minimum number of skins in Tom Clancy's Rainbow Six Siege.
-  final num? r6Smin;
+  final int? r6Smin;
 
   /// Maximum number of skins in Tom Clancy's Rainbow Six Siege.
-  final num? r6Smax;
+  final int? r6Smax;
 
   /// List of weapon skins in Tom Clancy's Rainbow Six Siege.
   final List<String>? r6Skin;
@@ -8157,7 +15714,7 @@ class CategoryUplayParams {
   final Transactions? transactions;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   const CategoryUplayParams({
@@ -8271,17 +15828,557 @@ class CategoryUplayParams {
   }
 }
 
+class CategoryUplayResponseItemsUplayGamesFfffffffFfffFfffFfffFfffffffffff {
+  final String title;
+  final String img;
+  final int pvpTimePlayed;
+  final int pveTimePlayed;
+  final String abbr;
+  final String gameId;
+
+  const CategoryUplayResponseItemsUplayGamesFfffffffFfffFfffFfffFfffffffffff({
+    required this.title,
+    required this.img,
+    required this.pvpTimePlayed,
+    required this.pveTimePlayed,
+    required this.abbr,
+    required this.gameId,
+  });
+
+  factory CategoryUplayResponseItemsUplayGamesFfffffffFfffFfffFfffFfffffffffff.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryUplayResponseItemsUplayGamesFfffffffFfffFfffFfffFfffffffffff(
+        title: json['title'] is String ? json['title'] as String : '',
+        img: json['img'] is String ? json['img'] as String : '',
+        pvpTimePlayed:
+            json['pvpTimePlayed'] is int ? json['pvpTimePlayed'] as int : 0,
+        pveTimePlayed:
+            json['pveTimePlayed'] is int ? json['pveTimePlayed'] as int : 0,
+        abbr: json['abbr'] is String ? json['abbr'] as String : '',
+        gameId: json['gameId'] is String ? json['gameId'] as String : '',
+      );
+}
+
+class CategoryUplayResponseItemsUplayGames {
+  final CategoryUplayResponseItemsUplayGamesFfffffffFfffFfffFfffFfffffffffff
+      ffffffffFfffFfffFfffFfffffffffff;
+
+  const CategoryUplayResponseItemsUplayGames({
+    required this.ffffffffFfffFfffFfffFfffffffffff,
+  });
+
+  factory CategoryUplayResponseItemsUplayGames.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryUplayResponseItemsUplayGames(
+        ffffffffFfffFfffFfffFfffffffffff: json[
+                'ffffffff-ffff-ffff-ffff-ffffffffffff'] is Map<String, dynamic>
+            ? CategoryUplayResponseItemsUplayGamesFfffffffFfffFfffFfffFfffffffffff
+                .fromJson(json['ffffffff-ffff-ffff-ffff-ffffffffffff']
+                    as Map<String, dynamic>)
+            : CategoryUplayResponseItemsUplayGamesFfffffffFfffFfffFfffFfffffffffff
+                .fromJson(const {}),
+      );
+}
+
+class CategoryUplayResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryUplayResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryUplayResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryUplayResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryUplayResponseItemsR6Operators {
+  final String img;
+  final String name;
+  final String url;
+
+  const CategoryUplayResponseItemsR6Operators({
+    required this.img,
+    required this.name,
+    required this.url,
+  });
+
+  factory CategoryUplayResponseItemsR6Operators.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryUplayResponseItemsR6Operators(
+        img: json['img'] is String ? json['img'] as String : '',
+        name: json['name'] is String ? json['name'] as String : '',
+        url: json['url'] is String ? json['url'] as String : '',
+      );
+}
+
+class CategoryUplayResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryUplayResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryUplayResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryUplayResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryUplayResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int uplayItemId;
+  final int uplayLastActivity;
+  final String uplayCountry;
+  final int uplayCreatedDate;
+  final CategoryUplayResponseItemsUplayGames uplayGames;
+  final int uplayGameCount;
+  final int uplayR6Level;
+  final int uplayR6Ban;
+  final String uplayR6Operators;
+  final int uplayR6OperatorsCount;
+  final String uplayR6Skins;
+  final int uplayR6SkinsCount;
+  final String uplaySubscription;
+  final int uplaySubscriptionEndDate;
+  final int uplayXboxConnected;
+  final int uplayPsnConnected;
+  final int uplaySteamConnected;
+  final String uplayR6Rank;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryUplayResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String uplayLinkedAccounts;
+  final bool uplayR6SteamWarning;
+  final bool uplayR6ExternalWarning;
+  final bool uplayR6;
+  final bool uplayR6BanActive;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final List<dynamic> r6Skins;
+  final List<CategoryUplayResponseItemsR6Operators> r6Operators;
+  final bool canViewAccountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryUplayResponseItemsSeller seller;
+
+  const CategoryUplayResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.uplayItemId,
+    required this.uplayLastActivity,
+    required this.uplayCountry,
+    required this.uplayCreatedDate,
+    required this.uplayGames,
+    required this.uplayGameCount,
+    required this.uplayR6Level,
+    required this.uplayR6Ban,
+    required this.uplayR6Operators,
+    required this.uplayR6OperatorsCount,
+    required this.uplayR6Skins,
+    required this.uplayR6SkinsCount,
+    required this.uplaySubscription,
+    required this.uplaySubscriptionEndDate,
+    required this.uplayXboxConnected,
+    required this.uplayPsnConnected,
+    required this.uplaySteamConnected,
+    required this.uplayR6Rank,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.uplayLinkedAccounts,
+    required this.uplayR6SteamWarning,
+    required this.uplayR6ExternalWarning,
+    required this.uplayR6,
+    required this.uplayR6BanActive,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.r6Skins,
+    required this.r6Operators,
+    required this.canViewAccountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryUplayResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryUplayResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        uplayItemId:
+            json['uplay_item_id'] is int ? json['uplay_item_id'] as int : 0,
+        uplayLastActivity: json['uplay_last_activity'] is int
+            ? json['uplay_last_activity'] as int
+            : 0,
+        uplayCountry: json['uplay_country'] is String
+            ? json['uplay_country'] as String
+            : '',
+        uplayCreatedDate: json['uplay_created_date'] is int
+            ? json['uplay_created_date'] as int
+            : 0,
+        uplayGames: json['uplay_games'] is Map<String, dynamic>
+            ? CategoryUplayResponseItemsUplayGames.fromJson(
+                json['uplay_games'] as Map<String, dynamic>)
+            : CategoryUplayResponseItemsUplayGames.fromJson(const {}),
+        uplayGameCount: json['uplay_game_count'] is int
+            ? json['uplay_game_count'] as int
+            : 0,
+        uplayR6Level:
+            json['uplay_r6_level'] is int ? json['uplay_r6_level'] as int : 0,
+        uplayR6Ban:
+            json['uplay_r6_ban'] is int ? json['uplay_r6_ban'] as int : 0,
+        uplayR6Operators: json['uplay_r6_operators'] is String
+            ? json['uplay_r6_operators'] as String
+            : '',
+        uplayR6OperatorsCount: json['uplay_r6_operators_count'] is int
+            ? json['uplay_r6_operators_count'] as int
+            : 0,
+        uplayR6Skins: json['uplay_r6_skins'] is String
+            ? json['uplay_r6_skins'] as String
+            : '',
+        uplayR6SkinsCount: json['uplay_r6_skins_count'] is int
+            ? json['uplay_r6_skins_count'] as int
+            : 0,
+        uplaySubscription: json['uplay_subscription'] is String
+            ? json['uplay_subscription'] as String
+            : '',
+        uplaySubscriptionEndDate: json['uplay_subscription_end_date'] is int
+            ? json['uplay_subscription_end_date'] as int
+            : 0,
+        uplayXboxConnected: json['uplay_xbox_connected'] is int
+            ? json['uplay_xbox_connected'] as int
+            : 0,
+        uplayPsnConnected: json['uplay_psn_connected'] is int
+            ? json['uplay_psn_connected'] as int
+            : 0,
+        uplaySteamConnected: json['uplay_steam_connected'] is int
+            ? json['uplay_steam_connected'] as int
+            : 0,
+        uplayR6Rank:
+            json['uplayR6Rank'] is String ? json['uplayR6Rank'] as String : '',
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryUplayResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryUplayResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        uplayLinkedAccounts: json['uplayLinkedAccounts'] is String
+            ? json['uplayLinkedAccounts'] as String
+            : '',
+        uplayR6SteamWarning: json['uplay_r6_steam_warning'] is bool
+            ? json['uplay_r6_steam_warning'] as bool
+            : false,
+        uplayR6ExternalWarning: json['uplay_r6_external_warning'] is bool
+            ? json['uplay_r6_external_warning'] as bool
+            : false,
+        uplayR6: json['uplay_r6'] is bool ? json['uplay_r6'] as bool : false,
+        uplayR6BanActive: json['uplay_r6_ban_active'] is bool
+            ? json['uplay_r6_ban_active'] as bool
+            : false,
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        r6Skins: json['r6Skins'] is List
+            ? json['r6Skins'] as List<dynamic>
+            : const [],
+        r6Operators: json['r6Operators'] is List
+            ? (json['r6Operators'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryUplayResponseItemsR6Operators.fromJson(e))
+                .toList()
+            : const [],
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryUplayResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryUplayResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryUplayResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryUplayResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -8307,20 +16404,21 @@ class CategoryUplayResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryUplayResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -8335,36 +16433,36 @@ class CategoryUplayResponse {
 
 class CategoryDiscordParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -8401,14 +16499,14 @@ class CategoryDiscordParams {
   final List<String>? nitroType;
 
   /// Length of nitro.
-  final num? nitroLength;
+  final int? nitroLength;
   final NitroPeriod? nitroPeriod;
 
   /// Minimum number of boosts.
-  final num? boostsMin;
+  final int? boostsMin;
 
   /// Maximum number of boosts.
-  final num? boostsMax;
+  final int? boostsMax;
   final Billing? billing;
   final Gifts? gifts;
   final Transactions? transactions;
@@ -8420,25 +16518,25 @@ class CategoryDiscordParams {
   final List<String>? condition;
 
   /// Minimum number of chats.
-  final num? chatMin;
+  final int? chatMin;
 
   /// Maximum number of chats.
-  final num? chatMax;
+  final int? chatMax;
 
   /// Minimum number of subscribers in server, where account is administrator/owner.
-  final num? minAdminMembers;
+  final int? minAdminMembers;
 
   /// Maximum number of subscribers in server, where account is administrator/owner.
-  final num? maxAdminMembers;
+  final int? maxAdminMembers;
 
   /// Minimum number of servers, where account is administrator/owner.
-  final num? minAdmin;
+  final int? minAdmin;
 
   /// Maximum number of servers, where account is administrator/owner.
-  final num? maxAdmin;
+  final int? maxAdmin;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   /// List of languages.
@@ -8449,16 +16547,16 @@ class CategoryDiscordParams {
   final Clans? clans;
 
   /// Minimum number of clans, where account is administrator.
-  final num? minAdminClans;
+  final int? minAdminClans;
 
   /// Maximum number of clans, where account is administrator.
-  final num? maxAdminClans;
+  final int? maxAdminClans;
 
   /// Minimum number of clans, where account is owner.
-  final num? minOwnerClans;
+  final int? minOwnerClans;
 
   /// Maximum number of clans, where account is owner.
-  final num? maxOwnerClans;
+  final int? maxOwnerClans;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -8467,29 +16565,29 @@ class CategoryDiscordParams {
   final List<String>? notCountry;
 
   /// Minimum count of servers.
-  final num? minServers;
+  final int? minServers;
 
   /// Maximum count of servers.
-  final num? maxServers;
+  final int? maxServers;
   final N2fa? n2fa;
 
   /// Minimum number of Nitro full credits.
-  final num? minFullCredits;
+  final int? minFullCredits;
 
   /// Maximum number of Nitro full credits.
-  final num? maxFullCredits;
+  final int? maxFullCredits;
 
   /// Minimum number of Nitro basic credits.
-  final num? minBasicCredits;
+  final int? minBasicCredits;
 
   /// Maximum number of Nitro basic credits.
-  final num? maxBasicCredits;
+  final int? maxBasicCredits;
 
   /// Minimum number of Discord Orbs.
-  final num? minOrbs;
+  final int? minOrbs;
 
   /// Maximum number of Discord Orbs.
-  final num? maxOrbs;
+  final int? maxOrbs;
 
   const CategoryDiscordParams({
     this.page,
@@ -8622,17 +16720,419 @@ class CategoryDiscordParams {
   }
 }
 
+class CategoryDiscordResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryDiscordResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryDiscordResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryDiscordResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryDiscordResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategoryDiscordResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryDiscordResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryDiscordResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategoryDiscordResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int discordItemId;
+  final int discordChatCount;
+  final int discordVerified;
+  final String discordCondition;
+  final int discordGifts;
+  final int discordBilling;
+  final int discordRegisterDate;
+  final String discordLocale;
+  final int discordNitroEndDate;
+  final int discordAvailableBoosts;
+  final String discordNitroType;
+  final int discordAdminMembersCount;
+  final int discordAdminServersCount;
+  final String discordAdminServers;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryDiscordResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String discordAccountConditionLabel;
+  final String discordLocaleTitle;
+  final bool canViewAccountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryDiscordResponseItemsSeller seller;
+
+  const CategoryDiscordResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.discordItemId,
+    required this.discordChatCount,
+    required this.discordVerified,
+    required this.discordCondition,
+    required this.discordGifts,
+    required this.discordBilling,
+    required this.discordRegisterDate,
+    required this.discordLocale,
+    required this.discordNitroEndDate,
+    required this.discordAvailableBoosts,
+    required this.discordNitroType,
+    required this.discordAdminMembersCount,
+    required this.discordAdminServersCount,
+    required this.discordAdminServers,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.discordAccountConditionLabel,
+    required this.discordLocaleTitle,
+    required this.canViewAccountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryDiscordResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryDiscordResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        discordItemId:
+            json['discord_item_id'] is int ? json['discord_item_id'] as int : 0,
+        discordChatCount: json['discord_chat_count'] is int
+            ? json['discord_chat_count'] as int
+            : 0,
+        discordVerified: json['discord_verified'] is int
+            ? json['discord_verified'] as int
+            : 0,
+        discordCondition: json['discord_condition'] is String
+            ? json['discord_condition'] as String
+            : '',
+        discordGifts:
+            json['discord_gifts'] is int ? json['discord_gifts'] as int : 0,
+        discordBilling:
+            json['discord_billing'] is int ? json['discord_billing'] as int : 0,
+        discordRegisterDate: json['discord_register_date'] is int
+            ? json['discord_register_date'] as int
+            : 0,
+        discordLocale: json['discord_locale'] is String
+            ? json['discord_locale'] as String
+            : '',
+        discordNitroEndDate: json['discord_nitro_end_date'] is int
+            ? json['discord_nitro_end_date'] as int
+            : 0,
+        discordAvailableBoosts: json['discord_available_boosts'] is int
+            ? json['discord_available_boosts'] as int
+            : 0,
+        discordNitroType: json['discordNitroType'] is String
+            ? json['discordNitroType'] as String
+            : '',
+        discordAdminMembersCount: json['discord_admin_members_count'] is int
+            ? json['discord_admin_members_count'] as int
+            : 0,
+        discordAdminServersCount: json['discord_admin_servers_count'] is int
+            ? json['discord_admin_servers_count'] as int
+            : 0,
+        discordAdminServers: json['discord_admin_servers'] is String
+            ? json['discord_admin_servers'] as String
+            : '',
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryDiscordResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryDiscordResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        discordAccountConditionLabel:
+            json['discordAccountConditionLabel'] is String
+                ? json['discordAccountConditionLabel'] as String
+                : '',
+        discordLocaleTitle: json['discordLocaleTitle'] is String
+            ? json['discordLocaleTitle'] as String
+            : '',
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryDiscordResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryDiscordResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryDiscordResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryDiscordResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -8658,20 +17158,21 @@ class CategoryDiscordResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryDiscordResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -8686,36 +17187,36 @@ class CategoryDiscordResponse {
 
 class CategoryTikTokParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -8748,32 +17249,32 @@ class CategoryTikTokParams {
   final Tel? tel;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   /// Minimum number of followers.
-  final num? followersMin;
+  final int? followersMin;
 
   /// Maximum number of followers.
-  final num? followersMax;
+  final int? followersMax;
 
   /// Minimum number of posts.
-  final num? postMin;
+  final int? postMin;
 
   /// Maximum number of posts.
-  final num? postMax;
+  final int? postMax;
 
   /// Minimum number of likes.
-  final num? likeMin;
+  final int? likeMin;
 
   /// Maximum number of likes.
-  final num? likeMax;
+  final int? likeMax;
 
   /// Minimum number of coins.
-  final num? coinsMin;
+  final int? coinsMin;
 
   /// Maximum number of coins.
-  final num? coinsMax;
+  final int? coinsMax;
   final CookieLogin? cookieLogin;
   final Verified? verified;
   final Email? email;
@@ -8861,17 +17362,454 @@ class CategoryTikTokParams {
   }
 }
 
+class CategoryTikTokResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryTikTokResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryTikTokResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryTikTokResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryTikTokResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategoryTikTokResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategoryTikTokResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryTikTokResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategoryTikTokResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryTikTokResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryTikTokResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryTikTokResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryTikTokResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final dynamic emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int ttItemId;
+  final int ttId;
+  final String ttPermalink;
+  final String ttUniqueId;
+  final int ttVerified;
+  final int ttCreateTime;
+  final int ttPrivateAccount;
+  final int ttFollowers;
+  final int ttFollowing;
+  final int ttLikes;
+  final int ttVideos;
+  final String ttScreenName;
+  final int ttHasEmail;
+  final int ttHasMobile;
+  final String ttTopCountry;
+  final String ttCountries;
+  final int ttCoins;
+  final int ttHasLivePermission;
+  final int ttCookieLogin;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryTikTokResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool canViewAccountLink;
+  final List<CategoryTikTokResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryTikTokResponseItemsSeller seller;
+
+  const CategoryTikTokResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.ttItemId,
+    required this.ttId,
+    required this.ttPermalink,
+    required this.ttUniqueId,
+    required this.ttVerified,
+    required this.ttCreateTime,
+    required this.ttPrivateAccount,
+    required this.ttFollowers,
+    required this.ttFollowing,
+    required this.ttLikes,
+    required this.ttVideos,
+    required this.ttScreenName,
+    required this.ttHasEmail,
+    required this.ttHasMobile,
+    required this.ttTopCountry,
+    required this.ttCountries,
+    required this.ttCoins,
+    required this.ttHasLivePermission,
+    required this.ttCookieLogin,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryTikTokResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryTikTokResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'],
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        ttItemId: json['tt_item_id'] is int ? json['tt_item_id'] as int : 0,
+        ttId: json['tt_id'] is int ? json['tt_id'] as int : 0,
+        ttPermalink: json['tt_permalink'] is String
+            ? json['tt_permalink'] as String
+            : '',
+        ttUniqueId:
+            json['tt_uniqueId'] is String ? json['tt_uniqueId'] as String : '',
+        ttVerified: json['tt_verified'] is int ? json['tt_verified'] as int : 0,
+        ttCreateTime:
+            json['tt_createTime'] is int ? json['tt_createTime'] as int : 0,
+        ttPrivateAccount: json['tt_privateAccount'] is int
+            ? json['tt_privateAccount'] as int
+            : 0,
+        ttFollowers:
+            json['tt_followers'] is int ? json['tt_followers'] as int : 0,
+        ttFollowing:
+            json['tt_following'] is int ? json['tt_following'] as int : 0,
+        ttLikes: json['tt_likes'] is int ? json['tt_likes'] as int : 0,
+        ttVideos: json['tt_videos'] is int ? json['tt_videos'] as int : 0,
+        ttScreenName: json['tt_screen_name'] is String
+            ? json['tt_screen_name'] as String
+            : '',
+        ttHasEmail: json['tt_hasEmail'] is int ? json['tt_hasEmail'] as int : 0,
+        ttHasMobile:
+            json['tt_hasMobile'] is int ? json['tt_hasMobile'] as int : 0,
+        ttTopCountry: json['tt_top_country'] is String
+            ? json['tt_top_country'] as String
+            : '',
+        ttCountries: json['tt_countries'] is String
+            ? json['tt_countries'] as String
+            : '',
+        ttCoins: json['tt_coins'] is int ? json['tt_coins'] as int : 0,
+        ttHasLivePermission: json['tt_hasLivePermission'] is int
+            ? json['tt_hasLivePermission'] as int
+            : 0,
+        ttCookieLogin:
+            json['tt_cookie_login'] is int ? json['tt_cookie_login'] as int : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryTikTokResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryTikTokResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryTikTokResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryTikTokResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryTikTokResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryTikTokResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryTikTokResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -8897,20 +17835,21 @@ class CategoryTikTokResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryTikTokResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -8925,36 +17864,36 @@ class CategoryTikTokResponse {
 
 class CategoryInstagramParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -8995,19 +17934,19 @@ class CategoryInstagramParams {
   final LoginWithoutCookies? loginWithoutCookies;
 
   /// Minimum number of followers.
-  final num? followersMin;
+  final int? followersMin;
 
   /// Maximum number of followers.
-  final num? followersMax;
+  final int? followersMax;
 
   /// Minimum number of posts.
-  final num? postMin;
+  final int? postMin;
 
   /// Maximum number of posts.
-  final num? postMax;
+  final int? postMax;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   const CategoryInstagramParams({
@@ -9087,17 +18026,431 @@ class CategoryInstagramParams {
   }
 }
 
+class CategoryInstagramResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryInstagramResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryInstagramResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryInstagramResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryInstagramResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategoryInstagramResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategoryInstagramResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryInstagramResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategoryInstagramResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategoryInstagramResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryInstagramResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryInstagramResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategoryInstagramResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int instagramItemId;
+  final String instagramId;
+  final int instagramFollowerCount;
+  final int instagramFollowCount;
+  final int instagramPostCount;
+  final String instagramCountry;
+  final String instagramUsername;
+  final int instagramMobile;
+  final int instagramRegisterDate;
+  final int instagramHasCookies;
+  final int instagramLoginWithoutCookies;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryInstagramResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool canViewAccountLink;
+  final List<CategoryInstagramResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryInstagramResponseItemsSeller seller;
+
+  const CategoryInstagramResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.instagramItemId,
+    required this.instagramId,
+    required this.instagramFollowerCount,
+    required this.instagramFollowCount,
+    required this.instagramPostCount,
+    required this.instagramCountry,
+    required this.instagramUsername,
+    required this.instagramMobile,
+    required this.instagramRegisterDate,
+    required this.instagramHasCookies,
+    required this.instagramLoginWithoutCookies,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryInstagramResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryInstagramResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        instagramItemId: json['instagram_item_id'] is int
+            ? json['instagram_item_id'] as int
+            : 0,
+        instagramId: json['instagram_id'] is String
+            ? json['instagram_id'] as String
+            : '',
+        instagramFollowerCount: json['instagram_follower_count'] is int
+            ? json['instagram_follower_count'] as int
+            : 0,
+        instagramFollowCount: json['instagram_follow_count'] is int
+            ? json['instagram_follow_count'] as int
+            : 0,
+        instagramPostCount: json['instagram_post_count'] is int
+            ? json['instagram_post_count'] as int
+            : 0,
+        instagramCountry: json['instagram_country'] is String
+            ? json['instagram_country'] as String
+            : '',
+        instagramUsername: json['instagram_username'] is String
+            ? json['instagram_username'] as String
+            : '',
+        instagramMobile: json['instagram_mobile'] is int
+            ? json['instagram_mobile'] as int
+            : 0,
+        instagramRegisterDate: json['instagram_register_date'] is int
+            ? json['instagram_register_date'] as int
+            : 0,
+        instagramHasCookies: json['instagram_has_cookies'] is int
+            ? json['instagram_has_cookies'] as int
+            : 0,
+        instagramLoginWithoutCookies:
+            json['instagram_login_without_cookies'] is int
+                ? json['instagram_login_without_cookies'] as int
+                : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryInstagramResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryInstagramResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryInstagramResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryInstagramResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryInstagramResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryInstagramResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryInstagramResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -9123,20 +18476,21 @@ class CategoryInstagramResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryInstagramResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -9151,36 +18505,36 @@ class CategoryInstagramResponse {
 
 class CategoryBattleNetParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -9213,10 +18567,10 @@ class CategoryBattleNetParams {
   final Eg? eg;
 
   /// List of games.
-  final List<num>? game;
+  final List<int>? game;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -9231,10 +18585,10 @@ class CategoryBattleNetParams {
   final NoBans? noBans;
 
   /// Minimum balance.
-  final num? balanceMin;
+  final int? balanceMin;
 
   /// Maximum balance.
-  final num? balanceMax;
+  final int? balanceMax;
 
   const CategoryBattleNetParams({
     this.page,
@@ -9317,17 +18671,508 @@ class CategoryBattleNetParams {
   }
 }
 
+class CategoryBattleNetResponseItemsGuarantee {
+  final int duration;
+  final String class$;
+  final String durationPhrase;
+  final dynamic endDate;
+  final dynamic active;
+  final dynamic cancelled;
+  final dynamic remainingTime;
+
+  const CategoryBattleNetResponseItemsGuarantee({
+    required this.duration,
+    required this.class$,
+    required this.durationPhrase,
+    required this.endDate,
+    required this.active,
+    required this.cancelled,
+    required this.remainingTime,
+  });
+
+  factory CategoryBattleNetResponseItemsGuarantee.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryBattleNetResponseItemsGuarantee(
+        duration: json['duration'] is int ? json['duration'] as int : 0,
+        class$: json['class'] is String ? json['class'] as String : '',
+        durationPhrase: json['durationPhrase'] is String
+            ? json['durationPhrase'] as String
+            : '',
+        endDate: json['endDate'],
+        active: json['active'],
+        cancelled: json['cancelled'],
+        remainingTime: json['remainingTime'],
+      );
+}
+
+class CategoryBattleNetResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryBattleNetResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryBattleNetResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryBattleNetResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryBattleNetResponseItemsBattlenetTransactions {
+  final int date;
+  final String productTitle;
+  final String formattedTotal;
+  final String total;
+
+  const CategoryBattleNetResponseItemsBattlenetTransactions({
+    required this.date,
+    required this.productTitle,
+    required this.formattedTotal,
+    required this.total,
+  });
+
+  factory CategoryBattleNetResponseItemsBattlenetTransactions.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryBattleNetResponseItemsBattlenetTransactions(
+        date: json['date'] is int ? json['date'] as int : 0,
+        productTitle: json['productTitle'] is String
+            ? json['productTitle'] as String
+            : '',
+        formattedTotal: json['formattedTotal'] is String
+            ? json['formattedTotal'] as String
+            : '',
+        total: json['total'] is String ? json['total'] as String : '',
+      );
+}
+
+class CategoryBattleNetResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryBattleNetResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryBattleNetResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryBattleNetResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryBattleNetResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int battlenetItemId;
+  final String battlenetBalance;
+  final String battlenetCountry;
+  final int battlenetLastActivity;
+  final int battlenetMobile;
+  final String battlenetBans;
+  final int battlenetCanChangeTag;
+  final int battlenetRealIdEnabled;
+  final int battlenetChangeFullName;
+  final int battlenetParentControl;
+  final int battlenetConvertedBalance;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final CategoryBattleNetResponseItemsGuarantee guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryBattleNetResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final dynamic battlenetGames;
+  final bool hasOverwatch;
+  final List<CategoryBattleNetResponseItemsBattlenetTransactions>
+      battlenetTransactions;
+  final bool displayConvertedBalance;
+  final bool canViewAccountLink;
+  final List<dynamic> accountLinks;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryBattleNetResponseItemsSeller seller;
+
+  const CategoryBattleNetResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.battlenetItemId,
+    required this.battlenetBalance,
+    required this.battlenetCountry,
+    required this.battlenetLastActivity,
+    required this.battlenetMobile,
+    required this.battlenetBans,
+    required this.battlenetCanChangeTag,
+    required this.battlenetRealIdEnabled,
+    required this.battlenetChangeFullName,
+    required this.battlenetParentControl,
+    required this.battlenetConvertedBalance,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.battlenetGames,
+    required this.hasOverwatch,
+    required this.battlenetTransactions,
+    required this.displayConvertedBalance,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryBattleNetResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryBattleNetResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        battlenetItemId: json['battlenet_item_id'] is int
+            ? json['battlenet_item_id'] as int
+            : 0,
+        battlenetBalance: json['battlenet_balance'] is String
+            ? json['battlenet_balance'] as String
+            : '',
+        battlenetCountry: json['battlenet_country'] is String
+            ? json['battlenet_country'] as String
+            : '',
+        battlenetLastActivity: json['battlenet_last_activity'] is int
+            ? json['battlenet_last_activity'] as int
+            : 0,
+        battlenetMobile: json['battlenet_mobile'] is int
+            ? json['battlenet_mobile'] as int
+            : 0,
+        battlenetBans: json['battlenetBans'] is String
+            ? json['battlenetBans'] as String
+            : '',
+        battlenetCanChangeTag: json['battlenet_can_change_tag'] is int
+            ? json['battlenet_can_change_tag'] as int
+            : 0,
+        battlenetRealIdEnabled: json['battlenet_real_id_enabled'] is int
+            ? json['battlenet_real_id_enabled'] as int
+            : 0,
+        battlenetChangeFullName: json['battlenet_change_full_name'] is int
+            ? json['battlenet_change_full_name'] as int
+            : 0,
+        battlenetParentControl: json['battlenet_parent_control'] is int
+            ? json['battlenet_parent_control'] as int
+            : 0,
+        battlenetConvertedBalance: json['battlenet_converted_balance'] is int
+            ? json['battlenet_converted_balance'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'] is Map<String, dynamic>
+            ? CategoryBattleNetResponseItemsGuarantee.fromJson(
+                json['guarantee'] as Map<String, dynamic>)
+            : CategoryBattleNetResponseItemsGuarantee.fromJson(const {}),
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryBattleNetResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryBattleNetResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        battlenetGames: json['battlenetGames'],
+        hasOverwatch:
+            json['hasOverwatch'] is bool ? json['hasOverwatch'] as bool : false,
+        battlenetTransactions: json['battlenetTransactions'] is List
+            ? (json['battlenetTransactions'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryBattleNetResponseItemsBattlenetTransactions
+                    .fromJson(e))
+                .toList()
+            : const [],
+        displayConvertedBalance: json['displayConvertedBalance'] is bool
+            ? json['displayConvertedBalance'] as bool
+            : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? json['accountLinks'] as List<dynamic>
+            : const [],
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryBattleNetResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryBattleNetResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryBattleNetResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryBattleNetResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -9353,20 +19198,21 @@ class CategoryBattleNetResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryBattleNetResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -9381,36 +19227,36 @@ class CategoryBattleNetResponse {
 
 class CategoryChatGPTParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -9445,24 +19291,24 @@ class CategoryChatGPTParams {
   final List<String>? subscription;
 
   /// Length of subscription.
-  final num? subscriptionLength;
+  final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
   final Autorenewal? autorenewal;
   final Tel? tel;
   final Transactions? transactions;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   /// List of allowed tiers.
   final List<String>? openaiTier;
 
   /// Minimum OpenAI credit balance.
-  final num? openaiBalanceMin;
+  final int? openaiBalanceMin;
 
   /// Maximum OpenAI credit balance.
-  final num? openaiBalanceMax;
+  final int? openaiBalanceMax;
 
   const CategoryChatGPTParams({
     this.page,
@@ -9541,17 +19387,425 @@ class CategoryChatGPTParams {
   }
 }
 
+class CategoryChatGPTResponseItemsCopyFormatData {
+  final String titleLink;
+
+  const CategoryChatGPTResponseItemsCopyFormatData({
+    required this.titleLink,
+  });
+
+  factory CategoryChatGPTResponseItemsCopyFormatData.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryChatGPTResponseItemsCopyFormatData(
+        titleLink:
+            json['title_link'] is String ? json['title_link'] as String : '',
+      );
+}
+
+class CategoryChatGPTResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryChatGPTResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryChatGPTResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryChatGPTResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryChatGPTResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategoryChatGPTResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryChatGPTResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryChatGPTResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategoryChatGPTResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int chatgptItemId;
+  final String chatgptCountry;
+  final int chatgptRegisterDate;
+  final int chatgptPhone;
+  final String chatgptSubscription;
+  final int chatgptSubscriptionEnds;
+  final int chatgptSubscriptionAutoRenew;
+  final String feedbackData;
+  final bool isIgnored;
+  final num priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewItemViews;
+  final bool canViewEmailLoginData;
+  final CategoryChatGPTResponseItemsCopyFormatData copyFormatData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryChatGPTResponseItemsBumpSettings bumpSettings;
+  final bool isPersonalAccount;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final String priceWithSellerFeeLabel;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String gptSubType;
+  final bool canViewAccountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final bool canChangeEmailPassword;
+  final bool uniqueKeyExists;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryChatGPTResponseItemsSeller seller;
+
+  const CategoryChatGPTResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.chatgptItemId,
+    required this.chatgptCountry,
+    required this.chatgptRegisterDate,
+    required this.chatgptPhone,
+    required this.chatgptSubscription,
+    required this.chatgptSubscriptionEnds,
+    required this.chatgptSubscriptionAutoRenew,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewItemViews,
+    required this.canViewEmailLoginData,
+    required this.copyFormatData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.isPersonalAccount,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.priceWithSellerFeeLabel,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.gptSubType,
+    required this.canViewAccountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.canChangeEmailPassword,
+    required this.uniqueKeyExists,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryChatGPTResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryChatGPTResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        chatgptItemId:
+            json['chatgpt_item_id'] is int ? json['chatgpt_item_id'] as int : 0,
+        chatgptCountry: json['chatgpt_country'] is String
+            ? json['chatgpt_country'] as String
+            : '',
+        chatgptRegisterDate: json['chatgpt_register_date'] is int
+            ? json['chatgpt_register_date'] as int
+            : 0,
+        chatgptPhone:
+            json['chatgpt_phone'] is int ? json['chatgpt_phone'] as int : 0,
+        chatgptSubscription: json['chatgpt_subscription'] is String
+            ? json['chatgpt_subscription'] as String
+            : '',
+        chatgptSubscriptionEnds: json['chatgpt_subscription_ends'] is int
+            ? json['chatgpt_subscription_ends'] as int
+            : 0,
+        chatgptSubscriptionAutoRenew:
+            json['chatgpt_subscription_auto_renew'] is int
+                ? json['chatgpt_subscription_auto_renew'] as int
+                : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is num
+            ? json['priceWithSellerFee'] as num
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewItemViews: json['canViewItemViews'] is bool
+            ? json['canViewItemViews'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        copyFormatData: json['copyFormatData'] is Map<String, dynamic>
+            ? CategoryChatGPTResponseItemsCopyFormatData.fromJson(
+                json['copyFormatData'] as Map<String, dynamic>)
+            : CategoryChatGPTResponseItemsCopyFormatData.fromJson(const {}),
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryChatGPTResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryChatGPTResponseItemsBumpSettings.fromJson(const {}),
+        isPersonalAccount: json['isPersonalAccount'] is bool
+            ? json['isPersonalAccount'] as bool
+            : false,
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        priceWithSellerFeeLabel: json['priceWithSellerFeeLabel'] is String
+            ? json['priceWithSellerFeeLabel'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        gptSubType:
+            json['gptSubType'] is String ? json['gptSubType'] as String : '',
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        canChangeEmailPassword: json['canChangeEmailPassword'] is bool
+            ? json['canChangeEmailPassword'] as bool
+            : false,
+        uniqueKeyExists: json['uniqueKeyExists'] is bool
+            ? json['uniqueKeyExists'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryChatGPTResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryChatGPTResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryChatGPTResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryChatGPTResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -9577,20 +19831,21 @@ class CategoryChatGPTResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryChatGPTResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -9605,36 +19860,36 @@ class CategoryChatGPTResponse {
 
 class CategoryVpnParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -9663,7 +19918,7 @@ class CategoryVpnParams {
   final List<String>? service;
 
   /// Length of subscription.
-  final num? subscriptionLength;
+  final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
   final Autorenewal? autorenewal;
 
@@ -9726,17 +19981,365 @@ class CategoryVpnParams {
   }
 }
 
+class CategoryVpnResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryVpnResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryVpnResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryVpnResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryVpnResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryVpnResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryVpnResponseItemsSeller.fromJson(Map<String, dynamic> json) =>
+      CategoryVpnResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryVpnResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final dynamic emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int vpnItemId;
+  final String vpnService;
+  final int vpnExpireDate;
+  final int vpnRenewable;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryVpnResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String vpnProductTitle;
+  final bool canViewAccountLink;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryVpnResponseItemsSeller seller;
+
+  const CategoryVpnResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.vpnItemId,
+    required this.vpnService,
+    required this.vpnExpireDate,
+    required this.vpnRenewable,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.vpnProductTitle,
+    required this.canViewAccountLink,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryVpnResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryVpnResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'],
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        vpnItemId: json['vpn_item_id'] is int ? json['vpn_item_id'] as int : 0,
+        vpnService:
+            json['vpn_service'] is String ? json['vpn_service'] as String : '',
+        vpnExpireDate:
+            json['vpn_expire_date'] is int ? json['vpn_expire_date'] as int : 0,
+        vpnRenewable:
+            json['vpn_renewable'] is int ? json['vpn_renewable'] as int : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryVpnResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryVpnResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        vpnProductTitle: json['vpnProductTitle'] is String
+            ? json['vpnProductTitle'] as String
+            : '',
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryVpnResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryVpnResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryVpnResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryVpnResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -9762,20 +20365,21 @@ class CategoryVpnResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryVpnResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -9790,36 +20394,36 @@ class CategoryVpnResponse {
 
 class CategoryRobloxParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -9846,22 +20450,22 @@ class CategoryRobloxParams {
   final Email? email;
 
   /// Minimum robux.
-  final num? robuxMin;
+  final int? robuxMin;
 
   /// Maximum robux.
-  final num? robuxMax;
+  final int? robuxMax;
 
   /// Minimum friends.
-  final num? friendsMin;
+  final int? friendsMin;
 
   /// Maximum friends.
-  final num? friendsMax;
+  final int? friendsMax;
 
   /// Minimum number of followers.
-  final num? followersMin;
+  final int? followersMin;
 
   /// Maximum number of followers.
-  final num? followersMax;
+  final int? followersMax;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -9870,12 +20474,12 @@ class CategoryRobloxParams {
   final List<String>? notCountry;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
   final Subscription? subscription;
 
   /// Length of subscription.
-  final num? subscriptionLength;
+  final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
   final Autorenewal? autorenewal;
   final XboxConnected? xboxConnected;
@@ -9884,47 +20488,47 @@ class CategoryRobloxParams {
   final AgeVerified? ageVerified;
 
   /// Minimum amount of incoming robux.
-  final num? incomingRobuxTotalMin;
+  final int? incomingRobuxTotalMin;
 
   /// Maximum amount of incoming robux.
-  final num? incomingRobuxTotalMax;
+  final int? incomingRobuxTotalMax;
 
   /// Minimum limited items value.
-  final num? limitedPriceMin;
+  final int? limitedPriceMin;
 
   /// Maximum limited items value.
-  final num? limitedPriceMax;
+  final int? limitedPriceMax;
 
   /// Minimum total Robux cost of all game passes in popular Roblox games..
-  final num? gamepassMin;
+  final int? gamepassMin;
 
   /// Maximum total Robux cost of all game passes in popular Roblox games..
-  final num? gamepassMax;
+  final int? gamepassMax;
   final GameDonations? gameDonations;
 
   /// Minimum inventory value.
-  final num? invMin;
+  final int? invMin;
 
   /// Maximum inventory value.
-  final num? invMax;
+  final int? invMax;
 
   /// Minimum UGC limited items value.
-  final num? ugcLimitedPriceMin;
+  final int? ugcLimitedPriceMin;
 
   /// Maximum UGC limited items value.
-  final num? ugcLimitedPriceMax;
+  final int? ugcLimitedPriceMax;
 
   /// Minimum credit balance.
-  final num? creditBalanceMin;
+  final int? creditBalanceMin;
 
   /// Maximum credit balance.
-  final num? creditBalanceMax;
+  final int? creditBalanceMax;
 
   /// Minimum offsale items count.
-  final num? offsaleMin;
+  final int? offsaleMin;
 
   /// Maximum offsale items count.
-  final num? offsaleMax;
+  final int? offsaleMax;
   final Voice? voice;
 
   /// List of allowed age groups.
@@ -10058,17 +20662,562 @@ class CategoryRobloxParams {
   }
 }
 
+class CategoryRobloxResponseItemsRobloxGameDonations {
+  final int id;
+  final String title;
+  final int amount;
+
+  const CategoryRobloxResponseItemsRobloxGameDonations({
+    required this.id,
+    required this.title,
+    required this.amount,
+  });
+
+  factory CategoryRobloxResponseItemsRobloxGameDonations.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRobloxResponseItemsRobloxGameDonations(
+        id: json['id'] is int ? json['id'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        amount: json['amount'] is int ? json['amount'] as int : 0,
+      );
+}
+
+class CategoryRobloxResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryRobloxResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryRobloxResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRobloxResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryRobloxResponseItemsRobloxGameDonationsDetails {
+  final String product;
+  final int amount;
+  final String type;
+
+  const CategoryRobloxResponseItemsRobloxGameDonationsDetails({
+    required this.product,
+    required this.amount,
+    required this.type,
+  });
+
+  factory CategoryRobloxResponseItemsRobloxGameDonationsDetails.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRobloxResponseItemsRobloxGameDonationsDetails(
+        product: json['product'] is String ? json['product'] as String : '',
+        amount: json['amount'] is int ? json['amount'] as int : 0,
+        type: json['type'] is String ? json['type'] as String : '',
+      );
+}
+
+class CategoryRobloxResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategoryRobloxResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategoryRobloxResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRobloxResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategoryRobloxResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryRobloxResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryRobloxResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryRobloxResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryRobloxResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int robloxItemId;
+  final int robloxId;
+  final int robloxEmailVerified;
+  final int robloxRobux;
+  final String robloxUsername;
+  final String robloxCountry;
+  final int robloxRegisterDate;
+  final int robloxFriends;
+  final int robloxFollowers;
+  final String robloxSubscription;
+  final int robloxSubscriptionEndDate;
+  final int robloxXboxConnected;
+  final int robloxIncomingRobuxTotal;
+  final int robloxLimitedPrice;
+  final int robloxVerified;
+  final int robloxAgeVerified;
+  final int robloxPsnConnected;
+  final int robloxSubscriptionAutoRenew;
+  final int robloxGamePassTotalRobux;
+  final List<CategoryRobloxResponseItemsRobloxGameDonations>
+      robloxGameDonations;
+  final int robloxInventoryPrice;
+  final int robloxUgcLimitedPrice;
+  final int robloxCreditBalance;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryRobloxResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final String robloxLinkedAccounts;
+  final String creditBalance;
+  final List<CategoryRobloxResponseItemsRobloxGameDonationsDetails>
+      robloxGameDonationsDetails;
+  final bool canViewAccountLink;
+  final List<CategoryRobloxResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryRobloxResponseItemsSeller seller;
+
+  const CategoryRobloxResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.robloxItemId,
+    required this.robloxId,
+    required this.robloxEmailVerified,
+    required this.robloxRobux,
+    required this.robloxUsername,
+    required this.robloxCountry,
+    required this.robloxRegisterDate,
+    required this.robloxFriends,
+    required this.robloxFollowers,
+    required this.robloxSubscription,
+    required this.robloxSubscriptionEndDate,
+    required this.robloxXboxConnected,
+    required this.robloxIncomingRobuxTotal,
+    required this.robloxLimitedPrice,
+    required this.robloxVerified,
+    required this.robloxAgeVerified,
+    required this.robloxPsnConnected,
+    required this.robloxSubscriptionAutoRenew,
+    required this.robloxGamePassTotalRobux,
+    required this.robloxGameDonations,
+    required this.robloxInventoryPrice,
+    required this.robloxUgcLimitedPrice,
+    required this.robloxCreditBalance,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.robloxLinkedAccounts,
+    required this.creditBalance,
+    required this.robloxGameDonationsDetails,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryRobloxResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryRobloxResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        robloxItemId:
+            json['roblox_item_id'] is int ? json['roblox_item_id'] as int : 0,
+        robloxId: json['roblox_id'] is int ? json['roblox_id'] as int : 0,
+        robloxEmailVerified: json['roblox_email_verified'] is int
+            ? json['roblox_email_verified'] as int
+            : 0,
+        robloxRobux:
+            json['roblox_robux'] is int ? json['roblox_robux'] as int : 0,
+        robloxUsername: json['roblox_username'] is String
+            ? json['roblox_username'] as String
+            : '',
+        robloxCountry: json['roblox_country'] is String
+            ? json['roblox_country'] as String
+            : '',
+        robloxRegisterDate: json['roblox_register_date'] is int
+            ? json['roblox_register_date'] as int
+            : 0,
+        robloxFriends:
+            json['roblox_friends'] is int ? json['roblox_friends'] as int : 0,
+        robloxFollowers: json['roblox_followers'] is int
+            ? json['roblox_followers'] as int
+            : 0,
+        robloxSubscription: json['roblox_subscription'] is String
+            ? json['roblox_subscription'] as String
+            : '',
+        robloxSubscriptionEndDate: json['roblox_subscription_end_date'] is int
+            ? json['roblox_subscription_end_date'] as int
+            : 0,
+        robloxXboxConnected: json['roblox_xbox_connected'] is int
+            ? json['roblox_xbox_connected'] as int
+            : 0,
+        robloxIncomingRobuxTotal: json['roblox_incoming_robux_total'] is int
+            ? json['roblox_incoming_robux_total'] as int
+            : 0,
+        robloxLimitedPrice: json['roblox_limited_price'] is int
+            ? json['roblox_limited_price'] as int
+            : 0,
+        robloxVerified:
+            json['roblox_verified'] is int ? json['roblox_verified'] as int : 0,
+        robloxAgeVerified: json['roblox_age_verified'] is int
+            ? json['roblox_age_verified'] as int
+            : 0,
+        robloxPsnConnected: json['roblox_psn_connected'] is int
+            ? json['roblox_psn_connected'] as int
+            : 0,
+        robloxSubscriptionAutoRenew:
+            json['roblox_subscription_auto_renew'] is int
+                ? json['roblox_subscription_auto_renew'] as int
+                : 0,
+        robloxGamePassTotalRobux: json['roblox_game_pass_total_robux'] is int
+            ? json['roblox_game_pass_total_robux'] as int
+            : 0,
+        robloxGameDonations: json['robloxGameDonations'] is List
+            ? (json['robloxGameDonations'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryRobloxResponseItemsRobloxGameDonations.fromJson(e))
+                .toList()
+            : const [],
+        robloxInventoryPrice: json['roblox_inventory_price'] is int
+            ? json['roblox_inventory_price'] as int
+            : 0,
+        robloxUgcLimitedPrice: json['roblox_ugc_limited_price'] is int
+            ? json['roblox_ugc_limited_price'] as int
+            : 0,
+        robloxCreditBalance: json['roblox_credit_balance'] is int
+            ? json['roblox_credit_balance'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryRobloxResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryRobloxResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        robloxLinkedAccounts: json['robloxLinkedAccounts'] is String
+            ? json['robloxLinkedAccounts'] as String
+            : '',
+        creditBalance: json['creditBalance'] is String
+            ? json['creditBalance'] as String
+            : '',
+        robloxGameDonationsDetails: json['robloxGameDonationsDetails'] is List
+            ? (json['robloxGameDonationsDetails'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryRobloxResponseItemsRobloxGameDonationsDetails
+                        .fromJson(e))
+                .toList()
+            : const [],
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryRobloxResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryRobloxResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryRobloxResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryRobloxResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryRobloxResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -10094,20 +21243,21 @@ class CategoryRobloxResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryRobloxResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -10122,36 +21272,36 @@ class CategoryRobloxResponse {
 
 class CategoryWarfaceParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -10177,32 +21327,32 @@ class CategoryWarfaceParams {
   final bool? parseSameItemIds;
 
   /// Minimum rank.
-  final num? rankMin;
+  final int? rankMin;
 
   /// Maximum rank.
-  final num? rankMax;
+  final int? rankMax;
 
   /// Minimum bonus rank.
-  final num? bonusRankMin;
+  final int? bonusRankMin;
 
   /// Maximum bonus rank.
-  final num? bonusRankMax;
+  final int? bonusRankMax;
   final Tel? tel;
 
   /// Number of days the account has been offline.
-  final num? daybreak;
+  final int? daybreak;
 
   /// Minimum amount of Kredits.
-  final num? kreditsMin;
+  final int? kreditsMin;
 
   /// Maximum amount of Kredits.
-  final num? kreditsMax;
+  final int? kreditsMax;
 
   /// Minimum total donated Kredits.
-  final num? totalKreditsMin;
+  final int? totalKreditsMin;
 
   /// Maximum total donated Kredits.
-  final num? totalKreditsMax;
+  final int? totalKreditsMax;
 
   const CategoryWarfaceParams({
     this.page,
@@ -10275,17 +21425,428 @@ class CategoryWarfaceParams {
   }
 }
 
+class CategoryWarfaceResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryWarfaceResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryWarfaceResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryWarfaceResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryWarfaceResponseItemsWfServers {
+  final int id;
+  final int rank;
+  final String title;
+
+  const CategoryWarfaceResponseItemsWfServers({
+    required this.id,
+    required this.rank,
+    required this.title,
+  });
+
+  factory CategoryWarfaceResponseItemsWfServers.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryWarfaceResponseItemsWfServers(
+        id: json['id'] is int ? json['id'] as int : 0,
+        rank: json['rank'] is int ? json['rank'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+      );
+}
+
+class CategoryWarfaceResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int restorePercents;
+
+  const CategoryWarfaceResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryWarfaceResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryWarfaceResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
+            : 0,
+      );
+}
+
+class CategoryWarfaceResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final dynamic emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int wfItemId;
+  final bool wfPlayers;
+  final int wfServer_1;
+  final int wfServer_2;
+  final int wfServer_3;
+  final int wfMobile;
+  final int wfBonusRank;
+  final int wfMailMobile;
+  final int wfLastGameDate;
+  final bool wfLoan;
+  final int wfActiveLoan;
+  final int wfRank;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryWarfaceResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final List<CategoryWarfaceResponseItemsWfServers> wfServers;
+  final String domain;
+  final bool canViewAccountLink;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryWarfaceResponseItemsSeller seller;
+
+  const CategoryWarfaceResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.wfItemId,
+    required this.wfPlayers,
+    required this.wfServer_1,
+    required this.wfServer_2,
+    required this.wfServer_3,
+    required this.wfMobile,
+    required this.wfBonusRank,
+    required this.wfMailMobile,
+    required this.wfLastGameDate,
+    required this.wfLoan,
+    required this.wfActiveLoan,
+    required this.wfRank,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.wfServers,
+    required this.domain,
+    required this.canViewAccountLink,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.soldItemsCategoryCount,
+    required this.restoreItemsCategoryCount,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryWarfaceResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryWarfaceResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'],
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        wfItemId: json['wf_item_id'] is int ? json['wf_item_id'] as int : 0,
+        wfPlayers:
+            json['wf_players'] is bool ? json['wf_players'] as bool : false,
+        wfServer_1: json['wf_server_1'] is int ? json['wf_server_1'] as int : 0,
+        wfServer_2: json['wf_server_2'] is int ? json['wf_server_2'] as int : 0,
+        wfServer_3: json['wf_server_3'] is int ? json['wf_server_3'] as int : 0,
+        wfMobile: json['wf_mobile'] is int ? json['wf_mobile'] as int : 0,
+        wfBonusRank:
+            json['wf_bonus_rank'] is int ? json['wf_bonus_rank'] as int : 0,
+        wfMailMobile:
+            json['wf_mail_mobile'] is int ? json['wf_mail_mobile'] as int : 0,
+        wfLastGameDate: json['wf_last_game_date'] is int
+            ? json['wf_last_game_date'] as int
+            : 0,
+        wfLoan: json['wf_loan'] is bool ? json['wf_loan'] as bool : false,
+        wfActiveLoan:
+            json['wf_active_loan'] is int ? json['wf_active_loan'] as int : 0,
+        wfRank: json['wf_rank'] is int ? json['wf_rank'] as int : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryWarfaceResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryWarfaceResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        wfServers: json['wf_servers'] is List
+            ? (json['wf_servers'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryWarfaceResponseItemsWfServers.fromJson(e))
+                .toList()
+            : const [],
+        domain: json['domain'] is String ? json['domain'] as String : '',
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
+            : 0,
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
+            : 0,
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryWarfaceResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryWarfaceResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryWarfaceResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryWarfaceResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -10311,20 +21872,21 @@ class CategoryWarfaceResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryWarfaceResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -10339,36 +21901,36 @@ class CategoryWarfaceResponse {
 
 class CategoryMinecraftParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -10395,7 +21957,7 @@ class CategoryMinecraftParams {
   final Subscription? subscription;
 
   /// Length of subscription.
-  final num? subscriptionLength;
+  final int? subscriptionLength;
   final SubscriptionPeriod? subscriptionPeriod;
   final Autorenewal? autorenewal;
   final Java? java;
@@ -10408,10 +21970,10 @@ class CategoryMinecraftParams {
   final List<String>? capes;
 
   /// Minimum number of capes.
-  final num? capesMin;
+  final int? capesMin;
 
   /// Maximum number of capes.
-  final num? capesMax;
+  final int? capesMax;
 
   /// List of allowed countries.
   final List<String>? country;
@@ -10425,50 +21987,50 @@ class CategoryMinecraftParams {
   final List<String>? rankHypixel;
 
   /// Minimum number of level hypixel.
-  final num? levelHypixelMin;
+  final int? levelHypixelMin;
 
   /// Maximum number of level hypixel.
-  final num? levelHypixelMax;
+  final int? levelHypixelMax;
 
   /// Minimum number of achievement hypixel.
-  final num? achievementHypixelMin;
+  final int? achievementHypixelMin;
 
   /// Maximum number of achievement hypixel.
-  final num? achievementHypixelMax;
+  final int? achievementHypixelMax;
 
   /// Minimum level on Hypixel SkyBlock.
-  final num? levelHypixelSkyblockMin;
+  final int? levelHypixelSkyblockMin;
 
   /// Maximum level on Hypixel SkyBlock.
-  final num? levelHypixelSkyblockMax;
+  final int? levelHypixelSkyblockMax;
 
   /// Minimum net worth on Hypixel SkyBlock.
-  final num? netWorthHypixelSkyblockMin;
+  final int? netWorthHypixelSkyblockMin;
 
   /// Maximum net worth on Hypixel SkyBlock.
-  final num? netWorthHypixelSkyblockMax;
+  final int? netWorthHypixelSkyblockMax;
 
   /// How old is the account.
-  final num? reg;
+  final int? reg;
   final RegPeriod? regPeriod;
 
   /// How old is the last login account.
-  final num? lastLoginHypixel;
+  final int? lastLoginHypixel;
   final LastLoginHypixelPeriod? lastLoginHypixelPeriod;
   final CanChangeDetails? canChangeDetails;
 
   /// Minimum number of characters in nickname.
-  final num? nicknameLengthMin;
+  final int? nicknameLengthMin;
 
   /// Maximum number of characters in nickname.
-  final num? nicknameLengthMax;
+  final int? nicknameLengthMax;
   final HypixelBanParsed? hypixelBanParsed;
 
   /// Minimum number of Minecoins.
-  final num? minecoinsMin;
+  final int? minecoinsMin;
 
   /// Maximum number of Minecoins.
-  final num? minecoinsMax;
+  final int? minecoinsMax;
 
   const CategoryMinecraftParams({
     this.page,
@@ -10591,17 +22153,509 @@ class CategoryMinecraftParams {
   }
 }
 
+class CategoryMinecraftResponseItemsBumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic errorPhrase;
+
+  const CategoryMinecraftResponseItemsBumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.errorPhrase,
+  });
+
+  factory CategoryMinecraftResponseItemsBumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMinecraftResponseItemsBumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class CategoryMinecraftResponseItemsAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const CategoryMinecraftResponseItemsAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory CategoryMinecraftResponseItemsAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMinecraftResponseItemsAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class CategoryMinecraftResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategoryMinecraftResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryMinecraftResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryMinecraftResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategoryMinecraftResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int minecraftItemId;
+  final String minecraftId;
+  final String minecraftNickname;
+  final String minecraftCountry;
+  final String minecraftSkin;
+  final int minecraftJava;
+  final int minecraftBedrock;
+  final int minecraftCanChangeNickname;
+  final int minecraftCreatedAt;
+  final String minecraftHypixelRank;
+  final int minecraftHypixelLevel;
+  final int minecraftHypixelAchievement;
+  final int minecraftHypixelLastLogin;
+  final int minecraftHypixelBan;
+  final String minecraftHypixelBanReason;
+  final int minecraftHypixelSkyblockLevel;
+  final int minecraftHypixelSkyblockNetWorth;
+  final int minecraftDungeons;
+  final int minecraftLegends;
+  final int minecraftCapesCount;
+  final List<dynamic> minecraftCapes;
+  final String minecraftSubscriptionName;
+  final int minecraftSubscriptionEnds;
+  final int minecraftSubscriptionAutoRenew;
+  final int minecraftEmailResetDate;
+  final String feedbackData;
+  final bool isIgnored;
+  final int priceWithSellerFee;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewEmailLoginData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final CategoryMinecraftResponseItemsBumpSettings bumpSettings;
+  final bool canBumpItem;
+  final bool canBuyItem;
+  final int rubPrice;
+  final String priceCurrency;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool minecraftHasPaidLicense;
+  final bool canViewAccountLink;
+  final List<CategoryMinecraftResponseItemsAccountLinks> accountLinks;
+  final String accountLink;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryMinecraftResponseItemsSeller seller;
+
+  const CategoryMinecraftResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.minecraftItemId,
+    required this.minecraftId,
+    required this.minecraftNickname,
+    required this.minecraftCountry,
+    required this.minecraftSkin,
+    required this.minecraftJava,
+    required this.minecraftBedrock,
+    required this.minecraftCanChangeNickname,
+    required this.minecraftCreatedAt,
+    required this.minecraftHypixelRank,
+    required this.minecraftHypixelLevel,
+    required this.minecraftHypixelAchievement,
+    required this.minecraftHypixelLastLogin,
+    required this.minecraftHypixelBan,
+    required this.minecraftHypixelBanReason,
+    required this.minecraftHypixelSkyblockLevel,
+    required this.minecraftHypixelSkyblockNetWorth,
+    required this.minecraftDungeons,
+    required this.minecraftLegends,
+    required this.minecraftCapesCount,
+    required this.minecraftCapes,
+    required this.minecraftSubscriptionName,
+    required this.minecraftSubscriptionEnds,
+    required this.minecraftSubscriptionAutoRenew,
+    required this.minecraftEmailResetDate,
+    required this.feedbackData,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewEmailLoginData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.bumpSettings,
+    required this.canBumpItem,
+    required this.canBuyItem,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.minecraftHasPaidLicense,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryMinecraftResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryMinecraftResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        minecraftItemId: json['minecraft_item_id'] is int
+            ? json['minecraft_item_id'] as int
+            : 0,
+        minecraftId: json['minecraft_id'] is String
+            ? json['minecraft_id'] as String
+            : '',
+        minecraftNickname: json['minecraft_nickname'] is String
+            ? json['minecraft_nickname'] as String
+            : '',
+        minecraftCountry: json['minecraft_country'] is String
+            ? json['minecraft_country'] as String
+            : '',
+        minecraftSkin: json['minecraft_skin'] is String
+            ? json['minecraft_skin'] as String
+            : '',
+        minecraftJava:
+            json['minecraft_java'] is int ? json['minecraft_java'] as int : 0,
+        minecraftBedrock: json['minecraft_bedrock'] is int
+            ? json['minecraft_bedrock'] as int
+            : 0,
+        minecraftCanChangeNickname: json['minecraft_can_change_nickname'] is int
+            ? json['minecraft_can_change_nickname'] as int
+            : 0,
+        minecraftCreatedAt: json['minecraft_created_at'] is int
+            ? json['minecraft_created_at'] as int
+            : 0,
+        minecraftHypixelRank: json['minecraft_hypixel_rank'] is String
+            ? json['minecraft_hypixel_rank'] as String
+            : '',
+        minecraftHypixelLevel: json['minecraft_hypixel_level'] is int
+            ? json['minecraft_hypixel_level'] as int
+            : 0,
+        minecraftHypixelAchievement:
+            json['minecraft_hypixel_achievement'] is int
+                ? json['minecraft_hypixel_achievement'] as int
+                : 0,
+        minecraftHypixelLastLogin: json['minecraft_hypixel_last_login'] is int
+            ? json['minecraft_hypixel_last_login'] as int
+            : 0,
+        minecraftHypixelBan: json['minecraft_hypixel_ban'] is int
+            ? json['minecraft_hypixel_ban'] as int
+            : 0,
+        minecraftHypixelBanReason:
+            json['minecraft_hypixel_ban_reason'] is String
+                ? json['minecraft_hypixel_ban_reason'] as String
+                : '',
+        minecraftHypixelSkyblockLevel:
+            json['minecraft_hypixel_skyblock_level'] is int
+                ? json['minecraft_hypixel_skyblock_level'] as int
+                : 0,
+        minecraftHypixelSkyblockNetWorth:
+            json['minecraft_hypixel_skyblock_net_worth'] is int
+                ? json['minecraft_hypixel_skyblock_net_worth'] as int
+                : 0,
+        minecraftDungeons: json['minecraft_dungeons'] is int
+            ? json['minecraft_dungeons'] as int
+            : 0,
+        minecraftLegends: json['minecraft_legends'] is int
+            ? json['minecraft_legends'] as int
+            : 0,
+        minecraftCapesCount: json['minecraft_capes_count'] is int
+            ? json['minecraft_capes_count'] as int
+            : 0,
+        minecraftCapes: json['minecraft_capes'] is List
+            ? json['minecraft_capes'] as List<dynamic>
+            : const [],
+        minecraftSubscriptionName: json['minecraft_subscription_name'] is String
+            ? json['minecraft_subscription_name'] as String
+            : '',
+        minecraftSubscriptionEnds: json['minecraft_subscription_ends'] is int
+            ? json['minecraft_subscription_ends'] as int
+            : 0,
+        minecraftSubscriptionAutoRenew:
+            json['minecraft_subscription_auto_renew'] is int
+                ? json['minecraft_subscription_auto_renew'] as int
+                : 0,
+        minecraftEmailResetDate: json['minecraft_email_reset_date'] is int
+            ? json['minecraft_email_reset_date'] as int
+            : 0,
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
+            : 0,
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? CategoryMinecraftResponseItemsBumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : CategoryMinecraftResponseItemsBumpSettings.fromJson(const {}),
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        minecraftHasPaidLicense: json['minecraftHasPaidLicense'] is bool
+            ? json['minecraftHasPaidLicense'] as bool
+            : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    CategoryMinecraftResponseItemsAccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryMinecraftResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryMinecraftResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryMinecraftResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryMinecraftResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -10627,20 +22681,21 @@ class CategoryMinecraftResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryMinecraftResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -10655,36 +22710,36 @@ class CategoryMinecraftResponse {
 
 class CategoryHytaleParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// The word or words contained in the account title.
   final String? title;
   final OrderBy? orderBy;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? tagId;
+  final List<int>? tagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notTagId;
+  final List<int>? notTagId;
 
   /// List of tag ids (Tag list is available via $1).
-  final List<num>? publicTagId;
+  final List<int>? publicTagId;
 
   /// List of tag ids that won't be included (Tag list is available via $1).
-  final List<num>? notPublicTagId;
+  final List<int>? notPublicTagId;
   final Origin? origin;
 
   /// List of account origins that won't be included.
   final List<String>? notOrigin;
 
   /// Search accounts of user.
-  final num? userId;
+  final int? userId;
 
   /// Not sold before.
   final bool? nsb;
@@ -10713,10 +22768,10 @@ class CategoryHytaleParams {
   final List<String>? edition;
 
   /// Minimum number of profiles with game.
-  final num? profilesMin;
+  final int? profilesMin;
 
   /// Maximum number of profiles with game.
-  final num? profilesMax;
+  final int? profilesMax;
 
   const CategoryHytaleParams({
     this.page,
@@ -10775,17 +22830,447 @@ class CategoryHytaleParams {
   }
 }
 
+class CategoryHytaleResponseItemsCategory {
+  final int categoryId;
+  final String categoryTitle;
+  final String categoryName;
+  final String categoryUrl;
+
+  const CategoryHytaleResponseItemsCategory({
+    required this.categoryId,
+    required this.categoryTitle,
+    required this.categoryName,
+    required this.categoryUrl,
+  });
+
+  factory CategoryHytaleResponseItemsCategory.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryHytaleResponseItemsCategory(
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        categoryTitle: json['category_title'] is String
+            ? json['category_title'] as String
+            : '',
+        categoryName: json['category_name'] is String
+            ? json['category_name'] as String
+            : '',
+        categoryUrl: json['category_url'] is String
+            ? json['category_url'] as String
+            : '',
+      );
+}
+
+class CategoryHytaleResponseItemsCopyFormatData {
+  final String titleLink;
+
+  const CategoryHytaleResponseItemsCopyFormatData({
+    required this.titleLink,
+  });
+
+  factory CategoryHytaleResponseItemsCopyFormatData.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryHytaleResponseItemsCopyFormatData(
+        titleLink:
+            json['title_link'] is String ? json['title_link'] as String : '',
+      );
+}
+
+class CategoryHytaleResponseItemsSeller {
+  final int userId;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final dynamic restorePercents;
+
+  const CategoryHytaleResponseItemsSeller({
+    required this.userId,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.restorePercents,
+  });
+
+  factory CategoryHytaleResponseItemsSeller.fromJson(
+          Map<String, dynamic> json) =>
+      CategoryHytaleResponseItemsSeller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+      );
+}
+
+class CategoryHytaleResponseItems {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int pendingDeletionDate;
+  final int viewCount;
+  final int isSticky;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final int autoBumpPeriod;
+  final int rubPrice;
+  final bool discount;
+  final int hytaleItemId;
+  final int hytaleProfiles;
+  final String hytaleEdition;
+  final String feedbackData;
+  final int maxDiscountPercent;
+  final bool isIgnored;
+  final num priceWithSellerFee;
+  final CategoryHytaleResponseItemsCategory category;
+  final dynamic guarantee;
+  final bool canViewLoginData;
+  final bool canViewTempEmail;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewItemViews;
+  final bool canManagePublicTag;
+  final bool canViewEmailLoginData;
+  final CategoryHytaleResponseItemsCopyFormatData copyFormatData;
+  final bool showGetEmailCodeButton;
+  final bool canOpenItem;
+  final bool canCloseItem;
+  final bool canEditItem;
+  final bool canDeleteItem;
+  final bool canStickItem;
+  final bool canUnstickItem;
+  final bool canBumpItem;
+  final String canNotBumpItemReason;
+  final dynamic buyer;
+  final bool isPersonalAccount;
+  final bool canBuyItem;
+  final String priceCurrency;
+  final String priceWithSellerFeeLabel;
+  final bool canValidateAccount;
+  final bool canResellItem;
+  final bool canViewAccountLink;
+  final List<dynamic> imagePreviewLinks;
+  final String emailLoginUrl;
+  final bool canChangePassword;
+  final bool canChangeEmailPassword;
+  final bool uniqueKeyExists;
+  final String itemOriginPhrase;
+  final List<dynamic> tags;
+  final dynamic publicTag;
+  final dynamic noteText;
+  final bool hasPendingAutoBuy;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final CategoryHytaleResponseItemsSeller seller;
+
+  const CategoryHytaleResponseItems({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.pendingDeletionDate,
+    required this.viewCount,
+    required this.isSticky,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.autoBumpPeriod,
+    required this.rubPrice,
+    required this.discount,
+    required this.hytaleItemId,
+    required this.hytaleProfiles,
+    required this.hytaleEdition,
+    required this.feedbackData,
+    required this.maxDiscountPercent,
+    required this.isIgnored,
+    required this.priceWithSellerFee,
+    required this.category,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canViewTempEmail,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewItemViews,
+    required this.canManagePublicTag,
+    required this.canViewEmailLoginData,
+    required this.copyFormatData,
+    required this.showGetEmailCodeButton,
+    required this.canOpenItem,
+    required this.canCloseItem,
+    required this.canEditItem,
+    required this.canDeleteItem,
+    required this.canStickItem,
+    required this.canUnstickItem,
+    required this.canBumpItem,
+    required this.canNotBumpItemReason,
+    required this.buyer,
+    required this.isPersonalAccount,
+    required this.canBuyItem,
+    required this.priceCurrency,
+    required this.priceWithSellerFeeLabel,
+    required this.canValidateAccount,
+    required this.canResellItem,
+    required this.canViewAccountLink,
+    required this.imagePreviewLinks,
+    required this.emailLoginUrl,
+    required this.canChangePassword,
+    required this.canChangeEmailPassword,
+    required this.uniqueKeyExists,
+    required this.itemOriginPhrase,
+    required this.tags,
+    required this.publicTag,
+    required this.noteText,
+    required this.hasPendingAutoBuy,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory CategoryHytaleResponseItems.fromJson(Map<String, dynamic> json) =>
+      CategoryHytaleResponseItems(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        pendingDeletionDate: json['pending_deletion_date'] is int
+            ? json['pending_deletion_date'] as int
+            : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        autoBumpPeriod: json['auto_bump_period'] is int
+            ? json['auto_bump_period'] as int
+            : 0,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        discount: json['discount'] is bool ? json['discount'] as bool : false,
+        hytaleItemId:
+            json['hytale_item_id'] is int ? json['hytale_item_id'] as int : 0,
+        hytaleProfiles:
+            json['hytale_profiles'] is int ? json['hytale_profiles'] as int : 0,
+        hytaleEdition: json['hytale_edition'] is String
+            ? json['hytale_edition'] as String
+            : '',
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        maxDiscountPercent: json['max_discount_percent'] is int
+            ? json['max_discount_percent'] as int
+            : 0,
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is num
+            ? json['priceWithSellerFee'] as num
+            : 0,
+        category: json['category'] is Map<String, dynamic>
+            ? CategoryHytaleResponseItemsCategory.fromJson(
+                json['category'] as Map<String, dynamic>)
+            : CategoryHytaleResponseItemsCategory.fromJson(const {}),
+        guarantee: json['guarantee'],
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canViewTempEmail: json['canViewTempEmail'] is bool
+            ? json['canViewTempEmail'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewItemViews: json['canViewItemViews'] is bool
+            ? json['canViewItemViews'] as bool
+            : false,
+        canManagePublicTag: json['canManagePublicTag'] is bool
+            ? json['canManagePublicTag'] as bool
+            : false,
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        copyFormatData: json['copyFormatData'] is Map<String, dynamic>
+            ? CategoryHytaleResponseItemsCopyFormatData.fromJson(
+                json['copyFormatData'] as Map<String, dynamic>)
+            : CategoryHytaleResponseItemsCopyFormatData.fromJson(const {}),
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        canOpenItem:
+            json['canOpenItem'] is bool ? json['canOpenItem'] as bool : false,
+        canCloseItem:
+            json['canCloseItem'] is bool ? json['canCloseItem'] as bool : false,
+        canEditItem:
+            json['canEditItem'] is bool ? json['canEditItem'] as bool : false,
+        canDeleteItem: json['canDeleteItem'] is bool
+            ? json['canDeleteItem'] as bool
+            : false,
+        canStickItem:
+            json['canStickItem'] is bool ? json['canStickItem'] as bool : false,
+        canUnstickItem: json['canUnstickItem'] is bool
+            ? json['canUnstickItem'] as bool
+            : false,
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canNotBumpItemReason: json['canNotBumpItemReason'] is String
+            ? json['canNotBumpItemReason'] as String
+            : '',
+        buyer: json['buyer'],
+        isPersonalAccount: json['isPersonalAccount'] is bool
+            ? json['isPersonalAccount'] as bool
+            : false,
+        canBuyItem:
+            json['canBuyItem'] is bool ? json['canBuyItem'] as bool : false,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        priceWithSellerFeeLabel: json['priceWithSellerFeeLabel'] is String
+            ? json['priceWithSellerFeeLabel'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItem: json['canResellItem'] is bool
+            ? json['canResellItem'] as bool
+            : false,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        imagePreviewLinks: json['imagePreviewLinks'] is List
+            ? json['imagePreviewLinks'] as List<dynamic>
+            : const [],
+        emailLoginUrl: json['emailLoginUrl'] is String
+            ? json['emailLoginUrl'] as String
+            : '',
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        canChangeEmailPassword: json['canChangeEmailPassword'] is bool
+            ? json['canChangeEmailPassword'] as bool
+            : false,
+        uniqueKeyExists: json['uniqueKeyExists'] is bool
+            ? json['uniqueKeyExists'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        tags: json['tags'] is List ? json['tags'] as List<dynamic> : const [],
+        publicTag: json['public_tag'],
+        noteText: json['note_text'],
+        hasPendingAutoBuy: json['hasPendingAutoBuy'] is bool
+            ? json['hasPendingAutoBuy'] as bool
+            : false,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? CategoryHytaleResponseItemsSeller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : CategoryHytaleResponseItemsSeller.fromJson(const {}),
+      );
+}
+
 class CategoryHytaleResponse {
-  final List<Map<String, dynamic>> items;
-  final num totalItems;
+  final List<CategoryHytaleResponseItems> items;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final bool wasCached;
-  final num cacheTTL;
-  final num lastModified;
-  final num serverTime;
+  final int cacheTTL;
+  final int lastModified;
+  final int serverTime;
   final String searchUrl;
   final List<dynamic> stickyItems;
   final RespSystemInfo systemInfo;
@@ -10811,20 +23296,21 @@ class CategoryHytaleResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryHytaleResponseItems.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         wasCached:
             json['wasCached'] is bool ? json['wasCached'] as bool : false,
-        cacheTTL: json['cacheTTL'] is num ? json['cacheTTL'] as num : 0,
+        cacheTTL: json['cacheTTL'] is int ? json['cacheTTL'] as int : 0,
         lastModified:
-            json['lastModified'] is num ? json['lastModified'] as num : 0,
-        serverTime: json['serverTime'] is num ? json['serverTime'] as num : 0,
+            json['lastModified'] is int ? json['lastModified'] as int : 0,
+        serverTime: json['serverTime'] is int ? json['serverTime'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -10880,7 +23366,7 @@ class CategoryListResponseCategoryLinks {
 }
 
 class CategoryListResponseCategory {
-  final num categoryId;
+  final int categoryId;
   final String categoryTitle;
   final String categoryDescription;
   final CategoryListResponseCategoryLinks links;
@@ -10894,7 +23380,7 @@ class CategoryListResponseCategory {
 
   factory CategoryListResponseCategory.fromJson(Map<String, dynamic> json) =>
       CategoryListResponseCategory(
-        categoryId: json['category_id'] is num ? json['category_id'] as num : 0,
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
         categoryTitle: json['category_title'] is String
             ? json['category_title'] as String
             : '',
@@ -10931,41 +23417,41 @@ class CategoryListResponse {
 }
 
 class CategoryParamsResponseCategory {
-  final num categoryId;
-  final num subCategoryId;
-  final num categoryOrder;
+  final int categoryId;
+  final int subCategoryId;
+  final int categoryOrder;
   final String categoryTitle;
   final String categoryName;
   final String categoryUrl;
   final String categoryDescriptionHtml;
   final String categoryLoginUrl;
-  final num addItemAvailable;
-  final num massUploadItemAvailable;
-  final num hasGuarantee;
-  final num hasAccountLink;
-  final num requireTempEmail;
+  final int addItemAvailable;
+  final int massUploadItemAvailable;
+  final int hasGuarantee;
+  final int hasAccountLink;
+  final int requireTempEmail;
   final String recoveryLink;
-  final num checkButtonEnabled;
-  final num checkerEnabled;
-  final num supportPersonalProxy;
-  final num supportEmailLoginData;
-  final num requireEmailLoginData;
-  final num displayInList;
+  final int checkButtonEnabled;
+  final int checkerEnabled;
+  final int supportPersonalProxy;
+  final int supportEmailLoginData;
+  final int requireEmailLoginData;
+  final int displayInList;
   final String categoryDescriptionHtmlEn;
   final String categoryH1HtmlEn;
-  final num accountPriceMin;
-  final num requireVideoRecording;
+  final int accountPriceMin;
+  final int requireVideoRecording;
   final String topQueries;
-  final num requireEldForNativeAccs;
-  final num canBeResold;
-  final num supportTempEmail;
+  final int requireEldForNativeAccs;
+  final int canBeResold;
+  final int supportTempEmail;
   final String cookies;
   final String loginType;
-  final num guestHidden;
-  final num availableTempEmail;
-  final num resaleDurationLimitDays;
-  final num buyWithoutValidation;
-  final num maxInvalidUploadTries;
+  final int guestHidden;
+  final int availableTempEmail;
+  final int resaleDurationLimitDays;
+  final int buyWithoutValidation;
+  final int maxInvalidUploadTries;
 
   const CategoryParamsResponseCategory({
     required this.categoryId,
@@ -11007,11 +23493,11 @@ class CategoryParamsResponseCategory {
 
   factory CategoryParamsResponseCategory.fromJson(Map<String, dynamic> json) =>
       CategoryParamsResponseCategory(
-        categoryId: json['category_id'] is num ? json['category_id'] as num : 0,
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
         subCategoryId:
-            json['sub_category_id'] is num ? json['sub_category_id'] as num : 0,
+            json['sub_category_id'] is int ? json['sub_category_id'] as int : 0,
         categoryOrder:
-            json['category_order'] is num ? json['category_order'] as num : 0,
+            json['category_order'] is int ? json['category_order'] as int : 0,
         categoryTitle: json['category_title'] is String
             ? json['category_title'] as String
             : '',
@@ -11027,39 +23513,39 @@ class CategoryParamsResponseCategory {
         categoryLoginUrl: json['category_login_url'] is String
             ? json['category_login_url'] as String
             : '',
-        addItemAvailable: json['add_item_available'] is num
-            ? json['add_item_available'] as num
+        addItemAvailable: json['add_item_available'] is int
+            ? json['add_item_available'] as int
             : 0,
-        massUploadItemAvailable: json['mass_upload_item_available'] is num
-            ? json['mass_upload_item_available'] as num
+        massUploadItemAvailable: json['mass_upload_item_available'] is int
+            ? json['mass_upload_item_available'] as int
             : 0,
         hasGuarantee:
-            json['has_guarantee'] is num ? json['has_guarantee'] as num : 0,
-        hasAccountLink: json['has_account_link'] is num
-            ? json['has_account_link'] as num
+            json['has_guarantee'] is int ? json['has_guarantee'] as int : 0,
+        hasAccountLink: json['has_account_link'] is int
+            ? json['has_account_link'] as int
             : 0,
-        requireTempEmail: json['require_temp_email'] is num
-            ? json['require_temp_email'] as num
+        requireTempEmail: json['require_temp_email'] is int
+            ? json['require_temp_email'] as int
             : 0,
         recoveryLink: json['recovery_link'] is String
             ? json['recovery_link'] as String
             : '',
-        checkButtonEnabled: json['check_button_enabled'] is num
-            ? json['check_button_enabled'] as num
+        checkButtonEnabled: json['check_button_enabled'] is int
+            ? json['check_button_enabled'] as int
             : 0,
         checkerEnabled:
-            json['checker_enabled'] is num ? json['checker_enabled'] as num : 0,
-        supportPersonalProxy: json['support_personal_proxy'] is num
-            ? json['support_personal_proxy'] as num
+            json['checker_enabled'] is int ? json['checker_enabled'] as int : 0,
+        supportPersonalProxy: json['support_personal_proxy'] is int
+            ? json['support_personal_proxy'] as int
             : 0,
-        supportEmailLoginData: json['support_email_login_data'] is num
-            ? json['support_email_login_data'] as num
+        supportEmailLoginData: json['support_email_login_data'] is int
+            ? json['support_email_login_data'] as int
             : 0,
-        requireEmailLoginData: json['require_email_login_data'] is num
-            ? json['require_email_login_data'] as num
+        requireEmailLoginData: json['require_email_login_data'] is int
+            ? json['require_email_login_data'] as int
             : 0,
         displayInList:
-            json['display_in_list'] is num ? json['display_in_list'] as num : 0,
+            json['display_in_list'] is int ? json['display_in_list'] as int : 0,
         categoryDescriptionHtmlEn:
             json['category_description_html_en'] is String
                 ? json['category_description_html_en'] as String
@@ -11067,45 +23553,70 @@ class CategoryParamsResponseCategory {
         categoryH1HtmlEn: json['category_h1_html_en'] is String
             ? json['category_h1_html_en'] as String
             : '',
-        accountPriceMin: json['account_price_min'] is num
-            ? json['account_price_min'] as num
+        accountPriceMin: json['account_price_min'] is int
+            ? json['account_price_min'] as int
             : 0,
-        requireVideoRecording: json['require_video_recording'] is num
-            ? json['require_video_recording'] as num
+        requireVideoRecording: json['require_video_recording'] is int
+            ? json['require_video_recording'] as int
             : 0,
         topQueries:
             json['top_queries'] is String ? json['top_queries'] as String : '',
-        requireEldForNativeAccs: json['require_eld_for_native_accs'] is num
-            ? json['require_eld_for_native_accs'] as num
+        requireEldForNativeAccs: json['require_eld_for_native_accs'] is int
+            ? json['require_eld_for_native_accs'] as int
             : 0,
         canBeResold:
-            json['can_be_resold'] is num ? json['can_be_resold'] as num : 0,
-        supportTempEmail: json['support_temp_email'] is num
-            ? json['support_temp_email'] as num
+            json['can_be_resold'] is int ? json['can_be_resold'] as int : 0,
+        supportTempEmail: json['support_temp_email'] is int
+            ? json['support_temp_email'] as int
             : 0,
         cookies: json['cookies'] is String ? json['cookies'] as String : '',
         loginType:
             json['login_type'] is String ? json['login_type'] as String : '',
         guestHidden:
-            json['guest_hidden'] is num ? json['guest_hidden'] as num : 0,
-        availableTempEmail: json['available_temp_email'] is num
-            ? json['available_temp_email'] as num
+            json['guest_hidden'] is int ? json['guest_hidden'] as int : 0,
+        availableTempEmail: json['available_temp_email'] is int
+            ? json['available_temp_email'] as int
             : 0,
-        resaleDurationLimitDays: json['resale_duration_limit_days'] is num
-            ? json['resale_duration_limit_days'] as num
+        resaleDurationLimitDays: json['resale_duration_limit_days'] is int
+            ? json['resale_duration_limit_days'] as int
             : 0,
-        buyWithoutValidation: json['buy_without_validation'] is num
-            ? json['buy_without_validation'] as num
+        buyWithoutValidation: json['buy_without_validation'] is int
+            ? json['buy_without_validation'] as int
             : 0,
-        maxInvalidUploadTries: json['max_invalid_upload_tries'] is num
-            ? json['max_invalid_upload_tries'] as num
+        maxInvalidUploadTries: json['max_invalid_upload_tries'] is int
+            ? json['max_invalid_upload_tries'] as int
             : 0,
+      );
+}
+
+class CategoryParamsResponseParams {
+  final String name;
+  final String input;
+  final String description;
+  final List<String> values;
+
+  const CategoryParamsResponseParams({
+    required this.name,
+    required this.input,
+    required this.description,
+    required this.values,
+  });
+
+  factory CategoryParamsResponseParams.fromJson(Map<String, dynamic> json) =>
+      CategoryParamsResponseParams(
+        name: json['name'] is String ? json['name'] as String : '',
+        input: json['input'] is String ? json['input'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        values: json['values'] is List
+            ? (json['values'] as List<dynamic>).whereType<String>().toList()
+            : const [],
       );
 }
 
 class CategoryParamsResponse {
   final CategoryParamsResponseCategory? category;
-  final List<Map<String, dynamic>>? params;
+  final List<CategoryParamsResponseParams>? params;
   final dynamic baseParams;
   final RespSystemInfo? systemInfo;
 
@@ -11125,6 +23636,7 @@ class CategoryParamsResponse {
         params: json['params'] is List
             ? (json['params'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryParamsResponseParams.fromJson(e))
                 .toList()
             : null,
         baseParams: json['base_params'],
@@ -11135,8 +23647,39 @@ class CategoryParamsResponse {
       );
 }
 
+class CategoryGamesResponseGames {
+  final String appId;
+  final String title;
+  final String abbr;
+  final int categoryId;
+  final String img;
+  final String url;
+  final String ru;
+
+  const CategoryGamesResponseGames({
+    required this.appId,
+    required this.title,
+    required this.abbr,
+    required this.categoryId,
+    required this.img,
+    required this.url,
+    required this.ru,
+  });
+
+  factory CategoryGamesResponseGames.fromJson(Map<String, dynamic> json) =>
+      CategoryGamesResponseGames(
+        appId: json['app_id'] is String ? json['app_id'] as String : '',
+        title: json['title'] is String ? json['title'] as String : '',
+        abbr: json['abbr'] is String ? json['abbr'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        img: json['img'] is String ? json['img'] as String : '',
+        url: json['url'] is String ? json['url'] as String : '',
+        ru: json['ru'] is String ? json['ru'] as String : '',
+      );
+}
+
 class CategoryGamesResponse {
-  final List<Map<String, dynamic>>? games;
+  final List<CategoryGamesResponseGames>? games;
   final RespSystemInfo? systemInfo;
 
   const CategoryGamesResponse({
@@ -11149,6 +23692,7 @@ class CategoryGamesResponse {
         games: json['games'] is List
             ? (json['games'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => CategoryGamesResponseGames.fromJson(e))
                 .toList()
             : null,
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -11162,7 +23706,7 @@ class CategoryGamesResponse {
 
 class CustomDiscountsGetResponse {
   final List<DiscountModel> discounts;
-  final num total;
+  final int total;
   final RespSystemInfo systemInfo;
 
   const CustomDiscountsGetResponse({
@@ -11179,7 +23723,7 @@ class CustomDiscountsGetResponse {
                 .map((e) => DiscountModel.fromJson(e))
                 .toList()
             : const [],
-        total: json['total'] is num ? json['total'] as num : 0,
+        total: json['total'] is int ? json['total'] as int : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -11189,7 +23733,7 @@ class CustomDiscountsGetResponse {
 
 class CustomDiscountsCreateBody {
   /// User ID.
-  final num userId;
+  final int userId;
   final CategoryId categoryId;
 
   /// Discount percent to apply.
@@ -11225,7 +23769,7 @@ class CustomDiscountsCreateBody {
 
 class CustomDiscountsCreateResponse {
   final DiscountModel discount;
-  final num total;
+  final int total;
   final RespSystemInfo systemInfo;
 
   const CustomDiscountsCreateResponse({
@@ -11239,7 +23783,7 @@ class CustomDiscountsCreateResponse {
         discount: json['discount'] is Map<String, dynamic>
             ? DiscountModel.fromJson(json['discount'] as Map<String, dynamic>)
             : DiscountModel.fromJson(const {}),
-        total: json['total'] is num ? json['total'] as num : 0,
+        total: json['total'] is int ? json['total'] as int : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -11249,7 +23793,7 @@ class CustomDiscountsCreateResponse {
 
 class CustomDiscountsEditBody {
   /// ID of the discount to edit.
-  final num discountId;
+  final int discountId;
 
   /// Discount percent to apply.
   final num? discountPercent;
@@ -11279,7 +23823,7 @@ class CustomDiscountsEditBody {
 
 class CustomDiscountsEditResponse {
   final List<DiscountModel> discounts;
-  final num total;
+  final int total;
   final RespSystemInfo systemInfo;
 
   const CustomDiscountsEditResponse({
@@ -11296,7 +23840,7 @@ class CustomDiscountsEditResponse {
                 .map((e) => DiscountModel.fromJson(e))
                 .toList()
             : const [],
-        total: json['total'] is num ? json['total'] as num : 0,
+        total: json['total'] is int ? json['total'] as int : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -11306,7 +23850,7 @@ class CustomDiscountsEditResponse {
 
 class CustomDiscountsDeleteBody {
   /// ID of the discount to delete.
-  final num discountId;
+  final int discountId;
 
   const CustomDiscountsDeleteBody({
     required this.discountId,
@@ -11351,7 +23895,7 @@ class ImapCreateBody {
   final String imapServer;
 
   /// IMAP server port.
-  final num port;
+  final int port;
 
   /// Whether to use a secure connection.
   final bool secure;
@@ -11436,11 +23980,11 @@ class ImapDeleteResponse {
 
 class ListUserParams {
   /// User id.
-  final num? userId;
+  final int? userId;
   final CategoryId? categoryId;
 
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
   final Show? show;
 
   /// Delete reason. (Only if $1 is set to $1).
@@ -11450,10 +23994,10 @@ class ListUserParams {
   final String? title;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// Login.
   final String? login;
@@ -11568,11 +24112,11 @@ class ListUserParams {
 
 class ListUserResponse {
   final List<ItemFromListModel> items;
-  final num totalItems;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final String searchUrl;
   final List<ItemFromListModel> stickyItems;
   final RespSystemInfo systemInfo;
@@ -11597,12 +24141,12 @@ class ListUserResponse {
                 .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -11620,21 +24164,21 @@ class ListUserResponse {
 
 class ListOrdersParams {
   /// User id.
-  final num? userId;
+  final int? userId;
   final CategoryId? categoryId;
 
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
   final Show? show;
 
   /// The word or words contained in the account title.
   final String? title;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
 
   /// Login.
   final String? login;
@@ -11697,11 +24241,11 @@ class ListOrdersParams {
 
 class ListOrdersResponse {
   final List<ItemFromListModel> items;
-  final num totalItems;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final String searchUrl;
   final List<ItemFromListModel> stickyItems;
   final RespSystemInfo systemInfo;
@@ -11726,12 +24270,12 @@ class ListOrdersResponse {
                 .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -11764,9 +24308,9 @@ class ListStatesParams {
 
 class ListStatesResponseUserItemStatesStickied {
   final String itemState;
-  final num itemCount;
+  final int itemCount;
   final String title;
-  final num stickyLimit;
+  final int stickyLimit;
 
   const ListStatesResponseUserItemStatesStickied({
     required this.itemState,
@@ -11780,16 +24324,16 @@ class ListStatesResponseUserItemStatesStickied {
       ListStatesResponseUserItemStatesStickied(
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         stickyLimit:
-            json['stickyLimit'] is num ? json['stickyLimit'] as num : 0,
+            json['stickyLimit'] is int ? json['stickyLimit'] as int : 0,
       );
 }
 
 class ListStatesResponseUserItemStatesDiscountRequest {
   final String itemState;
-  final num itemCount;
+  final int itemCount;
   final String title;
 
   const ListStatesResponseUserItemStatesDiscountRequest({
@@ -11803,14 +24347,14 @@ class ListStatesResponseUserItemStatesDiscountRequest {
       ListStatesResponseUserItemStatesDiscountRequest(
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
       );
 }
 
 class ListStatesResponseUserItemStatesInBuyersFavorites {
   final String itemState;
-  final num itemCount;
+  final int itemCount;
   final String title;
 
   const ListStatesResponseUserItemStatesInBuyersFavorites({
@@ -11824,13 +24368,13 @@ class ListStatesResponseUserItemStatesInBuyersFavorites {
       ListStatesResponseUserItemStatesInBuyersFavorites(
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
       );
 }
 
 class ListStatesResponseUserItemStatesActive {
-  final num itemCount;
+  final int itemCount;
   final String itemState;
   final String title;
 
@@ -11843,7 +24387,7 @@ class ListStatesResponseUserItemStatesActive {
   factory ListStatesResponseUserItemStatesActive.fromJson(
           Map<String, dynamic> json) =>
       ListStatesResponseUserItemStatesActive(
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
         title: json['title'] is String ? json['title'] as String : '',
@@ -11851,7 +24395,7 @@ class ListStatesResponseUserItemStatesActive {
 }
 
 class ListStatesResponseUserItemStatesPaid {
-  final num itemCount;
+  final int itemCount;
   final String itemState;
   final String title;
 
@@ -11864,7 +24408,7 @@ class ListStatesResponseUserItemStatesPaid {
   factory ListStatesResponseUserItemStatesPaid.fromJson(
           Map<String, dynamic> json) =>
       ListStatesResponseUserItemStatesPaid(
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
         title: json['title'] is String ? json['title'] as String : '',
@@ -11873,7 +24417,7 @@ class ListStatesResponseUserItemStatesPaid {
 
 class ListStatesResponseUserItemStatesClosed {
   final String itemState;
-  final num itemCount;
+  final int itemCount;
   final String title;
 
   const ListStatesResponseUserItemStatesClosed({
@@ -11887,13 +24431,13 @@ class ListStatesResponseUserItemStatesClosed {
       ListStatesResponseUserItemStatesClosed(
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
       );
 }
 
 class ListStatesResponseUserItemStatesDeleted {
-  final num itemCount;
+  final int itemCount;
   final String itemState;
   final String title;
 
@@ -11906,7 +24450,7 @@ class ListStatesResponseUserItemStatesDeleted {
   factory ListStatesResponseUserItemStatesDeleted.fromJson(
           Map<String, dynamic> json) =>
       ListStatesResponseUserItemStatesDeleted(
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
         title: json['title'] is String ? json['title'] as String : '',
@@ -11914,7 +24458,7 @@ class ListStatesResponseUserItemStatesDeleted {
 }
 
 class ListStatesResponseUserItemStatesAwaiting {
-  final num itemCount;
+  final int itemCount;
   final String itemState;
   final String title;
 
@@ -11927,7 +24471,7 @@ class ListStatesResponseUserItemStatesAwaiting {
   factory ListStatesResponseUserItemStatesAwaiting.fromJson(
           Map<String, dynamic> json) =>
       ListStatesResponseUserItemStatesAwaiting(
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
         title: json['title'] is String ? json['title'] as String : '',
@@ -11936,7 +24480,7 @@ class ListStatesResponseUserItemStatesAwaiting {
 
 class ListStatesResponseUserItemStatesPreActive {
   final String itemState;
-  final num itemCount;
+  final int itemCount;
   final String title;
 
   const ListStatesResponseUserItemStatesPreActive({
@@ -11950,14 +24494,14 @@ class ListStatesResponseUserItemStatesPreActive {
       ListStatesResponseUserItemStatesPreActive(
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
       );
 }
 
 class ListStatesResponseUserItemStatesPreUpload {
   final String itemState;
-  final num itemCount;
+  final int itemCount;
   final String title;
 
   const ListStatesResponseUserItemStatesPreUpload({
@@ -11971,14 +24515,14 @@ class ListStatesResponseUserItemStatesPreUpload {
       ListStatesResponseUserItemStatesPreUpload(
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
       );
 }
 
 class ListStatesResponseUserItemStatesPendingDeletion {
   final String itemState;
-  final num itemCount;
+  final int itemCount;
   final String title;
 
   const ListStatesResponseUserItemStatesPendingDeletion({
@@ -11992,13 +24536,13 @@ class ListStatesResponseUserItemStatesPendingDeletion {
       ListStatesResponseUserItemStatesPendingDeletion(
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
       );
 }
 
 class ListStatesResponseUserItemStatesClosedInactive {
-  final num itemCount;
+  final int itemCount;
   final String itemState;
   final String title;
 
@@ -12011,7 +24555,7 @@ class ListStatesResponseUserItemStatesClosedInactive {
   factory ListStatesResponseUserItemStatesClosedInactive.fromJson(
           Map<String, dynamic> json) =>
       ListStatesResponseUserItemStatesClosedInactive(
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
         title: json['title'] is String ? json['title'] as String : '',
@@ -12020,7 +24564,7 @@ class ListStatesResponseUserItemStatesClosedInactive {
 
 class ListStatesResponseUserItemStatesAutoBump {
   final String itemState;
-  final num itemCount;
+  final int itemCount;
   final String title;
 
   const ListStatesResponseUserItemStatesAutoBump({
@@ -12034,7 +24578,7 @@ class ListStatesResponseUserItemStatesAutoBump {
       ListStatesResponseUserItemStatesAutoBump(
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        itemCount: json['item_count'] is num ? json['item_count'] as num : 0,
+        itemCount: json['item_count'] is int ? json['item_count'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
       );
 }
@@ -12161,7 +24705,7 @@ class ListDownloadParams {
   final CategoryId? categoryId;
 
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
   final Show? show;
 
   /// Delete reason. (Only if $1 is set to $1).
@@ -12171,10 +24715,10 @@ class ListDownloadParams {
   final String? title;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
   final Origin? origin;
 
   /// List of account origins that won't be included.
@@ -12286,17 +24830,17 @@ class ListDownloadParams {
 
 class ListFavoritesParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
   final Show? show;
 
   /// The word or words contained in the account title.
   final String? title;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
   final Origin? origin;
 
   /// List of account origins that won't be included.
@@ -12350,11 +24894,11 @@ class ListFavoritesParams {
 
 class ListFavoritesResponse {
   final List<ItemFromListModel> items;
-  final num totalItems;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final String searchUrl;
   final List<ItemFromListModel> stickyItems;
   final RespSystemInfo systemInfo;
@@ -12379,12 +24923,12 @@ class ListFavoritesResponse {
                 .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -12402,17 +24946,17 @@ class ListFavoritesResponse {
 
 class ListViewedParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
   final Show? show;
 
   /// The word or words contained in the account title.
   final String? title;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
   final Origin? origin;
 
   /// List of account origins that won't be included.
@@ -12466,11 +25010,11 @@ class ListViewedParams {
 
 class ListViewedResponse {
   final List<ItemFromListModel> items;
-  final num totalItems;
+  final int totalItems;
   final dynamic totalItemsPrice;
   final bool hasNextPage;
-  final num perPage;
-  final num page;
+  final int perPage;
+  final int page;
   final String searchUrl;
   final List<ItemFromListModel> stickyItems;
   final RespSystemInfo systemInfo;
@@ -12495,12 +25039,12 @@ class ListViewedResponse {
                 .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
-        totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
+        totalItems: json['totalItems'] is int ? json['totalItems'] as int : 0,
         totalItemsPrice: json['totalItemsPrice'],
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         searchUrl:
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
@@ -12552,8 +25096,8 @@ class ManagingGetResponse {
   final bool showToFavouritesButton;
   final String itemLink;
   final bool canChangeOwner;
-  final List<num> sameItemsIds;
-  final num sameItemsCount;
+  final List<int> sameItemsIds;
+  final int sameItemsCount;
   final RespSystemInfo systemInfo;
 
   const ManagingGetResponse({
@@ -12629,10 +25173,10 @@ class ManagingGetResponse {
             ? json['canChangeOwner'] as bool
             : false,
         sameItemsIds: json['sameItemsIds'] is List
-            ? (json['sameItemsIds'] as List<dynamic>).whereType<num>().toList()
+            ? (json['sameItemsIds'] as List<dynamic>).whereType<int>().toList()
             : const [],
         sameItemsCount:
-            json['sameItemsCount'] is num ? json['sameItemsCount'] as num : 0,
+            json['sameItemsCount'] is int ? json['sameItemsCount'] as int : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -12679,7 +25223,7 @@ class ManagingDeleteResponse {
 
 class ManagingCreateClaimBody {
   /// Item id.
-  final num itemId;
+  final int itemId;
 
   /// You should describe what's happened. - describe the situation in a nutshell. If you wish, you can describe the situation in more detail using the "Spoiler" function. - attach screenshots of correspondence. You must upload to the site [Imgur](https://imgur.com/upload) - other evidence; - notify the respondent about the complaint you created, familiarize him with hidden content Describe the situation in as much detail as possible.
   final String postBody;
@@ -12695,6 +25239,36 @@ class ManagingCreateClaimBody {
       'post_body': postBody,
     };
   }
+}
+
+class ManagingCreateClaimResponseThreadFirstPostLikeUsers {
+  final int userId;
+  final String username;
+  final int? displayStyleGroupId;
+  final int? isBanned;
+  final String? uniqUsernameCss;
+
+  const ManagingCreateClaimResponseThreadFirstPostLikeUsers({
+    required this.userId,
+    required this.username,
+    this.displayStyleGroupId,
+    this.isBanned,
+    this.uniqUsernameCss,
+  });
+
+  factory ManagingCreateClaimResponseThreadFirstPostLikeUsers.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadFirstPostLikeUsers(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        username: json['username'] is String ? json['username'] as String : '',
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : null,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : null,
+        uniqUsernameCss: json['uniq_username_css'] is String
+            ? json['uniq_username_css'] as String
+            : null,
+      );
 }
 
 class ManagingCreateClaimResponseThreadFirstPostLinks {
@@ -12771,24 +25345,24 @@ class ManagingCreateClaimResponseThreadFirstPostPermissions {
 }
 
 class ManagingCreateClaimResponseThreadFirstPost {
-  final num postId;
-  final num threadId;
-  final num posterUserId;
+  final int postId;
+  final int threadId;
+  final int posterUserId;
   final String posterUsername;
-  final num postCreateDate;
+  final int postCreateDate;
   final String postBody;
   final String postBodyHtml;
   final String postBodyPlainText;
   final String signature;
   final String signatureHtml;
   final String signaturePlainText;
-  final num postLikeCount;
-  final num postAttachmentCount;
-  final List<Map<String, dynamic>> likeUsers;
+  final int postLikeCount;
+  final int postAttachmentCount;
+  final List<ManagingCreateClaimResponseThreadFirstPostLikeUsers> likeUsers;
   final bool userIsIgnored;
   final bool postIsPublished;
   final bool postIsDeleted;
-  final num postUpdateDate;
+  final int postUpdateDate;
   final bool postIsFirstPost;
   final ManagingCreateClaimResponseThreadFirstPostLinks links;
   final ManagingCreateClaimResponseThreadFirstPostPermissions permissions;
@@ -12820,15 +25394,15 @@ class ManagingCreateClaimResponseThreadFirstPost {
   factory ManagingCreateClaimResponseThreadFirstPost.fromJson(
           Map<String, dynamic> json) =>
       ManagingCreateClaimResponseThreadFirstPost(
-        postId: json['post_id'] is num ? json['post_id'] as num : 0,
-        threadId: json['thread_id'] is num ? json['thread_id'] as num : 0,
+        postId: json['post_id'] is int ? json['post_id'] as int : 0,
+        threadId: json['thread_id'] is int ? json['thread_id'] as int : 0,
         posterUserId:
-            json['poster_user_id'] is num ? json['poster_user_id'] as num : 0,
+            json['poster_user_id'] is int ? json['poster_user_id'] as int : 0,
         posterUsername: json['poster_username'] is String
             ? json['poster_username'] as String
             : '',
-        postCreateDate: json['post_create_date'] is num
-            ? json['post_create_date'] as num
+        postCreateDate: json['post_create_date'] is int
+            ? json['post_create_date'] as int
             : 0,
         postBody:
             json['post_body'] is String ? json['post_body'] as String : '',
@@ -12847,13 +25421,15 @@ class ManagingCreateClaimResponseThreadFirstPost {
             ? json['signature_plain_text'] as String
             : '',
         postLikeCount:
-            json['post_like_count'] is num ? json['post_like_count'] as num : 0,
-        postAttachmentCount: json['post_attachment_count'] is num
-            ? json['post_attachment_count'] as num
+            json['post_like_count'] is int ? json['post_like_count'] as int : 0,
+        postAttachmentCount: json['post_attachment_count'] is int
+            ? json['post_attachment_count'] as int
             : 0,
         likeUsers: json['like_users'] is List
             ? (json['like_users'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => ManagingCreateClaimResponseThreadFirstPostLikeUsers
+                    .fromJson(e))
                 .toList()
             : const [],
         userIsIgnored: json['user_is_ignored'] is bool
@@ -12865,8 +25441,8 @@ class ManagingCreateClaimResponseThreadFirstPost {
         postIsDeleted: json['post_is_deleted'] is bool
             ? json['post_is_deleted'] as bool
             : false,
-        postUpdateDate: json['post_update_date'] is num
-            ? json['post_update_date'] as num
+        postUpdateDate: json['post_update_date'] is int
+            ? json['post_update_date'] as int
             : 0,
         postIsFirstPost: json['post_is_first_post'] is bool
             ? json['post_is_first_post'] as bool
@@ -12965,6 +25541,51 @@ class ManagingCreateClaimResponseThreadPermissions {
       );
 }
 
+class ManagingCreateClaimResponseThreadForumForumPrefixesGroupPrefixes {
+  final int prefixId;
+  final String prefixTitle;
+
+  const ManagingCreateClaimResponseThreadForumForumPrefixesGroupPrefixes({
+    required this.prefixId,
+    required this.prefixTitle,
+  });
+
+  factory ManagingCreateClaimResponseThreadForumForumPrefixesGroupPrefixes.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadForumForumPrefixesGroupPrefixes(
+        prefixId: json['prefix_id'] is int ? json['prefix_id'] as int : 0,
+        prefixTitle: json['prefix_title'] is String
+            ? json['prefix_title'] as String
+            : '',
+      );
+}
+
+class ManagingCreateClaimResponseThreadForumForumPrefixes {
+  final String groupTitle;
+  final List<ManagingCreateClaimResponseThreadForumForumPrefixesGroupPrefixes>
+      groupPrefixes;
+
+  const ManagingCreateClaimResponseThreadForumForumPrefixes({
+    required this.groupTitle,
+    required this.groupPrefixes,
+  });
+
+  factory ManagingCreateClaimResponseThreadForumForumPrefixes.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingCreateClaimResponseThreadForumForumPrefixes(
+        groupTitle:
+            json['group_title'] is String ? json['group_title'] as String : '',
+        groupPrefixes: json['group_prefixes'] is List
+            ? (json['group_prefixes'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    ManagingCreateClaimResponseThreadForumForumPrefixesGroupPrefixes
+                        .fromJson(e))
+                .toList()
+            : const [],
+      );
+}
+
 class ManagingCreateClaimResponseThreadForumLinks {
   final String permalink;
   final String detail;
@@ -13037,13 +25658,13 @@ class ManagingCreateClaimResponseThreadForumPermissions {
 }
 
 class ManagingCreateClaimResponseThreadForum {
-  final num forumId;
+  final int forumId;
   final String forumTitle;
   final String forumDescription;
-  final num forumThreadCount;
-  final num forumPostCount;
-  final List<Map<String, dynamic>> forumPrefixes;
-  final num threadDefaultPrefixId;
+  final int forumThreadCount;
+  final int forumPostCount;
+  final List<ManagingCreateClaimResponseThreadForumForumPrefixes> forumPrefixes;
+  final int threadDefaultPrefixId;
   final bool threadPrefixIsRequired;
   final ManagingCreateClaimResponseThreadForumLinks links;
   final ManagingCreateClaimResponseThreadForumPermissions permissions;
@@ -13066,25 +25687,27 @@ class ManagingCreateClaimResponseThreadForum {
   factory ManagingCreateClaimResponseThreadForum.fromJson(
           Map<String, dynamic> json) =>
       ManagingCreateClaimResponseThreadForum(
-        forumId: json['forum_id'] is num ? json['forum_id'] as num : 0,
+        forumId: json['forum_id'] is int ? json['forum_id'] as int : 0,
         forumTitle:
             json['forum_title'] is String ? json['forum_title'] as String : '',
         forumDescription: json['forum_description'] is String
             ? json['forum_description'] as String
             : '',
-        forumThreadCount: json['forum_thread_count'] is num
-            ? json['forum_thread_count'] as num
+        forumThreadCount: json['forum_thread_count'] is int
+            ? json['forum_thread_count'] as int
             : 0,
-        forumPostCount: json['forum_post_count'] is num
-            ? json['forum_post_count'] as num
+        forumPostCount: json['forum_post_count'] is int
+            ? json['forum_post_count'] as int
             : 0,
         forumPrefixes: json['forum_prefixes'] is List
             ? (json['forum_prefixes'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => ManagingCreateClaimResponseThreadForumForumPrefixes
+                    .fromJson(e))
                 .toList()
             : const [],
-        threadDefaultPrefixId: json['thread_default_prefix_id'] is num
-            ? json['thread_default_prefix_id'] as num
+        threadDefaultPrefixId: json['thread_default_prefix_id'] is int
+            ? json['thread_default_prefix_id'] as int
             : 0,
         threadPrefixIsRequired: json['thread_prefix_is_required'] is bool
             ? json['thread_prefix_is_required'] as bool
@@ -13105,16 +25728,16 @@ class ManagingCreateClaimResponseThreadForum {
 }
 
 class ManagingCreateClaimResponseThread {
-  final num threadId;
-  final num forumId;
+  final int threadId;
+  final int forumId;
   final String threadTitle;
-  final num threadViewCount;
-  final num creatorUserId;
+  final int threadViewCount;
+  final int creatorUserId;
   final String creatorUsername;
-  final num threadCreateDate;
-  final num threadUpdateDate;
+  final int threadCreateDate;
+  final int threadUpdateDate;
   final bool userIsIgnored;
-  final num threadPostCount;
+  final int threadPostCount;
   final bool threadIsPublished;
   final bool threadIsDeleted;
   final bool threadIsSticky;
@@ -13152,30 +25775,30 @@ class ManagingCreateClaimResponseThread {
   factory ManagingCreateClaimResponseThread.fromJson(
           Map<String, dynamic> json) =>
       ManagingCreateClaimResponseThread(
-        threadId: json['thread_id'] is num ? json['thread_id'] as num : 0,
-        forumId: json['forum_id'] is num ? json['forum_id'] as num : 0,
+        threadId: json['thread_id'] is int ? json['thread_id'] as int : 0,
+        forumId: json['forum_id'] is int ? json['forum_id'] as int : 0,
         threadTitle: json['thread_title'] is String
             ? json['thread_title'] as String
             : '',
-        threadViewCount: json['thread_view_count'] is num
-            ? json['thread_view_count'] as num
+        threadViewCount: json['thread_view_count'] is int
+            ? json['thread_view_count'] as int
             : 0,
         creatorUserId:
-            json['creator_user_id'] is num ? json['creator_user_id'] as num : 0,
+            json['creator_user_id'] is int ? json['creator_user_id'] as int : 0,
         creatorUsername: json['creator_username'] is String
             ? json['creator_username'] as String
             : '',
-        threadCreateDate: json['thread_create_date'] is num
-            ? json['thread_create_date'] as num
+        threadCreateDate: json['thread_create_date'] is int
+            ? json['thread_create_date'] as int
             : 0,
-        threadUpdateDate: json['thread_update_date'] is num
-            ? json['thread_update_date'] as num
+        threadUpdateDate: json['thread_update_date'] is int
+            ? json['thread_update_date'] as int
             : 0,
         userIsIgnored: json['user_is_ignored'] is bool
             ? json['user_is_ignored'] as bool
             : false,
-        threadPostCount: json['thread_post_count'] is num
-            ? json['thread_post_count'] as num
+        threadPostCount: json['thread_post_count'] is int
+            ? json['thread_post_count'] as int
             : 0,
         threadIsPublished: json['thread_is_published'] is bool
             ? json['thread_is_published'] as bool
@@ -13215,8 +25838,8 @@ class ManagingCreateClaimResponseThread {
 }
 
 class ManagingCreateClaimResponseSystemInfo {
-  final num visitorId;
-  final num time;
+  final int visitorId;
+  final int time;
 
   const ManagingCreateClaimResponseSystemInfo({
     required this.visitorId,
@@ -13226,8 +25849,8 @@ class ManagingCreateClaimResponseSystemInfo {
   factory ManagingCreateClaimResponseSystemInfo.fromJson(
           Map<String, dynamic> json) =>
       ManagingCreateClaimResponseSystemInfo(
-        visitorId: json['visitor_id'] is num ? json['visitor_id'] as num : 0,
-        time: json['time'] is num ? json['time'] as num : 0,
+        visitorId: json['visitor_id'] is int ? json['visitor_id'] as int : 0,
+        time: json['time'] is int ? json['time'] as int : 0,
       );
 }
 
@@ -13255,7 +25878,7 @@ class ManagingCreateClaimResponse {
 
 class ManagingBulkGetBody {
   /// Item id.
-  final List<num>? itemId;
+  final List<int>? itemId;
 
   /// Parse same item ids.
   final bool? parseSameItemIds;
@@ -13273,9 +25896,853 @@ class ManagingBulkGetBody {
   }
 }
 
+class ManagingBulkGetResponseItems0Guarantee {
+  final int duration;
+  final String class$;
+  final String durationPhrase;
+  final int endDate;
+  final bool active;
+  final bool cancelled;
+  final int remainingTime;
+  final String remainingTimePhrase;
+  final String cancelledReason;
+  final String cancelledReasonPhrase;
+
+  const ManagingBulkGetResponseItems0Guarantee({
+    required this.duration,
+    required this.class$,
+    required this.durationPhrase,
+    required this.endDate,
+    required this.active,
+    required this.cancelled,
+    required this.remainingTime,
+    required this.remainingTimePhrase,
+    required this.cancelledReason,
+    required this.cancelledReasonPhrase,
+  });
+
+  factory ManagingBulkGetResponseItems0Guarantee.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0Guarantee(
+        duration: json['duration'] is int ? json['duration'] as int : 0,
+        class$: json['class'] is String ? json['class'] as String : '',
+        durationPhrase: json['durationPhrase'] is String
+            ? json['durationPhrase'] as String
+            : '',
+        endDate: json['endDate'] is int ? json['endDate'] as int : 0,
+        active: json['active'] is bool ? json['active'] as bool : false,
+        cancelled:
+            json['cancelled'] is bool ? json['cancelled'] as bool : false,
+        remainingTime:
+            json['remainingTime'] is int ? json['remainingTime'] as int : 0,
+        remainingTimePhrase: json['remainingTimePhrase'] is String
+            ? json['remainingTimePhrase'] as String
+            : '',
+        cancelledReason: json['cancelledReason'] is String
+            ? json['cancelledReason'] as String
+            : '',
+        cancelledReasonPhrase: json['cancelledReasonPhrase'] is String
+            ? json['cancelledReasonPhrase'] as String
+            : '',
+      );
+}
+
+class ManagingBulkGetResponseItems0LoginData {
+  final String raw;
+  final String encodedRaw;
+  final String login;
+  final String password;
+  final String encodedPassword;
+  final String oldPassword;
+  final dynamic encodedOldPassword;
+
+  const ManagingBulkGetResponseItems0LoginData({
+    required this.raw,
+    required this.encodedRaw,
+    required this.login,
+    required this.password,
+    required this.encodedPassword,
+    required this.oldPassword,
+    required this.encodedOldPassword,
+  });
+
+  factory ManagingBulkGetResponseItems0LoginData.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0LoginData(
+        raw: json['raw'] is String ? json['raw'] as String : '',
+        encodedRaw:
+            json['encodedRaw'] is String ? json['encodedRaw'] as String : '',
+        login: json['login'] is String ? json['login'] as String : '',
+        password: json['password'] is String ? json['password'] as String : '',
+        encodedPassword: json['encodedPassword'] is String
+            ? json['encodedPassword'] as String
+            : '',
+        oldPassword:
+            json['oldPassword'] is String ? json['oldPassword'] as String : '',
+        encodedOldPassword: json['encodedOldPassword'],
+      );
+}
+
+class ManagingBulkGetResponseItems0CopyFormatData {
+  final String titleLink;
+  final String loginData;
+  final String full;
+
+  const ManagingBulkGetResponseItems0CopyFormatData({
+    required this.titleLink,
+    required this.loginData,
+    required this.full,
+  });
+
+  factory ManagingBulkGetResponseItems0CopyFormatData.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0CopyFormatData(
+        titleLink:
+            json['title_link'] is String ? json['title_link'] as String : '',
+        loginData:
+            json['login_data'] is String ? json['login_data'] as String : '',
+        full: json['full'] is String ? json['full'] as String : '',
+      );
+}
+
+class ManagingBulkGetResponseItems0Buyer {
+  final int userId;
+  final int operationDate;
+  final bool visitorIsBuyer;
+  final String username;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int displayIconGroupId;
+  final String uniqUsernameCss;
+  final String uniqBanner;
+  final int userGroupId;
+
+  const ManagingBulkGetResponseItems0Buyer({
+    required this.userId,
+    required this.operationDate,
+    required this.visitorIsBuyer,
+    required this.username,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.displayIconGroupId,
+    required this.uniqUsernameCss,
+    required this.uniqBanner,
+    required this.userGroupId,
+  });
+
+  factory ManagingBulkGetResponseItems0Buyer.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0Buyer(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        operationDate:
+            json['operation_date'] is int ? json['operation_date'] as int : 0,
+        visitorIsBuyer: json['visitorIsBuyer'] is bool
+            ? json['visitorIsBuyer'] as bool
+            : false,
+        username: json['username'] is String ? json['username'] as String : '',
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        displayIconGroupId: json['display_icon_group_id'] is int
+            ? json['display_icon_group_id'] as int
+            : 0,
+        uniqUsernameCss: json['uniq_username_css'] is String
+            ? json['uniq_username_css'] as String
+            : '',
+        uniqBanner:
+            json['uniq_banner'] is String ? json['uniq_banner'] as String : '',
+        userGroupId:
+            json['user_group_id'] is int ? json['user_group_id'] as int : 0,
+      );
+}
+
+class ManagingBulkGetResponseItems0AccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const ManagingBulkGetResponseItems0AccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory ManagingBulkGetResponseItems0AccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0AccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class ManagingBulkGetResponseItems0CustomFields {
+  final String n4;
+  final List<dynamic> allowSelfUnban;
+  final String banReason;
+  final String discord;
+  final String github;
+  final String jabber;
+  final String lztUnbanAmount;
+  final String steam;
+  final String telegram;
+  final String vk;
+
+  const ManagingBulkGetResponseItems0CustomFields({
+    required this.n4,
+    required this.allowSelfUnban,
+    required this.banReason,
+    required this.discord,
+    required this.github,
+    required this.jabber,
+    required this.lztUnbanAmount,
+    required this.steam,
+    required this.telegram,
+    required this.vk,
+  });
+
+  factory ManagingBulkGetResponseItems0CustomFields.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0CustomFields(
+        n4: json['_4'] is String ? json['_4'] as String : '',
+        allowSelfUnban: json['allowSelfUnban'] is List
+            ? json['allowSelfUnban'] as List<dynamic>
+            : const [],
+        banReason:
+            json['ban_reason'] is String ? json['ban_reason'] as String : '',
+        discord: json['discord'] is String ? json['discord'] as String : '',
+        github: json['github'] is String ? json['github'] as String : '',
+        jabber: json['jabber'] is String ? json['jabber'] as String : '',
+        lztUnbanAmount: json['lztUnbanAmount'] is String
+            ? json['lztUnbanAmount'] as String
+            : '',
+        steam: json['steam'] is String ? json['steam'] as String : '',
+        telegram: json['telegram'] is String ? json['telegram'] as String : '',
+        vk: json['vk'] is String ? json['vk'] as String : '',
+      );
+}
+
+class ManagingBulkGetResponseItems0ExtraPrices {
+  final String currency;
+  final String price;
+  final num priceValue;
+
+  const ManagingBulkGetResponseItems0ExtraPrices({
+    required this.currency,
+    required this.price,
+    required this.priceValue,
+  });
+
+  factory ManagingBulkGetResponseItems0ExtraPrices.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0ExtraPrices(
+        currency: json['currency'] is String ? json['currency'] as String : '',
+        price: json['price'] is String ? json['price'] as String : '',
+        priceValue: json['priceValue'] is num ? json['priceValue'] as num : 0,
+      );
+}
+
+class ManagingBulkGetResponseItems0BumpSettings {
+  final bool canBumpItem;
+  final bool canBumpItemGlobally;
+  final dynamic shortErrorPhrase;
+  final dynamic nextAllowedBumpDate;
+  final dynamic errorPhrase;
+
+  const ManagingBulkGetResponseItems0BumpSettings({
+    required this.canBumpItem,
+    required this.canBumpItemGlobally,
+    required this.shortErrorPhrase,
+    required this.nextAllowedBumpDate,
+    required this.errorPhrase,
+  });
+
+  factory ManagingBulkGetResponseItems0BumpSettings.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0BumpSettings(
+        canBumpItem:
+            json['canBumpItem'] is bool ? json['canBumpItem'] as bool : false,
+        canBumpItemGlobally: json['canBumpItemGlobally'] is bool
+            ? json['canBumpItemGlobally'] as bool
+            : false,
+        shortErrorPhrase: json['shortErrorPhrase'],
+        nextAllowedBumpDate: json['nextAllowedBumpDate'],
+        errorPhrase: json['errorPhrase'],
+      );
+}
+
+class ManagingBulkGetResponseItems0SellerContacts {
+  final String banReason;
+  final String telegram;
+
+  const ManagingBulkGetResponseItems0SellerContacts({
+    required this.banReason,
+    required this.telegram,
+  });
+
+  factory ManagingBulkGetResponseItems0SellerContacts.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0SellerContacts(
+        banReason:
+            json['ban_reason'] is String ? json['ban_reason'] as String : '',
+        telegram: json['telegram'] is String ? json['telegram'] as String : '',
+      );
+}
+
+class ManagingBulkGetResponseItems0Seller {
+  final int userId;
+  final String username;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
+  final String restoreData;
+  final int effectiveLastActivity;
+  final dynamic restorePercents;
+  final bool isOnline;
+  final ManagingBulkGetResponseItems0SellerContacts contacts;
+
+  const ManagingBulkGetResponseItems0Seller({
+    required this.userId,
+    required this.username,
+    required this.avatarDate,
+    required this.isBanned,
+    required this.displayStyleGroupId,
+    required this.joinedDate,
+    required this.soldItemsCount,
+    required this.activeItemsCount,
+    required this.restoreData,
+    required this.effectiveLastActivity,
+    required this.restorePercents,
+    required this.isOnline,
+    required this.contacts,
+  });
+
+  factory ManagingBulkGetResponseItems0Seller.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0Seller(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        username: json['username'] is String ? json['username'] as String : '',
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
+            : 0,
+        joinedDate: json['joined_date'] is int ? json['joined_date'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
+            : 0,
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
+            : 0,
+        restoreData: json['restore_data'] is String
+            ? json['restore_data'] as String
+            : '',
+        effectiveLastActivity: json['effective_last_activity'] is int
+            ? json['effective_last_activity'] as int
+            : 0,
+        restorePercents: json['restore_percents'],
+        isOnline: json['isOnline'] is bool ? json['isOnline'] as bool : false,
+        contacts: json['contacts'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0SellerContacts.fromJson(
+                json['contacts'] as Map<String, dynamic>)
+            : ManagingBulkGetResponseItems0SellerContacts.fromJson(const {}),
+      );
+}
+
+class ManagingBulkGetResponseItems0 {
+  final int itemId;
+  final String itemState;
+  final int categoryId;
+  final int publishedDate;
+  final String title;
+  final String description;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int pendingDeletionDate;
+  final String login;
+  final String tempEmail;
+  final int viewCount;
+  final int isSticky;
+  final String information;
+  final String itemOrigin;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
+  final String titleEn;
+  final String descriptionEn;
+  final String informationEn;
+  final String emailType;
+  final String emailProvider;
+  final String itemDomain;
+  final String resaleItemOrigin;
+  final String noteText;
+  final dynamic contentType;
+  final dynamic contentId;
+  final int deleteDate;
+  final int deleteUserId;
+  final String deleteUsername;
+  final String deleteReason;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
+  final String marketCustomTitle;
+  final String feedbackData;
+  final int buyerDisplayIconGroupId;
+  final String buyerUniqBanner;
+  final int buyerAvatarDate;
+  final int buyerUserGroupId;
+  final dynamic isFave;
+  final dynamic inCart;
+  final dynamic cartPrice;
+  final bool canResellItem;
+  final num priceWithSellerFee;
+  final ManagingBulkGetResponseItems0Guarantee guarantee;
+  final bool canViewLoginData;
+  final bool canUpdateItemStats;
+  final bool canReportItem;
+  final bool canViewItemViews;
+  final ManagingBulkGetResponseItems0LoginData loginData;
+  final bool canViewEmailLoginData;
+  final ManagingBulkGetResponseItems0CopyFormatData copyFormatData;
+  final bool showGetEmailCodeButton;
+  final dynamic getEmailCodeDisplayLogin;
+  final ManagingBulkGetResponseItems0Buyer buyer;
+  final bool isPersonalAccount;
+  final int rubPrice;
+  final String priceCurrency;
+  final String priceWithSellerFeeLabel;
+  final bool canValidateAccount;
+  final bool canResellItemAfterPurchase;
+  final bool isSmallExf;
+  final int accountLastActivity;
+  final bool canViewAccountLink;
+  final List<ManagingBulkGetResponseItems0AccountLinks> accountLinks;
+  final String accountLink;
+  final List<String> imagePreviewLinks;
+  final bool canChangePassword;
+  final bool canChangeEmailPassword;
+  final bool uniqueKeyExists;
+  final String itemOriginPhrase;
+  final bool visitorIsAuthor;
+  final bool canAskDiscount;
+  final dynamic tags;
+  final ManagingBulkGetResponseItems0CustomFields customFields;
+  final List<dynamic> externalAuth;
+  final bool isTrusted;
+  final bool isBirthdayToday;
+  final bool isIgnored;
+  final int deposit;
+  final List<ManagingBulkGetResponseItems0ExtraPrices> extraPrices;
+  final bool canViewAccountLoginAndTempEmail;
+  final ManagingBulkGetResponseItems0BumpSettings bumpSettings;
+  final bool canCheckGuarantee;
+  final bool canShareItem;
+  final bool canCheckAiPrice;
+  final int aiPrice;
+  final int aiPriceCheckDate;
+  final bool needToRequireVideoToViewLoginData;
+  final bool canCheckAutoBuyPrice;
+  final int autoBuyPrice;
+  final int autoBuyPriceCheckDate;
+  final String descriptionHtml;
+  final String descriptionEnHtml;
+  final String descriptionPlain;
+  final String descriptionEnPlain;
+  final ManagingBulkGetResponseItems0Seller seller;
+
+  const ManagingBulkGetResponseItems0({
+    required this.itemId,
+    required this.itemState,
+    required this.categoryId,
+    required this.publishedDate,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.updateStatDate,
+    required this.refreshedDate,
+    required this.editDate,
+    required this.pendingDeletionDate,
+    required this.login,
+    required this.tempEmail,
+    required this.viewCount,
+    required this.isSticky,
+    required this.information,
+    required this.itemOrigin,
+    required this.extendedGuarantee,
+    required this.nsb,
+    required this.allowAskDiscount,
+    required this.titleEn,
+    required this.descriptionEn,
+    required this.informationEn,
+    required this.emailType,
+    required this.emailProvider,
+    required this.itemDomain,
+    required this.resaleItemOrigin,
+    required this.noteText,
+    required this.contentType,
+    required this.contentId,
+    required this.deleteDate,
+    required this.deleteUserId,
+    required this.deleteUsername,
+    required this.deleteReason,
+    required this.userAllowAskDiscount,
+    required this.maxDiscountPercent,
+    required this.marketCustomTitle,
+    required this.feedbackData,
+    required this.buyerDisplayIconGroupId,
+    required this.buyerUniqBanner,
+    required this.buyerAvatarDate,
+    required this.buyerUserGroupId,
+    required this.isFave,
+    required this.inCart,
+    required this.cartPrice,
+    required this.canResellItem,
+    required this.priceWithSellerFee,
+    required this.guarantee,
+    required this.canViewLoginData,
+    required this.canUpdateItemStats,
+    required this.canReportItem,
+    required this.canViewItemViews,
+    required this.loginData,
+    required this.canViewEmailLoginData,
+    required this.copyFormatData,
+    required this.showGetEmailCodeButton,
+    required this.getEmailCodeDisplayLogin,
+    required this.buyer,
+    required this.isPersonalAccount,
+    required this.rubPrice,
+    required this.priceCurrency,
+    required this.priceWithSellerFeeLabel,
+    required this.canValidateAccount,
+    required this.canResellItemAfterPurchase,
+    required this.isSmallExf,
+    required this.accountLastActivity,
+    required this.canViewAccountLink,
+    required this.accountLinks,
+    required this.accountLink,
+    required this.imagePreviewLinks,
+    required this.canChangePassword,
+    required this.canChangeEmailPassword,
+    required this.uniqueKeyExists,
+    required this.itemOriginPhrase,
+    required this.visitorIsAuthor,
+    required this.canAskDiscount,
+    required this.tags,
+    required this.customFields,
+    required this.externalAuth,
+    required this.isTrusted,
+    required this.isBirthdayToday,
+    required this.isIgnored,
+    required this.deposit,
+    required this.extraPrices,
+    required this.canViewAccountLoginAndTempEmail,
+    required this.bumpSettings,
+    required this.canCheckGuarantee,
+    required this.canShareItem,
+    required this.canCheckAiPrice,
+    required this.aiPrice,
+    required this.aiPriceCheckDate,
+    required this.needToRequireVideoToViewLoginData,
+    required this.canCheckAutoBuyPrice,
+    required this.autoBuyPrice,
+    required this.autoBuyPriceCheckDate,
+    required this.descriptionHtml,
+    required this.descriptionEnHtml,
+    required this.descriptionPlain,
+    required this.descriptionEnPlain,
+    required this.seller,
+  });
+
+  factory ManagingBulkGetResponseItems0.fromJson(Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems0(
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
+        itemState:
+            json['item_state'] is String ? json['item_state'] as String : '',
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
+        publishedDate:
+            json['published_date'] is int ? json['published_date'] as int : 0,
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
+            : 0,
+        refreshedDate:
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        pendingDeletionDate: json['pending_deletion_date'] is int
+            ? json['pending_deletion_date'] as int
+            : 0,
+        login: json['login'] is String ? json['login'] as String : '',
+        tempEmail:
+            json['temp_email'] is String ? json['temp_email'] as String : '',
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
+        information:
+            json['information'] is String ? json['information'] as String : '',
+        itemOrigin:
+            json['item_origin'] is String ? json['item_origin'] as String : '',
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
+            : 0,
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
+            : 0,
+        titleEn: json['title_en'] is String ? json['title_en'] as String : '',
+        descriptionEn: json['description_en'] is String
+            ? json['description_en'] as String
+            : '',
+        informationEn: json['information_en'] is String
+            ? json['information_en'] as String
+            : '',
+        emailType:
+            json['email_type'] is String ? json['email_type'] as String : '',
+        emailProvider: json['email_provider'] is String
+            ? json['email_provider'] as String
+            : '',
+        itemDomain:
+            json['item_domain'] is String ? json['item_domain'] as String : '',
+        resaleItemOrigin: json['resale_item_origin'] is String
+            ? json['resale_item_origin'] as String
+            : '',
+        noteText:
+            json['note_text'] is String ? json['note_text'] as String : '',
+        contentType: json['content_type'],
+        contentId: json['content_id'],
+        deleteDate: json['delete_date'] is int ? json['delete_date'] as int : 0,
+        deleteUserId:
+            json['delete_user_id'] is int ? json['delete_user_id'] as int : 0,
+        deleteUsername: json['delete_username'] is String
+            ? json['delete_username'] as String
+            : '',
+        deleteReason: json['delete_reason'] is String
+            ? json['delete_reason'] as String
+            : '',
+        userAllowAskDiscount: json['user_allow_ask_discount'] is int
+            ? json['user_allow_ask_discount'] as int
+            : 0,
+        maxDiscountPercent: json['max_discount_percent'] is int
+            ? json['max_discount_percent'] as int
+            : 0,
+        marketCustomTitle: json['market_custom_title'] is String
+            ? json['market_custom_title'] as String
+            : '',
+        feedbackData: json['feedback_data'] is String
+            ? json['feedback_data'] as String
+            : '',
+        buyerDisplayIconGroupId: json['buyer_display_icon_group_id'] is int
+            ? json['buyer_display_icon_group_id'] as int
+            : 0,
+        buyerUniqBanner: json['buyer_uniq_banner'] is String
+            ? json['buyer_uniq_banner'] as String
+            : '',
+        buyerAvatarDate: json['buyer_avatar_date'] is int
+            ? json['buyer_avatar_date'] as int
+            : 0,
+        buyerUserGroupId: json['buyer_user_group_id'] is int
+            ? json['buyer_user_group_id'] as int
+            : 0,
+        isFave: json['is_fave'],
+        inCart: json['in_cart'],
+        cartPrice: json['cart_price'],
+        canResellItem: json['canResellItem'] is bool
+            ? json['canResellItem'] as bool
+            : false,
+        priceWithSellerFee: json['priceWithSellerFee'] is num
+            ? json['priceWithSellerFee'] as num
+            : 0,
+        guarantee: json['guarantee'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0Guarantee.fromJson(
+                json['guarantee'] as Map<String, dynamic>)
+            : ManagingBulkGetResponseItems0Guarantee.fromJson(const {}),
+        canViewLoginData: json['canViewLoginData'] is bool
+            ? json['canViewLoginData'] as bool
+            : false,
+        canUpdateItemStats: json['canUpdateItemStats'] is bool
+            ? json['canUpdateItemStats'] as bool
+            : false,
+        canReportItem: json['canReportItem'] is bool
+            ? json['canReportItem'] as bool
+            : false,
+        canViewItemViews: json['canViewItemViews'] is bool
+            ? json['canViewItemViews'] as bool
+            : false,
+        loginData: json['loginData'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0LoginData.fromJson(
+                json['loginData'] as Map<String, dynamic>)
+            : ManagingBulkGetResponseItems0LoginData.fromJson(const {}),
+        canViewEmailLoginData: json['canViewEmailLoginData'] is bool
+            ? json['canViewEmailLoginData'] as bool
+            : false,
+        copyFormatData: json['copyFormatData'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0CopyFormatData.fromJson(
+                json['copyFormatData'] as Map<String, dynamic>)
+            : ManagingBulkGetResponseItems0CopyFormatData.fromJson(const {}),
+        showGetEmailCodeButton: json['showGetEmailCodeButton'] is bool
+            ? json['showGetEmailCodeButton'] as bool
+            : false,
+        getEmailCodeDisplayLogin: json['getEmailCodeDisplayLogin'],
+        buyer: json['buyer'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0Buyer.fromJson(
+                json['buyer'] as Map<String, dynamic>)
+            : ManagingBulkGetResponseItems0Buyer.fromJson(const {}),
+        isPersonalAccount: json['isPersonalAccount'] is bool
+            ? json['isPersonalAccount'] as bool
+            : false,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
+        priceCurrency: json['price_currency'] is String
+            ? json['price_currency'] as String
+            : '',
+        priceWithSellerFeeLabel: json['priceWithSellerFeeLabel'] is String
+            ? json['priceWithSellerFeeLabel'] as String
+            : '',
+        canValidateAccount: json['canValidateAccount'] is bool
+            ? json['canValidateAccount'] as bool
+            : false,
+        canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
+            ? json['canResellItemAfterPurchase'] as bool
+            : false,
+        isSmallExf:
+            json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
+            : 0,
+        canViewAccountLink: json['canViewAccountLink'] is bool
+            ? json['canViewAccountLink'] as bool
+            : false,
+        accountLinks: json['accountLinks'] is List
+            ? (json['accountLinks'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    ManagingBulkGetResponseItems0AccountLinks.fromJson(e))
+                .toList()
+            : const [],
+        accountLink:
+            json['accountLink'] is String ? json['accountLink'] as String : '',
+        imagePreviewLinks: json['imagePreviewLinks'] is List
+            ? (json['imagePreviewLinks'] as List<dynamic>)
+                .whereType<String>()
+                .toList()
+            : const [],
+        canChangePassword: json['canChangePassword'] is bool
+            ? json['canChangePassword'] as bool
+            : false,
+        canChangeEmailPassword: json['canChangeEmailPassword'] is bool
+            ? json['canChangeEmailPassword'] as bool
+            : false,
+        uniqueKeyExists: json['uniqueKeyExists'] is bool
+            ? json['uniqueKeyExists'] as bool
+            : false,
+        itemOriginPhrase: json['itemOriginPhrase'] is String
+            ? json['itemOriginPhrase'] as String
+            : '',
+        visitorIsAuthor: json['visitorIsAuthor'] is bool
+            ? json['visitorIsAuthor'] as bool
+            : false,
+        canAskDiscount: json['canAskDiscount'] is bool
+            ? json['canAskDiscount'] as bool
+            : false,
+        tags: json['tags'],
+        customFields: json['customFields'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0CustomFields.fromJson(
+                json['customFields'] as Map<String, dynamic>)
+            : ManagingBulkGetResponseItems0CustomFields.fromJson(const {}),
+        externalAuth: json['externalAuth'] is List
+            ? json['externalAuth'] as List<dynamic>
+            : const [],
+        isTrusted:
+            json['isTrusted'] is bool ? json['isTrusted'] as bool : false,
+        isBirthdayToday: json['isBirthdayToday'] is bool
+            ? json['isBirthdayToday'] as bool
+            : false,
+        isIgnored:
+            json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
+        deposit: json['deposit'] is int ? json['deposit'] as int : 0,
+        extraPrices: json['extraPrices'] is List
+            ? (json['extraPrices'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map(
+                    (e) => ManagingBulkGetResponseItems0ExtraPrices.fromJson(e))
+                .toList()
+            : const [],
+        canViewAccountLoginAndTempEmail:
+            json['canViewAccountLoginAndTempEmail'] is bool
+                ? json['canViewAccountLoginAndTempEmail'] as bool
+                : false,
+        bumpSettings: json['bumpSettings'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0BumpSettings.fromJson(
+                json['bumpSettings'] as Map<String, dynamic>)
+            : ManagingBulkGetResponseItems0BumpSettings.fromJson(const {}),
+        canCheckGuarantee: json['canCheckGuarantee'] is bool
+            ? json['canCheckGuarantee'] as bool
+            : false,
+        canShareItem:
+            json['canShareItem'] is bool ? json['canShareItem'] as bool : false,
+        canCheckAiPrice: json['canCheckAiPrice'] is bool
+            ? json['canCheckAiPrice'] as bool
+            : false,
+        aiPrice: json['aiPrice'] is int ? json['aiPrice'] as int : 0,
+        aiPriceCheckDate: json['aiPriceCheckDate'] is int
+            ? json['aiPriceCheckDate'] as int
+            : 0,
+        needToRequireVideoToViewLoginData:
+            json['needToRequireVideoToViewLoginData'] is bool
+                ? json['needToRequireVideoToViewLoginData'] as bool
+                : false,
+        canCheckAutoBuyPrice: json['canCheckAutoBuyPrice'] is bool
+            ? json['canCheckAutoBuyPrice'] as bool
+            : false,
+        autoBuyPrice:
+            json['autoBuyPrice'] is int ? json['autoBuyPrice'] as int : 0,
+        autoBuyPriceCheckDate: json['autoBuyPriceCheckDate'] is int
+            ? json['autoBuyPriceCheckDate'] as int
+            : 0,
+        descriptionHtml: json['descriptionHtml'] is String
+            ? json['descriptionHtml'] as String
+            : '',
+        descriptionEnHtml: json['descriptionEnHtml'] is String
+            ? json['descriptionEnHtml'] as String
+            : '',
+        descriptionPlain: json['descriptionPlain'] is String
+            ? json['descriptionPlain'] as String
+            : '',
+        descriptionEnPlain: json['descriptionEnPlain'] is String
+            ? json['descriptionEnPlain'] as String
+            : '',
+        seller: json['seller'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0Seller.fromJson(
+                json['seller'] as Map<String, dynamic>)
+            : ManagingBulkGetResponseItems0Seller.fromJson(const {}),
+      );
+}
+
+class ManagingBulkGetResponseItems {
+  final ManagingBulkGetResponseItems0? n0;
+
+  const ManagingBulkGetResponseItems({
+    this.n0,
+  });
+
+  factory ManagingBulkGetResponseItems.fromJson(Map<String, dynamic> json) =>
+      ManagingBulkGetResponseItems(
+        n0: json['0'] is Map<String, dynamic>
+            ? ManagingBulkGetResponseItems0.fromJson(
+                json['0'] as Map<String, dynamic>)
+            : null,
+      );
+}
+
 class ManagingBulkGetResponse {
-  final List<Map<String, dynamic>> items;
-  final List<num> leftItemId;
+  final List<ManagingBulkGetResponseItems> items;
+  final List<int> leftItemId;
   final RespSystemInfo systemInfo;
 
   const ManagingBulkGetResponse({
@@ -13289,10 +26756,11 @@ class ManagingBulkGetResponse {
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => ManagingBulkGetResponseItems.fromJson(e))
                 .toList()
             : const [],
         leftItemId: json['left_item_id'] is List
-            ? (json['left_item_id'] as List<dynamic>).whereType<num>().toList()
+            ? (json['left_item_id'] as List<dynamic>).whereType<int>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -13326,15 +26794,15 @@ class ManagingSteamInventoryValueParams {
 class ManagingSteamInventoryValueResponseData {
   final dynamic items;
   final String steamId;
-  final num appId;
+  final int appId;
   final String appTitle;
   final num totalValue;
-  final num itemCount;
-  final num marketableItemCount;
+  final int itemCount;
+  final int marketableItemCount;
   final String currency;
   final String currencyIcon;
   final String language;
-  final num time;
+  final int time;
 
   const ManagingSteamInventoryValueResponseData({
     required this.items,
@@ -13355,26 +26823,26 @@ class ManagingSteamInventoryValueResponseData {
       ManagingSteamInventoryValueResponseData(
         items: json['items'],
         steamId: json['steam_id'] is String ? json['steam_id'] as String : '',
-        appId: json['appId'] is num ? json['appId'] as num : 0,
+        appId: json['appId'] is int ? json['appId'] as int : 0,
         appTitle: json['appTitle'] is String ? json['appTitle'] as String : '',
         totalValue: json['totalValue'] is num ? json['totalValue'] as num : 0,
-        itemCount: json['itemCount'] is num ? json['itemCount'] as num : 0,
-        marketableItemCount: json['marketableItemCount'] is num
-            ? json['marketableItemCount'] as num
+        itemCount: json['itemCount'] is int ? json['itemCount'] as int : 0,
+        marketableItemCount: json['marketableItemCount'] is int
+            ? json['marketableItemCount'] as int
             : 0,
         currency: json['currency'] is String ? json['currency'] as String : '',
         currencyIcon: json['currencyIcon'] is String
             ? json['currencyIcon'] as String
             : '',
         language: json['language'] is String ? json['language'] as String : '',
-        time: json['time'] is num ? json['time'] as num : 0,
+        time: json['time'] is int ? json['time'] as int : 0,
       );
 }
 
 class ManagingSteamInventoryValueResponse {
   final String? query;
   final ManagingSteamInventoryValueResponseData? data;
-  final num? appId;
+  final int? appId;
   final RespSystemInfo? systemInfo;
 
   const ManagingSteamInventoryValueResponse({
@@ -13392,7 +26860,7 @@ class ManagingSteamInventoryValueResponse {
             ? ManagingSteamInventoryValueResponseData.fromJson(
                 json['data'] as Map<String, dynamic>)
             : null,
-        appId: json['appId'] is num ? json['appId'] as num : null,
+        appId: json['appId'] is int ? json['appId'] as int : null,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -13429,15 +26897,15 @@ class ManagingSteamValueParams {
 class ManagingSteamValueResponseData {
   final dynamic items;
   final String steamId;
-  final num appId;
+  final int appId;
   final String appTitle;
   final num totalValue;
-  final num itemCount;
-  final num marketableItemCount;
+  final int itemCount;
+  final int marketableItemCount;
   final String currency;
   final String currencyIcon;
   final String language;
-  final num time;
+  final int time;
 
   const ManagingSteamValueResponseData({
     required this.items,
@@ -13457,26 +26925,26 @@ class ManagingSteamValueResponseData {
       ManagingSteamValueResponseData(
         items: json['items'],
         steamId: json['steam_id'] is String ? json['steam_id'] as String : '',
-        appId: json['appId'] is num ? json['appId'] as num : 0,
+        appId: json['appId'] is int ? json['appId'] as int : 0,
         appTitle: json['appTitle'] is String ? json['appTitle'] as String : '',
         totalValue: json['totalValue'] is num ? json['totalValue'] as num : 0,
-        itemCount: json['itemCount'] is num ? json['itemCount'] as num : 0,
-        marketableItemCount: json['marketableItemCount'] is num
-            ? json['marketableItemCount'] as num
+        itemCount: json['itemCount'] is int ? json['itemCount'] as int : 0,
+        marketableItemCount: json['marketableItemCount'] is int
+            ? json['marketableItemCount'] as int
             : 0,
         currency: json['currency'] is String ? json['currency'] as String : '',
         currencyIcon: json['currencyIcon'] is String
             ? json['currencyIcon'] as String
             : '',
         language: json['language'] is String ? json['language'] as String : '',
-        time: json['time'] is num ? json['time'] as num : 0,
+        time: json['time'] is int ? json['time'] as int : 0,
       );
 }
 
 class ManagingSteamValueResponse {
   final String? query;
   final ManagingSteamValueResponseData? data;
-  final num? appId;
+  final int? appId;
   final RespSystemInfo? systemInfo;
 
   const ManagingSteamValueResponse({
@@ -13493,7 +26961,7 @@ class ManagingSteamValueResponse {
             ? ManagingSteamValueResponseData.fromJson(
                 json['data'] as Map<String, dynamic>)
             : null,
-        appId: json['appId'] is num ? json['appId'] as num : null,
+        appId: json['appId'] is int ? json['appId'] as int : null,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -13523,7 +26991,7 @@ class ManagingEditBody {
   final String? titleEn;
 
   /// Current price of account in your currency.
-  final num? price;
+  final int? price;
   final Currency? currency;
   final ItemOrigin? itemOrigin;
 
@@ -13535,7 +27003,7 @@ class ManagingEditBody {
   final bool? allowAskDiscount;
 
   /// Using proxy id for account checking. See GET or POST /proxy to get or edit proxy list.
-  final num? proxyId;
+  final int? proxyId;
 
   /// Account public description.
   final String? description;
@@ -13597,7 +27065,7 @@ class ManagingEditResponse {
 }
 
 class ManagingAIPriceResponse {
-  final num price;
+  final int price;
   final RespSystemInfo systemInfo;
 
   const ManagingAIPriceResponse({
@@ -13607,7 +27075,7 @@ class ManagingAIPriceResponse {
 
   factory ManagingAIPriceResponse.fromJson(Map<String, dynamic> json) =>
       ManagingAIPriceResponse(
-        price: json['price'] is num ? json['price'] as num : 0,
+        price: json['price'] is int ? json['price'] as int : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -13616,7 +27084,7 @@ class ManagingAIPriceResponse {
 }
 
 class ManagingAutoBuyPriceResponse {
-  final num price;
+  final int price;
   final RespSystemInfo systemInfo;
 
   const ManagingAutoBuyPriceResponse({
@@ -13626,7 +27094,7 @@ class ManagingAutoBuyPriceResponse {
 
   factory ManagingAutoBuyPriceResponse.fromJson(Map<String, dynamic> json) =>
       ManagingAutoBuyPriceResponse(
-        price: json['price'] is num ? json['price'] as num : 0,
+        price: json['price'] is int ? json['price'] as int : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -13743,7 +27211,7 @@ class ManagingBumpResponse {
 
 class ManagingAutoBumpBody {
   /// Interval in hours.
-  final num hour;
+  final int hour;
 
   const ManagingAutoBumpBody({
     required this.hour,
@@ -13879,7 +27347,7 @@ class ManagingImageResponse {
 
 class ManagingEmailCodeResponseCodeData {
   final String code;
-  final num date;
+  final int date;
   final String textPlain;
 
   const ManagingEmailCodeResponseCodeData({
@@ -13892,7 +27360,7 @@ class ManagingEmailCodeResponseCodeData {
           Map<String, dynamic> json) =>
       ManagingEmailCodeResponseCodeData(
         code: json['code'] is String ? json['code'] as String : '',
-        date: json['date'] is num ? json['date'] as num : 0,
+        date: json['date'] is int ? json['date'] as int : 0,
         textPlain:
             json['textPlain'] is String ? json['textPlain'] as String : '',
       );
@@ -13930,7 +27398,7 @@ class ManagingGetLetters2Params {
   final String? password;
 
   /// Number of letters to return.
-  final num? limit;
+  final int? limit;
 
   const ManagingGetLetters2Params({
     this.emailPassword,
@@ -13949,9 +27417,33 @@ class ManagingGetLetters2Params {
   }
 }
 
+class ManagingGetLetters2ResponseLetters {
+  final String textHtml;
+  final String textPlain;
+  final String from;
+  final int date;
+
+  const ManagingGetLetters2ResponseLetters({
+    required this.textHtml,
+    required this.textPlain,
+    required this.from,
+    required this.date,
+  });
+
+  factory ManagingGetLetters2ResponseLetters.fromJson(
+          Map<String, dynamic> json) =>
+      ManagingGetLetters2ResponseLetters(
+        textHtml: json['textHtml'] is String ? json['textHtml'] as String : '',
+        textPlain:
+            json['textPlain'] is String ? json['textPlain'] as String : '',
+        from: json['from'] is String ? json['from'] as String : '',
+        date: json['date'] is int ? json['date'] as int : 0,
+      );
+}
+
 class ManagingGetLetters2Response {
   final String email;
-  final List<Map<String, dynamic>> letters;
+  final List<ManagingGetLetters2ResponseLetters> letters;
   final RespSystemInfo systemInfo;
 
   const ManagingGetLetters2Response({
@@ -13966,6 +27458,7 @@ class ManagingGetLetters2Response {
         letters: json['letters'] is List
             ? (json['letters'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => ManagingGetLetters2ResponseLetters.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -14009,7 +27502,7 @@ class ManagingSteamGetMafileResponseMaFileSession {
 
 class ManagingSteamGetMafileResponseMaFile {
   final String sharedSecret;
-  final num serialNumber;
+  final int serialNumber;
   final String revocationCode;
   final String uri;
   final String accountName;
@@ -14041,7 +27534,7 @@ class ManagingSteamGetMafileResponseMaFile {
             ? json['shared_secret'] as String
             : '',
         serialNumber:
-            json['serial_number'] is num ? json['serial_number'] as num : 0,
+            json['serial_number'] is int ? json['serial_number'] as int : 0,
         revocationCode: json['revocation_code'] is String
             ? json['revocation_code'] as String
             : '',
@@ -14146,7 +27639,7 @@ class ManagingSteamRemoveMafileResponse {
 
 class ManagingSteamMafileCodeResponseCodeData {
   final String code;
-  final num date;
+  final int date;
   final String textPlain;
 
   const ManagingSteamMafileCodeResponseCodeData({
@@ -14159,7 +27652,7 @@ class ManagingSteamMafileCodeResponseCodeData {
           Map<String, dynamic> json) =>
       ManagingSteamMafileCodeResponseCodeData(
         code: json['code'] is String ? json['code'] as String : '',
-        date: json['date'] is num ? json['date'] as num : 0,
+        date: json['date'] is int ? json['date'] as int : 0,
         textPlain:
             json['textPlain'] is String ? json['textPlain'] as String : '',
       );
@@ -14188,10 +27681,10 @@ class ManagingSteamMafileCodeResponse {
 
 class ManagingSteamSDABody {
   /// Confirmation id. (Required along with $1 if you want to confirm action).
-  final num? id;
+  final int? id;
 
   /// Confirmation nonce. (Required along with $1 if you want to confirm action).
-  final num? nonce;
+  final int? nonce;
 
   const ManagingSteamSDABody({
     this.id,
@@ -14230,7 +27723,7 @@ class ManagingSteamSDAResponse {
 
 class ManagingTelegramCodeResponseCodes {
   final String? code;
-  final num? date;
+  final int? date;
 
   const ManagingTelegramCodeResponseCodes({
     this.code,
@@ -14241,7 +27734,7 @@ class ManagingTelegramCodeResponseCodes {
           Map<String, dynamic> json) =>
       ManagingTelegramCodeResponseCodes(
         code: json['code'] is String ? json['code'] as String : null,
-        date: json['date'] is num ? json['date'] as num : null,
+        date: json['date'] is int ? json['date'] as int : null,
       );
 }
 
@@ -14438,7 +27931,7 @@ class ManagingTempEmailPasswordResponse {
 
 class ManagingTagBody {
   /// Tag ID.
-  final num tagId;
+  final int tagId;
 
   const ManagingTagBody({
     required this.tagId,
@@ -14452,7 +27945,7 @@ class ManagingTagBody {
 }
 
 class ManagingTagResponseTag {
-  final num tagId;
+  final int tagId;
   final String title;
   final bool isDefault;
   final bool forOwnedAccountsOnly;
@@ -14468,7 +27961,7 @@ class ManagingTagResponseTag {
 
   factory ManagingTagResponseTag.fromJson(Map<String, dynamic> json) =>
       ManagingTagResponseTag(
-        tagId: json['tag_id'] is num ? json['tag_id'] as num : 0,
+        tagId: json['tag_id'] is int ? json['tag_id'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         isDefault:
             json['isDefault'] is bool ? json['isDefault'] as bool : false,
@@ -14480,10 +27973,10 @@ class ManagingTagResponseTag {
 }
 
 class ManagingTagResponse {
-  final num itemId;
+  final int itemId;
   final ManagingTagResponseTag tag;
-  final num addedTagId;
-  final List<num> deleteTags;
+  final int addedTagId;
+  final List<int> deleteTags;
   final RespSystemInfo systemInfo;
 
   const ManagingTagResponse({
@@ -14496,14 +27989,14 @@ class ManagingTagResponse {
 
   factory ManagingTagResponse.fromJson(Map<String, dynamic> json) =>
       ManagingTagResponse(
-        itemId: json['itemId'] is num ? json['itemId'] as num : 0,
+        itemId: json['itemId'] is int ? json['itemId'] as int : 0,
         tag: json['tag'] is Map<String, dynamic>
             ? ManagingTagResponseTag.fromJson(
                 json['tag'] as Map<String, dynamic>)
             : ManagingTagResponseTag.fromJson(const {}),
-        addedTagId: json['addedTagId'] is num ? json['addedTagId'] as num : 0,
+        addedTagId: json['addedTagId'] is int ? json['addedTagId'] as int : 0,
         deleteTags: json['deleteTags'] is List
-            ? (json['deleteTags'] as List<dynamic>).whereType<num>().toList()
+            ? (json['deleteTags'] as List<dynamic>).whereType<int>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14514,7 +28007,7 @@ class ManagingTagResponse {
 
 class ManagingUntagBody {
   /// Tag ID.
-  final num tagId;
+  final int tagId;
 
   const ManagingUntagBody({
     required this.tagId,
@@ -14528,7 +28021,7 @@ class ManagingUntagBody {
 }
 
 class ManagingUntagResponseTag {
-  final num tagId;
+  final int tagId;
   final String title;
   final bool isDefault;
   final bool forOwnedAccountsOnly;
@@ -14544,7 +28037,7 @@ class ManagingUntagResponseTag {
 
   factory ManagingUntagResponseTag.fromJson(Map<String, dynamic> json) =>
       ManagingUntagResponseTag(
-        tagId: json['tag_id'] is num ? json['tag_id'] as num : 0,
+        tagId: json['tag_id'] is int ? json['tag_id'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         isDefault:
             json['isDefault'] is bool ? json['isDefault'] as bool : false,
@@ -14556,10 +28049,10 @@ class ManagingUntagResponseTag {
 }
 
 class ManagingUntagResponse {
-  final num itemId;
+  final int itemId;
   final ManagingUntagResponseTag tag;
-  final num addedTagId;
-  final List<num> deleteTags;
+  final int addedTagId;
+  final List<int> deleteTags;
   final RespSystemInfo systemInfo;
 
   const ManagingUntagResponse({
@@ -14572,14 +28065,14 @@ class ManagingUntagResponse {
 
   factory ManagingUntagResponse.fromJson(Map<String, dynamic> json) =>
       ManagingUntagResponse(
-        itemId: json['itemId'] is num ? json['itemId'] as num : 0,
+        itemId: json['itemId'] is int ? json['itemId'] as int : 0,
         tag: json['tag'] is Map<String, dynamic>
             ? ManagingUntagResponseTag.fromJson(
                 json['tag'] as Map<String, dynamic>)
             : ManagingUntagResponseTag.fromJson(const {}),
-        addedTagId: json['addedTagId'] is num ? json['addedTagId'] as num : 0,
+        addedTagId: json['addedTagId'] is int ? json['addedTagId'] as int : 0,
         deleteTags: json['deleteTags'] is List
-            ? (json['deleteTags'] as List<dynamic>).whereType<num>().toList()
+            ? (json['deleteTags'] as List<dynamic>).whereType<int>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14590,7 +28083,7 @@ class ManagingUntagResponse {
 
 class ManagingPublicTagBody {
   /// Tag ID.
-  final num tagId;
+  final int tagId;
 
   const ManagingPublicTagBody({
     required this.tagId,
@@ -14604,7 +28097,7 @@ class ManagingPublicTagBody {
 }
 
 class ManagingPublicTagResponseTag {
-  final num tagId;
+  final int tagId;
   final String title;
   final bool isDefault;
   final bool forOwnedAccountsOnly;
@@ -14620,7 +28113,7 @@ class ManagingPublicTagResponseTag {
 
   factory ManagingPublicTagResponseTag.fromJson(Map<String, dynamic> json) =>
       ManagingPublicTagResponseTag(
-        tagId: json['tag_id'] is num ? json['tag_id'] as num : 0,
+        tagId: json['tag_id'] is int ? json['tag_id'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         isDefault:
             json['isDefault'] is bool ? json['isDefault'] as bool : false,
@@ -14632,10 +28125,10 @@ class ManagingPublicTagResponseTag {
 }
 
 class ManagingPublicTagResponse {
-  final num itemId;
+  final int itemId;
   final ManagingPublicTagResponseTag tag;
-  final num addedTagId;
-  final List<num> deleteTags;
+  final int addedTagId;
+  final List<int> deleteTags;
   final RespSystemInfo systemInfo;
 
   const ManagingPublicTagResponse({
@@ -14648,14 +28141,14 @@ class ManagingPublicTagResponse {
 
   factory ManagingPublicTagResponse.fromJson(Map<String, dynamic> json) =>
       ManagingPublicTagResponse(
-        itemId: json['itemId'] is num ? json['itemId'] as num : 0,
+        itemId: json['itemId'] is int ? json['itemId'] as int : 0,
         tag: json['tag'] is Map<String, dynamic>
             ? ManagingPublicTagResponseTag.fromJson(
                 json['tag'] as Map<String, dynamic>)
             : ManagingPublicTagResponseTag.fromJson(const {}),
-        addedTagId: json['addedTagId'] is num ? json['addedTagId'] as num : 0,
+        addedTagId: json['addedTagId'] is int ? json['addedTagId'] as int : 0,
         deleteTags: json['deleteTags'] is List
-            ? (json['deleteTags'] as List<dynamic>).whereType<num>().toList()
+            ? (json['deleteTags'] as List<dynamic>).whereType<int>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14666,7 +28159,7 @@ class ManagingPublicTagResponse {
 
 class ManagingPublicUntagBody {
   /// Tag ID.
-  final num tagId;
+  final int tagId;
 
   const ManagingPublicUntagBody({
     required this.tagId,
@@ -14680,7 +28173,7 @@ class ManagingPublicUntagBody {
 }
 
 class ManagingPublicUntagResponseTag {
-  final num tagId;
+  final int tagId;
   final String title;
   final bool isDefault;
   final bool forOwnedAccountsOnly;
@@ -14696,7 +28189,7 @@ class ManagingPublicUntagResponseTag {
 
   factory ManagingPublicUntagResponseTag.fromJson(Map<String, dynamic> json) =>
       ManagingPublicUntagResponseTag(
-        tagId: json['tag_id'] is num ? json['tag_id'] as num : 0,
+        tagId: json['tag_id'] is int ? json['tag_id'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         isDefault:
             json['isDefault'] is bool ? json['isDefault'] as bool : false,
@@ -14708,10 +28201,10 @@ class ManagingPublicUntagResponseTag {
 }
 
 class ManagingPublicUntagResponse {
-  final num itemId;
+  final int itemId;
   final ManagingPublicUntagResponseTag tag;
-  final num addedTagId;
-  final List<num> deleteTags;
+  final int addedTagId;
+  final List<int> deleteTags;
   final RespSystemInfo systemInfo;
 
   const ManagingPublicUntagResponse({
@@ -14724,14 +28217,14 @@ class ManagingPublicUntagResponse {
 
   factory ManagingPublicUntagResponse.fromJson(Map<String, dynamic> json) =>
       ManagingPublicUntagResponse(
-        itemId: json['itemId'] is num ? json['itemId'] as num : 0,
+        itemId: json['itemId'] is int ? json['itemId'] as int : 0,
         tag: json['tag'] is Map<String, dynamic>
             ? ManagingPublicUntagResponseTag.fromJson(
                 json['tag'] as Map<String, dynamic>)
             : ManagingPublicUntagResponseTag.fromJson(const {}),
-        addedTagId: json['addedTagId'] is num ? json['addedTagId'] as num : 0,
+        addedTagId: json['addedTagId'] is int ? json['addedTagId'] as int : 0,
         deleteTags: json['deleteTags'] is List
-            ? (json['deleteTags'] as List<dynamic>).whereType<num>().toList()
+            ? (json['deleteTags'] as List<dynamic>).whereType<int>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14874,7 +28367,7 @@ class ManagingTransferResponse {
 
 class PaymentsInvoiceGetParams {
   /// Invoice ID.
-  final num? invoiceId;
+  final int? invoiceId;
 
   /// Payment ID.
   final String? paymentId;
@@ -14932,10 +28425,10 @@ class PaymentsInvoiceCreateBody {
   final String? urlCallback;
 
   /// Merchant ID.
-  final num merchantId;
+  final int merchantId;
 
   /// Telegram User ID for which the invoice was created.
-  final num? requiredTelegramId;
+  final int? requiredTelegramId;
 
   /// Telegram Username (including @) for which the invoice was created (if any).
   final String? requiredTelegramUsername;
@@ -15005,7 +28498,7 @@ class PaymentsInvoiceCreateResponse {
 
 class PaymentsInvoiceListParams {
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
   final Currency? currency;
   final Status? status;
 
@@ -15013,7 +28506,7 @@ class PaymentsInvoiceListParams {
   final num? amount;
 
   /// Merchant ID.
-  final num? merchantId;
+  final int? merchantId;
 
   const PaymentsInvoiceListParams({
     this.page,
@@ -15036,9 +28529,9 @@ class PaymentsInvoiceListParams {
 
 class PaymentsInvoiceListResponse {
   final List<InvoiceModel> invoices;
-  final num count;
-  final num page;
-  final num perPage;
+  final int count;
+  final int page;
+  final int perPage;
   final RespSystemInfo systemInfo;
 
   const PaymentsInvoiceListResponse({
@@ -15057,9 +28550,9 @@ class PaymentsInvoiceListResponse {
                 .map((e) => InvoiceModel.fromJson(e))
                 .toList()
             : const [],
-        count: json['count'] is num ? json['count'] as num : 0,
-        page: json['page'] is num ? json['page'] as num : 0,
-        perPage: json['perPage'] is num ? json['perPage'] as num : 0,
+        count: json['count'] is int ? json['count'] as int : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
+        perPage: json['perPage'] is int ? json['perPage'] as int : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
                 json['system_info'] as Map<String, dynamic>)
@@ -16269,7 +29762,7 @@ class PaymentsCurrencyResponseCurrencyListINR {
 
 class PaymentsCurrencyResponseCurrencyListRUB {
   final String title;
-  final num rate;
+  final int rate;
   final String formattedRate;
   final String symbol;
 
@@ -16284,7 +29777,7 @@ class PaymentsCurrencyResponseCurrencyListRUB {
           Map<String, dynamic> json) =>
       PaymentsCurrencyResponseCurrencyListRUB(
         title: json['title'] is String ? json['title'] as String : '',
-        rate: json['rate'] is num ? json['rate'] as num : 0,
+        rate: json['rate'] is int ? json['rate'] as int : 0,
         formattedRate: json['formattedRate'] is String
             ? json['formattedRate'] as String
             : '',
@@ -16940,7 +30433,7 @@ class PaymentsCurrencyResponseCurrencyList {
 
 class PaymentsCurrencyResponse {
   final PaymentsCurrencyResponseCurrencyList currencyList;
-  final num lastUpdate;
+  final int lastUpdate;
   final String visitorCurrency;
   final RespSystemInfo systemInfo;
 
@@ -16957,7 +30450,7 @@ class PaymentsCurrencyResponse {
             ? PaymentsCurrencyResponseCurrencyList.fromJson(
                 json['currencyList'] as Map<String, dynamic>)
             : PaymentsCurrencyResponseCurrencyList.fromJson(const {}),
-        lastUpdate: json['lastUpdate'] is num ? json['lastUpdate'] as num : 0,
+        lastUpdate: json['lastUpdate'] is int ? json['lastUpdate'] as int : 0,
         visitorCurrency: json['visitorCurrency'] is String
             ? json['visitorCurrency'] as String
             : '',
@@ -16970,7 +30463,7 @@ class PaymentsCurrencyResponse {
 
 class PaymentsBalanceListResponseFromBalance {
   final String balance;
-  final num convertedBalance;
+  final int convertedBalance;
   final String fullTitle;
   final String title;
   final String type;
@@ -16987,8 +30480,8 @@ class PaymentsBalanceListResponseFromBalance {
           Map<String, dynamic> json) =>
       PaymentsBalanceListResponseFromBalance(
         balance: json['balance'] is String ? json['balance'] as String : '',
-        convertedBalance: json['convertedBalance'] is num
-            ? json['convertedBalance'] as num
+        convertedBalance: json['convertedBalance'] is int
+            ? json['convertedBalance'] as int
             : 0,
         fullTitle:
             json['fullTitle'] is String ? json['fullTitle'] as String : '',
@@ -17069,7 +30562,7 @@ class PaymentsBalanceExchangeBody {
   final String toBalance;
 
   /// Amount to exchange.
-  final num amount;
+  final int amount;
 
   const PaymentsBalanceExchangeBody({
     required this.fromBalance,
@@ -17088,7 +30581,7 @@ class PaymentsBalanceExchangeBody {
 
 class PaymentsBalanceExchangeResponseFromBalance {
   final String balance;
-  final num convertedBalance;
+  final int convertedBalance;
   final String fullTitle;
   final String title;
   final String type;
@@ -17105,8 +30598,8 @@ class PaymentsBalanceExchangeResponseFromBalance {
           Map<String, dynamic> json) =>
       PaymentsBalanceExchangeResponseFromBalance(
         balance: json['balance'] is String ? json['balance'] as String : '',
-        convertedBalance: json['convertedBalance'] is num
-            ? json['convertedBalance'] as num
+        convertedBalance: json['convertedBalance'] is int
+            ? json['convertedBalance'] as int
             : 0,
         fullTitle:
             json['fullTitle'] is String ? json['fullTitle'] as String : '',
@@ -17183,13 +30676,13 @@ class PaymentsBalanceExchangeResponse {
 
 class PaymentsTransferBody {
   /// User id of receiver. If $1 specified, $1 is not required.
-  final num? userId;
+  final int? userId;
 
   /// Username of receiver. If $1 specified, $1 is not required.
   final String? username;
 
   /// Amount to send in your currency.
-  final num amount;
+  final int amount;
   final Currency currency;
 
   /// Transfer comment.
@@ -17205,7 +30698,7 @@ class PaymentsTransferBody {
   final bool? transferHold;
 
   /// Hold length value.
-  final num? holdLengthValue;
+  final int? holdLengthValue;
   final HoldLengthOption? holdLengthOption;
 
   const PaymentsTransferBody({
@@ -17275,9 +30768,9 @@ class PaymentsFeeParams {
 }
 
 class PaymentsFeeResponseCalculator {
-  final num inputAmount;
-  final num commissionAmount;
-  final num totalOutputAmount;
+  final int inputAmount;
+  final int commissionAmount;
+  final int totalOutputAmount;
 
   const PaymentsFeeResponseCalculator({
     required this.inputAmount,
@@ -17288,19 +30781,19 @@ class PaymentsFeeResponseCalculator {
   factory PaymentsFeeResponseCalculator.fromJson(Map<String, dynamic> json) =>
       PaymentsFeeResponseCalculator(
         inputAmount:
-            json['inputAmount'] is num ? json['inputAmount'] as num : 0,
-        commissionAmount: json['commissionAmount'] is num
-            ? json['commissionAmount'] as num
+            json['inputAmount'] is int ? json['inputAmount'] as int : 0,
+        commissionAmount: json['commissionAmount'] is int
+            ? json['commissionAmount'] as int
             : 0,
-        totalOutputAmount: json['totalOutputAmount'] is num
-            ? json['totalOutputAmount'] as num
+        totalOutputAmount: json['totalOutputAmount'] is int
+            ? json['totalOutputAmount'] as int
             : 0,
       );
 }
 
 class PaymentsFeeResponse {
-  final num commissionPercentage;
-  final num spentCurrentMonth;
+  final int commissionPercentage;
+  final int spentCurrentMonth;
   final PaymentsFeeResponseCalculator calculator;
   final RespSystemInfo systemInfo;
 
@@ -17313,11 +30806,11 @@ class PaymentsFeeResponse {
 
   factory PaymentsFeeResponse.fromJson(Map<String, dynamic> json) =>
       PaymentsFeeResponse(
-        commissionPercentage: json['commission_percentage'] is num
-            ? json['commission_percentage'] as num
+        commissionPercentage: json['commission_percentage'] is int
+            ? json['commission_percentage'] as int
             : 0,
-        spentCurrentMonth: json['spentCurrentMonth'] is num
-            ? json['spentCurrentMonth'] as num
+        spentCurrentMonth: json['spentCurrentMonth'] is int
+            ? json['spentCurrentMonth'] as int
             : 0,
         calculator: json['calculator'] is Map<String, dynamic>
             ? PaymentsFeeResponseCalculator.fromJson(
@@ -17332,7 +30825,7 @@ class PaymentsFeeResponse {
 
 class PaymentsCancelBody {
   /// Payment id.
-  final num paymentId;
+  final int paymentId;
 
   const PaymentsCancelBody({
     required this.paymentId,
@@ -17371,17 +30864,17 @@ class PaymentsHistoryParams {
   final Type? type;
 
   /// Minimal price of account (Inclusive).
-  final num? pmin;
+  final int? pmin;
 
   /// Maximum price of account (Inclusive).
-  final num? pmax;
+  final int? pmax;
   final Currency? currency;
 
   /// The number of the page to display results from.
-  final num? page;
+  final int? page;
 
   /// Id of the operation from which the result begins.
-  final num? operationIdLt;
+  final int? operationIdLt;
 
   /// Username of user, which receive money from you.
   final String? receiver;
@@ -17471,22 +30964,22 @@ class PaymentsHistoryResponsePageNavParams {
 }
 
 class PaymentsHistoryResponseInput {
-  final num userId;
+  final int userId;
   final String type;
   final String startDate;
   final String endDate;
-  final num page;
+  final int page;
   final String periodLabel;
   final String receiver;
   final String sender;
   final String comment;
   final String pmin;
   final String pmax;
-  final num categoryId;
+  final int categoryId;
   final String wallet;
   final bool isHold;
   final String currency;
-  final num operationIdLt;
+  final int operationIdLt;
 
   const PaymentsHistoryResponseInput({
     required this.userId,
@@ -17509,12 +31002,12 @@ class PaymentsHistoryResponseInput {
 
   factory PaymentsHistoryResponseInput.fromJson(Map<String, dynamic> json) =>
       PaymentsHistoryResponseInput(
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         type: json['type'] is String ? json['type'] as String : '',
         startDate:
             json['startDate'] is String ? json['startDate'] as String : '',
         endDate: json['endDate'] is String ? json['endDate'] as String : '',
-        page: json['page'] is num ? json['page'] as num : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         periodLabel: json['period_label'] is String
             ? json['period_label'] as String
             : '',
@@ -17523,19 +31016,19 @@ class PaymentsHistoryResponseInput {
         comment: json['comment'] is String ? json['comment'] as String : '',
         pmin: json['pmin'] is String ? json['pmin'] as String : '',
         pmax: json['pmax'] is String ? json['pmax'] as String : '',
-        categoryId: json['category_id'] is num ? json['category_id'] as num : 0,
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
         wallet: json['wallet'] is String ? json['wallet'] as String : '',
         isHold: json['is_hold'] is bool ? json['is_hold'] as bool : false,
         currency: json['currency'] is String ? json['currency'] as String : '',
         operationIdLt:
-            json['operation_id_lt'] is num ? json['operation_id_lt'] as num : 0,
+            json['operation_id_lt'] is int ? json['operation_id_lt'] as int : 0,
       );
 }
 
 class PaymentsHistoryResponse {
   final dynamic payments;
   final String perPage;
-  final num page;
+  final int page;
   final String pageNavLink;
   final PaymentsHistoryResponsePageNavParams pageNavParams;
   final String periodLabel;
@@ -17544,7 +31037,7 @@ class PaymentsHistoryResponse {
   final PaymentsHistoryResponseInput input;
   final dynamic paymentStats;
   final bool hasNextPage;
-  final num lastOperationId;
+  final int lastOperationId;
   final String nextPageHref;
   final RespSystemInfo systemInfo;
 
@@ -17569,7 +31062,7 @@ class PaymentsHistoryResponse {
       PaymentsHistoryResponse(
         payments: json['payments'],
         perPage: json['perPage'] is String ? json['perPage'] as String : '',
-        page: json['page'] is num ? json['page'] as num : 0,
+        page: json['page'] is int ? json['page'] as int : 0,
         pageNavLink:
             json['pageNavLink'] is String ? json['pageNavLink'] as String : '',
         pageNavParams: json['pageNavParams'] is Map<String, dynamic>
@@ -17592,7 +31085,7 @@ class PaymentsHistoryResponse {
         hasNextPage:
             json['hasNextPage'] is bool ? json['hasNextPage'] as bool : false,
         lastOperationId:
-            json['lastOperationId'] is num ? json['lastOperationId'] as num : 0,
+            json['lastOperationId'] is int ? json['lastOperationId'] as int : 0,
         nextPageHref: json['nextPageHref'] is String
             ? json['nextPageHref'] as String
             : '',
@@ -17603,8 +31096,435 @@ class PaymentsHistoryResponse {
       );
 }
 
+class PaymentsPayoutServicesResponseSystemsProvidersBEP20 {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersBEP20({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersBEP20.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersBEP20(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersTRC20 {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersTRC20({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersTRC20.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersTRC20(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersERC20 {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersERC20({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersERC20.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersERC20(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersTRX {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersTRX({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersTRX.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersTRX(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersBTC {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersBTC({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersBTC.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersBTC(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersTON {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersTON({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersTON.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersTON(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersETH {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersETH({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersETH.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersETH(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersLTC {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersLTC({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersLTC.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersLTC(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersBNB {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersBNB({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersBNB.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersBNB(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersDASH {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersDASH({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersDASH.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersDASH(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersDOGE {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersDOGE({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersDOGE.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersDOGE(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersXMR {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersXMR({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersXMR.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersXMR(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersSOL {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersSOL({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersSOL.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersSOL(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProvidersBCH {
+  final String title;
+  final bool isUnavailable;
+
+  const PaymentsPayoutServicesResponseSystemsProvidersBCH({
+    required this.title,
+    required this.isUnavailable,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProvidersBCH.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProvidersBCH(
+        title: json['title'] is String ? json['title'] as String : '',
+        isUnavailable: json['isUnavailable'] is bool
+            ? json['isUnavailable'] as bool
+            : false,
+      );
+}
+
+class PaymentsPayoutServicesResponseSystemsProviders {
+  final PaymentsPayoutServicesResponseSystemsProvidersBEP20 bEP20;
+  final PaymentsPayoutServicesResponseSystemsProvidersTRC20 tRC20;
+  final PaymentsPayoutServicesResponseSystemsProvidersERC20 eRC20;
+  final PaymentsPayoutServicesResponseSystemsProvidersTRX tRX;
+  final PaymentsPayoutServicesResponseSystemsProvidersBTC bTC;
+  final PaymentsPayoutServicesResponseSystemsProvidersTON tON;
+  final PaymentsPayoutServicesResponseSystemsProvidersETH eTH;
+  final PaymentsPayoutServicesResponseSystemsProvidersLTC lTC;
+  final PaymentsPayoutServicesResponseSystemsProvidersBNB bNB;
+  final PaymentsPayoutServicesResponseSystemsProvidersDASH dASH;
+  final PaymentsPayoutServicesResponseSystemsProvidersDOGE dOGE;
+  final PaymentsPayoutServicesResponseSystemsProvidersXMR xMR;
+  final PaymentsPayoutServicesResponseSystemsProvidersSOL sOL;
+  final PaymentsPayoutServicesResponseSystemsProvidersBCH bCH;
+
+  const PaymentsPayoutServicesResponseSystemsProviders({
+    required this.bEP20,
+    required this.tRC20,
+    required this.eRC20,
+    required this.tRX,
+    required this.bTC,
+    required this.tON,
+    required this.eTH,
+    required this.lTC,
+    required this.bNB,
+    required this.dASH,
+    required this.dOGE,
+    required this.xMR,
+    required this.sOL,
+    required this.bCH,
+  });
+
+  factory PaymentsPayoutServicesResponseSystemsProviders.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystemsProviders(
+        bEP20: json['BEP20'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersBEP20.fromJson(
+                json['BEP20'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersBEP20.fromJson(
+                const {}),
+        tRC20: json['TRC20'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersTRC20.fromJson(
+                json['TRC20'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersTRC20.fromJson(
+                const {}),
+        eRC20: json['ERC20'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersERC20.fromJson(
+                json['ERC20'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersERC20.fromJson(
+                const {}),
+        tRX: json['TRX'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersTRX.fromJson(
+                json['TRX'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersTRX.fromJson(
+                const {}),
+        bTC: json['BTC'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersBTC.fromJson(
+                json['BTC'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersBTC.fromJson(
+                const {}),
+        tON: json['TON'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersTON.fromJson(
+                json['TON'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersTON.fromJson(
+                const {}),
+        eTH: json['ETH'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersETH.fromJson(
+                json['ETH'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersETH.fromJson(
+                const {}),
+        lTC: json['LTC'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersLTC.fromJson(
+                json['LTC'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersLTC.fromJson(
+                const {}),
+        bNB: json['BNB'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersBNB.fromJson(
+                json['BNB'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersBNB.fromJson(
+                const {}),
+        dASH: json['DASH'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersDASH.fromJson(
+                json['DASH'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersDASH.fromJson(
+                const {}),
+        dOGE: json['DOGE'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersDOGE.fromJson(
+                json['DOGE'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersDOGE.fromJson(
+                const {}),
+        xMR: json['XMR'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersXMR.fromJson(
+                json['XMR'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersXMR.fromJson(
+                const {}),
+        sOL: json['SOL'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersSOL.fromJson(
+                json['SOL'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersSOL.fromJson(
+                const {}),
+        bCH: json['BCH'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProvidersBCH.fromJson(
+                json['BCH'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProvidersBCH.fromJson(
+                const {}),
+      );
+}
+
+class PaymentsPayoutServicesResponseSystems {
+  final String system;
+  final String commission;
+  final int min;
+  final int max;
+  final bool instantPayout;
+  final bool problematicPayout;
+  final bool isUnavailable;
+  final bool p2p;
+  final bool hasWallet;
+  final PaymentsPayoutServicesResponseSystemsProviders providers;
+
+  const PaymentsPayoutServicesResponseSystems({
+    required this.system,
+    required this.commission,
+    required this.min,
+    required this.max,
+    required this.instantPayout,
+    required this.problematicPayout,
+    required this.isUnavailable,
+    required this.p2p,
+    required this.hasWallet,
+    required this.providers,
+  });
+
+  factory PaymentsPayoutServicesResponseSystems.fromJson(
+          Map<String, dynamic> json) =>
+      PaymentsPayoutServicesResponseSystems(
+        system: json['system'] is String ? json['system'] as String : '',
+        commission:
+            json['commission'] is String ? json['commission'] as String : '',
+        min: json['min'] is int ? json['min'] as int : 0,
+        max: json['max'] is int ? json['max'] as int : 0,
+        instantPayout: json['instant_payout'] is bool
+            ? json['instant_payout'] as bool
+            : false,
+        problematicPayout: json['problematic_payout'] is bool
+            ? json['problematic_payout'] as bool
+            : false,
+        isUnavailable: json['is_unavailable'] is bool
+            ? json['is_unavailable'] as bool
+            : false,
+        p2p: json['p2p'] is bool ? json['p2p'] as bool : false,
+        hasWallet:
+            json['has_wallet'] is bool ? json['has_wallet'] as bool : false,
+        providers: json['providers'] is Map<String, dynamic>
+            ? PaymentsPayoutServicesResponseSystemsProviders.fromJson(
+                json['providers'] as Map<String, dynamic>)
+            : PaymentsPayoutServicesResponseSystemsProviders.fromJson(const {}),
+      );
+}
+
 class PaymentsPayoutServicesResponse {
-  final List<Map<String, dynamic>> systems;
+  final List<PaymentsPayoutServicesResponseSystems> systems;
   final RespSystemInfo systemInfo;
 
   const PaymentsPayoutServicesResponse({
@@ -17617,6 +31537,7 @@ class PaymentsPayoutServicesResponse {
         systems: json['systems'] is List
             ? (json['systems'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => PaymentsPayoutServicesResponseSystems.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -17696,11 +31617,258 @@ class ProfileClaimsParams {
   }
 }
 
+class ProfileClaimsResponseClaimsAuthorLinks {
+  final String permalink;
+  final String detail;
+  final String avatar;
+  final String avatarBig;
+  final String avatarSmall;
+  final String followers;
+  final String followings;
+  final String ignore;
+  final String timeline;
+
+  const ProfileClaimsResponseClaimsAuthorLinks({
+    required this.permalink,
+    required this.detail,
+    required this.avatar,
+    required this.avatarBig,
+    required this.avatarSmall,
+    required this.followers,
+    required this.followings,
+    required this.ignore,
+    required this.timeline,
+  });
+
+  factory ProfileClaimsResponseClaimsAuthorLinks.fromJson(
+          Map<String, dynamic> json) =>
+      ProfileClaimsResponseClaimsAuthorLinks(
+        permalink:
+            json['permalink'] is String ? json['permalink'] as String : '',
+        detail: json['detail'] is String ? json['detail'] as String : '',
+        avatar: json['avatar'] is String ? json['avatar'] as String : '',
+        avatarBig:
+            json['avatar_big'] is String ? json['avatar_big'] as String : '',
+        avatarSmall: json['avatar_small'] is String
+            ? json['avatar_small'] as String
+            : '',
+        followers:
+            json['followers'] is String ? json['followers'] as String : '',
+        followings:
+            json['followings'] is String ? json['followings'] as String : '',
+        ignore: json['ignore'] is String ? json['ignore'] as String : '',
+        timeline: json['timeline'] is String ? json['timeline'] as String : '',
+      );
+}
+
+class ProfileClaimsResponseClaimsAuthorPermissions {
+  final bool edit;
+  final bool follow;
+  final bool ignore;
+
+  const ProfileClaimsResponseClaimsAuthorPermissions({
+    required this.edit,
+    required this.follow,
+    required this.ignore,
+  });
+
+  factory ProfileClaimsResponseClaimsAuthorPermissions.fromJson(
+          Map<String, dynamic> json) =>
+      ProfileClaimsResponseClaimsAuthorPermissions(
+        edit: json['edit'] is bool ? json['edit'] as bool : false,
+        follow: json['follow'] is bool ? json['follow'] as bool : false,
+        ignore: json['ignore'] is bool ? json['ignore'] as bool : false,
+      );
+}
+
+class ProfileClaimsResponseClaimsAuthorFields {
+  final String id;
+  final String title;
+  final String description;
+  final String position;
+  final bool isRequired;
+
+  const ProfileClaimsResponseClaimsAuthorFields({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.position,
+    required this.isRequired,
+  });
+
+  factory ProfileClaimsResponseClaimsAuthorFields.fromJson(
+          Map<String, dynamic> json) =>
+      ProfileClaimsResponseClaimsAuthorFields(
+        id: json['id'] is String ? json['id'] as String : '',
+        title: json['title'] is String ? json['title'] as String : '',
+        description:
+            json['description'] is String ? json['description'] as String : '',
+        position: json['position'] is String ? json['position'] as String : '',
+        isRequired:
+            json['is_required'] is bool ? json['is_required'] as bool : false,
+      );
+}
+
+class ProfileClaimsResponseClaimsAuthor {
+  final int userId;
+  final String username;
+  final String usernameHtml;
+  final int userMessageCount;
+  final int userRegisterDate;
+  final int userLikeCount;
+  final int userLike2Count;
+  final int contestCount;
+  final int trophyCount;
+  final String customTitle;
+  final int isBanned;
+  final String userTitle;
+  final bool userIsValid;
+  final bool userIsVerified;
+  final bool userIsFollowed;
+  final int userLastSeenDate;
+  final ProfileClaimsResponseClaimsAuthorLinks links;
+  final ProfileClaimsResponseClaimsAuthorPermissions permissions;
+  final bool userIsIgnored;
+  final bool userIsVisitor;
+  final int userGroupId;
+  final String banReason;
+  final List<ProfileClaimsResponseClaimsAuthorFields> fields;
+
+  const ProfileClaimsResponseClaimsAuthor({
+    required this.userId,
+    required this.username,
+    required this.usernameHtml,
+    required this.userMessageCount,
+    required this.userRegisterDate,
+    required this.userLikeCount,
+    required this.userLike2Count,
+    required this.contestCount,
+    required this.trophyCount,
+    required this.customTitle,
+    required this.isBanned,
+    required this.userTitle,
+    required this.userIsValid,
+    required this.userIsVerified,
+    required this.userIsFollowed,
+    required this.userLastSeenDate,
+    required this.links,
+    required this.permissions,
+    required this.userIsIgnored,
+    required this.userIsVisitor,
+    required this.userGroupId,
+    required this.banReason,
+    required this.fields,
+  });
+
+  factory ProfileClaimsResponseClaimsAuthor.fromJson(
+          Map<String, dynamic> json) =>
+      ProfileClaimsResponseClaimsAuthor(
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        username: json['username'] is String ? json['username'] as String : '',
+        usernameHtml: json['username_html'] is String
+            ? json['username_html'] as String
+            : '',
+        userMessageCount: json['user_message_count'] is int
+            ? json['user_message_count'] as int
+            : 0,
+        userRegisterDate: json['user_register_date'] is int
+            ? json['user_register_date'] as int
+            : 0,
+        userLikeCount:
+            json['user_like_count'] is int ? json['user_like_count'] as int : 0,
+        userLike2Count: json['user_like2_count'] is int
+            ? json['user_like2_count'] as int
+            : 0,
+        contestCount:
+            json['contest_count'] is int ? json['contest_count'] as int : 0,
+        trophyCount:
+            json['trophy_count'] is int ? json['trophy_count'] as int : 0,
+        customTitle: json['custom_title'] is String
+            ? json['custom_title'] as String
+            : '',
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        userTitle:
+            json['user_title'] is String ? json['user_title'] as String : '',
+        userIsValid: json['user_is_valid'] is bool
+            ? json['user_is_valid'] as bool
+            : false,
+        userIsVerified: json['user_is_verified'] is bool
+            ? json['user_is_verified'] as bool
+            : false,
+        userIsFollowed: json['user_is_followed'] is bool
+            ? json['user_is_followed'] as bool
+            : false,
+        userLastSeenDate: json['user_last_seen_date'] is int
+            ? json['user_last_seen_date'] as int
+            : 0,
+        links: json['links'] is Map<String, dynamic>
+            ? ProfileClaimsResponseClaimsAuthorLinks.fromJson(
+                json['links'] as Map<String, dynamic>)
+            : ProfileClaimsResponseClaimsAuthorLinks.fromJson(const {}),
+        permissions: json['permissions'] is Map<String, dynamic>
+            ? ProfileClaimsResponseClaimsAuthorPermissions.fromJson(
+                json['permissions'] as Map<String, dynamic>)
+            : ProfileClaimsResponseClaimsAuthorPermissions.fromJson(const {}),
+        userIsIgnored: json['user_is_ignored'] is bool
+            ? json['user_is_ignored'] as bool
+            : false,
+        userIsVisitor: json['user_is_visitor'] is bool
+            ? json['user_is_visitor'] as bool
+            : false,
+        userGroupId:
+            json['user_group_id'] is int ? json['user_group_id'] as int : 0,
+        banReason:
+            json['ban_reason'] is String ? json['ban_reason'] as String : '',
+        fields: json['fields'] is List
+            ? (json['fields'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ProfileClaimsResponseClaimsAuthorFields.fromJson(e))
+                .toList()
+            : const [],
+      );
+}
+
+class ProfileClaimsResponseClaims {
+  final int threadId;
+  final int claimDate;
+  final String claimState;
+  final String messageBody;
+  final String amountFormatted;
+  final ProfileClaimsResponseClaimsAuthor author;
+
+  const ProfileClaimsResponseClaims({
+    required this.threadId,
+    required this.claimDate,
+    required this.claimState,
+    required this.messageBody,
+    required this.amountFormatted,
+    required this.author,
+  });
+
+  factory ProfileClaimsResponseClaims.fromJson(Map<String, dynamic> json) =>
+      ProfileClaimsResponseClaims(
+        threadId: json['thread_id'] is int ? json['thread_id'] as int : 0,
+        claimDate: json['claim_date'] is int ? json['claim_date'] as int : 0,
+        claimState:
+            json['claim_state'] is String ? json['claim_state'] as String : '',
+        messageBody: json['message_body'] is String
+            ? json['message_body'] as String
+            : '',
+        amountFormatted: json['amount_formatted'] is String
+            ? json['amount_formatted'] as String
+            : '',
+        author: json['author'] is Map<String, dynamic>
+            ? ProfileClaimsResponseClaimsAuthor.fromJson(
+                json['author'] as Map<String, dynamic>)
+            : ProfileClaimsResponseClaimsAuthor.fromJson(const {}),
+      );
+}
+
 class ProfileClaimsResponseStatsMarket {
-  final num total;
-  final num solved;
-  final num settled;
-  final num rejected;
+  final int total;
+  final int solved;
+  final int settled;
+  final int rejected;
 
   const ProfileClaimsResponseStatsMarket({
     required this.total,
@@ -17712,18 +31880,18 @@ class ProfileClaimsResponseStatsMarket {
   factory ProfileClaimsResponseStatsMarket.fromJson(
           Map<String, dynamic> json) =>
       ProfileClaimsResponseStatsMarket(
-        total: json['total'] is num ? json['total'] as num : 0,
-        solved: json['solved'] is num ? json['solved'] as num : 0,
-        settled: json['settled'] is num ? json['settled'] as num : 0,
-        rejected: json['rejected'] is num ? json['rejected'] as num : 0,
+        total: json['total'] is int ? json['total'] as int : 0,
+        solved: json['solved'] is int ? json['solved'] as int : 0,
+        settled: json['settled'] is int ? json['settled'] as int : 0,
+        rejected: json['rejected'] is int ? json['rejected'] as int : 0,
       );
 }
 
 class ProfileClaimsResponseStatsNoMarket {
-  final num total;
-  final num solved;
-  final num settled;
-  final num rejected;
+  final int total;
+  final int solved;
+  final int settled;
+  final int rejected;
 
   const ProfileClaimsResponseStatsNoMarket({
     required this.total,
@@ -17735,10 +31903,10 @@ class ProfileClaimsResponseStatsNoMarket {
   factory ProfileClaimsResponseStatsNoMarket.fromJson(
           Map<String, dynamic> json) =>
       ProfileClaimsResponseStatsNoMarket(
-        total: json['total'] is num ? json['total'] as num : 0,
-        solved: json['solved'] is num ? json['solved'] as num : 0,
-        settled: json['settled'] is num ? json['settled'] as num : 0,
-        rejected: json['rejected'] is num ? json['rejected'] as num : 0,
+        total: json['total'] is int ? json['total'] as int : 0,
+        solved: json['solved'] is int ? json['solved'] as int : 0,
+        settled: json['settled'] is int ? json['settled'] as int : 0,
+        rejected: json['rejected'] is int ? json['rejected'] as int : 0,
       );
 }
 
@@ -17765,7 +31933,7 @@ class ProfileClaimsResponseStats {
 }
 
 class ProfileClaimsResponse {
-  final List<Map<String, dynamic>> claims;
+  final List<ProfileClaimsResponseClaims> claims;
   final ProfileClaimsResponseStats stats;
   final RespSystemInfo systemInfo;
 
@@ -17780,6 +31948,7 @@ class ProfileClaimsResponse {
         claims: json['claims'] is List
             ? (json['claims'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => ProfileClaimsResponseClaims.fromJson(e))
                 .toList()
             : const [],
         stats: json['stats'] is Map<String, dynamic>
@@ -17920,8 +32089,58 @@ class ProfileEditResponse {
 
 // ─── ProxyApi Types ────────────────────────────────────────
 
+class ProxyGetResponseProxiesProxy {
+  final int proxyId;
+  final int userId;
+  final String proxyIp;
+  final int proxyPort;
+  final String proxyUser;
+  final String proxyPass;
+  final String proxyString;
+
+  const ProxyGetResponseProxiesProxy({
+    required this.proxyId,
+    required this.userId,
+    required this.proxyIp,
+    required this.proxyPort,
+    required this.proxyUser,
+    required this.proxyPass,
+    required this.proxyString,
+  });
+
+  factory ProxyGetResponseProxiesProxy.fromJson(Map<String, dynamic> json) =>
+      ProxyGetResponseProxiesProxy(
+        proxyId: json['proxy_id'] is int ? json['proxy_id'] as int : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
+        proxyIp: json['proxy_ip'] is String ? json['proxy_ip'] as String : '',
+        proxyPort: json['proxy_port'] is int ? json['proxy_port'] as int : 0,
+        proxyUser:
+            json['proxy_user'] is String ? json['proxy_user'] as String : '',
+        proxyPass:
+            json['proxy_pass'] is String ? json['proxy_pass'] as String : '',
+        proxyString:
+            json['proxyString'] is String ? json['proxyString'] as String : '',
+      );
+}
+
+class ProxyGetResponseProxies {
+  final ProxyGetResponseProxiesProxy proxy;
+
+  const ProxyGetResponseProxies({
+    required this.proxy,
+  });
+
+  factory ProxyGetResponseProxies.fromJson(Map<String, dynamic> json) =>
+      ProxyGetResponseProxies(
+        proxy: json['proxy'] is Map<String, dynamic>
+            ? ProxyGetResponseProxiesProxy.fromJson(
+                json['proxy'] as Map<String, dynamic>)
+            : ProxyGetResponseProxiesProxy.fromJson(const {}),
+      );
+}
+
 class ProxyGetResponse {
-  final List<Map<String, dynamic>> proxies;
+  final List<ProxyGetResponseProxies> proxies;
   final RespSystemInfo systemInfo;
 
   const ProxyGetResponse({
@@ -17934,6 +32153,7 @@ class ProxyGetResponse {
         proxies: json['proxies'] is List
             ? (json['proxies'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => ProxyGetResponseProxies.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -17948,7 +32168,7 @@ class ProxyAddBody {
   final String? proxyIp;
 
   /// Proxy port. Required if $1 is not specified.
-  final num? proxyPort;
+  final int? proxyPort;
 
   /// Proxy username. Required if $1 is not specified.
   final String? proxyUser;
@@ -18002,7 +32222,7 @@ class ProxyAddResponse {
 
 class ProxyDeleteBody {
   /// Id of an existing proxy.
-  final num? proxyId;
+  final int? proxyId;
 
   /// Delete all proxies.
   final bool? deleteAll;
@@ -18062,7 +32282,7 @@ class PublishingFastSellBody {
   final bool? allowAskDiscount;
 
   /// Proxy id that will be used to check account.
-  final num? proxyId;
+  final int? proxyId;
 
   /// Set this parameter to $1 so that the Market will take a random proxy from its pool for each of your requests. Otherwise, if this parameter is set to $1 or not set, the Market will take a specific proxy from its pool, which is predefined for each item. > This parameter only works with proxies from the Market pool. If you want to use your own proxies, use the proxy_id or extra[proxy] parameter.
   final bool? randomProxy;
@@ -18185,7 +32405,7 @@ class PublishingAddBody {
   final bool? forceTempEmail;
 
   /// Put item id, if you are trying to resell item. This is useful to pass temporary email from reselling item to new item. You will get same temporary email from reselling account.
-  final num? resellItemId;
+  final int? resellItemId;
 
   /// Required if a $1 is one of list of Required email login data categories.
   final bool? hasEmailLoginData;
@@ -18198,7 +32418,7 @@ class PublishingAddBody {
   final bool? allowAskDiscount;
 
   /// Proxy id that will be used to check account.
-  final num? proxyId;
+  final int? proxyId;
 
   /// Set this parameter to $1 so that the Market will take a random proxy from its pool for each of your requests. Otherwise, if this parameter is set to $1 or not set, the Market will take a specific proxy from its pool, which is predefined for each item. > This parameter only works with proxies from the Market pool. If you want to use your own proxies, use the proxy_id or extra[proxy] parameter.
   final bool? randomProxy;
@@ -18272,7 +32492,7 @@ class PublishingAddResponse {
 
 class PublishingCheckBody {
   /// Put if you are trying to resell an account.
-  final num? resellItemId;
+  final int? resellItemId;
 
   /// Set this parameter to $1 so that the Market will take a random proxy from its pool for each of your requests. Otherwise, if this parameter is set to $1 or not set, the Market will take a specific proxy from its pool, which is predefined for each item. > This parameter only works with proxies from the Market pool. If you want to use your own proxies, use the proxy_id or extra[proxy] parameter.
   final bool? randomProxy;
@@ -18322,13 +32542,13 @@ class PublishingCheckBody {
 }
 
 class PublishingCheckResponseItemGuarantee {
-  final num duration;
+  final int duration;
   final String class$;
   final String durationPhrase;
-  final num endDate;
+  final int endDate;
   final bool active;
   final bool cancelled;
-  final num remainingTime;
+  final int remainingTime;
   final String remainingTimePhrase;
 
   const PublishingCheckResponseItemGuarantee({
@@ -18345,17 +32565,17 @@ class PublishingCheckResponseItemGuarantee {
   factory PublishingCheckResponseItemGuarantee.fromJson(
           Map<String, dynamic> json) =>
       PublishingCheckResponseItemGuarantee(
-        duration: json['duration'] is num ? json['duration'] as num : 0,
+        duration: json['duration'] is int ? json['duration'] as int : 0,
         class$: json['class'] is String ? json['class'] as String : '',
         durationPhrase: json['durationPhrase'] is String
             ? json['durationPhrase'] as String
             : '',
-        endDate: json['endDate'] is num ? json['endDate'] as num : 0,
+        endDate: json['endDate'] is int ? json['endDate'] as int : 0,
         active: json['active'] is bool ? json['active'] as bool : false,
         cancelled:
             json['cancelled'] is bool ? json['cancelled'] as bool : false,
         remainingTime:
-            json['remainingTime'] is num ? json['remainingTime'] as num : 0,
+            json['remainingTime'] is int ? json['remainingTime'] as int : 0,
         remainingTimePhrase: json['remainingTimePhrase'] is String
             ? json['remainingTimePhrase'] as String
             : '',
@@ -18437,14 +32657,14 @@ class PublishingCheckResponseItemEmailLoginData {
 }
 
 class PublishingCheckResponseItemBuyer {
-  final num userId;
-  final num operationDate;
+  final int userId;
+  final int operationDate;
   final bool visitorIsBuyer;
   final String username;
-  final num isBanned;
-  final num displayStyleGroupId;
+  final int isBanned;
+  final int displayStyleGroupId;
   final String uniqUsernameCss;
-  final num userGroupId;
+  final int userGroupId;
 
   const PublishingCheckResponseItemBuyer({
     required this.userId,
@@ -18460,22 +32680,60 @@ class PublishingCheckResponseItemBuyer {
   factory PublishingCheckResponseItemBuyer.fromJson(
           Map<String, dynamic> json) =>
       PublishingCheckResponseItemBuyer(
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         operationDate:
-            json['operation_date'] is num ? json['operation_date'] as num : 0,
+            json['operation_date'] is int ? json['operation_date'] as int : 0,
         visitorIsBuyer: json['visitorIsBuyer'] is bool
             ? json['visitorIsBuyer'] as bool
             : false,
         username: json['username'] is String ? json['username'] as String : '',
-        isBanned: json['is_banned'] is num ? json['is_banned'] as num : 0,
-        displayStyleGroupId: json['display_style_group_id'] is num
-            ? json['display_style_group_id'] as num
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
             : 0,
         uniqUsernameCss: json['uniq_username_css'] is String
             ? json['uniq_username_css'] as String
             : '',
         userGroupId:
-            json['user_group_id'] is num ? json['user_group_id'] as num : 0,
+            json['user_group_id'] is int ? json['user_group_id'] as int : 0,
+      );
+}
+
+class PublishingCheckResponseItemAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const PublishingCheckResponseItemAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory PublishingCheckResponseItemAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class PublishingCheckResponseItemExtraPrices {
+  final String currency;
+  final String price;
+
+  const PublishingCheckResponseItemExtraPrices({
+    required this.currency,
+    required this.price,
+  });
+
+  factory PublishingCheckResponseItemExtraPrices.fromJson(
+          Map<String, dynamic> json) =>
+      PublishingCheckResponseItemExtraPrices(
+        currency: json['currency'] is String ? json['currency'] as String : '',
+        price: json['price'] is String ? json['price'] as String : '',
       );
 }
 
@@ -18506,16 +32764,16 @@ class PublishingCheckResponseItemBumpSettings {
 }
 
 class PublishingCheckResponseItemSeller {
-  final num userId;
+  final int userId;
   final String username;
-  final num avatarDate;
-  final num isBanned;
-  final num displayStyleGroupId;
-  final num joinedDate;
-  final num soldItemsCount;
-  final num activeItemsCount;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
   final String restoreData;
-  final num restorePercents;
+  final int restorePercents;
   final bool isOnline;
 
   const PublishingCheckResponseItemSeller({
@@ -18535,50 +32793,50 @@ class PublishingCheckResponseItemSeller {
   factory PublishingCheckResponseItemSeller.fromJson(
           Map<String, dynamic> json) =>
       PublishingCheckResponseItemSeller(
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         username: json['username'] is String ? json['username'] as String : '',
-        avatarDate: json['avatar_date'] is num ? json['avatar_date'] as num : 0,
-        isBanned: json['is_banned'] is num ? json['is_banned'] as num : 0,
-        displayStyleGroupId: json['display_style_group_id'] is num
-            ? json['display_style_group_id'] as num
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
             : 0,
-        joinedDate: json['joined_date'] is num ? json['joined_date'] as num : 0,
-        soldItemsCount: json['sold_items_count'] is num
-            ? json['sold_items_count'] as num
+        joinedDate: json['joined_date'] is int ? json['joined_date'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
             : 0,
-        activeItemsCount: json['active_items_count'] is num
-            ? json['active_items_count'] as num
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
             : 0,
         restoreData: json['restore_data'] is String
             ? json['restore_data'] as String
             : '',
-        restorePercents: json['restore_percents'] is num
-            ? json['restore_percents'] as num
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
             : 0,
         isOnline: json['isOnline'] is bool ? json['isOnline'] as bool : false,
       );
 }
 
 class PublishingCheckResponseItem {
-  final num itemId;
+  final int itemId;
   final String itemState;
-  final num categoryId;
-  final num publishedDate;
+  final int categoryId;
+  final int publishedDate;
   final String title;
   final String description;
-  final num price;
-  final num updateStatDate;
-  final num refreshedDate;
-  final num editDate;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
   final String login;
   final String tempEmail;
-  final num viewCount;
-  final num isSticky;
+  final int viewCount;
+  final int isSticky;
   final String information;
   final String itemOrigin;
-  final num extendedGuarantee;
-  final num nsb;
-  final num allowAskDiscount;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
   final String titleEn;
   final String descriptionEn;
   final String informationEn;
@@ -18586,13 +32844,13 @@ class PublishingCheckResponseItem {
   final String emailProvider;
   final String itemDomain;
   final String resaleItemOrigin;
-  final num userAllowAskDiscount;
-  final num maxDiscountPercent;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
   final String marketCustomTitle;
   final String feedbackData;
-  final num buyerAvatarDate;
-  final num buyerUserGroupId;
-  final num priceWithSellerFee;
+  final int buyerAvatarDate;
+  final int buyerUserGroupId;
+  final int priceWithSellerFee;
   final PublishingCheckResponseItemGuarantee guarantee;
   final bool canViewLoginData;
   final bool canUpdateItemStats;
@@ -18604,16 +32862,16 @@ class PublishingCheckResponseItem {
   final String getEmailCodeDisplayLogin;
   final PublishingCheckResponseItemBuyer buyer;
   final bool isPersonalAccount;
-  final num soldItemsCategoryCount;
-  final num restoreItemsCategoryCount;
-  final num rubPrice;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final int rubPrice;
   final String priceCurrency;
   final bool canValidateAccount;
   final bool canResellItemAfterPurchase;
-  final num accountLastActivity;
+  final int accountLastActivity;
   final bool displayConvertedBalance;
   final bool canViewAccountLink;
-  final List<Map<String, dynamic>> accountLinks;
+  final List<PublishingCheckResponseItemAccountLinks> accountLinks;
   final String accountLink;
   final String emailLoginUrl;
   final bool canChangePassword;
@@ -18626,8 +32884,8 @@ class PublishingCheckResponseItem {
   final bool isTrusted;
   final bool isBirthdayToday;
   final bool isIgnored;
-  final num deposit;
-  final List<Map<String, dynamic>> extraPrices;
+  final int deposit;
+  final List<PublishingCheckResponseItemExtraPrices> extraPrices;
   final bool canViewAccountLoginAndTempEmail;
   final PublishingCheckResponseItemBumpSettings bumpSettings;
   final bool canCheckGuarantee;
@@ -18720,37 +32978,37 @@ class PublishingCheckResponseItem {
 
   factory PublishingCheckResponseItem.fromJson(Map<String, dynamic> json) =>
       PublishingCheckResponseItem(
-        itemId: json['item_id'] is num ? json['item_id'] as num : 0,
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        categoryId: json['category_id'] is num ? json['category_id'] as num : 0,
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
         publishedDate:
-            json['published_date'] is num ? json['published_date'] as num : 0,
+            json['published_date'] is int ? json['published_date'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         description:
             json['description'] is String ? json['description'] as String : '',
-        price: json['price'] is num ? json['price'] as num : 0,
-        updateStatDate: json['update_stat_date'] is num
-            ? json['update_stat_date'] as num
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
             : 0,
         refreshedDate:
-            json['refreshed_date'] is num ? json['refreshed_date'] as num : 0,
-        editDate: json['edit_date'] is num ? json['edit_date'] as num : 0,
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
         login: json['login'] is String ? json['login'] as String : '',
         tempEmail:
             json['temp_email'] is String ? json['temp_email'] as String : '',
-        viewCount: json['view_count'] is num ? json['view_count'] as num : 0,
-        isSticky: json['is_sticky'] is num ? json['is_sticky'] as num : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
         information:
             json['information'] is String ? json['information'] as String : '',
         itemOrigin:
             json['item_origin'] is String ? json['item_origin'] as String : '',
-        extendedGuarantee: json['extended_guarantee'] is num
-            ? json['extended_guarantee'] as num
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
             : 0,
-        nsb: json['nsb'] is num ? json['nsb'] as num : 0,
-        allowAskDiscount: json['allow_ask_discount'] is num
-            ? json['allow_ask_discount'] as num
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
             : 0,
         titleEn: json['title_en'] is String ? json['title_en'] as String : '',
         descriptionEn: json['description_en'] is String
@@ -18769,11 +33027,11 @@ class PublishingCheckResponseItem {
         resaleItemOrigin: json['resale_item_origin'] is String
             ? json['resale_item_origin'] as String
             : '',
-        userAllowAskDiscount: json['user_allow_ask_discount'] is num
-            ? json['user_allow_ask_discount'] as num
+        userAllowAskDiscount: json['user_allow_ask_discount'] is int
+            ? json['user_allow_ask_discount'] as int
             : 0,
-        maxDiscountPercent: json['max_discount_percent'] is num
-            ? json['max_discount_percent'] as num
+        maxDiscountPercent: json['max_discount_percent'] is int
+            ? json['max_discount_percent'] as int
             : 0,
         marketCustomTitle: json['market_custom_title'] is String
             ? json['market_custom_title'] as String
@@ -18781,14 +33039,14 @@ class PublishingCheckResponseItem {
         feedbackData: json['feedback_data'] is String
             ? json['feedback_data'] as String
             : '',
-        buyerAvatarDate: json['buyer_avatar_date'] is num
-            ? json['buyer_avatar_date'] as num
+        buyerAvatarDate: json['buyer_avatar_date'] is int
+            ? json['buyer_avatar_date'] as int
             : 0,
-        buyerUserGroupId: json['buyer_user_group_id'] is num
-            ? json['buyer_user_group_id'] as num
+        buyerUserGroupId: json['buyer_user_group_id'] is int
+            ? json['buyer_user_group_id'] as int
             : 0,
-        priceWithSellerFee: json['priceWithSellerFee'] is num
-            ? json['priceWithSellerFee'] as num
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
             : 0,
         guarantee: json['guarantee'] is Map<String, dynamic>
             ? PublishingCheckResponseItemGuarantee.fromJson(
@@ -18827,13 +33085,13 @@ class PublishingCheckResponseItem {
         isPersonalAccount: json['isPersonalAccount'] is bool
             ? json['isPersonalAccount'] as bool
             : false,
-        soldItemsCategoryCount: json['sold_items_category_count'] is num
-            ? json['sold_items_category_count'] as num
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
             : 0,
-        restoreItemsCategoryCount: json['restore_items_category_count'] is num
-            ? json['restore_items_category_count'] as num
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
             : 0,
-        rubPrice: json['rub_price'] is num ? json['rub_price'] as num : 0,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
         priceCurrency: json['price_currency'] is String
             ? json['price_currency'] as String
             : '',
@@ -18843,8 +33101,8 @@ class PublishingCheckResponseItem {
         canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
             ? json['canResellItemAfterPurchase'] as bool
             : false,
-        accountLastActivity: json['account_last_activity'] is num
-            ? json['account_last_activity'] as num
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
             : 0,
         displayConvertedBalance: json['displayConvertedBalance'] is bool
             ? json['displayConvertedBalance'] as bool
@@ -18855,6 +33113,7 @@ class PublishingCheckResponseItem {
         accountLinks: json['accountLinks'] is List
             ? (json['accountLinks'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => PublishingCheckResponseItemAccountLinks.fromJson(e))
                 .toList()
             : const [],
         accountLink:
@@ -18888,10 +33147,11 @@ class PublishingCheckResponseItem {
             : false,
         isIgnored:
             json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
-        deposit: json['deposit'] is num ? json['deposit'] as num : 0,
+        deposit: json['deposit'] is int ? json['deposit'] as int : 0,
         extraPrices: json['extraPrices'] is List
             ? (json['extraPrices'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => PublishingCheckResponseItemExtraPrices.fromJson(e))
                 .toList()
             : const [],
         canViewAccountLoginAndTempEmail:
@@ -19011,7 +33271,7 @@ class PurchasingFastBuyBody {
   final num? price;
 
   /// Balance ID that will be used to purchase specified item.
-  final num? balanceId;
+  final int? balanceId;
 
   const PurchasingFastBuyBody({
     this.price,
@@ -19027,13 +33287,13 @@ class PurchasingFastBuyBody {
 }
 
 class PurchasingFastBuyResponseItemGuarantee {
-  final num duration;
+  final int duration;
   final String class$;
   final String durationPhrase;
-  final num endDate;
+  final int endDate;
   final bool active;
   final bool cancelled;
-  final num remainingTime;
+  final int remainingTime;
   final String remainingTimePhrase;
 
   const PurchasingFastBuyResponseItemGuarantee({
@@ -19050,17 +33310,17 @@ class PurchasingFastBuyResponseItemGuarantee {
   factory PurchasingFastBuyResponseItemGuarantee.fromJson(
           Map<String, dynamic> json) =>
       PurchasingFastBuyResponseItemGuarantee(
-        duration: json['duration'] is num ? json['duration'] as num : 0,
+        duration: json['duration'] is int ? json['duration'] as int : 0,
         class$: json['class'] is String ? json['class'] as String : '',
         durationPhrase: json['durationPhrase'] is String
             ? json['durationPhrase'] as String
             : '',
-        endDate: json['endDate'] is num ? json['endDate'] as num : 0,
+        endDate: json['endDate'] is int ? json['endDate'] as int : 0,
         active: json['active'] is bool ? json['active'] as bool : false,
         cancelled:
             json['cancelled'] is bool ? json['cancelled'] as bool : false,
         remainingTime:
-            json['remainingTime'] is num ? json['remainingTime'] as num : 0,
+            json['remainingTime'] is int ? json['remainingTime'] as int : 0,
         remainingTimePhrase: json['remainingTimePhrase'] is String
             ? json['remainingTimePhrase'] as String
             : '',
@@ -19142,14 +33402,14 @@ class PurchasingFastBuyResponseItemEmailLoginData {
 }
 
 class PurchasingFastBuyResponseItemBuyer {
-  final num userId;
-  final num operationDate;
+  final int userId;
+  final int operationDate;
   final bool visitorIsBuyer;
   final String username;
-  final num isBanned;
-  final num displayStyleGroupId;
+  final int isBanned;
+  final int displayStyleGroupId;
   final String uniqUsernameCss;
-  final num userGroupId;
+  final int userGroupId;
 
   const PurchasingFastBuyResponseItemBuyer({
     required this.userId,
@@ -19165,22 +33425,60 @@ class PurchasingFastBuyResponseItemBuyer {
   factory PurchasingFastBuyResponseItemBuyer.fromJson(
           Map<String, dynamic> json) =>
       PurchasingFastBuyResponseItemBuyer(
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         operationDate:
-            json['operation_date'] is num ? json['operation_date'] as num : 0,
+            json['operation_date'] is int ? json['operation_date'] as int : 0,
         visitorIsBuyer: json['visitorIsBuyer'] is bool
             ? json['visitorIsBuyer'] as bool
             : false,
         username: json['username'] is String ? json['username'] as String : '',
-        isBanned: json['is_banned'] is num ? json['is_banned'] as num : 0,
-        displayStyleGroupId: json['display_style_group_id'] is num
-            ? json['display_style_group_id'] as num
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
             : 0,
         uniqUsernameCss: json['uniq_username_css'] is String
             ? json['uniq_username_css'] as String
             : '',
         userGroupId:
-            json['user_group_id'] is num ? json['user_group_id'] as num : 0,
+            json['user_group_id'] is int ? json['user_group_id'] as int : 0,
+      );
+}
+
+class PurchasingFastBuyResponseItemAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const PurchasingFastBuyResponseItemAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory PurchasingFastBuyResponseItemAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class PurchasingFastBuyResponseItemExtraPrices {
+  final String currency;
+  final String price;
+
+  const PurchasingFastBuyResponseItemExtraPrices({
+    required this.currency,
+    required this.price,
+  });
+
+  factory PurchasingFastBuyResponseItemExtraPrices.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingFastBuyResponseItemExtraPrices(
+        currency: json['currency'] is String ? json['currency'] as String : '',
+        price: json['price'] is String ? json['price'] as String : '',
       );
 }
 
@@ -19211,16 +33509,16 @@ class PurchasingFastBuyResponseItemBumpSettings {
 }
 
 class PurchasingFastBuyResponseItemSeller {
-  final num userId;
+  final int userId;
   final String username;
-  final num avatarDate;
-  final num isBanned;
-  final num displayStyleGroupId;
-  final num joinedDate;
-  final num soldItemsCount;
-  final num activeItemsCount;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
   final String restoreData;
-  final num restorePercents;
+  final int restorePercents;
   final bool isOnline;
 
   const PurchasingFastBuyResponseItemSeller({
@@ -19240,50 +33538,50 @@ class PurchasingFastBuyResponseItemSeller {
   factory PurchasingFastBuyResponseItemSeller.fromJson(
           Map<String, dynamic> json) =>
       PurchasingFastBuyResponseItemSeller(
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         username: json['username'] is String ? json['username'] as String : '',
-        avatarDate: json['avatar_date'] is num ? json['avatar_date'] as num : 0,
-        isBanned: json['is_banned'] is num ? json['is_banned'] as num : 0,
-        displayStyleGroupId: json['display_style_group_id'] is num
-            ? json['display_style_group_id'] as num
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
             : 0,
-        joinedDate: json['joined_date'] is num ? json['joined_date'] as num : 0,
-        soldItemsCount: json['sold_items_count'] is num
-            ? json['sold_items_count'] as num
+        joinedDate: json['joined_date'] is int ? json['joined_date'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
             : 0,
-        activeItemsCount: json['active_items_count'] is num
-            ? json['active_items_count'] as num
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
             : 0,
         restoreData: json['restore_data'] is String
             ? json['restore_data'] as String
             : '',
-        restorePercents: json['restore_percents'] is num
-            ? json['restore_percents'] as num
+        restorePercents: json['restore_percents'] is int
+            ? json['restore_percents'] as int
             : 0,
         isOnline: json['isOnline'] is bool ? json['isOnline'] as bool : false,
       );
 }
 
 class PurchasingFastBuyResponseItem {
-  final num itemId;
+  final int itemId;
   final String itemState;
-  final num categoryId;
-  final num publishedDate;
+  final int categoryId;
+  final int publishedDate;
   final String title;
   final String description;
-  final num price;
-  final num updateStatDate;
-  final num refreshedDate;
-  final num editDate;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
   final String login;
   final String tempEmail;
-  final num viewCount;
-  final num isSticky;
+  final int viewCount;
+  final int isSticky;
   final String information;
   final String itemOrigin;
-  final num extendedGuarantee;
-  final num nsb;
-  final num allowAskDiscount;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
   final String titleEn;
   final String descriptionEn;
   final String informationEn;
@@ -19291,13 +33589,13 @@ class PurchasingFastBuyResponseItem {
   final String emailProvider;
   final String itemDomain;
   final String resaleItemOrigin;
-  final num userAllowAskDiscount;
-  final num maxDiscountPercent;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
   final String marketCustomTitle;
   final String feedbackData;
-  final num buyerAvatarDate;
-  final num buyerUserGroupId;
-  final num priceWithSellerFee;
+  final int buyerAvatarDate;
+  final int buyerUserGroupId;
+  final int priceWithSellerFee;
   final PurchasingFastBuyResponseItemGuarantee guarantee;
   final bool canViewLoginData;
   final bool canUpdateItemStats;
@@ -19309,16 +33607,16 @@ class PurchasingFastBuyResponseItem {
   final String getEmailCodeDisplayLogin;
   final PurchasingFastBuyResponseItemBuyer buyer;
   final bool isPersonalAccount;
-  final num soldItemsCategoryCount;
-  final num restoreItemsCategoryCount;
-  final num rubPrice;
+  final int soldItemsCategoryCount;
+  final int restoreItemsCategoryCount;
+  final int rubPrice;
   final String priceCurrency;
   final bool canValidateAccount;
   final bool canResellItemAfterPurchase;
-  final num accountLastActivity;
+  final int accountLastActivity;
   final bool displayConvertedBalance;
   final bool canViewAccountLink;
-  final List<Map<String, dynamic>> accountLinks;
+  final List<PurchasingFastBuyResponseItemAccountLinks> accountLinks;
   final String accountLink;
   final String emailLoginUrl;
   final bool canChangePassword;
@@ -19331,8 +33629,8 @@ class PurchasingFastBuyResponseItem {
   final bool isTrusted;
   final bool isBirthdayToday;
   final bool isIgnored;
-  final num deposit;
-  final List<Map<String, dynamic>> extraPrices;
+  final int deposit;
+  final List<PurchasingFastBuyResponseItemExtraPrices> extraPrices;
   final bool canViewAccountLoginAndTempEmail;
   final PurchasingFastBuyResponseItemBumpSettings bumpSettings;
   final bool canCheckGuarantee;
@@ -19425,37 +33723,37 @@ class PurchasingFastBuyResponseItem {
 
   factory PurchasingFastBuyResponseItem.fromJson(Map<String, dynamic> json) =>
       PurchasingFastBuyResponseItem(
-        itemId: json['item_id'] is num ? json['item_id'] as num : 0,
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        categoryId: json['category_id'] is num ? json['category_id'] as num : 0,
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
         publishedDate:
-            json['published_date'] is num ? json['published_date'] as num : 0,
+            json['published_date'] is int ? json['published_date'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         description:
             json['description'] is String ? json['description'] as String : '',
-        price: json['price'] is num ? json['price'] as num : 0,
-        updateStatDate: json['update_stat_date'] is num
-            ? json['update_stat_date'] as num
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
             : 0,
         refreshedDate:
-            json['refreshed_date'] is num ? json['refreshed_date'] as num : 0,
-        editDate: json['edit_date'] is num ? json['edit_date'] as num : 0,
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
         login: json['login'] is String ? json['login'] as String : '',
         tempEmail:
             json['temp_email'] is String ? json['temp_email'] as String : '',
-        viewCount: json['view_count'] is num ? json['view_count'] as num : 0,
-        isSticky: json['is_sticky'] is num ? json['is_sticky'] as num : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
         information:
             json['information'] is String ? json['information'] as String : '',
         itemOrigin:
             json['item_origin'] is String ? json['item_origin'] as String : '',
-        extendedGuarantee: json['extended_guarantee'] is num
-            ? json['extended_guarantee'] as num
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
             : 0,
-        nsb: json['nsb'] is num ? json['nsb'] as num : 0,
-        allowAskDiscount: json['allow_ask_discount'] is num
-            ? json['allow_ask_discount'] as num
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
             : 0,
         titleEn: json['title_en'] is String ? json['title_en'] as String : '',
         descriptionEn: json['description_en'] is String
@@ -19474,11 +33772,11 @@ class PurchasingFastBuyResponseItem {
         resaleItemOrigin: json['resale_item_origin'] is String
             ? json['resale_item_origin'] as String
             : '',
-        userAllowAskDiscount: json['user_allow_ask_discount'] is num
-            ? json['user_allow_ask_discount'] as num
+        userAllowAskDiscount: json['user_allow_ask_discount'] is int
+            ? json['user_allow_ask_discount'] as int
             : 0,
-        maxDiscountPercent: json['max_discount_percent'] is num
-            ? json['max_discount_percent'] as num
+        maxDiscountPercent: json['max_discount_percent'] is int
+            ? json['max_discount_percent'] as int
             : 0,
         marketCustomTitle: json['market_custom_title'] is String
             ? json['market_custom_title'] as String
@@ -19486,14 +33784,14 @@ class PurchasingFastBuyResponseItem {
         feedbackData: json['feedback_data'] is String
             ? json['feedback_data'] as String
             : '',
-        buyerAvatarDate: json['buyer_avatar_date'] is num
-            ? json['buyer_avatar_date'] as num
+        buyerAvatarDate: json['buyer_avatar_date'] is int
+            ? json['buyer_avatar_date'] as int
             : 0,
-        buyerUserGroupId: json['buyer_user_group_id'] is num
-            ? json['buyer_user_group_id'] as num
+        buyerUserGroupId: json['buyer_user_group_id'] is int
+            ? json['buyer_user_group_id'] as int
             : 0,
-        priceWithSellerFee: json['priceWithSellerFee'] is num
-            ? json['priceWithSellerFee'] as num
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
             : 0,
         guarantee: json['guarantee'] is Map<String, dynamic>
             ? PurchasingFastBuyResponseItemGuarantee.fromJson(
@@ -19532,13 +33830,13 @@ class PurchasingFastBuyResponseItem {
         isPersonalAccount: json['isPersonalAccount'] is bool
             ? json['isPersonalAccount'] as bool
             : false,
-        soldItemsCategoryCount: json['sold_items_category_count'] is num
-            ? json['sold_items_category_count'] as num
+        soldItemsCategoryCount: json['sold_items_category_count'] is int
+            ? json['sold_items_category_count'] as int
             : 0,
-        restoreItemsCategoryCount: json['restore_items_category_count'] is num
-            ? json['restore_items_category_count'] as num
+        restoreItemsCategoryCount: json['restore_items_category_count'] is int
+            ? json['restore_items_category_count'] as int
             : 0,
-        rubPrice: json['rub_price'] is num ? json['rub_price'] as num : 0,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
         priceCurrency: json['price_currency'] is String
             ? json['price_currency'] as String
             : '',
@@ -19548,8 +33846,8 @@ class PurchasingFastBuyResponseItem {
         canResellItemAfterPurchase: json['canResellItemAfterPurchase'] is bool
             ? json['canResellItemAfterPurchase'] as bool
             : false,
-        accountLastActivity: json['account_last_activity'] is num
-            ? json['account_last_activity'] as num
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
             : 0,
         displayConvertedBalance: json['displayConvertedBalance'] is bool
             ? json['displayConvertedBalance'] as bool
@@ -19560,6 +33858,8 @@ class PurchasingFastBuyResponseItem {
         accountLinks: json['accountLinks'] is List
             ? (json['accountLinks'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) =>
+                    PurchasingFastBuyResponseItemAccountLinks.fromJson(e))
                 .toList()
             : const [],
         accountLink:
@@ -19593,10 +33893,12 @@ class PurchasingFastBuyResponseItem {
             : false,
         isIgnored:
             json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
-        deposit: json['deposit'] is num ? json['deposit'] as num : 0,
+        deposit: json['deposit'] is int ? json['deposit'] as int : 0,
         extraPrices: json['extraPrices'] is List
             ? (json['extraPrices'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map(
+                    (e) => PurchasingFastBuyResponseItemExtraPrices.fromJson(e))
                 .toList()
             : const [],
         canViewAccountLoginAndTempEmail:
@@ -19659,7 +33961,7 @@ class PurchasingFastBuyResponse {
 }
 
 class PurchasingCheckResponseItemGuarantee {
-  final num duration;
+  final int duration;
   final String class$;
   final String durationPhrase;
   final dynamic endDate;
@@ -19680,7 +33982,7 @@ class PurchasingCheckResponseItemGuarantee {
   factory PurchasingCheckResponseItemGuarantee.fromJson(
           Map<String, dynamic> json) =>
       PurchasingCheckResponseItemGuarantee(
-        duration: json['duration'] is num ? json['duration'] as num : 0,
+        duration: json['duration'] is int ? json['duration'] as int : 0,
         class$: json['class'] is String ? json['class'] as String : '',
         durationPhrase: json['durationPhrase'] is String
             ? json['durationPhrase'] as String
@@ -19689,6 +33991,44 @@ class PurchasingCheckResponseItemGuarantee {
         active: json['active'],
         cancelled: json['cancelled'],
         remainingTime: json['remainingTime'],
+      );
+}
+
+class PurchasingCheckResponseItemAccountLinks {
+  final String link;
+  final String text;
+  final String iconClass;
+
+  const PurchasingCheckResponseItemAccountLinks({
+    required this.link,
+    required this.text,
+    required this.iconClass,
+  });
+
+  factory PurchasingCheckResponseItemAccountLinks.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingCheckResponseItemAccountLinks(
+        link: json['link'] is String ? json['link'] as String : '',
+        text: json['text'] is String ? json['text'] as String : '',
+        iconClass:
+            json['iconClass'] is String ? json['iconClass'] as String : '',
+      );
+}
+
+class PurchasingCheckResponseItemExtraPrices {
+  final String currency;
+  final String price;
+
+  const PurchasingCheckResponseItemExtraPrices({
+    required this.currency,
+    required this.price,
+  });
+
+  factory PurchasingCheckResponseItemExtraPrices.fromJson(
+          Map<String, dynamic> json) =>
+      PurchasingCheckResponseItemExtraPrices(
+        currency: json['currency'] is String ? json['currency'] as String : '',
+        price: json['price'] is String ? json['price'] as String : '',
       );
 }
 
@@ -19719,14 +34059,14 @@ class PurchasingCheckResponseItemBumpSettings {
 }
 
 class PurchasingCheckResponseItemSeller {
-  final num userId;
+  final int userId;
   final String username;
-  final num avatarDate;
-  final num isBanned;
-  final num displayStyleGroupId;
-  final num joinedDate;
-  final num soldItemsCount;
-  final num activeItemsCount;
+  final int avatarDate;
+  final int isBanned;
+  final int displayStyleGroupId;
+  final int joinedDate;
+  final int soldItemsCount;
+  final int activeItemsCount;
   final String restoreData;
   final dynamic restorePercents;
   final bool isOnline;
@@ -19748,19 +34088,19 @@ class PurchasingCheckResponseItemSeller {
   factory PurchasingCheckResponseItemSeller.fromJson(
           Map<String, dynamic> json) =>
       PurchasingCheckResponseItemSeller(
-        userId: json['user_id'] is num ? json['user_id'] as num : 0,
+        userId: json['user_id'] is int ? json['user_id'] as int : 0,
         username: json['username'] is String ? json['username'] as String : '',
-        avatarDate: json['avatar_date'] is num ? json['avatar_date'] as num : 0,
-        isBanned: json['is_banned'] is num ? json['is_banned'] as num : 0,
-        displayStyleGroupId: json['display_style_group_id'] is num
-            ? json['display_style_group_id'] as num
+        avatarDate: json['avatar_date'] is int ? json['avatar_date'] as int : 0,
+        isBanned: json['is_banned'] is int ? json['is_banned'] as int : 0,
+        displayStyleGroupId: json['display_style_group_id'] is int
+            ? json['display_style_group_id'] as int
             : 0,
-        joinedDate: json['joined_date'] is num ? json['joined_date'] as num : 0,
-        soldItemsCount: json['sold_items_count'] is num
-            ? json['sold_items_count'] as num
+        joinedDate: json['joined_date'] is int ? json['joined_date'] as int : 0,
+        soldItemsCount: json['sold_items_count'] is int
+            ? json['sold_items_count'] as int
             : 0,
-        activeItemsCount: json['active_items_count'] is num
-            ? json['active_items_count'] as num
+        activeItemsCount: json['active_items_count'] is int
+            ? json['active_items_count'] as int
             : 0,
         restoreData: json['restore_data'] is String
             ? json['restore_data'] as String
@@ -19771,45 +34111,45 @@ class PurchasingCheckResponseItemSeller {
 }
 
 class PurchasingCheckResponseItem {
-  final num itemId;
+  final int itemId;
   final String itemState;
-  final num categoryId;
-  final num publishedDate;
+  final int categoryId;
+  final int publishedDate;
   final String title;
   final String description;
-  final num price;
-  final num updateStatDate;
-  final num refreshedDate;
-  final num editDate;
-  final num viewCount;
-  final num isSticky;
+  final int price;
+  final int updateStatDate;
+  final int refreshedDate;
+  final int editDate;
+  final int viewCount;
+  final int isSticky;
   final String itemOrigin;
-  final num extendedGuarantee;
-  final num nsb;
-  final num allowAskDiscount;
+  final int extendedGuarantee;
+  final int nsb;
+  final int allowAskDiscount;
   final String titleEn;
   final String descriptionEn;
   final String emailType;
   final String emailProvider;
   final String itemDomain;
   final String resaleItemOrigin;
-  final num userAllowAskDiscount;
-  final num maxDiscountPercent;
+  final int userAllowAskDiscount;
+  final int maxDiscountPercent;
   final String marketCustomTitle;
   final String feedbackData;
   final String categoryTitle;
   final String categoryUrl;
-  final num requireTempEmail;
-  final num availableTempEmail;
-  final num checkButtonEnabled;
-  final num checkerEnabled;
-  final num buyWithoutValidation;
-  final num hasGuarantee;
-  final num requireVideoRecording;
-  final num canBeResold;
+  final int requireTempEmail;
+  final int availableTempEmail;
+  final int checkButtonEnabled;
+  final int checkerEnabled;
+  final int buyWithoutValidation;
+  final int hasGuarantee;
+  final int requireVideoRecording;
+  final int canBeResold;
   final String loginType;
-  final num requireEmailLoginData;
-  final num categoryPrefixId;
+  final int requireEmailLoginData;
+  final int categoryPrefixId;
   final dynamic askUserId;
   final dynamic askItemId;
   final dynamic askDate;
@@ -19817,8 +34157,8 @@ class PurchasingCheckResponseItem {
   final dynamic discountAccepted;
   final dynamic userAlerted;
   final dynamic message;
-  final num minPrice;
-  final num priceWithSellerFee;
+  final int minPrice;
+  final int priceWithSellerFee;
   final PurchasingCheckResponseItemGuarantee guarantee;
   final bool canViewLoginData;
   final bool canUpdateItemStats;
@@ -19826,14 +34166,14 @@ class PurchasingCheckResponseItem {
   final bool canViewEmailLoginData;
   final bool showGetEmailCodeButton;
   final bool isPersonalAccount;
-  final num rubPrice;
+  final int rubPrice;
   final String priceCurrency;
   final bool canValidateAccount;
   final bool canResellItemAfterPurchase;
   final bool isSmallExf;
-  final num accountLastActivity;
+  final int accountLastActivity;
   final bool canViewAccountLink;
-  final List<Map<String, dynamic>> accountLinks;
+  final List<PurchasingCheckResponseItemAccountLinks> accountLinks;
   final String accountLink;
   final String emailLoginUrl;
   final bool canChangePassword;
@@ -19846,8 +34186,8 @@ class PurchasingCheckResponseItem {
   final bool isTrusted;
   final bool isBirthdayToday;
   final bool isIgnored;
-  final num deposit;
-  final List<Map<String, dynamic>> extraPrices;
+  final int deposit;
+  final List<PurchasingCheckResponseItemExtraPrices> extraPrices;
   final bool canViewAccountLoginAndTempEmail;
   final PurchasingCheckResponseItemBumpSettings bumpSettings;
   final bool canCheckGuarantee;
@@ -19949,32 +34289,32 @@ class PurchasingCheckResponseItem {
 
   factory PurchasingCheckResponseItem.fromJson(Map<String, dynamic> json) =>
       PurchasingCheckResponseItem(
-        itemId: json['item_id'] is num ? json['item_id'] as num : 0,
+        itemId: json['item_id'] is int ? json['item_id'] as int : 0,
         itemState:
             json['item_state'] is String ? json['item_state'] as String : '',
-        categoryId: json['category_id'] is num ? json['category_id'] as num : 0,
+        categoryId: json['category_id'] is int ? json['category_id'] as int : 0,
         publishedDate:
-            json['published_date'] is num ? json['published_date'] as num : 0,
+            json['published_date'] is int ? json['published_date'] as int : 0,
         title: json['title'] is String ? json['title'] as String : '',
         description:
             json['description'] is String ? json['description'] as String : '',
-        price: json['price'] is num ? json['price'] as num : 0,
-        updateStatDate: json['update_stat_date'] is num
-            ? json['update_stat_date'] as num
+        price: json['price'] is int ? json['price'] as int : 0,
+        updateStatDate: json['update_stat_date'] is int
+            ? json['update_stat_date'] as int
             : 0,
         refreshedDate:
-            json['refreshed_date'] is num ? json['refreshed_date'] as num : 0,
-        editDate: json['edit_date'] is num ? json['edit_date'] as num : 0,
-        viewCount: json['view_count'] is num ? json['view_count'] as num : 0,
-        isSticky: json['is_sticky'] is num ? json['is_sticky'] as num : 0,
+            json['refreshed_date'] is int ? json['refreshed_date'] as int : 0,
+        editDate: json['edit_date'] is int ? json['edit_date'] as int : 0,
+        viewCount: json['view_count'] is int ? json['view_count'] as int : 0,
+        isSticky: json['is_sticky'] is int ? json['is_sticky'] as int : 0,
         itemOrigin:
             json['item_origin'] is String ? json['item_origin'] as String : '',
-        extendedGuarantee: json['extended_guarantee'] is num
-            ? json['extended_guarantee'] as num
+        extendedGuarantee: json['extended_guarantee'] is int
+            ? json['extended_guarantee'] as int
             : 0,
-        nsb: json['nsb'] is num ? json['nsb'] as num : 0,
-        allowAskDiscount: json['allow_ask_discount'] is num
-            ? json['allow_ask_discount'] as num
+        nsb: json['nsb'] is int ? json['nsb'] as int : 0,
+        allowAskDiscount: json['allow_ask_discount'] is int
+            ? json['allow_ask_discount'] as int
             : 0,
         titleEn: json['title_en'] is String ? json['title_en'] as String : '',
         descriptionEn: json['description_en'] is String
@@ -19990,11 +34330,11 @@ class PurchasingCheckResponseItem {
         resaleItemOrigin: json['resale_item_origin'] is String
             ? json['resale_item_origin'] as String
             : '',
-        userAllowAskDiscount: json['user_allow_ask_discount'] is num
-            ? json['user_allow_ask_discount'] as num
+        userAllowAskDiscount: json['user_allow_ask_discount'] is int
+            ? json['user_allow_ask_discount'] as int
             : 0,
-        maxDiscountPercent: json['max_discount_percent'] is num
-            ? json['max_discount_percent'] as num
+        maxDiscountPercent: json['max_discount_percent'] is int
+            ? json['max_discount_percent'] as int
             : 0,
         marketCustomTitle: json['market_custom_title'] is String
             ? json['market_custom_title'] as String
@@ -20008,34 +34348,34 @@ class PurchasingCheckResponseItem {
         categoryUrl: json['category_url'] is String
             ? json['category_url'] as String
             : '',
-        requireTempEmail: json['require_temp_email'] is num
-            ? json['require_temp_email'] as num
+        requireTempEmail: json['require_temp_email'] is int
+            ? json['require_temp_email'] as int
             : 0,
-        availableTempEmail: json['available_temp_email'] is num
-            ? json['available_temp_email'] as num
+        availableTempEmail: json['available_temp_email'] is int
+            ? json['available_temp_email'] as int
             : 0,
-        checkButtonEnabled: json['check_button_enabled'] is num
-            ? json['check_button_enabled'] as num
+        checkButtonEnabled: json['check_button_enabled'] is int
+            ? json['check_button_enabled'] as int
             : 0,
         checkerEnabled:
-            json['checker_enabled'] is num ? json['checker_enabled'] as num : 0,
-        buyWithoutValidation: json['buy_without_validation'] is num
-            ? json['buy_without_validation'] as num
+            json['checker_enabled'] is int ? json['checker_enabled'] as int : 0,
+        buyWithoutValidation: json['buy_without_validation'] is int
+            ? json['buy_without_validation'] as int
             : 0,
         hasGuarantee:
-            json['has_guarantee'] is num ? json['has_guarantee'] as num : 0,
-        requireVideoRecording: json['require_video_recording'] is num
-            ? json['require_video_recording'] as num
+            json['has_guarantee'] is int ? json['has_guarantee'] as int : 0,
+        requireVideoRecording: json['require_video_recording'] is int
+            ? json['require_video_recording'] as int
             : 0,
         canBeResold:
-            json['can_be_resold'] is num ? json['can_be_resold'] as num : 0,
+            json['can_be_resold'] is int ? json['can_be_resold'] as int : 0,
         loginType:
             json['login_type'] is String ? json['login_type'] as String : '',
-        requireEmailLoginData: json['require_email_login_data'] is num
-            ? json['require_email_login_data'] as num
+        requireEmailLoginData: json['require_email_login_data'] is int
+            ? json['require_email_login_data'] as int
             : 0,
-        categoryPrefixId: json['category_prefix_id'] is num
-            ? json['category_prefix_id'] as num
+        categoryPrefixId: json['category_prefix_id'] is int
+            ? json['category_prefix_id'] as int
             : 0,
         askUserId: json['ask_user_id'],
         askItemId: json['ask_item_id'],
@@ -20044,9 +34384,9 @@ class PurchasingCheckResponseItem {
         discountAccepted: json['discount_accepted'],
         userAlerted: json['user_alerted'],
         message: json['message'],
-        minPrice: json['min_price'] is num ? json['min_price'] as num : 0,
-        priceWithSellerFee: json['priceWithSellerFee'] is num
-            ? json['priceWithSellerFee'] as num
+        minPrice: json['min_price'] is int ? json['min_price'] as int : 0,
+        priceWithSellerFee: json['priceWithSellerFee'] is int
+            ? json['priceWithSellerFee'] as int
             : 0,
         guarantee: json['guarantee'] is Map<String, dynamic>
             ? PurchasingCheckResponseItemGuarantee.fromJson(
@@ -20070,7 +34410,7 @@ class PurchasingCheckResponseItem {
         isPersonalAccount: json['isPersonalAccount'] is bool
             ? json['isPersonalAccount'] as bool
             : false,
-        rubPrice: json['rub_price'] is num ? json['rub_price'] as num : 0,
+        rubPrice: json['rub_price'] is int ? json['rub_price'] as int : 0,
         priceCurrency: json['price_currency'] is String
             ? json['price_currency'] as String
             : '',
@@ -20082,8 +34422,8 @@ class PurchasingCheckResponseItem {
             : false,
         isSmallExf:
             json['isSmallExf'] is bool ? json['isSmallExf'] as bool : false,
-        accountLastActivity: json['account_last_activity'] is num
-            ? json['account_last_activity'] as num
+        accountLastActivity: json['account_last_activity'] is int
+            ? json['account_last_activity'] as int
             : 0,
         canViewAccountLink: json['canViewAccountLink'] is bool
             ? json['canViewAccountLink'] as bool
@@ -20091,6 +34431,7 @@ class PurchasingCheckResponseItem {
         accountLinks: json['accountLinks'] is List
             ? (json['accountLinks'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => PurchasingCheckResponseItemAccountLinks.fromJson(e))
                 .toList()
             : const [],
         accountLink:
@@ -20124,10 +34465,11 @@ class PurchasingCheckResponseItem {
             : false,
         isIgnored:
             json['isIgnored'] is bool ? json['isIgnored'] as bool : false,
-        deposit: json['deposit'] is num ? json['deposit'] as num : 0,
+        deposit: json['deposit'] is int ? json['deposit'] as int : 0,
         extraPrices: json['extraPrices'] is List
             ? (json['extraPrices'] as List<dynamic>)
                 .whereType<Map<String, dynamic>>()
+                .map((e) => PurchasingCheckResponseItemExtraPrices.fromJson(e))
                 .toList()
             : const [],
         canViewAccountLoginAndTempEmail:
@@ -20196,10 +34538,10 @@ class PurchasingCheckResponse {
 
 class PurchasingConfirmBody {
   /// Current price of account in your currency.
-  final num? price;
+  final int? price;
 
   /// Balance ID that will be used to purchase specified item.
-  final num? balanceId;
+  final int? balanceId;
 
   const PurchasingConfirmBody({
     this.price,

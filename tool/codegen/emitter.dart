@@ -4,6 +4,20 @@ import 'models.dart';
 import 'naming.dart';
 import 'transforms.dart';
 
+// ─── Property Dedup ─────────────────────────────────────────────────────────
+
+/// Deduplicate schema properties that map to the same Dart identifier.
+/// When two JSON property names (e.g. `steam_relevant_game_count` and
+/// `steamRelevantGameCount`) both produce the same `safeDartName`, keep only
+/// the last one encountered so that the more intentionally-named property wins.
+List<SchemaProperty> _dedupProperties(Iterable<SchemaProperty> props) {
+  final seen = <String, SchemaProperty>{};
+  for (final prop in props) {
+    seen[safeDartName(prop.name)] = prop;
+  }
+  return seen.values.toList();
+}
+
 // ─── DartDoc Helpers ─────────────────────────────────────────────────────────
 
 /// Strip **bold** markdown markers for plain DartDoc text.
@@ -314,9 +328,10 @@ String _variantClassName(String baseName, String title) {
 String _emitComponentSchemaClass(
     ComponentSchema schema, Set<String> inlineClassNames) {
   final parts = <String>[];
+  final dedupedProps = _dedupProperties(schema.properties.values);
 
   // Emit inline object classes first
-  for (final prop in schema.properties.values) {
+  for (final prop in dedupedProps) {
     if (prop.isInlineObject &&
         prop.inlineProperties != null &&
         prop.inlineProperties!.isNotEmpty) {
@@ -327,13 +342,23 @@ String _emitComponentSchemaClass(
             inlineClassNames: inlineClassNames));
       }
     }
+    if (prop.isArrayOfInlineObject &&
+        prop.arrayItemInlineProperties != null &&
+        prop.arrayItemInlineProperties!.isNotEmpty) {
+      final inlineName = _inlineClassName(schema.dartName, prop.name);
+      if (!inlineClassNames.contains(inlineName)) {
+        inlineClassNames.add(inlineName);
+        parts.add(_emitInlineClass(inlineName, prop.arrayItemInlineProperties!,
+            inlineClassNames: inlineClassNames));
+      }
+    }
   }
 
   final sb = StringBuffer();
   sb.writeln('class ${schema.dartName} {');
 
   // Fields
-  for (final prop in schema.properties.values) {
+  for (final prop in dedupedProps) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(schema.dartName, prop);
     final nullable = !prop.required && dartType != 'dynamic' ? '?' : '';
@@ -344,7 +369,7 @@ String _emitComponentSchemaClass(
 
   // Constructor
   sb.writeln('  const ${schema.dartName}({');
-  for (final prop in schema.properties.values) {
+  for (final prop in dedupedProps) {
     if (prop.required) {
       sb.writeln('    required this.${safeDartName(prop.name)},');
     } else {
@@ -358,7 +383,7 @@ String _emitComponentSchemaClass(
   // fromJson factory
   sb.writeln(
       '  factory ${schema.dartName}.fromJson(Map<String, dynamic> json) => ${schema.dartName}(');
-  for (final prop in schema.properties.values) {
+  for (final prop in dedupedProps) {
     final dartName = safeDartName(prop.name);
     sb.writeln(
         '    $dartName: ${_emitFromJsonExpr("json['${prop.name}']", prop, parentTypeName: schema.dartName)},');
@@ -384,9 +409,10 @@ String _emitResponseClass(
   }
 
   final parts = <String>[];
+  final dedupedProps = _dedupProperties(schema.properties.values);
 
   // Emit inline object classes first
-  for (final prop in schema.properties.values) {
+  for (final prop in dedupedProps) {
     if (prop.isInlineObject &&
         prop.inlineProperties != null &&
         prop.inlineProperties!.isNotEmpty) {
@@ -397,6 +423,16 @@ String _emitResponseClass(
             inlineClassNames: inlineClassNames));
       }
     }
+    if (prop.isArrayOfInlineObject &&
+        prop.arrayItemInlineProperties != null &&
+        prop.arrayItemInlineProperties!.isNotEmpty) {
+      final inlineName = _inlineClassName(typeName, prop.name);
+      if (!inlineClassNames.contains(inlineName)) {
+        inlineClassNames.add(inlineName);
+        parts.add(_emitInlineClass(inlineName, prop.arrayItemInlineProperties!,
+            inlineClassNames: inlineClassNames));
+      }
+    }
   }
 
   // Main response class
@@ -404,7 +440,7 @@ String _emitResponseClass(
   sb.writeln('class $typeName {');
 
   // Fields
-  for (final prop in schema.properties.values) {
+  for (final prop in dedupedProps) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(typeName, prop);
     final nullable = !prop.required && dartType != 'dynamic' ? '?' : '';
@@ -415,7 +451,7 @@ String _emitResponseClass(
 
   // Constructor
   sb.writeln('  const $typeName({');
-  for (final prop in schema.properties.values) {
+  for (final prop in dedupedProps) {
     if (prop.required) {
       sb.writeln('    required this.${safeDartName(prop.name)},');
     } else {
@@ -429,7 +465,7 @@ String _emitResponseClass(
   // fromJson factory
   sb.writeln(
       '  factory $typeName.fromJson(Map<String, dynamic> json) => $typeName(');
-  for (final prop in schema.properties.values) {
+  for (final prop in dedupedProps) {
     final dartName = safeDartName(prop.name);
     final expr = _emitFromJsonExpr(
       "json['${prop.name}']",
@@ -452,11 +488,16 @@ String _resolvePropertyDartType(String parentTypeName, SchemaProperty prop) {
       prop.inlineProperties!.isNotEmpty) {
     return _inlineClassName(parentTypeName, prop.name);
   }
+  if (prop.isArrayOfInlineObject &&
+      prop.arrayItemInlineProperties != null &&
+      prop.arrayItemInlineProperties!.isNotEmpty) {
+    return 'List<${_inlineClassName(parentTypeName, prop.name)}>';
+  }
   return prop.dartType;
 }
 
 String _inlineClassName(String parentTypeName, String propName) {
-  final parts = propName.split(RegExp(r'[_.]'));
+  final parts = propName.split(RegExp(r'[_.\-]'));
   final pascalProp = parts
       .map((p) => p.isEmpty ? '' : p[0].toUpperCase() + p.substring(1))
       .join('');
@@ -468,9 +509,10 @@ String _emitInlineClass(
     {Set<String>? inlineClassNames}) {
   final seen = inlineClassNames ?? <String>{};
   final parts = <String>[];
+  final dedupedProps = _dedupProperties(properties.values);
 
   // Emit nested inline object classes first (recursive)
-  for (final prop in properties.values) {
+  for (final prop in dedupedProps) {
     if (prop.isInlineObject &&
         prop.inlineProperties != null &&
         prop.inlineProperties!.isNotEmpty) {
@@ -481,12 +523,22 @@ String _emitInlineClass(
             inlineClassNames: seen));
       }
     }
+    if (prop.isArrayOfInlineObject &&
+        prop.arrayItemInlineProperties != null &&
+        prop.arrayItemInlineProperties!.isNotEmpty) {
+      final inlineName = _inlineClassName(className, prop.name);
+      if (!seen.contains(inlineName)) {
+        seen.add(inlineName);
+        parts.add(_emitInlineClass(inlineName, prop.arrayItemInlineProperties!,
+            inlineClassNames: seen));
+      }
+    }
   }
 
   final sb = StringBuffer();
   sb.writeln('class $className {');
 
-  for (final prop in properties.values) {
+  for (final prop in dedupedProps) {
     final dartName = safeDartName(prop.name);
     final dartType = _resolvePropertyDartType(className, prop);
     final nullable = !prop.required && dartType != 'dynamic' ? '?' : '';
@@ -496,7 +548,7 @@ String _emitInlineClass(
   sb.writeln();
 
   sb.writeln('  const $className({');
-  for (final prop in properties.values) {
+  for (final prop in dedupedProps) {
     if (prop.required) {
       sb.writeln('    required this.${safeDartName(prop.name)},');
     } else {
@@ -509,7 +561,7 @@ String _emitInlineClass(
 
   sb.writeln(
       '  factory $className.fromJson(Map<String, dynamic> json) => $className(');
-  for (final prop in properties.values) {
+  for (final prop in dedupedProps) {
     final dartName = safeDartName(prop.name);
     sb.writeln(
         '    $dartName: ${_emitFromJsonExpr("json['${prop.name}']", prop, parentTypeName: className)},');
@@ -560,6 +612,27 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
     return '$accessor is Map<String, dynamic>'
         '\n            ? $inlineName.fromJson($accessor as Map<String, dynamic>)'
         '\n            : $fallback';
+  }
+
+  if (prop.isArrayOfInlineObject &&
+      prop.arrayItemInlineProperties != null &&
+      prop.arrayItemInlineProperties!.isNotEmpty &&
+      parentTypeName != null) {
+    final inlineName = _inlineClassName(parentTypeName, prop.name);
+    if (prop.required) {
+      return '$accessor is List'
+          '\n            ? ($accessor as List<dynamic>)'
+          '\n                .whereType<Map<String, dynamic>>()'
+          '\n                .map((e) => $inlineName.fromJson(e))'
+          '\n                .toList()'
+          '\n            : const []';
+    }
+    return '$accessor is List'
+        '\n            ? ($accessor as List<dynamic>)'
+        '\n                .whereType<Map<String, dynamic>>()'
+        '\n                .map((e) => $inlineName.fromJson(e))'
+        '\n                .toList()'
+        '\n            : null';
   }
 
   return _emitPrimitiveCast(accessor, prop.dartType, prop.required);
@@ -916,10 +989,7 @@ String _emitDartMethod(String group, MethodDefinition method) {
       }
     }
 
-    if (group == 'category' &&
-        method.methodName != 'list' &&
-        method.methodName != 'params' &&
-        method.methodName != 'games') {
+    if (group == 'category') {
       sb.writeln('      isSearch: true,');
     }
 

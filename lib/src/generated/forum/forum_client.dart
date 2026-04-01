@@ -53,7 +53,7 @@ class CategoriesApi {
     return CategoriesListResponse.fromJson(raw);
   }
 
-  Future<CategoriesGetResponse> get(num categoryId) async {
+  Future<CategoriesGetResponse> get(int categoryId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/categories/$categoryId',
@@ -257,7 +257,7 @@ class ConversationsApi {
     return ConversationsSaveResponse.fromJson(raw);
   }
 
-  Future<ConversationsGetResponse> get(num conversationId) async {
+  Future<ConversationsGetResponse> get(int conversationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/conversations/$conversationId',
@@ -266,7 +266,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsMessagesListResponse> messagesList(
-      num conversationId, ConversationsMessagesListParams? params) async {
+      int conversationId, ConversationsMessagesListParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/conversations/$conversationId/messages',
@@ -276,7 +276,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsMessagesCreateResponse> messagesCreate(
-      num conversationId, ConversationsMessagesCreateBody? body) async {
+      int conversationId, ConversationsMessagesCreateBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/messages',
@@ -297,7 +297,7 @@ class ConversationsApi {
     return ConversationsSearchResponse.fromJson(raw);
   }
 
-  Future<ConversationsMessagesGetResponse> messagesGet(num messageId) async {
+  Future<ConversationsMessagesGetResponse> messagesGet(int messageId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/conversations/messages/$messageId',
@@ -305,8 +305,8 @@ class ConversationsApi {
     return ConversationsMessagesGetResponse.fromJson(raw);
   }
 
-  Future<ConversationsMessagesEditResponse> messagesEdit(num conversationId,
-      num messageId, ConversationsMessagesEditBody? body) async {
+  Future<ConversationsMessagesEditResponse> messagesEdit(int conversationId,
+      int messageId, ConversationsMessagesEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/conversations/$conversationId/messages/$messageId',
@@ -317,7 +317,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsMessagesDeleteResponse> messagesDelete(
-      num conversationId, num messageId) async {
+      int conversationId, int messageId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/conversations/$conversationId/messages/$messageId',
@@ -326,7 +326,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsInviteResponse> invite(
-      num conversationId, ConversationsInviteBody? body) async {
+      int conversationId, ConversationsInviteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/invite',
@@ -337,7 +337,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsKickResponse> kick(
-      num conversationId, ConversationsKickBody? body) async {
+      int conversationId, ConversationsKickBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/kick',
@@ -347,7 +347,7 @@ class ConversationsApi {
     return ConversationsKickResponse.fromJson(raw);
   }
 
-  Future<ConversationsReadResponse> read(num conversationId) async {
+  Future<ConversationsReadResponse> read(int conversationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/read',
@@ -364,7 +364,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsMessagesStickResponse> messagesStick(
-      num conversationId, num messageId) async {
+      int conversationId, int messageId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/messages/$messageId/stick',
@@ -373,7 +373,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsMessagesUnstickResponse> messagesUnstick(
-      num conversationId, num messageId) async {
+      int conversationId, int messageId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/conversations/$conversationId/messages/$messageId/stick',
@@ -381,7 +381,7 @@ class ConversationsApi {
     return ConversationsMessagesUnstickResponse.fromJson(raw);
   }
 
-  Future<ConversationsStarResponse> star(num conversationId) async {
+  Future<ConversationsStarResponse> star(int conversationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/star',
@@ -389,7 +389,7 @@ class ConversationsApi {
     return ConversationsStarResponse.fromJson(raw);
   }
 
-  Future<ConversationsUnstarResponse> unstar(num conversationId) async {
+  Future<ConversationsUnstarResponse> unstar(int conversationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/conversations/$conversationId/star',
@@ -398,7 +398,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsAlertsEnableResponse> alertsEnable(
-      num conversationId) async {
+      int conversationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/conversations/$conversationId/alerts',
@@ -407,7 +407,7 @@ class ConversationsApi {
   }
 
   Future<ConversationsAlertsDisableResponse> alertsDisable(
-      num conversationId) async {
+      int conversationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/conversations/$conversationId/alerts',
@@ -463,7 +463,7 @@ class ForumsApi {
     return ForumsGroupedResponse.fromJson(raw);
   }
 
-  Future<ForumsGetResponse> get(num forumId) async {
+  Future<ForumsGetResponse> get(int forumId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/forums/$forumId',
@@ -471,7 +471,7 @@ class ForumsApi {
     return ForumsGetResponse.fromJson(raw);
   }
 
-  Future<ForumsFollowersResponse> followers(num forumId) async {
+  Future<ForumsFollowersResponse> followers(int forumId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/forums/$forumId/followers',
@@ -480,7 +480,7 @@ class ForumsApi {
   }
 
   Future<ForumsFollowResponse> follow(
-      num forumId, ForumsFollowBody? body) async {
+      int forumId, ForumsFollowBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/forums/$forumId/followers',
@@ -490,7 +490,7 @@ class ForumsApi {
     return ForumsFollowResponse.fromJson(raw);
   }
 
-  Future<ForumsUnfollowResponse> unfollow(num forumId) async {
+  Future<ForumsUnfollowResponse> unfollow(int forumId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/forums/$forumId/followers',
@@ -540,7 +540,7 @@ class LinksApi {
     return LinksListResponse.fromJson(raw);
   }
 
-  Future<LinksGetResponse> get(num linkId) async {
+  Future<LinksGetResponse> get(int linkId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/link-forums/$linkId',
@@ -579,7 +579,7 @@ class NotificationsApi {
     return NotificationsListResponse.fromJson(raw);
   }
 
-  Future<NotificationsGetResponse> get(num notificationId) async {
+  Future<NotificationsGetResponse> get(int notificationId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/notifications/$notificationId/content',
@@ -628,7 +628,7 @@ class PagesApi {
     return PagesListResponse.fromJson(raw);
   }
 
-  Future<PagesGetResponse> get(num pageId) async {
+  Future<PagesGetResponse> get(int pageId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/pages/$pageId',
@@ -661,7 +661,7 @@ class PostsApi {
     return PostsCreateResponse.fromJson(raw);
   }
 
-  Future<PostsGetResponse> get(num postId) async {
+  Future<PostsGetResponse> get(int postId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/posts/$postId',
@@ -669,7 +669,7 @@ class PostsApi {
     return PostsGetResponse.fromJson(raw);
   }
 
-  Future<PostsEditResponse> edit(num postId, PostsEditBody? body) async {
+  Future<PostsEditResponse> edit(int postId, PostsEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/posts/$postId',
@@ -679,7 +679,7 @@ class PostsApi {
     return PostsEditResponse.fromJson(raw);
   }
 
-  Future<PostsDeleteResponse> delete(num postId, PostsDeleteBody? body) async {
+  Future<PostsDeleteResponse> delete(int postId, PostsDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/posts/$postId',
@@ -689,7 +689,7 @@ class PostsApi {
     return PostsDeleteResponse.fromJson(raw);
   }
 
-  Future<PostsLikesResponse> likes(num postId, PostsLikesParams? params) async {
+  Future<PostsLikesResponse> likes(int postId, PostsLikesParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/posts/$postId/likes',
@@ -698,7 +698,7 @@ class PostsApi {
     return PostsLikesResponse.fromJson(raw);
   }
 
-  Future<PostsLikeResponse> like(num postId) async {
+  Future<PostsLikeResponse> like(int postId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/posts/$postId/likes',
@@ -706,7 +706,7 @@ class PostsApi {
     return PostsLikeResponse.fromJson(raw);
   }
 
-  Future<PostsUnlikeResponse> unlike(num postId) async {
+  Future<PostsUnlikeResponse> unlike(int postId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/posts/$postId/likes',
@@ -714,7 +714,7 @@ class PostsApi {
     return PostsUnlikeResponse.fromJson(raw);
   }
 
-  Future<PostsReportReasonsResponse> reportReasons(num postId) async {
+  Future<PostsReportReasonsResponse> reportReasons(int postId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/posts/$postId/report',
@@ -722,7 +722,7 @@ class PostsApi {
     return PostsReportReasonsResponse.fromJson(raw);
   }
 
-  Future<PostsReportResponse> report(num postId, PostsReportBody? body) async {
+  Future<PostsReportResponse> report(int postId, PostsReportBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/posts/$postId/report',
@@ -802,7 +802,7 @@ class ProfilePostsApi {
     return ProfilePostsListResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsGetResponse> get(num profilePostId) async {
+  Future<ProfilePostsGetResponse> get(int profilePostId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/profile-posts/$profilePostId',
@@ -811,7 +811,7 @@ class ProfilePostsApi {
   }
 
   Future<ProfilePostsEditResponse> edit(
-      num profilePostId, ProfilePostsEditBody? body) async {
+      int profilePostId, ProfilePostsEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/profile-posts/$profilePostId',
@@ -822,7 +822,7 @@ class ProfilePostsApi {
   }
 
   Future<ProfilePostsDeleteResponse> delete(
-      num profilePostId, ProfilePostsDeleteParams? params) async {
+      int profilePostId, ProfilePostsDeleteParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/profile-posts/$profilePostId',
@@ -832,7 +832,7 @@ class ProfilePostsApi {
   }
 
   Future<ProfilePostsReportReasonsResponse> reportReasons(
-      num profilePostId) async {
+      int profilePostId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/profile-posts/$profilePostId/report',
@@ -841,7 +841,7 @@ class ProfilePostsApi {
   }
 
   Future<ProfilePostsReportResponse> report(
-      num profilePostId, ProfilePostsReportBody? body) async {
+      int profilePostId, ProfilePostsReportBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/profile-posts/$profilePostId/report',
@@ -862,7 +862,7 @@ class ProfilePostsApi {
     return ProfilePostsCreateResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsStickResponse> stick(num profilePostId) async {
+  Future<ProfilePostsStickResponse> stick(int profilePostId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/profile-posts/$profilePostId/stick',
@@ -870,7 +870,7 @@ class ProfilePostsApi {
     return ProfilePostsStickResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsUnstickResponse> unstick(num profilePostId) async {
+  Future<ProfilePostsUnstickResponse> unstick(int profilePostId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/profile-posts/$profilePostId/stick',
@@ -878,7 +878,7 @@ class ProfilePostsApi {
     return ProfilePostsUnstickResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsLikesResponse> likes(num profilePostId) async {
+  Future<ProfilePostsLikesResponse> likes(int profilePostId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/profile-posts/$profilePostId/likes',
@@ -886,7 +886,7 @@ class ProfilePostsApi {
     return ProfilePostsLikesResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsLikeResponse> like(num profilePostId) async {
+  Future<ProfilePostsLikeResponse> like(int profilePostId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/profile-posts/$profilePostId/likes',
@@ -894,7 +894,7 @@ class ProfilePostsApi {
     return ProfilePostsLikeResponse.fromJson(raw);
   }
 
-  Future<ProfilePostsUnlikeResponse> unlike(num profilePostId) async {
+  Future<ProfilePostsUnlikeResponse> unlike(int profilePostId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/profile-posts/$profilePostId/likes',
@@ -946,7 +946,7 @@ class ProfilePostsApi {
   }
 
   Future<ProfilePostsCommentsGetResponse> commentsGet(
-      num profilePostId, num commentId) async {
+      int profilePostId, int commentId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/profile-posts/$profilePostId/comments/$commentId',
@@ -955,7 +955,7 @@ class ProfilePostsApi {
   }
 
   Future<ProfilePostsCommentsReportResponse> commentsReport(
-      num commentId, ProfilePostsCommentsReportBody? body) async {
+      int commentId, ProfilePostsCommentsReportBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/profile-posts/comments/$commentId/report',
@@ -1065,7 +1065,7 @@ class TagsApi {
     return TagsListResponse.fromJson(raw);
   }
 
-  Future<TagsGetResponse> get(num tagId, TagsGetParams? params) async {
+  Future<TagsGetResponse> get(int tagId, TagsGetParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/tags/$tagId',
@@ -1129,7 +1129,7 @@ class ThreadsApi {
     return ThreadsClaimResponse.fromJson(raw);
   }
 
-  Future<ThreadsGetResponse> get(num threadId, ThreadsGetParams? params) async {
+  Future<ThreadsGetResponse> get(int threadId, ThreadsGetParams? params) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/threads/$threadId',
@@ -1138,7 +1138,7 @@ class ThreadsApi {
     return ThreadsGetResponse.fromJson(raw);
   }
 
-  Future<ThreadsEditResponse> edit(num threadId, ThreadsEditBody? body) async {
+  Future<ThreadsEditResponse> edit(int threadId, ThreadsEditBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'PUT',
       path: '/threads/$threadId',
@@ -1149,7 +1149,7 @@ class ThreadsApi {
   }
 
   Future<ThreadsDeleteResponse> delete(
-      num threadId, ThreadsDeleteBody? body) async {
+      int threadId, ThreadsDeleteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/threads/$threadId',
@@ -1159,7 +1159,7 @@ class ThreadsApi {
     return ThreadsDeleteResponse.fromJson(raw);
   }
 
-  Future<ThreadsMoveResponse> move(num threadId, ThreadsMoveBody? body) async {
+  Future<ThreadsMoveResponse> move(int threadId, ThreadsMoveBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/threads/$threadId/move',
@@ -1169,7 +1169,7 @@ class ThreadsApi {
     return ThreadsMoveResponse.fromJson(raw);
   }
 
-  Future<ThreadsBumpResponse> bump(num threadId) async {
+  Future<ThreadsBumpResponse> bump(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/threads/$threadId/bump',
@@ -1177,7 +1177,7 @@ class ThreadsApi {
     return ThreadsBumpResponse.fromJson(raw);
   }
 
-  Future<ThreadsHideResponse> hide(num threadId) async {
+  Future<ThreadsHideResponse> hide(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/threads/$threadId/hide',
@@ -1185,7 +1185,7 @@ class ThreadsApi {
     return ThreadsHideResponse.fromJson(raw);
   }
 
-  Future<ThreadsStarResponse> star(num threadId) async {
+  Future<ThreadsStarResponse> star(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/threads/$threadId/star',
@@ -1193,7 +1193,7 @@ class ThreadsApi {
     return ThreadsStarResponse.fromJson(raw);
   }
 
-  Future<ThreadsUnstarResponse> unstar(num threadId) async {
+  Future<ThreadsUnstarResponse> unstar(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/threads/$threadId/star',
@@ -1201,7 +1201,7 @@ class ThreadsApi {
     return ThreadsUnstarResponse.fromJson(raw);
   }
 
-  Future<ThreadsFollowersResponse> followers(num threadId) async {
+  Future<ThreadsFollowersResponse> followers(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/threads/$threadId/followers',
@@ -1210,7 +1210,7 @@ class ThreadsApi {
   }
 
   Future<ThreadsFollowResponse> follow(
-      num threadId, ThreadsFollowBody? body) async {
+      int threadId, ThreadsFollowBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/threads/$threadId/followers',
@@ -1220,7 +1220,7 @@ class ThreadsApi {
     return ThreadsFollowResponse.fromJson(raw);
   }
 
-  Future<ThreadsUnfollowResponse> unfollow(num threadId) async {
+  Future<ThreadsUnfollowResponse> unfollow(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'DELETE',
       path: '/threads/$threadId/followers',
@@ -1238,7 +1238,7 @@ class ThreadsApi {
     return ThreadsFollowedResponse.fromJson(raw);
   }
 
-  Future<ThreadsNavigationResponse> navigation(num threadId) async {
+  Future<ThreadsNavigationResponse> navigation(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/threads/$threadId/navigation',
@@ -1246,7 +1246,7 @@ class ThreadsApi {
     return ThreadsNavigationResponse.fromJson(raw);
   }
 
-  Future<ThreadsPollGetResponse> pollGet(num threadId) async {
+  Future<ThreadsPollGetResponse> pollGet(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'GET',
       path: '/threads/$threadId/poll',
@@ -1255,7 +1255,7 @@ class ThreadsApi {
   }
 
   Future<ThreadsPollVoteResponse> pollVote(
-      num threadId, ThreadsPollVoteBody? body) async {
+      int threadId, ThreadsPollVoteBody? body) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/threads/$threadId/poll/votes',
@@ -1283,7 +1283,7 @@ class ThreadsApi {
     return ThreadsRecentResponse.fromJson(raw);
   }
 
-  Future<ThreadsFinishResponse> finish(num threadId) async {
+  Future<ThreadsFinishResponse> finish(int threadId) async {
     final raw = await _http.request(RequestOptions(
       method: 'POST',
       path: '/contests/$threadId/finish',

@@ -158,6 +158,8 @@ class SchemaProperty {
   final String? arrayItemComponentName;
   final bool isInlineObject;
   final Map<String, SchemaProperty>? inlineProperties;
+  final bool isArrayOfInlineObject;
+  final Map<String, SchemaProperty>? arrayItemInlineProperties;
 
   const SchemaProperty({
     required this.name,
@@ -169,6 +171,8 @@ class SchemaProperty {
     this.arrayItemComponentName,
     this.isInlineObject = false,
     this.inlineProperties,
+    this.isArrayOfInlineObject = false,
+    this.arrayItemInlineProperties,
   });
 }
 

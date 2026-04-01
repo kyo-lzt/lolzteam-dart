@@ -218,7 +218,7 @@ String toDartType(String tsType, {Set<String> knownSchemas = const {}}) {
   return switch (tsType) {
     'string' => 'String',
     'number' => 'num',
-    'integer' => 'num',
+    'integer' => 'int',
     'boolean' => 'bool',
     'unknown' => 'dynamic',
     'Blob' => 'List<int>',
@@ -655,6 +655,36 @@ SchemaProperty _schemaToProperty(
           isArrayOfComponentRef: true,
           arrayItemComponentName: schemaName,
         );
+      }
+
+      // Array of inline objects
+      final resolvedItems = derefDeep(items, spec);
+      if (resolvedItems is Map<String, dynamic>) {
+        final itemType = resolvedItems['type'];
+        final itemProps = resolvedItems['properties'];
+        if ((itemType == 'object' || itemProps != null) &&
+            itemProps is Map<String, dynamic> &&
+            itemProps.isNotEmpty) {
+          final inlineProps = <String, SchemaProperty>{};
+          final itemRequiredList = resolvedItems['required'];
+          final itemRequiredSet = itemRequiredList is List
+              ? itemRequiredList.cast<String>().toSet()
+              : <String>{};
+          for (final e in itemProps.entries) {
+            if (e.value is Map<String, dynamic>) {
+              inlineProps[e.key] = _schemaToProperty(
+                  e.key, e.value as Map<String, dynamic>, spec,
+                  required: itemRequiredSet.contains(e.key));
+            }
+          }
+          return SchemaProperty(
+            name: name,
+            dartType: 'List<Object>',
+            required: required,
+            isArrayOfInlineObject: true,
+            arrayItemInlineProperties: inlineProps,
+          );
+        }
       }
     }
     // Non-ref array items
