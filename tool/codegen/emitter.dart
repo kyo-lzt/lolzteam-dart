@@ -538,13 +538,15 @@ String _emitFromJsonExpr(String accessor, SchemaProperty prop,
     if (prop.required) {
       return '$accessor is List'
           '\n            ? ($accessor as List<dynamic>)'
-          '\n                .map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
+          '\n                .whereType<Map<String, dynamic>>()'
+          '\n                .map((e) => $dartName.fromJson(e))'
           '\n                .toList()'
           '\n            : const []';
     }
     return '$accessor is List'
         '\n            ? ($accessor as List<dynamic>)'
-        '\n                .map((e) => $dartName.fromJson(e as Map<String, dynamic>))'
+        '\n                .whereType<Map<String, dynamic>>()'
+        '\n                .map((e) => $dartName.fromJson(e))'
         '\n                .toList()'
         '\n            : null';
   }
@@ -579,8 +581,8 @@ String _emitPrimitiveCast(String accessor, String dartType, bool required) {
           : '$accessor is List ? $accessor as List<dynamic> : null';
     }
     return required
-        ? '$accessor is List ? ($accessor as List<dynamic>).cast<$inner>() : const []'
-        : '$accessor is List ? ($accessor as List<dynamic>).cast<$inner>() : null';
+        ? '$accessor is List ? ($accessor as List<dynamic>).whereType<$inner>().toList() : const []'
+        : '$accessor is List ? ($accessor as List<dynamic>).whereType<$inner>().toList() : null';
   }
 
   // Handle Map<String, V>
@@ -593,8 +595,8 @@ String _emitPrimitiveCast(String accessor, String dartType, bool required) {
           : '$accessor is Map ? $accessor as Map<String, dynamic> : null';
     }
     return required
-        ? '$accessor is Map ? ($accessor as Map<String, dynamic>).cast<String, $inner>() : const {}'
-        : '$accessor is Map ? ($accessor as Map<String, dynamic>).cast<String, $inner>() : null';
+        ? '$accessor is Map ? Map<String, $inner>.fromEntries(($accessor as Map<String, dynamic>).entries.where((e) => e.value is $inner).map((e) => MapEntry(e.key, e.value as $inner))) : const {}'
+        : '$accessor is Map ? Map<String, $inner>.fromEntries(($accessor as Map<String, dynamic>).entries.where((e) => e.value is $inner).map((e) => MapEntry(e.key, e.value as $inner))) : null';
   }
 
   // Null-safe casts for required primitive fields — API may return null

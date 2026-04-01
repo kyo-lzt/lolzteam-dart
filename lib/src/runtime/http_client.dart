@@ -1,6 +1,6 @@
 // Core HTTP client for the Lolzteam API.
 import 'dart:convert';
-import 'dart:io' show HttpClient, InternetAddress;
+import 'dart:io' show HttpClient, HttpClientBasicCredentials, InternetAddress;
 
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
@@ -109,11 +109,33 @@ class LolzteamHttpClient {
     if (timeout != null) {
       ioClient.connectionTimeout = timeout;
     }
+    final hasCredentials = uri.userInfo.isNotEmpty;
     if (scheme == 'socks5') {
-      SocksTCPClient.assignToHttpClient(
-          ioClient, [ProxySettings(InternetAddress(uri.host), port)]);
+      final proxySettings = ProxySettings(
+        InternetAddress(uri.host),
+        port,
+        username: hasCredentials
+            ? Uri.decodeComponent(uri.userInfo.split(':').first)
+            : null,
+        password: hasCredentials && uri.userInfo.contains(':')
+            ? Uri.decodeComponent(uri.userInfo.split(':').skip(1).join(':'))
+            : null,
+      );
+      SocksTCPClient.assignToHttpClient(ioClient, [proxySettings]);
     } else {
       ioClient.findProxy = (url) => 'PROXY ${uri.host}:$port';
+      if (hasCredentials) {
+        final username = Uri.decodeComponent(uri.userInfo.split(':').first);
+        final password = uri.userInfo.contains(':')
+            ? Uri.decodeComponent(uri.userInfo.split(':').skip(1).join(':'))
+            : '';
+        ioClient.addProxyCredentials(
+          uri.host,
+          port,
+          '',
+          HttpClientBasicCredentials(username, password),
+        );
+      }
     }
     return ioClient;
   }

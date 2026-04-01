@@ -49,10 +49,16 @@ class RateLimitException extends HttpException {
 
 class AuthException extends HttpException {
   const AuthException({
-    required super.statusCode,
     super.responseBody,
     super.headers = const {},
-  });
+  }) : super(statusCode: 401);
+}
+
+class ForbiddenException extends HttpException {
+  const ForbiddenException({
+    super.responseBody,
+    super.headers = const {},
+  }) : super(statusCode: 403);
 }
 
 class NotFoundException extends HttpException {
@@ -102,11 +108,8 @@ HttpException createHttpException(
 ) {
   return switch (status) {
     429 => RateLimitException(responseBody: body, headers: headers),
-    401 || 403 => AuthException(
-        statusCode: status,
-        responseBody: body,
-        headers: headers,
-      ),
+    401 => AuthException(responseBody: body, headers: headers),
+    403 => ForbiddenException(responseBody: body, headers: headers),
     404 => NotFoundException(responseBody: body, headers: headers),
     500 || 502 || 503 || 504 => ServerException(
         statusCode: status,

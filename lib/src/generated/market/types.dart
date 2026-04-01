@@ -1383,7 +1383,9 @@ class UserModel {
         age: json['age'] is num ? json['age'] as num : 0,
         balance: json['balance'] is String ? json['balance'] as String : '',
         balances: json['balances'] is List
-            ? (json['balances'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['balances'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         bumpItemPeriod: json['bump_item_period'] is num
             ? json['bump_item_period'] as num
@@ -1472,7 +1474,8 @@ class UserModel {
             json['paid_mail_left'] is num ? json['paid_mail_left'] as num : 0,
         publicTags: json['public_tags'] is List
             ? (json['public_tags'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         registerDate:
             json['register_date'] is num ? json['register_date'] as num : 0,
@@ -1489,7 +1492,9 @@ class UserModel {
             ? json['sold_items_count'] as num
             : 0,
         tags: json['tags'] is List
-            ? (json['tags'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['tags'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         telegramClient: json['telegram_client'] is Map<String, dynamic>
             ? UserModelTelegramClient.fromJson(
@@ -1723,8 +1728,8 @@ class ItemListModel {
   factory ItemListModel.fromJson(Map<String, dynamic> json) => ItemListModel(
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
@@ -1737,8 +1742,8 @@ class ItemListModel {
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
             ? (json['stickyItems'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -2017,7 +2022,7 @@ class ItemFromListModel {
             ? json['itemOriginPhrase'] as String
             : null,
         tags: json['tags'] is List
-            ? (json['tags'] as List<dynamic>).cast<String>()
+            ? (json['tags'] as List<dynamic>).whereType<String>().toList()
             : null,
         noteText:
             json['note_text'] is String ? json['note_text'] as String : null,
@@ -2706,12 +2711,15 @@ class ItemModel {
             : false,
         accountLinks: json['accountLinks'] is List
             ? (json['accountLinks'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         accountLink:
             json['accountLink'] is String ? json['accountLink'] as String : '',
         imagePreviewLinks: json['imagePreviewLinks'] is List
-            ? (json['imagePreviewLinks'] as List<dynamic>).cast<String>()
+            ? (json['imagePreviewLinks'] as List<dynamic>)
+                .whereType<String>()
+                .toList()
             : const [],
         canChangePassword: json['canChangePassword'] is bool
             ? json['canChangePassword'] as bool
@@ -2749,7 +2757,8 @@ class ItemModel {
         deposit: json['deposit'] is num ? json['deposit'] as num : 0,
         extraPrices: json['extraPrices'] is List
             ? (json['extraPrices'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         canViewAccountLoginAndTempEmail:
             json['canViewAccountLoginAndTempEmail'] is bool
@@ -3209,8 +3218,8 @@ class CartGetResponse {
       CartGetResponse(
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
@@ -3223,8 +3232,8 @@ class CartGetResponse {
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
             ? (json['stickyItems'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -3438,8 +3447,8 @@ class CategoryAllResponse {
       CategoryAllResponse(
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
@@ -3452,8 +3461,8 @@ class CategoryAllResponse {
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
             ? (json['stickyItems'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -4068,7 +4077,9 @@ class CategorySteamResponse {
   factory CategorySteamResponse.fromJson(Map<String, dynamic> json) =>
       CategorySteamResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -4489,7 +4500,9 @@ class CategoryFortniteResponse {
   factory CategoryFortniteResponse.fromJson(Map<String, dynamic> json) =>
       CategoryFortniteResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -4957,7 +4970,9 @@ class CategoryMihoyoResponse {
   factory CategoryMihoyoResponse.fromJson(Map<String, dynamic> json) =>
       CategoryMihoyoResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -5405,7 +5420,9 @@ class CategoryRiotResponse {
   factory CategoryRiotResponse.fromJson(Map<String, dynamic> json) =>
       CategoryRiotResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -5788,7 +5805,9 @@ class CategoryTelegramResponse {
   factory CategoryTelegramResponse.fromJson(Map<String, dynamic> json) =>
       CategoryTelegramResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -6200,7 +6219,9 @@ class CategorySupercellResponse {
   factory CategorySupercellResponse.fromJson(Map<String, dynamic> json) =>
       CategorySupercellResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -6458,7 +6479,9 @@ class CategoryEaResponse {
   factory CategoryEaResponse.fromJson(Map<String, dynamic> json) =>
       CategoryEaResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -6792,7 +6815,9 @@ class CategoryWotResponse {
   factory CategoryWotResponse.fromJson(Map<String, dynamic> json) =>
       CategoryWotResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -7126,7 +7151,9 @@ class CategoryWotBlitzResponse {
   factory CategoryWotBlitzResponse.fromJson(Map<String, dynamic> json) =>
       CategoryWotBlitzResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -7304,7 +7331,9 @@ class CategoryGiftsResponse {
   factory CategoryGiftsResponse.fromJson(Map<String, dynamic> json) =>
       CategoryGiftsResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -7552,7 +7581,9 @@ class CategoryEpicGamesResponse {
   factory CategoryEpicGamesResponse.fromJson(Map<String, dynamic> json) =>
       CategoryEpicGamesResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -7762,7 +7793,9 @@ class CategoryEscapeFromTarkovResponse {
           Map<String, dynamic> json) =>
       CategoryEscapeFromTarkovResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -7969,7 +8002,9 @@ class CategorySocialClubResponse {
   factory CategorySocialClubResponse.fromJson(Map<String, dynamic> json) =>
       CategorySocialClubResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -8270,7 +8305,9 @@ class CategoryUplayResponse {
   factory CategoryUplayResponse.fromJson(Map<String, dynamic> json) =>
       CategoryUplayResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -8619,7 +8656,9 @@ class CategoryDiscordResponse {
   factory CategoryDiscordResponse.fromJson(Map<String, dynamic> json) =>
       CategoryDiscordResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -8856,7 +8895,9 @@ class CategoryTikTokResponse {
   factory CategoryTikTokResponse.fromJson(Map<String, dynamic> json) =>
       CategoryTikTokResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -9080,7 +9121,9 @@ class CategoryInstagramResponse {
   factory CategoryInstagramResponse.fromJson(Map<String, dynamic> json) =>
       CategoryInstagramResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -9308,7 +9351,9 @@ class CategoryBattleNetResponse {
   factory CategoryBattleNetResponse.fromJson(Map<String, dynamic> json) =>
       CategoryBattleNetResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -9530,7 +9575,9 @@ class CategoryChatGPTResponse {
   factory CategoryChatGPTResponse.fromJson(Map<String, dynamic> json) =>
       CategoryChatGPTResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -9713,7 +9760,9 @@ class CategoryVpnResponse {
   factory CategoryVpnResponse.fromJson(Map<String, dynamic> json) =>
       CategoryVpnResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -10043,7 +10092,9 @@ class CategoryRobloxResponse {
   factory CategoryRobloxResponse.fromJson(Map<String, dynamic> json) =>
       CategoryRobloxResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -10258,7 +10309,9 @@ class CategoryWarfaceResponse {
   factory CategoryWarfaceResponse.fromJson(Map<String, dynamic> json) =>
       CategoryWarfaceResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -10572,7 +10625,9 @@ class CategoryMinecraftResponse {
   factory CategoryMinecraftResponse.fromJson(Map<String, dynamic> json) =>
       CategoryMinecraftResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -10754,7 +10809,9 @@ class CategoryHytaleResponse {
   factory CategoryHytaleResponse.fromJson(Map<String, dynamic> json) =>
       CategoryHytaleResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
         totalItemsPrice: json['totalItemsPrice'],
@@ -11066,7 +11123,9 @@ class CategoryParamsResponse {
                 json['category'] as Map<String, dynamic>)
             : null,
         params: json['params'] is List
-            ? (json['params'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['params'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : null,
         baseParams: json['base_params'],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -11088,7 +11147,9 @@ class CategoryGamesResponse {
   factory CategoryGamesResponse.fromJson(Map<String, dynamic> json) =>
       CategoryGamesResponse(
         games: json['games'] is List
-            ? (json['games'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['games'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : null,
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -11114,7 +11175,8 @@ class CustomDiscountsGetResponse {
       CustomDiscountsGetResponse(
         discounts: json['discounts'] is List
             ? (json['discounts'] as List<dynamic>)
-                .map((e) => DiscountModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => DiscountModel.fromJson(e))
                 .toList()
             : const [],
         total: json['total'] is num ? json['total'] as num : 0,
@@ -11230,7 +11292,8 @@ class CustomDiscountsEditResponse {
       CustomDiscountsEditResponse(
         discounts: json['discounts'] is List
             ? (json['discounts'] as List<dynamic>)
-                .map((e) => DiscountModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => DiscountModel.fromJson(e))
                 .toList()
             : const [],
         total: json['total'] is num ? json['total'] as num : 0,
@@ -11530,8 +11593,8 @@ class ListUserResponse {
       ListUserResponse(
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
@@ -11544,8 +11607,8 @@ class ListUserResponse {
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
             ? (json['stickyItems'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -11659,8 +11722,8 @@ class ListOrdersResponse {
       ListOrdersResponse(
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
@@ -11673,8 +11736,8 @@ class ListOrdersResponse {
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
             ? (json['stickyItems'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -12312,8 +12375,8 @@ class ListFavoritesResponse {
       ListFavoritesResponse(
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
@@ -12326,8 +12389,8 @@ class ListFavoritesResponse {
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
             ? (json['stickyItems'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -12428,8 +12491,8 @@ class ListViewedResponse {
       ListViewedResponse(
         items: json['items'] is List
             ? (json['items'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         totalItems: json['totalItems'] is num ? json['totalItems'] as num : 0,
@@ -12442,8 +12505,8 @@ class ListViewedResponse {
             json['searchUrl'] is String ? json['searchUrl'] as String : '',
         stickyItems: json['stickyItems'] is List
             ? (json['stickyItems'] as List<dynamic>)
-                .map((e) =>
-                    ItemFromListModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => ItemFromListModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -12566,7 +12629,7 @@ class ManagingGetResponse {
             ? json['canChangeOwner'] as bool
             : false,
         sameItemsIds: json['sameItemsIds'] is List
-            ? (json['sameItemsIds'] as List<dynamic>).cast<num>()
+            ? (json['sameItemsIds'] as List<dynamic>).whereType<num>().toList()
             : const [],
         sameItemsCount:
             json['sameItemsCount'] is num ? json['sameItemsCount'] as num : 0,
@@ -12789,7 +12852,9 @@ class ManagingCreateClaimResponseThreadFirstPost {
             ? json['post_attachment_count'] as num
             : 0,
         likeUsers: json['like_users'] is List
-            ? (json['like_users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['like_users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         userIsIgnored: json['user_is_ignored'] is bool
             ? json['user_is_ignored'] as bool
@@ -13015,7 +13080,8 @@ class ManagingCreateClaimResponseThreadForum {
             : 0,
         forumPrefixes: json['forum_prefixes'] is List
             ? (json['forum_prefixes'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         threadDefaultPrefixId: json['thread_default_prefix_id'] is num
             ? json['thread_default_prefix_id'] as num
@@ -13221,10 +13287,12 @@ class ManagingBulkGetResponse {
   factory ManagingBulkGetResponse.fromJson(Map<String, dynamic> json) =>
       ManagingBulkGetResponse(
         items: json['items'] is List
-            ? (json['items'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['items'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         leftItemId: json['left_item_id'] is List
-            ? (json['left_item_id'] as List<dynamic>).cast<num>()
+            ? (json['left_item_id'] as List<dynamic>).whereType<num>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -13896,7 +13964,9 @@ class ManagingGetLetters2Response {
       ManagingGetLetters2Response(
         email: json['email'] is String ? json['email'] as String : '',
         letters: json['letters'] is List
-            ? (json['letters'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['letters'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14433,7 +14503,7 @@ class ManagingTagResponse {
             : ManagingTagResponseTag.fromJson(const {}),
         addedTagId: json['addedTagId'] is num ? json['addedTagId'] as num : 0,
         deleteTags: json['deleteTags'] is List
-            ? (json['deleteTags'] as List<dynamic>).cast<num>()
+            ? (json['deleteTags'] as List<dynamic>).whereType<num>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14509,7 +14579,7 @@ class ManagingUntagResponse {
             : ManagingUntagResponseTag.fromJson(const {}),
         addedTagId: json['addedTagId'] is num ? json['addedTagId'] as num : 0,
         deleteTags: json['deleteTags'] is List
-            ? (json['deleteTags'] as List<dynamic>).cast<num>()
+            ? (json['deleteTags'] as List<dynamic>).whereType<num>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14585,7 +14655,7 @@ class ManagingPublicTagResponse {
             : ManagingPublicTagResponseTag.fromJson(const {}),
         addedTagId: json['addedTagId'] is num ? json['addedTagId'] as num : 0,
         deleteTags: json['deleteTags'] is List
-            ? (json['deleteTags'] as List<dynamic>).cast<num>()
+            ? (json['deleteTags'] as List<dynamic>).whereType<num>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14661,7 +14731,7 @@ class ManagingPublicUntagResponse {
             : ManagingPublicUntagResponseTag.fromJson(const {}),
         addedTagId: json['addedTagId'] is num ? json['addedTagId'] as num : 0,
         deleteTags: json['deleteTags'] is List
-            ? (json['deleteTags'] as List<dynamic>).cast<num>()
+            ? (json['deleteTags'] as List<dynamic>).whereType<num>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -14983,7 +15053,8 @@ class PaymentsInvoiceListResponse {
       PaymentsInvoiceListResponse(
         invoices: json['invoices'] is List
             ? (json['invoices'] as List<dynamic>)
-                .map((e) => InvoiceModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => InvoiceModel.fromJson(e))
                 .toList()
             : const [],
         count: json['count'] is num ? json['count'] as num : 0,
@@ -17544,7 +17615,9 @@ class PaymentsPayoutServicesResponse {
   factory PaymentsPayoutServicesResponse.fromJson(Map<String, dynamic> json) =>
       PaymentsPayoutServicesResponse(
         systems: json['systems'] is List
-            ? (json['systems'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['systems'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -17705,7 +17778,9 @@ class ProfileClaimsResponse {
   factory ProfileClaimsResponse.fromJson(Map<String, dynamic> json) =>
       ProfileClaimsResponse(
         claims: json['claims'] is List
-            ? (json['claims'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['claims'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         stats: json['stats'] is Map<String, dynamic>
             ? ProfileClaimsResponseStats.fromJson(
@@ -17857,7 +17932,9 @@ class ProxyGetResponse {
   factory ProxyGetResponse.fromJson(Map<String, dynamic> json) =>
       ProxyGetResponse(
         proxies: json['proxies'] is List
-            ? (json['proxies'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['proxies'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -18777,7 +18854,8 @@ class PublishingCheckResponseItem {
             : false,
         accountLinks: json['accountLinks'] is List
             ? (json['accountLinks'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         accountLink:
             json['accountLink'] is String ? json['accountLink'] as String : '',
@@ -18813,7 +18891,8 @@ class PublishingCheckResponseItem {
         deposit: json['deposit'] is num ? json['deposit'] as num : 0,
         extraPrices: json['extraPrices'] is List
             ? (json['extraPrices'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         canViewAccountLoginAndTempEmail:
             json['canViewAccountLoginAndTempEmail'] is bool
@@ -19480,7 +19559,8 @@ class PurchasingFastBuyResponseItem {
             : false,
         accountLinks: json['accountLinks'] is List
             ? (json['accountLinks'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         accountLink:
             json['accountLink'] is String ? json['accountLink'] as String : '',
@@ -19516,7 +19596,8 @@ class PurchasingFastBuyResponseItem {
         deposit: json['deposit'] is num ? json['deposit'] as num : 0,
         extraPrices: json['extraPrices'] is List
             ? (json['extraPrices'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         canViewAccountLoginAndTempEmail:
             json['canViewAccountLoginAndTempEmail'] is bool
@@ -20009,7 +20090,8 @@ class PurchasingCheckResponseItem {
             : false,
         accountLinks: json['accountLinks'] is List
             ? (json['accountLinks'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         accountLink:
             json['accountLink'] is String ? json['accountLink'] as String : '',
@@ -20045,7 +20127,8 @@ class PurchasingCheckResponseItem {
         deposit: json['deposit'] is num ? json['deposit'] as num : 0,
         extraPrices: json['extraPrices'] is List
             ? (json['extraPrices'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         canViewAccountLoginAndTempEmail:
             json['canViewAccountLoginAndTempEmail'] is bool

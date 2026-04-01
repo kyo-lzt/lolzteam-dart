@@ -15,9 +15,9 @@ void main() {
       expect(ex.statusCode, 401);
     });
 
-    test('returns AuthException for 403', () {
+    test('returns ForbiddenException for 403', () {
       final ex = createHttpException(403, null, {});
-      expect(ex, isA<AuthException>());
+      expect(ex, isA<ForbiddenException>());
     });
 
     test('returns NotFoundException for 404', () {

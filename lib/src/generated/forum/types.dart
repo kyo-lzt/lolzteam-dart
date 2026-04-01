@@ -989,7 +989,9 @@ class RespUserModelUserFollowing {
   factory RespUserModelUserFollowing.fromJson(Map<String, dynamic> json) =>
       RespUserModelUserFollowing(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         count: json['count'] is num ? json['count'] as num : 0,
       );
@@ -1007,7 +1009,9 @@ class RespUserModelUserFollowers {
   factory RespUserModelUserFollowers.fromJson(Map<String, dynamic> json) =>
       RespUserModelUserFollowers(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         count: json['count'] is num ? json['count'] as num : 0,
       );
@@ -1189,14 +1193,19 @@ class RespUserModel {
         userGroupId:
             json['user_group_id'] is num ? json['user_group_id'] as num : 0,
         curatorTitles: json['curator_titles'] is List
-            ? (json['curator_titles'] as List<dynamic>).cast<String>()
+            ? (json['curator_titles'] as List<dynamic>)
+                .whereType<String>()
+                .toList()
             : const [],
         userGroups: json['user_groups'] is List
             ? (json['user_groups'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         fields: json['fields'] is List
-            ? (json['fields'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['fields'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         userTimezoneOffset: json['user_timezone_offset'] is num
             ? json['user_timezone_offset'] as num
@@ -1204,7 +1213,8 @@ class RespUserModel {
         userExternalAuthentications:
             json['user_external_authentications'] is List
                 ? (json['user_external_authentications'] as List<dynamic>)
-                    .cast<Map<String, dynamic>>()
+                    .whereType<Map<String, dynamic>>()
+                    .toList()
                 : const [],
         selfPermissions: json['self_permissions'] is Map<String, dynamic>
             ? RespUserModelSelfPermissions.fromJson(
@@ -1634,7 +1644,7 @@ class RespThreadModelContest {
         chanceToWin:
             json['chance_to_win'] is num ? json['chance_to_win'] as num : 0,
         winners: json['winners'] is List
-            ? (json['winners'] as List<dynamic>).cast<num>()
+            ? (json['winners'] as List<dynamic>).whereType<num>().toList()
             : null,
         alreadyParticipate: json['already_participate'] is bool
             ? json['already_participate'] as bool
@@ -1757,11 +1767,15 @@ class RespThreadModel {
             : RespThreadModelFirstPost.fromJson(const {}),
         threadPrefixes: json['thread_prefixes'] is List
             ? (json['thread_prefixes'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         threadTags: json['thread_tags'] is Map
-            ? (json['thread_tags'] as Map<String, dynamic>)
-                .cast<String, String>()
+            ? Map<String, String>.fromEntries(
+                (json['thread_tags'] as Map<String, dynamic>)
+                    .entries
+                    .where((e) => e.value is String)
+                    .map((e) => MapEntry(e.key, e.value as String)))
             : const {},
         links: json['links'] is Map<String, dynamic>
             ? RespThreadModelLinks.fromJson(
@@ -2629,7 +2643,9 @@ class RespConversationModel {
                 json['recipient'] as Map<String, dynamic>)
             : RespConversationModelRecipient.fromJson(const {}),
         recipients: json['recipients'] is List
-            ? (json['recipients'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['recipients'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         links: json['links'] is Map<String, dynamic>
             ? RespConversationModelLinks.fromJson(
@@ -2908,7 +2924,8 @@ class RespForumModel {
             : 0,
         forumPrefixes: json['forum_prefixes'] is List
             ? (json['forum_prefixes'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         threadDefaultPrefixId: json['thread_default_prefix_id'] is num
             ? json['thread_default_prefix_id'] as num
@@ -3053,7 +3070,9 @@ class CategoriesListResponse {
   factory CategoriesListResponse.fromJson(Map<String, dynamic> json) =>
       CategoriesListResponse(
         categories: json['categories'] is List
-            ? (json['categories'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['categories'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         categoriesTotal: json['categories_total'] is num
             ? json['categories_total'] as num
@@ -3256,18 +3275,22 @@ class ChatboxIndexResponse {
   factory ChatboxIndexResponse.fromJson(Map<String, dynamic> json) =>
       ChatboxIndexResponse(
         rooms: json['rooms'] is List
-            ? (json['rooms'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['rooms'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         ban: json['ban'],
         ignore: json['ignore'] is List
-            ? (json['ignore'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['ignore'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         permissions: json['permissions'] is Map<String, dynamic>
             ? ChatboxIndexResponsePermissions.fromJson(
                 json['permissions'] as Map<String, dynamic>)
             : ChatboxIndexResponsePermissions.fromJson(const {}),
         commands: json['commands'] is List
-            ? (json['commands'] as List<dynamic>).cast<String>()
+            ? (json['commands'] as List<dynamic>).whereType<String>().toList()
             : const [],
         roomsOnline: json['roomsOnline'] is Map<String, dynamic>
             ? ChatboxIndexResponseRoomsOnline.fromJson(
@@ -3312,8 +3335,8 @@ class ChatboxGetMessagesResponse {
       ChatboxGetMessagesResponse(
         messages: json['messages'] is List
             ? (json['messages'] as List<dynamic>)
-                .map((e) =>
-                    RespChatboxMessageModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespChatboxMessageModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -3474,7 +3497,9 @@ class ChatboxOnlineResponse {
   factory ChatboxOnlineResponse.fromJson(Map<String, dynamic> json) =>
       ChatboxOnlineResponse(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -3510,7 +3535,7 @@ class ChatboxReportReasonsResponse {
   factory ChatboxReportReasonsResponse.fromJson(Map<String, dynamic> json) =>
       ChatboxReportReasonsResponse(
         reasons: json['reasons'] is List
-            ? (json['reasons'] as List<dynamic>).cast<String>()
+            ? (json['reasons'] as List<dynamic>).whereType<String>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -3588,7 +3613,8 @@ class ChatboxGetLeaderboardResponse {
       ChatboxGetLeaderboardResponse(
         leaderboard: json['leaderboard'] is List
             ? (json['leaderboard'] as List<dynamic>)
-                .cast<Map<String, dynamic>>()
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -3609,7 +3635,9 @@ class ChatboxGetIgnoreResponse {
   factory ChatboxGetIgnoreResponse.fromJson(Map<String, dynamic> json) =>
       ChatboxGetIgnoreResponse(
         ignored: json['ignored'] is List
-            ? (json['ignored'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['ignored'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -3754,13 +3782,15 @@ class ConversationsListResponse {
       ConversationsListResponse(
         conversations: json['conversations'] is List
             ? (json['conversations'] as List<dynamic>)
-                .map((e) =>
-                    RespConversationModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespConversationModel.fromJson(e))
                 .toList()
             : const [],
         canStart: json['can_start'] is bool ? json['can_start'] as bool : false,
         folders: json['folders'] is List
-            ? (json['folders'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['folders'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         links: json['links'] is Map<String, dynamic>
             ? ConversationsListResponseLinks.fromJson(
@@ -4123,8 +4153,8 @@ class ConversationsMessagesListResponse {
       ConversationsMessagesListResponse(
         messages: json['messages'] is List
             ? (json['messages'] as List<dynamic>)
-                .map((e) => RespConversationMessageModel.fromJson(
-                    e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespConversationMessageModel.fromJson(e))
                 .toList()
             : const [],
         messagesTotal:
@@ -4223,8 +4253,8 @@ class ConversationsSearchResponse {
       ConversationsSearchResponse(
         conversations: json['conversations'] is List
             ? (json['conversations'] as List<dynamic>)
-                .map((e) =>
-                    RespConversationModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespConversationModel.fromJson(e))
                 .toList()
             : const [],
         recipients:
@@ -4609,7 +4639,9 @@ class FormsListResponse {
   factory FormsListResponse.fromJson(Map<String, dynamic> json) =>
       FormsListResponse(
         forms: json['forms'] is List
-            ? (json['forms'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['forms'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         formsPerPage:
             json['formsPerPage'] is num ? json['formsPerPage'] as num : 0,
@@ -4726,13 +4758,16 @@ class ForumsListResponse {
       ForumsListResponse(
         forums: json['forums'] is List
             ? (json['forums'] as List<dynamic>)
-                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespForumModel.fromJson(e))
                 .toList()
             : const [],
         forumsTotal:
             json['forums_total'] is num ? json['forums_total'] as num : 0,
         tabs: json['tabs'] is List
-            ? (json['tabs'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['tabs'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -4755,10 +4790,14 @@ class ForumsGroupedResponse {
   factory ForumsGroupedResponse.fromJson(Map<String, dynamic> json) =>
       ForumsGroupedResponse(
         data: json['data'] is List
-            ? (json['data'] as List<dynamic>).cast<List<Map<String, dynamic>>>()
+            ? (json['data'] as List<dynamic>)
+                .whereType<List<Map<String, dynamic>>>()
+                .toList()
             : const [],
         tabs: json['tabs'] is List
-            ? (json['tabs'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['tabs'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -4800,7 +4839,9 @@ class ForumsFollowersResponse {
   factory ForumsFollowersResponse.fromJson(Map<String, dynamic> json) =>
       ForumsFollowersResponse(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -4916,7 +4957,8 @@ class ForumsFollowedResponse {
       ForumsFollowedResponse(
         forums: json['forums'] is List
             ? (json['forums'] as List<dynamic>)
-                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespForumModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -4945,14 +4987,19 @@ class ForumsGetFeedOptionsResponse {
       ForumsGetFeedOptionsResponse(
         forums: json['forums'] is List
             ? (json['forums'] as List<dynamic>)
-                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespForumModel.fromJson(e))
                 .toList()
             : const [],
         excludedForumsIds: json['excluded_forums_ids'] is List
-            ? (json['excluded_forums_ids'] as List<dynamic>).cast<num>()
+            ? (json['excluded_forums_ids'] as List<dynamic>)
+                .whereType<num>()
+                .toList()
             : const [],
         defaultExcludedForumsIds: json['default_excluded_forums_ids'] is List
-            ? (json['default_excluded_forums_ids'] as List<dynamic>).cast<num>()
+            ? (json['default_excluded_forums_ids'] as List<dynamic>)
+                .whereType<num>()
+                .toList()
             : const [],
         keywords: json['keywords'] is String ? json['keywords'] as String : '',
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -5021,7 +5068,8 @@ class LinksListResponse {
       LinksListResponse(
         linkForums: json['link-forums'] is List
             ? (json['link-forums'] as List<dynamic>)
-                .map((e) => RespLinkModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespLinkModel.fromJson(e))
                 .toList()
             : const [],
         linkForumsTotal: json['link-forums_total'] is num
@@ -5086,7 +5134,9 @@ class NavigationListResponse {
   factory NavigationListResponse.fromJson(Map<String, dynamic> json) =>
       NavigationListResponse(
         elements: json['elements'] is List
-            ? (json['elements'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['elements'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         elementsCount:
             json['elements_count'] is num ? json['elements_count'] as num : 0,
@@ -5162,8 +5212,8 @@ class NotificationsListResponse {
       NotificationsListResponse(
         notifications: json['notifications'] is List
             ? (json['notifications'] as List<dynamic>)
-                .map((e) =>
-                    RespNotificationModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespNotificationModel.fromJson(e))
                 .toList()
             : const [],
         notificationsTotal: json['notifications_total'] is num
@@ -5443,7 +5493,9 @@ class PagesListResponse {
   factory PagesListResponse.fromJson(Map<String, dynamic> json) =>
       PagesListResponse(
         pages: json['pages'] is List
-            ? (json['pages'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['pages'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         pagesTotal: json['pages_total'] is num ? json['pages_total'] as num : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -5609,7 +5661,8 @@ class PostsListResponse {
       PostsListResponse(
         posts: json['posts'] is List
             ? (json['posts'] as List<dynamic>)
-                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespThreadModel.fromJson(e))
                 .toList()
             : const [],
         thread: json['thread'] is Map<String, dynamic>
@@ -5795,7 +5848,9 @@ class PostsLikesResponse {
   factory PostsLikesResponse.fromJson(Map<String, dynamic> json) =>
       PostsLikesResponse(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -5860,7 +5915,7 @@ class PostsReportReasonsResponse {
   factory PostsReportReasonsResponse.fromJson(Map<String, dynamic> json) =>
       PostsReportReasonsResponse(
         reasons: json['reasons'] is List
-            ? (json['reasons'] as List<dynamic>).cast<String>()
+            ? (json['reasons'] as List<dynamic>).whereType<String>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -5944,8 +5999,8 @@ class PostsCommentsGetResponse {
       PostsCommentsGetResponse(
         comments: json['comments'] is List
             ? (json['comments'] as List<dynamic>)
-                .map((e) =>
-                    RespPostCommentModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespPostCommentModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -6501,8 +6556,8 @@ class ProfilePostsListResponse {
       ProfilePostsListResponse(
         profilePosts: json['profile_posts'] is List
             ? (json['profile_posts'] as List<dynamic>)
-                .map((e) =>
-                    RespProfilePostModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespProfilePostModel.fromJson(e))
                 .toList()
             : const [],
         totalProfilePosts: json['totalProfilePosts'] is num
@@ -6792,7 +6847,7 @@ class ProfilePostsReportReasonsResponse {
           Map<String, dynamic> json) =>
       ProfilePostsReportReasonsResponse(
         reasons: json['reasons'] is List
-            ? (json['reasons'] as List<dynamic>).cast<String>()
+            ? (json['reasons'] as List<dynamic>).whereType<String>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -7092,7 +7147,9 @@ class ProfilePostsLikesResponse {
   factory ProfilePostsLikesResponse.fromJson(Map<String, dynamic> json) =>
       ProfilePostsLikesResponse(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -7348,8 +7405,8 @@ class ProfilePostsCommentsListResponse {
       ProfilePostsCommentsListResponse(
         comments: json['comments'] is List
             ? (json['comments'] as List<dynamic>)
-                .map((e) => RespProfilePostCommentModel.fromJson(
-                    e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespProfilePostCommentModel.fromJson(e))
                 .toList()
             : const [],
         commentsTotal:
@@ -7870,13 +7927,15 @@ class SearchAllResponse {
       SearchAllResponse(
         data: json['data'] is List
             ? (json['data'] as List<dynamic>)
-                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespForumModel.fromJson(e))
                 .toList()
             : const [],
         dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
         users: json['users'] is List
             ? (json['users'] as List<dynamic>)
-                .map((e) => RespUserModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespUserModel.fromJson(e))
                 .toList()
             : const [],
         links: json['links'] is Map<String, dynamic>
@@ -7974,7 +8033,8 @@ class SearchThreadsResponse {
       SearchThreadsResponse(
         data: json['data'] is List
             ? (json['data'] as List<dynamic>)
-                .map((e) => RespForumModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespForumModel.fromJson(e))
                 .toList()
             : const [],
         dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
@@ -8073,7 +8133,8 @@ class SearchPostsResponse {
       SearchPostsResponse(
         data: json['data'] is List
             ? (json['data'] as List<dynamic>)
-                .map((e) => RespPostModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespPostModel.fromJson(e))
                 .toList()
             : const [],
         dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
@@ -8116,7 +8177,8 @@ class SearchUsersResponse {
       SearchUsersResponse(
         users: json['users'] is List
             ? (json['users'] as List<dynamic>)
-                .map((e) => RespUserModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespUserModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -8196,7 +8258,9 @@ class SearchProfilePostsResponse {
   factory SearchProfilePostsResponse.fromJson(Map<String, dynamic> json) =>
       SearchProfilePostsResponse(
         data: json['data'] is List
-            ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['data'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
         links: json['links'] is Map<String, dynamic>
@@ -8257,7 +8321,8 @@ class SearchTaggedResponse {
       SearchTaggedResponse(
         data: json['data'] is List
             ? (json['data'] as List<dynamic>)
-                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespThreadModel.fromJson(e))
                 .toList()
             : const [],
         dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
@@ -8306,7 +8371,8 @@ class SearchResultsResponse {
       SearchResultsResponse(
         data: json['data'] is List
             ? (json['data'] as List<dynamic>)
-                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespThreadModel.fromJson(e))
                 .toList()
             : const [],
         dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
@@ -8332,7 +8398,11 @@ class TagsPopularResponse {
   factory TagsPopularResponse.fromJson(Map<String, dynamic> json) =>
       TagsPopularResponse(
         tags: json['tags'] is Map
-            ? (json['tags'] as Map<String, dynamic>).cast<String, String>()
+            ? Map<String, String>.fromEntries(
+                (json['tags'] as Map<String, dynamic>)
+                    .entries
+                    .where((e) => e.value is String)
+                    .map((e) => MapEntry(e.key, e.value as String)))
             : const {},
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -8396,7 +8466,11 @@ class TagsListResponse {
   factory TagsListResponse.fromJson(Map<String, dynamic> json) =>
       TagsListResponse(
         tags: json['tags'] is Map
-            ? (json['tags'] as Map<String, dynamic>).cast<String, String>()
+            ? Map<String, String>.fromEntries(
+                (json['tags'] as Map<String, dynamic>)
+                    .entries
+                    .where((e) => e.value is String)
+                    .map((e) => MapEntry(e.key, e.value as String)))
             : const {},
         tagsTotal: json['tags_total'] is num ? json['tags_total'] as num : 0,
         links: json['links'] is Map<String, dynamic>
@@ -8514,7 +8588,8 @@ class TagsGetResponse {
             : TagsGetResponseTag.fromJson(const {}),
         tagged: json['tagged'] is List
             ? (json['tagged'] as List<dynamic>)
-                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespThreadModel.fromJson(e))
                 .toList()
             : const [],
         taggedTotal:
@@ -8559,10 +8634,10 @@ class TagsFindResponse {
   factory TagsFindResponse.fromJson(Map<String, dynamic> json) =>
       TagsFindResponse(
         tags: json['tags'] is List
-            ? (json['tags'] as List<dynamic>).cast<String>()
+            ? (json['tags'] as List<dynamic>).whereType<String>().toList()
             : const [],
         ids: json['ids'] is List
-            ? (json['ids'] as List<dynamic>).cast<num>()
+            ? (json['ids'] as List<dynamic>).whereType<num>().toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -8837,7 +8912,8 @@ class ThreadsListResponse {
       ThreadsListResponse(
         threads: json['threads'] is List
             ? (json['threads'] as List<dynamic>)
-                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespThreadModel.fromJson(e))
                 .toList()
             : const [],
         forum: json['forum'] is Map<String, dynamic>
@@ -9567,7 +9643,9 @@ class ThreadsFollowersResponse {
   factory ThreadsFollowersResponse.fromJson(Map<String, dynamic> json) =>
       ThreadsFollowersResponse(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -9670,7 +9748,8 @@ class ThreadsFollowedResponse {
       ThreadsFollowedResponse(
         threads: json['threads'] is List
             ? (json['threads'] as List<dynamic>)
-                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespThreadModel.fromJson(e))
                 .toList()
             : const [],
         threadsTotal:
@@ -9696,7 +9775,9 @@ class ThreadsNavigationResponse {
   factory ThreadsNavigationResponse.fromJson(Map<String, dynamic> json) =>
       ThreadsNavigationResponse(
         elements: json['elements'] is List
-            ? (json['elements'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['elements'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         elementsCount:
             json['elements_count'] is num ? json['elements_count'] as num : 0,
@@ -9776,7 +9857,9 @@ class ThreadsPollGetResponsePoll {
             ? json['poll_is_voted'] as bool
             : false,
         responses: json['responses'] is List
-            ? (json['responses'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['responses'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         permissions: json['permissions'] is Map<String, dynamic>
             ? ThreadsPollGetResponsePollPermissions.fromJson(
@@ -9892,11 +9975,14 @@ class ThreadsUnreadResponse {
   factory ThreadsUnreadResponse.fromJson(Map<String, dynamic> json) =>
       ThreadsUnreadResponse(
         threads: json['threads'] is List
-            ? (json['threads'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['threads'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         data: json['data'] is List
             ? (json['data'] as List<dynamic>)
-                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespThreadModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -9950,11 +10036,14 @@ class ThreadsRecentResponse {
   factory ThreadsRecentResponse.fromJson(Map<String, dynamic> json) =>
       ThreadsRecentResponse(
         threads: json['threads'] is List
-            ? (json['threads'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['threads'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         data: json['data'] is List
             ? (json['data'] as List<dynamic>)
-                .map((e) => RespThreadModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespThreadModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -10049,7 +10138,8 @@ class UsersListResponse {
       UsersListResponse(
         users: json['users'] is List
             ? (json['users'] as List<dynamic>)
-                .map((e) => RespUserModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespUserModel.fromJson(e))
                 .toList()
             : const [],
         usersTotal: json['users_total'] is num ? json['users_total'] as num : 0,
@@ -10076,7 +10166,9 @@ class UsersFieldsResponse {
   factory UsersFieldsResponse.fromJson(Map<String, dynamic> json) =>
       UsersFieldsResponse(
         fields: json['fields'] is List
-            ? (json['fields'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['fields'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -10123,7 +10215,8 @@ class UsersFindResponse {
       UsersFindResponse(
         users: json['users'] is List
             ? (json['users'] as List<dynamic>)
-                .map((e) => RespUserModel.fromJson(e as Map<String, dynamic>))
+                .whereType<Map<String, dynamic>>()
+                .map((e) => RespUserModel.fromJson(e))
                 .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -10418,7 +10511,9 @@ class UsersClaimsResponse {
   factory UsersClaimsResponse.fromJson(Map<String, dynamic> json) =>
       UsersClaimsResponse(
         claims: json['claims'] is List
-            ? (json['claims'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['claims'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         stats: json['stats'] is Map<String, dynamic>
             ? UsersClaimsResponseStats.fromJson(
@@ -10732,7 +10827,9 @@ class UsersFollowersResponse {
   factory UsersFollowersResponse.fromJson(Map<String, dynamic> json) =>
       UsersFollowersResponse(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         usersTotal: json['users_total'] is num ? json['users_total'] as num : 0,
         links: json['links'] is Map<String, dynamic>
@@ -10828,7 +10925,9 @@ class UsersFollowingsResponse {
   factory UsersFollowingsResponse.fromJson(Map<String, dynamic> json) =>
       UsersFollowingsResponse(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         usersTotal: json['users_total'] is num ? json['users_total'] as num : 0,
         systemInfo: json['system_info'] is Map<String, dynamic>
@@ -10940,7 +11039,9 @@ class UsersIgnoredResponse {
   factory UsersIgnoredResponse.fromJson(Map<String, dynamic> json) =>
       UsersIgnoredResponse(
         users: json['users'] is List
-            ? (json['users'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['users'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -11097,7 +11198,9 @@ class UsersContentsResponse {
   factory UsersContentsResponse.fromJson(Map<String, dynamic> json) =>
       UsersContentsResponse(
         data: json['data'] is List
-            ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['data'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         dataTotal: json['data_total'] is num ? json['data_total'] as num : 0,
         user: json['user'] is Map<String, dynamic>
@@ -11126,7 +11229,9 @@ class UsersTrophiesResponse {
   factory UsersTrophiesResponse.fromJson(Map<String, dynamic> json) =>
       UsersTrophiesResponse(
         trophies: json['trophies'] is List
-            ? (json['trophies'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['trophies'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
@@ -11147,7 +11252,9 @@ class UsersSecretAnswerTypesResponse {
   factory UsersSecretAnswerTypesResponse.fromJson(Map<String, dynamic> json) =>
       UsersSecretAnswerTypesResponse(
         data: json['data'] is List
-            ? (json['data'] as List<dynamic>).cast<Map<String, dynamic>>()
+            ? (json['data'] as List<dynamic>)
+                .whereType<Map<String, dynamic>>()
+                .toList()
             : const [],
         systemInfo: json['system_info'] is Map<String, dynamic>
             ? RespSystemInfo.fromJson(
